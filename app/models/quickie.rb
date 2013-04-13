@@ -2,7 +2,10 @@ class Quickie < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :title, presence: true
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  validates :title, :user, presence: true
 
   scope :undone, -> { where(done_at: nil) }
 
@@ -15,4 +18,5 @@ class Quickie < ActiveRecord::Base
   def skip=(skip)
     touch if skip
   end
+
 end
