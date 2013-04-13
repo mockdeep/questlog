@@ -14,7 +14,9 @@
 ActiveRecord::Schema.define(:version => 20130412185731) do
 
   create_table "quickies", :force => true do |t|
+    t.integer  "user_id"
     t.string   "title"
+    t.datetime "done_at"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
