@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Signed up!'
       self.current_user = @user
-      redirect_to items_path
+      redirect_to root_path
     else
       flash.now[:error] = 'There was a problem creating your account...'
       render :new
