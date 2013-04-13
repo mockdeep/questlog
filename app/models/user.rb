@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email
+  has_many :quickies
 
   validates :email, presence: true
   validates :password, presence: true, on: :create

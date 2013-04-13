@@ -3,6 +3,9 @@ require 'spork'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
   require 'rspec/rails'
   require 'rspec/autorun'
 
@@ -16,7 +19,5 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  require File.expand_path("../../config/environment", __FILE__)
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 end
 
