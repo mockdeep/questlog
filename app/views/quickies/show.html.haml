@@ -1,14 +1,25 @@
 - if @quickie
-  %h2= @quickie.title
-  = button_to('Done! Give me another!', quickie_path(@quickie, quickie: { done: true }), method: :put)
-  = button_to('Skip this one for now.', quickie_path(@quickie, quickie: { skip: true }), method: :put)
+  .row-fluid
+    %h2#quickie= @quickie.title
+  .row-fluid
+    .span6
+      .row-fluid
+        = button_to('Done! Give me another!', quickie_path(@quickie, quickie: { done: true }), method: :put, class: 'btn btn-primary btn-large btn-block')
+    .span6
+      .row-fluid
+        = button_to('Skip this one for now.', quickie_path(@quickie, quickie: { skip: true }), method: :put, class: 'btn btn-info btn-large btn-block')
+  %hr
+= form_for(@new_quickie, class: 'new-quickie') do |form|
+  .row-fluid
+    .span12
+      - if @new_quickie.errors.any?
+        = render 'common/errors', record: @new_quickie
+  .row-fluid
+    .span9
+      = form.text_field :title, class: 'span12'
+    .span3
+      = form.submit class: 'btn btn-success btn-block'
 
-= form_for(@new_quickie) do |form|
-  - if @new_quickie.errors.any?
-    = render 'common/errors', record: @new_quickie
-
-  %p
-    = form.label :new_quickie
-    = form.text_field :title
-    = form.submit
-
+  %a#button.btn{ title: 'button' } Press Me
+  %a#button.btn{ title: 'button' } Press Me Too
+  %a#button.btn{ title: 'button' } And Me!
