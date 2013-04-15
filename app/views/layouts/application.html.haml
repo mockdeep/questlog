@@ -7,20 +7,21 @@
     = csrf_meta_tags
 
 %body
-  .navbar
-    %h1#quickies= link_to('QUICKIES', root_path)
-
-    #user_nav
-      - if current_user
-        Logged in as #{current_user.email}
-        = link_to "Log out", session_path, :method => :destroy
-      - else
-        = link_to "Sign up", new_user_path
-        or  
-        = link_to "Log in", new_session_path
-
   .container-fluid
-    - flash.each do |name, msg|
-      = content_tag :div, msg, :id => "flash#{name}"
+    .row-fluid
+      .navbar
+        %h1#quickies= link_to('QUICKIES', root_path)
+
+        #user_nav
+          - if current_user
+            Logged in as #{current_user.email}
+            = link_to "Log out", session_path, :method => :destroy
+          - else
+            = link_to "Sign up", new_user_path
+            or
+            = link_to "Log in", new_session_path
+    .row-fluid
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash#{name}"
 
     = yield
