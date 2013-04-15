@@ -1,3 +1,8 @@
+- if @quickie
+  %h2= @quickie.title
+  = button_to('Done! Give me another!', quickie_path(@quickie, quickie: { done: true }), method: :put)
+  = button_to('Skip this one for now.', quickie_path(@quickie, quickie: { skip: true }), method: :put)
+
 = form_for(@new_quickie) do |form|
   - if @new_quickie.errors.any?
     = render 'common/errors', record: @new_quickie
@@ -7,7 +12,3 @@
     = form.text_field :title
     = form.submit
 
-- if @quickie
-  %h2= @quickie.title
-  = button_to('Done! Give me another!', quickie_path(@quickie, quickie: { done: true }), method: :put)
-  = button_to('Skip this one for now.', quickie_path(@quickie, quickie: { skip: true }), method: :put)
