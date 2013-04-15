@@ -5,8 +5,13 @@ class QuickiesController < ApplicationController
   end
 
   def create
-    current_user.quickies.create!(quickie_params)
-    redirect_to root_path
+    @new_quickie = current_user.quickies.new(quickie_params)
+    if @new_quickie.save
+      redirect_to root_path
+    else
+      @quickie = current_user.quickies.undone.first
+      render 'show'
+    end
   end
 
   def update
