@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :quickies, dependent: :destroy
-  has_many :tags, dependent: :destroy
+  has_many :contexts, dependent: :destroy
 
   validates :email, presence: true
   validates :password, presence: true, on: :create

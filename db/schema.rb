@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20130413050427) do
 
+  create_table "contexts", :force => true do |t|
+    t.string   "name"
+    t.integer  "quickies_count", :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "contexts", ["user_id"], :name => "index_contexts_on_user_id"
+
   create_table "quickies", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -24,24 +34,14 @@ ActiveRecord::Schema.define(:version => 20130413050427) do
   add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
+    t.integer  "context_id"
     t.integer  "quickie_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "taggings", ["context_id"], :name => "index_taggings_on_context_id"
   add_index "taggings", ["quickie_id"], :name => "index_taggings_on_quickie_id"
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-
-  create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.integer  "quickies_count", :default => 0
-    t.integer  "user_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-  end
-
-  add_index "tags", ["user_id"], :name => "index_tags_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

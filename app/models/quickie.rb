@@ -3,7 +3,7 @@ class Quickie < ActiveRecord::Base
   belongs_to :user
 
   has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
+  has_many :contexts, through: :taggings
 
   validates :title, :user, presence: true
 

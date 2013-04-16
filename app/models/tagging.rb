@@ -1,8 +1,8 @@
 class Tagging < ActiveRecord::Base
 
   belongs_to :quickie
-  belongs_to :tag
+  belongs_to :context
 
-  validates :quickie, :tag, presence: true
+  validates :quickie, :context, presence: true
 
 end
