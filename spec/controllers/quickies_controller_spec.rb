@@ -4,6 +4,7 @@ describe QuickiesController do
   let(:quickie) { create(:quickie) }
   let(:user) { quickie.user }
   let(:valid_params) { attributes_for(:quickie) }
+  let(:context) { create(:context, user: user) }
 
   before(:each) do
     login_as(user)
@@ -28,6 +29,17 @@ describe QuickiesController do
         get(:show)
         expect(assigns(:quickie)).to eq quickie
       end
+    end
+
+    it 'initializes a new Context' do
+      get(:show)
+      expect(assigns(:context)).to be_new_record
+    end
+
+    it 'sets existing Context' do
+      context
+      get(:show)
+      expect(assigns(:contexts)).to eq [context]
     end
   end
 

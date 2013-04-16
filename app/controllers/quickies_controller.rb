@@ -1,7 +1,9 @@
 class QuickiesController < ApplicationController
   def show
     @new_quickie = Quickie.new
-    @quickie = current_user.quickies.undone.first
+    @quickie = current_user.next_quickie(params[:context_id])
+    @context = Context.new
+    @contexts = current_user.contexts
   end
 
   def create
@@ -23,6 +25,6 @@ class QuickiesController < ApplicationController
 private
 
   def quickie_params
-    params[:quickie].permit(:done, :skip, :title)
+    params[:quickie].permit(:done, :skip, :title, :context_ids)
   end
 end

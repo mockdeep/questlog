@@ -19,4 +19,9 @@ class Quickie < ActiveRecord::Base
     touch if skip
   end
 
+  def context_ids=(context_ids)
+    context_ids = JSON.parse(context_ids) if context_ids.is_a?(String)
+    super(context_ids)
+  end
+
 end
