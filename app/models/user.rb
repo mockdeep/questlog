@@ -12,4 +12,12 @@ class User < ActiveRecord::Base
     User.find_by_email(email).try(:authenticate, password)
   end
 
+  def next_quickie(context_id=nil)
+    if context_id
+      contexts.find(context_id).quickies.undone.first
+    else
+      quickies.undone.first
+    end
+  end
+
 end

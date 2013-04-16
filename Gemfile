@@ -35,6 +35,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara', '2.0.3'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'guard-rspec'

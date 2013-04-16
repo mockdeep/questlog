@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe User do
 
+  let(:context) { create(:context, user: user) }
+  let(:quickie1) { create(:quickie, user: user) }
+  let(:quickie2) { create(:quickie, user: user) }
   let(:user) { create(:user) }
 
   describe '.authenticate' do
@@ -32,6 +35,27 @@ describe User do
   describe 'associations' do
     it { should have_many(:quickies).dependent(:destroy) }
     it { should have_many(:contexts).dependent(:destroy) }
+  end
+
+  describe '#next_quickie' do
+    context 'given a context_id parameter' do
+      it 'returns the next quickie for that context' do
+        quickie1
+        quickie2.contexts << context
+        user.next_quickie.should eq quickie1
+        user.next_quickie(context.id).should eq quickie2
+      end
+    end
+
+    it 'returns the next undone quickie' do
+      quickie1
+      quickie2
+      user.next_quickie.should eq quickie1
+      quickie1.update_attributes(skip: true)
+      user.next_quickie.should eq quickie2
+      quickie2.update_attributes(done: true)
+      user.reload.next_quickie.should eq quickie1
+    end
   end
 
 end
