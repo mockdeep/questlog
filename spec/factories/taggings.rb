@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tagging do
-    tag
+    context
     quickie
   end
 end

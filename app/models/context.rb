@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Context < ActiveRecord::Base
 
   attr_accessible :name
 

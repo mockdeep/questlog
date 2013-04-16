@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tag do
+describe Context do
 
   describe 'associations' do
     it { should belong_to(:user) }
@@ -11,11 +11,11 @@ describe Tag do
 
   describe '#quickies_count' do
     it 'returns the number of associated quickies' do
-      tag = FactoryGirl.create(:tag)
-      expect(tag.quickies_count).to eq 0
+      context = FactoryGirl.create(:context)
+      expect(context.quickies_count).to eq 0
       quickie = FactoryGirl.create(:quickie)
-      tag.quickies << quickie
-      expect(tag.quickies_count).to eq 1
+      context.quickies << quickie
+      expect(context.quickies_count).to eq 1
     end
   end
 

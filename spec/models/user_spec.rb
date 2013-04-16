@@ -31,7 +31,7 @@ describe User do
 
   describe 'associations' do
     it { should have_many(:quickies).dependent(:destroy) }
-    it { should have_many(:tags).dependent(:destroy) }
+    it { should have_many(:contexts).dependent(:destroy) }
   end
 
 end
