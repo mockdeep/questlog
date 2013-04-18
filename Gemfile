@@ -4,7 +4,7 @@ ruby '1.9.3'
 
 gem 'rails'
 
-gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'pg'
