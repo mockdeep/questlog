@@ -8,5 +8,5 @@ Quickies::Application.routes.draw do
   resources :quickies, only: [:create, :update]
   resources :users, only: [:new, :create]
 
-  get '/:context_id', to: 'quickies#show', as: 'context'
+  get '/:slug', to: 'quickies#show', as: 'context'
 end

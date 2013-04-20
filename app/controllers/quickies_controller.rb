@@ -1,7 +1,7 @@
 class QuickiesController < ApplicationController
   def show
     @new_quickie = Quickie.new
-    @quickie = current_user.next_quickie(params[:context_id])
+    @quickie = current_user.next_quickie(params[:slug])
     @context = Context.new
     @contexts = current_user.contexts
   end
