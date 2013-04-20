@@ -19,7 +19,7 @@ class QuickiesController < ApplicationController
   def update
     quickie = current_user.quickies.find(params[:id])
     quickie.update_attributes!(quickie_params)
-    redirect_to root_path
+    redirect_to :back
   end
 
 private
