@@ -11,6 +11,8 @@ class QuickiesController < ApplicationController
     if @new_quickie.save
       redirect_to root_path
     else
+      @context = Context.new
+      @contexts = current_user.contexts
       @quickie = current_user.quickies.undone.first
       render 'show'
     end
@@ -25,6 +27,6 @@ class QuickiesController < ApplicationController
 private
 
   def quickie_params
-    params[:quickie].permit(:done, :skip, :title, :context_ids)
+    params[:quickie].permit(:done, :skip, :title, :context_ids, :repeat_string)
   end
 end
