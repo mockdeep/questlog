@@ -4,9 +4,11 @@
       - if quickie.errors.any?
         = render 'common/errors', record: quickie
   .row-fluid
-    .span9
+    .span6
       = form.hidden_field :context_ids
       = form.text_field :title, class: 'span12'
+    .span3
+      = form.select :repeat_string, options_for_select(Repeat.repeat_maps.keys), include_blank: 'once'
     .span3
       = form.submit class: 'btn btn-success btn-block'
 

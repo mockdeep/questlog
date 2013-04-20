@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420020709) do
+ActiveRecord::Schema.define(:version => 20130420223859) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20130420020709) do
     t.integer  "user_id"
     t.string   "title"
     t.datetime "done_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "repeat_string"
   end
 
   add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
