@@ -4,7 +4,6 @@ $(document).ready(function () {
         contextIds = JSON.parse(quickieField.val()),
         contextId = $(this).data('context-id'),
         index = contextIds.indexOf(contextId);
-    //console.log($('#quickie_context_ids').data('context-ids'));
     if ($(this).hasClass('active')) {
       $(this).removeClass('active');
       if (index !== -1) {
@@ -16,16 +15,7 @@ $(document).ready(function () {
         contextIds.push(contextId);
       }
     }
-    console.log(contextIds);
     quickieField.val(JSON.stringify(contextIds));
-    // if this.active?
-    //   deactivate
-    //   remove id from context_ids
-    // else
-    //   activate
-    //   add id to context_ids
-    // end
-    //$(this).toggleClass("active");
   });
 
   $('#quickie_title').focus();
