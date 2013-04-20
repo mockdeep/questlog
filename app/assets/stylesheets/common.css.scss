@@ -22,11 +22,7 @@ input {
 h1 {
   font-size: 60px;
   display:inline-block;
-  transform:scale(.5em,1); /* W3C */
-  -webkit-transform:scale(0.5,1); /* Safari and Chrome */
-  -moz-transform:scale(0.5,1); /* Firefox */
-  -ms-transform:scale(0.5,1); /* IE 9 */
-  -o-transform:scale(0.5,1); /* Opera */
+  font-family: Times, serif;
 }
 
 h3 {
