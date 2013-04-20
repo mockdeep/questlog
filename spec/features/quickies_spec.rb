@@ -29,7 +29,7 @@ describe 'Quickies page' do
     page.should_not have_button('Skip')
   end
 
-  it 'allows a user to manage contexts' do
+  it 'allows a user to manage contexts', js: true do
     fill_in 'context_name', with: 'on the toilet'
     click_button 'Add Context'
     fill_in 'context_name', with: 'at work'
