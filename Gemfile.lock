@@ -65,6 +65,8 @@ GEM
     diff-lcs (1.2.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    exceptional (2.0.33)
+      rack
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -238,6 +240,7 @@ DEPENDENCIES
   capybara-webkit
   coffee-rails
   database_cleaner
+  exceptional
   factory_girl_rails
   faker
   font-awesome-sass-rails
