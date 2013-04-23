@@ -1,4 +1,4 @@
 - contexts.each do |context|
-  = link_to(context.name,
+  = link_to("#{context.name} (#{context.quickies_count})",
             context_path(context),
             class: "button btn choose-context #{active_class(context)}")

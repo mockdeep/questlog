@@ -14,6 +14,11 @@ class Quickie < ActiveRecord::Base
 
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
+    if done_at && !done_at_was
+      decrement_contexts
+    elsif !done_at && done_at_was
+      increment_contexts
+    end
   end
 
   def skip=(skip)
@@ -23,6 +28,7 @@ class Quickie < ActiveRecord::Base
   def context_ids=(context_ids)
     context_ids = JSON.parse(context_ids) if context_ids.is_a?(String)
     super(context_ids)
+    increment_contexts
   end
 
   def check_repeat
@@ -35,6 +41,16 @@ class Quickie < ActiveRecord::Base
 
   def time_to_repeat?
     done_at && Time.zone.now > done_at + repeat.time_delta
+  end
+
+private
+
+  def increment_contexts
+    contexts.each { |context| context.increment!(:quickies_count) }
+  end
+
+  def decrement_contexts
+    contexts.each { |context| context.decrement!(:quickies_count) }
   end
 
 end
