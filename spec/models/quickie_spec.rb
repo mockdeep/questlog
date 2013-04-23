@@ -4,6 +4,7 @@ describe Quickie do
 
   let(:quickie) { build(:quickie) }
   let(:context) { create(:context) }
+  let(:user) { quickie.user }
 
   describe 'associations' do
     it { should belong_to(:user) }
@@ -32,6 +33,13 @@ describe Quickie do
           quickie.update_attributes(done: true)
           expect(context.reload.quickies_count).to eq 0
         end
+
+        it 'decrements quickies_count for its associated user' do
+          quickie.save!
+          expect(user.reload.quickies_count).to eq 1
+          quickie.update_attributes(done: true)
+          expect(user.reload.quickies_count).to eq 0
+        end
       end
 
       context 'if it was not previously nil' do
@@ -40,6 +48,13 @@ describe Quickie do
           expect(context.reload.quickies_count).to eq 0
           quickie.update_attributes(done: true)
           expect(context.reload.quickies_count).to eq 0
+        end
+
+        it 'does not change quickies_count for its associated user' do
+          quickie.update_attributes!(done: true)
+          expect(user.reload.quickies_count).to eq 0
+          quickie.update_attributes!(done: true)
+          expect(user.reload.quickies_count).to eq 0
         end
       end
     end
@@ -58,6 +73,13 @@ describe Quickie do
           quickie.update_attributes(done: false)
           expect(context.reload.quickies_count).to eq 1
         end
+
+        it 'does not change quickies_count for its associated user' do
+          quickie.save!
+          expect(user.reload.quickies_count).to eq 1
+          quickie.update_attributes(done: false)
+          expect(user.reload.quickies_count).to eq 1
+        end
       end
 
       context 'if it was not previously nil' do
@@ -66,6 +88,13 @@ describe Quickie do
           expect(context.reload.quickies_count).to eq 0
           quickie.update_attributes(done: false)
           expect(context.reload.quickies_count).to eq 1
+        end
+
+        it 'increments quickies_count for its associated contexts' do
+          quickie.update_attributes!(done: true)
+          expect(user.reload.quickies_count).to eq 0
+          quickie.update_attributes!(done: false)
+          expect(user.reload.quickies_count).to eq 1
         end
       end
     end

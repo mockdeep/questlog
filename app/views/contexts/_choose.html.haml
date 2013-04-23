@@ -1,3 +1,7 @@
+- active = params[:slug].blank? ? 'active' : ''
+= link_to("All (#{current_user.quickies_count})",
+          root_path,
+          class: "button btn choose-context #{active}")
 - contexts.each do |context|
   - disabled = (context.any? ? '' : 'disabled')
   = link_to("#{context.name} (#{context.quickies_count})",

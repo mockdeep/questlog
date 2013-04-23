@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420223859) do
+ActiveRecord::Schema.define(:version => 20130423011357) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(:version => 20130420223859) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "quickies_count",  :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
