@@ -1,6 +1,6 @@
 class Quickie < ActiveRecord::Base
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 
   has_many :taggings, dependent: :destroy
   has_many :contexts, through: :taggings
@@ -16,8 +16,10 @@ class Quickie < ActiveRecord::Base
     self.done_at = done ? Time.zone.now : nil
     if done_at && !done_at_was
       decrement_contexts
+      decrement_user
     elsif !done_at && done_at_was
       increment_contexts
+      increment_user
     end
   end
 
@@ -51,6 +53,14 @@ private
 
   def decrement_contexts
     contexts.each { |context| context.decrement!(:quickies_count) }
+  end
+
+  def decrement_user
+    user.decrement!(:quickies_count)
+  end
+
+  def increment_user
+    user.increment!(:quickies_count)
   end
 
 end

@@ -58,4 +58,12 @@ describe User do
     end
   end
 
+  describe '#quickies_count' do
+    it 'tracks how many unfinished quickies there are for the user' do
+      expect(user.quickies_count).to eq 0
+      user.quickies.create!(title: 'wah!')
+      expect(user.reload.quickies_count).to eq 1
+    end
+  end
+
 end
