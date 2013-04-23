@@ -1,4 +1,5 @@
 - contexts.each do |context|
+  - disabled = (context.any? ? '' : 'disabled')
   = link_to("#{context.name} (#{context.quickies_count})",
             context_path(context),
-            class: "button btn choose-context #{active_class(context)}")
+            class: "button btn choose-context #{active_class(context)} #{disabled}")
