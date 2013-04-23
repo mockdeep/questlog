@@ -126,6 +126,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.22)
     multi_json (1.7.2)
+    newrelic_rpm (3.5.5.38)
     nokogiri (1.5.9)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -251,6 +252,7 @@ DEPENDENCIES
   jasmine
   jquery-rails
   launchy
+  newrelic_rpm
   pg
   quiet_assets
   rails
