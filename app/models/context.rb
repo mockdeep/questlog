@@ -10,4 +10,8 @@ class Context < ActiveRecord::Base
 
   validates :name, :user, presence: true
 
+  def any?
+    quickies_count > 0
+  end
+
 end

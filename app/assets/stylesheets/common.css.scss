@@ -36,3 +36,8 @@ h3 {
 #quickie_repeat_string {
   width: 100%;
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+}
