@@ -24,6 +24,11 @@ class QuickiesController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    current_user.quickies.find(params[:id]).destroy
+    redirect_to :back
+  end
+
 private
 
   def quickie_params
