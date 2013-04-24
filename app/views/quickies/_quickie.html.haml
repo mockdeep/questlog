@@ -1,6 +1,10 @@
 .row-fluid
-  %h2#quickie= quickie.title
-.row-fluid
+  = form_for(quickie, method: :delete, html: { id: 'delete-form' }) do
+    %h2#quickie
+      %i.icon-remove
+      = quickie.title
+      %i.icon-arrow-down#edit-arrow
+.row-fluid#buttons
   .span6
     .row-fluid
       = button_to('Done! Give me another!', quickie_path(quickie, quickie: { done: true }), method: :put, class: 'btn btn-primary btn-large btn-block')

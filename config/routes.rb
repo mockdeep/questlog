@@ -5,7 +5,7 @@ Quickies::Application.routes.draw do
   delete 'sessions', to: 'sessions#destroy', as: 'session'
 
   resources :contexts, only: [:create]
-  resources :quickies, only: [:create, :update]
+  resources :quickies, only: [:create, :update, :destroy]
   resources :users, only: [:new, :create]
 
   get '/:slug', to: 'quickies#show', as: 'context'

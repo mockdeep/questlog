@@ -1,5 +1,8 @@
 = render 'contexts/choose', contexts: @contexts
 - if @quickie
   = render @quickie
-= render 'quickies/form', quickie: @new_quickie
-= render 'contexts/form', context: @context
+  #edit-form
+    = render 'quickies/form', quickie: @quickie
+#new-form
+  = render 'quickies/form', quickie: @new_quickie
+  = render 'contexts/form', context: @context

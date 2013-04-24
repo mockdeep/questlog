@@ -8,6 +8,18 @@
   background-color: #E9EEEE;
   border-radius: 6px;
   border: 2px solid #AAAAAA;
+
+  i.icon-remove {
+    float: left;
+    padding-left: 8px;
+    padding-top: 4px;
+  }
+
+  i.icon-arrow-down, i.icon-arrow-up {
+    padding-right: 8px;
+    padding-top: 4px;
+    float: right;
+  }
 }
 
 body {
@@ -40,4 +52,8 @@ h3 {
 .disabled {
   pointer-events: none;
   cursor: default;
+}
+
+#edit-form {
+  display: none;
 }
