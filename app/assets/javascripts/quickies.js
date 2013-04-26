@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $('a.attach-context').click(function () {
-    var quickieField = $('#quickie_context_ids'),
+    var namespace = $(this).data('namespace'),
+        quickieField = $('#' + namespace + '_context_ids'),
         contextIds = JSON.parse(quickieField.val()),
         contextId = $(this).data('context-id'),
         index = contextIds.indexOf(contextId);

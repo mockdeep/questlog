@@ -56,11 +56,11 @@ private
   end
 
   def decrement_user
-    user.decrement!(:quickies_count)
+    User.decrement_counter(:quickies_count, user.id)
   end
 
   def increment_user
-    user.increment!(:quickies_count)
+    User.increment_counter(:quickies_count, user.id)
   end
 
 end
