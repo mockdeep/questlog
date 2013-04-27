@@ -38,4 +38,6 @@ Quickies::Application.configure do
   config.after_initialize do
     Bullet.alert = true
   end
+
+  config.ember.variant = :development
 end
