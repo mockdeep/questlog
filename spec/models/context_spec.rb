@@ -35,6 +35,14 @@ describe Context do
         expect(context.reload.quickies_count).to eq 0
       end
     end
+
+    context 'when a quickie is destroyed' do
+      it 'is decremented' do
+        quickie = create(:quickie, context_ids: [context.id])
+        quickie.destroy
+        expect(context.reload.quickies_count).to eq 0
+      end
+    end
   end
 
   describe '#valid?' do
