@@ -1,9 +1,9 @@
 .row-fluid
   = form_for(quickie, method: :delete, html: { id: 'delete-form' }) do
     %h2#quickie
-      %i.icon-remove
+      %i.icon-remove#delete-quickie
       = quickie.title
-      %i.icon-arrow-down#edit-arrow
+      %i.icon-arrow-down#edit-quickie
 .row-fluid#buttons
   .span6
     .row-fluid

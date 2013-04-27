@@ -22,7 +22,7 @@ $(document).ready(function () {
   $('#quickie_title').focus();
 
   $('#quickie').click(function () {
-    editIcon = $('#edit-arrow');
+    editIcon = $('#edit-quickie');
     if (editIcon.hasClass('icon-arrow-down')) {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {

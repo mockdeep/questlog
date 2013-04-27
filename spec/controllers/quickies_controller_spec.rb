@@ -59,4 +59,17 @@ describe QuickiesController do
       end
     end
   end
+
+  describe '#destroy' do
+    it 'destroys the quickie for the given user' do
+      request.env["HTTP_REFERER"] = '/whatevs'
+      quickie.context_ids = [context.id]
+      expect(context.quickies).to eq([quickie])
+      expect(context.reload.quickies_count).to eq(1)
+      delete(:destroy, id: quickie.id)
+
+      expect(context.reload.quickies).to eq([])
+      expect(context.quickies_count).to eq(0)
+    end
+  end
 end

@@ -60,6 +60,16 @@ describe 'Quickies page' do
     page.should have_content('at work (0)')
     find('.choose-context', text: 'at work').click
     page.should_not have_content('feed dog')
+
+    find('.choose-context', text: 'on the toilet').click
+    page.should have_content('feed dog')
+
+    page.evaluate_script('window.confirm = function() { return true; }')
+    find('#delete-quickie').click
+    page.should_not have_content('feed dog')
+    page.should have_content('All (1)')
+    page.should have_content('on the toilet (1)')
+    page.should have_content('at work (0)')
   end
 
 end
