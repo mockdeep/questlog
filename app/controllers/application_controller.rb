@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :authenticate_user!
+  before_filter :authorize_profiler
 
 private
 
@@ -19,6 +20,10 @@ private
 
   def authenticate_user!
     redirect_to new_session_path unless current_user
+  end
+
+  def authorize_profiler
+    Rack::MiniProfiler.authorize_request if current_user && current_user.admin?
   end
 
 end

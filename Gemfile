@@ -13,6 +13,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 #gem 'newrelic_rpm'
 gem 'pg'
+gem 'rack-mini-profiler'
 gem 'stripe'
 gem 'strong_parameters'
 gem 'thin'
@@ -27,6 +28,7 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'bullet'
   gem 'quiet_assets'
 end
