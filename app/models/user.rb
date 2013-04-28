@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def admin?
+    email == 'lobatifricha@gmail.com'
+  end
+
 end
