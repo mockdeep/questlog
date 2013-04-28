@@ -17,6 +17,7 @@ class Quickie < ActiveRecord::Base
     if done_at && !done_at_was
       decrement_contexts
       decrement_user
+      self.skip_count = 0
     elsif !done_at && done_at_was
       increment_contexts
       increment_user
@@ -24,7 +25,7 @@ class Quickie < ActiveRecord::Base
   end
 
   def skip=(skip)
-    touch if skip
+    increment!(:skip_count) if skip
   end
 
   def context_ids=(context_ids)
@@ -43,6 +44,10 @@ class Quickie < ActiveRecord::Base
 
   def time_to_repeat?
     done_at && Time.zone.now > done_at + repeat.time_delta
+  end
+
+  def over_skipped?
+    skip_count >= 5
   end
 
 private
