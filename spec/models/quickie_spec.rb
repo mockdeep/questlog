@@ -40,6 +40,12 @@ describe Quickie do
           quickie.update_attributes(done: true)
           expect(user.reload.quickies_count).to eq 0
         end
+
+        it 'sets its skip_count to 0' do
+          quickie.skip_count = 5
+          quickie.done = true
+          expect(quickie.skip_count).to eq(0)
+        end
       end
 
       context 'if it was not previously nil' do
@@ -100,6 +106,25 @@ describe Quickie do
     end
   end
 
+  describe '#skip=' do
+    context 'when passed false' do
+      it 'does nothing' do
+        expect{ quickie.skip = false }.not_to change(quickie, :updated_at)
+        expect{ quickie.skip = false }.not_to change(quickie, :skip_count)
+      end
+    end
+
+    context 'when passed true' do
+      it 'updates the updated_at' do
+        expect{ quickie.skip = true }.to change(quickie, :updated_at)
+      end
+
+      it 'increments the skip_count' do
+        expect{ quickie.skip = true }.to change(quickie, :skip_count).from(0).to(1)
+      end
+    end
+  end
+
   describe '#context_ids=' do
     it 'sets the contexts for the quickie' do
       quickie.context_ids = [context.id]
@@ -117,6 +142,22 @@ describe Quickie do
         expect(context.reload.quickies_count).to eq 0
         quickie.update_attributes(title: '', context_ids: [context.id])
         expect(context.reload.quickies_count).to eq 0
+      end
+    end
+  end
+
+  describe '#over_skipped?' do
+    context 'when the skip count is >= 5' do
+      it 'returns true' do
+        quickie.skip_count = 5
+        expect(quickie).to be_over_skipped
+      end
+    end
+
+    context 'when the skip count is < 5' do
+      it 'returns false' do
+        quickie.skip_count = 4
+        expect(quickie).not_to be_over_skipped
       end
     end
   end
