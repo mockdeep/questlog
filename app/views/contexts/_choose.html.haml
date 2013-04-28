@@ -2,8 +2,10 @@
 = link_to("All (#{current_user.quickies_count})",
           root_path,
           class: "button btn choose-context #{active}")
+- current_ids = @quickie.contexts.pluck(:id)
 - contexts.each do |context|
   - disabled = (context.any? ? '' : 'disabled')
+  - current = (current_ids.include?(context.id) ? 'current' : '')
   = link_to("#{context.name} (#{context.quickies_count})",
             context_path(context),
-            class: "button btn choose-context #{active_class(context)} #{disabled}")
+            class: "button btn choose-context #{active_class(context)} #{disabled} #{current}")
