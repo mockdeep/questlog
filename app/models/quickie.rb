@@ -5,12 +5,23 @@ class Quickie < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :contexts, through: :taggings
 
+  validates :time_estimate, numericality: true, allow_nil: true
   validates :title, :user, presence: true
   validates :repeat_string, inclusion: { in: Repeat.repeat_maps.keys }, allow_blank: true
 
   scope :undone, -> { where(done_at: nil) }
+  scope :done, -> { where("done_at IS NOT NULL") }
+  scope :with_estimate, -> { where("time_estimate IS NOT NULL") }
 
   default_scope -> { order(:updated_at) }
+
+  def self.between(start_time, end_time)
+    where("done_at >= ? AND done_at < ?", start_time, end_time)
+  end
+
+  def self.minutes_for_day(day)
+    done.with_estimate.between(day.beginning_of_day, day).sum(:time_estimate)
+  end
 
   def done=(done)
     self.done_at = done ? Time.zone.now : nil

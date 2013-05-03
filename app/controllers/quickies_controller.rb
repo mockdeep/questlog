@@ -32,6 +32,13 @@ class QuickiesController < ApplicationController
 private
 
   def quickie_params
-    params[:quickie].permit(:done, :skip, :title, :context_ids, :repeat_string)
+    params[:quickie].permit(
+      :done,
+      :skip,
+      :title,
+      :context_ids,
+      :repeat_string,
+      :time_estimate
+    )
   end
 end

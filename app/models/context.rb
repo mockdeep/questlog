@@ -10,8 +10,11 @@ class Context < ActiveRecord::Base
 
   validates :name, :user, presence: true
 
+  delegate :minutes_for_day, to: :quickies
+
   def any?
     quickies_count > 0
   end
+
 
 end
