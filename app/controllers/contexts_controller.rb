@@ -6,7 +6,7 @@ class ContextsController < ApplicationController
     else
       @new_quickie = Quickie.new
       @quickie = current_user.next_quickie
-      @contexts = current_user.contexts
+      @contexts = current_user.ordered_contexts
       render 'quickies/show'
     end
   end

@@ -1,6 +1,6 @@
 .row-fluid
   = form_for(quickie, method: :delete, html: { id: 'delete-form' }) do
-    %h2#quickie{ class: (quickie.over_skipped? ? 'over_skipped' : '') }
+    %h2#quickie{ class: quickie_classes(quickie) }
       %i.icon-remove#delete-quickie{ title: 'delete quickie' }
       %span.title{ title: "skip count: #{quickie.skip_count}" }= quickie.title
       %i.icon-arrow-down#edit-quickie{ title: 'edit quickie' }

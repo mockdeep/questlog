@@ -19,7 +19,7 @@ $(document).ready(function () {
     quickieField.val(JSON.stringify(contextIds));
   });
 
-  $('#quickie_title').focus();
+  $('#new_title').focus();
 
   $('#quickie').click(function () {
     editIcon = $('#edit-quickie');
@@ -27,12 +27,14 @@ $(document).ready(function () {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {
           $('#edit-form').fadeIn(200);
+          $('#edit_title').focus();
         });
       });
     } else {
       $('#edit-form').fadeOut(200, function () {
         $('#buttons').fadeIn(200, function () {
           $('#new-form').fadeIn(200);
+          $('#new_title').focus();
         });
       });
     }

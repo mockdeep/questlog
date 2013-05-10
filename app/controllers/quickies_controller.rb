@@ -3,7 +3,7 @@ class QuickiesController < ApplicationController
     @new_quickie = Quickie.new
     @quickie = current_user.next_quickie(params[:slug])
     @context = Context.new
-    @contexts = current_user.contexts
+    @contexts = current_user.ordered_contexts
   end
 
   def create
@@ -12,7 +12,7 @@ class QuickiesController < ApplicationController
       redirect_to root_path
     else
       @context = Context.new
-      @contexts = current_user.contexts
+      @contexts = current_user.ordered_contexts
       @quickie = current_user.quickies.undone.first
       render 'show'
     end
@@ -37,6 +37,7 @@ private
       :skip,
       :title,
       :context_ids,
+      :priority,
       :repeat_string,
       :time_estimate
     )

@@ -12,9 +12,30 @@ describe Quickie do
     it { should have_many(:contexts).through(:taggings) }
   end
 
+  describe '.next' do
+    context 'when there are priorities' do
+      it 'returns priority quickies first' do
+        quickie1 = create(:quickie)
+        quickie2 = create(:quickie)
+        quickie3 = create(:quickie, priority: 1)
+        quickie4 = create(:quickie, priority: 2)
+        expect(Quickie.next).to eq quickie3
+        quickie3.update_attributes(done: true)
+        expect(Quickie.next).to eq quickie4
+        quickie4.update_attributes(done: true)
+        expect(Quickie.next).to eq quickie1
+        quickie1.update_attributes(done: true)
+        expect(Quickie.next).to eq quickie2
+        quickie2.update_attributes(done: true)
+        expect(Quickie.next).to be_nil
+      end
+    end
+  end
+
   describe '#valid?' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:user) }
+    it { should ensure_inclusion_of(:priority).in_array([1,2,3]).allow_nil(true) }
   end
 
   describe '#done=' do
