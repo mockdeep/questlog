@@ -4,24 +4,25 @@
       - if quickie.errors.any?
         = render 'common/errors', record: quickie
   .row-fluid
-    .offset4.span2
+    .span6
+      = form.hidden_field :context_ids, id: "#{namespace}_context_ids"
+      = form.text_field :title, class: 'span12', id: "#{namespace}_title"
+    .span6
+      = form.submit class: 'btn btn-success btn-block'
+  .row-fluid
+    .span4
       %strong Repeat:
-    .span2
+    .span4
       %strong Time Estimate:
-    .span2
+    .span4
       %strong Priority:
   .row-fluid
     .span4
-      = form.hidden_field :context_ids, id: "#{namespace}_context_ids"
-      = form.text_field :title, class: 'span12', id: "#{namespace}_title"
-    .span2
       = form.select :repeat_string, options_for_select(Repeat.repeat_maps.keys, quickie.repeat_string), { include_blank: 'once' }, { id: "#{namespace}_repeat_string" }
-    .span2
+    .span4
       = form.select :time_estimate, options_for_select(TimeEstimate.maps, quickie.time_estimate), {}, { id: "#{namespace}_time_estimate" }
-    .span2
+    .span4
       = form.select :priority, options_for_select([nil,1,2,3], quickie.priority), {}, { id: "#{namespace}_time_estimate" }
-    .span2
-      = form.submit class: 'btn btn-success btn-block'
 
   .row-fluid.contexts
     = render @contexts, namespace: namespace
