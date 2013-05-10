@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503093939) do
+ActiveRecord::Schema.define(:version => 20130510053534) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20130503093939) do
     t.string   "repeat_string"
     t.integer  "skip_count",    :default => 0
     t.integer  "time_estimate"
+    t.integer  "priority"
   end
 
+  add_index "quickies", ["priority"], :name => "index_quickies_on_priority"
   add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
 
   create_table "taggings", :force => true do |t|

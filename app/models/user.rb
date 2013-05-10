@@ -14,14 +14,18 @@ class User < ActiveRecord::Base
 
   def next_quickie(context_id=nil)
     if context_id
-      contexts.find(context_id).quickies.undone.first
+      contexts.find(context_id).next_quickie
     else
-      quickies.undone.first
+      quickies.next
     end
   end
 
   def admin?
     email == 'lobatifricha@gmail.com'
+  end
+
+  def ordered_contexts
+    contexts.ordered
   end
 
 end
