@@ -6,7 +6,7 @@ Quickies::Application.routes.draw do
 
   resources :contexts, only: [:create]
   resources :quickies, only: [:create, :update, :destroy]
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :update]
 
   get '/:slug', to: 'quickies#show', as: 'context'
 end

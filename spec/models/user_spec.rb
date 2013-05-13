@@ -30,6 +30,7 @@ describe User do
   describe '#valid?' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password) }
+    it { should ensure_inclusion_of(:mode).in_array(['simple', 'advanced']) }
   end
 
   describe 'associations' do
@@ -63,6 +64,22 @@ describe User do
       expect(user.quickies_count).to eq 0
       user.quickies.create!(title: 'wah!')
       expect(user.reload.quickies_count).to eq 1
+    end
+  end
+
+  describe '#other_mode' do
+    context 'when the user\'s mode is "advanced"' do
+      it 'returns "simple"' do
+        user.mode = 'advanced'
+        expect(user.other_mode).to eq 'simple'
+      end
+    end
+
+    context 'when the user\'s mode is "simple"' do
+      it 'returns "advanced"' do
+        user.mode = 'simple'
+        expect(user.other_mode).to eq 'advanced'
+      end
     end
   end
 

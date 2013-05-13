@@ -1,0 +1,6 @@
+= render 'contexts/simple/choose', contexts: @contexts, quickie: @quickie
+- if @quickie
+  = render 'quickies/simple/quickie', quickie: @quickie
+#new-form
+  = render 'quickies/simple/form', quickie: @new_quickie, namespace: 'new'
+= render 'contexts/form', context: @context

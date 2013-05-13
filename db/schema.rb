@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510053534) do
+ActiveRecord::Schema.define(:version => 20130513051306) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(:version => 20130510053534) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "quickies_count",  :default => 0
+    t.string   "mode",            :default => "simple"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

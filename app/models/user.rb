@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :password, presence: true, on: :create
+  validates :mode, inclusion: { in: ['simple', 'advanced'] }
 
   def self.authenticate(email, password)
     User.find_by_email(email).try(:authenticate, password)
@@ -26,6 +27,10 @@ class User < ActiveRecord::Base
 
   def ordered_contexts
     contexts.ordered
+  end
+
+  def other_mode
+    mode == 'simple' ? 'advanced' : 'simple'
   end
 
 end

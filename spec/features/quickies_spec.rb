@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Quickies page' do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, mode: 'advanced') }
 
   before(:each) do
     login_user(user)
