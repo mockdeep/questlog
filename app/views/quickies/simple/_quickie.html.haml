@@ -1,0 +1,11 @@
+.row-fluid
+  %h2#quickie
+    %span.title= quickie.title
+.row-fluid#buttons
+  .span6
+    .row-fluid
+      = button_to('Done! Give me another!', quickie_path(quickie, quickie: { done: true }), method: :put, class: 'btn btn-primary btn-large btn-block')
+  .span6
+    .row-fluid
+      = button_to('Skip this one for now.', quickie_path(quickie, quickie: { skip: true }), method: :put, class: 'btn btn-info btn-large btn-block')
+%hr

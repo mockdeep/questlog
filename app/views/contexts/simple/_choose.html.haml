@@ -1,0 +1,11 @@
+- active = params[:slug].blank? ? 'active' : ''
+= link_to("All",
+          root_path,
+          class: "button btn choose-context #{active}")
+- current_ids = quickie ? quickie.contexts.pluck(:id) : []
+- contexts.each do |context|
+  - disabled = (context.any? ? '' : 'disabled')
+  - current = (current_ids.include?(context.id) ? 'current' : '')
+  = link_to("#{context.name}",
+            context_path(context),
+            class: "button btn choose-context #{active_class(context)} #{disabled} #{current}")
