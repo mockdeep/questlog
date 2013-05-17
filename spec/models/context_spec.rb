@@ -10,6 +10,13 @@ describe Context do
     it { should have_many(:quickies).through(:taggings) }
   end
 
+  describe '#valid?' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:user) }
+
+    it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
+  end
+
   describe '#quickies_count' do
     context 'when a quickie is added to the context' do
       it 'is incremented' do
@@ -43,11 +50,6 @@ describe Context do
         expect(context.reload.quickies_count).to eq 0
       end
     end
-  end
-
-  describe '#valid?' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:user) }
   end
 
 end
