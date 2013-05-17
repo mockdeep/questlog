@@ -9,6 +9,7 @@ class Context < ActiveRecord::Base
   has_many :quickies, through: :taggings
 
   validates :name, :user, presence: true
+  validates :name, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(:name) }
 
