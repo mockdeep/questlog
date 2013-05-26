@@ -47,7 +47,7 @@ describe QuickiesController do
     context 'when the quickie is valid' do
       it 'redirects to root' do
         post(:create, quickie: valid_params)
-        response.should redirect_to(root_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -55,7 +55,7 @@ describe QuickiesController do
       it 'renders "show"' do
         Quickie.any_instance.stub(:save).and_return(false)
         post(:create, quickie: valid_params)
-        response.should render_template('quickies/show')
+        expect(response).to render_template('quickies/show')
       end
     end
   end

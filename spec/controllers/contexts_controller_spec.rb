@@ -15,7 +15,7 @@ describe ContextsController do
     context 'if context is valid' do
       it 'redirects to root' do
         post(:create, context: valid_params)
-        response.should redirect_to(root_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -26,13 +26,13 @@ describe ContextsController do
 
       it 'initializes a new quickie' do
         post(:create, context: valid_params)
-        assigns(:new_quickie).should be_new_record
+        expect(assigns(:new_quickie)).to be_new_record
       end
 
       it 'initializes the next quickie' do
         quickie
         post(:create, context: valid_params)
-        assigns(:quickie).should eq quickie
+        expect(assigns(:quickie)).to eq quickie
       end
 
       it 'initializes a collection of contexts' do
@@ -43,7 +43,7 @@ describe ContextsController do
 
       it 'renders "quickies/show"' do
         post(:create, context: valid_params)
-        response.should render_template('quickies/show')
+        expect(response).to render_template('quickies/show')
       end
     end
   end

@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spork'
+require 'simplecov'
+SimpleCov.start 'rails'
 
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
@@ -23,6 +25,10 @@ Spork.prefork do
     config.filter_run_excluding :slow if ENV['SKIP_SLOW_SPECS']
     config.filter_run focus: true
     config.run_all_when_everything_filtered = true
+
+    config.expect_with :rspec do |expect_config|
+      expect_config.syntax = :expect
+    end
 
     VCR.configure do |config|
       config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
