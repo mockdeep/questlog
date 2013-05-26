@@ -22,7 +22,7 @@
     .span4
       = form.select :time_estimate, options_for_select(TimeEstimate.maps, quickie.time_estimate), {}, { id: "#{namespace}_time_estimate" }
     .span4
-      = form.select :priority, options_for_select([nil,1,2,3], quickie.priority), {}, { id: "#{namespace}_priority" }
+      = form.select :priority, options_for_select(Quickie.priorities, quickie.priority), {}, { id: "#{namespace}_priority" }
 
   .row-fluid.contexts
-    = render @contexts, namespace: namespace
+    = render contexts, namespace: namespace

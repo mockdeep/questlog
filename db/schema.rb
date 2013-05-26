@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513051306) do
+ActiveRecord::Schema.define(:version => 20130526210133) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130513051306) do
 
   add_index "quickies", ["priority"], :name => "index_quickies_on_priority"
   add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
+  add_index "quickies", ["user_id"], :name => "index_quickies_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "context_id"
