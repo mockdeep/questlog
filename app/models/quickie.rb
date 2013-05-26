@@ -26,6 +26,10 @@ class Quickie < ActiveRecord::Base
     undone.order(:priority).order(:updated_at).first
   end
 
+  def self.priorities
+    [nil, 1, 2, 3]
+  end
+
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
     if done_at && !done_at_was
@@ -46,10 +50,6 @@ class Quickie < ActiveRecord::Base
     context_ids = JSON.parse(context_ids) if context_ids.is_a?(String)
     super(context_ids)
     increment_contexts
-  end
-
-  def check_repeat
-    update_attributes(done: false) if repeat && time_to_repeat?
   end
 
   def repeat
