@@ -9,7 +9,8 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
 
-  Capybara.javascript_driver = :webkit
+  require 'capybara/poltergeist'
+  Capybara.javascript_driver = :poltergeist
 
   RSpec.configure do |config|
     config.include(FactoryGirl::Syntax::Methods)

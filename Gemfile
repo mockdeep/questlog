@@ -42,12 +42,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '2.0.3'
-  gem 'capybara-webkit'
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'rb-inotify'
   gem 'spork'
   gem 'vcr'
