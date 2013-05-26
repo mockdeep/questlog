@@ -43,19 +43,19 @@ describe User do
       it 'returns the next quickie for that context' do
         quickie1
         quickie2.contexts << context
-        user.next_quickie.should eq quickie1
-        user.next_quickie(context.id).should eq quickie2
+        expect(user.next_quickie).to eq quickie1
+        expect(user.next_quickie(context.id)).to eq quickie2
       end
     end
 
     it 'returns the next undone quickie' do
       quickie1
       quickie2
-      user.next_quickie.should eq quickie1
+      expect(user.next_quickie).to eq quickie1
       quickie1.update_attributes(skip: true)
-      user.next_quickie.should eq quickie2
+      expect(user.next_quickie).to eq quickie2
       quickie2.update_attributes(done: true)
-      user.reload.next_quickie.should eq quickie1
+      expect(user.reload.next_quickie).to eq quickie1
     end
   end
 

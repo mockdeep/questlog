@@ -49,6 +49,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rb-inotify'
+  gem 'simplecov'
   gem 'spork'
   gem 'vcr'
   gem 'webmock'
