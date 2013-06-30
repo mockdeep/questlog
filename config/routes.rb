@@ -8,5 +8,7 @@ Quickies::Application.routes.draw do
   resources :quickies, only: [:create, :update, :destroy]
   resources :users, only: [:new, :create, :update]
 
+  get '/what', to: 'pages#what', as: 'what'
+
   get '/:slug', to: 'quickies#show', as: 'context'
 end

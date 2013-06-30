@@ -12,6 +12,8 @@
       .row-fluid
         .navbar
           %h1#quickies= link_to('QUICKIES', root_path)
+          %br
+          = link_to("What's a Quickie?", what_path)
 
           #user_nav
             - if current_user
