@@ -1,14 +1,14 @@
 namespace :oneoff do
 
   desc 'move user data to the profile'
-  task port_profiles: :environment do
+  task port_accounts: :environment do
     User.transaction do
       User.all.each do |user|
-        FreeProfile.create!({
-          user: user,
+        account = FreeAccount.create!({
           email: user.email,
           password_digest: user.password_digest,
         })
+        user.update_attributes!(account: account)
       end
     end
   end
