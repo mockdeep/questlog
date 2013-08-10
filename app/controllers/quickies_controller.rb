@@ -1,4 +1,5 @@
 class QuickiesController < ApplicationController
+
   def show
     @new_quickie = Quickie.new
     @quickie = current_user.next_quickie(params[:slug])
@@ -7,6 +8,7 @@ class QuickiesController < ApplicationController
   end
 
   def create
+    persist_current_user
     @new_quickie = current_user.quickies.new(quickie_params)
     if @new_quickie.save
       redirect_to root_path
@@ -42,4 +44,5 @@ private
       :time_estimate
     )
   end
+
 end

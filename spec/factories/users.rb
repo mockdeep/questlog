@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :user do
-    email { Faker::Internet.email }
-    password { 'blahblah' }
-    password_confirmation { 'blahblah' }
-    mode 'simple'
+    account
+
+    factory :free_user do
+      association :account, factory: :free_account
+    end
   end
 end

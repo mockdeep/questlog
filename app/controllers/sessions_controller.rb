@@ -6,8 +6,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.authenticate(params[:email], params[:password])
-      self.current_user = user
+    if profile = Profile.authenticate(params[:email], params[:password])
+      user = profile.user
+      user.quickies += current_user.quickies
+      self.current_user = profile.user
       redirect_to root_path, notice: 'Logged in!'
     else
       flash.now[:error] = 'Invalid email or password'

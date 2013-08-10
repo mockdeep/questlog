@@ -6,11 +6,11 @@ describe QuickiesController do
   let(:valid_params) { attributes_for(:quickie) }
   let(:context) { create(:context, user: user) }
 
-  before(:each) do
-    login_as(user)
-  end
-
   describe '#show' do
+    before(:each) do
+      login_as(user)
+    end
+
     it 'initializes a new Quickie' do
       get(:show)
       expect(assigns(:new_quickie)).to be_new_record
@@ -44,6 +44,20 @@ describe QuickiesController do
   end
 
   describe '#create' do
+    context 'when the user does not exist' do
+      it 'creates a new user' do
+        expect {
+          post(:create, quickie: valid_params)
+        }.to change(User, :count).by(1)
+      end
+
+      it 'sets the current user in the session' do
+        expect(session[:user_id]).to be_nil
+        post(:create, quickie: valid_params)
+        expect(session[:user_id]).not_to be_nil
+      end
+    end
+
     context 'when the quickie is valid' do
       it 'redirects to root' do
         post(:create, quickie: valid_params)
@@ -61,6 +75,10 @@ describe QuickiesController do
   end
 
   describe '#destroy' do
+    before(:each) do
+      login_as(user)
+    end
+
     it 'destroys the quickie for the given user' do
       request.env["HTTP_REFERER"] = '/whatevs'
       quickie.context_ids = [context.id]

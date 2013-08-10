@@ -1,4 +1,5 @@
 class ContextsController < ApplicationController
+
   def create
     @context = Context.new(context_params)
     if @context.save
@@ -16,4 +17,5 @@ private
   def context_params
     params[:context].permit(:name).merge(user: current_user)
   end
+
 end

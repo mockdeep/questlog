@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526210133) do
+ActiveRecord::Schema.define(:version => 20130718145023) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(:version => 20130526210133) do
 
   add_index "contexts", ["slug"], :name => "index_contexts_on_slug"
   add_index "contexts", ["user_id"], :name => "index_contexts_on_user_id"
+
+  create_table "free_accounts", :force => true do |t|
+    t.string   "email",           :null => false
+    t.string   "password_digest", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "free_accounts", ["email"], :name => "index_free_accounts_on_email", :unique => true
+
+  create_table "guest_accounts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "quickies", :force => true do |t|
     t.integer  "user_id"
@@ -58,8 +72,13 @@ ActiveRecord::Schema.define(:version => 20130526210133) do
     t.datetime "updated_at",                            :null => false
     t.integer  "quickies_count",  :default => 0
     t.string   "mode",            :default => "simple"
+    t.integer  "account_id"
+    t.string   "account_type"
   end
 
+  add_index "users", ["account_id", "account_type"], :name => "index_users_on_account_id_and_account_type", :unique => true
+  add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["account_type"], :name => "index_users_on_account_type"
   add_index "users", ["email"], :name => "index_users_on_email"
 
 end

@@ -1,8 +1,8 @@
 %h1 Sign Up
 
-= form_for @user do |form|
-  - if @user.errors.any?
-    = render 'common/errors', record: @user
+= form_for @account, url: users_path do |form|
+  - if @account.errors.any?
+    = render 'common/errors', record: @account
 
   %p
     = form.label :email
@@ -17,4 +17,4 @@
     %br
     = form.password_field :password_confirmation
   %p.button
-    = form.submit
+    = form.submit 'Create free account!'
