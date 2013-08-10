@@ -1,6 +1,6 @@
 %h1 Sign Up
 
-= form_for @account, url: users_path do |form|
+= form_for @account do |form|
   - if @account.errors.any?
     = render 'common/errors', record: @account
 
