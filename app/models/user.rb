@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :mode, inclusion: { in: ['simple', 'advanced'] }
 
-  delegate :email, :guest?, to: :account
+  delegate :guest?, to: :account
 
   def next_quickie(context_id = nil)
     if context_id
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    !account.guest? && email == 'lobatifricha@gmail.com'
+    !account.guest? && account.email == 'lobatifricha@gmail.com'
   end
 
   def ordered_contexts
