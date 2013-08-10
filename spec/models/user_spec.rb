@@ -7,35 +7,15 @@ describe User do
   let(:quickie2) { create(:quickie, user: user) }
   let(:user) { create(:user) }
 
-  describe '.authenticate' do
-    context "when given valid credentials" do
-      it "returns an instance of user" do
-        expect(User.authenticate(user.email, user.password)).to eq(user)
-      end
-    end
-
-    context "when given invalid password" do
-      it "returns false" do
-        expect(User.authenticate(user.email, "bad password")).to be_false
-      end
-    end
-
-    context "when given invalid email" do
-      it "returns false" do
-        expect(User.authenticate("bad email", user.password)).to be_false
-      end
-    end
-  end
-
-  describe '#valid?' do
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:password) }
-    it { should ensure_inclusion_of(:mode).in_array(['simple', 'advanced']) }
-  end
-
   describe 'associations' do
     it { should have_many(:quickies).dependent(:destroy) }
     it { should have_many(:contexts).dependent(:destroy) }
+
+    it { should belong_to(:account).dependent(:destroy) }
+  end
+
+  describe '#valid?' do
+    it { should ensure_inclusion_of(:mode).in_array(['simple', 'advanced']) }
   end
 
   describe '#next_quickie' do

@@ -1,19 +1,15 @@
 class User < ActiveRecord::Base
 
-  has_secure_password
+  belongs_to :account, dependent: :destroy, polymorphic: true
 
   has_many :quickies, dependent: :destroy
   has_many :contexts, dependent: :destroy
 
-  validates :email, presence: true
-  validates :password, presence: true, on: :create
   validates :mode, inclusion: { in: ['simple', 'advanced'] }
 
-  def self.authenticate(email, password)
-    User.find_by_email(email).try(:authenticate, password)
-  end
+  delegate :email, :guest?, to: :account
 
-  def next_quickie(context_id=nil)
+  def next_quickie(context_id = nil)
     if context_id
       contexts.find(context_id).next_quickie
     else
@@ -22,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    email == 'lobatifricha@gmail.com'
+    !account.guest? && email == 'lobatifricha@gmail.com'
   end
 
   def ordered_contexts

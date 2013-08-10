@@ -2,14 +2,14 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def new
-    @user = User.new
+    @account = FreeAccount.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    @account = FreeAccount.new(account_params)
+    if @account.save
+      current_user.update_attributes!(account: @account)
       flash[:notice] = 'Signed up!'
-      self.current_user = @user
       redirect_to root_path
     else
       flash.now[:error] = 'There was a problem creating your account...'
@@ -24,7 +24,10 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params[:user].permit(:email, :password, :password_confirmation, :mode)
+  def account_params
+    params[:free_account].permit(:email,
+                                 :password,
+                                 :password_confirmation,
+                                 :mode)
   end
 end

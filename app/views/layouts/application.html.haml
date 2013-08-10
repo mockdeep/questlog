@@ -16,14 +16,16 @@
           = link_to("What's a Quickie?", what_path)
 
           #user_nav
-            - if current_user
-              Logged in as #{current_user.email}
-              = link_to "Log out", session_path, method: :destroy
-            - else
+            - if current_user.guest?
+              You're not logged in! In order to save your quickies you'll
+              need to
               = link_to "Sign up", new_user_path
               or
               = link_to "Log in", new_session_path
-          - if current_user
+            - else
+              Logged in as #{current_user.email}
+              = link_to "Log out", session_path, method: :delete
+          - if !current_user.guest?
             = link_to("Switch to #{current_user.other_mode} view",
                 user_path(current_user, user: { mode: current_user.other_mode }),
                 method: :put)
