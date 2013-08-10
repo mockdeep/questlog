@@ -6,7 +6,8 @@ Quickies::Application.routes.draw do
 
   resources :contexts, only: [:create]
   resources :quickies, only: [:create, :update, :destroy]
-  resources :users, only: [:new, :create, :update]
+  resources :users, only: [:update]
+  resources :free_accounts, only: [:new, :create]
 
   get '/privacy', to: 'pages#privacy', as: 'privacy'
   get '/what', to: 'pages#what', as: 'what'
