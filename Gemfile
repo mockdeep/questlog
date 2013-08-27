@@ -5,8 +5,6 @@ ruby '1.9.3'
 gem 'rails', '3.2.14'
 
 gem 'bcrypt-ruby', '3.0.1', require: 'bcrypt'
-gem 'ember-rails'
-gem 'emblem-rails'
 gem 'exceptional'
 gem 'friendly_id'
 gem 'haml-rails'
