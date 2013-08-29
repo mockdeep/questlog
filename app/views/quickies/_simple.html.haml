@@ -1,4 +1,5 @@
-= render 'contexts/simple/choose', contexts: contexts, quickie: quickie
+- if current_user.contexts.any?
+  = render 'contexts/simple/choose', contexts: contexts, quickie: quickie
 - if quickie
   = render 'quickies/simple/quickie', quickie: quickie
 #new-form
