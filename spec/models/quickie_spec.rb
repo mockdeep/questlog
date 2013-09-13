@@ -38,6 +38,24 @@ describe Quickie do
     it { should ensure_inclusion_of(:priority).in_array([1,2,3]).allow_nil(true) }
   end
 
+  describe '#title=' do
+    it 'handles @ strings' do
+      quickie.title = '@work eat something @home'
+      expect(quickie.title).to eq 'eat something'
+      expect(quickie.contexts.collect(&:name)).to eq ['work', 'home']
+    end
+
+    it 'handles @ strings with various quotes' do
+      quickie.title = %{@"at work" eat "something" @'at home'}
+      expect(quickie.title).to eq 'eat "something"'
+      expect(quickie.contexts.collect(&:name)).to eq ['at work', 'at home']
+    end
+  end
+
+  describe '#add_contexts!' do
+
+  end
+
   describe '#done=' do
     context 'when given true' do
       it 'sets done_at to Time.now' do

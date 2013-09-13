@@ -30,6 +30,20 @@ class Quickie < ActiveRecord::Base
     [nil, 1, 2, 3]
   end
 
+  def title=(new_title)
+    new_title ||= ''
+    regexes = [/\@(\w+)/, /\@"(.*?)"/, /\@'(.*?)'/]
+    contexts = []
+    regexes.each do |regex|
+      new_title.scan(regex) do |matches|
+        contexts << user.contexts.find_or_create_by_name(matches.first)
+      end
+      new_title = new_title.gsub(regex, '').strip
+    end
+    self.contexts = contexts
+    super(new_title)
+  end
+
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
     if done_at && !done_at_was
