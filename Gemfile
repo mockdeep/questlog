@@ -6,6 +6,7 @@ gem 'rails', '3.2.14'
 
 gem 'bcrypt-ruby', '3.0.1', require: 'bcrypt'
 gem 'exceptional'
+gem 'foreigner'
 gem 'friendly_id'
 gem 'haml-rails'
 gem 'jquery-rails'
