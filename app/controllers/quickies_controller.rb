@@ -11,7 +11,7 @@ class QuickiesController < ApplicationController
     persist_current_user
     @new_quickie = current_user.quickies.new(quickie_params)
     if @new_quickie.save
-      redirect_to root_path
+      redirect_to :back
     else
       @context = Context.new
       @contexts = current_user.ordered_contexts

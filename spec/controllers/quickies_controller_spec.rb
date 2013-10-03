@@ -44,6 +44,10 @@ describe QuickiesController do
   end
 
   describe '#create' do
+    before(:each) do
+      request.env["HTTP_REFERER"] = root_url
+    end
+
     context 'when the user does not exist' do
       it 'creates a new user' do
         expect {
