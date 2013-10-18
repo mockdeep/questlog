@@ -3,10 +3,12 @@ namespace :db do
   task populate: :environment do
     raise "Bad! Not to be used in production!" if Rails.env.production?
     User.delete_all
-    User.create!({
+    FreeAccount.delete_all
+    account = FreeAccount.create!({
       email: 'lobatifricha@gmail.com',
       password: 'pizzas',
       password_confirmation: 'pizzas'
     })
+    User.create!(account: account)
   end
 end

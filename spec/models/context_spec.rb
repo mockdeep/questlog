@@ -50,6 +50,17 @@ describe Context do
         expect(context.reload.quickies_count).to eq 0
       end
     end
+
+    context 'when a quickie is marked complete and then incomplete' do
+      it 'is decremented and then incremented' do
+        quickie = create(:quickie, context_ids: [context.id])
+        expect(context.reload.quickies_count).to eq 1
+        quickie.update_attributes(done: true)
+        expect(context.reload.quickies_count).to eq 0
+        quickie.update_attributes(done: false)
+        expect(context.reload.quickies_count).to eq 1
+      end
+    end
   end
 
 end
