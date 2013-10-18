@@ -57,7 +57,11 @@ class Quickie < ActiveRecord::Base
   end
 
   def time_to_repeat?
-    done_at && Time.zone.now > done_at + repeat.time_delta
+    done? && Time.zone.now > done_at + repeat.time_delta
+  end
+
+  def done?
+    done_at?
   end
 
   def over_skipped?
