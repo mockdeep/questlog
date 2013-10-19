@@ -35,6 +35,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'guard', '2.0.5'
   gem 'jasmine'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
