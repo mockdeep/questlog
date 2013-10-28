@@ -61,6 +61,40 @@ describe Context do
         expect(context.reload.quickies_count).to eq 1
       end
     end
+
+    context 'when there are more than one quickie and more than one context' do
+      it 'increments and decrements properly' do
+        quickie1 = create(:quickie)
+        quickie2 = create(:quickie)
+        context1 = create(:context)
+        context2 = create(:context)
+        expect(context1.quickies_count).to eq 0
+        expect(context2.quickies_count).to eq 0
+        context1.quickies << quickie1
+        context1.quickies << quickie2
+        expect(context1.quickies_count).to eq 2
+        expect(context2.quickies_count).to eq 0
+        context2.quickies << quickie1
+        context2.quickies << quickie2
+        expect(context1.quickies_count).to eq 2
+        expect(context2.quickies_count).to eq 2
+      end
+    end
+
+    context 'when a quickie is updated within a transaction' do
+      it 'still increments and decrements properly' do
+        context2 = create(:context)
+        quickie = create(:quickie, context_ids: [context.id, context2.id])
+        expect(context.reload.quickies_count).to eq 1
+        quickie.update_attributes!(done: true)
+        expect(context.reload.quickies_count).to eq 0
+        Quickie.transaction do
+          quickie.update_attributes!(done: false)
+        end
+        expect(context.reload.quickies_count).to eq 1
+        expect(context2.reload.quickies_count).to eq 1
+      end
+    end
   end
 
 end
