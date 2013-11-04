@@ -9,7 +9,9 @@ class QuickiesController < ApplicationController
 
   def create
     persist_current_user
-    @new_quickie = current_user.quickies.new(quickie_params)
+    @new_quickie = current_user.quickies.new
+    # title= depends on user being assigned first. This should be fixed.
+    @new_quickie.attributes = quickie_params
     if @new_quickie.save
       redirect_to :back
     else
