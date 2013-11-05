@@ -31,11 +31,6 @@ describe QuickiesController do
       end
     end
 
-    it 'initializes a new Context' do
-      get(:show)
-      expect(assigns(:context)).to be_new_record
-    end
-
     it 'sets existing Context' do
       context
       get(:show)

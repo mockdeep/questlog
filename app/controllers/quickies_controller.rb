@@ -3,7 +3,6 @@ class QuickiesController < ApplicationController
   def show
     @new_quickie = Quickie.new
     @quickie = current_user.next_quickie(params[:slug])
-    @context = Context.new
     @contexts = current_user.ordered_contexts
   end
 
@@ -15,7 +14,6 @@ class QuickiesController < ApplicationController
     if @new_quickie.save
       redirect_to :back
     else
-      @context = Context.new
       @contexts = current_user.ordered_contexts
       @quickie = current_user.quickies.undone.first
       render 'show'
