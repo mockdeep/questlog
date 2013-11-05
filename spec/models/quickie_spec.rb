@@ -50,10 +50,17 @@ describe Quickie do
       expect(quickie.title).to eq 'eat "something"'
       expect(quickie.contexts.collect(&:name)).to eq ['at work', 'at home']
     end
-  end
 
-  describe '#add_contexts!' do
-
+    it 'updates counters' do
+      expect(user.quickies_count).to eq 0
+      quickie.title = %{@"at work" eat "something" @'at home'}
+      quickie.save!
+      quickie.reload
+      quickie.contexts.each do |context|
+        expect(context.quickies_count).to eq 1
+      end
+      expect(user.reload.quickies_count).to eq 1
+    end
   end
 
   describe '#done=' do

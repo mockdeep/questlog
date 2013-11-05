@@ -40,6 +40,7 @@ class Quickie < ActiveRecord::Base
       new_title = new_title.gsub(regex, '').strip
     end
     self.contexts = contexts
+    increment_contexts
     super(new_title)
   end
 
