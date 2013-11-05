@@ -5,9 +5,6 @@
         = render 'common/errors', record: quickie
   .row-fluid
     .span6
-      = form.hidden_field :context_ids, id: "#{namespace}_context_ids"
       = form.text_field :title, class: 'span12', id: "#{namespace}_title"
     .span6
       = form.submit class: 'btn btn-success btn-block'
-  .row-fluid.contexts
-    = render contexts, namespace: namespace

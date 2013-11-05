@@ -5,7 +5,6 @@
         = render 'common/errors', record: quickie
   .row-fluid
     .span6
-      = form.hidden_field :context_ids, id: "#{namespace}_context_ids"
       = form.text_field :title, class: 'span12', id: "#{namespace}_title"
     .span6
       = form.submit class: 'btn btn-success btn-block'
@@ -23,6 +22,3 @@
       = form.select :time_estimate, options_for_select(TimeEstimate.maps, quickie.time_estimate), {}, { id: "#{namespace}_time_estimate" }
     .span4
       = form.select :priority, options_for_select(Quickie.priorities, quickie.priority), {}, { id: "#{namespace}_priority" }
-
-  .row-fluid.contexts
-    = render contexts, namespace: namespace
