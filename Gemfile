@@ -17,6 +17,10 @@ gem 'stripe'
 gem 'strong_parameters'
 gem 'thin'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :assets do
   gem 'bootstrap-sass'
   gem 'coffee-rails'
