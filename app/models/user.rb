@@ -29,4 +29,9 @@ class User < ActiveRecord::Base
     mode == 'simple' ? 'advanced' : 'simple'
   end
 
+  def absorb(other)
+    self.quickies += other.quickies
+    self.contexts += other.contexts
+  end
+
 end

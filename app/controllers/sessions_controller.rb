@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
   def create
     if profile = Profile.authenticate(params[:email], params[:password])
       user = profile.user
-      user.quickies += current_user.quickies
-      self.current_user = profile.user
+      user.absorb(current_user)
+      self.current_user = user
       redirect_to root_path, notice: 'Logged in!'
     else
       flash.now[:error] = 'Invalid email or password'
