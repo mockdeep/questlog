@@ -1,10 +1,10 @@
 module QuickiesHelper
 
   def quickie_classes(quickie)
-    classes = ''
+    classes = []
     classes << "priority#{quickie.priority}" if quickie.priority?
-    classes << " over_skipped" if quickie.over_skipped?
-    classes
+    classes << "over_skipped" if quickie.over_skipped?
+    classes.join(' ')
   end
 
 end
