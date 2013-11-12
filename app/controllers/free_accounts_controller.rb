@@ -1,5 +1,4 @@
 class FreeAccountsController < ApplicationController
-  skip_before_filter :authenticate_user!
 
   def new
     @account = FreeAccount.new
@@ -22,4 +21,5 @@ class FreeAccountsController < ApplicationController
   def account_params
     params[:free_account].permit(:email, :password, :password_confirmation)
   end
+
 end
