@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_filter :authenticate_user!
 
   def update
     current_user.update_attributes!(user_params)
