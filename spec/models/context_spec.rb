@@ -10,11 +10,20 @@ describe Context do
     it { should have_many(:quickies).through(:taggings) }
   end
 
-  describe '#valid?' do
+  describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:user) }
 
     it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
+  end
+
+  describe '.ordered' do
+    it 'returns contexts ordered by name' do
+      context1 = create(:context, name: 'bill')
+      context2 = create(:context, name: 'alice')
+      context3 = create(:context, name: 'charlie')
+      expect(Context.ordered).to eq [context2, context1, context3]
+    end
   end
 
   describe '#quickies_count' do
@@ -94,6 +103,33 @@ describe Context do
         expect(context.reload.quickies_count).to eq 1
         expect(context2.reload.quickies_count).to eq 1
       end
+    end
+  end
+
+  describe '#any?' do
+    context 'when there are quickies' do
+      it 'returns true' do
+        context.quickies << create(:quickie)
+        expect(context.reload.any?).to be_true
+      end
+    end
+
+    context 'context when there are no quickies' do
+      it 'returns false' do
+        expect(context.any?).to be_false
+      end
+    end
+  end
+
+  describe '#next_quickie' do
+    it 'returns the next quickie' do
+      quickie1 = create(:quickie)
+      quickie2 = create(:quickie)
+      context.quickies << quickie1
+      context.quickies << quickie2
+      expect(context.next_quickie).to eq quickie1
+      quickie1.update_attributes!(done: true)
+      expect(context.next_quickie).to eq quickie2
     end
   end
 

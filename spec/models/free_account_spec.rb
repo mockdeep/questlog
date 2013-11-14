@@ -8,7 +8,7 @@ describe FreeAccount do
     it { should have_one(:user) }
   end
 
-  describe '#valid?' do
+  describe 'validations' do
     it { should validate_presence_of(:email) }
 
     it do

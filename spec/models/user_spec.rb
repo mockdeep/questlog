@@ -14,7 +14,7 @@ describe User do
     it { should belong_to(:account).dependent(:destroy) }
   end
 
-  describe '#valid?' do
+  describe 'validations' do
     it { should ensure_inclusion_of(:mode).in_array(['simple', 'advanced']) }
   end
 
