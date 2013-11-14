@@ -32,7 +32,7 @@ describe Quickie do
     end
   end
 
-  describe '#valid?' do
+  describe 'validations' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:user) }
     it { should ensure_inclusion_of(:priority).in_array([1,2,3]).allow_nil(true) }

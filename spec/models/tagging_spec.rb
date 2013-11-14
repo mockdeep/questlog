@@ -7,7 +7,7 @@ describe Tagging do
     it { should belong_to(:context) }
   end
 
-  describe '#valid?' do
+  describe 'validations' do
     it { should validate_presence_of(:quickie) }
     it { should validate_presence_of(:context) }
   end
