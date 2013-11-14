@@ -13,8 +13,6 @@ class Context < ActiveRecord::Base
 
   scope :ordered, -> { order(:name) }
 
-  delegate :minutes_for_day, to: :quickies
-
   def any?
     quickies_count > 0
   end

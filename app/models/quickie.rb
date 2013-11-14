@@ -18,10 +18,6 @@ class Quickie < ActiveRecord::Base
     where("done_at >= ? AND done_at < ?", start_time, end_time)
   end
 
-  def self.minutes_for_day(day)
-    done.with_estimate.between(day.beginning_of_day, day).sum(:time_estimate)
-  end
-
   def self.next
     undone.order(:priority).order(:updated_at).first
   end
