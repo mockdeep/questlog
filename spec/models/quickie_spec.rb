@@ -12,6 +12,22 @@ describe Quickie do
     it { should have_many(:contexts).through(:taggings) }
   end
 
+  describe 'validations' do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:user) }
+    it { should ensure_inclusion_of(:priority).in_array([1,2,3]).allow_nil(true) }
+  end
+
+  describe '.between' do
+    it 'returns quickies with done_at between the given times' do
+      quickie1 = create(:quickie, done_at: 3.days.ago)
+      quickie2 = create(:quickie, done_at: 1.days.ago)
+      quickie3 = create(:quickie, done_at: Time.now)
+      quickie4 = create(:quickie)
+      expect(Quickie.between(2.days.ago, 10.minutes.ago)).to eq [quickie2]
+    end
+  end
+
   describe '.next' do
     context 'when there are priorities' do
       it 'returns priority quickies first' do
@@ -32,10 +48,10 @@ describe Quickie do
     end
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:user) }
-    it { should ensure_inclusion_of(:priority).in_array([1,2,3]).allow_nil(true) }
+  describe '.priorities' do
+    it 'returns the list of possible quickie priorities' do
+      expect(Quickie.priorities).to eq [nil, 1, 2, 3]
+    end
   end
 
   describe '#title=' do
@@ -188,6 +204,62 @@ describe Quickie do
         expect(context.reload.quickies_count).to eq 0
         quickie.update_attributes(title: '', context_ids: [context.id])
         expect(context.reload.quickies_count).to eq 0
+      end
+    end
+  end
+
+  describe '#repeat' do
+    context 'when there is a repeat string' do
+      it 'returns a repeat instance' do
+        quickie.repeat_string = 'every day'
+        repeat = quickie.repeat
+        expect(repeat).to be_instance_of(Repeat)
+        expect(repeat.time_delta).to eq 1.day
+      end
+    end
+
+    context 'when there is not a repeat string' do
+      it 'returns nil' do
+        expect(quickie.repeat).to be_nil
+      end
+    end
+  end
+
+  describe '#time_to_repeat?' do
+    context 'when not done' do
+      it 'returns false' do
+        expect(quickie).not_to be_time_to_repeat
+      end
+    end
+
+    context 'when done and the repeat time delta has not elapsed yet' do
+      it 'returns false' do
+        quickie.done_at = Time.now
+        quickie.repeat_string = 'every day'
+        expect(quickie).not_to be_time_to_repeat
+      end
+    end
+
+    context 'when done and the repeat time has elapsed' do
+      it 'returns true' do
+        quickie.done_at = 2.days.ago
+        quickie.repeat_string = 'every day'
+        expect(quickie).to be_time_to_repeat
+      end
+    end
+  end
+
+  describe '#done?' do
+    context 'when done_at' do
+      it 'returns true' do
+        quickie.done_at = Time.now
+        expect(quickie).to be_done
+      end
+    end
+
+    context 'when not done_at' do
+      it 'returns false' do
+        expect(quickie).not_to be_done
       end
     end
   end

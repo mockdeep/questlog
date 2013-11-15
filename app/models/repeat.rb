@@ -3,7 +3,7 @@ class Repeat
   attr_reader :time_delta
 
   def initialize(repeat_string)
-    @time_delta = self.class.repeat_maps[repeat_string]
+    @time_delta = self.class.repeat_maps.fetch(repeat_string)
   end
 
   def self.repeat_maps
