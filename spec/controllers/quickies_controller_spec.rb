@@ -13,7 +13,7 @@ describe QuickiesController do
 
     it 'initializes a new Quickie' do
       get(:show)
-      expect(assigns(:new_quickie)).to be_new_record
+      expect(assigns(:quickie_form)).to be_new_record
     end
 
     context 'when there are no unfinished quickies' do
