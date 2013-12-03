@@ -54,31 +54,6 @@ describe Quickie do
     end
   end
 
-  describe '#title=' do
-    it 'handles @ strings' do
-      quickie.title = '@work eat something @home'
-      expect(quickie.title).to eq 'eat something'
-      expect(quickie.contexts.collect(&:name)).to eq ['work', 'home']
-    end
-
-    it 'handles @ strings with various quotes' do
-      quickie.title = %{@"at work" eat "something" @'at home'}
-      expect(quickie.title).to eq 'eat "something"'
-      expect(quickie.contexts.collect(&:name)).to eq ['at work', 'at home']
-    end
-
-    it 'updates counters' do
-      expect(user.quickies_count).to eq 0
-      quickie.title = %{@"at work" eat "something" @'at home'}
-      quickie.save!
-      quickie.reload
-      quickie.contexts.each do |context|
-        expect(context.quickies_count).to eq 1
-      end
-      expect(user.reload.quickies_count).to eq 1
-    end
-  end
-
   describe '#done=' do
     context 'when given true' do
       it 'sets done_at to Time.now' do

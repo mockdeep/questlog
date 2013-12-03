@@ -1,17 +1,16 @@
 class QuickiesController < ApplicationController
 
   def show
-    @new_quickie = Quickie.new
+    @quickie_form = QuickieForm.new(current_user)
     @quickie = current_user.next_quickie(params[:slug])
     @contexts = current_user.ordered_contexts
   end
 
   def create
     persist_current_user
-    @new_quickie = current_user.quickies.new
+    @quickie_form = QuickieForm.new(current_user)
     # title= depends on user being assigned first. This should be fixed.
-    @new_quickie.attributes = quickie_params
-    if @new_quickie.save
+    if @quickie_form.submit(quickie_params)
       redirect_to :back
     else
       @contexts = current_user.ordered_contexts

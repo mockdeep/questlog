@@ -1,8 +1,8 @@
-= form_for(quickie) do |form|
+= form_for(quickie_form) do |form|
   .row-fluid
     .span12
-      - if quickie.errors.any?
-        = render 'common/errors', record: quickie
+      - if quickie_form.errors.any?
+        = render 'common/errors', record: quickie_form
   .row-fluid
     .span6
       = form.text_field :title, class: 'span12', id: "#{namespace}_title"
@@ -17,8 +17,8 @@
       %strong Priority:
   .row-fluid
     .span4
-      = form.select :repeat_string, options_for_select(Repeat.repeat_maps.keys, quickie.repeat_string), { include_blank: 'once' }, { id: "#{namespace}_repeat_string" }
+      = form.select :repeat_string, options_for_select(Repeat.repeat_maps.keys, quickie_form.repeat_string), { include_blank: 'once' }, { id: "#{namespace}_repeat_string" }
     .span4
-      = form.select :time_estimate, options_for_select(TimeEstimate.maps, quickie.time_estimate), {}, { id: "#{namespace}_time_estimate" }
+      = form.select :time_estimate, options_for_select(TimeEstimate.maps, quickie_form.time_estimate), {}, { id: "#{namespace}_time_estimate" }
     .span4
-      = form.select :priority, options_for_select(Quickie.priorities, quickie.priority), {}, { id: "#{namespace}_priority" }
+      = form.select :priority, options_for_select(Quickie.priorities, quickie_form.priority), {}, { id: "#{namespace}_priority" }

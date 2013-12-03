@@ -3,6 +3,6 @@
 - if quickie
   = render quickie
   #edit-form
-    = render 'quickies/form', quickie: quickie, namespace: 'edit', contexts: contexts
+    = render 'quickies/form', quickie_form: quickie, namespace: 'edit', contexts: contexts
 #new-form
-  = render 'quickies/form', quickie: new_quickie, namespace: 'new', contexts: contexts
+  = render 'quickies/form', quickie_form: quickie_form, namespace: 'new', contexts: contexts
