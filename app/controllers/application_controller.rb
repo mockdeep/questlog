@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :authorize_profiler
+  before_filter :check_repeats
 
 private
 
@@ -30,6 +31,14 @@ private
 
   def authorize_profiler
     Rack::MiniProfiler.authorize_request if current_user && current_user.admin?
+  end
+
+  def check_repeats
+    if current_user.persisted?
+      current_user.quickies.done_with_repeat.find_each do |quickie|
+        quickie.update_attributes!(done: false) if quickie.time_to_repeat?
+      end
+    end
   end
 
 end

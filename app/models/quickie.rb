@@ -7,11 +7,12 @@ class Quickie < ActiveRecord::Base
 
   validates :time_estimate, numericality: true, allow_nil: true
   validates :title, :user, presence: true
-  validates :repeat_string, inclusion: { in: Repeat.repeat_maps.keys }, allow_blank: true
+  validates :repeat_string, inclusion: { in: Repeat.repeat_maps.keys }, allow_nil: true
   validates :priority, inclusion: { in: [1,2,3] }, allow_nil: true
 
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where("done_at IS NOT NULL") }
+  scope :done_with_repeat, -> { done.where('repeat_string IS NOT NULL') }
   scope :with_estimate, -> { where("time_estimate IS NOT NULL") }
 
   def self.between(start_time, end_time)
