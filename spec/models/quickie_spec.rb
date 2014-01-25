@@ -222,6 +222,13 @@ describe Quickie do
         expect(quickie).to be_time_to_repeat
       end
     end
+
+    context 'when repeat string is not present' do
+      it 'returns false' do
+        quickie.done_at = 1.day.ago
+        expect(quickie).not_to be_time_to_repeat
+      end
+    end
   end
 
   describe '#done?' do
