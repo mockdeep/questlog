@@ -54,6 +54,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rb-inotify'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'spork'
   gem 'vcr'

@@ -300,6 +300,7 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   sass-rails
+  selenium-webdriver
   shoulda-matchers
   simplecov
   spork
