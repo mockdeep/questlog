@@ -30,6 +30,13 @@ describe QuickieForm do
       #  expect(user.reload.quickies_count).to eq 1
       #end
     end
+
+    context 'if repeat string is blank' do
+      it 'sets it to nil' do
+        quickie_form.submit(title: 'bloo blah', repeat_string: '')
+        expect(quickie.repeat_string).to be_nil
+      end
+    end
   end
 
 end
