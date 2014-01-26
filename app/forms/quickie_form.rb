@@ -24,6 +24,7 @@ class QuickieForm
   end
 
   def submit(params)
+    params[:repeat_string] = nil if params[:repeat_string].blank?
     title = params[:title]
     if title
       title, context_names = TagParser.new.parse(title)

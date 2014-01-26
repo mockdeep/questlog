@@ -37,7 +37,8 @@ describe 'Quickies page' do
     end
 
   end
-  it 'allows a user to manage quickies' do
+
+  it 'allows a guest user to manage quickies' do
     visit '/'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_button('Skip')
@@ -60,6 +61,22 @@ describe 'Quickies page' do
     click_button 'Done'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_button('Skip')
+  end
+
+  it 'allows a free user to manage quickies in advanced view' do
+    visit '/'
+    click_link 'Log in'
+    fill_in 'email', with: user.account.email
+    fill_in 'password', with: user.account.password
+    click_button 'Login'
+    click_link 'Switch to advanced view'
+    fill_in 'new_title', with: 'do laundry'
+    click_button 'Create Quickie'
+    expect(page).to have_button('Done')
+    expect(page).to have_button('Skip')
+    expect(page).to have_content('do laundry')
+    expect(Quickie.count).to eq 1
+    expect(Quickie.first.repeat_string).to be_nil
   end
 
 end
