@@ -5,7 +5,7 @@ class QuickieForm
 
   attr_accessor :user
 
-  delegate :title, :repeat_string, :time_estimate, :priority, to: :quickie
+  delegate :errors, :title, :repeat_string, :time_estimate, :priority, to: :quickie
 
   def self.model_name
     ActiveModel::Name.new(self, nil, 'Quickie')
