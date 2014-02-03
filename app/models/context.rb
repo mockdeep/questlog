@@ -12,6 +12,7 @@ class Context < ActiveRecord::Base
   validates :name, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(:name) }
+  scope :active, -> { where('contexts.quickies_count > 0') }
 
   def any?
     quickies_count > 0
