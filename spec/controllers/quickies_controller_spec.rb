@@ -31,8 +31,14 @@ describe QuickiesController do
       end
     end
 
-    it 'sets existing Context' do
+    it 'skips contexts without quickies' do
       context
+      get(:show)
+      expect(assigns(:contexts)).to eq []
+    end
+
+    it 'sets contexts with quickies' do
+      context.quickies << quickie
       get(:show)
       expect(assigns(:contexts)).to eq [context]
     end

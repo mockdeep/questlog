@@ -3,7 +3,7 @@ class QuickiesController < ApplicationController
   def show
     @quickie_form = QuickieForm.new(current_user)
     @quickie = current_user.next_quickie(params[:slug])
-    @contexts = current_user.ordered_contexts
+    @contexts = current_user.ordered_contexts.active
   end
 
   def create
