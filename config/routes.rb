@@ -4,7 +4,7 @@ Quickies::Application.routes.draw do
   resources :sessions, only: [:new, :create]
   delete 'sessions', to: 'sessions#destroy', as: 'session'
 
-  resources :quickies, only: [:create, :update, :destroy]
+  resources :quickies, only: [:index, :create, :update, :destroy]
   resources :users, only: [:update]
   resources :free_accounts, only: [:new, :create]
 

@@ -11,12 +11,13 @@ class Quickie < ActiveRecord::Base
   validates :priority, inclusion: { in: [1,2,3] }, allow_nil: true
 
   scope :undone, -> { where(done_at: nil) }
-  scope :done, -> { where("done_at IS NOT NULL") }
+  scope :done, -> { where('done_at IS NOT NULL') }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
-  scope :with_estimate, -> { where("time_estimate IS NOT NULL") }
+  scope :with_estimate, -> { where('time_estimate IS NOT NULL') }
+  scope :pending, -> { done.where('release_at IS NOT NULL').order(:release_at) }
 
   def self.between(start_time, end_time)
-    where("done_at >= ? AND done_at < ?", start_time, end_time)
+    where('done_at >= ? AND done_at < ?', start_time, end_time)
   end
 
   def self.next
