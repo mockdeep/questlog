@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   $('#quickie').click(function () {
     editIcon = $('#edit-quickie');
-    if (editIcon.hasClass('icon-arrow-down')) {
+    if (editIcon.hasClass('fa-arrow-down')) {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {
           $('#edit-form').fadeIn(200);
@@ -19,13 +19,13 @@ $(document).ready(function () {
       });
     }
     editIcon.fadeOut(function () {
-      editIcon.toggleClass('icon-arrow-down');
-      editIcon.toggleClass('icon-arrow-up');
+      editIcon.toggleClass('fa-arrow-down');
+      editIcon.toggleClass('fa-arrow-up');
       editIcon.fadeIn();
     });
   });
 
-  $('.icon-remove').click(function (e) {
+  $('.fa-times').click(function (e) {
     e.stopPropagation();
     if (confirm('Delete this Quickie?')) {
       $('#delete-form').submit();
