@@ -1,5 +1,10 @@
 class QuickiesController < ApplicationController
 
+  def index
+    @quickies = current_user.quickies.undone
+    @pending_quickies = current_user.quickies.pending
+  end
+
   def show
     @quickie_form = QuickieForm.new(current_user)
     @quickie = current_user.next_quickie(params[:slug])
