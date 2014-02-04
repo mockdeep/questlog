@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203015942) do
+ActiveRecord::Schema.define(:version => 20140203235523) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -49,10 +49,12 @@ ActiveRecord::Schema.define(:version => 20140203015942) do
     t.integer  "skip_count",    :default => 0
     t.integer  "time_estimate"
     t.integer  "priority"
+    t.datetime "release_at"
   end
 
   add_index "quickies", ["done_at"], :name => "index_quickies_on_done_at"
   add_index "quickies", ["priority"], :name => "index_quickies_on_priority"
+  add_index "quickies", ["release_at"], :name => "index_quickies_on_release_at"
   add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
   add_index "quickies", ["user_id"], :name => "index_quickies_on_user_id"
 

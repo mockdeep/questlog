@@ -200,37 +200,6 @@ describe Quickie do
     end
   end
 
-  describe '#time_to_repeat?' do
-    context 'when not done' do
-      it 'returns false' do
-        expect(quickie).not_to be_time_to_repeat
-      end
-    end
-
-    context 'when done and the repeat time delta has not elapsed yet' do
-      it 'returns false' do
-        quickie.done_at = Time.now
-        quickie.repeat_string = 'every day'
-        expect(quickie).not_to be_time_to_repeat
-      end
-    end
-
-    context 'when done and the repeat time has elapsed' do
-      it 'returns true' do
-        quickie.done_at = 2.days.ago
-        quickie.repeat_string = 'every day'
-        expect(quickie).to be_time_to_repeat
-      end
-    end
-
-    context 'when repeat string is not present' do
-      it 'returns false' do
-        quickie.done_at = 1.day.ago
-        expect(quickie).not_to be_time_to_repeat
-      end
-    end
-  end
-
   describe '#done?' do
     context 'when done_at' do
       it 'returns true' do
