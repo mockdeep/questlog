@@ -1,0 +1,6 @@
+%li
+  = quickie.title
+  - if quickie.repeat
+    %i.icon-refresh
+    = quickie.repeat_string
+  = link_to('Destroy', quickie_path(quickie), method: :delete)

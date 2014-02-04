@@ -2,18 +2,10 @@
 
 %ul
   - @quickies.each do |quickie|
-    %li
-      = quickie.title
-      - if quickie.repeat
-        %i.icon-refresh
-      = link_to('Destroy', quickie_path(quickie), method: :delete)
+    = render 'line_item', quickie: quickie
 
 %h2 Pending Quickies
 
 %ul
   - @pending_quickies.each do |quickie|
-    %li
-      = quickie.title
-      - if quickie.repeat
-        %i.icon-refresh
-      = link_to('Destroy', quickie_path(quickie), method: :delete)
+    = render 'line_item', quickie: quickie
