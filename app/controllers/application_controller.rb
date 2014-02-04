@@ -35,9 +35,7 @@ private
 
   def check_repeats
     if current_user.persisted?
-      current_user.quickies.done_with_repeat.find_each do |quickie|
-        quickie.update_attributes!(done: false) if quickie.time_to_repeat?
-      end
+      current_user.quickies.ready_to_release.update_all(done_at: nil)
     end
   end
 

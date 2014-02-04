@@ -1,10 +1,6 @@
 desc 'Check repeats on quickies'
 task check_repeats: :environment do
   Quickie.transaction do
-    Quickie.find_each do |quickie|
-      if quickie.repeat && quickie.time_to_repeat?
-        quickie.update_attributes(done: false)
-      end
-    end
+    Quickie.ready_to_release.update_all(done_at: nil)
   end
 end

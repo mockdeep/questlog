@@ -12,7 +12,7 @@ class Quickie < ActiveRecord::Base
 
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where("done_at IS NOT NULL") }
-  scope :done_with_repeat, -> { done.where('repeat_string IS NOT NULL') }
+  scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
   scope :with_estimate, -> { where("time_estimate IS NOT NULL") }
 
   def self.between(start_time, end_time)
@@ -29,14 +29,26 @@ class Quickie < ActiveRecord::Base
 
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
-    if done_at && !done_at_was
+    if changed_to_done?
       decrement_contexts
       decrement_user
+      if repeat_string
+        self.release_at = Time.zone.now + repeat.time_delta
+      end
       self.skip_count = 0
-    elsif !done_at && done_at_was
+    elsif changed_to_not_done?
       increment_contexts
       increment_user
+      self.release_at = nil
     end
+  end
+
+  def changed_to_done?
+    done_at && !done_at_was
+  end
+
+  def changed_to_not_done?
+    !done_at && done_at_was
   end
 
   def skip=(skip)
@@ -51,10 +63,6 @@ class Quickie < ActiveRecord::Base
 
   def repeat
     @repeat ||= Repeat.new(repeat_string) if repeat_string.present?
-  end
-
-  def time_to_repeat?
-    repeat && done? && Time.zone.now > done_at + repeat.time_delta
   end
 
   def repeat?
