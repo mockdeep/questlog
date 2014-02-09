@@ -44,7 +44,7 @@ private
       count = current_user.reload.quickies.undone.count
       quickies_count = current_user.reload.quickies_count
       unless count == quickies_count
-        raise "counters broke: count -> #{count}, quickies_count -> #{quickies_count}"
+        # raise "counters broke: count -> #{count}, quickies_count -> #{quickies_count}"
       end
     end
   end
