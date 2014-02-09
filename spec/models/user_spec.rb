@@ -44,6 +44,11 @@ describe User do
       expect(user.quickies_count).to eq 0
       user.quickies.create!(title: 'wah!')
       expect(user.reload.quickies_count).to eq 1
+      quickie = user.quickies.new(title: 'blah')
+      quickie.save!
+      expect(user.reload.quickies_count).to eq 2
+      create(:quickie, user: user)
+      expect(user.reload.quickies_count).to eq 3
     end
   end
 
@@ -60,6 +65,42 @@ describe User do
         user.mode = 'simple'
         expect(user.other_mode).to eq 'advanced'
       end
+    end
+  end
+
+  describe '#absorb' do
+    it 'takes the quickies from the other user' do
+      other_user = create(:user)
+      other_quickie = create(:quickie, user: other_user)
+      user.absorb(other_user)
+      expect(other_quickie.reload.user).to eq user
+    end
+
+    it 'updates the quickies counter' do
+      quickie1
+      other_user = create(:user)
+      other_quickie = create(:quickie, user: other_user)
+      user.absorb(other_user)
+      expect(user.reload.quickies_count).to eq 2
+    end
+
+    it 'deletes the other user' do
+      other_user = create(:user)
+      user.absorb(other_user)
+      expect(User.find_by_id(other_user.id)).to be_nil
+    end
+
+    it 'merges contexts' do
+      other_user = create(:user)
+      other_context1 = create(:context, name: 'solo', user: other_user)
+      other_context2 = create(:context, name: 'duplicate', user: other_user)
+      other_quickie = create(:quickie, title: 'bloo', user: other_user, contexts: [other_context2])
+      context1 = create(:context, name: 'another-solo', user: user)
+      context2 = create(:context, name: 'duplicate', user: user)
+      expected_names = ['another-solo', 'duplicate', 'solo']
+      user.absorb(other_user)
+      expect(user.reload.contexts.pluck(:name).sort).to eq expected_names
+      expect(other_quickie.reload.contexts).to eq [context2]
     end
   end
 

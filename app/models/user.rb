@@ -31,7 +31,24 @@ class User < ActiveRecord::Base
 
   def absorb(other)
     self.quickies += other.quickies
-    self.contexts += other.contexts
+    User.reset_counters(id, :quickies)
+    merge_contexts(other.contexts)
+    other.reload.destroy
+  end
+
+  def merge_contexts(other_contexts)
+    context_names = contexts.pluck(:name)
+    other_contexts.each do |other_context|
+      if context_names.include?(other_context.name)
+        context = contexts.find_by_name(other_context.name)
+        other_context.quickies.each do |quickie|
+          quickie.contexts << context
+        end
+        other_context.destroy
+      else
+        other_context.update_attributes!(user: self)
+      end
+    end
   end
 
 end
