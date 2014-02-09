@@ -13,9 +13,13 @@ describe SessionsController do
           .and_return(fake_profile)
       end
 
-      it 'absorbs the current user into the logged in user' do
-        user.should_receive(:absorb).with(instance_of(User))
-        post(:create, email: 'some_email', password: 'some_password')
+      context 'when using a guest account' do
+        it 'absorbs the current user into the logged in user' do
+          user2 = create(:user)
+          session[:user_id] = user2.id
+          user.should_receive(:absorb).with(instance_of(User))
+          post(:create, email: 'some_email', password: 'some_password')
+        end
       end
 
       it 'sets the current user to the user' do

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     if profile = Profile.authenticate(params[:email], params[:password])
       user = profile.user
-      user.absorb(current_user)
+      user.absorb(current_user) if current_user.persisted?
       self.current_user = user
       redirect_to root_path, notice: 'Logged in!'
     else

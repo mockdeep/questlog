@@ -1,5 +1,7 @@
 class QuickiesController < ApplicationController
 
+  after_filter :raise_unless_counters_match
+
   def index
     @quickies = current_user.quickies.undone
     @pending_quickies = current_user.quickies.pending
@@ -36,6 +38,16 @@ class QuickiesController < ApplicationController
   end
 
 private
+
+  def raise_unless_counters_match
+    if current_user.persisted?
+      count = current_user.reload.quickies.undone.count
+      quickies_count = current_user.reload.quickies_count
+      unless count == quickies_count
+        raise "counters broke: count -> #{count}, quickies_count -> #{quickies_count}"
+      end
+    end
+  end
 
   def quickie_params
     params[:quickie].permit(
