@@ -50,6 +50,54 @@ describe User do
       create(:quickie, user: user)
       expect(user.reload.quickies_count).to eq 3
     end
+
+    context 'when a user is added to the quickie' do
+      it 'is incremented' do
+        quickie = create(:quickie, user: user)
+        expect(user.reload.quickies_count).to eq 1
+      end
+    end
+
+    context 'when a quickie is marked complete' do
+      it 'is decremented' do
+        quickie = create(:quickie, user: user)
+        expect(user.reload.quickies_count).to eq 1
+        quickie.update_attributes(done: true)
+        expect(user.reload.quickies_count).to eq 0
+      end
+    end
+
+    context 'when a quickie is destroyed' do
+      it 'is decremented' do
+        quickie = create(:quickie, user: user)
+        quickie.destroy
+        expect(user.reload.quickies_count).to eq 0
+      end
+    end
+
+    context 'when a quickie is marked complete and then incomplete' do
+      it 'is decremented and then incremented' do
+        quickie = create(:quickie, user: user)
+        expect(user.reload.quickies_count).to eq 1
+        quickie.update_attributes(done: true)
+        expect(user.reload.quickies_count).to eq 0
+        quickie.update_attributes(done: false)
+        expect(user.reload.quickies_count).to eq 1
+      end
+    end
+
+    context 'when a quickie is updated within a transaction' do
+      it 'still increments and decrements properly' do
+        quickie = create(:quickie, user: user)
+        expect(user.reload.quickies_count).to eq 1
+        quickie.update_attributes!(done: true)
+        expect(user.reload.quickies_count).to eq 0
+        Quickie.transaction do
+          quickie.update_attributes!(done: false)
+        end
+        expect(user.reload.quickies_count).to eq 1
+      end
+    end
   end
 
   describe '#other_mode' do
