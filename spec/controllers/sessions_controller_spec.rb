@@ -34,7 +34,7 @@ describe SessionsController do
 
       it 'flashes a success message' do
         post(:create, email: 'some_email', password: 'some_password')
-        expect(flash[:notice]).to match /logged in/i
+        expect(flash[:notice]).to match(/logged in/i)
       end
     end
 
@@ -45,7 +45,7 @@ describe SessionsController do
 
       it 'flashes an error message' do
         post(:create)
-        expect(flash[:error]).to match /invalid email or password/i
+        expect(flash[:error]).to match(/invalid email or password/i)
       end
 
       it 'renders the "new" template' do
@@ -66,7 +66,7 @@ describe SessionsController do
     end
 
     it 'sets a flash message' do
-      expect(flash[:notice]).to match /logged out/i
+      expect(flash[:notice]).to match(/logged out/i)
     end
   end
 
