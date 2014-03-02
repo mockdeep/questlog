@@ -14,10 +14,10 @@ describe ApplicationController do
     it 'marks quickies as not done if they are ready to release' do
       quickie1 = create(:quickie, params)
 
-      params.merge!(done_at: 2.weeks.ago, :release_at => 1.hour.ago)
+      params.merge!(done_at: 2.weeks.ago, release_at: 1.hour.ago)
       quickie2 = create(:quickie, params)
 
-      params.merge!(:release_at => 1.hour.from_now)
+      params.merge!(release_at: 1.hour.from_now)
       quickie3 = create(:quickie, params)
 
       controller.send(:check_repeats)

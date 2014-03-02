@@ -30,11 +30,11 @@ Spork.prefork do
       expect_config.syntax = :expect
     end
 
-    VCR.configure do |config|
-      config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-      config.hook_into :webmock
-      config.ignore_hosts 'validator.w3.org'
-      config.ignore_localhost = true
+    VCR.configure do |vcr_config|
+      vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+      vcr_config.hook_into :webmock
+      vcr_config.ignore_hosts 'validator.w3.org'
+      vcr_config.ignore_localhost = true
     end
 
     config.before(:suite) do
