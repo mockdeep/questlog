@@ -11,7 +11,7 @@ describe UsersController do
 
     it 'updates the current user' do
       User.any_instance.should_receive(:update_attributes!)
-                       .with({ 'mode' => 'advanced' })
+                       .with('mode' => 'advanced')
       put(:update, id: user.id, user: { mode: 'advanced' })
     end
 
