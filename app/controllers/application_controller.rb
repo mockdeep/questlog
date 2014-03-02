@@ -8,11 +8,7 @@ class ApplicationController < ActionController::Base
 private
 
   def current_user
-    @current_user ||= if session[:user_id]
-      User.find(session[:user_id])
-    else
-      User.new(account: GuestAccount.new)
-    end
+    @current_user ||= find_user
   end
   helper_method :current_user
 
@@ -36,6 +32,14 @@ private
   def check_repeats
     if current_user.persisted?
       current_user.quickies.ready_to_release.update_all(done_at: nil)
+    end
+  end
+
+  def find_user
+    if session[:user_id]
+      User.find(session[:user_id])
+    else
+      User.new(account: GuestAccount.new)
     end
   end
 
