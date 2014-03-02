@@ -21,6 +21,9 @@ Documentation:
 EmptyLinesAroundBody:
   Enabled: false
 
+TrailingComma:
+  EnforcedStyleForMultiline: comma
+
 # enable once they add on option to include line length
 IfUnlessModifier:
   Enabled: false
@@ -40,33 +43,13 @@ LineLength:
 # Configuration parameters: CountComments.
 MethodLength:
   Max: 22
-
-# Offence count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
-SpaceAroundBlockBraces:
-  Enabled: false
-
-# Offence count: 2
-# Cop supports --auto-correct.
-SpaceInsideBrackets:
-  Enabled: false
-
-# Offence count: 102
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-StringLiterals:
-  Enabled: false
-
-# Offence count: 1
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
-TrailingComma:
-  Enabled: false
-
-# Offence count: 8
-UselessAssignment:
-  Enabled: false
-
+# 
+# # Offence count: 1
+# # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+# # Offence count: 8
+# UselessAssignment:
+#   Enabled: false
+# 
 # Offence count: 6
 # Cop supports --auto-correct.
 WordArray:

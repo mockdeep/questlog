@@ -38,7 +38,7 @@ describe Context do
 
     context 'when a context is added to the quickie' do
       it 'is incremented' do
-        quickie = create(:quickie, context_ids: [context.id])
+        create(:quickie, context_ids: [context.id])
         expect(context.reload.quickies_count).to eq 1
       end
     end

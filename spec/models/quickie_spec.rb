@@ -22,10 +22,10 @@ describe Quickie do
 
   describe '.between' do
     it 'returns quickies with done_at between the given times' do
-      quickie1 = create(:quickie, done_at: 3.days.ago)
+      create(:quickie, done_at: 3.days.ago)
       quickie2 = create(:quickie, done_at: 1.days.ago)
-      quickie3 = create(:quickie, done_at: Time.now)
-      quickie4 = create(:quickie)
+      create(:quickie, done_at: Time.now)
+      create(:quickie)
       expect(Quickie.between(2.days.ago, 10.minutes.ago)).to eq [quickie2]
     end
   end
@@ -148,18 +148,18 @@ describe Quickie do
   describe '#skip=' do
     context 'when passed false' do
       it 'does nothing' do
-        expect{ quickie.skip = false }.not_to change(quickie, :updated_at)
-        expect{ quickie.skip = false }.not_to change(quickie, :skip_count)
+        expect { quickie.skip = false }.not_to change(quickie, :updated_at)
+        expect { quickie.skip = false }.not_to change(quickie, :skip_count)
       end
     end
 
     context 'when passed true' do
       it 'updates the updated_at' do
-        expect{ quickie.skip = true }.to change(quickie, :updated_at)
+        expect { quickie.skip = true }.to change(quickie, :updated_at)
       end
 
       it 'increments the skip_count' do
-        expect{ quickie.skip = true }.to change(quickie, :skip_count).from(0).to(1)
+        expect { quickie.skip = true }.to change(quickie, :skip_count).from(0).to(1)
       end
     end
   end
