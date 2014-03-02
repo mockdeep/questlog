@@ -20,15 +20,15 @@ describe QuickieForm do
         expect(quickie.contexts.map(&:name)).to eq ['at work', 'at home']
       end
 
-      #it 'updates counters' do
-      #  expect(user.quickies_count).to eq 0
-      #  quickie_form.submit(title: %{@"at work" eat "something" @'at home'})
-      #  quickie.reload
-      #  quickie.contexts.each do |context|
-      #    expect(context.quickies_count).to eq 1
-      #  end
-      #  expect(user.reload.quickies_count).to eq 1
-      #end
+      # it 'updates counters' do
+      #   expect(user.quickies_count).to eq 0
+      #   quickie_form.submit(title: %{@"at work" eat "something" @'at home'})
+      #   quickie.reload
+      #   quickie.contexts.each do |context|
+      #     expect(context.quickies_count).to eq 1
+      #   end
+      #   expect(user.reload.quickies_count).to eq 1
+      # end
     end
 
     context 'if repeat string is blank' do
