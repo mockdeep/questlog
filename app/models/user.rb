@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :quickies, dependent: :destroy
   has_many :contexts, dependent: :destroy
 
-  validates :mode, inclusion: { in: ['simple', 'advanced'] }
+  validates :mode, inclusion: { in: %w(simple advanced) }
 
   delegate :guest?, to: :account
 

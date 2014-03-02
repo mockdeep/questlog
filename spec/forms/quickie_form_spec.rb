@@ -11,7 +11,7 @@ describe QuickieForm do
       it 'handles @ strings' do
         quickie_form.submit(title: '@work eat something @home')
         expect(quickie.title).to eq 'eat something'
-        expect(quickie.contexts.map(&:name)).to eq ['work', 'home']
+        expect(quickie.contexts.map(&:name)).to eq %w(work home)
       end
 
       it 'handles @ strings with various quotes' do

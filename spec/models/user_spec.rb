@@ -15,7 +15,7 @@ describe User do
   end
 
   describe 'validations' do
-    it { should ensure_inclusion_of(:mode).in_array(['simple', 'advanced']) }
+    it { should ensure_inclusion_of(:mode).in_array(%w(simple advanced)) }
   end
 
   describe '#next_quickie' do
@@ -145,7 +145,7 @@ describe User do
       other_quickie = create(:quickie, title: 'bloo', user: other_user, contexts: [other_context2])
       create(:context, name: 'another-solo', user: user)
       context2 = create(:context, name: 'duplicate', user: user)
-      expected_names = ['another-solo', 'duplicate', 'solo']
+      expected_names = %w(another-solo duplicate solo)
       user.absorb(other_user)
       expect(user.reload.contexts.pluck(:name).sort).to eq expected_names
       expect(other_quickie.reload.contexts).to eq [context2]
