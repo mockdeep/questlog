@@ -51,9 +51,9 @@ describe QuickiesController do
 
     context 'when the user does not exist' do
       it 'creates a new user' do
-        expect {
+        expect do
           post(:create, quickie: valid_params)
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
       end
 
       it 'sets the current user in the session' do

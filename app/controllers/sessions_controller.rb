@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if profile = Profile.authenticate(params[:email], params[:password])
+    profile = Profile.authenticate(params[:email], params[:password])
+    if profile
       user = profile.user
       user.absorb(current_user) if current_user.persisted?
       self.current_user = user

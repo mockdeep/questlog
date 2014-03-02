@@ -9,22 +9,6 @@ AccessModifierIndentation:
 # enable or confirm the rules below
 # ............................................................................ #
 
-# Offence count: 1
-# Configuration parameters: AllowSafeAssignment.
-AssignmentInCondition:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-Blocks:
-  Enabled: false
-
-# Offence count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-BracesAroundHashParameters:
-  Enabled: false
-
 # Offence count: 2
 ClassVars:
   Enabled: false
