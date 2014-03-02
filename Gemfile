@@ -43,6 +43,7 @@ group :development, :test do
   gem 'guard', '2.0.5'
   gem 'jasmine'
   gem 'rspec-rails'
+  gem 'guard-rubocop'
   gem 'shoulda-matchers'
 end
 
