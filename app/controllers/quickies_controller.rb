@@ -57,7 +57,7 @@ private
       :context_ids,
       :priority,
       :repeat_string,
-      :time_estimate
+      :time_estimate,
     )
   end
 

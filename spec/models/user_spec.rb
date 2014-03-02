@@ -53,7 +53,7 @@ describe User do
 
     context 'when a user is added to the quickie' do
       it 'is incremented' do
-        quickie = create(:quickie, user: user)
+        create(:quickie, user: user)
         expect(user.reload.quickies_count).to eq 1
       end
     end
@@ -127,7 +127,7 @@ describe User do
     it 'updates the quickies counter' do
       quickie1
       other_user = create(:user)
-      other_quickie = create(:quickie, user: other_user)
+      create(:quickie, user: other_user)
       user.absorb(other_user)
       expect(user.reload.quickies_count).to eq 2
     end
@@ -140,10 +140,10 @@ describe User do
 
     it 'merges contexts' do
       other_user = create(:user)
-      other_context1 = create(:context, name: 'solo', user: other_user)
+      create(:context, name: 'solo', user: other_user)
       other_context2 = create(:context, name: 'duplicate', user: other_user)
       other_quickie = create(:quickie, title: 'bloo', user: other_user, contexts: [other_context2])
-      context1 = create(:context, name: 'another-solo', user: user)
+      create(:context, name: 'another-solo', user: user)
       context2 = create(:context, name: 'duplicate', user: user)
       expected_names = ['another-solo', 'duplicate', 'solo']
       user.absorb(other_user)

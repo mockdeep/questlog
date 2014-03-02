@@ -46,7 +46,7 @@ describe QuickiesController do
 
   describe '#create' do
     before(:each) do
-      request.env["HTTP_REFERER"] = root_url
+      request.env['HTTP_REFERER'] = root_url
     end
 
     context 'when the user does not exist' do
@@ -71,7 +71,7 @@ describe QuickiesController do
     end
 
     context 'when the quickie is not valid' do
-      it 'renders "show"' do
+      it 'renders :show' do
         Quickie.any_instance.stub(:save).and_return(false)
         post(:create, quickie: valid_params)
         expect(response).to render_template('quickies/show')
@@ -85,7 +85,7 @@ describe QuickiesController do
     end
 
     it 'destroys the quickie for the given user' do
-      request.env["HTTP_REFERER"] = '/whatevs'
+      request.env['HTTP_REFERER'] = '/whatevs'
       quickie.context_ids = [context.id]
       expect(context.quickies).to eq([quickie])
       expect(context.reload.quickies_count).to eq(1)
