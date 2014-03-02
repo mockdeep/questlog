@@ -16,7 +16,7 @@ class FreeAccountsController < ApplicationController
     end
   end
 
-  private
+private
 
   def account_params
     params[:free_account].permit(:email, :password, :password_confirmation)

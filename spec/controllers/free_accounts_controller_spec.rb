@@ -36,7 +36,7 @@ describe FreeAccountsController do
       end
 
       it 'flashes an error' do
-        expect(flash[:error]).to match /there was a problem/i
+        expect(flash[:error]).to match(/there was a problem/i)
       end
 
       it 'renders the new template' do

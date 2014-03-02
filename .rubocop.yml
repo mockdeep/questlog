@@ -3,18 +3,11 @@ AllCops:
     - db/schema.rb
     - db/migrate/*
 
+AccessModifierIndentation:
+  EnforcedStyle: outdent
+
 # enable or confirm the rules below
 # ............................................................................ #
-
-# Offence count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-AccessModifierIndentation:
-  Enabled: false
-
-# Offence count: 4
-AmbiguousRegexpLiteral:
-  Enabled: false
 
 # Offence count: 1
 # Configuration parameters: AllowSafeAssignment.
