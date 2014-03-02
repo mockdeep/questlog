@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
+# needs to be included before any other gems that use environment variables
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'rails', '3.2.15'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
