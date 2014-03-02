@@ -1,0 +1,135 @@
+AllCops:
+  Excludes:
+    - db/schema.rb
+    - db/migrate/*
+
+# enable or confirm the rules below
+# ............................................................................ #
+
+# Offence count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+AccessModifierIndentation:
+  Enabled: false
+
+# Offence count: 4
+AmbiguousRegexpLiteral:
+  Enabled: false
+
+# Offence count: 1
+# Configuration parameters: AllowSafeAssignment.
+AssignmentInCondition:
+  Enabled: false
+
+# Offence count: 1
+# Cop supports --auto-correct.
+Blocks:
+  Enabled: false
+
+# Offence count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+BracesAroundHashParameters:
+  Enabled: false
+
+# Offence count: 2
+ClassVars:
+  Enabled: false
+
+# Offence count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredMethods.
+CollectionMethods:
+  Enabled: false
+
+# Offence count: 37
+Documentation:
+  Enabled: false
+
+# Offence count: 1
+# Cop supports --auto-correct.
+EmptyLines:
+  Enabled: false
+
+# Offence count: 38
+# Cop supports --auto-correct.
+EmptyLinesAroundBody:
+  Enabled: false
+
+# Offence count: 76
+Encoding:
+  Enabled: false
+
+# Offence count: 1
+# Configuration parameters: AlignWith, SupportedStyles.
+EndAlignment:
+  Enabled: false
+
+# Offence count: 45
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+HashSyntax:
+  Enabled: false
+
+# Offence count: 1
+IfUnlessModifier:
+  Enabled: false
+
+# Offence count: 2
+# Cop supports --auto-correct.
+LeadingCommentSpace:
+  Enabled: false
+
+# Offence count: 34
+LineLength:
+  Max: 174
+
+# Offence count: 4
+# Configuration parameters: CountComments.
+MethodLength:
+  Max: 22
+
+# Offence count: 1
+# Cop supports --auto-correct.
+NumericLiterals:
+  MinDigits: 14
+
+# Offence count: 1
+ShadowingOuterLocalVariable:
+  Enabled: false
+
+# Offence count: 4
+# Cop supports --auto-correct.
+SpaceAfterComma:
+  Enabled: false
+
+# Offence count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+SpaceAroundBlockBraces:
+  Enabled: false
+
+# Offence count: 2
+# Cop supports --auto-correct.
+SpaceInsideBrackets:
+  Enabled: false
+
+# Offence count: 102
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+StringLiterals:
+  Enabled: false
+
+# Offence count: 1
+# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
+TrailingComma:
+  Enabled: false
+
+# Offence count: 8
+UselessAssignment:
+  Enabled: false
+
+# Offence count: 6
+# Cop supports --auto-correct.
+WordArray:
+  MinSize: 3
