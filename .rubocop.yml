@@ -35,10 +35,6 @@ Encoding:
 # enable or confirm the rules below
 # ............................................................................ #
 
-# Offence count: 34
-LineLength:
-  Max: 174
-
 # Offence count: 4
 # Configuration parameters: CountComments.
 MethodLength:
