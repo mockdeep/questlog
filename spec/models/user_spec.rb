@@ -142,7 +142,12 @@ describe User do
       other_user = create(:user)
       create(:context, name: 'solo', user: other_user)
       other_context2 = create(:context, name: 'duplicate', user: other_user)
-      other_quickie = create(:quickie, title: 'bloo', user: other_user, contexts: [other_context2])
+      other_quickie = create(
+        :quickie,
+        title: 'bloo',
+        user: other_user,
+        contexts: [other_context2],
+      )
       create(:context, name: 'another-solo', user: user)
       context2 = create(:context, name: 'duplicate', user: user)
       expected_names = %w(another-solo duplicate solo)

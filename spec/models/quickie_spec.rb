@@ -159,7 +159,9 @@ describe Quickie do
       end
 
       it 'increments the skip_count' do
-        expect { quickie.skip = true }.to change(quickie, :skip_count).from(0).to(1)
+        expect do
+          quickie.skip = true
+        end.to change(quickie, :skip_count).from(0).to(1)
       end
     end
   end
