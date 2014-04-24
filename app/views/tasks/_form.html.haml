@@ -1,0 +1,24 @@
+= form_for(task_form) do |form|
+  .row-fluid
+    .span12
+      - if task_form.errors.any?
+        = render 'common/errors', record: task_form
+  .row-fluid
+    .span6
+      = form.text_field :title, class: 'span12', id: "#{namespace}_title"
+    .span6
+      = form.submit class: 'btn btn-success btn-block'
+  .row-fluid
+    .span4
+      %strong Repeat:
+    .span4
+      %strong Time Estimate:
+    .span4
+      %strong Priority:
+  .row-fluid
+    .span4
+      = form.select :repeat_string, options_for_select(Repeat.repeat_maps.keys, task_form.repeat_string), { include_blank: 'once' }, { id: "#{namespace}_repeat_string" }
+    .span4
+      = form.select :time_estimate, options_for_select(TimeEstimate.maps, task_form.time_estimate), {}, { id: "#{namespace}_time_estimate" }
+    .span4
+      = form.select :priority, options_for_select(Task.priorities, task_form.priority), {}, { id: "#{namespace}_priority" }

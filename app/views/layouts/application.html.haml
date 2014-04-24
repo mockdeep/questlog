@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Quickies
+    %title Tasks
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -11,13 +11,11 @@
     .container-fluid
       .row-fluid
         .navbar
-          %h1#quickies= link_to('QUICKIES', root_path)
-          %br
-          = link_to("What's a Quickie?", what_path)
+          %h1#tasks= link_to('QUESTLOG', root_path)
 
           #user_nav
             - if current_user.guest?
-              You're not logged in! In order to save your quickies you'll
+              You're not logged in! In order to save your tasks you'll
               need to
               = link_to "Sign up", new_free_account_path
               or

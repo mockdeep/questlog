@@ -1,9 +1,9 @@
 = render current_user.mode,
-  quickie: @quickie,
-  quickie_form: @quickie_form,
+  task: @task,
+  task_form: @task_form,
   contexts: @contexts
 
 %p
-  = link_to('All my quickies', quickies_path)
+  = link_to('All my tasks', tasks_path)
   %br
   Try adding a tag using '@', for example: <strong>@home<strong>.

@@ -7,7 +7,7 @@ describe Context do
     it { should belong_to(:user) }
 
     it { should have_many(:taggings) }
-    it { should have_many(:quickies).through(:taggings) }
+    it { should have_many(:tasks).through(:taggings) }
   end
 
   describe 'validations' do
@@ -26,110 +26,110 @@ describe Context do
     end
   end
 
-  describe '#quickies_count' do
-    context 'when a quickie is added to the context' do
+  describe '#tasks_count' do
+    context 'when a task is added to the context' do
       it 'is incremented' do
-        expect(context.quickies_count).to eq 0
-        quickie = create(:quickie)
-        context.quickies << quickie
-        expect(context.quickies_count).to eq 1
+        expect(context.tasks_count).to eq 0
+        task = create(:task)
+        context.tasks << task
+        expect(context.tasks_count).to eq 1
       end
     end
 
-    context 'when a context is added to the quickie' do
+    context 'when a context is added to the task' do
       it 'is incremented' do
-        create(:quickie, context_ids: [context.id])
-        expect(context.reload.quickies_count).to eq 1
+        create(:task, context_ids: [context.id])
+        expect(context.reload.tasks_count).to eq 1
       end
     end
 
-    context 'when a quickie is marked complete' do
+    context 'when a task is marked complete' do
       it 'is decremented' do
-        quickie = create(:quickie, context_ids: [context.id])
-        expect(context.reload.quickies_count).to eq 1
-        quickie.update_attributes(done: true)
-        expect(context.reload.quickies_count).to eq 0
+        task = create(:task, context_ids: [context.id])
+        expect(context.reload.tasks_count).to eq 1
+        task.update_attributes(done: true)
+        expect(context.reload.tasks_count).to eq 0
       end
     end
 
-    context 'when a quickie is destroyed' do
+    context 'when a task is destroyed' do
       it 'is decremented' do
-        quickie = create(:quickie, context_ids: [context.id])
-        quickie.destroy
-        expect(context.reload.quickies_count).to eq 0
+        task = create(:task, context_ids: [context.id])
+        task.destroy
+        expect(context.reload.tasks_count).to eq 0
       end
     end
 
-    context 'when a quickie is marked complete and then incomplete' do
+    context 'when a task is marked complete and then incomplete' do
       it 'is decremented and then incremented' do
-        quickie = create(:quickie, context_ids: [context.id])
-        expect(context.reload.quickies_count).to eq 1
-        quickie.update_attributes(done: true)
-        expect(context.reload.quickies_count).to eq 0
-        quickie.update_attributes(done: false)
-        expect(context.reload.quickies_count).to eq 1
+        task = create(:task, context_ids: [context.id])
+        expect(context.reload.tasks_count).to eq 1
+        task.update_attributes(done: true)
+        expect(context.reload.tasks_count).to eq 0
+        task.update_attributes(done: false)
+        expect(context.reload.tasks_count).to eq 1
       end
     end
 
-    context 'when there are more than one quickie and more than one context' do
+    context 'when there are more than one task and more than one context' do
       it 'increments and decrements properly' do
-        quickie1 = create(:quickie)
-        quickie2 = create(:quickie)
+        task1 = create(:task)
+        task2 = create(:task)
         context1 = create(:context)
         context2 = create(:context)
-        expect(context1.quickies_count).to eq 0
-        expect(context2.quickies_count).to eq 0
-        context1.quickies << quickie1
-        context1.quickies << quickie2
-        expect(context1.quickies_count).to eq 2
-        expect(context2.quickies_count).to eq 0
-        context2.quickies << quickie1
-        context2.quickies << quickie2
-        expect(context1.quickies_count).to eq 2
-        expect(context2.quickies_count).to eq 2
+        expect(context1.tasks_count).to eq 0
+        expect(context2.tasks_count).to eq 0
+        context1.tasks << task1
+        context1.tasks << task2
+        expect(context1.tasks_count).to eq 2
+        expect(context2.tasks_count).to eq 0
+        context2.tasks << task1
+        context2.tasks << task2
+        expect(context1.tasks_count).to eq 2
+        expect(context2.tasks_count).to eq 2
       end
     end
 
-    context 'when a quickie is updated within a transaction' do
+    context 'when a task is updated within a transaction' do
       it 'still increments and decrements properly' do
         context2 = create(:context)
-        quickie = create(:quickie, context_ids: [context.id, context2.id])
-        expect(context.reload.quickies_count).to eq 1
-        quickie.update_attributes!(done: true)
-        expect(context.reload.quickies_count).to eq 0
-        Quickie.transaction do
-          quickie.update_attributes!(done: false)
+        task = create(:task, context_ids: [context.id, context2.id])
+        expect(context.reload.tasks_count).to eq 1
+        task.update_attributes!(done: true)
+        expect(context.reload.tasks_count).to eq 0
+        Task.transaction do
+          task.update_attributes!(done: false)
         end
-        expect(context.reload.quickies_count).to eq 1
-        expect(context2.reload.quickies_count).to eq 1
+        expect(context.reload.tasks_count).to eq 1
+        expect(context2.reload.tasks_count).to eq 1
       end
     end
   end
 
   describe '#any?' do
-    context 'when there are quickies' do
+    context 'when there are tasks' do
       it 'returns true' do
-        context.quickies << create(:quickie)
+        context.tasks << create(:task)
         expect(context.reload.any?).to be_true
       end
     end
 
-    context 'context when there are no quickies' do
+    context 'context when there are no tasks' do
       it 'returns false' do
         expect(context.any?).to be_false
       end
     end
   end
 
-  describe '#next_quickie' do
-    it 'returns the next quickie' do
-      quickie1 = create(:quickie)
-      quickie2 = create(:quickie)
-      context.quickies << quickie1
-      context.quickies << quickie2
-      expect(context.next_quickie).to eq quickie1
-      quickie1.update_attributes!(done: true)
-      expect(context.next_quickie).to eq quickie2
+  describe '#next_task' do
+    it 'returns the next task' do
+      task1 = create(:task)
+      task2 = create(:task)
+      context.tasks << task1
+      context.tasks << task2
+      expect(context.next_task).to eq task1
+      task1.update_attributes!(done: true)
+      expect(context.next_task).to eq task2
     end
   end
 

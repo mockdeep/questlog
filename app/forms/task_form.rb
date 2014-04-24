@@ -1,4 +1,4 @@
-class QuickieForm
+class TaskForm
   extend ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
@@ -11,15 +11,15 @@ class QuickieForm
     :repeat_string,
     :time_estimate,
     :priority,
-    to: :quickie,
+    to: :task,
   )
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'Quickie')
+    ActiveModel::Name.new(self, nil, 'Task')
   end
 
-  def quickie
-    @quickie ||= user.quickies.new
+  def task
+    @task ||= user.tasks.new
   end
 
   def persisted?
@@ -42,15 +42,15 @@ class QuickieForm
 
       params[:title] = title
       params[:contexts] = contexts
-      removed_contexts = quickie.contexts - contexts
-      new_contexts = contexts - quickie.contexts
+      removed_contexts = task.contexts - contexts
+      new_contexts = contexts - task.contexts
     end
 
-    quickie.attributes = params
-    if quickie.save
+    task.attributes = params
+    if task.save
       if title
-        removed_contexts.each { |context| context.decrement!(:quickies_count) }
-        new_contexts.each { |context| context.increment!(:quickies_count) }
+        removed_contexts.each { |context| context.decrement!(:tasks_count) }
+        new_contexts.each { |context| context.increment!(:tasks_count) }
       end
       true
     else

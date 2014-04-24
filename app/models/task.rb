@@ -1,4 +1,4 @@
-class Quickie < ActiveRecord::Base
+class Task < ActiveRecord::Base
 
   belongs_to :user, counter_cache: true
 
@@ -86,19 +86,19 @@ class Quickie < ActiveRecord::Base
 private
 
   def increment_contexts
-    contexts.each { |context| context.increment!(:quickies_count) }
+    contexts.each { |context| context.increment!(:tasks_count) }
   end
 
   def decrement_contexts
-    contexts.each { |context| context.decrement!(:quickies_count) }
+    contexts.each { |context| context.decrement!(:tasks_count) }
   end
 
   def decrement_user
-    User.decrement_counter(:quickies_count, user.id)
+    User.decrement_counter(:tasks_count, user.id)
   end
 
   def increment_user
-    User.increment_counter(:quickies_count, user.id)
+    User.increment_counter(:tasks_count, user.id)
   end
 
 end

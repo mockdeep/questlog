@@ -2,18 +2,18 @@ class User < ActiveRecord::Base
 
   belongs_to :account, dependent: :destroy, polymorphic: true
 
-  has_many :quickies, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   has_many :contexts, dependent: :destroy
 
   validates :mode, inclusion: { in: %w(simple advanced) }
 
   delegate :guest?, to: :account
 
-  def next_quickie(context_id = nil)
+  def next_task(context_id = nil)
     if context_id
-      contexts.find(context_id).next_quickie
+      contexts.find(context_id).next_task
     else
-      quickies.next
+      tasks.next
     end
   end
 
@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
   end
 
   def absorb(other)
-    self.quickies += other.quickies
-    User.reset_counters(id, :quickies)
+    self.tasks += other.tasks
+    User.reset_counters(id, :tasks)
     merge_contexts(other.contexts)
     other.reload.destroy
   end
@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
     other_contexts.each do |other_context|
       if context_names.include?(other_context.name)
         context = contexts.find_by_name(other_context.name)
-        other_context.quickies.each do |quickie|
-          quickie.contexts << context
+        other_context.tasks.each do |task|
+          task.contexts << context
         end
         other_context.destroy
       else

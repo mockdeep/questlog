@@ -4,7 +4,7 @@
   max-width: 800px;
 }
 
-#quickie {
+#task {
   background-color: #E9EEEE;
   border-radius: 6px;
   border: 2px solid #AAAAAA;
@@ -68,14 +68,14 @@ h3 {
   }
 }
 
-#quickie.priority1 {
+#task.priority1 {
   background-color: #E9BBBB;
 }
 
-#quickie.priority2 {
+#task.priority2 {
   background-color: #E9CCCC;
 }
 
-#quickie.priority3 {
+#task.priority3 {
   background-color: #E9DDDD;
 }

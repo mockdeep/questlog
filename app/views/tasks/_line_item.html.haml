@@ -1,0 +1,6 @@
+%li
+  = task.title
+  - if task.repeat
+    %i.fa.fa-repeat
+    = task.repeat_string
+  = link_to('Destroy', task_path(task), method: :delete)

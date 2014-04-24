@@ -1,8 +1,8 @@
 $(document).ready(function () {
   $('#new_title').focus();
 
-  $('#quickie').click(function () {
-    editIcon = $('#edit-quickie');
+  $('#task').click(function () {
+    editIcon = $('#edit-task');
     if (editIcon.hasClass('fa-arrow-down')) {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   $('.fa-times').click(function (e) {
     e.stopPropagation();
-    if (confirm('Delete this Quickie?')) {
+    if (confirm('Delete this task?')) {
       $('#delete-form').submit();
     }
   });

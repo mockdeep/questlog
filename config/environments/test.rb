@@ -1,4 +1,4 @@
-Quickies::Application.configure do
+Questlog::Application.configure do
 
   config.cache_classes = true
 

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :quickie do
+  factory :task do
     user
     title { Faker::Lorem.sentence }
   end

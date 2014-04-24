@@ -1,0 +1,16 @@
+.row-fluid
+  = form_for(task, method: :delete, html: { id: 'delete-form' }) do
+    %h2#task{ class: task_classes(task) }
+      %i.fa.fa-times#delete-task{ title: 'delete task' }
+      %span.title{ title: "skip count: #{task.skip_count}" }= task.title
+      - if task.repeat?
+        %i.fa.fa-repeat
+      %i.fa.fa-arrow-down#edit-task{ title: 'edit task' }
+.row-fluid#buttons
+  .span6
+    .row-fluid
+      = button_to('Done! Give me another!', task_path(task, task: { done: true }), method: :put, class: 'btn btn-primary btn-large btn-block')
+  .span6
+    .row-fluid
+      = button_to('Skip this one for now.', task_path(task, task: { skip: true }), method: :put, class: 'btn btn-info btn-large btn-block')
+%hr
