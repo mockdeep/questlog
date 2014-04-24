@@ -2,7 +2,7 @@
 = link_to("All",
           root_path,
           class: "button btn choose-context #{active}")
-- current_ids = quickie ? quickie.contexts.pluck(:id) : []
+- current_ids = task ? task.contexts.pluck(:id) : []
 - contexts.each do |context|
   - disabled = (context.any? ? '' : 'disabled')
   - current = (current_ids.include?(context.id) ? 'current' : '')

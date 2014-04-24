@@ -1,8 +1,0 @@
-- if current_user.contexts.any?
-  = render 'contexts/choose', contexts: contexts, quickie: quickie
-- if quickie
-  = render quickie
-  #edit-form
-    = render 'quickies/form', quickie_form: quickie, namespace: 'edit', contexts: contexts
-#new-form
-  = render 'quickies/form', quickie_form: quickie_form, namespace: 'new', contexts: contexts

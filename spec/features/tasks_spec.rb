@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe 'Quickies page' do
+describe 'Tasks page' do
 
   let(:user) { create(:free_user) }
 
   context 'when a user is logged out' do
-    it 'associates quickies with a new user' do
+    it 'associates tasks with a new user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
-      click_button 'Create Quickie'
+      click_button 'Create Task'
       expect(page).to have_content('do laundry')
       click_link 'Sign up'
       fill_in 'Email', with: 'some@email.com'
@@ -21,10 +21,10 @@ describe 'Quickies page' do
       expect(page).not_to have_content('do laundry')
     end
 
-    it 'associates quickies with an existing user' do
+    it 'associates tasks with an existing user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
-      click_button 'Create Quickie'
+      click_button 'Create Task'
       expect(page).to have_content('do laundry')
       click_link 'Log in'
       fill_in 'email', with: user.account.email
@@ -38,19 +38,19 @@ describe 'Quickies page' do
 
   end
 
-  it 'allows a guest user to manage quickies' do
+  it 'allows a guest user to manage tasks' do
     visit '/'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_button('Skip')
     fill_in 'new_title', with: 'do laundry'
-    click_button 'Create Quickie'
+    click_button 'Create Task'
     expect(page).to have_button('Done')
     expect(page).to have_button('Skip')
     expect(page).to have_content('do laundry')
     within('#new-form') do
       fill_in 'new_title', with: 'feed dog'
     end
-    click_button 'Create Quickie'
+    click_button 'Create Task'
     expect(page).to have_content('do laundry')
     expect(page).to_not have_content('feed dog')
     click_button 'Skip'
@@ -63,7 +63,7 @@ describe 'Quickies page' do
     expect(page).to_not have_button('Skip')
   end
 
-  it 'allows a free user to manage quickies in advanced view' do
+  it 'allows a free user to manage tasks in advanced view' do
     visit '/'
     click_link 'Log in'
     fill_in 'email', with: user.account.email
@@ -71,12 +71,12 @@ describe 'Quickies page' do
     click_button 'Login'
     click_link 'Switch to advanced view'
     fill_in 'new_title', with: 'do laundry'
-    click_button 'Create Quickie'
+    click_button 'Create Task'
     expect(page).to have_button('Done')
     expect(page).to have_button('Skip')
     expect(page).to have_content('do laundry')
-    expect(Quickie.count).to eq 1
-    expect(Quickie.first.repeat_string).to be_nil
+    expect(Task.count).to eq 1
+    expect(Task.first.repeat_string).to be_nil
   end
 
 end

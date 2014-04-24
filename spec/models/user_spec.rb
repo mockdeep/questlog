@@ -3,12 +3,12 @@ require 'spec_helper'
 describe User do
 
   let(:context) { create(:context, user: user) }
-  let(:quickie1) { create(:quickie, user: user) }
-  let(:quickie2) { create(:quickie, user: user) }
+  let(:task1) { create(:task, user: user) }
+  let(:task2) { create(:task, user: user) }
   let(:user) { create(:user) }
 
   describe 'associations' do
-    it { should have_many(:quickies).dependent(:destroy) }
+    it { should have_many(:tasks).dependent(:destroy) }
     it { should have_many(:contexts).dependent(:destroy) }
 
     it { should belong_to(:account).dependent(:destroy) }
@@ -18,84 +18,84 @@ describe User do
     it { should ensure_inclusion_of(:mode).in_array(%w(simple advanced)) }
   end
 
-  describe '#next_quickie' do
+  describe '#next_task' do
     context 'given a context_id parameter' do
-      it 'returns the next quickie for that context' do
-        quickie1
-        quickie2.contexts << context
-        expect(user.next_quickie).to eq quickie1
-        expect(user.next_quickie(context.id)).to eq quickie2
+      it 'returns the next task for that context' do
+        task1
+        task2.contexts << context
+        expect(user.next_task).to eq task1
+        expect(user.next_task(context.id)).to eq task2
       end
     end
 
-    it 'returns the next undone quickie' do
-      quickie1
-      quickie2
-      expect(user.next_quickie).to eq quickie1
-      quickie1.update_attributes(skip: true)
-      expect(user.next_quickie).to eq quickie2
-      quickie2.update_attributes(done: true)
-      expect(user.reload.next_quickie).to eq quickie1
+    it 'returns the next undone task' do
+      task1
+      task2
+      expect(user.next_task).to eq task1
+      task1.update_attributes(skip: true)
+      expect(user.next_task).to eq task2
+      task2.update_attributes(done: true)
+      expect(user.reload.next_task).to eq task1
     end
   end
 
-  describe '#quickies_count' do
-    it 'tracks how many unfinished quickies there are for the user' do
-      expect(user.quickies_count).to eq 0
-      user.quickies.create!(title: 'wah!')
-      expect(user.reload.quickies_count).to eq 1
-      quickie = user.quickies.new(title: 'blah')
-      quickie.save!
-      expect(user.reload.quickies_count).to eq 2
-      create(:quickie, user: user)
-      expect(user.reload.quickies_count).to eq 3
+  describe '#tasks_count' do
+    it 'tracks how many unfinished tasks there are for the user' do
+      expect(user.tasks_count).to eq 0
+      user.tasks.create!(title: 'wah!')
+      expect(user.reload.tasks_count).to eq 1
+      task = user.tasks.new(title: 'blah')
+      task.save!
+      expect(user.reload.tasks_count).to eq 2
+      create(:task, user: user)
+      expect(user.reload.tasks_count).to eq 3
     end
 
-    context 'when a user is added to the quickie' do
+    context 'when a user is added to the task' do
       it 'is incremented' do
-        create(:quickie, user: user)
-        expect(user.reload.quickies_count).to eq 1
+        create(:task, user: user)
+        expect(user.reload.tasks_count).to eq 1
       end
     end
 
-    context 'when a quickie is marked complete' do
+    context 'when a task is marked complete' do
       it 'is decremented' do
-        quickie = create(:quickie, user: user)
-        expect(user.reload.quickies_count).to eq 1
-        quickie.update_attributes(done: true)
-        expect(user.reload.quickies_count).to eq 0
+        task = create(:task, user: user)
+        expect(user.reload.tasks_count).to eq 1
+        task.update_attributes(done: true)
+        expect(user.reload.tasks_count).to eq 0
       end
     end
 
-    context 'when a quickie is destroyed' do
+    context 'when a task is destroyed' do
       it 'is decremented' do
-        quickie = create(:quickie, user: user)
-        quickie.destroy
-        expect(user.reload.quickies_count).to eq 0
+        task = create(:task, user: user)
+        task.destroy
+        expect(user.reload.tasks_count).to eq 0
       end
     end
 
-    context 'when a quickie is marked complete and then incomplete' do
+    context 'when a task is marked complete and then incomplete' do
       it 'is decremented and then incremented' do
-        quickie = create(:quickie, user: user)
-        expect(user.reload.quickies_count).to eq 1
-        quickie.update_attributes(done: true)
-        expect(user.reload.quickies_count).to eq 0
-        quickie.update_attributes(done: false)
-        expect(user.reload.quickies_count).to eq 1
+        task = create(:task, user: user)
+        expect(user.reload.tasks_count).to eq 1
+        task.update_attributes(done: true)
+        expect(user.reload.tasks_count).to eq 0
+        task.update_attributes(done: false)
+        expect(user.reload.tasks_count).to eq 1
       end
     end
 
-    context 'when a quickie is updated within a transaction' do
+    context 'when a task is updated within a transaction' do
       it 'still increments and decrements properly' do
-        quickie = create(:quickie, user: user)
-        expect(user.reload.quickies_count).to eq 1
-        quickie.update_attributes!(done: true)
-        expect(user.reload.quickies_count).to eq 0
-        Quickie.transaction do
-          quickie.update_attributes!(done: false)
+        task = create(:task, user: user)
+        expect(user.reload.tasks_count).to eq 1
+        task.update_attributes!(done: true)
+        expect(user.reload.tasks_count).to eq 0
+        Task.transaction do
+          task.update_attributes!(done: false)
         end
-        expect(user.reload.quickies_count).to eq 1
+        expect(user.reload.tasks_count).to eq 1
       end
     end
   end
@@ -117,19 +117,19 @@ describe User do
   end
 
   describe '#absorb' do
-    it 'takes the quickies from the other user' do
+    it 'takes the tasks from the other user' do
       other_user = create(:user)
-      other_quickie = create(:quickie, user: other_user)
+      other_task = create(:task, user: other_user)
       user.absorb(other_user)
-      expect(other_quickie.reload.user).to eq user
+      expect(other_task.reload.user).to eq user
     end
 
-    it 'updates the quickies counter' do
-      quickie1
+    it 'updates the tasks counter' do
+      task1
       other_user = create(:user)
-      create(:quickie, user: other_user)
+      create(:task, user: other_user)
       user.absorb(other_user)
-      expect(user.reload.quickies_count).to eq 2
+      expect(user.reload.tasks_count).to eq 2
     end
 
     it 'deletes the other user' do
@@ -142,8 +142,8 @@ describe User do
       other_user = create(:user)
       create(:context, name: 'solo', user: other_user)
       other_context2 = create(:context, name: 'duplicate', user: other_user)
-      other_quickie = create(
-        :quickie,
+      other_task = create(
+        :task,
         title: 'bloo',
         user: other_user,
         contexts: [other_context2],
@@ -153,7 +153,7 @@ describe User do
       expected_names = %w(another-solo duplicate solo)
       user.absorb(other_user)
       expect(user.reload.contexts.pluck(:name).sort).to eq expected_names
-      expect(other_quickie.reload.contexts).to eq [context2]
+      expect(other_task.reload.contexts).to eq [context2]
     end
   end
 

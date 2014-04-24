@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203235523) do
+ActiveRecord::Schema.define(:version => 20140424043905) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
-    t.integer  "quickies_count", :default => 0
+    t.integer  "tasks_count", :default => 0
     t.integer  "user_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "slug"
   end
 
@@ -39,7 +39,18 @@ ActiveRecord::Schema.define(:version => 20140203235523) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "quickies", :force => true do |t|
+  create_table "taggings", :force => true do |t|
+    t.integer  "context_id"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "taggings", ["context_id", "task_id"], :name => "index_taggings_on_context_id_and_task_id", :unique => true
+  add_index "taggings", ["context_id"], :name => "index_taggings_on_context_id"
+  add_index "taggings", ["task_id"], :name => "index_taggings_on_task_id"
+
+  create_table "tasks", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
     t.datetime "done_at"
@@ -52,29 +63,18 @@ ActiveRecord::Schema.define(:version => 20140203235523) do
     t.datetime "release_at"
   end
 
-  add_index "quickies", ["done_at"], :name => "index_quickies_on_done_at"
-  add_index "quickies", ["priority"], :name => "index_quickies_on_priority"
-  add_index "quickies", ["release_at"], :name => "index_quickies_on_release_at"
-  add_index "quickies", ["updated_at"], :name => "index_quickies_on_updated_at"
-  add_index "quickies", ["user_id"], :name => "index_quickies_on_user_id"
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "context_id"
-    t.integer  "quickie_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "taggings", ["context_id", "quickie_id"], :name => "index_taggings_on_context_id_and_quickie_id"
-  add_index "taggings", ["context_id"], :name => "index_taggings_on_context_id"
-  add_index "taggings", ["quickie_id"], :name => "index_taggings_on_quickie_id"
+  add_index "tasks", ["done_at"], :name => "index_tasks_on_done_at"
+  add_index "tasks", ["priority"], :name => "index_tasks_on_priority"
+  add_index "tasks", ["release_at"], :name => "index_tasks_on_release_at"
+  add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
+  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
-    t.integer  "quickies_count",  :default => 0
+    t.integer  "tasks_count",     :default => 0
     t.string   "mode",            :default => "simple"
     t.integer  "account_id"
     t.string   "account_type"

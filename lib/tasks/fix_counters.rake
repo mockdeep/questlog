@@ -1,21 +1,21 @@
-desc 're-count counters for quickies'
+desc 're-count counters for tasks'
 
 task fix_counters: :environment do
   Context.find_each do |context|
-    undone_count = context.quickies.undone.count
-    unless context.quickies_count == undone_count
+    undone_count = context.tasks.undone.count
+    unless context.tasks_count == undone_count
       puts "context #{context.name} was off: " \
-        "set -> #{context.quickies_count}, actual -> #{undone_count}"
-      context.update_attributes(quickies_count: undone_count)
+        "set -> #{context.tasks_count}, actual -> #{undone_count}"
+      context.update_attributes(tasks_count: undone_count)
     end
   end
 
   User.find_each do |user|
-    undone_count = user.quickies.undone.count
-    unless user.quickies_count == undone_count
-      puts "user #{user.email} was off: set -> #{user.quickies_count}, " \
+    undone_count = user.tasks.undone.count
+    unless user.tasks_count == undone_count
+      puts "user #{user.email} was off: set -> #{user.tasks_count}, " \
         "actual -> #{undone_count}"
-      user.update_attributes(quickies_count: undone_count)
+      user.update_attributes(tasks_count: undone_count)
     end
   end
 

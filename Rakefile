@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Quickies::Application.load_tasks
+Questlog::Application.load_tasks

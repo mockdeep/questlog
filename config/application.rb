@@ -14,7 +14,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Quickies
+module Questlog
   class Application < Rails::Application
 
     config.time_zone = 'Pacific Time (US & Canada)'
