@@ -9,15 +9,9 @@ describe TaskForm do
   describe '#submit' do
     context 'when given a title' do
       it 'handles # strings' do
-        task_form.submit(title: '#work eat something #home')
+        task_form.submit(title: '#at-work eat something #at.home')
         expect(task.title).to eq 'eat something'
-        expect(task.contexts.map(&:name)).to eq %w(work home)
-      end
-
-      it 'handles # strings with various quotes' do
-        task_form.submit(title: %{#"at work" eat "something" #'at home'})
-        expect(task.title).to eq 'eat "something"'
-        expect(task.contexts.map(&:name)).to eq ['at work', 'at home']
+        expect(task.contexts.map(&:name)).to eq %w(at-work at.home)
       end
 
       # it 'updates counters' do
