@@ -31,7 +31,6 @@ class TaskForm
   end
 
   def submit(params)
-    params[:repeat_string] = nil if params[:repeat_string].blank?
     title = params[:title]
     if title
       title, context_names = TagParser.new.parse(title)
@@ -46,8 +45,7 @@ class TaskForm
       new_contexts = contexts - task.contexts
     end
 
-    task.attributes = params
-    if task.save
+    if task.update_attributes(params)
       if title
         removed_contexts.each { |context| context.decrement!(:tasks_count) }
         new_contexts.each { |context| context.increment!(:tasks_count) }
