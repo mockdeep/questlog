@@ -22,4 +22,8 @@ class Context < ActiveRecord::Base
     tasks.next
   end
 
+  def update_tasks_count!
+    update_attributes!(tasks_count: tasks.count)
+  end
+
 end
