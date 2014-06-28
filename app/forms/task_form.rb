@@ -26,8 +26,9 @@ class TaskForm
     false
   end
 
-  def initialize(user)
+  def initialize(user, task = nil)
     self.user = user
+    @task = task
   end
 
   def submit(params)
@@ -47,8 +48,8 @@ class TaskForm
 
     if task.update_attributes(params)
       if title
-        removed_contexts.each { |context| context.decrement!(:tasks_count) }
-        new_contexts.each { |context| context.increment!(:tasks_count) }
+        removed_contexts.each { |context| context.update_tasks_count! }
+        new_contexts.each { |context| context.update_tasks_count! }
       end
       true
     else
