@@ -12,7 +12,7 @@ class TagParser
   end
 
   def tag_regexes
-    [/\@(\w+)/, /\@"(.*?)"/, /\@'(.*?)'/]
+    [/\#(\w+)/, /\#"(.*?)"/, /\#'(.*?)'/]
   end
 
 end
