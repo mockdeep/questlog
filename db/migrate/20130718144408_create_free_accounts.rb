@@ -6,6 +6,6 @@ class CreateFreeAccounts < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :free_accounts, :email, :unique => true
+    add_index :free_accounts, :email, unique: true
   end
 end

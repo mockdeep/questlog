@@ -235,4 +235,20 @@ describe Task do
     end
   end
 
+  describe '#repeat_string=' do
+    context 'when the string is blank' do
+      it 'sets it to nil' do
+        task.repeat_string = ''
+        expect(task.repeat_string).to be_nil
+      end
+    end
+
+    context 'when the repeat string is not empty' do
+      it 'sets it to the given string' do
+        task.repeat_string = 'foo'
+        expect(task.repeat_string).to eq 'foo'
+      end
+    end
+  end
+
 end

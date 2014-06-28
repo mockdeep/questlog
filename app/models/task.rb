@@ -83,6 +83,11 @@ class Task < ActiveRecord::Base
     skip_count >= 5
   end
 
+  def repeat_string=(new_repeat_string)
+    new_repeat_string = nil if new_repeat_string.blank?
+    super(new_repeat_string)
+  end
+
 private
 
   def increment_contexts

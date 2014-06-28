@@ -1,7 +1,6 @@
 AllCops:
   Excludes:
     - db/schema.rb
-    - db/migrate/*
   RunRailsCops: true
 
 AccessModifierIndentation:
@@ -38,4 +37,4 @@ Encoding:
 # Offence count: 4
 # Configuration parameters: CountComments.
 MethodLength:
-  Max: 22
+  Max: 20
