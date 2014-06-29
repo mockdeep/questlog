@@ -23,7 +23,7 @@ class Context < ActiveRecord::Base
   end
 
   def update_tasks_count!
-    update_attributes!(tasks_count: tasks.count)
+    update_attributes!(tasks_count: tasks.undone.count)
   end
 
 end
