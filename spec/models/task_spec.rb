@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Task do
 
-  let(:task) { build(:task) }
-  let(:context) { create(:context) }
-  let(:user) { task.user }
+  let(:user) { create(:user) }
+  let(:task) { build(:task, user: user) }
+  let(:context) { create(:context, user: user) }
 
   describe 'associations' do
     it { should belong_to(:user) }
@@ -89,10 +89,11 @@ describe Task do
 
       context 'if it was not previously nil' do
         it 'does not change tasks_count for its associated contexts' do
-          task.update_attributes(context_ids: [context.id], done: true)
+          task.update_attributes!(context_ids: [context.id], done: true)
           expect(context.reload.tasks_count).to eq 0
-          task.update_attributes(done: true)
-          expect(context.reload.tasks_count).to eq 0
+          expect do
+            task.update_attributes(done: true)
+          end.not_to change { context.reload.tasks_count }
         end
 
         it 'does not change tasks_count for its associated user' do
@@ -129,10 +130,10 @@ describe Task do
 
       context 'if it was not previously nil' do
         it 'increments tasks_count for its associated contexts' do
-          task.update_attributes(context_ids: [context.id], done: true)
-          expect(context.reload.tasks_count).to eq 0
-          task.update_attributes(done: false)
-          expect(context.reload.tasks_count).to eq 1
+          task.update_attributes!(context_ids: [context.id], done: true)
+          expect do
+            task.update_attributes(done: false)
+          end.to change { context.reload.tasks_count }.from(0).to(1)
         end
 
         it 'increments tasks_count for its associated contexts' do
@@ -167,15 +168,24 @@ describe Task do
   end
 
   describe '#context_ids=' do
+    let(:context2) { create(:context, user: user) }
+
     it 'sets the contexts for the task' do
       task.context_ids = [context.id]
       expect(task.contexts).to eq [context]
     end
 
     it 'increments the counter for the associated context' do
-      expect(context.reload.tasks_count).to eq 0
-      task.context_ids = [context.id]
-      expect(context.reload.tasks_count).to eq 1
+      expect do
+        task.update_attributes!(context_ids: [context.id])
+      end.to change { context.reload.tasks_count }.from(0).to(1)
+    end
+
+    it 'decrements the counter for contexts removed' do
+      task.update_attributes!(context_ids: [context.id])
+      expect do
+        task.update_attributes!(context_ids: [context2.id])
+      end.to change { context.reload.tasks_count }.from(1).to(0)
     end
 
     context 'if the task is invalid' do

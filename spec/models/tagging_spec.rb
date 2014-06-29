@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Tagging do
 
+  let(:task) { create(:task) }
+  let(:context) { create(:context) }
+
   describe 'associations' do
     it { should belong_to(:task) }
     it { should belong_to(:context) }
@@ -10,6 +13,25 @@ describe Tagging do
   describe 'validations' do
     it { should validate_presence_of(:task) }
     it { should validate_presence_of(:context) }
+  end
+
+  describe 'after create' do
+    context 'when the task is not done' do
+      it 'increments the associated context tasks_count' do
+        expect do
+          create(:tagging, context: context, task: task)
+        end.to change { context.reload.tasks_count }.from(0).to(1)
+      end
+    end
+  end
+
+  describe 'after destroy' do
+    it 'decrements the associated context tasks_count' do
+      tagging = create(:tagging, context: context, task: task)
+      expect do
+        tagging.destroy
+      end.to change { context.reload.tasks_count }.from(1).to(0)
+    end
   end
 
 end

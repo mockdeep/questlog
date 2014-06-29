@@ -22,8 +22,12 @@ class Context < ActiveRecord::Base
     tasks.next
   end
 
-  def update_tasks_count!
-    update_attributes!(tasks_count: tasks.undone.count)
+  def increment_tasks_count!
+    self.class.increment_counter(:tasks_count, id)
+  end
+
+  def decrement_tasks_count!
+    self.class.decrement_counter(:tasks_count, id)
   end
 
 end

@@ -63,8 +63,7 @@ class Task < ActiveRecord::Base
 
   def context_ids=(context_ids)
     context_ids = JSON.parse(context_ids) if context_ids.is_a?(String)
-    super(context_ids)
-    increment_contexts
+    self.contexts = user.contexts.find(context_ids)
   end
 
   def repeat
@@ -91,11 +90,11 @@ class Task < ActiveRecord::Base
 private
 
   def increment_contexts
-    contexts.each { |context| context.increment!(:tasks_count) }
+    contexts.each(&:increment_tasks_count!)
   end
 
   def decrement_contexts
-    contexts.each { |context| context.decrement!(:tasks_count) }
+    contexts.each(&:decrement_tasks_count!)
   end
 
   def decrement_user

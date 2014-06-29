@@ -6,6 +6,12 @@ AllCops:
 AccessModifierIndentation:
   EnforcedStyle: outdent
 
+LineLength:
+  Max: 80
+
+# Output:
+#   Enabled: false
+
 CollectionMethods:
   PreferredMethods:
     collect: 'map'
