@@ -6,16 +6,18 @@ task fix_counters: :environment do
     unless context.tasks_count == undone_count
       puts "context #{context.name} was off: " \
         "set -> #{context.tasks_count}, actual -> #{undone_count}"
-      context.update_attributes(tasks_count: undone_count)
+      Context.readonly_attributes.delete('tasks_count')
+      context.update_column(:tasks_count, undone_count)
     end
   end
+  Context.readonly_attributes << 'tasks_count'
 
   User.find_each do |user|
     undone_count = user.tasks.undone.count
     unless user.tasks_count == undone_count
       puts "user #{user.email} was off: set -> #{user.tasks_count}, " \
         "actual -> #{undone_count}"
-      user.update_attributes(tasks_count: undone_count)
+      user.update_column(:tasks_count, undone_count)
     end
   end
 

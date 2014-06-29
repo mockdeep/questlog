@@ -1,14 +1,8 @@
 class Tagging < ActiveRecord::Base
 
   belongs_to :task
-  belongs_to :context
+  belongs_to :context, counter_cache: :tasks_count
 
   validates :task, :context, presence: true
-
-  after_destroy :decrement_context
-
-  def decrement_context
-    context.decrement!(:tasks_count)
-  end
 
 end

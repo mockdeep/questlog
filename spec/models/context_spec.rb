@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Context do
-  let(:context) { create(:context) }
+  let(:user) { create(:user) }
+  let(:context) { create(:context, user: user) }
 
   describe 'associations' do
     it { should belong_to(:user) }
@@ -38,14 +39,14 @@ describe Context do
 
     context 'when a context is added to the task' do
       it 'is incremented' do
-        create(:task, context_ids: [context.id])
+        create(:task, context_ids: [context.id], user: user)
         expect(context.reload.tasks_count).to eq 1
       end
     end
 
     context 'when a task is marked complete' do
       it 'is decremented' do
-        task = create(:task, context_ids: [context.id])
+        task = create(:task, context_ids: [context.id], user: user)
         expect(context.reload.tasks_count).to eq 1
         task.update_attributes(done: true)
         expect(context.reload.tasks_count).to eq 0
@@ -54,7 +55,7 @@ describe Context do
 
     context 'when a task is destroyed' do
       it 'is decremented' do
-        task = create(:task, context_ids: [context.id])
+        task = create(:task, context_ids: [context.id], user: user)
         task.destroy
         expect(context.reload.tasks_count).to eq 0
       end
@@ -62,7 +63,7 @@ describe Context do
 
     context 'when a task is marked complete and then incomplete' do
       it 'is decremented and then incremented' do
-        task = create(:task, context_ids: [context.id])
+        task = create(:task, context_ids: [context.id], user: user)
         expect(context.reload.tasks_count).to eq 1
         task.update_attributes(done: true)
         expect(context.reload.tasks_count).to eq 0
@@ -73,10 +74,10 @@ describe Context do
 
     context 'when there are more than one task and more than one context' do
       it 'increments and decrements properly' do
-        task1 = create(:task)
-        task2 = create(:task)
-        context1 = create(:context)
-        context2 = create(:context)
+        task1 = create(:task, user: user)
+        task2 = create(:task, user: user)
+        context1 = create(:context, user: user)
+        context2 = create(:context, user: user)
         expect(context1.tasks_count).to eq 0
         expect(context2.tasks_count).to eq 0
         context1.tasks << task1
@@ -92,8 +93,8 @@ describe Context do
 
     context 'when a task is updated within a transaction' do
       it 'still increments and decrements properly' do
-        context2 = create(:context)
-        task = create(:task, context_ids: [context.id, context2.id])
+        context2 = create(:context, user: user)
+        task = create(:task, context_ids: [context.id, context2.id], user: user)
         expect(context.reload.tasks_count).to eq 1
         task.update_attributes!(done: true)
         expect(context.reload.tasks_count).to eq 0

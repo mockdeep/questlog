@@ -42,19 +42,9 @@ class TaskForm
 
       params[:title] = title
       params[:contexts] = contexts
-      removed_contexts = task.contexts - contexts
-      new_contexts = contexts - task.contexts
     end
 
-    if task.update_attributes(params)
-      if title
-        removed_contexts.each { |context| context.update_tasks_count! }
-        new_contexts.each { |context| context.update_tasks_count! }
-      end
-      true
-    else
-      false
-    end
+    task.update_attributes(params)
   end
 
 end
