@@ -74,6 +74,10 @@ class Task < ActiveRecord::Base
     !!repeat
   end
 
+  def release!
+    update_attributes!(done: false)
+  end
+
   def done?
     done_at?
   end
