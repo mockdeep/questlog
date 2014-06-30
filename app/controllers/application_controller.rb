@@ -31,7 +31,7 @@ private
 
   def check_repeats
     if current_user.persisted?
-      current_user.tasks.ready_to_release.update_all(done_at: nil)
+      current_user.tasks.ready_to_release.each(&:release!)
     end
   end
 
