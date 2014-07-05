@@ -13,16 +13,6 @@ describe TaskForm do
         expect(task.title).to eq 'eat something'
         expect(task.contexts.map(&:name)).to eq %w(at-work at.home)
       end
-
-      # it 'updates counters' do
-      #   expect(user.tasks_count).to eq 0
-      #   task_form.submit(title: %{#"at work" eat "something" #'at home'})
-      #   task.reload
-      #   task.contexts.each do |context|
-      #     expect(context.tasks_count).to eq 1
-      #   end
-      #   expect(user.reload.tasks_count).to eq 1
-      # end
     end
 
     context 'when given an existing task with contexts' do

@@ -3,7 +3,7 @@ class TaskForm
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :user
+  attr_accessor :user, :task
 
   delegate(
     :errors,
@@ -18,17 +18,13 @@ class TaskForm
     ActiveModel::Name.new(self, nil, 'Task')
   end
 
-  def task
-    @task ||= user.tasks.new
-  end
-
   def persisted?
     false
   end
 
   def initialize(user, task = nil)
     self.user = user
-    @task = task
+    self.task = task || user.tasks.new
   end
 
   def submit(params)
