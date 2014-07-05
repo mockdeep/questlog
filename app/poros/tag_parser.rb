@@ -1,16 +1,15 @@
 class TagParser
 
   def parse(title)
-    tag_names = []
-    title.scan(tag_regex) do |matches|
-      tag_names << matches.first
-    end
-    title = title.gsub(tag_regex, '').strip
-    [title, tag_names]
+    words = title.split
+    tags = words.select { |word| tag?(word) }
+    words.delete_if { |word| tag?(word) }
+    tags = tags.map { |tag| tag[1..-1] }
+    [words.join(' '), tags]
   end
 
-  def tag_regex
-    /\#(\S+)/
+  def tag?(word)
+    word.match(/^\#\w+/) && !word.match(/^\#\d+$/)
   end
 
 end

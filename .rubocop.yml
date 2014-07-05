@@ -43,4 +43,4 @@ Encoding:
 # Offence count: 4
 # Configuration parameters: CountComments.
 MethodLength:
-  Max: 20
+  Max: 13
