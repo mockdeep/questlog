@@ -33,13 +33,21 @@ class TitleParser
   end
 
   def parse_repeat(title)
+    parse_time(title, '\*')
+  end
+
+  def parse_estimate(title)
+    parse_time(title, '~')
+  end
+
+  def parse_time(title, marker)
     words = title.split
-    repeat_regex = /^\*(\d+)(#{repeat_mappings.keys.join('|')})$/
-    index = words.index { |word| word.match(repeat_regex) }
+    regex = /^#{marker}(\d+)(#{time_mappings.keys.join('|')})$/
+    index = words.index { |word| word.match(regex) }
     if index
-      repeat_string = words.delete_at(index)
-      count, timeframe = repeat_string.match(repeat_regex).captures
-      [words.join(' '), count.to_i * repeat_mappings[timeframe.to_sym]]
+      string = words.delete_at(index)
+      count, timeframe = string.match(regex).captures
+      [words.join(' '), count.to_i * time_mappings[timeframe.to_sym]]
     else
       [title, nil]
     end
@@ -47,7 +55,7 @@ class TitleParser
 
 private
 
-  def repeat_mappings
+  def time_mappings
     {
       s: 1.second,
       mi: 1.minute,
