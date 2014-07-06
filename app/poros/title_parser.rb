@@ -32,7 +32,32 @@ class TitleParser
     [words.join(' '), time]
   end
 
+  def parse_repeat(title)
+    words = title.split
+    repeat_regex = /^\*(\d+)(#{repeat_mappings.keys.join('|')})$/
+    index = words.index { |word| word.match(repeat_regex) }
+    if index
+      repeat_string = words.delete_at(index)
+      count, timeframe = repeat_string.match(repeat_regex).captures
+      [words.join(' '), count.to_i * repeat_mappings[timeframe.to_sym]]
+    else
+      [title, nil]
+    end
+  end
+
 private
+
+  def repeat_mappings
+    {
+      s: 1.second,
+      mi: 1.minute,
+      h: 1.hour,
+      d: 1.day,
+      w: 1.week,
+      mo: 1.month,
+      y: 1.year,
+    }
+  end
 
   def find_timestamp(tags)
     tags.detect do |word|
