@@ -2,8 +2,14 @@ class TitleParser
 
   def parse_title(title)
     result = {}
-    title, result[:tag_names] = parse_tags(title)
-    title, result[:priority] = parse_priority(title)
+    title, tag_names = parse_tags(title)
+    result[:tag_names] = tag_names if tag_names.any?
+    title, priority = parse_priority(title)
+    result[:priority] = priority if priority
+    title, repeat = parse_repeat(title)
+    result[:repeat] = repeat if repeat
+    title, estimate = parse_estimate(title)
+    result[:estimate] = estimate if estimate
     result[:title] = title
     result
   end
