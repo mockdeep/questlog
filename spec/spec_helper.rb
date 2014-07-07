@@ -42,19 +42,23 @@ Spork.prefork do
       DatabaseCleaner.clean_with(:truncation)
     end
 
-    config.before(:suite, js: true) do
-      DatabaseCleaner.strategy = :deletion
-      DatabaseCleaner.clean_with(:truncation)
-    end
-
     config.before(:each) do
       DatabaseCleaner.start
       DeferredGarbageCollection.start
     end
 
+    config.prepend_before(:each, type: :feature) do
+      DatabaseCleaner.strategy = :deletion
+      Capybara.reset!
+    end
+
     config.after(:each) do
       DeferredGarbageCollection.reconsider
       DatabaseCleaner.clean
+    end
+
+    config.append_after(:each, type: :feature) do
+      DatabaseCleaner.strategy = :transaction
     end
   end
 
