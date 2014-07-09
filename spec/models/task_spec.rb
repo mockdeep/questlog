@@ -15,9 +15,8 @@ describe Task do
   describe 'validations' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:user) }
-    it do
-      should ensure_inclusion_of(:priority).in_array([1, 2, 3]).allow_nil(true)
-    end
+    it { should validate_numericality_of(:time_estimate) }
+    it { should validate_numericality_of(:priority) }
   end
 
   describe '.between' do
@@ -50,12 +49,6 @@ describe Task do
     end
   end
 
-  describe '.priorities' do
-    it 'returns the list of possible task priorities' do
-      expect(Task.priorities).to eq [nil, 1, 2, 3]
-    end
-  end
-
   describe '#done=' do
     context 'when given true' do
       it 'sets done_at to Time.now' do
@@ -67,7 +60,7 @@ describe Task do
 
       context 'if it was previously nil' do
         it 'decrements tasks_count for its associated contexts' do
-          task.update_attributes(context_ids: [context.id])
+          task.update_attributes(contexts: [context])
           expect(context.reload.tasks_count).to eq 1
           task.update_attributes(done: true)
           expect(context.reload.tasks_count).to eq 0
@@ -89,7 +82,7 @@ describe Task do
 
       context 'if it was not previously nil' do
         it 'does not change tasks_count for its associated contexts' do
-          task.update_attributes!(context_ids: [context.id], done: true)
+          task.update_attributes!(contexts: [context], done: true)
           expect(context.reload.tasks_count).to eq 0
           expect do
             task.update_attributes(done: true)
@@ -114,7 +107,7 @@ describe Task do
 
       context 'if it was previously nil' do
         it 'does not change tasks_count for its associated contexts' do
-          task.update_attributes(context_ids: [context.id])
+          task.update_attributes(contexts: [context])
           expect(context.reload.tasks_count).to eq 1
           task.update_attributes(done: false)
           expect(context.reload.tasks_count).to eq 1
@@ -130,7 +123,7 @@ describe Task do
 
       context 'if it was not previously nil' do
         it 'increments tasks_count for its associated contexts' do
-          task.update_attributes!(context_ids: [context.id], done: true)
+          task.update_attributes!(contexts: [context], done: true)
           expect do
             task.update_attributes(done: false)
           end.to change { context.reload.tasks_count }.from(0).to(1)

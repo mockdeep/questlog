@@ -5,14 +5,13 @@ class Task < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :contexts, through: :taggings
 
-  validates :time_estimate, numericality: true, allow_nil: true
+  validates :priority, :time_estimate, numericality: true, allow_nil: true
   validates :title, :user, presence: true
   validates(
     :repeat_string,
     inclusion: { in: Repeat.repeat_maps.keys },
     allow_nil: true,
   )
-  validates :priority, inclusion: { in: [1, 2, 3] }, allow_nil: true
 
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where('done_at IS NOT NULL') }
@@ -33,17 +32,11 @@ class Task < ActiveRecord::Base
     undone.order(:priority).order(:updated_at).first
   end
 
-  def self.priorities
-    [nil, 1, 2, 3]
-  end
-
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
     if changed_to_done?
       @decrement_counters = true
-      if repeat_string
-        self.release_at = Time.zone.now + repeat.time_delta
-      end
+      self.release_at = Time.zone.now + repeat.time_delta if repeat_string
       self.skip_count = 0
     elsif changed_to_not_done?
       @increment_counters = true
@@ -61,11 +54,6 @@ class Task < ActiveRecord::Base
 
   def skip=(skip)
     increment!(:skip_count) if skip
-  end
-
-  def context_ids=(context_ids)
-    context_ids = JSON.parse(context_ids) if context_ids.is_a?(String)
-    self.contexts = user.contexts.find(context_ids)
   end
 
   def repeat
