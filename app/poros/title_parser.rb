@@ -2,14 +2,17 @@ class TitleParser
 
   def parse_title(title)
     result = {}
+    return result unless title
     title, tag_names = parse_tags(title)
     result[:tag_names] = tag_names if tag_names.any?
     title, priority = parse_priority(title)
     result[:priority] = priority if priority
-    title, repeat = parse_repeat(title)
-    result[:repeat] = repeat if repeat
-    title, estimate = parse_estimate(title)
-    result[:estimate] = estimate if estimate
+    title, repeat_seconds = parse_repeat(title)
+    result[:repeat_seconds] = repeat_seconds if repeat_seconds
+    title, estimate_seconds = parse_estimate(title)
+    result[:estimate_seconds] = estimate_seconds if estimate_seconds
+    title, release_at = parse_release_at(title)
+    result[:release_at] = release_at if release_at
     result[:title] = title
     result
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140424043905) do
+ActiveRecord::Schema.define(:version => 20140708045750) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -54,13 +54,15 @@ ActiveRecord::Schema.define(:version => 20140424043905) do
     t.integer  "user_id"
     t.string   "title"
     t.datetime "done_at"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "repeat_string"
-    t.integer  "skip_count",    :default => 0
+    t.integer  "skip_count",       :default => 0
     t.integer  "time_estimate"
     t.integer  "priority"
     t.datetime "release_at"
+    t.integer  "repeat_seconds"
+    t.integer  "estimate_seconds"
   end
 
   add_index "tasks", ["done_at"], :name => "index_tasks_on_done_at"
