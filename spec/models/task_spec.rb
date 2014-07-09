@@ -173,36 +173,6 @@ describe Task do
     end
   end
 
-  describe '#context_ids=' do
-    let(:context2) { create(:context, user: user) }
-
-    it 'sets the contexts for the task' do
-      task.context_ids = [context.id]
-      expect(task.contexts).to eq [context]
-    end
-
-    it 'increments the counter for the associated context' do
-      expect do
-        task.update_attributes!(context_ids: [context.id])
-      end.to change { context.reload.tasks_count }.from(0).to(1)
-    end
-
-    it 'decrements the counter for contexts removed' do
-      task.update_attributes!(context_ids: [context.id])
-      expect do
-        task.update_attributes!(context_ids: [context2.id])
-      end.to change { context.reload.tasks_count }.from(1).to(0)
-    end
-
-    context 'if the task is invalid' do
-      it 'does not increment associated counters' do
-        expect(context.reload.tasks_count).to eq 0
-        task.update_attributes(title: '', context_ids: [context.id])
-        expect(context.reload.tasks_count).to eq 0
-      end
-    end
-  end
-
   describe '#tag_names=' do
     let(:context2) { create(:context, user: user) }
 
