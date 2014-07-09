@@ -86,7 +86,7 @@ describe TasksController do
 
     it 'destroys the task for the given user' do
       request.env['HTTP_REFERER'] = '/whatevs'
-      task.context_ids = [context.id]
+      task.contexts = [context]
       expect(context.tasks).to eq([task])
       expect(context.reload.tasks_count).to eq(1)
       delete(:destroy, id: task.id)
