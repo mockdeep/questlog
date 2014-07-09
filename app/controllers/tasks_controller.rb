@@ -13,9 +13,9 @@ class TasksController < ApplicationController
 
   def create
     persist_current_user
-    @task_form = TaskForm.new(current_user)
-    # title= depends on user being assigned first. This should be fixed.
-    if @task_form.submit(task_params)
+
+    @task_form = current_user.tasks.new(task_params)
+    if @task_form.save
       redirect_to :back
     else
       @contexts = current_user.ordered_contexts
@@ -38,15 +38,11 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params[:task].permit(
-      :done,
-      :skip,
-      :title,
-      :context_ids,
-      :priority,
-      :repeat_string,
-      :time_estimate,
-    )
+    params[:task].permit(:done, :skip).merge(parsed_title)
+  end
+
+  def parsed_title
+    TitleParser.new.parse_title(params[:task][:title])
   end
 
 end

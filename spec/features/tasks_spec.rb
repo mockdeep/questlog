@@ -35,7 +35,6 @@ describe 'Tasks page' do
       click_link 'Log out'
       expect(page).not_to have_content('do laundry')
     end
-
   end
 
   it 'allows a guest user to manage tasks' do
@@ -77,6 +76,22 @@ describe 'Tasks page' do
     expect(page).to have_content('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil
+  end
+
+  it 'parses and adds attributes on tasks' do
+    visit '/'
+    time = 1.day.from_now.beginning_of_day.strftime('%I:%M%P')
+    fill_in 'new_title', with: "#at-home do laundry #chore !2 *1w ~1h ^#{time}"
+    click_button 'Create Task'
+    task = Task.first
+    expect(task.title).to eq 'do laundry'
+    expect(task.contexts.pluck(:name).sort).to eq %w(at-home chore)
+    expect(task.priority).to eq 2
+    expect(task.repeat_seconds).to eq 1.week
+    # expect(task.repeat_string).to eq 'every week'
+    expect(task.estimate_seconds).to eq 1.hour
+    # expect(task.estimate_string).to eq '1 hour'
+    # expect(task.release_at).to eq Time.parse(time)
   end
 
 end

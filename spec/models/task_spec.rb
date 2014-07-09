@@ -144,6 +144,19 @@ describe Task do
         end
       end
     end
+
+    context 'when the task is invalid' do
+      it 'does not update counters' do
+        task.save!
+        expect(user.reload.tasks_count).to eq 1
+        expect do
+          # can't use #update_attributes because it's transactional
+          # test would pass regardless
+          task.attributes = { done: true, title: nil }
+          task.save
+        end.not_to change { user.reload.tasks_count }
+      end
+    end
   end
 
   describe '#skip=' do
@@ -192,6 +205,38 @@ describe Task do
       it 'does not increment associated counters' do
         expect(context.reload.tasks_count).to eq 0
         task.update_attributes(title: '', context_ids: [context.id])
+        expect(context.reload.tasks_count).to eq 0
+      end
+    end
+  end
+
+  describe '#tag_names=' do
+    let(:context2) { create(:context, user: user) }
+
+    context 'after save' do
+      it 'sets the contexts for the task' do
+        task.update_attributes!(tag_names: [context.name])
+        expect(task.contexts).to eq [context]
+      end
+
+      it 'increments the counter for the associated context' do
+        expect do
+          task.update_attributes!(tag_names: [context.name])
+        end.to change { context.reload.tasks_count }.from(0).to(1)
+      end
+
+      it 'decrements the counter for contexts removed' do
+        task.update_attributes!(tag_names: [context.name])
+        expect do
+          task.update_attributes!(tag_names: [context2.name])
+        end.to change { context.reload.tasks_count }.from(1).to(0)
+      end
+    end
+
+    context 'when the task is invalid' do
+      it 'does not increment associated counters' do
+        expect(context.reload.tasks_count).to eq 0
+        task.update_attributes(title: '', tag_names: [context.name])
         expect(context.reload.tasks_count).to eq 0
       end
     end
@@ -257,6 +302,18 @@ describe Task do
       it 'sets it to the given string' do
         task.repeat_string = 'foo'
         expect(task.repeat_string).to eq 'foo'
+      end
+    end
+  end
+
+  describe '#release_at=' do
+    context 'when the task is not done' do
+      it 'sets the task to done' do
+
+      end
+
+      it 'sets counters appropriately' do
+
       end
     end
   end

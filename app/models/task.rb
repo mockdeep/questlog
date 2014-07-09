@@ -21,6 +21,10 @@ class Task < ActiveRecord::Base
   scope :with_release, -> { where('release_at IS NOT NULL') }
   scope :pending, -> { done.with_release.order(:release_at) }
 
+  attr_writer :tag_names
+
+  after_save :associate_contexts, :update_counters
+
   def self.between(start_time, end_time)
     where('done_at >= ? AND done_at < ?', start_time, end_time)
   end
@@ -36,15 +40,13 @@ class Task < ActiveRecord::Base
   def done=(done)
     self.done_at = done ? Time.zone.now : nil
     if changed_to_done?
-      decrement_contexts
-      decrement_user
+      @decrement_counters = true
       if repeat_string
         self.release_at = Time.zone.now + repeat.time_delta
       end
       self.skip_count = 0
     elsif changed_to_not_done?
-      increment_contexts
-      increment_user
+      @increment_counters = true
       self.release_at = nil
     end
   end
@@ -107,6 +109,28 @@ private
 
   def increment_user
     User.increment_counter(:tasks_count, user.id)
+  end
+
+  def associate_contexts
+    return unless @tag_names
+    these_contexts = user.contexts.where(name: @tag_names)
+    missing_names = @tag_names - these_contexts.map(&:name)
+    these_contexts += missing_names.map do |tag_name|
+      user.contexts.create!(name: tag_name)
+    end
+    self.contexts = these_contexts
+  end
+
+  def update_counters
+    if @decrement_counters
+      decrement_user
+      decrement_contexts
+      @decrement_counters = nil
+    elsif @increment_counters
+      increment_user
+      increment_contexts
+      @increment_counters = nil
+    end
   end
 
 end
