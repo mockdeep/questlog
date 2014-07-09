@@ -3,17 +3,13 @@ class TitleParser
   def parse_title(title)
     result = {}
     return result unless title
-    title, tag_names = parse_tags(title)
-    result[:tag_names] = tag_names if tag_names.any?
-    title, priority = parse_priority(title)
-    result[:priority] = priority if priority
-    title, repeat_seconds = parse_repeat(title)
-    result[:repeat_seconds] = repeat_seconds if repeat_seconds
-    title, estimate_seconds = parse_estimate(title)
-    result[:estimate_seconds] = estimate_seconds if estimate_seconds
-    title, release_at = parse_release_at(title)
-    result[:release_at] = release_at if release_at
+    title, result[:tag_names] = parse_tags(title)
+    title, result[:priority] = parse_priority(title)
+    title, result[:repeat_seconds] = parse_repeat(title)
+    title, result[:estimate_seconds] = parse_estimate(title)
+    title, result[:release_at] = parse_release_at(title)
     result[:title] = title
+    result.delete_if { |_, value| value.blank? }
     result
   end
 

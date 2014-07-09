@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :context do
-    name { Faker::Lorem.word }
+    sequence(:name) { |n| "context-#{n}" }
     user
   end
 end
