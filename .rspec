@@ -1,2 +1,4 @@
+-fd
+--fail-fast
 --color
 --profile
