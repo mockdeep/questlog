@@ -36,7 +36,7 @@ class Task < ActiveRecord::Base
     self.done_at = done ? Time.zone.now : nil
     if changed_to_done?
       @decrement_counters = true
-      self.release_at = Time.zone.now + repeat.time_delta if repeat_string
+      self.release_at ||= Time.zone.now + repeat.time_delta if repeat_string
       self.skip_count = 0
     elsif changed_to_not_done?
       @increment_counters = true
@@ -81,22 +81,21 @@ class Task < ActiveRecord::Base
     super(new_repeat_string)
   end
 
+  def release_at=(new_release_at)
+    super
+    self.done = new_release_at.present? unless done_at_changed?
+  end
+
 private
 
-  def increment_contexts
+  def increment_counters
     contexts.each(&:increment_tasks_count!)
-  end
-
-  def decrement_contexts
-    contexts.each(&:decrement_tasks_count!)
-  end
-
-  def decrement_user
-    User.decrement_counter(:tasks_count, user.id)
-  end
-
-  def increment_user
     User.increment_counter(:tasks_count, user.id)
+  end
+
+  def decrement_counters
+    contexts.each(&:decrement_tasks_count!)
+    User.decrement_counter(:tasks_count, user.id)
   end
 
   def associate_contexts
@@ -111,12 +110,10 @@ private
 
   def update_counters
     if @decrement_counters
-      decrement_user
-      decrement_contexts
+      decrement_counters
       @decrement_counters = nil
     elsif @increment_counters
-      increment_user
-      increment_contexts
+      increment_counters
       @increment_counters = nil
     end
   end
