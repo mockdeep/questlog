@@ -44,7 +44,6 @@ Spork.prefork do
 
     config.before(:each) do
       DatabaseCleaner.start
-      DeferredGarbageCollection.start
     end
 
     config.prepend_before(:each, type: :feature) do
@@ -53,7 +52,6 @@ Spork.prefork do
     end
 
     config.after(:each) do
-      DeferredGarbageCollection.reconsider
       DatabaseCleaner.clean
     end
 
