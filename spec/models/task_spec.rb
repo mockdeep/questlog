@@ -49,6 +49,15 @@ describe Task do
     end
   end
 
+  describe '#contexts=' do
+    it 'updates counters on the contexts' do
+      task.save!
+      expect do
+        task.contexts = [context]
+      end.to change { context.reload.tasks_count }.by(1)
+    end
+  end
+
   describe '#done=' do
     context 'when given true' do
       it 'sets done_at to Time.now' do
