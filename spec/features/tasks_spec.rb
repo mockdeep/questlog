@@ -80,12 +80,21 @@ describe 'Tasks page' do
 
   it 'parses and adds attributes on tasks' do
     visit '/'
-    time = 1.day.from_now.beginning_of_day.strftime('%I:%M%P')
-    fill_in 'new_title', with: "#at-home do laundry #chore !2 *1w ~1h ^#{time}"
+    click_link 'Log in'
+    fill_in 'email', with: user.account.email
+    fill_in 'password', with: user.account.password
+    click_button 'Login'
+    click_link 'Switch to advanced view'
+    fill_in 'new_title', with: '#at-home do laundry #chore !2 *1w ~1h'
     click_button 'Create Task'
+    expect(page).to have_content('at-home (1)')
+    expect(page).to have_content('chore (1)')
     task = Task.first
     expect(task.title).to eq 'do laundry'
     expect(task.contexts.pluck(:name).sort).to eq %w(at-home chore)
+    task.contexts.each do |context|
+      expect(context.tasks_count).to eq 1
+    end
     expect(task.priority).to eq 2
     expect(task.repeat_seconds).to eq 1.week
     # expect(task.repeat_string).to eq 'every week'
