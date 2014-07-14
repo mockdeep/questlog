@@ -7,7 +7,7 @@ describe TitleParser, '#parse_release_at' do
   context 'when time is in the past' do
     it 'returns nil if the string includes a date' do
       time = 50.years.ago.round
-      time_string = time.strftime('%m/%d/%Y')
+      time_string = time.strftime('%d/%m/%Y')
       result = parser.parse_release_at("do it ^#{time_string}-10:15")
       expect(result).to eq ['do it', nil]
     end

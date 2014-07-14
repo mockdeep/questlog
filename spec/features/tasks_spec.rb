@@ -4,12 +4,16 @@ describe 'Tasks page' do
 
   let(:user) { create(:free_user) }
 
+  def task_title
+    find('#task').find('.title')
+  end
+
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
       click_button 'Create Task'
-      expect(page).to have_content('do laundry')
+      expect(task_title).to have_content('do laundry')
       click_link 'Sign up'
       fill_in 'Email', with: 'some@email.com'
       fill_in 'Password', with: 'my_password'
@@ -18,22 +22,22 @@ describe 'Tasks page' do
       expect(page).to have_content('Log out')
       expect(page).to have_content('do laundry')
       click_link 'Log out'
-      expect(page).not_to have_content('do laundry')
+      expect(page).not_to have_selector('#task')
     end
 
     it 'associates tasks with an existing user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
       click_button 'Create Task'
-      expect(page).to have_content('do laundry')
+      expect(task_title).to have_content('do laundry')
       click_link 'Log in'
       fill_in 'email', with: user.account.email
       fill_in 'password', with: user.account.password
       click_button 'Login'
       expect(page).to have_content('Log out')
-      expect(page).to have_content('do laundry')
+      expect(task_title).to have_content('do laundry')
       click_link 'Log out'
-      expect(page).not_to have_content('do laundry')
+      expect(page).not_to have_selector('#task')
     end
   end
 
@@ -45,18 +49,18 @@ describe 'Tasks page' do
     click_button 'Create Task'
     expect(page).to have_button('Done')
     expect(page).to have_button('Skip')
-    expect(page).to have_content('do laundry')
+    expect(task_title).to have_content('do laundry')
     within('#new-form') do
       fill_in 'new_title', with: 'feed dog'
     end
     click_button 'Create Task'
-    expect(page).to have_content('do laundry')
-    expect(page).to_not have_content('feed dog')
+    expect(task_title).to have_content('do laundry')
+    expect(task_title).to_not have_content('feed dog')
     click_button 'Skip'
-    expect(page).to have_content('feed dog')
-    expect(page).to_not have_content('do laundry')
+    expect(task_title).to have_content('feed dog')
+    expect(task_title).to_not have_content('do laundry')
     click_button 'Done'
-    expect(page).to have_content('do laundry')
+    expect(task_title).to have_content('do laundry')
     click_button 'Done'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_button('Skip')
@@ -73,7 +77,7 @@ describe 'Tasks page' do
     click_button 'Create Task'
     expect(page).to have_button('Done')
     expect(page).to have_button('Skip')
-    expect(page).to have_content('do laundry')
+    expect(task_title).to have_content('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil
   end
