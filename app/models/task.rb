@@ -20,6 +20,7 @@ class Task < ActiveRecord::Base
   scope :with_release, -> { where('release_at IS NOT NULL') }
   scope :pending, -> { done.with_release.order(:release_at) }
 
+  attr_reader :postpone
   attr_writer :tag_names
 
   after_save :associate_contexts, :update_counters
@@ -50,6 +51,11 @@ class Task < ActiveRecord::Base
 
   def changed_to_not_done?
     !done_at && done_at_was
+  end
+
+  def postpone=(postpone_seconds)
+    postpone_seconds = Integer(postpone_seconds)
+    self.release_at = postpone_seconds.from_now
   end
 
   def skip=(skip)

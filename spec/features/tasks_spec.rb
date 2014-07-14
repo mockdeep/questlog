@@ -8,6 +8,10 @@ describe 'Tasks page' do
     find('#task').find('.title')
   end
 
+  def postpone_button
+    find('#postpone').find('label')
+  end
+
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       visit '/'
@@ -41,14 +45,14 @@ describe 'Tasks page' do
     end
   end
 
-  it 'allows a guest user to manage tasks' do
+  it 'allows a guest user to manage tasks', js: true do
     visit '/'
     expect(page).to_not have_button('Done')
-    expect(page).to_not have_button('Skip')
+    expect(page).to_not have_selector('#postpone')
     fill_in 'new_title', with: 'do laundry'
     click_button 'Create Task'
     expect(page).to have_button('Done')
-    expect(page).to have_button('Skip')
+    expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
     within('#new-form') do
       fill_in 'new_title', with: 'feed dog'
@@ -56,14 +60,19 @@ describe 'Tasks page' do
     click_button 'Create Task'
     expect(task_title).to have_content('do laundry')
     expect(task_title).to_not have_content('feed dog')
-    click_button 'Skip'
+    postpone_button.click
     expect(task_title).to have_content('feed dog')
     expect(task_title).to_not have_content('do laundry')
     click_button 'Done'
-    expect(task_title).to have_content('do laundry')
-    click_button 'Done'
-    expect(page).to_not have_button('Done')
-    expect(page).to_not have_button('Skip')
+    expect(page).to_not have_selector('#postpone')
+
+    freeze_time(1.hour.from_now) do
+      visit '/'
+      expect(task_title).to have_content('do laundry')
+      click_button 'Done'
+      expect(page).to_not have_button('Done')
+      expect(page).to_not have_selector('#postpone')
+    end
   end
 
   it 'allows a free user to manage tasks in advanced view' do
@@ -76,7 +85,7 @@ describe 'Tasks page' do
     fill_in 'new_title', with: 'do laundry'
     click_button 'Create Task'
     expect(page).to have_button('Done')
-    expect(page).to have_button('Skip')
+    expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil

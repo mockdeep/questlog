@@ -7,5 +7,8 @@
       = button_to('Done! Give me another!', task_path(task, task: { done: true }), method: :put, class: 'btn btn-primary btn-large btn-block')
   .span6
     .row-fluid
-      = button_to('Skip this one for now.', task_path(task, task: { skip: true }), method: :put, class: 'btn btn-info btn-large btn-block')
+      = form_for(task) do |form|
+        #postpone.btn.btn-info.btn-large.btn-block
+          = form.label :postpone, 'Postpone for:'
+          = form.select :postpone, postpone_options
 %hr
