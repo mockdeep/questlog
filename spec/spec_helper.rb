@@ -60,6 +60,12 @@ Spork.prefork do
     end
   end
 
+  def freeze_time(time = Time.zone.now)
+    # round time to get rid of nanosecond discrepancies between ruby time and
+    # postgres time
+    time = time.round
+    Timecop.freeze(time) { yield(time) }
+  end
 end
 
 Spork.each_run do
