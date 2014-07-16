@@ -335,7 +335,17 @@ describe Task do
         expect { task.save! }.not_to change { context.reload.tasks_count }
       end
     end
+  end
 
+  describe '#repeat?' do
+    it 'returns true when repeat_seconds is present' do
+      task.repeat_seconds = 1234
+      expect(task.repeat?).to be true
+    end
+
+    it 'returns false when repeat_seconds is not present' do
+      expect(task.repeat?).to be false
+    end
   end
 
 end
