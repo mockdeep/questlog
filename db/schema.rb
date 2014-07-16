@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140716035150) do
+ActiveRecord::Schema.define(:version => 20140708045750) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20140716035150) do
     t.integer  "user_id"
     t.string   "title"
     t.datetime "done_at"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "repeat_string"
     t.integer  "skip_count",       :default => 0
     t.integer  "time_estimate"
@@ -63,16 +63,13 @@ ActiveRecord::Schema.define(:version => 20140716035150) do
     t.datetime "release_at"
     t.integer  "repeat_seconds"
     t.integer  "estimate_seconds"
-    t.boolean  "visible",          :default => true, :null => false
   end
 
   add_index "tasks", ["done_at"], :name => "index_tasks_on_done_at"
   add_index "tasks", ["priority"], :name => "index_tasks_on_priority"
   add_index "tasks", ["release_at"], :name => "index_tasks_on_release_at"
   add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
-  add_index "tasks", ["user_id", "visible"], :name => "index_tasks_on_user_id_and_visible"
   add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
-  add_index "tasks", ["visible"], :name => "index_tasks_on_visible"
 
   create_table "users", :force => true do |t|
     t.string   "email"
