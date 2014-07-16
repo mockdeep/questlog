@@ -67,7 +67,7 @@ class Task < ActiveRecord::Base
   end
 
   def repeat?
-    !!repeat
+    !!repeat_seconds
   end
 
   def release!

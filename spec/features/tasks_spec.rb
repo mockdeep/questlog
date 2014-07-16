@@ -102,12 +102,12 @@ describe 'Tasks page' do
     click_button 'Create Task'
     expect(page).to have_content('at-home (1)')
     expect(page).to have_content('chore (1)')
+    expect(page).to have_selector('i.fa.fa-repeat')
+    visit '/tasks'
+    expect(page).to have_selector('i.fa.fa-repeat')
     task = Task.first
     expect(task.title).to eq 'do laundry'
     expect(task.contexts.pluck(:name).sort).to eq %w(at-home chore)
-    task.contexts.each do |context|
-      expect(context.tasks_count).to eq 1
-    end
     expect(task.priority).to eq 2
     expect(task.repeat_seconds).to eq 1.week
     # expect(task.repeat_string).to eq 'every week'
