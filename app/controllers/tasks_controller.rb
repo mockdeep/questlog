@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task_form = TaskForm.new(current_user)
+    @new_task = current_user.tasks.new
     @task = current_user.next_task(params[:slug])
     @contexts = current_user.ordered_contexts.active
   end
@@ -14,8 +14,8 @@ class TasksController < ApplicationController
   def create
     persist_current_user
 
-    @task_form = current_user.tasks.new(task_params)
-    if @task_form.save
+    @new_task = current_user.tasks.new(task_params)
+    if @new_task.save
       redirect_to :back
     else
       @contexts = current_user.ordered_contexts

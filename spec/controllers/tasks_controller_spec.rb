@@ -13,7 +13,7 @@ describe TasksController do
 
     it 'initializes a new Task' do
       get(:show)
-      expect(assigns(:task_form)).to be_new_record
+      expect(assigns(:new_task)).to be_new_record
     end
 
     context 'when there are no unfinished tasks' do
