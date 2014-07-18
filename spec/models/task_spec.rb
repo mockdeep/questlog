@@ -175,26 +175,11 @@ describe Task do
         expect(task.release_at).to eq 5.minutes.from_now
       end
     end
-  end
 
-  describe '#skip=' do
-    context 'when passed false' do
-      it 'does nothing' do
-        expect { task.skip = false }.not_to change(task, :updated_at)
-        expect { task.skip = false }.not_to change(task, :skip_count)
-      end
-    end
-
-    context 'when passed true' do
-      it 'updates the updated_at' do
-        expect { task.skip = true }.to change(task, :updated_at)
-      end
-
-      it 'increments the skip_count' do
-        expect do
-          task.skip = true
-        end.to change(task, :skip_count).from(0).to(1)
-      end
+    it 'increments the skip_count' do
+      expect do
+        task.postpone = 5.minutes
+      end.to change(task, :skip_count).from(0).to(1)
     end
   end
 
