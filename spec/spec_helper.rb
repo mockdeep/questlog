@@ -76,9 +76,16 @@ def login_as(user)
   session[:user_id] = user.id
 end
 
-def login_user(user)
+def feature_login_as(user)
   visit '/'
-  fill_in 'email', with: user.email
-  fill_in 'password', with: user.password
+  click_link 'Log in'
+  fill_in 'email', with: user.account.email
+  fill_in 'password', with: user.account.password
   click_button 'Login'
+  click_link 'Switch to advanced view'
+end
+
+def add_task(task_title)
+  fill_in 'new_title', with: task_title
+  click_button 'Create Task'
 end
