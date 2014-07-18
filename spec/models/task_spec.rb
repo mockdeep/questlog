@@ -67,7 +67,7 @@ describe Task do
         expect(task.done_at).to eq time
       end
 
-      context 'if it was previously nil' do
+      context 'when it was previously nil' do
         it 'decrements tasks_count for its associated contexts' do
           task.update_attributes(contexts: [context])
           expect(context.reload.tasks_count).to eq 1
@@ -86,6 +86,16 @@ describe Task do
           task.skip_count = 5
           task.done = true
           expect(task.skip_count).to eq(0)
+        end
+
+        it 'updates release_at when there is a repeat' do
+          task.repeat_seconds = 5.minutes
+          expect(task.release_at).to be_nil
+
+          freeze_time do
+            task.done = true
+            expect(task.release_at).to eq 5.minutes.from_now
+          end
         end
       end
 
@@ -211,23 +221,6 @@ describe Task do
         expect(context.reload.tasks_count).to eq 0
         task.update_attributes(title: '', tag_names: [context.name])
         expect(context.reload.tasks_count).to eq 0
-      end
-    end
-  end
-
-  describe '#repeat' do
-    context 'when there is a repeat string' do
-      it 'returns a repeat instance' do
-        task.repeat_string = 'every day'
-        repeat = task.repeat
-        expect(repeat).to be_instance_of(Repeat)
-        expect(repeat.time_delta).to eq 1.day
-      end
-    end
-
-    context 'when there is not a repeat string' do
-      it 'returns nil' do
-        expect(task.repeat).to be_nil
       end
     end
   end

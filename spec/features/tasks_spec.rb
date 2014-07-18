@@ -66,22 +66,17 @@ describe 'Tasks page' do
     click_button 'Done'
     expect(page).to_not have_selector('#postpone')
 
-    freeze_time(1.hour.from_now) do
-      visit '/'
-      expect(task_title).to have_content('do laundry')
-      click_button 'Done'
-      expect(page).to_not have_button('Done')
-      expect(page).to_not have_selector('#postpone')
-    end
+    Timecop.travel(1.hour.from_now)
+
+    visit '/'
+    expect(task_title).to have_content('do laundry')
+    click_button 'Done'
+    expect(page).to_not have_button('Done')
+    expect(page).to_not have_selector('#postpone')
   end
 
   it 'allows a free user to manage tasks in advanced view' do
-    visit '/'
-    click_link 'Log in'
-    fill_in 'email', with: user.account.email
-    fill_in 'password', with: user.account.password
-    click_button 'Login'
-    click_link 'Switch to advanced view'
+    feature_login_as(user)
     fill_in 'new_title', with: 'do laundry'
     click_button 'Create Task'
     expect(page).to have_button('Done')
@@ -91,13 +86,23 @@ describe 'Tasks page' do
     expect(Task.first.repeat_string).to be_nil
   end
 
-  it 'parses and adds attributes on tasks' do
+  it 'allows a user to manage repeat tasks' do
+    feature_login_as(user)
+    add_task('check email #online *5mi')
+    expect(page).to have_content('online (1)')
+    expect(task_title.text).to eq 'check email'
+    click_button 'Done'
+    expect(page).not_to have_selector('#task')
+
+    Timecop.travel(10.minutes.from_now)
+
     visit '/'
-    click_link 'Log in'
-    fill_in 'email', with: user.account.email
-    fill_in 'password', with: user.account.password
-    click_button 'Login'
-    click_link 'Switch to advanced view'
+    expect(page).to have_selector('#task')
+    expect(task_title.text).to eq 'check email'
+  end
+
+  it 'parses and adds attributes on tasks' do
+    feature_login_as(user)
     fill_in 'new_title', with: '#at-home do laundry #chore !2 *1w ~1h'
     click_button 'Create Task'
     expect(page).to have_content('at-home (1)')
