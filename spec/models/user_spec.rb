@@ -32,10 +32,10 @@ describe User do
       task1
       task2
       expect(user.next_task).to eq task1
-      task1.update_attributes(skip: true)
+      task1.update_attributes(done: true)
       expect(user.next_task).to eq task2
       task2.update_attributes(done: true)
-      expect(user.reload.next_task).to eq task1
+      expect(user.reload.next_task).to be_nil
     end
   end
 

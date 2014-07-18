@@ -37,7 +37,6 @@ class Task < ActiveRecord::Base
     self.done_at = done ? Time.zone.now : nil
     if changed_to_done?
       @decrement_counters = true
-      self.release_at ||= Time.zone.now + repeat.time_delta if repeat_string
       self.skip_count = 0
     elsif changed_to_not_done?
       @increment_counters = true
@@ -54,12 +53,9 @@ class Task < ActiveRecord::Base
   end
 
   def postpone=(postpone_seconds)
+    self.skip_count += 1
     postpone_seconds = Integer(postpone_seconds)
     self.release_at = postpone_seconds.from_now
-  end
-
-  def skip=(skip)
-    increment!(:skip_count) if skip
   end
 
   def repeat
@@ -89,7 +85,10 @@ class Task < ActiveRecord::Base
 
   def release_at=(new_release_at)
     super
-    self.done = new_release_at.present? unless done_at_changed?
+    if new_release_at && !done_at_changed?
+      self.done_at = Time.zone.now
+      @decrement_counters = true if changed_to_done?
+    end
   end
 
 private
