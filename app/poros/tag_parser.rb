@@ -1,5 +1,9 @@
 class TagParser
 
+  def self.key
+    :tag_names
+  end
+
   def parse(title)
     words = title.split
     tags = words.select { |word| tag?(word) }
