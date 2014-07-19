@@ -19,6 +19,7 @@ private
     {
       s: 1.second,
       mi: 1.minute,
+      m: 1.minute,
       h: 1.hour,
       d: 1.day,
       w: 1.week,
