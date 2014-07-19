@@ -38,7 +38,10 @@ describe TasksController do
     end
 
     it 'sets contexts with tasks' do
-      context.tasks << task
+      expect do
+        task.contexts << context
+      end.to change { context.reload.tasks_count }.from(0).to(1)
+
       get(:show)
       expect(assigns(:contexts)).to eq [context]
     end
