@@ -27,7 +27,7 @@ class TitleParser
 
   def parse_release_at(title)
     words = title.split
-    tags = words.select { |word| word.match(/^\^\S+$/) }
+    tags = words.select { |word| word.match(/^\@\S+$/) }
     timestamp = find_timestamp(tags)
 
     if timestamp
@@ -38,14 +38,14 @@ class TitleParser
   end
 
   def parse_repeat(title)
-    parse_time(title, '\*')
+    parse_timeframe(title, '\*')
   end
 
   def parse_estimate(title)
-    parse_time(title, '~')
+    parse_timeframe(title, '~')
   end
 
-  def parse_time(title, marker)
+  def parse_timeframe(title, marker)
     words = title.split
     regex = /^#{marker}(\d+)(#{time_mappings.keys.join('|')})$/
     index = words.index { |word| word.match(regex) }
