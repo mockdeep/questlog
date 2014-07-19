@@ -77,15 +77,16 @@ describe Task do
 
         it 'decrements tasks_count for its associated user' do
           task.save!
-          expect(user.reload.tasks_count).to eq 1
-          task.update_attributes(done: true)
-          expect(user.reload.tasks_count).to eq 0
+          expect do
+            task.update_attributes(done: true)
+          end.to change { user.reload.tasks_count }.from(1).to(0)
         end
 
         it 'sets its skip_count to 0' do
           task.skip_count = 5
-          task.done = true
-          expect(task.skip_count).to eq(0)
+          expect do
+            task.done = true
+          end.to change(task, :skip_count).from(5).to(0)
         end
 
         it 'updates release_at when there is a repeat' do
@@ -93,8 +94,9 @@ describe Task do
           expect(task.release_at).to be_nil
 
           freeze_time do
-            task.done = true
-            expect(task.release_at).to eq 5.minutes.from_now
+            expect do
+              task.done = true
+            end.to change(task, :release_at).from(nil).to(5.minutes.from_now)
           end
         end
       end
