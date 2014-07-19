@@ -19,6 +19,11 @@ describe EstimateParser, '#parse' do
     expect(result).to eq ['check email', 5.minutes]
   end
 
+  it 'parses ~ estimates with "m" abbreviation for minutes' do
+    result = parser.parse('check email ~5m')
+    expect(result).to eq ['check email', 5.minutes]
+  end
+
   it 'parses ~ estimates with "s" abbreviation for seconds' do
     result = parser.parse('get distracted ~15s')
     expect(result).to eq ['get distracted', 15.seconds]
