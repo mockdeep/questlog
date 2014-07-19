@@ -12,7 +12,7 @@ describe TitleParser, '#parse_title' do
     time = 1.hour.from_now.round
     time -= time.sec
     time_string = time.strftime('%I:%M%P')
-    title = "#at-home take out trash !3 #lame *1w ~5mi ^#{time_string}"
+    title = "#at-home take out trash !3 #lame *1w ~5mi @#{time_string}"
     result = parser.parse_title(title)
     expect(result[:title]).to eq 'take out trash'
     expect(result[:tag_names].sort).to eq %w(at-home lame)
