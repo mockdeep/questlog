@@ -45,7 +45,7 @@ private
       recorded_count = model.reload.tasks_count
       actual_count = model.tasks.undone.count
       unless recorded_count == actual_count
-        fail "counter broke for #{model.class_name} #{current_user.id} -> " \
+        fail "counter broke for #{model.class} #{current_user.id} -> " \
           "actual: #{actual_count}, recorded: #{recorded_count}"
       end
     end
