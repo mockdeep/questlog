@@ -17,6 +17,8 @@ module TasksHelper
       '9 hours' => 9.hours,
       '12 hours' => 12.hours,
       '1 day' => 1.day,
+      '2 day' => 2.days,
+      '3 day' => 3.days,
     }
   end
 
