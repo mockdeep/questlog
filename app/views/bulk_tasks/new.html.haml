@@ -1,0 +1,7 @@
+= form_for @bulk_task do |form|
+  .row-fluid
+    .offset3.span6
+      = form.text_area :titles, class: 'span12'
+  .row-fluid
+    .offset3.span6
+      = form.submit 'Add Tasks', class: 'btn btn-success btn-block'

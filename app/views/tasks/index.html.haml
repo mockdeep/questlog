@@ -1,11 +1,13 @@
-%h2 Current Tasks
+#current-tasks
+  %h2 Current Tasks
 
-%ul
-  - @tasks.each do |task|
-    = render 'line_item', task: task
+  %ul
+    - @tasks.each do |task|
+      = render 'line_item', task: task
 
-%h2 Pending Tasks
+#pending-tasks
+  %h2 Pending Tasks
 
-%ul
-  - @pending_tasks.each do |task|
-    = render 'line_item', task: task
+  %ul
+    - @pending_tasks.each do |task|
+      = render 'line_item', task: task

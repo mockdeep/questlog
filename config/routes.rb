@@ -5,6 +5,7 @@ Questlog::Application.routes.draw do
   delete 'sessions', to: 'sessions#destroy', as: 'session'
 
   resources :tasks, only: [:index, :create, :update, :destroy]
+  resources :bulk_tasks, only: [:new, :create]
   resources :users, only: [:update]
   resources :free_accounts, only: [:new, :create]
 
