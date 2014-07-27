@@ -107,9 +107,9 @@ describe 'Tasks page' do
     click_button 'Create Task'
     expect(page).to have_content('at-home (1)')
     expect(page).to have_content('chore (1)')
-    expect(page).to have_selector('i.fa.fa-repeat')
+    expect(page).to have_selector(repeat_selector)
     visit '/tasks'
-    expect(page).to have_selector('i.fa.fa-repeat')
+    expect(page).to have_selector(repeat_selector)
     task = Task.first
     expect(task.title).to eq 'do laundry'
     expect(task.contexts.pluck(:name).sort).to eq %w(at-home chore)

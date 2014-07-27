@@ -89,3 +89,7 @@ def add_task(task_title)
   fill_in 'new_title', with: task_title
   click_button 'Create Task'
 end
+
+def repeat_selector
+  'i.fa.fa-repeat'
+end

@@ -1,0 +1,18 @@
+class BulkTasksController < ApplicationController
+
+  def new
+    @bulk_task = BulkTask.new
+  end
+
+  def create
+    BulkTask.create(bulk_task_params)
+    redirect_to(tasks_path)
+  end
+
+private
+
+  def bulk_task_params
+    params[:bulk_task].permit(:titles).merge(user: current_user)
+  end
+
+end
