@@ -16,7 +16,7 @@ describe 'Tasks page' do
     it 'associates tasks with a new user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
-      click_button 'Create Task'
+      click_button 'Add Task'
       expect(task_title).to have_content('do laundry')
       click_link 'Sign up'
       fill_in 'Email', with: 'some@email.com'
@@ -32,7 +32,7 @@ describe 'Tasks page' do
     it 'associates tasks with an existing user' do
       visit '/'
       fill_in 'new_title', with: 'do laundry'
-      click_button 'Create Task'
+      click_button 'Add Task'
       expect(task_title).to have_content('do laundry')
       click_link 'Log in'
       fill_in 'email', with: user.account.email
@@ -50,14 +50,14 @@ describe 'Tasks page' do
     expect(page).to_not have_button('Done')
     expect(page).to_not have_selector('#postpone')
     fill_in 'new_title', with: 'do laundry'
-    click_button 'Create Task'
+    click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
     within('#new-form') do
       fill_in 'new_title', with: 'feed dog'
     end
-    click_button 'Create Task'
+    click_button 'Add Task'
     expect(task_title).to have_content('do laundry')
     expect(task_title).to_not have_content('feed dog')
     postpone_button.click
@@ -78,7 +78,7 @@ describe 'Tasks page' do
   it 'allows a free user to manage tasks in advanced view' do
     feature_login_as(user)
     fill_in 'new_title', with: 'do laundry'
-    click_button 'Create Task'
+    click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
@@ -104,7 +104,7 @@ describe 'Tasks page' do
   it 'parses and adds attributes on tasks' do
     feature_login_as(user)
     fill_in 'new_title', with: '#at-home do laundry #chore !2 *1w ~1h'
-    click_button 'Create Task'
+    click_button 'Add Task'
     expect(page).to have_content('at-home (1)')
     expect(page).to have_content('chore (1)')
     expect(page).to have_selector(repeat_selector)
