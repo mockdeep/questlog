@@ -23,7 +23,7 @@ class BulkTask
 private
 
   def self.task_params(titles)
-    titles.split("\n").map { |title| title_parser.parse_title(title) }
+    titles.split("\n").map { |title| title_parser.parse(title) }
   end
 
   def self.title_parser

@@ -8,7 +8,7 @@ class TitleParser
     ReleaseAtParser,
   ]
 
-  def parse_title(title)
+  def parse(title)
     result = {}
     return result unless title
 
