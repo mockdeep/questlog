@@ -93,3 +93,11 @@ end
 def repeat_selector
   'i.fa.fa-repeat'
 end
+
+def current_tasks
+  find('#current-tasks')
+end
+
+def pending_tasks
+  find('#pending-tasks')
+end

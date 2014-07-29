@@ -8,14 +8,6 @@ describe 'bulk task creation' do
     feature_login_as(user)
   end
 
-  def current_tasks
-    find('#current-tasks')
-  end
-
-  def pending_tasks
-    find('#pending-tasks')
-  end
-
   it 'allows the user to upload multiple tasks at the same time' do
     visit '/'
     click_link 'Add multiple tasks'

@@ -3,4 +3,7 @@
   - if task.repeat?
     %i.fa.fa-repeat
     = task.repeat_string
-  = link_to('Destroy', task_path(task), method: :delete)
+  |
+  = link_to('Done!', task_path(task, task: { done: true }), method: :put)
+  |
+  = link_to('Delete', task_path(task), method: :delete)
