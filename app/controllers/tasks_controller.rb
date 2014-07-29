@@ -42,7 +42,7 @@ private
   end
 
   def parsed_title
-    TitleParser.new.parse_title(params[:task][:title])
+    TitleParser.new.parse(params[:task][:title])
   end
 
 end
