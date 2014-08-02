@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
   end
 
   def absorb(other)
+    add_count = other.tasks.count
     self.tasks += other.tasks
-    User.reset_counters(id, :tasks)
+    add_count.times { User.increment_counter(:tasks_count, id) }
     merge_contexts(other.contexts)
     other.reload.destroy
   end

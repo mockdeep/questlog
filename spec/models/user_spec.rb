@@ -125,11 +125,12 @@ describe User do
     end
 
     it 'updates the tasks counter' do
-      task1
+      task1.update_attributes(done: true)
       other_user = create(:user)
       create(:task, user: other_user)
-      user.absorb(other_user)
-      expect(user.reload.tasks_count).to eq 2
+      expect do
+        user.absorb(other_user)
+      end.to change { user.reload.tasks_count }.from(0).to(1)
     end
 
     it 'deletes the other user' do
