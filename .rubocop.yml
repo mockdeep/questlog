@@ -1,4 +1,9 @@
 AllCops:
+  Includes:
+    - config.ru
+    - Rakefile
+    - !ruby/regexp /.*\.rake/
+    - Gemfile
   Excludes:
     - db/schema.rb
   RunRailsCops: true
