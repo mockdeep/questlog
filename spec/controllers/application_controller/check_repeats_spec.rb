@@ -40,6 +40,6 @@ describe ApplicationController, '#check_repeats' do
 
     expect do
       get(:index)
-    end.to change { context.reload.tasks_count }.from(0).to(1)
+    end.to change { context.reload.unfinished_tasks_count }.from(0).to(1)
   end
 end

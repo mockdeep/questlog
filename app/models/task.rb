@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 
-  belongs_to :user, counter_cache: true
+  belongs_to :user, counter_cache: :unfinished_tasks_count
 
   has_many :taggings, dependent: :destroy
   has_many :contexts, through: :taggings
@@ -92,12 +92,12 @@ private
 
   def increment_counters
     contexts.each(&:increment_tasks_count!)
-    User.increment_counter(:tasks_count, user.id)
+    User.increment_counter(:unfinished_tasks_count, user.id)
   end
 
   def decrement_counters
     contexts.each(&:decrement_tasks_count!)
-    User.decrement_counter(:tasks_count, user.id)
+    User.decrement_counter(:unfinished_tasks_count, user.id)
   end
 
   def associate_contexts

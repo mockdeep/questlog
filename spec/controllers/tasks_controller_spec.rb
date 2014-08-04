@@ -40,7 +40,7 @@ describe TasksController do
     it 'sets contexts with tasks' do
       expect do
         task.contexts << context
-      end.to change { context.reload.tasks_count }.from(0).to(1)
+      end.to change { context.reload.unfinished_tasks_count }.from(0).to(1)
 
       get(:show)
       expect(assigns(:contexts)).to eq [context]
@@ -91,11 +91,11 @@ describe TasksController do
       request.env['HTTP_REFERER'] = '/whatevs'
       task.contexts = [context]
       expect(context.tasks).to eq([task])
-      expect(context.reload.tasks_count).to eq(1)
+      expect(context.reload.unfinished_tasks_count).to eq(1)
       delete(:destroy, id: task.id)
 
       expect(context.reload.tasks).to eq([])
-      expect(context.tasks_count).to eq(0)
+      expect(context.unfinished_tasks_count).to eq(0)
     end
   end
 end

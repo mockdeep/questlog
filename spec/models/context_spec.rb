@@ -30,26 +30,26 @@ describe Context do
   describe '#tasks_count' do
     context 'when a task is added to the context' do
       it 'is incremented' do
-        expect(context.tasks_count).to eq 0
+        expect(context.unfinished_tasks_count).to eq 0
         task = create(:task)
         context.tasks << task
-        expect(context.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
       end
     end
 
     context 'when a context is added to the task' do
       it 'is incremented' do
         create(:task, contexts: [context], user: user)
-        expect(context.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
       end
     end
 
     context 'when a task is marked complete' do
       it 'is decremented' do
         task = create(:task, contexts: [context], user: user)
-        expect(context.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
         task.update_attributes(done: true)
-        expect(context.reload.tasks_count).to eq 0
+        expect(context.reload.unfinished_tasks_count).to eq 0
       end
     end
 
@@ -57,18 +57,18 @@ describe Context do
       it 'is decremented' do
         task = create(:task, contexts: [context], user: user)
         task.destroy
-        expect(context.reload.tasks_count).to eq 0
+        expect(context.reload.unfinished_tasks_count).to eq 0
       end
     end
 
     context 'when a task is marked complete and then incomplete' do
       it 'is decremented and then incremented' do
         task = create(:task, contexts: [context], user: user)
-        expect(context.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
         task.update_attributes(done: true)
-        expect(context.reload.tasks_count).to eq 0
+        expect(context.reload.unfinished_tasks_count).to eq 0
         task.update_attributes(done: false)
-        expect(context.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
       end
     end
 
@@ -78,16 +78,16 @@ describe Context do
         task2 = create(:task, user: user)
         context1 = create(:context, user: user)
         context2 = create(:context, user: user)
-        expect(context1.tasks_count).to eq 0
-        expect(context2.tasks_count).to eq 0
+        expect(context1.unfinished_tasks_count).to eq 0
+        expect(context2.unfinished_tasks_count).to eq 0
         context1.tasks << task1
         context1.tasks << task2
-        expect(context1.tasks_count).to eq 2
-        expect(context2.tasks_count).to eq 0
+        expect(context1.reload.unfinished_tasks_count).to eq 2
+        expect(context2.reload.unfinished_tasks_count).to eq 0
         context2.tasks << task1
         context2.tasks << task2
-        expect(context1.tasks_count).to eq 2
-        expect(context2.tasks_count).to eq 2
+        expect(context1.reload.unfinished_tasks_count).to eq 2
+        expect(context2.reload.unfinished_tasks_count).to eq 2
       end
     end
 
@@ -95,14 +95,14 @@ describe Context do
       it 'still increments and decrements properly' do
         context2 = create(:context, user: user)
         task = create(:task, contexts: [context, context2], user: user)
-        expect(context.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
         task.update_attributes!(done: true)
-        expect(context.reload.tasks_count).to eq 0
+        expect(context.reload.unfinished_tasks_count).to eq 0
         Task.transaction do
           task.update_attributes!(done: false)
         end
-        expect(context.reload.tasks_count).to eq 1
-        expect(context2.reload.tasks_count).to eq 1
+        expect(context.reload.unfinished_tasks_count).to eq 1
+        expect(context2.reload.unfinished_tasks_count).to eq 1
       end
     end
   end

@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   belongs_to :account, dependent: :destroy, polymorphic: true
 
   has_many :tasks, dependent: :destroy
+  has_many :unfinished_tasks,
+           class_name: 'Task',
+           conditions: 'tasks.done_at IS NULL'
   has_many :contexts, dependent: :destroy
 
   validates :mode, inclusion: { in: %w(simple advanced) }
@@ -30,9 +33,8 @@ class User < ActiveRecord::Base
   end
 
   def absorb(other)
-    add_count = other.tasks.count
     self.tasks += other.tasks
-    add_count.times { User.increment_counter(:tasks_count, id) }
+    User.reset_counters(id, :unfinished_tasks)
     merge_contexts(other.contexts)
     other.reload.destroy
   end
