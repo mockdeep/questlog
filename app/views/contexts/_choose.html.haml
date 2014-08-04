@@ -1,11 +1,11 @@
 - active = params[:slug].blank? ? 'active' : ''
-= link_to("All (#{current_user.tasks_count})",
+= link_to("All (#{current_user.unfinished_tasks_count})",
           root_path,
           class: "button btn choose-context #{active}")
 - current_ids = task ? task.contexts.pluck(:id) : []
 - contexts.each do |context|
   - disabled = (context.any? ? '' : 'disabled')
   - current = (current_ids.include?(context.id) ? 'current' : '')
-  = link_to("#{context.name} (#{context.tasks_count})",
+  = link_to("#{context.name} (#{context.unfinished_tasks_count})",
             context_path(context),
             class: "button btn choose-context #{active_class(context)} #{disabled} #{current}")

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140708045750) do
+ActiveRecord::Schema.define(:version => 20140804014408) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
-    t.integer  "tasks_count", :default => 0
+    t.integer  "unfinished_tasks_count", :default => 0
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "slug"
   end
 
@@ -74,10 +74,10 @@ ActiveRecord::Schema.define(:version => 20140708045750) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "tasks_count",     :default => 0
-    t.string   "mode",            :default => "simple"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "unfinished_tasks_count", :default => 0
+    t.string   "mode",                   :default => "simple"
     t.integer  "account_id"
     t.string   "account_type"
   end

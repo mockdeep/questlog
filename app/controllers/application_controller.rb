@@ -42,7 +42,7 @@ private
 
     models = [current_user] + current_user.contexts
     models.each do |model|
-      recorded_count = model.reload.tasks_count
+      recorded_count = model.reload.unfinished_tasks_count
       actual_count = model.tasks.undone.count
       unless recorded_count == actual_count
         fail "counter broke for #{model.class} #{current_user.id} -> " \
