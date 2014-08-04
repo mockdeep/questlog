@@ -101,6 +101,18 @@ describe 'Tasks page' do
     expect(task_title.text).to eq 'check email'
   end
 
+  it 'allows a user to edit a task' do
+    feature_login_as(user)
+    fill_in 'new_title', with: '#at-home do laundry #chore !2 ~1h'
+    click_button 'Add Task'
+    expect(task_title).to have_content('do laundry')
+    expect(page).not_to have_selector(repeat_selector)
+    find('#edit-task').click
+    fill_in 'edit_title', with: 'do laundry *1w'
+    click_button 'Update Task'
+    expect(page).to have_selector(repeat_selector)
+  end
+
   it 'parses and adds attributes on tasks' do
     feature_login_as(user)
     fill_in 'new_title', with: '#at-home do laundry #chore !2 *1w ~1h'
