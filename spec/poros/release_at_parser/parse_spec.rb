@@ -29,6 +29,15 @@ describe ReleaseAtParser, '#parse' do
     expect(result).to eq ['do it', time]
   end
 
+  it 'returns a datetime in the future' do
+    time = 3.weeks.from_now
+    time -= time.sec
+    time_string = time.strftime('%d/%m/%Y-%I:%M%P')
+    result = parser.parse("do it @#{time_string}")
+    expect(result.first).to eq 'do it'
+    expect(result.last.to_i).to eq time.to_i
+  end
+
   it 'ignores timestamps not starting with @' do
     time = 1.hour.from_now.round
     time -= time.sec

@@ -103,3 +103,18 @@ h3 {
 #task.priority3 {
   background-color: #E9DDDD;
 }
+
+#tips-modal {
+
+  table td {
+    border: 1px solid #B6B6B6;
+  }
+
+  .modal-body {
+    max-height: 800px;
+  }
+
+  .marker {
+    background-color: #fcfcfc;
+  }
+}
