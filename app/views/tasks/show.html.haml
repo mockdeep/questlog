@@ -7,5 +7,9 @@
   = link_to('All my tasks', tasks_path)
   |
   = link_to('Add multiple tasks', new_bulk_task_path)
+  |
+  = render 'help_modal'
   %br
-  Try adding a tag using '#', for example: <strong>#at-home<strong>.
+  Try adding a tag using '#', for example: <strong>#at-home</strong>. Click
+  = link_to 'Help', '#tips-modal', data: { toggle: 'modal' }
+  for more.
