@@ -4,29 +4,6 @@ describe Context do
   let(:user) { create(:user) }
   let(:context) { create(:context, user: user) }
 
-  describe 'associations' do
-    it { should belong_to(:user) }
-
-    it { should have_many(:taggings) }
-    it { should have_many(:tasks).through(:taggings) }
-  end
-
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:user) }
-
-    it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
-  end
-
-  describe '.ordered' do
-    it 'returns contexts ordered by name' do
-      context1 = create(:context, name: 'bill')
-      context2 = create(:context, name: 'alice')
-      context3 = create(:context, name: 'charlie')
-      expect(Context.ordered).to eq [context2, context1, context3]
-    end
-  end
-
   describe '#tasks_count' do
     context 'when a task is added to the context' do
       it 'is incremented' do
