@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authorize_profiler
   before_filter :check_repeats
-  before_filter :check_counters
-  after_filter :check_counters
+  around_filter :check_counters
 
 private
 
@@ -38,6 +37,12 @@ private
   end
 
   def check_counters
+    fail_unless_counters_match('before')
+    yield
+    fail_unless_counters_match('after')
+  end
+
+  def fail_unless_counters_match(time_order)
     return unless current_user.persisted?
 
     models = [current_user] + current_user.contexts
@@ -45,8 +50,9 @@ private
       recorded_count = model.reload.unfinished_tasks_count
       actual_count = model.tasks.undone.count
       unless recorded_count == actual_count
-        fail "counter broke for #{model.class} #{current_user.id} -> " \
-          "actual: #{actual_count}, recorded: #{recorded_count}"
+        fail "counter broke #{time_order} action for #{model.class} " \
+          "#{current_user.id} -> actual: #{actual_count}, " \
+          "recorded: #{recorded_count}"
       end
     end
   end

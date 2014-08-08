@@ -18,6 +18,7 @@ describe TasksController, '#destroy' do
     delete(:destroy, id: task.id)
 
     expect(context.reload.tasks).to eq([])
-    expect(context.unfinished_tasks_count).to eq(0)
+    expect(context.unfinished_tasks_count).to eq 0
+    expect(user.reload.unfinished_tasks_count).to eq 0
   end
 end
