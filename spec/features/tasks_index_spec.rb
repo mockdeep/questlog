@@ -16,4 +16,17 @@ describe 'tasks index page' do
     expect(page).not_to have_content('do laundry')
   end
 
+  it 'allows the user to delete tasks' do
+    visit '/'
+    fill_in 'new_title', with: 'do laundry'
+    click_button 'Add Task'
+    click_button 'Add Task'
+    click_link 'All my tasks'
+    expect(current_tasks).to have_content('do laundry')
+    create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
+    click_link 'Delete'
+    expect(current_tasks).not_to have_content('do laundry')
+    expect(current_tasks).to have_content('feed dog')
+  end
+
 end
