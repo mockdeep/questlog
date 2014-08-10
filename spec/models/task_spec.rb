@@ -99,6 +99,20 @@ describe Task do
             end.to change(task, :release_at).from(nil).to(5.minutes.from_now)
           end
         end
+
+        context 'when hit multiple times with the same request' do
+          it 'does not decrement multiple times' do
+            configure_for_threading!
+
+            task.save!
+
+            threaded do
+              Task.find(task.id).update_attributes!(done: true)
+            end
+
+            expect(user.reload.unfinished_tasks_count).to eq 0
+          end
+        end
       end
 
       context 'if it was not previously nil' do
@@ -238,22 +252,6 @@ describe Task do
     context 'when not done_at' do
       it 'returns false' do
         expect(task).not_to be_done
-      end
-    end
-  end
-
-  describe '#over_skipped?' do
-    context 'when the skip count is >= 5' do
-      it 'returns true' do
-        task.skip_count = 5
-        expect(task).to be_over_skipped
-      end
-    end
-
-    context 'when the skip count is < 5' do
-      it 'returns false' do
-        task.skip_count = 4
-        expect(task).not_to be_over_skipped
       end
     end
   end

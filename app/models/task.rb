@@ -34,6 +34,10 @@ class Task < ActiveRecord::Base
   end
 
   def done=(done)
+    persisted? ? with_lock { mark_done(done) } : mark_done(done)
+  end
+
+  def mark_done(done)
     self.done_at = done ? Time.zone.now : nil
     if changed_to_done?
       @decrement_counters = true
@@ -43,6 +47,12 @@ class Task < ActiveRecord::Base
       @increment_counters = true
       self.release_at = nil
     end
+  end
+
+  def destroy
+    with_lock { super }
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.info('Task#destroy: lock failed, task is gone')
   end
 
   def changed_to_done?
@@ -55,8 +65,7 @@ class Task < ActiveRecord::Base
 
   def postpone=(postpone_seconds)
     self.skip_count += 1
-    postpone_seconds = Integer(postpone_seconds)
-    self.release_at = postpone_seconds.from_now
+    self.release_at = Integer(postpone_seconds).from_now
   end
 
   def repeat?
@@ -69,10 +78,6 @@ class Task < ActiveRecord::Base
 
   def done?
     done_at?
-  end
-
-  def over_skipped?
-    skip_count >= 5
   end
 
   def repeat_string=(new_repeat_string)
@@ -102,12 +107,7 @@ private
 
   def associate_contexts
     return unless @tag_names
-    these_contexts = user.contexts.where(name: @tag_names)
-    missing_names = @tag_names - these_contexts.map(&:name)
-    these_contexts += missing_names.map do |tag_name|
-      user.contexts.create!(name: tag_name)
-    end
-    self.contexts = these_contexts
+    self.contexts = Context.find_or_create_all(user: user, names: @tag_names)
   end
 
   def update_counters

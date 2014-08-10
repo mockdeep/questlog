@@ -34,4 +34,14 @@ class Context < ActiveRecord::Base
     self.class.decrement_counter(:unfinished_tasks_count, id)
   end
 
+  def self.find_or_create_all(options)
+    user = options.fetch(:user)
+    names = options.fetch(:names)
+
+    existing_contexts = user.contexts.where(name: names)
+    missing_names = names - existing_contexts.map(&:name)
+    tag_params = missing_names.map { |name| { user: user, name: name } }
+    existing_contexts + create!(tag_params)
+  end
+
 end
