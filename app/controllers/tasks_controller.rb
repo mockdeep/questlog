@@ -31,7 +31,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    current_user.tasks.find(params[:id]).destroy
+    task = current_user.tasks.find_by_id(params[:id])
+    task.destroy if task
     redirect_to :back
   end
 

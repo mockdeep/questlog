@@ -66,6 +66,23 @@ Spork.prefork do
     time = time.round
     Timecop.freeze(time) { yield(time) }
   end
+
+  def configure_for_threading!
+    DatabaseCleaner.clean
+    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.start
+  end
+
+  def threaded(thread_count = 5)
+    threads = thread_count.times.map do
+      Thread.new do
+        yield
+        ActiveRecord::Base.connection.close
+      end
+    end
+    threads.each(&:join)
+  end
+
 end
 
 Spork.each_run do

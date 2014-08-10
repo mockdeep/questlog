@@ -7,13 +7,13 @@ describe TasksHelper, '#task_classes' do
   context 'when the task has a priority' do
     it 'returns a string with the priority' do
       task.priority = 1
-      expect(helper.task_classes(task)).to eq 'priority1'
+      expect(helper.task_classes(task)).to eq 'priority-1'
     end
   end
 
   context 'when the task is over skipped' do
     it 'returns the string "over_skipped"' do
-      task.stub(:over_skipped?).and_return(true)
+      task.skip_count = 5
       expect(helper.task_classes(task)).to eq 'over_skipped'
     end
   end
@@ -21,8 +21,8 @@ describe TasksHelper, '#task_classes' do
   context 'when priority and over skipped' do
     it 'returns a string with "over_skipped" and the priority' do
       task.priority = 2
-      task.stub(:over_skipped?).and_return(true)
-      expect(helper.task_classes(task)).to eq 'priority2 over_skipped'
+      task.skip_count = 5
+      expect(helper.task_classes(task)).to eq 'priority-2 over_skipped'
     end
   end
 
