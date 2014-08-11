@@ -3,11 +3,12 @@ require 'spec_helper'
 describe SessionsController, '#create' do
 
   let(:user) { create(:user) }
+  let(:params) { { email: 'some_email', password: 'some_password' } }
 
   context 'when a profile is found' do
     before(:each) do
       fake_profile = double(user: user)
-      Profile.stub(:authenticate)
+      expect(Profile).to receive(:authenticate)
         .with('some_email', 'some_password')
         .and_return(fake_profile)
     end
@@ -16,30 +17,30 @@ describe SessionsController, '#create' do
       it 'absorbs the current user into the logged in user' do
         user2 = create(:user)
         session[:user_id] = user2.id
-        user.should_receive(:absorb).with(instance_of(User))
-        post(:create, email: 'some_email', password: 'some_password')
+        expect(user).to receive(:absorb).with(instance_of(User))
+        post(:create, params)
       end
     end
 
     it 'sets the current user to the user' do
-      post(:create, email: 'some_email', password: 'some_password')
+      post(:create, params)
       expect(session[:user_id]).to eq user.id
     end
 
     it 'redirects to root path' do
-      post(:create, email: 'some_email', password: 'some_password')
+      post(:create, params)
       expect(response).to redirect_to root_path
     end
 
     it 'flashes a success message' do
-      post(:create, email: 'some_email', password: 'some_password')
+      post(:create, params)
       expect(flash[:notice]).to match(/logged in/i)
     end
   end
 
   context 'when a profile is not found' do
     before(:each) do
-      Profile.stub(:authenticate).and_return(nil)
+      expect(Profile).to receive(:authenticate).and_return(nil)
     end
 
     it 'flashes an error message' do

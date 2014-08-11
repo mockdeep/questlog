@@ -9,8 +9,8 @@ describe UsersController, '#update' do
   end
 
   it 'updates the current user' do
-    User.any_instance.should_receive(:update_attributes!)
-                      .with('mode' => 'advanced')
+    receive_expected = receive(:update_attributes!).with('mode' => 'advanced')
+    expect_any_instance_of(User).to receive_expected
     put(:update, id: user.id, user: { mode: 'advanced' })
   end
 

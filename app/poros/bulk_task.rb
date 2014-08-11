@@ -20,14 +20,14 @@ class BulkTask
     user.tasks.create(task_params(titles))
   end
 
-private
-
   def self.task_params(titles)
     titles.split("\n").map { |title| title_parser.parse(title) }
   end
+  private_class_method :task_params
 
   def self.title_parser
     @title_parser ||= TitleParser.new
   end
+  private_class_method :title_parser
 
 end

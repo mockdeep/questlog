@@ -5,7 +5,7 @@ ruby '1.9.3'
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '3.2.15'
+gem 'rails', '~> 3.2.15'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 gem 'foreigner'
@@ -25,7 +25,7 @@ group :production do
 end
 
 group :assets do
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '~> 2.3.2'
   gem 'coffee-rails'
   gem 'font-awesome-sass'
   gem 'sass-rails'
@@ -43,24 +43,22 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'guard', '2.0.5'
+  gem 'guard'
   gem 'jasmine'
   gem 'rspec-rails'
   gem 'guard-rubocop'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'launchy'
   gem 'poltergeist'
   gem 'rb-inotify'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'spork'
   gem 'timecop'
   gem 'vcr'
   gem 'webmock'

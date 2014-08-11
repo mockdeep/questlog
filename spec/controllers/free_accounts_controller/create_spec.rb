@@ -30,7 +30,7 @@ describe FreeAccountsController, '#create' do
 
   context 'when the account is invalid' do
     before(:each) do
-      FreeAccount.any_instance.stub(:save).and_return(false)
+      expect_any_instance_of(FreeAccount).to receive(:save).and_return(false)
       post(:create, free_account: valid_params)
     end
 

@@ -1,21 +1,22 @@
 AllCops:
-  Includes:
+  Include:
     - config.ru
     - Rakefile
     - !ruby/regexp /.*\.rake/
     - Gemfile
-  Excludes:
+  Exclude:
     - db/schema.rb
   RunRailsCops: true
 
 AccessModifierIndentation:
   EnforcedStyle: outdent
 
-LineLength:
-  Max: 80
+Output:
+  Exclude:
+    - lib/tasks/fix_counters.rake
 
-# Output:
-#   Enabled: false
+ActionFilter:
+  Enabled: false
 
 CollectionMethods:
   PreferredMethods:
@@ -34,10 +35,6 @@ EmptyLinesAroundBody:
 TrailingComma:
   EnforcedStyleForMultiline: comma
 
-# enable once they add on option to include line length
-IfUnlessModifier:
-  Enabled: false
-
 # come back to this one after some more research
 Encoding:
   Enabled: false
@@ -45,7 +42,5 @@ Encoding:
 # enable or confirm the rules below
 # ............................................................................ #
 
-# Offence count: 4
-# Configuration parameters: CountComments.
 MethodLength:
-  Max: 13
+  Max: 12

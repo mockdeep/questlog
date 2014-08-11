@@ -20,10 +20,10 @@ private
   helper_method :current_user=
 
   def persist_current_user
-    if current_user.new_record?
-      current_user.save!
-      self.current_user = current_user
-    end
+    return unless current_user.new_record?
+
+    current_user.save!
+    self.current_user = current_user
   end
 
   def authorize_profiler
@@ -31,9 +31,8 @@ private
   end
 
   def check_repeats
-    if current_user.persisted?
-      current_user.tasks.ready_to_release.each(&:release!)
-    end
+    return unless current_user.persisted?
+    current_user.tasks.ready_to_release.each(&:release!)
   end
 
   def check_counters
@@ -49,11 +48,12 @@ private
     models.each do |model|
       recorded_count = model.reload.unfinished_tasks_count
       actual_count = model.tasks.undone.count
-      unless recorded_count == actual_count
-        fail "counter broke #{time_order} action for #{model.class} " \
-          "#{current_user.id} -> actual: #{actual_count}, " \
-          "recorded: #{recorded_count}"
-      end
+
+      next if recorded_count == actual_count
+
+      fail "counter broke #{time_order} action for #{model.class} " \
+        "#{current_user.id} -> actual: #{actual_count}, " \
+        "recorded: #{recorded_count}"
     end
   end
 

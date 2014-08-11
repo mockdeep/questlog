@@ -88,13 +88,13 @@ describe Context do
     context 'when there are tasks' do
       it 'returns true' do
         context.tasks << create(:task)
-        expect(context.reload.any?).to be_true
+        expect(context.reload.any?).to be true
       end
     end
 
     context 'context when there are no tasks' do
       it 'returns false' do
-        expect(context.any?).to be_false
+        expect(context.any?).to be false
       end
     end
   end

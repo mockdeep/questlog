@@ -1,8 +1,8 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-group :spec_only do
-  guard 'rspec', cmd: 'rspec --drb', focus_on_failed: false do
+group :everything, halt_on_fail: true do
+  guard 'rspec', cmd: 'zeus rspec', failed_mode: :keep do
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }
@@ -20,22 +20,10 @@ group :spec_only do
     watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
   end
 
-
-  guard 'spork', cucumber_env: { 'RAILS_ENV' => 'test' }, rspec_env: { 'RAILS_ENV' => 'test' } do
-    watch('config/application.rb')
-    watch('config/routes.rb')
-    watch('config/environment.rb')
-    watch('config/environments/test.rb')
-    watch(%r{^config/initializers/.+\.rb$})
-    watch('Gemfile')
-    watch('Gemfile.lock')
-    watch('spec/spec_helper.rb') { :rspec }
-    watch('test/test_helper.rb') { :test_unit }
-    watch(%r{features/support/}) { :cucumber }
+  guard :rubocop, all_on_start: false, cli: ['-D'] do
+    watch(%r{.+\.rb$})
+    watch(%r{.+\.rake$})
+    watch(%r{.+\.ru$})
+    watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
   end
-end
-
-guard :rubocop do
-  watch(%r{.+\.rb$})
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
