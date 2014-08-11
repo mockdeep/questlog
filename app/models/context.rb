@@ -5,7 +5,7 @@ class Context < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :unfinished_tasks,
            through: :taggings,
            source: :task,
