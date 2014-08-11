@@ -30,7 +30,7 @@ group :assets do
   gem 'font-awesome-sass'
   gem 'sass', '~> 3.2.0' # http://bit.ly/VeapJG
   gem 'sass-rails'
-  gem 'turbo-sprockets-rails3', '0.3.6'
+  gem 'turbo-sprockets-rails3'
   gem 'uglifier'
 end
 
