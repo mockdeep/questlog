@@ -12,7 +12,7 @@ class BulkTasksController < ApplicationController
 private
 
   def bulk_task_params
-    params[:bulk_task].permit(:titles).merge(user: current_user)
+    params.require(:bulk_task).permit(:titles).merge(user: current_user)
   end
 
 end

@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :authorize_profiler
-  before_filter :check_repeats
-  around_filter :check_counters
+  before_action :authorize_profiler
+  before_action :check_repeats
+  around_action :check_counters
 
 private
 

@@ -16,9 +16,6 @@ Output:
   Exclude:
     - lib/tasks/fix_counters.rake
 
-ActionFilter:
-  Enabled: false
-
 CollectionMethods:
   PreferredMethods:
     collect: 'map'

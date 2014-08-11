@@ -5,7 +5,7 @@ ruby '2.1.2'
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 3.2.15'
+gem 'rails', '~> 4.0.8'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 gem 'foreigner'
@@ -17,22 +17,17 @@ gem 'newrelic_rpm'
 gem 'pg'
 gem 'rack-mini-profiler'
 gem 'stripe'
-gem 'strong_parameters'
 gem 'thin'
 
 group :production do
   gem 'rails_12factor'
 end
 
-group :assets do
-  gem 'bootstrap-sass', '~> 2.3.2'
-  gem 'coffee-rails'
-  gem 'font-awesome-sass'
-  gem 'sass', '~> 3.2.0' # http://bit.ly/VeapJG
-  gem 'sass-rails'
-  gem 'turbo-sprockets-rails3'
-  gem 'uglifier'
-end
+gem 'bootstrap-sass', '~> 2.3.2'
+gem 'font-awesome-sass'
+gem 'sass', '~> 3.2.0' # http://bit.ly/VeapJG
+gem 'sass-rails'
+gem 'uglifier'
 
 group :development do
   gem 'better_errors'

@@ -19,7 +19,11 @@ class FreeAccountsController < ApplicationController
 private
 
   def account_params
-    params[:free_account].permit(:email, :password, :password_confirmation)
+    params.require(:free_account).permit(*permitted_params)
+  end
+
+  def permitted_params
+    [:email, :password, :password_confirmation]
   end
 
 end

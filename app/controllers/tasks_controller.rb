@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params[:task].permit(:done, :postpone, :title).merge(parsed_title)
+    params.require(:task).permit(:done, :postpone, :title).merge(parsed_title)
   end
 
   def parsed_title

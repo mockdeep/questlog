@@ -4,15 +4,15 @@ class User < ActiveRecord::Base
 
   has_many :tasks, dependent: :destroy
   has_many :unfinished_tasks,
-           class_name: 'Task',
-           conditions: 'tasks.done_at IS NULL'
+           -> { where('tasks.done_at' => nil) },
+           class_name: 'Task'
   has_many :contexts, dependent: :destroy
 
   delegate :guest?, to: :account
 
   def next_task(context_id = nil)
     if context_id
-      contexts.find(context_id).next_task
+      contexts.friendly.find(context_id).next_task
     else
       tasks.next
     end
