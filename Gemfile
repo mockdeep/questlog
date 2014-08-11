@@ -28,6 +28,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.2'
   gem 'coffee-rails'
   gem 'font-awesome-sass'
+  gem 'sass', '~> 3.2.0' # http://bit.ly/VeapJG
   gem 'sass-rails'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier'
