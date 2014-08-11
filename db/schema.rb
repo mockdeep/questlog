@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140804014408) do
+ActiveRecord::Schema.define(:version => 20140811020426) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20140804014408) do
   end
 
   add_index "contexts", ["slug"], :name => "index_contexts_on_slug"
+  add_index "contexts", ["user_id", "unfinished_tasks_count"], :name => "index_contexts_on_user_id_and_unfinished_tasks_count"
   add_index "contexts", ["user_id"], :name => "index_contexts_on_user_id"
 
   create_table "free_accounts", :force => true do |t|
@@ -74,10 +75,9 @@ ActiveRecord::Schema.define(:version => 20140804014408) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "unfinished_tasks_count", :default => 0
-    t.string   "mode",                   :default => "simple"
     t.integer  "account_id"
     t.string   "account_type"
   end

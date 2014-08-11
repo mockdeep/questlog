@@ -1,7 +1,11 @@
-= render current_user.mode,
-  task: @task,
-  new_task: @new_task,
-  contexts: @contexts
+- if current_user.contexts.any?
+  = render 'contexts/choose', contexts: @contexts, task: @task
+- if @task
+  = render @task
+  #edit-form
+    = render 'tasks/form', task: @task, namespace: 'edit', contexts: @contexts
+#new-form
+  = render 'tasks/form', task: @new_task, namespace: 'new', contexts: @contexts
 
 %p
   = link_to('All my tasks', tasks_path)

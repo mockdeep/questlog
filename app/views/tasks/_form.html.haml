@@ -1,8 +1,8 @@
-= form_for(new_task) do |form|
+= form_for(task) do |form|
   .row-fluid
     .span12
-      - if new_task.errors.any?
-        = render 'common/errors', record: new_task
+      - if task.errors.any?
+        = render 'common/errors', record: task
   .row-fluid
     .span6
       = form.text_field :title, class: 'span12', id: "#{namespace}_title"

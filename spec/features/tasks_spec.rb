@@ -75,7 +75,7 @@ describe 'Tasks page' do
     expect(page).to_not have_selector('#postpone')
   end
 
-  it 'allows a free user to manage tasks in advanced view' do
+  it 'allows a free user to manage tasks' do
     feature_login_as(user)
     fill_in 'new_title', with: 'do laundry'
     click_button 'Add Task'
