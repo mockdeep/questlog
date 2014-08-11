@@ -1,25 +1,14 @@
 require 'spec_helper'
 
-describe Tagging do
+describe Tagging, 'associations' do
 
   let(:task) { create(:task) }
   let(:context) { create(:context) }
 
-  describe 'associations' do
-    it { is_expected.to belong_to(:task) }
-    it { is_expected.to belong_to(:context) }
-  end
+  it { is_expected.to belong_to(:task) }
+  it { is_expected.to belong_to(:context) }
 
-  describe 'validations' do
-    it { should validate_presence_of(:task) }
-    it { should validate_presence_of(:context) }
-    it do
-      create(:tagging)
-      should validate_uniqueness_of(:task_id).scoped_to(:context_id)
-    end
-  end
-
-  describe 'after create' do
+  context 'after create' do
     context 'when the task is not done' do
       it 'increments the associated context unfinished_tasks_count' do
         expect do
@@ -29,7 +18,7 @@ describe Tagging do
     end
   end
 
-  describe 'after destroy' do
+  context 'after destroy' do
     it 'decrements the associated context unfinished_tasks_count' do
       tagging = create(:tagging, context: context, task: task)
       expect do
