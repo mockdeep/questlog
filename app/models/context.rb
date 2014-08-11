@@ -5,11 +5,11 @@ class Context < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :taggings, dependent: :destroy
+  has_many :taggings, dependent: :destroy, inverse_of: :context
   has_many :unfinished_tasks,
+           -> { where('tasks.done_at' => nil) },
            through: :taggings,
-           source: :task,
-           conditions: 'tasks.done_at IS NULL'
+           source: :task
   has_many :tasks, through: :taggings
 
   validates :name, :user, presence: true

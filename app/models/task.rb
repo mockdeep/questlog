@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :user, counter_cache: :unfinished_tasks_count
 
-  has_many :taggings, dependent: :destroy
+  has_many :taggings, dependent: :destroy, inverse_of: :task
   has_many :contexts, through: :taggings
 
   validates :priority, :time_estimate, numericality: true, allow_nil: true
