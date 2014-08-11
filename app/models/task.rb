@@ -25,10 +25,6 @@ class Task < ActiveRecord::Base
 
   after_save :associate_contexts, :update_counters
 
-  def self.between(start_time, end_time)
-    where('done_at >= ? AND done_at < ?', start_time, end_time)
-  end
-
   def self.next
     undone.order(:priority).order(:updated_at).first
   end
