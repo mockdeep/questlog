@@ -6,7 +6,6 @@ Questlog::Application.routes.draw do
 
   resources :tasks, only: [:index, :create, :update, :destroy]
   resources :bulk_tasks, only: [:new, :create]
-  resources :users, only: [:update]
   resources :free_accounts, only: [:new, :create]
 
   get '/privacy', to: 'pages#privacy', as: 'privacy'

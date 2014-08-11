@@ -92,7 +92,6 @@ def feature_login_as(user)
   fill_in 'email', with: user.account.email
   fill_in 'password', with: user.account.password
   click_button 'Login'
-  click_link 'Switch to advanced view'
 end
 
 def add_task(task_title)

@@ -1,6 +1,0 @@
-- if current_user.contexts.any?
-  = render 'contexts/simple/choose', contexts: contexts, task: task
-- if task
-  = render 'tasks/simple/task', task: task
-#new-form
-  = render 'tasks/simple/form', new_task: new_task, namespace: 'new', contexts: contexts

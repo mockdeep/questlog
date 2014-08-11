@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
            conditions: 'tasks.done_at IS NULL'
   has_many :contexts, dependent: :destroy
 
-  validates :mode, inclusion: { in: %w(simple advanced) }
-
   delegate :guest?, to: :account
 
   def next_task(context_id = nil)
@@ -26,10 +24,6 @@ class User < ActiveRecord::Base
 
   def ordered_contexts
     contexts.ordered
-  end
-
-  def other_mode
-    mode == 'simple' ? 'advanced' : 'simple'
   end
 
   def absorb(other)

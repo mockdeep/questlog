@@ -14,10 +14,6 @@ describe User do
     it { should belong_to(:account).dependent(:destroy) }
   end
 
-  describe 'validations' do
-    it { should ensure_inclusion_of(:mode).in_array(%w(simple advanced)) }
-  end
-
   describe '#next_task' do
     context 'given a context_id parameter' do
       it 'returns the next task for that context' do
@@ -96,22 +92,6 @@ describe User do
           task.update_attributes!(done: false)
         end
         expect(user.reload.unfinished_tasks_count).to eq 1
-      end
-    end
-  end
-
-  describe '#other_mode' do
-    context 'when the user\'s mode is "advanced"' do
-      it 'returns "simple"' do
-        user.mode = 'advanced'
-        expect(user.other_mode).to eq 'simple'
-      end
-    end
-
-    context 'when the user\'s mode is "simple"' do
-      it 'returns "advanced"' do
-        user.mode = 'simple'
-        expect(user.other_mode).to eq 'advanced'
       end
     end
   end

@@ -48,6 +48,7 @@ group :development, :test do
   gem 'jasmine'
   gem 'rspec-rails'
   gem 'guard-rubocop'
+  gem 'guard-zeus'
   gem 'shoulda-matchers', require: false
 end
 
