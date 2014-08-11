@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140811020426) do
+ActiveRecord::Schema.define(:version => 20140811030224) do
 
   create_table "contexts", :force => true do |t|
     t.string   "name"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 20140811020426) do
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "context_id"
-    t.integer  "task_id"
+    t.integer  "context_id", :null => false
+    t.integer  "task_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -86,5 +86,8 @@ ActiveRecord::Schema.define(:version => 20140811020426) do
   add_index "users", ["account_id"], :name => "index_users_on_account_id"
   add_index "users", ["account_type"], :name => "index_users_on_account_type"
   add_index "users", ["email"], :name => "index_users_on_email"
+
+  add_foreign_key "taggings", "contexts", name: "taggings_context_id_fk"
+  add_foreign_key "taggings", "tasks", name: "taggings_task_id_fk"
 
 end

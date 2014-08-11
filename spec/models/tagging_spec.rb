@@ -13,7 +13,10 @@ describe Tagging do
   describe 'validations' do
     it { should validate_presence_of(:task) }
     it { should validate_presence_of(:context) }
-    it { should validate_uniqueness_of(:task_id).scoped_to(:context_id) }
+    it do
+      create(:tagging)
+      should validate_uniqueness_of(:task_id).scoped_to(:context_id)
+    end
   end
 
   describe 'after create' do
