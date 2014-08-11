@@ -69,7 +69,7 @@ class Task < ActiveRecord::Base
   end
 
   def repeat?
-    !!repeat_seconds
+    repeat_seconds.present?
   end
 
   def release!
@@ -87,10 +87,11 @@ class Task < ActiveRecord::Base
 
   def release_at=(new_release_at)
     super
-    if new_release_at && !done_at_changed?
-      self.done_at = Time.zone.now
-      @decrement_counters = true if changed_to_done?
-    end
+
+    return unless new_release_at && !done_at_changed?
+
+    self.done_at = Time.zone.now
+    @decrement_counters = true if changed_to_done?
   end
 
 private

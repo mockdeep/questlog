@@ -31,7 +31,7 @@ describe TasksController, '#create' do
 
   context 'when the task is not valid' do
     it 'renders :show' do
-      Task.any_instance.stub(:save).and_return(false)
+      expect_any_instance_of(Task).to receive(:save).and_return(false)
       post(:create, task: valid_params)
       expect(response).to render_template('tasks/show')
     end

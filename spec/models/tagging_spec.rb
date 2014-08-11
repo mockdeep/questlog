@@ -6,8 +6,8 @@ describe Tagging do
   let(:context) { create(:context) }
 
   describe 'associations' do
-    it { should belong_to(:task) }
-    it { should belong_to(:context) }
+    it { is_expected.to belong_to(:task) }
+    it { is_expected.to belong_to(:context) }
   end
 
   describe 'validations' do

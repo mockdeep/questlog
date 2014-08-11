@@ -61,10 +61,10 @@ describe Task do
   describe '#done=' do
     context 'when given true' do
       it 'sets done_at to Time.now' do
-        time = Time.zone.now
-        Time.zone.stub(:now).and_return(time)
-        task.done = true
-        expect(task.done_at).to eq time
+        freeze_time do |time|
+          task.done = true
+          expect(task.done_at).to eq time
+        end
       end
 
       context 'when it was previously nil' do
