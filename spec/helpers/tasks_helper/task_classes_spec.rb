@@ -13,7 +13,7 @@ describe TasksHelper, '#task_classes' do
 
   context 'when the task is over skipped' do
     it 'returns the string "over_skipped"' do
-      task.skip_count = 5
+      task.skip_count = 15
       expect(helper.task_classes(task)).to eq 'over_skipped'
     end
   end
@@ -21,7 +21,7 @@ describe TasksHelper, '#task_classes' do
   context 'when priority and over skipped' do
     it 'returns a string with "over_skipped" and the priority' do
       task.priority = 2
-      task.skip_count = 5
+      task.skip_count = 15
       expect(helper.task_classes(task)).to eq 'priority-2 over_skipped'
     end
   end
