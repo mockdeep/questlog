@@ -5,7 +5,7 @@
         = render 'common/errors', record: task
   .row-fluid
     .span6
-      = form.text_field :title, class: 'span12', id: "#{namespace}_title"
+      = form.text_field :title, class: 'span12', id: "#{namespace}_title", autocomplete: :off
     .span6
       - verb = namespace == 'new' ? 'Add' : 'Update'
       = form.submit "#{verb} Task", class: 'btn btn-success btn-block'
