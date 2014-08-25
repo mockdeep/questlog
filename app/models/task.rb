@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
+  before_destroy :increment_counters, if: :done?
+
   belongs_to :user, counter_cache: :unfinished_tasks_count
 
   has_many :taggings, dependent: :destroy, inverse_of: :task
