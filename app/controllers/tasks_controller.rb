@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     if @new_task.save
       redirect_to :back
     else
-      @contexts = current_user.ordered_contexts
+      @contexts = current_user.ordered_contexts.active
       @task = current_user.tasks.undone.first
       render 'show'
     end
