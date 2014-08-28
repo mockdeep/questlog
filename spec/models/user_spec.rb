@@ -7,34 +7,6 @@ describe User do
   let(:task2) { create(:task, user: user) }
   let(:user) { create(:user) }
 
-  describe 'associations' do
-    it { should have_many(:tasks).dependent(:destroy) }
-    it { should have_many(:contexts).dependent(:destroy) }
-
-    it { should belong_to(:account).dependent(:destroy) }
-  end
-
-  describe '#next_task' do
-    context 'given a context_id parameter' do
-      it 'returns the next task for that context' do
-        task1
-        task2.contexts << context
-        expect(user.next_task).to eq task1
-        expect(user.next_task(context.id)).to eq task2
-      end
-    end
-
-    it 'returns the next undone task' do
-      task1
-      task2
-      expect(user.next_task).to eq task1
-      task1.update_attributes(done: true)
-      expect(user.next_task).to eq task2
-      task2.update_attributes(done: true)
-      expect(user.reload.next_task).to be_nil
-    end
-  end
-
   describe '#tasks_count' do
     it 'tracks how many unfinished tasks there are for the user' do
       expect(user.unfinished_tasks_count).to eq 0
