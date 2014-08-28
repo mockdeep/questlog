@@ -65,4 +65,18 @@ private
     end
   end
 
+  def return_or_redirect_to(fallback_path, options)
+    redirect_to(session[:return_path] || fallback_path, options)
+  end
+
+  def store_return_path
+    session[:return_path] = request.fullpath
+  end
+
+  def login_first
+    store_return_path
+    flash[:notice] = 'Please login first'
+    redirect_to new_session_path
+  end
+
 end

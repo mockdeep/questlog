@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       user = profile.user
       user.absorb(current_user) if current_user.persisted?
       self.current_user = user
-      redirect_to root_path, notice: 'Logged in!'
+      return_or_redirect_to root_path, notice: 'Logged in!'
     else
       flash.now[:error] = 'Invalid email or password'
       render :new

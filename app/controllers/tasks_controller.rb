@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  before_action :load_task, only: :show
+
   def index
     @tasks = current_user.tasks.undone
     @pending_tasks = current_user.tasks.pending
@@ -7,7 +9,6 @@ class TasksController < ApplicationController
 
   def show
     @new_task = current_user.tasks.new
-    @task = current_user.next_task(params[:slug])
     @contexts = current_user.ordered_contexts.active
   end
 
@@ -37,6 +38,21 @@ class TasksController < ApplicationController
   end
 
 private
+
+  def load_task
+    if params[:slug] && current_user.account.guest?
+      context = current_user.contexts.friendly.find_by_id(params[:slug])
+      if context
+        @task = context.next_task
+      else
+        login_first
+      end
+    elsif params[:slug]
+      @task = current_user.contexts.friendly.find(params[:slug]).next_task
+    else
+      @task = current_user.next_task(params[:slug])
+    end
+  end
 
   def task_params
     params.require(:task).permit(:done, :postpone, :title).merge(parsed_title)
