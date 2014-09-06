@@ -4,27 +4,19 @@
 group :everything, halt_on_fail: true do
   guard 'zeus' do
     watch(%r{^spec/.+_spec\.rb$})
-    watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
+    watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}" }
     watch(%r{^app/(.+)\.haml$})                         { |m| "spec/#{m[1]}.haml_spec.rb" }
-    watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
-    watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/requests/#{m[1]}_spec.rb"] }
+    watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}" }
+    watch(%r{^app/controllers/(.+)_controller\.rb$})  { |m| "spec/controllers/#{m[1]}_controller" }
   end
 
   guard 'rspec', cmd: 'zeus rspec', failed_mode: :keep do
     watch(%r{^spec/.+_spec\.rb$})
-    watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-    watch('spec/spec_helper.rb')  { "spec" }
 
-    # Rails example
-    watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-    watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-    watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
-    watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
-    watch(%r{^spec/factories/(.+)\.rb$})                { "spec" }
-    watch('config/routes.rb')                           { "spec" }
-    watch('app/controllers/application_controller.rb')  { "spec/controllers" }
+    watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}" }
+    watch(%r{^app/(.+)\.haml$})                         { |m| "spec/#{m[1]}.haml_spec.rb" }
+    watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}" }
 
-    # Capybara features specs
     watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
   end
 
