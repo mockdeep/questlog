@@ -1,9 +1,13 @@
 - if current_user.contexts.any?
   = render 'contexts/choose', contexts: @contexts, task: @task
 - if @task
+  - content_for :title, "Task: #{@task.title}"
   = render @task
   #edit-form
     = render 'tasks/form', task: @task, namespace: 'edit', contexts: @contexts
+- else
+  - content_for :title, '(no tasks!)'
+
 #new-form
   = render 'tasks/form', task: @new_task, namespace: 'new', contexts: @contexts
 
