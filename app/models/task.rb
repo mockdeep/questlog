@@ -63,7 +63,7 @@ class Task < ActiveRecord::Base
 
   def postpone=(postpone_seconds)
     self.skip_count += 1
-    self.release_at = Integer(postpone_seconds).from_now
+    self.release_at = Integer(postpone_seconds).seconds.from_now
   end
 
   def repeat?

@@ -5,7 +5,7 @@ ruby '2.1.2'
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 4.0.8'
+gem 'rails', '~> 4.1.5'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 gem 'foreigner'
