@@ -19,6 +19,9 @@ module TasksHelper
       '1 day' => 1.day,
       '2 days' => 2.days,
       '3 days' => 3.days,
+      '1 week' => 1.week,
+      '2 weeks' => 2.weeks,
+      '1 month' => 1.month,
     }
   end
 
