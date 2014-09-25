@@ -7,9 +7,10 @@ class TimeframeParser
     if index
       string = words.delete_at(index)
       count, timeframe = string.match(regex).captures
-      [words.join(' '), count.to_i * time_mappings[timeframe.to_sym]]
+      seconds = count.to_i * time_mappings[timeframe.to_sym]
+      { title: words.join(' '), seconds: seconds }
     else
-      [title, nil]
+      { title: title, seconds: nil }
     end
   end
 
