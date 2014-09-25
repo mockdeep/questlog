@@ -1,5 +1,21 @@
 module TasksHelper
 
+  POSTPONE_OPTIONS = {
+    '5 minutes' => 5.minutes,
+    '30 minutes' => 30.minutes,
+    '1 hour' => 1.hour,
+    '3 hours' => 3.hours,
+    '6 hours' => 6.hours,
+    '9 hours' => 9.hours,
+    '12 hours' => 12.hours,
+    '1 day' => 1.day,
+    '2 days' => 2.days,
+    '3 days' => 3.days,
+    '1 week' => 1.week,
+    '2 weeks' => 2.weeks,
+    '1 month' => 1.month,
+  }
+
   def task_classes(task)
     classes = []
     classes << "priority-#{task.priority}" if task.priority?
@@ -8,21 +24,7 @@ module TasksHelper
   end
 
   def postpone_options
-    {
-      '5 minutes' => 5.minutes,
-      '30 minutes' => 30.minutes,
-      '1 hour' => 1.hour,
-      '3 hours' => 3.hours,
-      '6 hours' => 6.hours,
-      '9 hours' => 9.hours,
-      '12 hours' => 12.hours,
-      '1 day' => 1.day,
-      '2 days' => 2.days,
-      '3 days' => 3.days,
-      '1 week' => 1.week,
-      '2 weeks' => 2.weeks,
-      '1 month' => 1.month,
-    }
+    POSTPONE_OPTIONS
   end
 
 end
