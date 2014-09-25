@@ -1,9 +1,5 @@
 class ReleaseAtParser
 
-  def self.key
-    :release_at
-  end
-
   def parse(title)
     words = title.split
     tags = words.select { |word| word.match(/^\@\S+$/) }
@@ -13,7 +9,7 @@ class ReleaseAtParser
       time = time_from_stamp(timestamp)
       words.delete(timestamp)
     end
-    [words.join(' '), time]
+    { title: words.join(' '), release_at: time }
   end
 
 private

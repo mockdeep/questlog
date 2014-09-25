@@ -1,11 +1,8 @@
 class EstimateParser
 
-  def self.key
-    :estimate_seconds
-  end
-
   def parse(title)
-    TimeframeParser.new.parse(title, '~')
+    result = TimeframeParser.new.parse(title, '~')
+    { title: result[:title], estimate_seconds: result[:seconds] }
   end
 
 end

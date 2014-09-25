@@ -1,11 +1,8 @@
 class RepeatParser
 
-  def self.key
-    :repeat_seconds
-  end
-
   def parse(title)
-    TimeframeParser.new.parse(title, '\*')
+    result = TimeframeParser.new.parse(title, '\*')
+    { title: result[:title], repeat_seconds: result[:seconds] }
   end
 
 end
