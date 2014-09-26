@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Tasks page' do
+describe 'Tasks page', js: true do
 
   let(:user) { create(:free_user) }
 
@@ -45,7 +45,7 @@ describe 'Tasks page' do
     end
   end
 
-  it 'allows a guest user to manage tasks', js: true do
+  it 'allows a guest user to manage tasks' do
     visit '/'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_selector('#postpone')
