@@ -7,7 +7,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '~> 4.1.5'
 
-gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
+gem 'bcrypt'
 gem 'foreigner'
 gem 'friendly_id'
 gem 'haml-rails'
