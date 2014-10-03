@@ -9,7 +9,7 @@
 .row-fluid#buttons
   .span6
     .row-fluid
-      = button_to('Done! Give me another!', task_path(task, task: { done: true }), method: :patch, class: 'btn btn-primary btn-large btn-block')
+      = react_component('Questlog.DoneButton', id: @task.id)
   .span6
     .row-fluid
       = form_for(task) do |form|
