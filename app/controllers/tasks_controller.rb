@@ -28,7 +28,10 @@ class TasksController < ApplicationController
   def update
     task = current_user.tasks.find(params[:id])
     task.update_attributes!(task_params)
-    redirect_to :back
+    respond_to do |format|
+      format.json { render json: '', status: :ok }
+      format.html { redirect_to :back }
+    end
   end
 
   def destroy

@@ -10,7 +10,15 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require es5-shim
+//= require reqwest
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require react
+//= require react_ujs
+//= require_self
+//= require components
 //= require_tree .
+
+var Questlog = {};

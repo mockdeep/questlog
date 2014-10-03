@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.2'
 
@@ -16,8 +17,12 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 gem 'pg'
 gem 'rack-mini-profiler'
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'stripe'
 gem 'thin'
+
+gem 'rails-assets-es5-shim'
+gem 'rails-assets-reqwest'
 
 group :production do
   gem 'rails_12factor'
