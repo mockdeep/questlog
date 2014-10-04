@@ -25,6 +25,12 @@
 #postpone {
   padding: 0;
 
+  // to pad out div added by react. Can probably remove this at some point...
+  div {
+    display: inline-block;
+    vertical-align: top;
+  }
+
   form, label {
     margin: 0;
   }
