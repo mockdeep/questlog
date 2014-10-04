@@ -15,5 +15,5 @@
       = form_for(task) do |form|
         #postpone.btn.btn-info.btn-large.btn-block
           = form.label :postpone, 'Postpone for:'
-          = form.select :postpone, postpone_options
+          = react_component('Questlog.PostponeSelect')
 %hr
