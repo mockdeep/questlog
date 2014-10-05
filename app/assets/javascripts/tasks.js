@@ -33,10 +33,10 @@ $(document).ready(function () {
   });
 
   $('#postpone').click(function () {
-    $(this).parent('form').submit();
+    $(this).closest('form').submit();
   });
 
-  $('#task_postpone').click(function (e) {
+  $('#task-postpone').click(function (e) {
     e.stopPropagation();
   });
 });
