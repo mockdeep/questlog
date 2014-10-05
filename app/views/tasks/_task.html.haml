@@ -13,7 +13,5 @@
   .span6
     .row-fluid
       = form_for(task) do |form|
-        #postpone.btn.btn-info.btn-large.btn-block
-          = form.label :postpone, 'Postpone for:'
-          = react_component('Questlog.PostponeSelect')
+        = react_component('Questlog.PostponeButton')
 %hr
