@@ -13,5 +13,5 @@
   .span6
     .row-fluid
       = form_for(task) do |form|
-        = react_component('Questlog.PostponeButton')
+        = react_component('Questlog.PostponeButton', id: @task.id)
 %hr
