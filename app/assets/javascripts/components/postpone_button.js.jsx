@@ -5,16 +5,44 @@
   'use strict';
 
   Questlog.PostponeButton = React.createClass({
+    getInitialState: function () {
+      return {postponeSeconds: '300'};
+    },
     storeVal: function (event) {
-      // doesn't do anything yet. Need to move jquery events in here.
-      this.setState({value: event.target.value});
+      this.setState({postponeSeconds: event.target.value});
+    },
+
+    reloadPage: function () {
+      window.location.reload();
+    },
+
+    logError: function (error) {
+      console.log(error);
+    },
+
+    postponeTask: function () {
+      reqwest({
+        url: 'tasks/' + this.props.id,
+        data: {task: {postpone: this.state.postponeSeconds}},
+        type: 'json',
+        method: 'put',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: this.reloadPage,
+        error: this.logError
+      });
+    },
+
+    stopPropagation: function (event) {
+      event.stopPropagation();
     },
 
     render: function () {
       return (
-        <div id='postpone' className='btn btn-info btn-large btn-block'>
+        <div id='postpone' className='btn btn-info btn-large btn-block' onClick={this.postponeTask}>
           <label htmlFor='task-postpone'>Postpone for:</label>
-          <select id='task-postpone' name='task[postpone]' onChange={this.storeVal}>
+          <select id='task-postpone' name='task[postpone]' onChange={this.storeVal} onClick={this.stopPropagation}>
             <option value='300'>5 minutes</option>
             <option value='1800'>30 minutes</option>
             <option value='3600'>1 hour</option>
@@ -32,7 +60,6 @@
         </div>
       );
     }
-
   });
 
 })();

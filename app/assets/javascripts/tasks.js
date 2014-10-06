@@ -31,12 +31,4 @@ $(document).ready(function () {
       $('#delete-form').submit();
     }
   });
-
-  $('#postpone').click(function () {
-    $(this).closest('form').submit();
-  });
-
-  $('#task-postpone').click(function (e) {
-    e.stopPropagation();
-  });
 });
