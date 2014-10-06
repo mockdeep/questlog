@@ -18,6 +18,7 @@
 //= require react
 //= require react_ujs
 //= require_self
+//= require helpers
 //= require components
 //= require_tree .
 
