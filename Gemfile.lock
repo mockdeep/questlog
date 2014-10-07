@@ -190,6 +190,7 @@ GEM
       sprockets-rails (~> 2.0)
     rails-assets-es5-shim (4.0.3)
     rails-assets-reqwest (1.1.2)
+    rails-assets-underscore (1.7.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -334,6 +335,7 @@ DEPENDENCIES
   rails (~> 4.1.5)
   rails-assets-es5-shim
   rails-assets-reqwest
+  rails-assets-underscore
   rails_12factor
   rb-inotify
   react-rails (~> 1.0.0.pre)!

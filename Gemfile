@@ -23,6 +23,7 @@ gem 'thin'
 
 gem 'rails-assets-es5-shim'
 gem 'rails-assets-reqwest'
+gem 'rails-assets-underscore'
 
 group :production do
   gem 'rails_12factor'
