@@ -1,8 +1,10 @@
 $(document).ready(function () {
+  'use strict';
+
   $('#new_title').focus();
 
-  $('#task').click(function () {
-    editIcon = $('#edit-task');
+  var editIcon = $('#edit-task');
+  editIcon.click(function () {
     if (editIcon.hasClass('fa-arrow-down')) {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {
@@ -23,12 +25,5 @@ $(document).ready(function () {
       editIcon.toggleClass('fa-arrow-up');
       editIcon.fadeIn();
     });
-  });
-
-  $('.fa-times').click(function (e) {
-    e.stopPropagation();
-    if (confirm('Delete this task?')) {
-      $('#delete-form').submit();
-    }
   });
 });
