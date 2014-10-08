@@ -11,6 +11,5 @@
       = react_component('Questlog.DoneButton', id: @task.id)
   .span6
     .row-fluid
-      = form_for(task) do |form|
-        = react_component('Questlog.PostponeButton', id: @task.id)
+      = react_component('Questlog.PostponeButton', id: @task.id)
 %hr
