@@ -37,7 +37,10 @@ class TasksController < ApplicationController
   def destroy
     task = current_user.tasks.find_by_id(params[:id])
     task.destroy if task
-    redirect_to :back
+    respond_to do |format|
+      format.json { render json: '', status: :ok }
+      format.html { redirect_to :back }
+    end
   end
 
 private

@@ -1,11 +1,10 @@
 .row-fluid
-  = form_for(task, method: :delete, html: { id: 'delete-form' }) do
-    %h2#task{ class: task_classes(task) }
-      %i.fa.fa-times#delete-task{ title: 'delete task' }
-      %span.title{ title: "skip count: #{task.skip_count}" }= task.title
-      - if task.repeat?
-        %i.fa.fa-repeat
-      %i.fa.fa-arrow-down#edit-task{ title: 'edit task' }
+  %h2#task{ class: task_classes(task) }
+    = react_component('Questlog.DeleteButton', id: @task.id)
+    %span.title{ title: "skip count: #{task.skip_count}" }= task.title
+    - if task.repeat?
+      %i.fa.fa-repeat
+    %i.fa.fa-arrow-down#edit-task{ title: 'edit task' }
 .row-fluid#buttons
   .span6
     .row-fluid
