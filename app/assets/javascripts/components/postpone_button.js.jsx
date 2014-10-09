@@ -6,16 +6,32 @@
 
   Questlog.PostponeButton = React.createClass({
     getInitialState: function () {
-      return {postponeSeconds: this.selectOptionsOptions[0].value};
+      return {
+        postponeSeconds: this.selectOptionsOptions[0].value,
+        labelContent: 'Postpone for:',
+      };
     },
+
     storeVal: function (event) {
       this.setState({postponeSeconds: event.target.value});
     },
 
+    disableButton: function () {
+      this.setState({disabled: true, labelContent: '...postponing for:'});
+    },
+
+    updateButton: function () {
+      this.setState({labelContent: 'Postponed for:'});
+      Questlog.reloadPage();
+    },
+
     postponeTask: function () {
+      if (this.state.disabled) { return; }
+      this.disableButton();
       Questlog.request({
         url: 'tasks/' + this.props.id,
         data: {task: {postpone: this.state.postponeSeconds}},
+        success: this.updateButton,
       });
     },
 
@@ -53,8 +69,8 @@
 
     render: function () {
       return (
-        <div id='postpone' className={this.classNames}onClick={this.postponeTask}>
-          <label>Postpone for:</label>
+        <div id='postpone' disabled={this.state.disabled} className={this.classNames}onClick={this.postponeTask}>
+          <label>{this.state.labelContent}</label>
           <select onChange={this.storeVal} onClick={Questlog.stopPropagation}>
             {this.selectOptions()}
           </select>
