@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authorize_profiler
   before_action :check_repeats
-  around_action :check_counters
 
 private
 
@@ -33,28 +32,6 @@ private
   def check_repeats
     return unless current_user.persisted?
     current_user.tasks.ready_to_release.each(&:release!)
-  end
-
-  def check_counters
-    fail_unless_counters_match('before')
-    yield
-    fail_unless_counters_match('after')
-  end
-
-  def fail_unless_counters_match(time_order)
-    return unless current_user.persisted?
-
-    models = [current_user] + current_user.contexts
-    models.each do |model|
-      recorded_count = model.reload.unfinished_tasks_count
-      actual_count = model.tasks.undone.count
-
-      next if recorded_count == actual_count
-
-      fail "counter broke #{time_order} action for #{model.class} " \
-        "#{current_user.id} -> actual: #{actual_count}, " \
-        "recorded: #{recorded_count}"
-    end
   end
 
   def find_user
