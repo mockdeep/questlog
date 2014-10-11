@@ -17,7 +17,7 @@
     },
 
     disableButton: function () {
-      this.setState({disabled: true, labelContent: '...postponing for:'});
+      this.setState({disabled: true, labelContent: 'Postponing...'});
     },
 
     updateButton: function () {
@@ -71,7 +71,7 @@
       return (
         <div id='postpone' disabled={this.state.disabled} className={this.classNames}onClick={this.postponeTask}>
           <label>{this.state.labelContent}</label>
-          <select onChange={this.storeVal} onClick={Questlog.stopPropagation}>
+          <select onChange={this.storeVal} onClick={Questlog.stopPropagation} disabled={this.state.disabled}>
             {this.selectOptions()}
           </select>
         </div>
