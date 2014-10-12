@@ -11,7 +11,8 @@
     },
 
     disableButton: function () {
-      this.setState({disabled: true, buttonContent: 'Marking done...'});
+      this.setState({buttonContent: 'Marking done...'});
+      this.props.disable();
     },
 
     updateButton: function () {
@@ -20,7 +21,7 @@
     },
 
     markDone: function () {
-      if (this.state.disabled) { return; }
+      if (this.props.disabled) { return; }
       this.disableButton();
       Questlog.request({
         url: 'tasks/' + this.props.id,
@@ -32,7 +33,7 @@
     render: function () {
       return (
         <input type='button'
-               disabled={this.state.disabled}
+               disabled={this.props.disabled}
                className='btn btn-primary btn-large btn-block'
                onClick={this.markDone}
                value={this.state.buttonContent} />
