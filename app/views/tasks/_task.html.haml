@@ -7,9 +7,7 @@
     %i.fa.fa-arrow-down#edit-task{ title: 'edit task' }
 .row-fluid#buttons
   .span6
-    .row-fluid
-      = react_component('Questlog.DoneButton', id: @task.id)
+    = react_component('Questlog.DoneButton', id: @task.id)
   .span6
-    .row-fluid
-      = react_component('Questlog.PostponeButton', id: @task.id)
+    = react_component('Questlog.PostponeButton', id: @task.id)
 %hr
