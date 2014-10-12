@@ -17,7 +17,8 @@
     },
 
     disableButton: function () {
-      this.setState({disabled: true, labelContent: 'Postponing...'});
+      this.setState({labelContent: 'Postponing...'});
+      this.props.disable();
     },
 
     updateButton: function () {
@@ -26,7 +27,7 @@
     },
 
     postponeTask: function () {
-      if (this.state.disabled) { return; }
+      if (this.props.disabled) { return; }
       this.disableButton();
       Questlog.request({
         url: 'tasks/' + this.props.id,
@@ -69,9 +70,9 @@
 
     render: function () {
       return (
-        <div id='postpone' disabled={this.state.disabled} className={this.classNames}onClick={this.postponeTask}>
+        <div id='postpone' disabled={this.props.disabled} className={this.classNames}onClick={this.postponeTask}>
           <label>{this.state.labelContent}</label>
-          <select onChange={this.storeVal} onClick={Questlog.stopPropagation} disabled={this.state.disabled}>
+          <select onChange={this.storeVal} onClick={Questlog.stopPropagation} disabled={this.props.disabled}>
             {this.selectOptions()}
           </select>
         </div>

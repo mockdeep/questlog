@@ -5,14 +5,20 @@
   'use strict';
 
   Questlog.MainButtons = React.createClass({
+    getInitialState: function () {
+      return {disabled: false};
+    },
+    disable: function () {
+      this.setState({disabled: true});
+    },
     render: function () {
       return (
         <div id='buttons' className='row-fluid'>
           <div className='span6'>
-            <Questlog.DoneButton id={this.props.id}/>
+            <Questlog.DoneButton id={this.props.id} disabled={this.state.disabled} disable={this.disable} />
           </div>
           <div className='span6'>
-            <Questlog.PostponeButton id={this.props.id}/>
+            <Questlog.PostponeButton id={this.props.id} disabled={this.state.disabled} disable={this.disable} />
           </div>
         </div>
       );
