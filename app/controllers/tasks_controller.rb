@@ -47,7 +47,7 @@ private
 
   def load_task
     if params[:slug] && current_user.account.guest?
-      context = current_user.contexts.friendly.find_by_id(params[:slug])
+      context = current_user.contexts.find_by_slug(params[:slug])
       if context
         @task = context.next_task
       else

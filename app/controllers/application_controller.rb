@@ -13,7 +13,9 @@ private
   helper_method :current_user
 
   def current_user=(user)
+    return_path = session[:return_path]
     session.clear
+    session[:return_path] = return_path
     session[:user_id] = user.id if user
   end
   helper_method :current_user=
@@ -43,7 +45,7 @@ private
   end
 
   def return_or_redirect_to(fallback_path, options)
-    redirect_to(session[:return_path] || fallback_path, options)
+    redirect_to(session.delete(:return_path) || fallback_path, options)
   end
 
   def store_return_path
