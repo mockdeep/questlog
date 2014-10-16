@@ -1,11 +1,12 @@
-= form_for(task) do |form|
+- if task.errors.any?
   .row-fluid
-    .span12
-      - if task.errors.any?
-        = render 'common/errors', record: task
-  .row-fluid
-    .span6
-      = form.text_field :title, class: 'span12', id: "#{namespace}_title", autocomplete: :off
-    .span6
-      - verb = namespace == 'new' ? 'Add' : 'Update'
-      = form.submit "#{verb} Task", class: 'btn btn-success btn-block'
+    .span12= render 'common/errors', record: task
+- if namespace == 'new'
+  = react_component('Questlog.NewTaskForm', task: task)
+- else
+  = form_for(task) do |form|
+    .row-fluid
+      .span6
+        = form.text_field :title, class: 'span12', id: "edit_title", autocomplete: :off
+      .span6
+        = form.submit "Update Task", class: 'btn btn-success btn-block'
