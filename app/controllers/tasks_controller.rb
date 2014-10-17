@@ -15,14 +15,8 @@ class TasksController < ApplicationController
   def create
     persist_current_user
 
-    @new_task = current_user.tasks.new(task_params)
-    if @new_task.save
-      redirect_to :back
-    else
-      @contexts = current_user.ordered_contexts.active
-      @task = current_user.tasks.undone.first
-      render 'show'
-    end
+    current_user.tasks.create!(task_params)
+    respond_to { |format| format.json { render json: '', status: :created } }
   end
 
   def update

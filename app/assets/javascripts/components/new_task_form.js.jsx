@@ -11,7 +11,6 @@
         url: 'tasks',
         method: 'post',
         data: { task: { title: taskTitle } },
-        success: Questlog.reloadPage()
       });
     },
     render: function () {
@@ -19,7 +18,7 @@
         <form className='new_task' id='new_task' onSubmit={this.saveTask}>
           <div className='row-fluid'>
             <div className='span6'>
-              <input autocomplete='off' className='span12' id='new_title' type='text' ref='title' />
+              <input autoComplete='off' className='span12' id='new_title' type='text' ref='title' />
             </div>
             <div className='span6'>
               <input className='btn btn-success btn-block' type='submit' value='Add Task' />
