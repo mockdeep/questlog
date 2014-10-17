@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'tasks index page' do
+describe 'tasks index page', js: true do
 
   let(:user) { create(:free_user) }
 
