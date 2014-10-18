@@ -23,9 +23,9 @@
             - else
               Logged in as #{current_user.email}
               = link_to "Log out", session_path, method: :delete
-      .row-fluid
+      .row-fluid#flashes
         - flash.each do |name, msg|
-          = content_tag :div, msg, id: "flash#{name}"
+          = content_tag :div, msg, class: "flash-#{name}"
 
       = yield
 

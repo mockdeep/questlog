@@ -4,6 +4,10 @@
   max-width: 800px;
 }
 
+#flashes {
+  height: 30px;
+}
+
 #task {
   background-color: #E9EEEE;
   border-radius: 6px;
@@ -111,7 +115,6 @@ h3 {
 }
 
 #tips-modal {
-
   table td {
     border: 1px solid #B6B6B6;
   }
