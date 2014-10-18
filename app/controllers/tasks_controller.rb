@@ -16,6 +16,7 @@ class TasksController < ApplicationController
     persist_current_user
 
     current_user.tasks.create!(task_params)
+    flash[:success] = 'Task added'
     respond_to { |format| format.json { render json: '', status: :created } }
   end
 

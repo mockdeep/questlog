@@ -26,4 +26,6 @@ $(document).ready(function () {
       editIcon.fadeIn();
     });
   });
+
+  $('[class^=flash-]').fadeOut(1500);
 });

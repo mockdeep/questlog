@@ -54,6 +54,8 @@ describe 'Tasks page', js: true do
       fill_in 'new_title', with: 'feed dog'
     end
     click_button 'Add Task'
+    expect(page).to have_content('Task added')
+    expect(page).not_to have_content('Task added')
     expect(task_title).to have_content('do laundry')
     expect(task_title).to_not have_content('feed dog')
     postpone_button.click
