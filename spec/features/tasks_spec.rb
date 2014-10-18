@@ -4,10 +4,6 @@ describe 'Tasks page', js: true do
 
   let(:user) { create(:free_user) }
 
-  def task_title
-    find('#task').find('.title')
-  end
-
   def postpone_button
     find('#postpone').find('label')
   end

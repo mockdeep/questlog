@@ -110,3 +110,7 @@ end
 def pending_tasks
   find('#pending-tasks')
 end
+
+def task_title
+  find('#task').find('.title')
+end

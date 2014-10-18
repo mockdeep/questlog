@@ -20,7 +20,7 @@ describe 'tasks index page', js: true do
     visit '/'
     fill_in 'new_title', with: 'do laundry'
     click_button 'Add Task'
-    click_button 'Add Task'
+    expect(task_title).to have_content('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
