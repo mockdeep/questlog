@@ -23,6 +23,7 @@ class TasksController < ApplicationController
   def update
     task = current_user.tasks.find(params[:id])
     task.update_attributes!(task_params)
+    flash[:success] = task_update_message
     respond_to do |format|
       format.json { render json: '', status: :ok }
       format.html { redirect_to :back }
@@ -32,6 +33,7 @@ class TasksController < ApplicationController
   def destroy
     task = current_user.tasks.find_by_id(params[:id])
     task.destroy if task
+    flash[:success] = 'Task deleted'
     respond_to do |format|
       format.json { render json: '', status: :ok }
       format.html { redirect_to :back }
@@ -61,6 +63,16 @@ private
 
   def parsed_title
     TitleParser.new.parse(params[:task][:title])
+  end
+
+  def task_update_message
+    if task_params[:done]
+      'Task marked done'
+    elsif task_params[:postpone]
+      'Task postponed'
+    else
+      'Task updated'
+    end
   end
 
 end

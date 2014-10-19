@@ -10,6 +10,8 @@ describe 'tasks index page', js: true do
     visit '/'
     fill_in 'new_title', with: 'do laundry'
     click_button 'Add Task'
+    expect(page).to have_content('Task added')
+    expect(page).not_to have_content('Task added')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     click_link 'Done!'
@@ -21,6 +23,8 @@ describe 'tasks index page', js: true do
     fill_in 'new_title', with: 'do laundry'
     click_button 'Add Task'
     expect(task_title).to have_content('do laundry')
+    expect(page).to have_content('Task added')
+    expect(page).not_to have_content('Task added')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
