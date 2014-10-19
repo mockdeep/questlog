@@ -5,9 +5,7 @@
 
   Questlog.DoneButton = React.createClass({
     getInitialState: function () {
-      return {
-        buttonContent: 'Done! Give me another!',
-      };
+      return {buttonContent: 'Done! Give me another!'};
     },
 
     disableButton: function () {
@@ -25,7 +23,7 @@
       this.disableButton();
       Questlog.request({
         url: 'tasks/' + this.props.id,
-        data: { task: { done: true } },
+        data: {task: {done: true}},
         success: this.updateButton,
       });
     },
