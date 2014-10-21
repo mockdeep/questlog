@@ -5,12 +5,18 @@
 
   Questlog.NewTaskForm = React.createClass({
     getInitialState: function () {
-      return {buttonContent: 'Add Task', disabled: false};
+      return {buttonContent: 'Add Task', disabled: false, errors: []};
     },
     saveTask: function (event) {
       event.preventDefault();
       if (this.state.disabled) { return; }
       var taskTitle = this.refs.title.getDOMNode().value.trim();
+      if (taskTitle === '') {
+        var newErrors = this.state.errors.concat('task title can\'t be blank');
+        console.log('newErrors: ', newErrors);
+        this.setState({errors: newErrors});
+        return;
+      }
       this.setState({buttonContent: 'Adding Task', disabled: true});
       Questlog.request({
         url: 'tasks',
@@ -21,6 +27,7 @@
     render: function () {
       return (
         <form className='new_task' id='new_task' onSubmit={this.saveTask}>
+          <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row-fluid'>
             <div className='span6'>
               <input type='text'

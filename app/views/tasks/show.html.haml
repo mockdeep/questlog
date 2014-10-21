@@ -4,12 +4,12 @@
   - content_for :title, "Task: #{@task.title}"
   = render @task
   #edit-form
-    = render 'tasks/form', task: @task, namespace: 'edit', contexts: @contexts
+    = react_component('Questlog.EditTaskForm', task: @task)
 - else
   - content_for :title, '(no tasks!)'
 
 #new-form
-  = render 'tasks/form', task: @new_task, namespace: 'new', contexts: @contexts
+  = react_component('Questlog.NewTaskForm', task: @new_task)
 
 %p
   = link_to('All my tasks', tasks_path)

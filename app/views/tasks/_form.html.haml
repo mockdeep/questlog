@@ -1,7 +1,0 @@
-- if task.errors.any?
-  .row-fluid
-    .span12= render 'common/errors', record: task
-- if namespace == 'new'
-  = react_component('Questlog.NewTaskForm', task: task)
-- else
-  = react_component('Questlog.EditTaskForm', task: task)
