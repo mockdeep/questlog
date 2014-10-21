@@ -8,7 +8,8 @@
       return {
         buttonContent: 'Update Task',
         disabled: false,
-        taskTitle: this.props.task.title
+        taskTitle: this.props.task.title,
+        errors: []
       };
     },
     setTitle: function (event) {
@@ -18,7 +19,9 @@
       event.preventDefault();
       if (this.state.disabled) { return; }
       if (this.state.taskTitle.trim() == '') {
-        alert('Task title cannot be blank');
+        var newErrors = this.state.errors.concat('task title can\'t be blank');
+        console.log('newErrors: ', newErrors);
+        this.setState({errors: newErrors});
         return;
       }
       this.setState({buttonContent: 'Updating Task', disabled: true});
@@ -30,6 +33,7 @@
     render: function () {
       return (
         <form className='edit_task' id='edit_task' onSubmit={this.saveTask}>
+          <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row-fluid'>
             <div className='span6'>
               <input type='text'
