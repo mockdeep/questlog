@@ -20,7 +20,6 @@
       if (this.state.disabled) { return; }
       if (this.state.taskTitle.trim() == '') {
         var newErrors = this.state.errors.concat('task title can\'t be blank');
-        console.log('newErrors: ', newErrors);
         this.setState({errors: newErrors});
         return;
       }

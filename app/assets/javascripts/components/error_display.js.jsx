@@ -6,8 +6,6 @@
 
   Questlog.ErrorDisplay = React.createClass({
     errorItems: function () {
-      console.log('rendering errors');
-      console.log(this.props.errors);
       return _.map(this.props.errors, function (errorMessage) {
         return (<li key={errorMessage}>{errorMessage}</li>);
       });
