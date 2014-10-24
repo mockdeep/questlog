@@ -13,7 +13,6 @@
       var taskTitle = this.refs.title.getDOMNode().value.trim();
       if (taskTitle === '') {
         var newErrors = this.state.errors.concat('task title can\'t be blank');
-        console.log('newErrors: ', newErrors);
         this.setState({errors: newErrors});
         return;
       }
