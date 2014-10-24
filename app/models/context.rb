@@ -44,4 +44,12 @@ class Context < ActiveRecord::Base
     existing_contexts + create!(tag_params)
   end
 
+  def as_json(*)
+    {
+      slug: slug,
+      unfinished_tasks_count: unfinished_tasks_count,
+      name: name,
+    }
+  end
+
 end
