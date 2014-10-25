@@ -9,8 +9,6 @@
       return '/' + this.props.tag.slug;
     },
     currentButton: function () {
-      console.log(this.path());
-      console.log(window.location.href);
       return this.path() === window.location.href;
     },
     className: function () {

@@ -9,6 +9,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '~> 4.1.5'
 
 gem 'bcrypt'
+gem 'dalli'
 gem 'foreigner'
 gem 'friendly_id'
 gem 'haml-rails'
