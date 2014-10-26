@@ -1,9 +1,6 @@
 .tag-buttons
-  - active = params[:slug].blank? ? 'active' : ''
-  = link_to("All (#{current_user.unfinished_tasks_count})",
-            root_path,
-            class: "button btn choose-context #{active}")
+  = react_component('Questlog.TagButton', tag: current_user, current: false)
   - current_ids = task ? task.contexts.pluck(:id) : []
   - contexts.each do |context|
-    - current = (current_ids.include?(context.id) ? 'current' : '')
-    = react_component('Questlog.TagButton', tag: context, current: current_ids.include?(context.id))
+    - current = current_ids.include?(context.id)
+    = react_component('Questlog.TagButton', tag: context, current: current)
