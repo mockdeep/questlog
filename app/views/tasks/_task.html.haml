@@ -1,9 +1,11 @@
-.row-fluid
-  %h2#task{ class: task_classes(task) }
+#task{ class: ['row-fluid', task_classes(task)].join(' ') }
+  .span1
     = react_component('Questlog.DeleteButton', id: @task.id)
-    %span.title{ title: "skip count: #{task.skip_count}" }= task.title
+  .span10.title{ title: "skip count: #{task.skip_count}" }
+    = task.title
     - if task.repeat?
       %i.fa.fa-repeat
+  .span1
     %i.fa.fa-arrow-down#edit-task{ title: 'edit task' }
 = react_component('Questlog.MainButtons', id: @task.id)
 %hr

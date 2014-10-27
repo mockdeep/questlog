@@ -15,20 +15,21 @@
 }
 
 #task {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 40px;
+  font-size: 31.5px;
+  font-weight: bold;
   background-color: #E9EEEE;
   border-radius: 6px;
   border: 2px solid #AAAAAA;
+  max-width: 796px;
 
-  i.fa-times {
-    float: left;
-    padding-left: 8px;
+  i {
     padding-top: 4px;
   }
-
-  i.fa-arrow-down, i.fa-arrow-up {
-    padding-right: 8px;
-    padding-top: 4px;
-    float: right;
+  .title {
+    padding-top: 10px;
   }
 }
 
