@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TasksController, '#show' do
   let(:task) { create(:task) }
   let(:user) { task.user }
-  let(:context) { create(:context, user: user) }
+  let(:tag) { create(:tag, user: user) }
 
   before(:each) do
     login_as(user)
@@ -29,22 +29,22 @@ describe TasksController, '#show' do
     end
   end
 
-  it 'skips contexts without tasks' do
-    context
+  it 'skips tags without tasks' do
+    tag
     get(:show)
-    expect(assigns(:contexts)).to eq []
+    expect(assigns(:tags)).to eq []
   end
 
-  it 'sets contexts with tasks' do
+  it 'sets tags with tasks' do
     expect do
-      task.contexts << context
-    end.to change { context.reload.unfinished_tasks_count }.from(0).to(1)
+      task.tags << tag
+    end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
 
     get(:show)
-    expect(assigns(:contexts)).to eq [context]
+    expect(assigns(:tags)).to eq [tag]
   end
 
-  context 'when the requested context does not exist' do
+  context 'when the requested tag does not exist' do
     context 'when the user is not logged in' do
 
       before(:each) do
@@ -57,7 +57,7 @@ describe TasksController, '#show' do
       end
 
       it 'remembers the intended tag of the user' do
-        expect(session[:return_path]).to eq context_path('poo')
+        expect(session[:return_path]).to eq tag_path('poo')
       end
 
       it 'flashes a message' do

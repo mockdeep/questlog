@@ -4,7 +4,7 @@ describe Task, '#done=' do
 
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }
-  let(:context) { create(:context, user: user) }
+  let(:tag) { create(:tag, user: user) }
 
   context 'when given true' do
     it 'sets done_at to Time.now' do
@@ -15,11 +15,11 @@ describe Task, '#done=' do
     end
 
     context 'when it was previously nil' do
-      it 'decrements unfinished_tasks_count for its associated contexts' do
-        task.update_attributes(contexts: [context])
-        expect(context.reload.unfinished_tasks_count).to eq 1
+      it 'decrements unfinished_tasks_count for its associated tags' do
+        task.update_attributes(tags: [tag])
+        expect(tag.reload.unfinished_tasks_count).to eq 1
         task.update_attributes(done: true)
-        expect(context.reload.unfinished_tasks_count).to eq 0
+        expect(tag.reload.unfinished_tasks_count).to eq 0
       end
 
       it 'decrements unfinished_tasks_count for its associated user' do
@@ -63,12 +63,12 @@ describe Task, '#done=' do
     end
 
     context 'if it was not previously nil' do
-      it 'does not change unfinished_tasks_count for its contexts' do
-        task.update_attributes!(contexts: [context], done: true)
-        expect(context.reload.unfinished_tasks_count).to eq 0
+      it 'does not change unfinished_tasks_count for its tags' do
+        task.update_attributes!(tags: [tag], done: true)
+        expect(tag.reload.unfinished_tasks_count).to eq 0
         expect do
           task.update_attributes(done: true)
-        end.not_to change { context.reload.unfinished_tasks_count }
+        end.not_to change { tag.reload.unfinished_tasks_count }
       end
 
       it 'does not change unfinished_tasks_count for its associated user' do
@@ -88,11 +88,11 @@ describe Task, '#done=' do
     end
 
     context 'if it was previously nil' do
-      it 'does not change unfinished_tasks_count for its contexts' do
-        task.update_attributes(contexts: [context])
-        expect(context.reload.unfinished_tasks_count).to eq 1
+      it 'does not change unfinished_tasks_count for its tags' do
+        task.update_attributes(tags: [tag])
+        expect(tag.reload.unfinished_tasks_count).to eq 1
         task.update_attributes(done: false)
-        expect(context.reload.unfinished_tasks_count).to eq 1
+        expect(tag.reload.unfinished_tasks_count).to eq 1
       end
 
       it 'does not change unfinished_tasks_count for its associated user' do
@@ -104,14 +104,14 @@ describe Task, '#done=' do
     end
 
     context 'if it was not previously nil' do
-      it 'increments unfinished_tasks_count for its associated contexts' do
-        task.update_attributes!(contexts: [context], done: true)
+      it 'increments unfinished_tasks_count for its associated tags' do
+        task.update_attributes!(tags: [tag], done: true)
         expect do
           task.update_attributes(done: false)
-        end.to change { context.reload.unfinished_tasks_count }.from(0).to(1)
+        end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
       end
 
-      it 'increments unfinished_tasks_count for its associated contexts' do
+      it 'increments unfinished_tasks_count for its associated tags' do
         task.update_attributes!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
         task.update_attributes!(done: false)

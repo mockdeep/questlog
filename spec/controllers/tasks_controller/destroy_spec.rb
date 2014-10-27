@@ -4,7 +4,7 @@ describe TasksController, '#destroy' do
 
   let(:task) { create(:task) }
   let(:user) { task.user }
-  let(:context) { create(:context, user: user) }
+  let(:tag) { create(:tag, user: user) }
 
   before(:each) do
     login_as(user)
@@ -12,13 +12,13 @@ describe TasksController, '#destroy' do
   end
 
   it 'destroys the task for the given user' do
-    task.contexts = [context]
-    expect(context.tasks).to eq([task])
-    expect(context.reload.unfinished_tasks_count).to eq(1)
+    task.tags = [tag]
+    expect(tag.tasks).to eq([task])
+    expect(tag.reload.unfinished_tasks_count).to eq(1)
     delete(:destroy, id: task.id)
 
-    expect(context.reload.tasks).to eq([])
-    expect(context.unfinished_tasks_count).to eq 0
+    expect(tag.reload.tasks).to eq([])
+    expect(tag.unfinished_tasks_count).to eq 0
     expect(user.reload.unfinished_tasks_count).to eq 0
   end
 

@@ -27,22 +27,22 @@ describe User, '#absorb' do
     expect(User.find_by_id(other_user.id)).to be_nil
   end
 
-  it 'merges contexts' do
+  it 'merges tags' do
     other_user = create(:user)
-    create(:context, name: 'solo', user: other_user)
-    other_context2 = create(:context, name: 'duplicate', user: other_user)
+    create(:tag, name: 'solo', user: other_user)
+    other_tag2 = create(:tag, name: 'duplicate', user: other_user)
     other_task = create(
       :task,
       title: 'bloo',
       user: other_user,
-      contexts: [other_context2],
+      tags: [other_tag2],
     )
-    create(:context, name: 'another-solo', user: user)
-    context2 = create(:context, name: 'duplicate', user: user)
+    create(:tag, name: 'another-solo', user: user)
+    tag2 = create(:tag, name: 'duplicate', user: user)
     expected_names = %w(another-solo duplicate solo)
     user.absorb(other_user)
-    expect(user.reload.contexts.pluck(:name).sort).to eq expected_names
-    expect(other_task.reload.contexts).to eq [context2]
+    expect(user.reload.tags.pluck(:name).sort).to eq expected_names
+    expect(other_task.reload.tags).to eq [tag2]
   end
 
 end

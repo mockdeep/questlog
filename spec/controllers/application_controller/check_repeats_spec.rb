@@ -28,11 +28,11 @@ describe ApplicationController, '#check_repeats' do
     expect(task3.reload).to be_done
   end
 
-  it 'updates counters for the associated contexts' do
-    context = create(:context, user: user)
+  it 'updates counters for the associated tags' do
+    tag = create(:tag, user: user)
     create(
       :task,
-      contexts: [context],
+      tags: [tag],
       user: user,
       done: true,
       release_at: 1.week.ago,
@@ -40,6 +40,6 @@ describe ApplicationController, '#check_repeats' do
 
     expect do
       get(:index)
-    end.to change { context.reload.unfinished_tasks_count }.from(0).to(1)
+    end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
   end
 end

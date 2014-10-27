@@ -11,5 +11,5 @@ Questlog::Application.routes.draw do
   get '/privacy' => 'pages#privacy', as: :privacy
   get '/what' => 'pages#what', as: :what
 
-  get '/:slug' => 'tasks#show', as: :context
+  get '/:slug' => 'tasks#show', as: :tag
 end
