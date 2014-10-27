@@ -8,12 +8,12 @@
     path: function () {
       return '/' + this.props.tag.slug;
     },
-    currentButton: function () {
+    activeButton: function () {
       return this.path() === window.location.pathname;
     },
     className: function () {
       var classString = 'button btn choose-context';
-      if (this.currentButton()) {
+      if (this.activeButton()) {
         classString = classString + ' active';
       }
       if (this.props.current) {

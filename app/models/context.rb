@@ -46,6 +46,7 @@ class Context < ActiveRecord::Base
 
   def as_json(*)
     {
+      id: id,
       slug: slug,
       unfinished_tasks_count: unfinished_tasks_count,
       name: name,
