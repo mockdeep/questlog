@@ -9,56 +9,59 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140811030224) do
+ActiveRecord::Schema.define(version: 20140811030224) do
 
-  create_table "contexts", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "contexts", force: true do |t|
     t.string   "name"
-    t.integer  "unfinished_tasks_count", :default => 0
+    t.integer  "unfinished_tasks_count", default: 0
     t.integer  "user_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "slug"
   end
 
-  add_index "contexts", ["slug"], :name => "index_contexts_on_slug"
-  add_index "contexts", ["user_id", "unfinished_tasks_count"], :name => "index_contexts_on_user_id_and_unfinished_tasks_count"
-  add_index "contexts", ["user_id"], :name => "index_contexts_on_user_id"
+  add_index "contexts", ["slug"], name: "index_contexts_on_slug", using: :btree
+  add_index "contexts", ["user_id", "unfinished_tasks_count"], name: "index_contexts_on_user_id_and_unfinished_tasks_count", using: :btree
+  add_index "contexts", ["user_id"], name: "index_contexts_on_user_id", using: :btree
 
-  create_table "free_accounts", :force => true do |t|
-    t.string   "email",           :null => false
-    t.string   "password_digest", :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "free_accounts", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "free_accounts", ["email"], :name => "index_free_accounts_on_email", :unique => true
+  add_index "free_accounts", ["email"], name: "index_free_accounts_on_email", unique: true, using: :btree
 
-  create_table "guest_accounts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "guest_accounts", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "taggings", :force => true do |t|
-    t.integer  "context_id", :null => false
-    t.integer  "task_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "taggings", force: true do |t|
+    t.integer  "context_id", null: false
+    t.integer  "task_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "taggings", ["context_id", "task_id"], :name => "index_taggings_on_context_id_and_task_id", :unique => true
-  add_index "taggings", ["context_id"], :name => "index_taggings_on_context_id"
-  add_index "taggings", ["task_id"], :name => "index_taggings_on_task_id"
+  add_index "taggings", ["context_id", "task_id"], name: "index_taggings_on_context_id_and_task_id", unique: true, using: :btree
+  add_index "taggings", ["context_id"], name: "index_taggings_on_context_id", using: :btree
+  add_index "taggings", ["task_id"], name: "index_taggings_on_task_id", using: :btree
 
-  create_table "tasks", :force => true do |t|
+  create_table "tasks", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
     t.datetime "done_at"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "repeat_string"
-    t.integer  "skip_count",       :default => 0
+    t.integer  "skip_count",       default: 0
     t.integer  "time_estimate"
     t.integer  "priority"
     t.datetime "release_at"
@@ -66,26 +69,26 @@ ActiveRecord::Schema.define(:version => 20140811030224) do
     t.integer  "estimate_seconds"
   end
 
-  add_index "tasks", ["done_at"], :name => "index_tasks_on_done_at"
-  add_index "tasks", ["priority"], :name => "index_tasks_on_priority"
-  add_index "tasks", ["release_at"], :name => "index_tasks_on_release_at"
-  add_index "tasks", ["updated_at"], :name => "index_tasks_on_updated_at"
-  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
+  add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
+  add_index "tasks", ["priority"], name: "index_tasks_on_priority", using: :btree
+  add_index "tasks", ["release_at"], name: "index_tasks_on_release_at", using: :btree
+  add_index "tasks", ["updated_at"], name: "index_tasks_on_updated_at", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "unfinished_tasks_count", :default => 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "unfinished_tasks_count", default: 0
     t.integer  "account_id"
     t.string   "account_type"
   end
 
-  add_index "users", ["account_id", "account_type"], :name => "index_users_on_account_id_and_account_type", :unique => true
-  add_index "users", ["account_id"], :name => "index_users_on_account_id"
-  add_index "users", ["account_type"], :name => "index_users_on_account_type"
-  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", unique: true, using: :btree
+  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
+  add_index "users", ["account_type"], name: "index_users_on_account_type", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
   add_foreign_key "taggings", "contexts", name: "taggings_context_id_fk"
   add_foreign_key "taggings", "tasks", name: "taggings_task_id_fk"
