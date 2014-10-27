@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   belongs_to :user, counter_cache: :unfinished_tasks_count
 
   has_many :taggings, dependent: :destroy, inverse_of: :task
-  has_many :contexts, through: :taggings
+  has_many :tags, through: :taggings
 
   validates :priority, :time_estimate, numericality: true, allow_nil: true
   validates :title, :user, presence: true
@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   attr_reader :postpone
   attr_writer :tag_names
 
-  after_save :associate_contexts, :update_counters
+  after_save :associate_tags, :update_counters
 
   def self.next
     undone.order(:priority).order(:updated_at).first
@@ -95,18 +95,18 @@ class Task < ActiveRecord::Base
 private
 
   def increment_counters
-    contexts.each(&:increment_tasks_count!)
+    tags.each(&:increment_tasks_count!)
     User.increment_counter(:unfinished_tasks_count, user.id)
   end
 
   def decrement_counters
-    contexts.each(&:decrement_tasks_count!)
+    tags.each(&:decrement_tasks_count!)
     User.decrement_counter(:unfinished_tasks_count, user.id)
   end
 
-  def associate_contexts
+  def associate_tags
     return unless @tag_names
-    self.contexts = Context.find_or_create_all(user: user, names: @tag_names)
+    self.tags = Tag.find_or_create_all(user: user, names: @tag_names)
   end
 
   def update_counters

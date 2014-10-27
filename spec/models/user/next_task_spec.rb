@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe User, '#next_task' do
 
-  let(:context) { create(:context, user: user) }
+  let(:tag) { create(:tag, user: user) }
   let(:task1) { create(:task, user: user) }
   let(:task2) { create(:task, user: user) }
   let(:user) { create(:user) }
 
-  context 'given a context_id parameter' do
-    it 'returns the next task for that context' do
+  context 'given a tag_id parameter' do
+    it 'returns the next task for that tag' do
       task1
-      task2.contexts << context
+      task2.tags << tag
       expect(user.next_task).to eq task1
-      expect(user.next_task(context.id)).to eq task2
+      expect(user.next_task(tag.id)).to eq task2
     end
   end
 

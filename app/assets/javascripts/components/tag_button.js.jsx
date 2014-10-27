@@ -12,7 +12,7 @@
       return this.path() === window.location.pathname;
     },
     className: function () {
-      var classString = 'button btn choose-context';
+      var classString = 'button btn choose-tag';
       if (this.activeButton()) {
         classString = classString + ' active';
       }

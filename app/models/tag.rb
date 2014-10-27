@@ -1,11 +1,16 @@
-class Context < ActiveRecord::Base
+class Tag < ActiveRecord::Base
+
+  self.table_name = :contexts
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
   belongs_to :user
 
-  has_many :taggings, dependent: :destroy, inverse_of: :context
+  has_many :taggings,
+           dependent: :destroy,
+           inverse_of: :tag,
+           foreign_key: :context_id
   has_many :unfinished_tasks,
            -> { where('tasks.done_at' => nil) },
            through: :taggings,
@@ -38,10 +43,10 @@ class Context < ActiveRecord::Base
     user = options.fetch(:user)
     names = options.fetch(:names)
 
-    existing_contexts = user.contexts.where(name: names)
-    missing_names = names - existing_contexts.map(&:name)
+    existing_tags = user.tags.where(name: names)
+    missing_names = names - existing_tags.map(&:name)
     tag_params = missing_names.map { |name| { user: user, name: name } }
-    existing_contexts + create!(tag_params)
+    existing_tags + create!(tag_params)
   end
 
   def as_json(*)

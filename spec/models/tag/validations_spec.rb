@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Context, 'validations' do
+describe Tag, 'validations' do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:user) }

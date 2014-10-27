@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Context, 'associations' do
+describe Tag, 'associations' do
 
   it { should belong_to(:user) }
 

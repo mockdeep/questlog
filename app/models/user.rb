@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
   has_many :unfinished_tasks,
            -> { where('tasks.done_at' => nil) },
            class_name: 'Task'
-  has_many :contexts, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   delegate :guest?, to: :account
 
-  def next_task(context_id = nil)
-    if context_id
-      contexts.friendly.find(context_id).next_task
+  def next_task(tag_id = nil)
+    if tag_id
+      tags.friendly.find(tag_id).next_task
     else
       tasks.next
     end
@@ -22,28 +22,28 @@ class User < ActiveRecord::Base
     !account.guest? && account.email == 'lobatifricha@gmail.com'
   end
 
-  def ordered_contexts
-    contexts.ordered
+  def ordered_tags
+    tags.ordered
   end
 
   def absorb(other)
     self.tasks += other.tasks
     User.reset_counters(id, :unfinished_tasks)
-    merge_contexts(other.contexts)
+    merge_tags(other.tags)
     other.reload.destroy
   end
 
-  def merge_contexts(other_contexts)
-    context_names = contexts.pluck(:name)
-    other_contexts.each do |other_context|
-      if context_names.include?(other_context.name)
-        context = contexts.find_by_name(other_context.name)
-        other_context.tasks.each do |task|
-          task.contexts << context
+  def merge_tags(other_tags)
+    tag_names = tags.pluck(:name)
+    other_tags.each do |other_tag|
+      if tag_names.include?(other_tag.name)
+        tag = tags.find_by_name(other_tag.name)
+        other_tag.tasks.each do |task|
+          task.tags << tag
         end
-        other_context.destroy
+        other_tag.destroy
       else
-        other_context.update_attributes!(user: self)
+        other_tag.update_attributes!(user: self)
       end
     end
   end

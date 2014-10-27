@@ -4,7 +4,7 @@ describe Task, '#release_at=' do
 
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }
-  let(:context) { create(:context, user: user) }
+  let(:tag) { create(:tag, user: user) }
 
   it 'does not change "done" when it has already been changed' do
     task.update_attributes!(done: true)
@@ -25,14 +25,14 @@ describe Task, '#release_at=' do
     end
 
     it 'sets counters appropriately' do
-      task.contexts = [context]
+      task.tags = [tag]
       expect do
         task.save!
-      end.to change { context.reload.unfinished_tasks_count }.by(1)
+      end.to change { tag.reload.unfinished_tasks_count }.by(1)
       task.release_at = 2.days.from_now
       expect do
         task.save!
-      end.to change { context.reload.unfinished_tasks_count }.by(-1)
+      end.to change { tag.reload.unfinished_tasks_count }.by(-1)
     end
   end
 
@@ -44,14 +44,14 @@ describe Task, '#release_at=' do
     end
 
     it 'sets counters appropriately' do
-      task.attributes = { contexts: [context], done: true }
+      task.attributes = { tags: [tag], done: true }
       expect do
         task.save!
-      end.not_to change { context.reload.unfinished_tasks_count }
+      end.not_to change { tag.reload.unfinished_tasks_count }
       task.release_at = 2.days.from_now
       expect do
         task.save!
-      end.not_to change { context.reload.unfinished_tasks_count }
+      end.not_to change { tag.reload.unfinished_tasks_count }
     end
   end
 

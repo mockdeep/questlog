@@ -1,0 +1,3 @@
+- current_ids = task ? task.tags.pluck(:id) : []
+- tag_params = { user: current_user, tags: tags, current_ids: current_ids }
+= react_component('Questlog.TagButtons', tag_params)

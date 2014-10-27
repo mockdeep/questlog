@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 
   def show
     @new_task = current_user.tasks.new
-    @contexts = current_user.ordered_contexts.active
+    @tags = current_user.ordered_tags.active
   end
 
   def create
@@ -44,14 +44,14 @@ private
 
   def load_task
     if params[:slug] && current_user.account.guest?
-      context = current_user.contexts.find_by_slug(params[:slug])
-      if context
-        @task = context.next_task
+      tag = current_user.tags.find_by_slug(params[:slug])
+      if tag
+        @task = tag.next_task
       else
         login_first
       end
     elsif params[:slug]
-      @task = current_user.contexts.friendly.find(params[:slug]).next_task
+      @task = current_user.tags.friendly.find(params[:slug]).next_task
     else
       @task = current_user.next_task(params[:slug])
     end

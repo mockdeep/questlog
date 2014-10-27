@@ -1,5 +1,5 @@
-- if current_user.contexts.any?
-  = render 'contexts/choose', contexts: @contexts, task: @task
+- if current_user.tags.any?
+  = render 'tags/choose', tags: @tags, task: @task
 - if @task
   - content_for :title, "Task: #{@task.title}"
   = render @task
