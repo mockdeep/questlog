@@ -30,7 +30,7 @@
       if (this.props.disabled) { return; }
       this.disableButton();
       Questlog.request({
-        url: 'tasks/' + this.props.id,
+        url: 'tasks/' + this.props.task.id,
         data: {task: {postpone: this.state.postponeSeconds}},
         success: this.updateButton,
       });

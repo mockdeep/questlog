@@ -22,7 +22,7 @@
       if (this.props.disabled) { return; }
       this.disableButton();
       Questlog.request({
-        url: 'tasks/' + this.props.id,
+        url: 'tasks/' + this.props.task.id,
         data: {task: {done: true}},
         success: this.updateButton,
       });
