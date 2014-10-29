@@ -2,7 +2,9 @@
   = render 'tags/choose', tags: @tags, task: @task
 - if @task
   - content_for :title, "Task: #{@task.title}"
-  = render @task
+  = react_component('Questlog.TaskView', task: @task)
+  = react_component('Questlog.MainButtons', task: @task)
+  %hr
   #edit-form
     = react_component('Questlog.EditTaskForm', task: @task)
 - else
