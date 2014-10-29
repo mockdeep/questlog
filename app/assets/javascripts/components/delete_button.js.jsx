@@ -8,7 +8,7 @@
       event.stopPropagation();
       if (confirm('Delete this task?')) {
         Questlog.request({
-          url: 'tasks/' + this.props.id,
+          url: 'tasks/' + this.props.task.id,
           method: 'delete'
         });
       }
