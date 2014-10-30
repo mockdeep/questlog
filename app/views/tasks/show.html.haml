@@ -1,7 +1,6 @@
 - if current_user.tags.any?
   = render 'tags/choose', tags: @tags, task: @task
 - if @task
-  - content_for :title, "Task: #{@task.title}"
   = react_component('Questlog.TaskView', task: @task)
   = react_component('Questlog.MainButtons', task: @task)
   %hr
