@@ -14,7 +14,7 @@
         classString = classString + ' priority-' + this.props.task.priority;
       }
       if (this.props.task.skip_count >= 15) {
-        classString = classString + ' over_skipped';
+        classString = classString + ' over-skipped';
       }
       return classString;
     },

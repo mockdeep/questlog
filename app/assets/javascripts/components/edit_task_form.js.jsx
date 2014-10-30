@@ -31,14 +31,14 @@
     },
     render: function () {
       return (
-        <form className='edit_task' id='edit_task' onSubmit={this.saveTask}>
+        <form onSubmit={this.saveTask}>
           <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row-fluid'>
             <div className='span6'>
               <input type='text'
                      autoComplete='off'
                      className='span12'
-                     id='edit_title'
+                     id='edit-title'
                      onChange={this.setTitle}
                      value={this.state.taskTitle}
                      ref='title' />

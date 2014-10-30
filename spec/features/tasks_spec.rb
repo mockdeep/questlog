@@ -11,7 +11,7 @@ describe 'Tasks page', js: true do
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       visit '/'
-      fill_in 'new_title', with: 'do laundry'
+      fill_in 'new-title', with: 'do laundry'
       click_button 'Add Task'
       expect(task_title).to have_content('do laundry')
       click_link 'Sign up'
@@ -27,7 +27,7 @@ describe 'Tasks page', js: true do
 
     it 'associates tasks with an existing user' do
       visit '/'
-      fill_in 'new_title', with: 'do laundry'
+      fill_in 'new-title', with: 'do laundry'
       click_button 'Add Task'
       expect(task_title).to have_content('do laundry')
       click_link 'Log in'
@@ -45,13 +45,13 @@ describe 'Tasks page', js: true do
     visit '/'
     expect(page).to_not have_button('Done')
     expect(page).to_not have_selector('#postpone')
-    fill_in 'new_title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
     within('#new-form') do
-      fill_in 'new_title', with: 'feed dog'
+      fill_in 'new-title', with: 'feed dog'
     end
     click_button 'Add Task'
     expect(page).to have_content('Task added')
@@ -75,7 +75,7 @@ describe 'Tasks page', js: true do
 
   it 'allows a free user to manage tasks' do
     feature_login_as(user)
-    fill_in 'new_title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
@@ -101,19 +101,19 @@ describe 'Tasks page', js: true do
 
   it 'allows a user to edit a task' do
     feature_login_as(user)
-    fill_in 'new_title', with: '#at-home do laundry #chore !2 ~1h'
+    fill_in 'new-title', with: '#at-home do laundry #chore !2 ~1h'
     click_button 'Add Task'
     expect(task_title).to have_content('do laundry')
     expect(page).not_to have_selector(repeat_selector)
     find('#edit-task').click
-    fill_in 'edit_title', with: 'do laundry *1w'
+    fill_in 'edit-title', with: 'do laundry *1w'
     click_button 'Update Task'
     expect(page).to have_selector(repeat_selector)
   end
 
   it 'parses and adds attributes on tasks' do
     feature_login_as(user)
-    fill_in 'new_title', with: '#at-home do laundry #chore !2 *1w ~1h'
+    fill_in 'new-title', with: '#at-home do laundry #chore !2 *1w ~1h'
     click_button 'Add Task'
     expect(page).to have_content('at-home (1)')
     expect(page).to have_content('chore (1)')

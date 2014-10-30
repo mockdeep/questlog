@@ -1,7 +1,7 @@
 $(document).ready(function () {
   'use strict';
 
-  $('#new_title').focus();
+  $('#new-title').focus();
 
   var editIcon = $('#edit-task');
   editIcon.click(function () {
@@ -9,14 +9,14 @@ $(document).ready(function () {
       $('#new-form').fadeOut(200, function () {
         $('#buttons').fadeOut(200, function () {
           $('#edit-form').fadeIn(200);
-          $('#edit_title').focus();
+          $('#edit-title').focus();
         });
       });
     } else {
       $('#edit-form').fadeOut(200, function () {
         $('#buttons').fadeIn(200, function () {
           $('#new-form').fadeIn(200);
-          $('#new_title').focus();
+          $('#new-title').focus();
         });
       });
     }
