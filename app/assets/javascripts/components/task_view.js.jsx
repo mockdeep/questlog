@@ -5,6 +5,9 @@
   'use strict';
 
   Questlog.TaskView = React.createClass({
+    componentDidMount: function () {
+      document.title = 'Task: ' + this.props.task.title;
+    },
     className: function () {
       var classString = 'row-fluid';
       if (this.props.task.priority) {
