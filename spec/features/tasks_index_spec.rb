@@ -8,7 +8,7 @@ describe 'tasks index page', js: true do
 
   it 'allows the user to mark tasks as done' do
     visit '/'
-    fill_in 'new_title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
     expect(page).to have_content('Task added')
     expect(page).not_to have_content('Task added')
@@ -20,7 +20,7 @@ describe 'tasks index page', js: true do
 
   it 'allows the user to delete tasks' do
     visit '/'
-    fill_in 'new_title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
     expect(task_title).to have_content('do laundry')
     expect(page).to have_content('Task added')

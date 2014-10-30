@@ -25,14 +25,14 @@
     },
     render: function () {
       return (
-        <form className='new_task' id='new_task' onSubmit={this.saveTask}>
+        <form onSubmit={this.saveTask}>
           <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row-fluid'>
             <div className='span6'>
               <input type='text'
                      autoComplete='off'
                      className='span12'
-                     id='new_title'
+                     id='new-title'
                      ref='title' />
             </div>
             <div className='span6'>

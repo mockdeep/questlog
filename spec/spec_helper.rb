@@ -95,7 +95,7 @@ def feature_login_as(user)
 end
 
 def add_task(task_title)
-  fill_in 'new_title', with: task_title
+  fill_in 'new-title', with: task_title
   click_button 'Add Task'
 end
 

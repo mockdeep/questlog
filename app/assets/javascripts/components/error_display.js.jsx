@@ -15,7 +15,7 @@
       return (
         <div className='row-fluid'>
           <div className='span12'>
-            <div className='.error_messages'>
+            <div className='.error-messages'>
               <ul>
                 {this.errorItems()}
               </ul>
