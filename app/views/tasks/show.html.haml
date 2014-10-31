@@ -1,11 +1,7 @@
 - if current_user.tags.any?
   = render 'tags/choose', tags: @tags, task: @task
 - if @task
-  = react_component('Questlog.TaskView', task: @task)
-  = react_component('Questlog.MainButtons', task: @task)
-  %hr
-  #edit-form
-    = react_component('Questlog.EditTaskForm', task: @task)
+  = react_component('Questlog.TaskDisplay', task: @task)
 - else
   - content_for :title, '(no tasks!)'
 

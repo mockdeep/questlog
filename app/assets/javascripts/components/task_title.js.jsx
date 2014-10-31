@@ -4,7 +4,7 @@
 
   'use strict';
 
-  Questlog.TaskView = React.createClass({
+  Questlog.TaskTitle = React.createClass({
     componentDidMount: function () {
       document.title = 'Task: ' + this.props.task.title;
     },
