@@ -1,7 +1,7 @@
 - if current_user.tags.any?
   = render 'tags/choose', tags: @tags, task: @task
 - if @task
-  = react_component('Questlog.TaskDisplay', task: @task)
+  = react_component('Questlog.TaskDisplay')
 - else
   - content_for :title, '(no tasks!)'
 

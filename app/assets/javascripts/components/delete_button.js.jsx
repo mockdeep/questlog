@@ -9,7 +9,8 @@
       if (confirm('Delete this task?')) {
         Questlog.request({
           url: 'tasks/' + this.props.task.id,
-          method: 'delete'
+          method: 'delete',
+          success: this.props.loadTask
         });
       }
     },
