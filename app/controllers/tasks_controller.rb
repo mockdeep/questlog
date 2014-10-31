@@ -10,6 +10,11 @@ class TasksController < ApplicationController
   def show
     @new_task = current_user.tasks.new
     @tags = current_user.ordered_tags.active
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @task }
+    end
   end
 
   def create

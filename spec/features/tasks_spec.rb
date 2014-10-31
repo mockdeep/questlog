@@ -62,15 +62,14 @@ describe 'Tasks page', js: true do
     expect(task_title).to have_content('feed dog')
     expect(task_title).to_not have_content('do laundry')
     click_button 'Done'
-    expect(page).to_not have_selector('#postpone')
+    expect(task_title).to have_content('(no tasks!)')
 
     Timecop.travel(1.hour.from_now)
 
     visit '/'
     expect(task_title).to have_content('do laundry')
     click_button 'Done'
-    expect(page).to_not have_button('Done')
-    expect(page).to_not have_selector('#postpone')
+    expect(task_title).to have_content('(no tasks!)')
   end
 
   it 'allows a free user to manage tasks' do
@@ -90,7 +89,7 @@ describe 'Tasks page', js: true do
     expect(page).to have_content('online (1)')
     expect(task_title.text).to eq 'check email'
     click_button 'Done'
-    expect(page).not_to have_selector('#task')
+    expect(task_title).to have_content('(no tasks!)')
 
     Timecop.travel(10.minutes.from_now)
 

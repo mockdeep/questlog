@@ -27,6 +27,7 @@
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
         data: {id: this.props.id, task: {title: this.state.taskTitle.trim()}},
+        success: this.props.loadTask
       });
     },
     render: function () {

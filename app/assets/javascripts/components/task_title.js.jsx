@@ -32,7 +32,7 @@
       return (
         <div id='task' className={this.className()}>
           <div className='span1'>
-            <Questlog.DeleteButton task={this.props.task} />
+            <Questlog.DeleteButton task={this.props.task} loadTask={this.props.loadTask} />
           </div>
           <div className='span10 title' title={this.title()}>
             {this.props.task.title}

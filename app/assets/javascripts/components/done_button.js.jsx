@@ -15,7 +15,7 @@
 
     updateButton: function () {
       this.setState({buttonContent: 'Success!'});
-      Questlog.reloadPage();
+      this.props.loadTask();
     },
 
     markDone: function () {
@@ -27,7 +27,11 @@
         success: this.updateButton,
       });
     },
-
+    componentWillReceiveProps: function (newProps) {
+      if (!newProps.disabled) {
+        this.replaceState(this.getInitialState());
+      }
+    },
     render: function () {
       return (
         <input type='button'
