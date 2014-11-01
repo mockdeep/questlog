@@ -66,7 +66,7 @@
       );
     },
 
-    classNames: 'btn btn-info btn-large btn-block',
+    className: 'btn btn-info btn-large btn-block',
 
     componentWillReceiveProps: function (newProps) {
       if (!newProps.disabled) {
@@ -78,7 +78,7 @@
       return (
         <div id='postpone'
              disabled={this.props.disabled}
-             className={this.classNames}
+             className={this.className}
              onClick={this.postponeTask}>
           <label>{this.state.labelContent}</label>
           <select onChange={this.storeVal}
