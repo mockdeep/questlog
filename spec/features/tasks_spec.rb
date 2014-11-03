@@ -22,7 +22,7 @@ describe 'Tasks page', js: true do
       expect(page).to have_content('Log out')
       expect(page).to have_content('do laundry')
       click_link 'Log out'
-      expect(page).not_to have_selector('#task')
+      expect(task_title).to have_content('(no tasks!)')
     end
 
     it 'associates tasks with an existing user' do
@@ -37,14 +37,14 @@ describe 'Tasks page', js: true do
       expect(page).to have_content('Log out')
       expect(task_title).to have_content('do laundry')
       click_link 'Log out'
-      expect(page).not_to have_selector('#task')
+      expect(task_title).to have_content('(no tasks!)')
     end
   end
 
   it 'allows a guest user to manage tasks' do
     visit '/'
     expect(page).to_not have_button('Done')
-    expect(page).to_not have_selector('#postpone')
+    expect(task_title).to have_content('(no tasks!)')
     fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
     expect(page).to have_button('Done')

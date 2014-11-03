@@ -4,7 +4,6 @@
 
   'use strict';
 
-  // next step need to move `disable()` up to here, and re-enable on updateTask
   Questlog.TaskDisplay = React.createClass({
     loadTask: function (callback) {
       Questlog.request({
@@ -15,17 +14,25 @@
       });
     },
     updateTask: function (data) {
-      data = data || {title: '(no tasks!)'};
-      this.setState({task: data, disabled: false});
+      if (data) {
+        this.setState({task: data, disabled: false});
+      } else {
+        this.setState({task: {title: '(no tasks!)'}, disabled: true});
+      }
+      this.setTitle();
     },
     getInitialState: function () {
-      return {task: {}, disabled: false};
+      return {task: {title: 'Loading...'}, disabled: true};
     },
     componentDidMount: function () {
+      this.setTitle();
       this.loadTask();
     },
     disable: function () {
       this.setState({disabled: true});
+    },
+    setTitle: function () {
+      document.title = 'Task: ' + this.state.task.title;
     },
     render: function () {
       return (
@@ -37,7 +44,8 @@
                                 disable={this.disable} />
           <hr />
           <div id='edit-form'>
-            <Questlog.EditTaskForm task={this.state.task} loadTask={this.loadTask} />
+            <Questlog.EditTaskForm task={this.state.task}
+                                   loadTask={this.loadTask} />
           </div>
         </div>
       );
