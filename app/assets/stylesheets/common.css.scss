@@ -1,6 +1,13 @@
 .tag-buttons {
   div {
     display: inline-block;
+    padding: 3px;
+  }
+}
+
+#buttons {
+  > div {
+    padding: 3px;
   }
 }
 
@@ -28,8 +35,31 @@
   i {
     padding-top: 4px;
   }
+
+  i.fa-repeat {
+    padding-top: 8px;
+    font-size: 25px;
+  }
+
   .title {
     padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .emblems {
+    float: right;
+  }
+
+  .delete-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+  }
+
+  .edit-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    float: right;
   }
 }
 

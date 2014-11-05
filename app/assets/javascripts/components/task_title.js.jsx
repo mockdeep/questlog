@@ -20,7 +20,7 @@
     },
     repeatIcon: function () {
       if (this.props.task.repeat_seconds) {
-        return <i className='fa fa-repeat' />;
+        return <i className='fa fa-repeat' title='task repeats' />;
       } else {
         return '';
       }
@@ -28,15 +28,19 @@
     render: function () {
       return (
         <div id='task' className={this.className()}>
-          <div className='span1'>
+          <div className='delete-button'>
             <Questlog.DeleteButton task={this.props.task} loadTask={this.props.loadTask} />
           </div>
-          <div className='span10 title' title={this.title()}>
-            {this.props.task.title}
-            {this.repeatIcon()}
-          </div>
-          <div className='span1'>
+          <div className='edit-button'>
             <i className='fa fa-arrow-down' id='edit-task' title='edit task' />
+          </div>
+          <div className='span10' title={this.title()}>
+            <div className='emblems'>
+              {this.repeatIcon()}
+            </div>
+            <div className='title'>
+              {this.props.task.title}
+            </div>
           </div>
         </div>
       );
