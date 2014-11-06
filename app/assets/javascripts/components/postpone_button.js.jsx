@@ -70,7 +70,7 @@
 
     componentWillReceiveProps: function (newProps) {
       if (!newProps.disabled) {
-        this.replaceState(this.getInitialState());
+        this.setState({labelContent: 'Postpone for:'});
       }
     },
 
