@@ -15,7 +15,7 @@
     },
     updateTask: function (data) {
       if (data) {
-        this.setState({task: data, disabled: false});
+        this.setState({task: data.task, disabled: false});
       } else {
         this.setState({task: {title: '(no tasks!)'}, disabled: true});
       }

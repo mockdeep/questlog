@@ -92,6 +92,10 @@ class Task < ActiveRecord::Base
     @decrement_counters = true if changed_to_done?
   end
 
+  def tag_names
+    @tag_names ||= tags.pluck(:name)
+  end
+
 private
 
   def increment_counters
