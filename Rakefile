@@ -4,10 +4,12 @@
 # available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-require 'rubocop/rake_task'
-
 Questlog::Application.load_tasks
 
-RuboCop::RakeTask.new
+if Rails.env.test?
+  require 'rubocop/rake_task'
 
-task default: [:spec, :rubocop]
+  RuboCop::RakeTask.new
+
+  task default: [:spec, :rubocop]
+end
