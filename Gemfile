@@ -8,6 +8,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '~> 4.1.5'
 
+gem 'active_model_serializers'
 gem 'bcrypt'
 gem 'dalli'
 gem 'foreigner'
@@ -41,6 +42,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'quiet_assets'
+  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
