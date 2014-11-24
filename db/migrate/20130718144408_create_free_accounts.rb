@@ -1,4 +1,5 @@
 class CreateFreeAccounts < ActiveRecord::Migration
+
   def change
     create_table :free_accounts do |t|
       t.string :email, null: false
@@ -8,4 +9,5 @@ class CreateFreeAccounts < ActiveRecord::Migration
     end
     add_index :free_accounts, :email, unique: true
   end
+
 end
