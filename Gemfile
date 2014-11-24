@@ -49,11 +49,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
-  gem 'jasmine'
   gem 'rspec-rails'
   gem 'guard-rubocop'
   gem 'guard-zeus'
   gem 'shoulda-matchers', require: false
+  gem 'teaspoon'
 end
 
 group :test do
