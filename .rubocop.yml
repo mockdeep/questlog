@@ -18,17 +18,20 @@ Output:
 
 CollectionMethods:
   PreferredMethods:
-    collect: 'map'
-    collect!: 'map!'
-    inject: 'reduce'
-    find: 'detect'
-    find_all: 'select'
+    collect: map
+    collect!: map!
+    inject: reduce
+    find: detect
+    find_all: select
 
 Documentation:
   Enabled: false
 
-EmptyLinesAroundBody:
-  Enabled: false
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Style/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines
 
 TrailingComma:
   EnforcedStyleForMultiline: comma
@@ -38,3 +41,6 @@ TrailingComma:
 
 MethodLength:
   Max: 12
+
+Metrics/AbcSize:
+  Max: 26

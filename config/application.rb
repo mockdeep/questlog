@@ -5,9 +5,11 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Questlog
+
   class Application < Rails::Application
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
   end
+
 end
