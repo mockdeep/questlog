@@ -1,7 +1,5 @@
 class Tag < ActiveRecord::Base
 
-  self.table_name = :contexts
-
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -9,8 +7,7 @@ class Tag < ActiveRecord::Base
 
   has_many :taggings,
            dependent: :destroy,
-           inverse_of: :tag,
-           foreign_key: :context_id
+           inverse_of: :tag
   has_many :unfinished_tasks,
            -> { where('tasks.done_at' => nil) },
            through: :taggings,
@@ -21,7 +18,7 @@ class Tag < ActiveRecord::Base
   validates :name, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(:name) }
-  scope :active, -> { where('contexts.unfinished_tasks_count > 0') }
+  scope :active, -> { where('tags.unfinished_tasks_count > 0') }
 
   def any?
     unfinished_tasks_count > 0
