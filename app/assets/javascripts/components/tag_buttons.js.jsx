@@ -5,11 +5,24 @@
   'use strict';
 
   Questlog.TagButtons = React.createClass({
+    getInitialState: function () {
+      return {tags: []};
+    },
+    componentDidMount: function () {
+      Questlog.request({
+        method: 'get',
+        url: '/tags',
+        success: this.updateTags
+      });
+    },
+    updateTags: function (data) {
+      this.setState({tags: data.tags});
+    },
     isCurrent: function (tag) {
       return _.any(this.currentIds(), function (id) { return tag.id === id });
     },
     tagButtons: function () {
-      return _.map(this.props.tags, this.tagButton);
+      return _.map(this.state.tags, this.tagButton);
     },
     tagButton: function (tag) {
       return (<Questlog.TagButton tag={tag}
@@ -22,7 +35,6 @@
     render: function () {
       return (
         <div className='tag-buttons'>
-          <Questlog.TagButton tag={this.props.user} />
           {this.tagButtons()}
         </div>
       );

@@ -9,8 +9,7 @@
       Questlog.request({
         method: 'get',
         url: window.location.pathname,
-        success: this.updateTask,
-        error: Questlog.logError
+        success: this.updateTask
       });
     },
     updateTask: function (data) {
