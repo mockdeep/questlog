@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124032812) do
+ActiveRecord::Schema.define(version: 20141129014048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,5 +92,9 @@ ActiveRecord::Schema.define(version: 20141124032812) do
 
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fk"
   add_foreign_key "taggings", "tasks", name: "taggings_task_id_fk"
+
+  add_foreign_key "tags", "users", name: "tags_user_id_fk"
+
+  add_foreign_key "tasks", "users", name: "tasks_user_id_fk"
 
 end
