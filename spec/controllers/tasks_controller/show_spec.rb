@@ -29,21 +29,6 @@ describe TasksController, '#show' do
     end
   end
 
-  it 'skips tags without tasks' do
-    tag
-    get(:show)
-    expect(assigns(:tags)).to eq []
-  end
-
-  it 'sets tags with tasks' do
-    expect do
-      task.tags << tag
-    end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
-
-    get(:show)
-    expect(assigns(:tags)).to eq [tag]
-  end
-
   context 'when the requested tag does not exist' do
     context 'when the user is not logged in' do
 

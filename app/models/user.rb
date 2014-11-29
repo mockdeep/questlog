@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
 
   def as_json(*)
     {
+      id: 0,
       name: 'All',
       unfinished_tasks_count: unfinished_tasks_count,
       slug: '',

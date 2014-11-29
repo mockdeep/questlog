@@ -1,6 +1,4 @@
-- if current_user.tags.any?
-  = render 'tags/choose', tags: @tags, task: @task
-
+= react_component('Questlog.TagButtons')
 = react_component('Questlog.TaskDisplay')
 
 #new-form
