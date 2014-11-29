@@ -5,12 +5,20 @@
   'use strict';
 
   Questlog.TaskDisplay = React.createClass({
-    loadTask: function (callback) {
+    loadTask: function () {
       Questlog.request({
         method: 'get',
         url: window.location.pathname,
         success: this.updateTask
       });
+      Questlog.request({
+        method: 'get',
+        url: '/tags',
+        success: this.updateTags
+      });
+    },
+    updateTags: function (data) {
+      this.setState({tags: data.tags});
     },
     updateTask: function (data) {
       if (data) {
@@ -21,7 +29,7 @@
       this.setTitle();
     },
     getInitialState: function () {
-      return {task: {title: 'Loading...'}, disabled: true};
+      return {task: {title: 'Loading...'}, disabled: true, tags: []};
     },
     componentDidMount: function () {
       this.setTitle();
@@ -36,6 +44,7 @@
     render: function () {
       return (
         <div>
+          <Questlog.TagButtons task={this.state.task} tags={this.state.tags} />
           <Questlog.TaskTitle task={this.state.task} loadTask={this.loadTask} />
           <Questlog.MainButtons task={this.state.task}
                                 loadTask={this.loadTask}
