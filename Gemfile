@@ -21,7 +21,7 @@ gem 'pg'
 gem 'rack-mini-profiler'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'stripe'
-gem 'thin'
+gem 'unicorn'
 
 gem 'rails-assets-es5-shim'
 gem 'rails-assets-reqwest'
