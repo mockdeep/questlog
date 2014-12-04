@@ -8,6 +8,7 @@ Questlog::Application.routes.draw do
   resources :tasks, only: [:index, :create, :update, :destroy]
   resources :bulk_tasks, only: [:new, :create]
   resources :free_accounts, only: [:new, :create]
+  resources :charges, only: [:new, :create]
 
   get '/privacy' => 'pages#privacy', as: :privacy
   get '/what' => 'pages#what', as: :what

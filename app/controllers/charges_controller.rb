@@ -1,0 +1,39 @@
+class ChargesController < ApplicationController
+
+  CHARGE_AMOUNT = 500 # cents
+
+  def new
+  end
+
+  def create
+    current_user.update_attributes!(customer_id: customer.id)
+    create_charge
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to charges_path
+  end
+
+private
+
+  def customer
+    @customer ||= Stripe::Customer.create(customer_params)
+  end
+
+  def customer_params
+    { email: params[:stripeEmail], card: params[:stripeToken] }
+  end
+
+  def create_charge
+    Stripe::Charge.create(charge_params)
+  end
+
+  def charge_params
+    {
+      customer: customer.id,
+      amount: CHARGE_AMOUNT,
+      description: 'Questlog account upgrade',
+      currency: 'usd',
+    }
+  end
+
+end

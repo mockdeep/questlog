@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129014048) do
+ActiveRecord::Schema.define(version: 20141204153023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,11 +83,13 @@ ActiveRecord::Schema.define(version: 20141129014048) do
     t.integer  "unfinished_tasks_count", default: 0
     t.integer  "account_id"
     t.string   "account_type"
+    t.string   "customer_id"
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", unique: true, using: :btree
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["account_type"], name: "index_users_on_account_type", using: :btree
+  add_index "users", ["customer_id"], name: "index_users_on_customer_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fk"

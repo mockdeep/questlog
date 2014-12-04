@@ -1,0 +1,8 @@
+= form_tag charges_path do
+  %article
+    %label.amount
+      %span Amount: $5.00
+
+  - checkout_source = 'https://checkout.stripe.com/checkout.js'
+  - stripe_data = { key: Rails.configuration.stripe[:publishable_key], description: 'Subscription', amount: 500 }
+  %script.stripe-button{ src: checkout_source, data: stripe_data }
