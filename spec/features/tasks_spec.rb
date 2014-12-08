@@ -104,10 +104,25 @@ describe 'Tasks page', js: true do
     click_button 'Add Task'
     expect(task_title).to have_content('do laundry')
     expect(page).not_to have_selector(repeat_selector)
-    find('#edit-task').click
-    fill_in 'edit-title', with: 'do laundry *1w'
+    find('.edit-button').click
+    fill_in 'edit-title', with: 'do lots of laundry *1w'
     click_button 'Update Task'
+    expect(task_title).to have_content('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
+  end
+
+  it 'allows a user to delete a task' do
+    feature_login_as(user)
+    add_task('do laundry')
+    expect(page).to have_content('Task added')
+    expect(page).not_to have_content('Task added')
+    expect(task_title).to have_content('do laundry')
+    add_task('feed dog')
+    expect(page).to have_content('Task added')
+    expect(page).not_to have_content('Task added')
+    expect(task_title).to have_content('do laundry')
+    find('.delete-button').click
+    expect(task_title).to have_content('feed dog')
   end
 
   it 'parses and adds attributes on tasks' do
