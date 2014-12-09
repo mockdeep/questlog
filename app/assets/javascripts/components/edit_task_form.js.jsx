@@ -27,8 +27,13 @@
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
         data: {id: this.props.id, task: {title: this.state.taskTitle.trim()}},
-        success: Questlog.reloadPage()
+        success: this.loadTask
       });
+    },
+    loadTask: function () {
+      $('#edit-task').click();
+      this.props.loadTask();
+      this.replaceState(this.getInitialState());
     },
     componentWillReceiveProps: function (newProps) {
       this.setState({taskTitle: newProps.task.title});
