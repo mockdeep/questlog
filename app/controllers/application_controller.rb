@@ -33,7 +33,7 @@ private
 
   def check_repeats
     return unless current_user.persisted?
-    current_user.tasks.ready_to_release.each(&:release!)
+    current_user.tasks.ready_to_release.order(:release_at).each(&:release!)
   end
 
   def find_user
