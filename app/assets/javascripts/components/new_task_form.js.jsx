@@ -25,7 +25,7 @@
     },
     render: function () {
       return (
-        <form onSubmit={this.saveTask}>
+        <form onSubmit={this.saveTask} id='new-form'>
           <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row-fluid'>
             <div className='span6'>
