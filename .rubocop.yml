@@ -44,3 +44,7 @@ MethodLength:
 
 Metrics/AbcSize:
   Max: 26
+
+# https://github.com/bbatsov/rubocop/issues/1568
+EmptyLinesAroundBlockBody:
+  Enabled: false
