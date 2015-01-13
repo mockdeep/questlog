@@ -18,7 +18,7 @@
     saveTask: function (event) {
       event.preventDefault();
       if (this.state.disabled) { return; }
-      if (this.state.taskTitle.trim() == '') {
+      if (this.state.taskTitle.trim() === '') {
         var newErrors = this.state.errors.concat('task title can\'t be blank');
         this.setState({errors: newErrors});
         return;
