@@ -1,17 +1,25 @@
 /** @jsx React.DOM */
 
 (function () {
+
   'use strict';
 
   Questlog.NewTaskForm = React.createClass({
     getInitialState: function () {
-      return {buttonContent: 'Add Task', disabled: false, errors: []};
+      return {
+        buttonContent: 'Add Task',
+        disabled: false,
+        errors: [],
+        taskTitle: ''
+      };
+    },
+    setTitle: function (event) {
+      this.setState({taskTitle: event.target.value});
     },
     saveTask: function (event) {
       event.preventDefault();
       if (this.state.disabled) { return; }
-      var taskTitle = this.refs.title.getDOMNode().value.trim();
-      if (taskTitle === '') {
+      if (this.state.taskTitle.trim() === '') {
         var newErrors = this.state.errors.concat('task title can\'t be blank');
         this.setState({errors: newErrors});
         return;
@@ -20,8 +28,13 @@
       Questlog.request({
         url: 'tasks',
         method: 'post',
-        data: {task: {title: taskTitle}},
+        data: {task: {title: this.state.taskTitle.trim()}},
+        success: this.loadTask
       });
+    },
+    loadTask: function () {
+      this.props.loadTask();
+      this.replaceState(this.getInitialState());
     },
     render: function () {
       return (
@@ -33,6 +46,8 @@
                      autoComplete='off'
                      className='span12'
                      id='new-title'
+                     onChange={this.setTitle}
+                     value={this.state.taskTitle}
                      ref='title' />
             </div>
             <div className='span6'>
@@ -46,4 +61,5 @@
       );
     }
   });
+
 })();
