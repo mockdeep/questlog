@@ -1,4 +1,4 @@
-Questlog::Application.configure do
+Rails.application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 
@@ -18,6 +18,12 @@ Questlog::Application.configure do
   config.active_record.migration_error = :page_load
 
   config.assets.debug = true
+
+  config.assets.digest = true
+
+  config.assets.raise_runtime_errors = true
+
+  config.action_view.raise_on_missing_translations = true
 
   config.after_initialize do
     Bullet.alert = true

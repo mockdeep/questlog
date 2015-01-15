@@ -1,4 +1,4 @@
-Questlog::Application.configure do
+Rails.application.configure do
 
   config.cache_classes = true
 
@@ -15,17 +15,24 @@ Questlog::Application.configure do
                          socket_timeout: 1.5,
                          socket_failure_delay: 0.2,
                        }
+  # Enable Rack::Cache to put a simple HTTP cache in front of your application
+  # Add `rack-cache` to your Gemfile before enabling this.
+  # For large-scale production use, consider using a caching reverse proxy like
+  # NGINX, varnish or squid.
+  # config.action_dispatch.rack_cache = true
 
-  config.serve_static_assets = false
+  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
+
   config.assets.compile = false
+
   config.assets.digest = true
-  config.assets.version = '1.0'
 
   config.force_ssl = true
 
-  config.log_level = :info
+  config.log_level = :debug
 
   config.i18n.fallbacks = true
 
@@ -33,4 +40,5 @@ Questlog::Application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
+  config.active_record.dump_schema_after_migration = false
 end

@@ -1,6 +1,6 @@
 class BulkTask
 
-  # extend ActiveModel::Naming
+  extend ActiveModel::Naming
   include ActiveModel::Conversion
 
   attr_reader :id, :titles
