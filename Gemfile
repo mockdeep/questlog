@@ -6,7 +6,7 @@ ruby '2.1.5'
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 4.1.5'
+gem 'rails', '~> 4.2.0'
 
 gem 'active_model_serializers', '~> 0.8.1'
 gem 'bcrypt'
