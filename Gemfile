@@ -8,7 +8,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '~> 4.1.5'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.8.1'
 gem 'bcrypt'
 gem 'dalli'
 gem 'foreigner'
