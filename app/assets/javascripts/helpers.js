@@ -16,6 +16,12 @@
     reqwest(mergeOptions(defaultRequestOptions(), options));
   };
 
+  Questlog.flash = function (status, message) {
+    var $myFlash = $('<div />', { class: 'flash-' + status, text: message });
+    $('#flashes').append($myFlash);
+    $('[class^=flash-]').fadeOut(1500);
+  };
+
   function defaultRequestOptions() {
     return {
       type: 'json',
