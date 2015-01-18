@@ -33,6 +33,7 @@
       });
     },
     loadTask: function () {
+      Questlog.flash('success', 'Task added');
       this.props.loadTask();
       this.replaceState(this.getInitialState());
     },

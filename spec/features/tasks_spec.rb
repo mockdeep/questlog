@@ -87,7 +87,7 @@ describe 'Tasks page', js: true do
     feature_login_as(user)
     add_task('check email #online *5mi')
     expect(page).to have_content('online (1)')
-    expect(task_title.text).to eq 'check email'
+    expect(task_title).to have_content('check email')
     click_button 'Done'
     expect(task_title).to have_content('(no tasks!)')
 
@@ -95,7 +95,7 @@ describe 'Tasks page', js: true do
 
     visit '/'
     expect(page).to have_selector('#task')
-    expect(task_title.text).to eq 'check email'
+    expect(task_title).to have_content('check email')
   end
 
   it 'allows a user to edit a task' do
