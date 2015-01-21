@@ -51,7 +51,6 @@ group :development, :test do
   gem 'guard'
   gem 'rspec-rails'
   gem 'guard-rubocop'
-  gem 'guard-zeus'
   gem 'shoulda-matchers', require: false
   gem 'teaspoon'
 end
