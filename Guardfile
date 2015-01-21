@@ -2,13 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 group :everything, halt_on_fail: true do
-  guard 'zeus' do
-    watch(%r{^spec/.+_spec\.rb$})
-    watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}" }
-    watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}" }
-  end
-
-  guard 'rspec', cmd: 'zeus rspec', failed_mode: :keep do
+  guard 'rspec', cmd: 'spring rspec', failed_mode: :keep do
     watch(%r{^spec/.+_spec\.rb$})
 
     watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}" }
