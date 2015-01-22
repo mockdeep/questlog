@@ -15,11 +15,7 @@ Rails.application.configure do
                          socket_timeout: 1.5,
                          socket_failure_delay: 0.2,
                        }
-  # Enable Rack::Cache to put a simple HTTP cache in front of your application
-  # Add `rack-cache` to your Gemfile before enabling this.
-  # For large-scale production use, consider using a caching reverse proxy like
-  # NGINX, varnish or squid.
-  # config.action_dispatch.rack_cache = true
+  config.action_dispatch.rack_cache = true
 
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
