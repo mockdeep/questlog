@@ -10,6 +10,7 @@ group :everything, halt_on_fail: true do
   end
 
   guard :rubocop, all_on_start: false, cli: ['-D'] do
+    watch(/bin\/*/)
     watch(/.+\.rb$/)
     watch(/.+\.rake$/)
     watch(/.+\.ru$/)
