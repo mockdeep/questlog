@@ -28,4 +28,39 @@ describe 'tasks index page', js: true do
     expect(current_tasks).to have_content('feed dog')
   end
 
+  it 'highlights priority tasks as red' do
+    visit '/'
+    add_task('do laundry')
+    expect(page.find('#task')['class']).not_to include('priority-1')
+    add_task('feed dog !1 #home')
+    expect(page.find('#task')['class']).to include('priority-1')
+    within('.tag-buttons') do
+      button = find('.button', text: 'home')
+      expect(button['class']).to include('priority-1')
+    end
+    add_task('eat breakfast !2 #home')
+    add_task('go to work !3 #errand')
+    within('.tag-buttons') do
+      button = find('.button', text: 'home')
+      expect(button['class']).to include('priority-1')
+      expect(button['class']).not_to include('priority-2')
+      button = find('.button', text: 'errand')
+      expect(button['class']).to include('priority-3')
+    end
+    expect(page.find('#task')['class']).to include('priority-1')
+    click_button('Done')
+    expect(task_title).to have_content('eat breakfast')
+    within('.tag-buttons') do
+      button = find('.button', text: 'home')
+      expect(button['class']).to include('priority-2')
+      expect(button['class']).not_to include('priority-1')
+    end
+    expect(task_title).to have_content('eat breakfast')
+    expect(page.find('#task')['class']).not_to include('priority-1')
+    expect(page.find('#task')['class']).to include('priority-2')
+    click_button('Done')
+    expect(task_title).to have_content('go to work')
+    expect(page.find('#task')['class']).to include('priority-3')
+  end
+
 end

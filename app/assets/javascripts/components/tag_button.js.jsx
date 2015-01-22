@@ -19,6 +19,9 @@
       if (this.props.current) {
         classString = classString + ' current';
       }
+      if (this.props.tag.priority) {
+        classString = classString + ' priority-' + this.props.tag.priority + '-btn';
+      }
       return classString;
     },
     unfinishedTasksCount: function () {

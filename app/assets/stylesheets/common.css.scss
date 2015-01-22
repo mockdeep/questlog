@@ -1,3 +1,5 @@
+@import 'bootstrap';
+
 .tag-buttons {
   div {
     display: inline-block;
@@ -150,6 +152,29 @@ h3 {
 
 #task.priority-3 {
   background-color: #E9DDDD;
+}
+
+.priority-1-btn {
+  @extend .btn;
+  //color: #333 !important;
+  color: #C93333 !important;
+  //color: #E9BBBB !important;
+  //@include buttonBackground(#E9CCCC, #E9BBBB);
+  //@include buttonBackground(#e6e6e6, #E9BBBB);
+}
+
+.priority-2-btn {
+  @extend .btn;
+  //color: #333 !important;
+  color: #B93333 !important;
+  //@include buttonBackground(#E9DDDD, #E9CCCC);
+}
+
+.priority-3-btn {
+  @extend .btn;
+  //color: #333 !important;
+  color: #913333 !important;
+  //@include buttonBackground(#E9DDDD, #E9DDDD);
 }
 
 #tips-modal {

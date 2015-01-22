@@ -1,5 +1,6 @@
 tags_data = @tags.map do |tag|
-  tag.attributes.slice(*%w(id slug unfinished_tasks_count name))
+  tag_attrs = tag.attributes.slice(*%w(id slug unfinished_tasks_count name))
+  tag_attrs.merge(priority: tag.priority)
 end
 
 tags_data.unshift(
@@ -7,5 +8,6 @@ tags_data.unshift(
   name: 'All',
   unfinished_tasks_count: current_user.unfinished_tasks_count,
   slug: '',
+  priority: current_user.priority,
 )
 { tags: tags_data }.to_json
