@@ -7,7 +7,8 @@ class Task < ActiveRecord::Base
   has_many :taggings, dependent: :destroy, inverse_of: :task
   has_many :tags, through: :taggings
 
-  validates :priority, :time_estimate, numericality: true, allow_nil: true
+  validates :priority, inclusion: { in: [1, 2, 3] }, allow_nil: true
+  validates :time_estimate, numericality: true, allow_nil: true
   validates :title, :user, presence: true
   validates(
     :repeat_string,

@@ -50,12 +50,7 @@ describe 'Tasks page', js: true do
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
     expect(task_title).to have_content('do laundry')
-    within('#new-form') do
-      fill_in 'new-title', with: 'feed dog'
-    end
-    click_button 'Add Task'
-    expect(page).to have_content('Task added')
-    expect(page).not_to have_content('Task added')
+    add_task('feed dog')
     expect(task_title).to have_content('do laundry')
     expect(task_title).to_not have_content('feed dog')
     postpone_button.click
@@ -114,12 +109,8 @@ describe 'Tasks page', js: true do
   it 'allows a user to delete a task' do
     feature_login_as(user)
     add_task('do laundry')
-    expect(page).to have_content('Task added')
-    expect(page).not_to have_content('Task added')
     expect(task_title).to have_content('do laundry')
     add_task('feed dog')
-    expect(page).to have_content('Task added')
-    expect(page).not_to have_content('Task added')
     expect(task_title).to have_content('do laundry')
     find('.delete-button').click
     expect(task_title).to have_content('feed dog')
