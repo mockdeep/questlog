@@ -46,13 +46,4 @@ class Tag < ActiveRecord::Base
     existing_tags + create!(tag_params)
   end
 
-  def as_json(*)
-    {
-      id: id,
-      slug: slug,
-      unfinished_tasks_count: unfinished_tasks_count,
-      name: name,
-    }
-  end
-
 end

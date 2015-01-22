@@ -1,10 +1,11 @@
 AllCops:
   Include:
-    - !ruby/regexp /.*\.rake/
+    - !ruby/regexp /.*\.rake\z/
     - Gemfile
     - Guardfile
     - Rakefile
     - config.ru
+    - !ruby/regexp /.*\.ruby\z/
   Exclude:
     - db/schema.rb
   RunRailsCops: true
