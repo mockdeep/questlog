@@ -46,4 +46,8 @@ class Tag < ActiveRecord::Base
     existing_tags + create!(tag_params)
   end
 
+  def priority
+    tasks.undone.pluck(:priority).compact.min
+  end
+
 end

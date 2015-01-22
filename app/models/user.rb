@@ -48,4 +48,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def priority
+    tasks.undone.pluck(:priority).compact.min
+  end
+
 end
