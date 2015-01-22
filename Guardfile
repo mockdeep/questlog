@@ -12,6 +12,7 @@ group :everything, halt_on_fail: true do
   guard :rubocop, all_on_start: false, cli: ['-D'] do
     watch(/bin\/*/)
     watch(/.+\.rb$/)
+    watch(/.+\.ruby$/)
     watch(/.+\.rake$/)
     watch(/.+\.ru$/)
     watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
