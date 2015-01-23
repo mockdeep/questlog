@@ -64,16 +64,22 @@
     padding-right: 10px;
     float: right;
   }
+
+  &.priority-1 {
+    background-color: #E9BBBB;
+  }
+
+  &.priority-2 {
+    background-color: #E9CCCC;
+  }
+
+  &.priority-3 {
+    background-color: #E9DDDD;
+  }
 }
 
 #postpone {
   padding: 0;
-
-  // to pad out div added by react. Can probably remove this at some point...
-  div {
-    display: inline-block;
-    vertical-align: top;
-  }
 
   form, label {
     margin: 0;
@@ -142,32 +148,18 @@ h3 {
   }
 }
 
-#task.priority-1 {
-  background-color: #E9BBBB;
+.btn {
+  &.priority-1-btn {
+    color: #C93333;
+  }
+  &.priority-2-btn {
+    color: #B93333;
+  }
+  &.priority-3-btn {
+    color: #913333;
+  }
 }
 
-#task.priority-2 {
-  background-color: #E9CCCC;
-}
-
-#task.priority-3 {
-  background-color: #E9DDDD;
-}
-
-.priority-1-btn {
-  @extend .btn;
-  color: #C93333 !important;
-}
-
-.priority-2-btn {
-  @extend .btn;
-  color: #B93333 !important;
-}
-
-.priority-3-btn {
-  @extend .btn;
-  color: #913333 !important;
-}
 
 #tips-modal {
   table td {
