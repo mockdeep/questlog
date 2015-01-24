@@ -12,7 +12,7 @@
       return this.path() === window.location.pathname;
     },
     className: function () {
-      var classString = 'button btn';
+      var classString = 'button btn btn-default';
       if (this.activeButton()) {
         classString = classString + ' active';
       }

@@ -32,7 +32,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'bootstrap-sass', '~> 2.3.2'
+gem 'bootstrap-sass', '~> 3.0.2'
 gem 'font-awesome-sass'
 gem 'sass', '~> 3.2.0' # http://bit.ly/VeapJG
 gem 'sass-rails'

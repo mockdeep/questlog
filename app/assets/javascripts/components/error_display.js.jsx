@@ -13,8 +13,8 @@
 
     render: function () {
       return (
-        <div className='row-fluid'>
-          <div className='span12'>
+        <div className='row'>
+          <div className='col-md-12'>
             <div className='.error-messages'>
               <ul>
                 {this.errorItems()}
