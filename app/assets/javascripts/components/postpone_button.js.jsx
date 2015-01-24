@@ -66,7 +66,7 @@
       );
     },
 
-    className: 'btn btn-info btn-large btn-block',
+    className: 'btn btn-info btn-lg btn-block',
 
     componentWillReceiveProps: function (newProps) {
       if (!newProps.disabled) {

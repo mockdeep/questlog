@@ -41,17 +41,17 @@
       return (
         <form onSubmit={this.saveTask} id='new-form'>
           <Questlog.ErrorDisplay errors={this.state.errors} />
-          <div className='row-fluid'>
-            <div className='span6'>
+          <div className='row'>
+            <div className='col-md-6'>
               <input type='text'
                      autoComplete='off'
-                     className='span12'
+                     className='col-md-12'
                      id='new-title'
                      onChange={this.setTitle}
                      value={this.state.taskTitle}
                      ref='title' />
             </div>
-            <div className='span6'>
+            <div className='col-md-6'>
               <input type='submit'
                      disabled={this.state.disabled}
                      className='btn btn-success btn-block'
