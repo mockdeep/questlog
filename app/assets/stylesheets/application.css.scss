@@ -1,7 +1,7 @@
-//= require 'bootstrap'
-//= require 'bootstrap-responsive'
 //= require_self
 //= require_tree .
 
+@import 'bootstrap';
+@import 'bootstrap-responsive';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
