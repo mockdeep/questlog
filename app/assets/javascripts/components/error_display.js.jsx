@@ -16,9 +16,7 @@
         <div className='row'>
           <div className='col-md-12'>
             <div className='.error-messages'>
-              <ul>
-                {this.errorItems()}
-              </ul>
+              <ul>{this.errorItems()}</ul>
             </div>
           </div>
         </div>
