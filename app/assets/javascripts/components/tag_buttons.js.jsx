@@ -23,8 +23,10 @@
     },
     render: function () {
       return (
-        <div className='tag-buttons'>
-          {this.tagButtons()}
+        <div className='row'>
+          <div className='col-md-12 tag-buttons'>
+            {this.tagButtons()}
+          </div>
         </div>
       );
     }

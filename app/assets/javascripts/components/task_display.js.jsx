@@ -16,10 +16,8 @@
                                 disabled={this.props.disabled}
                                 disable={this.props.disable} />
           <hr />
-          <div id='edit-form'>
-            <Questlog.EditTaskForm task={this.props.task}
-                                   loadTask={this.props.loadTask} />
-          </div>
+          <Questlog.EditTaskForm task={this.props.task}
+                                  loadTask={this.props.loadTask} />
         </div>
       );
     }
