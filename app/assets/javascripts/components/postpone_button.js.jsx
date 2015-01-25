@@ -61,8 +61,11 @@
 
     selectOption: function (optionOptions) {
       return (
-        <Questlog.SelectOption value={optionOptions.value}
-            key={optionOptions.value} content={optionOptions.content} />
+        <Questlog.SelectOption
+          value={optionOptions.value}
+          key={optionOptions.value}
+          content={optionOptions.content}
+        />
       );
     },
 
