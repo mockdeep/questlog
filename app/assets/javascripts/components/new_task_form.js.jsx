@@ -43,19 +43,23 @@
           <Questlog.ErrorDisplay errors={this.state.errors} />
           <div className='row'>
             <div className='col-md-6'>
-              <input type='text'
-                     autoComplete='off'
-                     className='col-md-12'
-                     id='new-title'
-                     onChange={this.setTitle}
-                     value={this.state.taskTitle}
-                     ref='title' />
+              <input
+                type='text'
+                autoComplete='off'
+                className='col-md-12'
+                id='new-title'
+                onChange={this.setTitle}
+                value={this.state.taskTitle}
+                ref='title'
+              />
             </div>
             <div className='col-md-6'>
-              <input type='submit'
-                     disabled={this.state.disabled}
-                     className='btn btn-success btn-block'
-                     value={this.state.buttonContent} />
+              <input
+                type='submit'
+                disabled={this.state.disabled}
+                className='btn btn-success btn-block'
+                value={this.state.buttonContent}
+              />
             </div>
           </div>
         </form>

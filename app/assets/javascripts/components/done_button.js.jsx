@@ -34,11 +34,13 @@
     },
     render: function () {
       return (
-        <input type='button'
-               disabled={this.props.disabled}
-               className='btn btn-primary btn-lg btn-block'
-               onClick={this.markDone}
-               value={this.state.buttonContent} />
+        <input
+          type='button'
+          disabled={this.props.disabled}
+          className='btn btn-primary btn-lg btn-block'
+          onClick={this.markDone}
+          value={this.state.buttonContent}
+        />
       );
     }
   });
