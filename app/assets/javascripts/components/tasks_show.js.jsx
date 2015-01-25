@@ -44,11 +44,13 @@
     render: function () {
       return (
         <div>
-          <Questlog.TaskDisplay task={this.state.task}
-                                tags={this.state.tags}
-                                disable={this.disable}
-                                loadTask={this.loadTask}
-                                disabled={this.state.disabled} />
+          <Questlog.TaskDisplay
+            task={this.state.task}
+            tags={this.state.tags}
+            disable={this.disable}
+            loadTask={this.loadTask}
+            disabled={this.state.disabled}
+          />
           <Questlog.NewTaskForm loadTask={this.loadTask} />
         </div>
       );

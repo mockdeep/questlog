@@ -17,7 +17,11 @@
 
     render: function () {
       return (
-        <i className='fa fa-times' title='delete task' onClick={this.deleteTask} />
+        <i
+          className='fa fa-times'
+          title='delete task'
+          onClick={this.deleteTask}
+        />
       );
     }
   });

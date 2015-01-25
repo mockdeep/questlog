@@ -76,14 +76,18 @@
 
     render: function () {
       return (
-        <div id='postpone'
-             disabled={this.props.disabled}
-             className={this.className}
-             onClick={this.postponeTask}>
+        <div
+          id='postpone'
+          disabled={this.props.disabled}
+          className={this.className}
+          onClick={this.postponeTask}
+        >
           <label>{this.state.labelContent}</label>
-          <select onChange={this.storeVal}
-                   onClick={Questlog.stopPropagation}
-                   disabled={this.props.disabled}>
+          <select
+            onChange={this.storeVal}
+            onClick={Questlog.stopPropagation}
+            disabled={this.props.disabled}
+          >
             {this.selectOptions()}
           </select>
         </div>
