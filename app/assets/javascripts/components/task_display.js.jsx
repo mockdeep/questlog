@@ -7,7 +7,7 @@
   Questlog.TaskDisplay = React.createClass({
     render: function () {
       return (
-        <div className='container-fluid'>
+        <div>
           <Questlog.TagButtons task={this.props.task} tags={this.props.tags} />
           <Questlog.TaskTitle
             task={this.props.task}

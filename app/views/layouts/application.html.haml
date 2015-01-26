@@ -8,9 +8,9 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
 
   %body
-    .container-fluid
+    .container
       .row
-        .navbar
+        .col-md-12.navbar
           %h1#tasks= link_to('QUESTLOG', root_path)
 
           #user-nav
@@ -23,10 +23,13 @@
             - else
               Logged in as #{current_user.email}
               = link_to "Log out", session_path, method: :delete
-      .row#flashes
-        - flash.each do |name, msg|
-          = content_tag :div, msg, class: "flash-#{name}"
+      .row
+        #flashes.col-md-12
+          - flash.each do |name, msg|
+            = content_tag :div, msg, class: "flash-#{name}"
 
-      = yield
+      .row
+        .col-md-12
+          = yield
 
     = mail_to('lobati.fricha@gmail.com', 'Feedback')
