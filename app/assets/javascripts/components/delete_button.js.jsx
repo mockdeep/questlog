@@ -15,14 +15,16 @@
       }
     },
 
+    rootOpts: function () {
+      return {
+        className: 'fa fa-times',
+        title: 'delete task',
+        onClick: this.deleteTask
+      };
+    },
+
     render: function () {
-      return (
-        <i
-          className='fa fa-times'
-          title='delete task'
-          onClick={this.deleteTask}
-        />
-      );
+      return <i {...this.rootOpts()} />;
     }
   });
 
