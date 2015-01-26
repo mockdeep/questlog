@@ -86,7 +86,8 @@
     margin: 0;
   }
 
-  select {
+  > select {
+    color: black;
     width: 150px;
     padding: 0;
     vertical-align: top;
@@ -100,6 +101,13 @@
     font-weight: normal;
     display: inline-block;
     padding: 10px 19px;
+  }
+}
+
+@-moz-document url-prefix() {
+  #postpone > select {
+    font-size: 12px;
+    font-weight: bold;
   }
 }
 

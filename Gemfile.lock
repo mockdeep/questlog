@@ -208,6 +208,7 @@ GEM
       railties (= 4.2.0)
       sprockets-rails
     rails-assets-es5-shim (4.0.5)
+    rails-assets-normalize.css (3.0.2)
     rails-assets-reqwest (1.1.5)
     rails-assets-underscore (1.7.0)
     rails-deprecated_sanitizer (1.0.3)
@@ -370,6 +371,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 4.2.0)
   rails-assets-es5-shim
+  rails-assets-normalize.css
   rails-assets-reqwest
   rails-assets-underscore
   rails_12factor
