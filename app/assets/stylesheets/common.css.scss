@@ -89,11 +89,6 @@
   > select {
     color: black;
     width: 150px;
-    padding: 0;
-    vertical-align: top;
-    margin: 9px 0 8px 0;
-    height: 25px;
-    font-weight: normal;
   }
 
   label {
@@ -101,13 +96,6 @@
     font-weight: normal;
     display: inline-block;
     padding: 10px 19px;
-  }
-}
-
-@-moz-document url-prefix() {
-  #postpone > select {
-    font-size: 12px;
-    font-weight: bold;
   }
 }
 
@@ -132,10 +120,6 @@ h3 {
 
 .tags {
   margin-top: 10px;
-}
-
-.col-md-2 > select {
-  width: 100%;
 }
 
 .disabled {
