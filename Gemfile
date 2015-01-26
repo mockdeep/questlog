@@ -25,6 +25,7 @@ gem 'stripe'
 gem 'unicorn'
 
 gem 'rails-assets-es5-shim'
+gem 'rails-assets-normalize.css'
 gem 'rails-assets-reqwest'
 gem 'rails-assets-underscore'
 
