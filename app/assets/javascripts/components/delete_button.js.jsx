@@ -17,7 +17,7 @@
 
     rootOpts: function () {
       return {
-        className: 'fa fa-times',
+        className: 'fa fa-times delete-button',
         title: 'delete task',
         onClick: this.deleteTask
       };

@@ -31,21 +31,21 @@
           <div id='task' className={this.className()}>
             <table>
               <tr>
-                <td className='col-md-1 task-icon'>
+                <td className='col-md-1'>
                   <Questlog.DeleteButton
                     task={this.props.task}
                     loadTask={this.props.loadTask}
                   />
                 </td>
                 <td className='col-md-1'>{/* intentionally left blank */}</td>
-                <td className='col-md-10'>
+                <td className='col-md-10 title'>
                   {this.props.task.title}
                 </td>
 
                 <td className='col-md-1'>{this.repeatIcon()}</td>
-                <td className='col-md-1 task-icon'>
+                <td className='col-md-1'>
                   <i
-                    className='fa fa-arrow-down'
+                    className='fa fa-arrow-down edit-button'
                     id='edit-task'
                     title='edit task'
                   />
