@@ -29,23 +29,29 @@
       return (
         <div className='row'>
           <div id='task' className={this.className()}>
-            <div className='delete-button'>
-              <Questlog.DeleteButton
-                task={this.props.task}
-                loadTask={this.props.loadTask}
-              />
-            </div>
-            <div className='edit-button'>
-              <i
-                className='fa fa-arrow-down'
-                id='edit-task'
-                title='edit task'
-              />
-            </div>
-            <div className='col-md-10' title={this.title()}>
-              <div className='emblems'>{this.repeatIcon()}</div>
-              <div className='title'>{this.props.task.title}</div>
-            </div>
+            <table>
+              <tr>
+                <td className='col-md-1 task-icon'>
+                  <Questlog.DeleteButton
+                    task={this.props.task}
+                    loadTask={this.props.loadTask}
+                  />
+                </td>
+                <td className='col-md-1'>{/* intentionally left blank */}</td>
+                <td className='col-md-10'>
+                  {this.props.task.title}
+                </td>
+
+                <td className='col-md-1'>{this.repeatIcon()}</td>
+                <td className='col-md-1 task-icon'>
+                  <i
+                    className='fa fa-arrow-down'
+                    id='edit-task'
+                    title='edit task'
+                  />
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       );
