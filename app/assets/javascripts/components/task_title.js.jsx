@@ -18,7 +18,7 @@
     title: function () {
       return "skip count: " + this.props.task.skip_count;
     },
-    repeatIcon: function () {
+    emblems: function () {
       if (this.props.task.repeat_seconds) {
         return <i className='fa fa-repeat' title='task repeats' />;
       } else {
@@ -39,7 +39,7 @@
                 </td>
                 <td className='col-md-10 title'>
                   {this.props.task.title}
-                  <span className='emblems'>{this.repeatIcon()}</span>
+                  <span className='emblems'>{this.emblems()}</span>
                 </td>
 
                 <td className='col-md-1'>
