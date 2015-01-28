@@ -37,12 +37,11 @@
                     loadTask={this.props.loadTask}
                   />
                 </td>
-                <td className='col-md-1'>{/* intentionally left blank */}</td>
                 <td className='col-md-10 title'>
                   {this.props.task.title}
+                  <span className='emblems'>{this.repeatIcon()}</span>
                 </td>
 
-                <td className='col-md-1'>{this.repeatIcon()}</td>
                 <td className='col-md-1'>
                   <i
                     className='fa fa-arrow-down edit-button'
