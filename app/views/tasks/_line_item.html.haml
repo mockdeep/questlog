@@ -1,9 +1,0 @@
-%li
-  = task.title
-  - if task.repeat?
-    %i.fa.fa-repeat
-    = task.repeat_string
-  |
-  = link_to('Done!', task_path(task, task: { done: true }), method: :patch)
-  |
-  = link_to('Delete', task_path(task), method: :delete)

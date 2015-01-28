@@ -9,7 +9,7 @@
   },
 
   Questlog.logError = function (error) {
-    console.log(error);
+    console.log(error.statusText);
   },
 
   Questlog.request = function (options) {
