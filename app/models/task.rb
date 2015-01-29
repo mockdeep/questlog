@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
 
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where('done_at IS NOT NULL') }
+  scope :ordered, -> { order(:priority, :updated_at) }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
   scope :with_estimate, -> { where('time_estimate IS NOT NULL') }
   scope :with_release, -> { where('release_at IS NOT NULL') }
@@ -29,7 +30,7 @@ class Task < ActiveRecord::Base
   after_save :associate_tags, :update_counters
 
   def self.next
-    undone.order(:priority).order(:updated_at).first
+    undone.ordered.first
   end
 
   def done=(done)
