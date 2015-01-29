@@ -27,9 +27,17 @@
       }
     },
 
+    className: function () {
+      var classString = '';
+      if (this.props.task.priority) {
+        classString = classString + ' priority-' + this.props.task.priority;
+      }
+      return classString;
+    },
+
     render: function () {
       return (
-        <li>
+        <li className={this.className()}>
           {this.props.task.title} {this.emblems()}
           {' | '}
           <a href='javascript:void(0)' onClick={this.markDone}>Done!</a>
