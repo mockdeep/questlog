@@ -3,8 +3,8 @@ class TasksController < ApplicationController
   before_action :load_task, only: :show
 
   def index
-    @tasks = current_user.tasks.undone
-    @pending_tasks = current_user.tasks.pending
+    @tasks = current_user.tasks.undone.ordered
+    @pending_tasks = current_user.tasks.pending.ordered
   end
 
   def show
