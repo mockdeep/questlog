@@ -9,6 +9,13 @@
       });
     },
 
+    updatePriority: function (event) {
+      Questlog.request({
+        url: 'tasks/' + this.props.task.id,
+        data: {task: {priority: event.target.value}}
+      });
+    },
+
     deleteTask: function (event) {
       event.stopPropagation();
       if (confirm('Delete this task?')) {
@@ -39,6 +46,13 @@
       return (
         <li className={this.className()}>
           {this.props.task.title} {this.emblems()}
+          {' | Pri: '}
+          <select onChange={this.updatePriority}>
+            <option value=''>-</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+          </select>
           {' | '}
           <a href='javascript:void(0)' onClick={this.markDone}>Done!</a>
           {' | '}
