@@ -62,7 +62,11 @@ private
   end
 
   def task_params
-    params.require(:task).permit(:done, :postpone, :title).merge(parsed_title)
+    params.require(:task).permit(*permitted_params).merge(parsed_title)
+  end
+
+  def permitted_params
+    [:done, :postpone, :title, :priority]
   end
 
   def parsed_title
