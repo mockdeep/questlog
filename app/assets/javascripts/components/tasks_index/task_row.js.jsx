@@ -36,10 +36,14 @@
 
     className: function () {
       var classString = '';
-      if (this.props.task.priority) {
-        classString = classString + ' priority-' + this.props.task.priority;
+      if (this.priority()) {
+        classString += ' priority-' + this.priority();
       }
       return classString;
+    },
+
+    priority: function () {
+      return this.props.task.priority;
     },
 
     render: function () {
@@ -47,7 +51,7 @@
         <li className={this.className()}>
           {this.props.task.title} {this.emblems()}
           {' | Pri: '}
-          <select onChange={this.updatePriority}>
+          <select onChange={this.updatePriority} defaultValue={this.priority()}>
             <option value=''>-</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
