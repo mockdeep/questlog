@@ -12,6 +12,15 @@ RSpec.describe TagsController, '#index' do
       priority: nil,
     }.stringify_keys
   end
+  let(:untagged_tag) do
+    {
+      id: -1,
+      name: 'Untagged',
+      unfinished_tasks_count: 0,
+      slug: 'untagged',
+      priority: nil,
+    }.stringify_keys
+  end
 
   before(:each) { login_as(user) }
 
@@ -22,7 +31,7 @@ RSpec.describe TagsController, '#index' do
     desired_attrs = %w(id slug unfinished_tasks_count name)
     tag_attrs = tag.reload.attributes.slice(*desired_attrs)
     tag_attrs.merge!('priority' => nil)
-    expected = { 'tags' => [all_tag, tag_attrs] }
+    expected = { 'tags' => [all_tag, untagged_tag, tag_attrs] }
     expect(JSON.parse(response.body)).to eq(expected)
   end
 

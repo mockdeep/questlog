@@ -20,6 +20,7 @@ class Task < ActiveRecord::Base
   scope :done, -> { where('done_at IS NOT NULL') }
   scope :ordered, -> { order(:priority, :updated_at) }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
+  scope :untagged, -> { includes(:taggings).where(taggings: { id: nil }) }
   scope :with_estimate, -> { where('time_estimate IS NOT NULL') }
   scope :with_release, -> { where('release_at IS NOT NULL') }
   scope :pending, -> { done.with_release.order(:release_at) }
