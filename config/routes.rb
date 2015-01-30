@@ -12,6 +12,7 @@ Questlog::Application.routes.draw do
 
   get '/privacy' => 'pages#privacy', as: :privacy
   get '/what' => 'pages#what', as: :what
+  get '/untagged', to: 'untagged_tasks#show', as: :untagged
 
   get '/:slug' => 'tasks#show', as: :tag
 end

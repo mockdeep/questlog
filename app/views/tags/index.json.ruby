@@ -4,6 +4,14 @@ tags_data = @tags.map do |tag|
 end
 
 tags_data.unshift(
+  id: -1,
+  name: 'Untagged',
+  unfinished_tasks_count: current_user.unfinished_tasks.untagged.count,
+  slug: 'untagged',
+  priority: current_user.unfinished_tasks.highest_priority,
+)
+
+tags_data.unshift(
   id: 0,
   name: 'All',
   unfinished_tasks_count: current_user.unfinished_tasks_count,
