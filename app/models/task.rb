@@ -49,12 +49,6 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def destroy
-    with_lock { super }
-  rescue ActiveRecord::RecordNotFound
-    Rails.logger.info('Task#destroy: lock failed, task is gone')
-  end
-
   def changed_to_done?
     done_at && !done_at_was
   end
