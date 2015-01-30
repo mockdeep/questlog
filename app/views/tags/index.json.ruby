@@ -8,6 +8,7 @@ tags_data.unshift(
   name: 'All',
   unfinished_tasks_count: current_user.unfinished_tasks_count,
   slug: '',
-  priority: current_user.priority,
+  priority: current_user.highest_priority,
 )
+
 { tags: tags_data }.to_json
