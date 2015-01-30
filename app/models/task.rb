@@ -33,6 +33,10 @@ class Task < ActiveRecord::Base
     undone.ordered.first
   end
 
+  def self.highest_priority
+    minimum(:priority)
+  end
+
   def done=(done)
     persisted? ? with_lock { mark_done(done) } : mark_done(done)
   end

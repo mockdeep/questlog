@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :tags, dependent: :destroy
 
   delegate :guest?, to: :account
+  delegate :highest_priority, to: :tasks
 
   def next_task(tag_id = nil)
     if tag_id
@@ -46,10 +47,6 @@ class User < ActiveRecord::Base
         other_tag.update_attributes!(user: self)
       end
     end
-  end
-
-  def priority
-    tasks.undone.pluck(:priority).compact.min
   end
 
 end
