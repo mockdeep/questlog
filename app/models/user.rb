@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :tasks, dependent: :destroy
   has_many :unfinished_tasks,
-           -> { where('tasks.done_at' => nil) },
+           -> { where(tasks: { done_at: nil }) },
            class_name: 'Task'
   has_many :tags, dependent: :destroy
 
@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     else
       tasks.next
     end
+  end
+
+  def untagged_tasks
+    unfinished_tasks.untagged
   end
 
   def admin?
