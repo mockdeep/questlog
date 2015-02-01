@@ -5,7 +5,6 @@ AllCops:
     - Guardfile
     - Rakefile
     - config.ru
-    - !ruby/regexp /.*\.ruby\z/
   Exclude:
     - db/schema.rb
   RunRailsCops: true
