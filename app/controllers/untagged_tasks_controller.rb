@@ -6,7 +6,7 @@ class UntaggedTasksController < ApplicationController
 
     respond_to do |format|
       format.html { render 'tasks/show' }
-      format.json { render 'tasks/show' }
+      format.json { render json: @task }
     end
   end
 
