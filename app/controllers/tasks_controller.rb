@@ -3,8 +3,10 @@ class TasksController < ApplicationController
   before_action :load_task, only: :show
 
   def index
-    @tasks = current_user.tasks.undone.ordered
-    @pending_tasks = current_user.tasks.pending.ordered
+    respond_to do |format|
+      format.html
+      format.json { render json: current_user.tasks.undone.ordered }
+    end
   end
 
   def show
