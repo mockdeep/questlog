@@ -1,13 +1,1 @@
-#current-tasks
-  %h2 Current Tasks
-
-  %ul
-    - @tasks.each do |task|
-      = react_component('Questlog.TaskRow', task: task)
-
-#pending-tasks
-  %h2 Pending Tasks
-
-  %ul
-    - @pending_tasks.each do |task|
-      = react_component('Questlog.TaskRow', task: task)
+= react_component('Questlog.TasksIndex')
