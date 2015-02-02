@@ -2,6 +2,10 @@
 
   'use strict';
 
+  var isPending = function (task) {
+    return task.pending;
+  };
+
   Questlog.TasksIndex = React.createClass({
     getInitialState: function () {
       return {currentTasks: [], pendingTasks: []};
@@ -11,21 +15,16 @@
       Questlog.request({
         method: 'get',
         url: '/tasks',
-        success: this.updateCurrentTasks
-      });
-      Questlog.request({
-        method: 'get',
-        url: '/pending_tasks',
-        success: this.updatePendingTasks
+        success: this.updateTasks
       });
     },
 
-    updateCurrentTasks: function (data) {
-      this.setState({currentTasks: data.tasks});
-    },
-
-    updatePendingTasks: function (data) {
-      this.setState({pendingTasks: data.pending_tasks});
+    updateTasks: function (data) {
+      var partitionedTasks = _.partition(data.tasks, isPending);
+      this.setState({
+        pendingTasks: partitionedTasks[0],
+        currentTasks: partitionedTasks[1]
+      });
     },
 
     currentTaskRows: function () {
@@ -56,12 +55,14 @@
           <Questlog.NewTaskForm loadTask={this.loadTasks} />
           <br />
           <div id='current-tasks'>
+            <h2>Current Tasks</h2>
             <ul>
               {this.currentTaskRows()}
             </ul>
           </div>
 
           <div id='pending-tasks'>
+            <h2>Pending Tasks</h2>
             <ul>
               {this.pendingTaskRows()}
             </ul>

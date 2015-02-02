@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def undone_and_pending_tasks
+    tasks.undone.ordered + tasks.pending
+  end
+
   def untagged_tasks
     unfinished_tasks.untagged
   end
