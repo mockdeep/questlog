@@ -53,6 +53,8 @@
     render: function () {
       return (
         <div>
+          <Questlog.NewTaskForm loadTask={this.loadTasks} />
+          <br />
           <div id='current-tasks'>
             <ul>
               {this.currentTaskRows()}
