@@ -6,7 +6,6 @@ Questlog::Application.routes.draw do
 
   resources :tags, only: [:index]
   resources :tasks, only: [:index, :create, :update, :destroy]
-  resources :pending_tasks, only: [:index]
   resources :bulk_tasks, only: [:new, :create]
   resources :free_accounts, only: [:new, :create]
   resources :charges, only: [:new, :create]
