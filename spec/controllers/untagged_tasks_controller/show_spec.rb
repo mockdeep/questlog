@@ -24,6 +24,7 @@ describe UntaggedTasksController, '#show' do
         repeat_seconds: task.repeat_seconds,
         skip_count: task.skip_count,
         tag_names: task.tag_names,
+        pending: false,
       }
       expected = { task: task_params }.deep_stringify_keys
       expect(JSON.parse(response.body)).to eq expected
