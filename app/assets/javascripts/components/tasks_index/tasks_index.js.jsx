@@ -37,7 +37,13 @@
     },
 
     taskRow: function (task) {
-      return (<Questlog.TaskRow task={task} />);
+      return (
+        <Questlog.TaskRow
+          key={task.id}
+          task={task}
+          loadTasks={this.loadTasks}
+        />
+      );
     },
 
     componentDidMount: function () {

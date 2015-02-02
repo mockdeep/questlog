@@ -5,14 +5,16 @@
     markDone: function () {
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
-        data: {task: {done: true}}
+        data: {task: {done: true}},
+        success: this.props.loadTasks
       });
     },
 
     updatePriority: function (event) {
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
-        data: {task: {priority: event.target.value}}
+        data: {task: {priority: event.target.value}},
+        success: this.props.loadTasks
       });
     },
 
@@ -21,7 +23,8 @@
       if (confirm('Delete this task?')) {
         Questlog.request({
           url: 'tasks/' + this.props.task.id,
-          method: 'delete'
+          method: 'delete',
+          success: this.props.loadTasks
         });
       }
     },
