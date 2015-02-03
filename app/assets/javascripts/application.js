@@ -17,7 +17,8 @@
 //= require bootstrap
 //= require react
 //= require react_ujs
-//= require underscore
+//= require lodash
+//= require backbone
 //= require_self
 //= require helpers
 //= require components

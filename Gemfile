@@ -24,10 +24,11 @@ gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'stripe'
 gem 'unicorn'
 
+gem 'rails-assets-backbone'
 gem 'rails-assets-es5-shim'
 gem 'rails-assets-normalize.css'
 gem 'rails-assets-reqwest'
-gem 'rails-assets-underscore'
+gem 'rails-assets-lodash'
 
 group :production do
   gem 'rails_12factor'
