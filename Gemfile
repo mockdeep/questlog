@@ -21,6 +21,7 @@ gem 'pg'
 gem 'rack-cache'
 gem 'rack-mini-profiler'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem 'skylight'
 gem 'stripe'
 gem 'unicorn'
 
