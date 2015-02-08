@@ -10,10 +10,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @new_task = current_user.tasks.new
-
     respond_to do |format|
-      format.html
       format.json { render json: @task }
     end
   end
@@ -23,7 +20,7 @@ class TasksController < ApplicationController
 
     current_user.tasks.create!(task_params)
     flash[:success] = 'Task added'
-    respond_to { |format| format.json { render json: '', status: :created } }
+    respond_to { |format| format.json { render json: {}, status: :created } }
   end
 
   def update
@@ -31,8 +28,8 @@ class TasksController < ApplicationController
     task.update_attributes!(task_params)
     flash[:success] = task_update_message
     respond_to do |format|
-      format.json { render json: '', status: :ok }
-      format.html { redirect_to :back }
+      format.json { render json: {}, status: :ok }
+      # format.html { redirect_to :back }
     end
   end
 
@@ -41,7 +38,7 @@ class TasksController < ApplicationController
     task.destroy if task
     flash[:success] = 'Task deleted'
     respond_to do |format|
-      format.json { render json: '', status: :ok }
+      format.json { render json: {}, status: :ok }
       format.html { redirect_to :back }
     end
   end
