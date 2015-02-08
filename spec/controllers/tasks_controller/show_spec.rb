@@ -9,11 +9,6 @@ describe TasksController, '#show' do
     login_as(user)
   end
 
-  it 'initializes a new Task' do
-    get(:show)
-    expect(assigns(:new_task)).to be_new_record
-  end
-
   context 'format.json' do
     it 'renders the task as json' do
       get(:show, format: :json)
@@ -40,14 +35,14 @@ describe TasksController, '#show' do
   context 'when there are no unfinished tasks' do
     it '@task is nil' do
       task.update_attributes(done: true)
-      get(:show)
+      get(:show, format: :json)
       expect(assigns(:task)).to be_nil
     end
   end
 
   context 'when there are unfinished tasks' do
     it '@task is a Task' do
-      get(:show)
+      get(:show, format: :json)
       expect(assigns(:task)).to eq task
     end
   end
@@ -64,9 +59,9 @@ describe TasksController, '#show' do
         expect(response).to redirect_to(new_session_path)
       end
 
-      it 'remembers the intended tag of the user' do
-        expect(session[:return_path]).to eq tag_path('poo')
-      end
+      # it 'remembers the intended tag of the user' do
+      #   expect(session[:return_path]).to eq tag_path('poo')
+      # end
 
       it 'flashes a message' do
         expect(flash[:notice]).to match(/please login/i)

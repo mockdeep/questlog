@@ -8,10 +8,11 @@
     getInitialState: function () {
       return {task: {title: 'Loading...'}, disabled: true, tags: []};
     },
-    loadTask: function () {
+    loadTask: function (url) {
+      url = url || this.props.url;
       Questlog.request({
         method: 'get',
-        url: window.location.pathname,
+        url: url,
         success: this.updateTask
       });
       Questlog.request({
@@ -38,8 +39,13 @@
       document.title = 'Task: ' + this.state.task.title;
     },
     componentDidMount: function () {
-      this.setTitle();
       this.loadTask();
+      this.setTitle();
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+      this.loadTask(nextProps.url);
+      this.setTitle();
     },
     render: function () {
       return (

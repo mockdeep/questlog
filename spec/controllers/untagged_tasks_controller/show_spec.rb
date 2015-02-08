@@ -9,11 +9,6 @@ describe UntaggedTasksController, '#show' do
     login_as(user)
   end
 
-  it 'initializes a new Task' do
-    get(:show)
-    expect(assigns(:new_task)).to be_new_record
-  end
-
   context 'format.json' do
     it 'renders the task as json' do
       get(:show, format: :json)

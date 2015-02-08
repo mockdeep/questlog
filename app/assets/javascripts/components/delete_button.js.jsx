@@ -10,9 +10,13 @@
         Questlog.request({
           url: 'tasks/' + this.props.task.id,
           method: 'delete',
-          success: this.props.loadTask
+          success: this.loadTask
         });
       }
+    },
+
+    loadTask: function () {
+      this.props.loadTask();
     },
 
     rootOpts: function () {
