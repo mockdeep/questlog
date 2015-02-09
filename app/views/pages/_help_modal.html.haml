@@ -1,60 +1,60 @@
-= link_to 'Help', '#tips-modal', data: { toggle: 'modal' }
+#tips-modal.modal.fade{ tabindex: -1, role: 'dialog', aria: { labelledby: 'tips-modal-label', hidden: 'true' } }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { dismiss: 'modal' } } x
+        %h3 Help
 
-#tips-modal.modal.hide.fade
-  .modal-header
-    %button.close{ type: 'button', data: { dismiss: 'modal' } } x
-    %h3 Help
+      .modal-body
+        %p
+          You can type different markers to you tasks in order to set priority,
+          repeats, and so on. Feel free to mix and match! Here's a full list:
 
-  .modal-body
-    %p
-      You can type different markers to you tasks in order to set priority,
-      repeats, and so on. Feel free to mix and match! Here's a full list:
-
-    %table
-      %thead
-        %tr
-          %th marker
-          %th examples
-          %th description
-      %tbody
-        %tr
-          %td.marker ! <strong>or</strong> '
-          %td !1 !2 '3
-          %td
-            Set the priority of the task. Priority 1 tasks will appear before
-            Priority 2 tasks in your queue, and any priority trumps no priority.
-            '1 is handy since !1 can be a pain to type on mobile.
-        %tr
-          %td.marker #
-          %td #at-home #errand #standing-in-line
-          %td
-            Adds a tag to the task. When tasks have been tagged, you will see
-            buttons on the page which will allow you to select between different
-            tags depending on where you're at.
-        %tr
-          %td.marker @
-          %td @10:30am @10/05/2015 @10/05/2015-10:30am
-          %td
-            Sets the date and/or time when a task will be released into your
-            queue. So if you set the date for tomorrow at 10:30am, you will not
-            see it in your queue until then.
-        %tr
-          %td.marker *
-          %td *1d *3h *5m *1y
-          %td
-            Repeat the task every day, 3 hours, 5 minutes, or 1 year. A full list
-            of repeat abbreviations are: <strong>s</strong> -- seconds,
-            <strong>m</strong> or <strong>mi</strong> -- minutes,
-            <strong>h</strong> -- hours, <strong>d</strong> -- days,
-            <strong>mo</strong> -- months, and <strong>y</strong> -- years. As of
-            yet we don't have a way to repeat at a particular time of day or day
-            of the week/month. The repeat will start counting from the moment you
-            mark it as done. So if you say *3d, it will reappear in your queue 3
-            days after you mark it as finished.
-        %tr
-          %td.marker ~
-          %td ~1d ~3h ~5m
-          %td
-            Sets a time estimate on the task. We don't have any functionality
-            wrapped around that yet, though we've got a few ideas in our backlog.
-            It uses the same abbreviations as repeats.
+        %table
+          %thead
+            %tr
+              %th marker
+              %th examples
+              %th description
+          %tbody
+            %tr
+              %td.marker ! <strong>or</strong> '
+              %td !1 !2 '3
+              %td
+                Set the priority of the task. Priority 1 tasks will appear before
+                Priority 2 tasks in your queue, and any priority trumps no priority.
+                '1 is handy since !1 can be a pain to type on mobile.
+            %tr
+              %td.marker #
+              %td #at-home #errand #standing-in-line
+              %td
+                Adds a tag to the task. When tasks have been tagged, you will see
+                buttons on the page which will allow you to select between different
+                tags depending on where you're at.
+            %tr
+              %td.marker @
+              %td @10:30am @10/05/2015 @10/05/2015-10:30am
+              %td
+                Sets the date and/or time when a task will be released into your
+                queue. So if you set the date for tomorrow at 10:30am, you will not
+                see it in your queue until then.
+            %tr
+              %td.marker *
+              %td *1d *3h *5m *1y
+              %td
+                Repeat the task every day, 3 hours, 5 minutes, or 1 year. A full list
+                of repeat abbreviations are: <strong>s</strong> -- seconds,
+                <strong>m</strong> or <strong>mi</strong> -- minutes,
+                <strong>h</strong> -- hours, <strong>d</strong> -- days,
+                <strong>mo</strong> -- months, and <strong>y</strong> -- years. As of
+                yet we don't have a way to repeat at a particular time of day or day
+                of the week/month. The repeat will start counting from the moment you
+                mark it as done. So if you say *3d, it will reappear in your queue 3
+                days after you mark it as finished.
+            %tr
+              %td.marker ~
+              %td ~1d ~3h ~5m
+              %td
+                Sets a time estimate on the task. We don't have any functionality
+                wrapped around that yet, though we've got a few ideas in our backlog.
+                It uses the same abbreviations as repeats.
