@@ -1,3 +1,5 @@
+= render 'help_modal'
+
 #app-base
 
 %p
@@ -5,8 +7,8 @@
   |
   = link_to('Add multiple tasks', new_bulk_task_path)
   |
-  = render 'pages/help_modal'
+  = link_to 'Help', '#', data: { toggle: 'modal', target: '#tips-modal' }
   %br
   Try adding a tag using '#', for example: <strong>#at-home</strong>. Click
-  = link_to 'Help', '#tips-modal', data: { toggle: 'modal' }
+  = link_to 'Help', '#', data: { toggle: 'modal', target: '#tips-modal' }
   for more.

@@ -136,4 +136,10 @@ describe 'Tasks page', js: true do
     # expect(task.release_at).to eq Time.parse(time)
   end
 
+  it 'shows a help modal' do
+    visit '/'
+    first(:link, 'Help').click
+    expect(page).to have_content('You can type different markers to you tasks')
+  end
+
 end
