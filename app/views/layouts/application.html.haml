@@ -2,8 +2,7 @@
 %html
   %head
     %title= page_title
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
 
@@ -17,12 +16,12 @@
             - if current_user.guest?
               You're not logged in! In order to save your tasks you'll
               need to
-              = link_to "Sign up", new_free_account_path
+              = link_to 'Sign up', new_free_account_path
               or
-              = link_to "Log in", new_session_path
+              = link_to 'Log in', new_session_path
             - else
               Logged in as #{current_user.email}
-              = link_to "Log out", session_path, method: :delete
+              = link_to 'Log out', session_path, method: :delete
       .row
         #flashes.col-md-12
           - flash.each do |name, msg|
@@ -35,3 +34,5 @@
           = yield
 
     = mail_to('lobati.fricha@gmail.com', 'Feedback')
+
+    = javascript_include_tag 'application'

@@ -33,11 +33,8 @@
     </Route>
   );
 
-  $(document).ready(function () {
-    Router.run(routes, Router.HistoryLocation, function (Handler) {
-      window.Handler = Handler;
-      React.render(<Handler />, $('#app-base')[0]);
-    });
+  Router.run(routes, Router.HistoryLocation, function (Handler) {
+    React.render(<Handler />, $('#app-base')[0]);
   });
 
 })();
