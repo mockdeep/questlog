@@ -6,10 +6,12 @@
 require File.expand_path('../config/application', __FILE__)
 Questlog::Application.load_tasks
 
-if Rails.env.test?
+if Rails.env.test? || Rails.env.development?
   require 'rubocop/rake_task'
-
   RuboCop::RakeTask.new
 
-  task default: [:spec, :rubocop]
+  require 'haml_lint/rake_task'
+  HamlLint::RakeTask.new
+
+  task default: [:spec, :rubocop, :haml_lint]
 end
