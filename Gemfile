@@ -9,6 +9,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '~> 4.2.0'
 
 gem 'active_model_serializers'
+gem 'autoprefixer-rails'
 gem 'bcrypt'
 gem 'dalli'
 gem 'foreigner'
