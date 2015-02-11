@@ -3,6 +3,11 @@ class ChargesController < ApplicationController
   CHARGE_AMOUNT = 500 # cents
 
   def new
+    @stripe_data = {
+      key: Rails.configuration.stripe[:publishable_key],
+      description: 'Subscription',
+      amount: 500,
+    }
   end
 
   def create
