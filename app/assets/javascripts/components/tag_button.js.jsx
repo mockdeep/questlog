@@ -22,19 +22,15 @@
       }
       return classString;
     },
-    handleClick: function (event) {
-      event.preventDefault();
-      Questlog.router.navigate(this.props.tag.slug, {trigger: true});
-    },
     unfinishedTasksCount: function () {
       return this.props.tag.unfinished_tasks_count;
     },
     render: function () {
       return (
         <div>
-          <a href={this.path()} onClick={this.handleClick} className={this.className()}>
+          <Questlog.Link to={this.path()} className={this.className()}>
             {this.props.tag.name} ({this.unfinishedTasksCount()})
-          </a>
+          </Questlog.Link>
         </div>
       );
     }

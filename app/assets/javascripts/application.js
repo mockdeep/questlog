@@ -18,7 +18,7 @@
 //= require react
 //= require react_ujs
 //= require lodash
-//= require backbone
+//= require react-router
 //= require_self
 //= require helpers
 //= require components

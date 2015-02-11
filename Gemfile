@@ -25,11 +25,11 @@ gem 'skylight'
 gem 'stripe'
 gem 'unicorn'
 
-gem 'rails-assets-backbone'
 gem 'rails-assets-es5-shim'
-gem 'rails-assets-normalize.css'
-gem 'rails-assets-reqwest'
 gem 'rails-assets-lodash'
+gem 'rails-assets-normalize.css'
+gem 'rails-assets-react-router'
+gem 'rails-assets-reqwest'
 
 group :production do
   gem 'rails_12factor'

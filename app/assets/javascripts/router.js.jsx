@@ -2,27 +2,42 @@
 
   'use strict';
 
-  var Router = Backbone.Router.extend({
-    routes: {
-      '': 'selectTag',
-      'tasks': 'doNothing',
-      ':slug': 'selectTag'
-    },
+  var Router = ReactRouter;
 
-    doNothing: function () {},
+  var DefaultRoute = Router.DefaultRoute;
+  var Route = Router.Route;
+  var RouteHandler = Router.RouteHandler;
+  Questlog.Link = Router.Link;
 
-    selectTag: function () {
-      React.render(
-        <Questlog.TasksShow url={window.location.pathname}/>,
-        $('#app-base')[0]
+  var AppBase = React.createClass({
+    render: function () {
+      return (
+        <RouteHandler />
       );
     }
   });
 
-  $(document).ready(function () {
-    Questlog.router = new Router();
+  Questlog.Nothing = React.createClass({
+    render: function () { return false; }
+  });
 
-    Backbone.history.start({pushState: true})
+  var routes = (
+    <Route handler={AppBase} path='/'>
+      <Route path='/sessions/new' handler={Questlog.Nothing} />
+      <Route path='/sessions' handler={Questlog.Nothing} />
+      <Route path='/tasks' handler={Questlog.Nothing} />
+      <Route path='/privacy' handler={Questlog.Nothing} />
+      <Route path='/what' handler={Questlog.Nothing} />
+      <Route name='tag' path='/:slug' handler={Questlog.TasksShow} />
+      <DefaultRoute handler={Questlog.TasksShow} />
+    </Route>
+  );
+
+  $(document).ready(function () {
+    Router.run(routes, Router.HistoryLocation, function (Handler) {
+      window.Handler = Handler;
+      React.render(<Handler />, $('#app-base')[0]);
+    });
   });
 
 })();
