@@ -47,7 +47,6 @@
                   <input
                     type='text'
                     autoComplete='off'
-                    className='col-md-12'
                     id='edit-title'
                     onChange={this.setTitle}
                     value={this.state.taskTitle}
