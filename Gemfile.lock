@@ -82,6 +82,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
     coderay (1.1.0)
+    colorize (0.7.5)
     connection_pool (2.1.1)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
@@ -285,6 +286,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    scss-lint (0.7.0)
+      colorize
+      sass
     selenium-webdriver (2.44.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
@@ -394,6 +398,7 @@ DEPENDENCIES
   rspec-rails
   sass (~> 3.2.0)
   sass-rails
+  scss-lint
   selenium-webdriver
   shoulda-matchers
   simplecov
