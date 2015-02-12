@@ -39,7 +39,7 @@
     render: function () {
       return (
         <div className='row'>
-          <div className='col-md-12' id='edit-form'>
+          <div className='col-md-12 edit-form' id='edit-form'>
             <form onSubmit={this.saveTask}>
               <Questlog.ErrorDisplay errors={this.state.errors} />
               <div className='row'>
@@ -48,6 +48,7 @@
                     type='text'
                     autoComplete='off'
                     id='edit-title'
+                    className='task-input'
                     onChange={this.setTitle}
                     value={this.state.taskTitle}
                     ref='title'

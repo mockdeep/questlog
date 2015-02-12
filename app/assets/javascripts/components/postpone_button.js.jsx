@@ -67,7 +67,7 @@
       );
     },
 
-    className: 'btn btn-info btn-lg btn-block',
+    className: 'btn btn-info btn-lg btn-block postpone-button',
 
     componentWillReceiveProps: function (newProps) {
       if (!newProps.disabled) {
