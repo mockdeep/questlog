@@ -57,6 +57,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rubocop'
   gem 'haml-lint'
+  gem 'scss-lint'
   gem 'shoulda-matchers', require: false
   gem 'teaspoon'
 end
