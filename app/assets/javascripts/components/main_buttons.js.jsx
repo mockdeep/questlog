@@ -5,7 +5,7 @@
   Questlog.MainButtons = React.createClass({
     render: function () {
       return (
-        <div id='buttons' className='row'>
+        <div id='buttons' className='row main-button'>
           <div className='col-md-6'>
             <Questlog.DoneButton
               task={this.props.task}

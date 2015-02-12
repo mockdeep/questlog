@@ -4,7 +4,7 @@
 
   Questlog.TaskTitle = React.createClass({
     className: function () {
-      var classString = 'col-md-12';
+      var classString = 'col-md-12 task-display';
       if (this.props.task.priority) {
         classString = classString + ' priority-' + this.props.task.priority;
       }

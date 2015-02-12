@@ -45,6 +45,7 @@
                 type='text'
                 autoComplete='off'
                 id='new-title'
+                className='task-input'
                 onChange={this.setTitle}
                 value={this.state.taskTitle}
                 ref='title'
