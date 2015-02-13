@@ -9,7 +9,7 @@ class Tag < ActiveRecord::Base
            dependent: :destroy,
            inverse_of: :tag
   has_many :unfinished_tasks,
-           -> { where('tasks.done_at' => nil) },
+           -> { where(tasks: { done_at: nil }) },
            through: :taggings,
            source: :task
   has_many :tasks, through: :taggings

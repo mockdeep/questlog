@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_many :tags, dependent: :destroy
 
   delegate :guest?, to: :account
-  delegate :highest_priority, to: :tasks
 
   def next_task(tag_id = nil)
     if tag_id
