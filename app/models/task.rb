@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
 
+  # counter-acts the automatic decrement from counter_cache
   before_destroy :increment_counters, if: :done?
 
   belongs_to :user, counter_cache: :unfinished_tasks_count
@@ -17,12 +18,15 @@ class Task < ActiveRecord::Base
   )
 
   scope :undone, -> { where(done_at: nil) }
-  scope :done, -> { where('done_at IS NOT NULL') }
+  scope :done, -> { where.not(done_at: nil) }
   scope :ordered, -> { order(:priority, :updated_at) }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
-  scope :untagged, -> { includes(:taggings).where(taggings: { id: nil }) }
-  scope :with_estimate, -> { where('time_estimate IS NOT NULL') }
-  scope :with_release, -> { where('release_at IS NOT NULL') }
+  scope :untagged, lambda {
+    joins('LEFT OUTER JOIN "taggings" ON "taggings"."task_id" = "tasks"."id"')
+      .where(taggings: { id: nil })
+  }
+  scope :with_estimate, -> { where.not(time_estimate: nil) }
+  scope :with_release, -> { where.not(release_at: nil) }
   scope :pending, -> { done.with_release.order(:release_at) }
 
   attr_reader :postpone
@@ -32,10 +36,6 @@ class Task < ActiveRecord::Base
 
   def self.next
     undone.ordered.first
-  end
-
-  def self.highest_priority
-    minimum(:priority)
   end
 
   def done=(done)

@@ -44,12 +44,12 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bullet'
   gem 'quiet_assets'
   gem 'spring-commands-rspec'
 end
 
 group :development, :test do
+  gem 'bullet'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
