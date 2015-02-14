@@ -14,8 +14,6 @@ Questlog::Application.routes.draw do
     resources :tasks, only: [:index]
 
     get '/privacy' => 'pages#privacy', as: :privacy
-    get '/what' => 'pages#what', as: :what
-
   end
 
   scope constraints: JsonConstraint.new do
