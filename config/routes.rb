@@ -16,7 +16,6 @@ Questlog::Application.routes.draw do
     get '/privacy' => 'pages#privacy', as: :privacy
     get '/what' => 'pages#what', as: :what
 
-    get '/*path', to: 'pages#index'
   end
 
   scope constraints: JsonConstraint.new do
@@ -27,5 +26,7 @@ Questlog::Application.routes.draw do
     get '/untagged', to: 'untagged_tasks#show', as: :untagged
     get '/:slug', to: 'tasks#show'
   end
+
+  get '/*path', to: 'pages#index', constraints: { format: /html/ }
 
 end
