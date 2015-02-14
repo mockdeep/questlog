@@ -11,7 +11,6 @@ Questlog::Application.routes.draw do
     resources :bulk_tasks, only: [:new, :create]
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
-    resources :tasks, only: [:index]
   end
 
   scope constraints: JsonConstraint.new do

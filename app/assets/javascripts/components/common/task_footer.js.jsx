@@ -6,7 +6,7 @@
     render: function () {
       return (
         <p>
-          <a href='/tasks'>All my tasks</a>
+          <Questlog.Link to='/tasks'>All my tasks</Questlog.Link>
           {' | '}
           <a href='/bulk_tasks/new'>Add multiple tasks</a>
           {' | '}
