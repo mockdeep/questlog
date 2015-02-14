@@ -4,7 +4,6 @@ class TasksController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
       format.json { render json: current_user.undone_and_pending_tasks }
     end
   end
@@ -29,7 +28,6 @@ class TasksController < ApplicationController
     flash[:success] = task_update_message
     respond_to do |format|
       format.json { render json: {}, status: :ok }
-      # format.html { redirect_to :back }
     end
   end
 
