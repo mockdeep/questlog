@@ -12,8 +12,6 @@ Questlog::Application.routes.draw do
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
     resources :tasks, only: [:index]
-
-    get '/privacy' => 'pages#privacy', as: :privacy
   end
 
   scope constraints: JsonConstraint.new do

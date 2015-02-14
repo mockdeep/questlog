@@ -9,7 +9,7 @@
         <div>
           <h1>What's a Questlog?</h1>
           <p>Wouldn't you like to know...</p>
-          <a href='/privacy'>Privacy</a>
+          <Questlog.Link to='/privacy'>Privacy</Questlog.Link>
         </div>
       );
     }
