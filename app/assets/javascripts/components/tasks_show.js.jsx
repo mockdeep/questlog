@@ -56,6 +56,9 @@
             disabled={this.state.disabled}
           />
           <Questlog.NewTaskForm loadTask={this.loadTask} />
+
+          <hr />
+          <Questlog.TaskFooter />
         </div>
       );
     }

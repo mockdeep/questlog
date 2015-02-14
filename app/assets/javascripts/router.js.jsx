@@ -27,7 +27,7 @@
       <Route path='/sessions' handler={Questlog.Nothing} />
       <Route path='/tasks' handler={Questlog.Nothing} />
       <Route path='/privacy' handler={Questlog.Nothing} />
-      <Route path='/what' handler={Questlog.Nothing} />
+      <Route path='/what' handler={Questlog.WhatPage} />
       <Route name='tag' path='/:slug' handler={Questlog.TasksShow} />
       <DefaultRoute handler={Questlog.TasksShow} />
     </Route>
