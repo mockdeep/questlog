@@ -1,9 +1,5 @@
 class BulkTasksController < ApplicationController
 
-  def new
-    @bulk_task = BulkTask.new
-  end
-
   def create
     BulkTask.create(bulk_task_params)
     redirect_to(tasks_path)

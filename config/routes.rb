@@ -8,7 +8,6 @@ Questlog::Application.routes.draw do
     resources :sessions, only: [:new, :create]
     delete '/sessions' => 'sessions#destroy', as: 'session'
 
-    resources :bulk_tasks, only: [:new, :create]
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
   end
@@ -16,6 +15,7 @@ Questlog::Application.routes.draw do
   scope constraints: JsonConstraint.new do
     resources :tags, only: [:index]
     resources :tasks, only: [:index, :create, :update, :destroy]
+    resources :bulk_tasks, only: [:create]
 
     get '', to: 'tasks#show'
     get '/untagged', to: 'untagged_tasks#show', as: :untagged
