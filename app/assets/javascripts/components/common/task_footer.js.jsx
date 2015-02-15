@@ -12,8 +12,8 @@
           {' | '}
           <Questlog.HelpLink />
           <br />
-          Try adding a tag using '#', for example: <strong>#at-home</strong>.
-          Click <Questlog.HelpLink /> for more.
+          Try adding a tag using '#', for example: <strong>#home</strong> or
+          <strong> #5-min</strong>.  Click <Questlog.HelpLink /> for more.
         </p>
       );
     }
