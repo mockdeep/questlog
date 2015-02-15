@@ -63,6 +63,10 @@
   }
 }
 
+ul {
+  list-style: none;
+}
+
 li {
   &.priority-1 {
     background-color: #e9bbbb;
