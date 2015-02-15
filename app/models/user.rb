@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
            class_name: 'Task'
   has_many :tags, dependent: :destroy
 
-  delegate :guest?, to: :account
+  delegate :guest?, :email, to: :account
 
   def next_task(tag_id = nil)
     if tag_id

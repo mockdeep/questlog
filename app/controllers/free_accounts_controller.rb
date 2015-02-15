@@ -7,6 +7,7 @@ class FreeAccountsController < ApplicationController
   def create
     @account = FreeAccount.new(account_params)
     if @account.save
+      persist_current_user
       current_user.update_attributes!(account: @account)
       flash[:notice] = 'Signed up!'
       redirect_to root_path
