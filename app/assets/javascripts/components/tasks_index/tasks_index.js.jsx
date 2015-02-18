@@ -27,6 +27,11 @@
       });
     },
 
+    removeTask: function (task) {
+      this.setState({currentTasks: _.without(this.state.currentTasks, task)});
+      this.setState({pendingTasks: _.without(this.state.pendingTasks, task)});
+    },
+
     currentTaskRows: function () {
       return _.map(this.state.currentTasks, this.taskRow);
     },
@@ -41,6 +46,7 @@
           key={task.id}
           task={task}
           loadTasks={this.loadTasks}
+          removeTask={this.removeTask}
         />
       );
     },

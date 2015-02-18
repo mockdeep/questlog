@@ -7,15 +7,20 @@
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {done: true}},
-        success: this.props.loadTasks
+        success: this.removeTask
       });
+    },
+
+    removeTask: function () {
+      this.props.removeTask(this.props.task);
+      this.props.loadTasks();
     },
 
     updatePriority: function (event) {
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {priority: event.target.value}},
-        success: this.props.loadTasks
+        success: this.removeTask
       });
     },
 
