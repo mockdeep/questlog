@@ -13,7 +13,7 @@
       this.setState({taskTitles: event.target.value});
     },
 
-    saveTasks: function () {
+    saveTasks: function (event) {
       var self = this;
       event.preventDefault();
       if (this.state.taskTitles.trim() == '') { return; }

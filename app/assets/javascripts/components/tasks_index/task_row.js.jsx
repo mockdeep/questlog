@@ -2,7 +2,8 @@
   'use strict';
 
   Questlog.TaskRow = React.createClass({
-    markDone: function () {
+    markDone: function (event) {
+      event.preventDefault();
       Questlog.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {done: true}},
@@ -19,7 +20,7 @@
     },
 
     deleteTask: function (event) {
-      event.stopPropagation();
+      event.preventDefault();
       if (confirm('Delete this task?')) {
         Questlog.request({
           url: 'tasks/' + this.props.task.id,
@@ -61,9 +62,13 @@
             <option value='3'>3</option>
           </select>
           {' | '}
-          <a href='javascript:void(0)' onClick={this.markDone}>Done!</a>
+          <button className='btn btn-link' role='Link' onClick={this.markDone}>
+            Done!
+          </button>
           {' | '}
-          <a href='javascript:void(0)' onClick={this.deleteTask}>Delete</a>
+          <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
+            Delete
+          </button>
         </li>
       );
     }

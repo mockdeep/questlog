@@ -10,7 +10,8 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
 
-Capybara.javascript_driver = :poltergeist
+driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
+Capybara.javascript_driver = driver
 
 RSpec.configure do |config|
   config.render_views
@@ -116,4 +117,12 @@ end
 
 def task_title
   find('#task').find('.title')
+end
+
+def browser
+  page.driver.browser
+end
+
+def confirm_alert
+  browser.switch_to.alert.accept if browser.respond_to?(:switch_to)
 end

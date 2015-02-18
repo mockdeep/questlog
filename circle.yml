@@ -1,0 +1,3 @@
+test:
+  post:
+    - DRIVER=selenium bundle exec rspec spec/features/
