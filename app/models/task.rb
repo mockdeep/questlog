@@ -94,7 +94,7 @@ class Task < ActiveRecord::Base
   end
 
   def tag_names
-    @tag_names ||= tags.pluck(:name)
+    @tag_names ||= tags.map(&:name)
   end
 
 private
