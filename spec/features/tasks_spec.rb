@@ -113,6 +113,7 @@ describe 'Tasks page', js: true do
     add_task('feed dog')
     expect(task_title).to have_content('do laundry')
     find('.delete-button').click
+    confirm_alert
     expect(task_title).to have_content('feed dog')
   end
 

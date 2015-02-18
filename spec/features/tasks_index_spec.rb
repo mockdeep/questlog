@@ -11,7 +11,7 @@ describe 'tasks index page', js: true do
     add_task('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
-    click_link 'Done!'
+    click_button 'Done!'
     expect(page).not_to have_content('do laundry')
   end
 
@@ -23,7 +23,8 @@ describe 'tasks index page', js: true do
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
-    click_link 'Delete'
+    click_button 'Delete'
+    confirm_alert
     expect(current_tasks).not_to have_content('do laundry')
     expect(current_tasks).to have_content('feed dog')
   end
