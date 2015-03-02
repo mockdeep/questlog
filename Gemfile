@@ -68,7 +68,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rb-inotify'
-  gem 'selenium-webdriver', '~> 2.45.0.dev3'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'timecop'
   gem 'vcr'
