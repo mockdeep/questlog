@@ -1,16 +1,22 @@
 (function () {
 
+  'use strict';
+
   Questlog.reloadPage = function () {
     window.location.reload();
   };
 
+  Questlog.authenticityToken = function () {
+    return $('meta[name="csrf-token"]').attr('content');
+  };
+
   Questlog.stopPropagation = function (event) {
     event.stopPropagation();
-  },
+  };
 
   Questlog.logError = function (error) {
     console.log('error: ', error.statusText);
-  },
+  };
 
   Questlog.request = function (options) {
     reqwest(mergeOptions(defaultRequestOptions(), options));
@@ -26,9 +32,7 @@
     return {
       type: 'json',
       method: 'put',
-      headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-      },
+      headers: { 'X-CSRF-Token': Questlog.authenticityToken() },
       success: Questlog.reloadPage,
       error: Questlog.logError
     };
