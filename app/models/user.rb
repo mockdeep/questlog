@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    !account.guest? && account.email == 'lobatifricha@gmail.com'
+    account && !account.guest? && account.email == 'lobatifricha@gmail.com'
   end
 
   def ordered_tags
