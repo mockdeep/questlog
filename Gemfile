@@ -58,7 +58,6 @@ group :development, :test do
   gem 'haml-lint'
   gem 'scss-lint'
   gem 'shoulda-matchers', require: false
-  gem 'teaspoon'
 end
 
 group :test do

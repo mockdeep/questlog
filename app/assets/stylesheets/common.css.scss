@@ -1,3 +1,5 @@
+@import 'variables/colors';
+
 .tag-buttons {
   div {
     display: inline-block;
@@ -26,8 +28,8 @@
 }
 
 .task-display {
-  background-color: #e9eeee;
-  border: 2px solid #aaa;
+  background-color: $bg-task-display;
+  border: 2px solid $color-task-display-border;
   border-radius: 6px;
   font-size: 31.5px;
   margin-bottom: 10px;
@@ -55,15 +57,15 @@
   }
 
   &.priority-1 {
-    background-color: #e9bbbb;
+    background-color: $bg-priority-1;
   }
 
   &.priority-2 {
-    background-color: #e9cccc;
+    background-color: $bg-priority-2;
   }
 
   &.priority-3 {
-    background-color: #e9dddd;
+    background-color: $bg-priority-3;
   }
 }
 
@@ -73,15 +75,15 @@ ul {
 
 li {
   &.priority-1 {
-    background-color: #e9bbbb;
+    background-color: $bg-priority-1;
   }
 
   &.priority-2 {
-    background-color: #e9cccc;
+    background-color: $bg-priority-2;
   }
 
   &.priority-3 {
-    background-color: #e9dddd;
+    background-color: $bg-priority-3;
   }
 }
 
@@ -98,7 +100,7 @@ li {
   }
 
   > select {
-    color: #000;
+    color: $color-postpone-btn;
     width: 150px;
   }
 
@@ -145,28 +147,28 @@ h3 {
 
 .over-skipped {
   .title {
-    color: #f00;
+    color: $color-critical;
   }
 }
 
 .btn {
   &.priority-1-btn {
-    color: #c93333;
+    color: $color-priority-1;
   }
 
   &.priority-2-btn {
-    color: #b93333;
+    color: $color-priority-2;
   }
 
   &.priority-3-btn {
-    color: #913333;
+    color: $color-priority-3;
   }
 }
 
 
 .modal {
   table td {
-    border: 1px solid #b6b6b6;
+    border: 1px solid $color-table-border;
   }
 
   .modal-body {
@@ -174,6 +176,6 @@ h3 {
   }
 
   .marker {
-    background-color: #fcfcfc;
+    background-color: $bg-table-marker;
   }
 }
