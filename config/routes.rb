@@ -5,7 +5,7 @@ Questlog::Application.routes.draw do
   scope constraints: HtmlConstraint.new do
     root 'pages#index'
 
-    resources :sessions, only: [:new, :create]
+    resources :sessions, only: [:create]
     delete '/sessions' => 'sessions#destroy', as: 'session'
 
     resources :free_accounts, only: [:new, :create]

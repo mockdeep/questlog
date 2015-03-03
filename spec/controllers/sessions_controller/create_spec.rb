@@ -50,7 +50,7 @@ describe SessionsController, '#create' do
 
     it 'renders the "new" template' do
       post(:create)
-      expect(response).to render_template('sessions/new')
+      expect(response).to redirect_to('/sessions/new')
     end
   end
 

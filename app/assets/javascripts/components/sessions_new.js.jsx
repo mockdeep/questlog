@@ -17,12 +17,7 @@
             <p>
               <label htmlFor='email'>Email</label>
               <br />
-              <input
-                type='text'
-                name='email'
-                id='email'
-                defaultValue={this.props.email}
-              />
+              <input type='text' name='email' id='email' />
             </p>
             <p>
               <label htmlFor='password'>Password</label>

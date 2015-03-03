@@ -56,7 +56,7 @@ describe TasksController, '#show' do
       end
 
       it 'redirects to the login page if the user is not logged in' do
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to redirect_to('/sessions/new')
       end
 
       # it 'remembers the intended tag of the user' do
