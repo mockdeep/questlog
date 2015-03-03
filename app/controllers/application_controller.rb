@@ -55,7 +55,7 @@ private
   def login_first
     store_return_path
     flash[:notice] = 'Please login first'
-    redirect_to new_session_path
+    redirect_to '/sessions/new'
   end
 
 end

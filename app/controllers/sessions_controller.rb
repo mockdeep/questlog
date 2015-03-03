@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-  end
-
   def create
     profile = Profile.authenticate(params[:email], params[:password])
     if profile
@@ -11,8 +8,8 @@ class SessionsController < ApplicationController
       self.current_user = user
       return_or_redirect_to root_path, notice: 'Logged in!'
     else
-      flash.now[:error] = 'Invalid email or password'
-      render :new
+      flash[:error] = 'Invalid email or password'
+      redirect_to '/sessions/new'
     end
   end
 
