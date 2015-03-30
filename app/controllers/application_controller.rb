@@ -33,7 +33,9 @@ private
   end
 
   def authorize_profiler
-    Rack::MiniProfiler.authorize_request if current_user && current_user.admin?
+    if Rails.env.development? || current_user && current_user.admin?
+      Rack::MiniProfiler.authorize_request
+    end
   end
 
   def check_repeats
