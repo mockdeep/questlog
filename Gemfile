@@ -23,6 +23,7 @@ gem 'puma_worker_killer'
 gem 'rack-cache'
 gem 'rack-mini-profiler'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
 
