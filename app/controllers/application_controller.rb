@@ -2,10 +2,15 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  before_action :configure_headers
   before_action :authorize_profiler
   before_action :check_repeats
 
 private
+
+  def configure_headers
+    response.headers['Vary'] = 'Accept'
+  end
 
   def current_user
     @current_user ||= find_user
