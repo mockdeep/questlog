@@ -14,6 +14,11 @@ describe EstimateParser, '#parse' do
     expect(result).to eq(title: 'do laundry', estimate_seconds: 1.week)
   end
 
+  it 'parses * repeats with "h" abbreviation for hours' do
+    result = parser.parse('check email ~5h')
+    expect(result).to eq(title: 'check email', estimate_seconds: 5.hours)
+  end
+
   it 'parses ~ estimates with "mi" abbreviation for minutes' do
     result = parser.parse('check email ~5mi')
     expect(result).to eq(title: 'check email', estimate_seconds: 5.minutes)

@@ -8,9 +8,20 @@ private
 
   def tags
     current_user.ordered_tags.active.tap do |tags|
+      tags.unshift(estimate_tag) if current_user.tasks.without_estimate.any?
       tags.unshift(untagged_tag) if current_user.untagged_tasks.any?
       tags.unshift(all_tag)
     end
+  end
+
+  def estimate_tag
+    Tag.new(
+      id: -2,
+      name: 'Needs Estimate',
+      unfinished_tasks_count: current_user.tasks.without_estimate.count,
+      slug: 'needs_estimate',
+      tasks: current_user.tasks.without_estimate,
+    )
   end
 
   def untagged_tag
