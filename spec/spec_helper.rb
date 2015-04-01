@@ -103,6 +103,12 @@ def add_task(task_title)
   expect(page).not_to have_content('Task added')
 end
 
+def edit_task(new_title)
+  find('.edit-button').click
+  fill_in 'edit-title', with: new_title
+  click_button 'Update Task'
+end
+
 def repeat_selector
   'i.fa.fa-repeat'
 end
@@ -113,6 +119,10 @@ end
 
 def pending_tasks
   find('#pending-tasks')
+end
+
+def postpone_button
+  find('#postpone').find('label')
 end
 
 def task_title

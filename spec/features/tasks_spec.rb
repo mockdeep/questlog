@@ -4,10 +4,6 @@ describe 'Tasks page', js: true do
 
   let(:user) { create(:free_user) }
 
-  def postpone_button
-    find('#postpone').find('label')
-  end
-
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       visit '/'

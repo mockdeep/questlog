@@ -3,6 +3,15 @@ RSpec.describe TagsController, '#index' do
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
   let(:valid_params) { { format: :json } }
+  let(:estimate_tag) do
+    {
+      id: -2,
+      name: 'Needs Estimate',
+      unfinished_tasks_count: 1,
+      slug: 'needs_estimate',
+      priority: nil,
+    }.stringify_keys
+  end
   let(:all_tag) do
     {
       id: 0,
@@ -26,6 +35,7 @@ RSpec.describe TagsController, '#index' do
 
   it 'returns only tags with tasks' do
     tag = create(:tag, user: user, tasks: [task])
+    task.update_attributes(estimate_seconds: 600)
     create(:tag, user: user)
     get(:index, valid_params)
     desired_attrs = %w(id slug unfinished_tasks_count name)
@@ -38,7 +48,7 @@ RSpec.describe TagsController, '#index' do
   it 'returns an "Untagged" tag when there are untagged tasks' do
     task
     get(:index, valid_params)
-    expected = { 'tags' => [all_tag, untagged_tag] }
+    expected = { 'tags' => [all_tag, untagged_tag, estimate_tag] }
     expect(JSON.parse(response.body)).to eq(expected)
   end
 

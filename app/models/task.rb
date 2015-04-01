@@ -25,9 +25,9 @@ class Task < ActiveRecord::Base
     joins('LEFT OUTER JOIN "taggings" ON "taggings"."task_id" = "tasks"."id"')
       .where(taggings: { id: nil })
   }
-  scope :with_estimate, -> { where.not(time_estimate: nil) }
   scope :with_release, -> { where.not(release_at: nil) }
   scope :pending, -> { done.with_release.order(:release_at) }
+  scope :without_estimate, -> { undone.where(estimate_seconds: nil) }
 
   attr_reader :postpone
   attr_writer :tag_names
