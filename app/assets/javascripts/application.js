@@ -20,6 +20,7 @@
 //= require react_ujs
 //= require lodash
 //= require react-router
+//= require react-dnd
 //= require_self
 //= require helpers
 //= require components
