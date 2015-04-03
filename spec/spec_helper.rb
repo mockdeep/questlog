@@ -13,6 +13,8 @@ require 'capybara/poltergeist'
 driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
 Capybara.javascript_driver = driver
 
+ActiveRecord::Migration.maintain_test_schema!
+
 RSpec.configure do |config|
   config.render_views
   config.include(FactoryGirl::Syntax::Methods)

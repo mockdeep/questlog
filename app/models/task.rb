@@ -34,6 +34,10 @@ class Task < ActiveRecord::Base
 
   after_save :associate_tags, :update_counters
 
+  def self.order(ids)
+    where(id: ids).update_all(['position = idx(array[?], id)', ids])
+  end
+
   def self.next
     undone.ordered.first
   end

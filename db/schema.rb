@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403005851) do
+ActiveRecord::Schema.define(version: 20150403034423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "intarray"
 
   create_table "free_accounts", force: :cascade do |t|
     t.string   "email",           limit: 255, null: false
@@ -68,9 +69,11 @@ ActiveRecord::Schema.define(version: 20150403005851) do
     t.integer  "repeat_seconds"
     t.integer  "estimate_seconds"
     t.integer  "timeframe_id"
+    t.integer  "position",                     default: 0, null: false
   end
 
   add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
+  add_index "tasks", ["position"], name: "index_tasks_on_position", using: :btree
   add_index "tasks", ["priority"], name: "index_tasks_on_priority", using: :btree
   add_index "tasks", ["release_at"], name: "index_tasks_on_release_at", using: :btree
   add_index "tasks", ["timeframe_id"], name: "index_tasks_on_timeframe_id", using: :btree
