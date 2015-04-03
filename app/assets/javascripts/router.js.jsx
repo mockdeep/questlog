@@ -29,6 +29,8 @@
       <Route path='/tasks' handler={Questlog.TasksIndex} />
       <Route path='/privacy' handler={Questlog.PrivacyPage} />
       <Route path='/what' handler={Questlog.WhatPage} />
+      <Route path='/scratch' handler={Questlog.ScratchPage} />
+      <Route path='/timeframes' handler={Questlog.TimeframesIndex} />
       <Route name='tag' path='/:slug' handler={Questlog.TasksShow} />
       <DefaultRoute handler={Questlog.TasksShow} />
     </Route>
