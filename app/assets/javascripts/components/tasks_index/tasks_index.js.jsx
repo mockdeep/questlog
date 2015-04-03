@@ -7,6 +7,7 @@
   };
 
   Questlog.TasksIndex = React.createClass({
+    mixins: [ReactDND],
     getInitialState: function () {
       return {currentTasks: [], pendingTasks: []};
     },

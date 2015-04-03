@@ -222,6 +222,9 @@ GEM
     rails-assets-es5-shim (4.1.0)
     rails-assets-lodash (3.3.1)
     rails-assets-normalize.css (3.0.2)
+    rails-assets-react (0.12.2)
+    rails-assets-react-dnd (0.9.8)
+      rails-assets-react (~> 0.12.0)
     rails-assets-react-router (0.12.4)
     rails-assets-reqwest (1.1.5)
     rails-deprecated_sanitizer (1.0.3)
@@ -398,6 +401,7 @@ DEPENDENCIES
   rails-assets-es5-shim
   rails-assets-lodash
   rails-assets-normalize.css
+  rails-assets-react-dnd
   rails-assets-react-router
   rails-assets-reqwest
   rails_12factor
