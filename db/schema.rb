@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204153023) do
+ActiveRecord::Schema.define(version: 20150403005851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,13 +67,21 @@ ActiveRecord::Schema.define(version: 20141204153023) do
     t.datetime "release_at"
     t.integer  "repeat_seconds"
     t.integer  "estimate_seconds"
+    t.integer  "timeframe_id"
   end
 
   add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
   add_index "tasks", ["priority"], name: "index_tasks_on_priority", using: :btree
   add_index "tasks", ["release_at"], name: "index_tasks_on_release_at", using: :btree
+  add_index "tasks", ["timeframe_id"], name: "index_tasks_on_timeframe_id", using: :btree
   add_index "tasks", ["updated_at"], name: "index_tasks_on_updated_at", using: :btree
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+
+  create_table "timeframes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255
@@ -95,5 +103,6 @@ ActiveRecord::Schema.define(version: 20141204153023) do
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fk"
   add_foreign_key "taggings", "tasks", name: "taggings_task_id_fk"
   add_foreign_key "tags", "users", name: "tags_user_id_fk"
+  add_foreign_key "tasks", "timeframes"
   add_foreign_key "tasks", "users", name: "tasks_user_id_fk"
 end
