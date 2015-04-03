@@ -30,6 +30,9 @@ Documentation:
 Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 
+ClassLength:
+  Max: 115
+
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
