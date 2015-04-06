@@ -20,6 +20,10 @@ class BulkTask
     user.tasks.create(task_params(titles))
   end
 
+  def self.update(user:, positions:)
+    user.tasks.reposition(positions.map(&:to_i))
+  end
+
   def self.task_params(titles)
     titles.split("\n").map { |title| title_parser.parse(title) }
   end
