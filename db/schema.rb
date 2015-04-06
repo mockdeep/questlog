@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150403034423) do
     t.integer  "repeat_seconds"
     t.integer  "estimate_seconds"
     t.integer  "timeframe_id"
-    t.integer  "position",                     default: 0, null: false
+    t.integer  "position"
   end
 
   add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
