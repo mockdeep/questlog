@@ -18,6 +18,7 @@ Questlog::Application.routes.draw do
     resources :tags, only: [:index]
     resources :tasks, only: [:index, :create, :update, :destroy]
     resources :bulk_tasks, only: [:create]
+    put :bulk_tasks, to: 'bulk_tasks#update'
 
     get '', to: 'tasks#show'
     get '/untagged', to: 'untagged_tasks#show', as: :untagged

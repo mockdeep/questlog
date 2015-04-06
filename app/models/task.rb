@@ -35,6 +35,8 @@ class Task < ActiveRecord::Base
   after_save :associate_tags, :update_counters
 
   def self.reposition(ids)
+    fail 'no ids given' if ids.empty?
+    fail ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
     where(id: ids).update_all(['position = idx(array[?], id)', ids])
   end
 
