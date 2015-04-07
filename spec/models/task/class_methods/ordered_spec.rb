@@ -1,6 +1,6 @@
 RSpec.describe Task, '.ordered' do
 
-  it 'returns tasks with priority first, updated_at second' do
+  it 'returns tasks with priority first, position second' do
     task_1 = create(:task)
     task_2 = create(:task, priority: 3)
     task_3 = create(:task, priority: 1)

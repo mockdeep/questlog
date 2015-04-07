@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403034423) do
+ActiveRecord::Schema.define(version: 20150407145353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150403034423) do
     t.integer  "repeat_seconds"
     t.integer  "estimate_seconds"
     t.integer  "timeframe_id"
-    t.integer  "position"
+    t.integer  "position",                                 null: false
   end
 
   add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
