@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
+  before_create :assign_position
+
   # counter-acts the automatic decrement from counter_cache
   before_destroy :increment_counters, if: :done?
 
@@ -19,7 +21,7 @@ class Task < ActiveRecord::Base
 
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where.not(done_at: nil) }
-  scope :ordered, -> { order(:priority, :updated_at) }
+  scope :ordered, -> { order(:priority, :position) }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
   scope :untagged, lambda {
     joins('LEFT OUTER JOIN "taggings" ON "taggings"."task_id" = "tasks"."id"')
@@ -35,7 +37,7 @@ class Task < ActiveRecord::Base
   after_save :associate_tags, :update_counters
 
   def self.reposition(ids)
-    fail 'no ids given' if ids.empty?
+    return unless ids.any?
     fail ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
     where(id: ids).update_all(['position = idx(array[?], id)', ids])
   end
@@ -78,7 +80,7 @@ class Task < ActiveRecord::Base
   end
 
   def release!
-    update_attributes!(done: false)
+    update_attributes!(done: false, position: next_position)
   end
 
   def done?
@@ -105,6 +107,10 @@ class Task < ActiveRecord::Base
 
 private
 
+  def next_position
+    user.tasks.undone.maximum(:position).to_i + 1
+  end
+
   def increment_counters
     tags.each(&:increment_tasks_count!)
     User.increment_counter(:unfinished_tasks_count, user.id)
@@ -128,6 +134,10 @@ private
       increment_counters
       @increment_counters = nil
     end
+  end
+
+  def assign_position
+    self.position ||= next_position
   end
 
 end

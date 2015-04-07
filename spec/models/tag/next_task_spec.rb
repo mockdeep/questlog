@@ -6,8 +6,8 @@ describe Tag, '#next_task' do
   let(:tag) { create(:tag, user: user) }
 
   it 'returns the next task' do
-    task1 = create(:task)
-    task2 = create(:task)
+    task1 = create(:task, user: user)
+    task2 = create(:task, user: user)
     tag.tasks << task1
     tag.tasks << task2
     expect(tag.next_task).to eq task1
