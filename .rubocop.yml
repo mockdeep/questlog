@@ -42,6 +42,12 @@ TrailingComma:
 # enable or confirm the rules below
 # ............................................................................ #
 
+Style/RegexpLiteral:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
+
 MethodLength:
   Max: 12
 
