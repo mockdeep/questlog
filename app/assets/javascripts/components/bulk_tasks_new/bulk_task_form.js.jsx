@@ -14,14 +14,13 @@
     },
 
     saveTasks: function (event) {
-      var self = this;
       event.preventDefault();
       if (this.state.taskTitles.trim() == '') { return; }
       Questlog.request({
         url: '/bulk_tasks',
         method: 'post',
         data: {bulk_task: {titles: this.state.taskTitles.trim()}},
-        success: function () { self.transitionTo('/tasks'); }
+        success: function () { this.transitionTo('/tasks'); }.bind(this)
       });
     },
 
