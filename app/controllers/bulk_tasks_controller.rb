@@ -7,7 +7,10 @@ class BulkTasksController < ApplicationController
 
   def update
     BulkTask.update(update_params.symbolize_keys)
-    redirect_to(tasks_path)
+    respond_to do |format|
+      format.html { redirect_to(tasks_path) }
+      format.json { render json: {}, status: :ok }
+    end
   end
 
 private
