@@ -51,10 +51,9 @@
     ],
 
     selectOptions: function () {
-      var self = this;
       return _.map(this.selectOptionsOptions, function (optionOptions) {
-        return self.selectOption(optionOptions);
-      })
+        return this.selectOption(optionOptions);
+      }.bind(this));
     },
 
     selectOption: function (optionOptions) {
