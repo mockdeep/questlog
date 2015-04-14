@@ -2,6 +2,31 @@
   'use strict';
 
   Questlog.TaskRow = React.createClass({
+    mixins: [ReactDND.DragDropMixin],
+
+    statics: {
+      configureDragDrop: function (register) {
+        register('task', {
+          dragSource: {
+            beginDrag: function (component) {
+              return { item: { id: component.props.task.id } };
+            },
+            canDrag: function (component) {
+              return !component.props.pending;
+            },
+            endDrag: function (component) {
+              component.props.saveTaskPositions(component);
+            }
+          },
+          dropTarget: {
+            over: function (component, item) {
+              component.props.moveTask(item.id, component.props.task.id);
+            }
+          }
+        });
+      }
+    },
+
     markDone: function (event) {
       event.preventDefault();
       Questlog.request({
@@ -56,8 +81,13 @@
     },
 
     render: function () {
+      var dragSource = this.dragSourceFor('task');
+      var dropTarget = this.dropTargetFor('task');
+      var isDragging = this.getDragState('task').isDragging;
+      var style = {opacity: isDragging ? 0 : 1};
+
       return (
-        <li className={this.className()}>
+        <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
           {this.props.task.title} {this.emblems()}
           {' | Pri: '}
           <select onChange={this.updatePriority} defaultValue={this.priority()}>

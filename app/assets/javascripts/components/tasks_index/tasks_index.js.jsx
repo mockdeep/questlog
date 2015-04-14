@@ -7,7 +7,6 @@
   };
 
   Questlog.TasksIndex = React.createClass({
-    mixins: [ReactDND],
     getInitialState: function () {
       return {currentTasks: [], pendingTasks: []};
     },
@@ -33,6 +32,56 @@
       this.setState({pendingTasks: _.without(this.state.pendingTasks, task)});
     },
 
+    moveTask: function (id, afterId) {
+      var tasks = this.state.currentTasks;
+
+      var task = tasks.filter(function (t) { return t.id === id; })[0];
+      var afterTask = tasks.filter(function (t) { return t.id === afterId })[0];
+      var taskIndex = tasks.indexOf(task);
+      var afterIndex = tasks.indexOf(afterTask);
+
+      var newTasks = tasks.slice();
+      newTasks.splice(taskIndex, 1);
+      newTasks.splice(afterIndex, 0, task);
+
+      this.setState({currentTasks: newTasks});
+    },
+
+    saveTaskPositions: function (component) {
+      var taskId = component.props.task.id;
+      var tasks = this.state.currentTasks;
+
+      var task = tasks.filter(function (t) { return t.id === taskId; })[0];
+      var taskIndex = tasks.indexOf(task);
+      var afterTask = tasks[taskIndex + 1];
+      var beforeTask = tasks[taskIndex - 1];
+      var newPriority = task.priority;
+
+      if (beforeTask && afterTask) {
+        if (task.priority !== beforeTask.priority && task.priority !== afterTask.priority) {
+          newPriority = afterTask.priority;
+        }
+      } else if (afterTask) {
+        newPriority = afterTask.priority;
+      } else if (beforeTask) {
+        newPriority = beforeTask.priority;
+      }
+
+      Questlog.request({
+        method: 'put',
+        url: '/bulk_tasks',
+        data: { bulk_task: { positions: this.currentTaskPositions() } },
+        success: function () { }
+      });
+      component.updatePriority({target: { value: newPriority }});
+    },
+
+    currentTaskPositions: function () {
+      return _.map(this.state.currentTasks, function (task) {
+        return task.id;
+      });
+    },
+
     currentTaskRows: function () {
       return _.map(this.state.currentTasks, this.taskRow);
     },
@@ -48,6 +97,8 @@
           task={task}
           loadTasks={this.loadTasks}
           removeTask={this.removeTask}
+          moveTask={this.moveTask}
+          saveTaskPositions={this.saveTaskPositions}
         />
       );
     },
