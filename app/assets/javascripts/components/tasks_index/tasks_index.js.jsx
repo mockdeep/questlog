@@ -64,9 +64,9 @@
         if (task.priority !== beforeTask.priority && task.priority !== afterTask.priority) {
           newPriority = afterTask.priority;
         }
-      } else if (afterTask) {
+      } else if (afterTask && (afterTask.priority && afterTask.priority < task.priority || !task.priority)) {
         newPriority = afterTask.priority;
-      } else if (beforeTask) {
+      } else if (beforeTask && (task.priority && beforeTask.priority > task.priority || !beforeTask.priority)) {
         newPriority = beforeTask.priority;
       }
 
