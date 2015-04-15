@@ -19,7 +19,7 @@
             }
           },
           dropTarget: {
-            over: function (component, item) {
+            enter: function (component, item) {
               component.props.moveTask(item.id, component.props.task.id);
             }
           }

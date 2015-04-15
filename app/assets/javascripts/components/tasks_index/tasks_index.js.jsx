@@ -35,14 +35,17 @@
     moveTask: function (id, afterId) {
       var tasks = this.state.currentTasks;
 
-      var task = tasks.filter(function (t) { return t.id === id; })[0];
-      var afterTask = tasks.filter(function (t) { return t.id === afterId })[0];
+      var task = _.find(tasks, function (t) { return t.id === id; });
+      var afterTask = _.find(tasks, function (t) { return t.id === afterId; });
       var taskIndex = tasks.indexOf(task);
       var afterIndex = tasks.indexOf(afterTask);
 
-      var newTasks = tasks.slice();
-      newTasks.splice(taskIndex, 1);
-      newTasks.splice(afterIndex, 0, task);
+      var newTasks = React.addons.update(tasks, {
+        $splice: [
+          [taskIndex, 1],
+          [afterIndex, 0, task]
+        ]
+      });
 
       this.setState({currentTasks: newTasks});
     },
@@ -51,7 +54,7 @@
       var taskId = component.props.task.id;
       var tasks = this.state.currentTasks;
 
-      var task = tasks.filter(function (t) { return t.id === taskId; })[0];
+      var task = _.find(tasks, function (t) { return t.id === taskId; });
       var taskIndex = tasks.indexOf(task);
       var afterTask = tasks[taskIndex + 1];
       var beforeTask = tasks[taskIndex - 1];
