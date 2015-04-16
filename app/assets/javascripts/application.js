@@ -16,17 +16,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require react
+//= require_self
 //= require react_ujs
 //= require lodash
 //= require react-router
 //= require react-dnd
-//= require_self
 //= require helpers
 //= require components
 //= require_tree .
 
 // browserify wraps this file, so now we need to assign elements on the window
-window.Questlog = {};
+Questlog = {};
 
-window.DemoComponent = require('./demo_component');
+React = require('react');
+//window.DemoComponent = require('./demo_component');

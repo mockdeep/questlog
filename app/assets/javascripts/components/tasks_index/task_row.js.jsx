@@ -1,8 +1,10 @@
 (function () {
   'use strict';
 
+  var PureRenderMixin = require('react/addons').PureRenderMixin;
+
   Questlog.TaskRow = React.createClass({
-    mixins: [ReactDND.DragDropMixin, React.addons.PureRenderMixin],
+    mixins: [ReactDND.DragDropMixin, PureRenderMixin],
 
     statics: {
       configureDragDrop: function (register) {

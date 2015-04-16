@@ -1,6 +1,7 @@
 (function () {
-
   'use strict';
+
+  var update = require('react/lib/update');
 
   var isPending = function (task) {
     return task.pending;
@@ -40,7 +41,7 @@
       var taskIndex = tasks.indexOf(task);
       var afterIndex = tasks.indexOf(afterTask);
 
-      var newTasks = React.addons.update(tasks, {
+      var newTasks = update(tasks, {
         $splice: [
           [taskIndex, 1],
           [afterIndex, 0, task]
