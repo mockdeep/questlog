@@ -7,6 +7,6 @@
     "reactify": "1.1.x"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": "0.12.x"
   }
 }
