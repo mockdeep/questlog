@@ -2,7 +2,7 @@
   'use strict';
 
   Questlog.TaskRow = React.createClass({
-    mixins: [ReactDND.DragDropMixin],
+    mixins: [ReactDND.DragDropMixin, React.addons.PureRenderMixin],
 
     statics: {
       configureDragDrop: function (register) {
