@@ -26,4 +26,7 @@
 //= require components
 //= require_tree .
 
-var Questlog = {};
+// browserify wraps this file, so now we need to assign elements on the window
+window.Questlog = {};
+
+window.DemoComponent = require('./demo_component');
