@@ -1,7 +1,7 @@
 {
   "name": "Questlog",
   "repository": "https://github.com/mockdeep/questlog",
-  "devDependencies" : {
+  "dependencies" : {
     "browserify": "9.0.x",
     "browserify-incremental": "1.4.x",
     "reactify": "1.1.x"
