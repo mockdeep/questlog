@@ -29,4 +29,3 @@
 Questlog = {};
 
 React = require('react');
-//window.DemoComponent = require('./demo_component');
