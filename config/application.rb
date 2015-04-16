@@ -16,6 +16,9 @@ module Questlog
 
     config.react.addons = true
 
+    browserify_options = '--transform reactify --extension=".js.jsx"'
+    config.browserify_rails.commandline_options = browserify_options
+
   end
 
 end
