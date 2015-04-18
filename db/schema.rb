@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150407145353) do
 
   add_index "tasks", ["done_at"], name: "index_tasks_on_done_at", using: :btree
   add_index "tasks", ["position"], name: "index_tasks_on_position", using: :btree
+  add_index "tasks", ["priority", "position"], name: "index_tasks_on_priority_and_position", using: :btree
   add_index "tasks", ["priority"], name: "index_tasks_on_priority", using: :btree
   add_index "tasks", ["release_at"], name: "index_tasks_on_release_at", using: :btree
   add_index "tasks", ["timeframe_id"], name: "index_tasks_on_timeframe_id", using: :btree
