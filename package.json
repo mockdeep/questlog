@@ -2,14 +2,14 @@
   "name": "Questlog",
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies" : {
-    "browserify": "9.0.x",
-    "browserify-incremental": "1.4.x",
-    "reactify": "1.1.x",
-    "react": "0.13.x"
+    "browserify": "9.0.8",
+    "browserify-incremental": "2.0.0",
+    "reactify": "1.1.0",
+    "react": "0.13.1"
   },
   "devDependencies": {
     "jest-cli": "0.4.0",
-    "react-tools": "*"
+    "react-tools": "0.13.1"
   },
   "engines": {
     "node": "0.10.38"
