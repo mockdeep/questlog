@@ -7,7 +7,25 @@
     "reactify": "1.1.x",
     "react": "0.13.x"
   },
+  "devDependencies": {
+    "jest-cli": "0.4.0",
+    "react-tools": "*"
+  },
   "engines": {
-    "node": "0.12.x"
+    "node": "0.10.38"
+  },
+  "scripts": {
+    "test": "node ./node_modules/jest-cli/bin/jest.js"
+  },
+  "jest": {
+    "rootDir": "./spec/javascripts",
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/test_helper.js",
+    "moduleFileExtensions": [ "js", "jsx"],
+    "unmockedModulePathPatterns": [
+      "react"
+      ],
+    "testFileExtensions": ["js", "jsx"],
+    "testPathIgnorePatterns": [ "preprocessor.js" ]
   }
 }
