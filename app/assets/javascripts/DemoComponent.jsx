@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var React = require('react');
+
   var DemoComponent = React.createClass({
     render: function () {
       return (
@@ -10,5 +12,4 @@
   });
 
   module.exports = DemoComponent;
-
 })();
