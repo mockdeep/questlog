@@ -2,7 +2,13 @@
 
   'use strict';
 
-  Questlog.PostponeButton = React.createClass({
+  var SelectOption = React.createClass({
+    render: function () {
+      return <option value={this.props.value}>{this.props.content}</option>;
+    }
+  });
+
+  var PostponeButton = React.createClass({
     getInitialState: function () {
       return {
         postponeSeconds: this.selectOptionsOptions[0].value,
@@ -58,7 +64,7 @@
 
     selectOption: function (optionOptions) {
       return (
-        <Questlog.SelectOption
+        <SelectOption
           value={optionOptions.value}
           key={optionOptions.value}
           content={optionOptions.content}
@@ -95,10 +101,6 @@
     }
   });
 
-  Questlog.SelectOption = React.createClass({
-    render: function () {
-      return <option value={this.props.value}>{this.props.content}</option>;
-    }
-  });
+  module.exports = PostponeButton;
 
 })();
