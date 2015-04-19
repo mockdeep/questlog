@@ -31,7 +31,6 @@ gem 'stripe'
 gem 'rails-assets-es5-shim'
 gem 'rails-assets-lodash'
 gem 'rails-assets-normalize.css'
-gem 'rails-assets-react-router'
 gem 'rails-assets-react-dnd'
 gem 'rails-assets-reqwest'
 

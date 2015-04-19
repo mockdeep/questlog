@@ -3,14 +3,16 @@
   'use strict';
 
   Questlog.TasksShow = React.createClass({
-    mixins: [ReactRouter.State],
+    contextTypes: {
+      router: React.PropTypes.func
+    },
     getInitialState: function () {
       return {task: {title: 'Loading...'}, disabled: true, tags: []};
     },
     loadTask: function (url) {
       Questlog.request({
         method: 'get',
-        url: this.getParams().slug || '',
+        url: this.context.router.getCurrentParams().slug || '',
         success: this.updateTask
       });
       Questlog.request({
