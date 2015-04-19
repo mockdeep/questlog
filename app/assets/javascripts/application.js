@@ -22,7 +22,7 @@
 //= require react-router
 //= require react-dnd
 //= require helpers
-//= require components
+//= require old_components
 //= require_tree .
 
 // browserify wraps this file, so now we need to assign elements on the window
