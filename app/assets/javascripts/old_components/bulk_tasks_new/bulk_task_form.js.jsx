@@ -1,5 +1,4 @@
 (function () {
-
   'use strict';
 
   Questlog.BulkTaskForm = React.createClass({
@@ -61,5 +60,4 @@
       );
     }
   });
-
 })();

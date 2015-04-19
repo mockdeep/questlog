@@ -27,5 +27,5 @@
 // browserify wraps this file, so now we need to assign elements on the window
 Questlog = {};
 
-ReactRouter = require('react-router');
 React = require('react');
+ReactRouter = require('react-router');
