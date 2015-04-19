@@ -1,5 +1,4 @@
 (function () {
-
   'use strict';
 
   var Router = ReactRouter;
@@ -39,5 +38,4 @@
   Router.run(routes, Router.HistoryLocation, function (Handler) {
     React.render(<Handler />, $('#app-base')[0]);
   });
-
 })();
