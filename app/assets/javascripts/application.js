@@ -19,7 +19,6 @@
 //= require_self
 //= require react_ujs
 //= require lodash
-//= require react-router
 //= require react-dnd
 //= require helpers
 //= require old_components
@@ -28,4 +27,5 @@
 // browserify wraps this file, so now we need to assign elements on the window
 Questlog = {};
 
+ReactRouter = require('react-router');
 React = require('react');
