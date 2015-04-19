@@ -1,13 +1,15 @@
 (function () {
-
   'use strict';
+
+  var DoneButton = require('../components/done_button');
+  var PostponeButton = require('../components/postpone_button');
 
   Questlog.MainButtons = React.createClass({
     render: function () {
       return (
         <div id='buttons' className='row main-button'>
           <div className='col-md-6'>
-            <Questlog.DoneButton
+            <DoneButton
               task={this.props.task}
               loadTask={this.props.loadTask}
               disabled={this.props.disabled}
@@ -15,7 +17,7 @@
             />
           </div>
           <div className='col-md-6'>
-            <Questlog.PostponeButton
+            <PostponeButton
               task={this.props.task}
               loadTask={this.props.loadTask}
               disabled={this.props.disabled}
@@ -26,5 +28,4 @@
       );
     }
   });
-
 })();

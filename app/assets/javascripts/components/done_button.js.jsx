@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  Questlog.DoneButton = React.createClass({
+  var DoneButton = React.createClass({
     getInitialState: function () {
       return {buttonContent: 'Done! Give me another!'};
     },
@@ -42,5 +42,7 @@
       );
     }
   });
+
+  module.exports = DoneButton;
 
 })();
