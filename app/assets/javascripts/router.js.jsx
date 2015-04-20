@@ -13,6 +13,7 @@
   var WhatPage = require('./components/static/what_page');
   var ScratchPage = require('./components/scratch_page');
   var SessionsNew = require('./components/sessions_new');
+  var TasksIndex = require('./components/tasks_index');
   var TasksShow = require('./components/tasks_show');
 
   var AppBase = React.createClass({
@@ -33,7 +34,7 @@
       <Route path='/free_accounts/new' handler={Nothing} />
       <Route path='/sessions/new' handler={SessionsNew} />
       <Route path='/sessions' handler={Nothing} />
-      <Route path='/tasks' handler={Questlog.TasksIndex} />
+      <Route path='/tasks' handler={TasksIndex} />
       <Route path='/privacy' handler={PrivacyPage} />
       <Route path='/what' handler={WhatPage} />
       <Route path='/scratch' handler={ScratchPage} />
