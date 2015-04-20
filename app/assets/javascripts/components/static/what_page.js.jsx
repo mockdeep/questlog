@@ -1,9 +1,7 @@
 (function () {
-
   'use strict';
 
-  Questlog.WhatPage = React.createClass({
-
+  var WhatPage = React.createClass({
     render: function () {
       return (
         <div>
@@ -13,7 +11,7 @@
         </div>
       );
     }
-
   });
 
+  module.exports = WhatPage;
 })();
