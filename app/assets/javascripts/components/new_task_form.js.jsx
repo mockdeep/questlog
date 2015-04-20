@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  var ErrorDisplay = require('../components/error_display');
+  var ErrorDisplay = require('./error_display');
+  var flash = require('../helpers').flash;
 
   var NewTaskForm = React.createClass({
     getInitialState: function () {
@@ -32,7 +33,7 @@
       });
     },
     loadTask: function () {
-      Questlog.flash('success', 'Task added');
+      flash('success', 'Task added');
       this.props.loadTask();
       this.replaceState(this.getInitialState());
     },
