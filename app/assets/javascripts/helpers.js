@@ -2,11 +2,11 @@
 
   'use strict';
 
-  Questlog.reloadPage = function () {
+  var reloadPage = function () {
     window.location.reload();
   };
 
-  Questlog.authenticityToken = function () {
+  var authenticityToken = function () {
     return $('meta[name="csrf-token"]').attr('content');
   };
 
@@ -32,8 +32,8 @@
     return {
       type: 'json',
       method: 'put',
-      headers: { 'X-CSRF-Token': Questlog.authenticityToken() },
-      success: Questlog.reloadPage,
+      headers: { 'X-CSRF-Token': authenticityToken() },
+      success: reloadPage,
       error: Questlog.logError
     };
   }
@@ -41,5 +41,9 @@
   function mergeOptions(defaults, options) {
     return $.extend({}, defaults, options);
   }
+
+  module.exports = {
+    authenticityToken: authenticityToken,
+  };
 
 })();
