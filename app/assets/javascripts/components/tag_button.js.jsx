@@ -1,8 +1,7 @@
 (function () {
-
   'use strict';
 
-  Questlog.TagButton = React.createClass({
+  var TagButton = React.createClass({
     path: function () {
       return '/' + this.props.tag.slug;
     },
@@ -35,4 +34,6 @@
       );
     }
   });
+
+  module.exports = TagButton;
 })();
