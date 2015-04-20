@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  Questlog.BulkTaskForm = React.createClass({
+  var BulkTaskForm = React.createClass({
     mixins: [ReactRouter.Navigation],
 
     getInitialState: function () {
@@ -60,4 +60,6 @@
       );
     }
   });
+
+  module.exports = BulkTaskForm;
 })();
