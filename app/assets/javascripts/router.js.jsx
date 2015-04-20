@@ -8,9 +8,10 @@
   var RouteHandler = Router.RouteHandler;
   Questlog.Link = Router.Link;
 
-  var TasksShow = require('./components/tasks_show');
   var BulkTaskForm = require('./components/bulk_task_form');
+  var ScratchPage = require('./components/scratch_page');
   var SessionsNew = require('./components/sessions_new');
+  var TasksShow = require('./components/tasks_show');
 
   var AppBase = React.createClass({
     render: function () {
@@ -33,7 +34,7 @@
       <Route path='/tasks' handler={Questlog.TasksIndex} />
       <Route path='/privacy' handler={Questlog.PrivacyPage} />
       <Route path='/what' handler={Questlog.WhatPage} />
-      <Route path='/scratch' handler={Questlog.ScratchPage} />
+      <Route path='/scratch' handler={ScratchPage} />
       <Route path='/timeframes' handler={Questlog.TimeframesIndex} />
       <Route name='tag' path='/:slug' handler={TasksShow} />
       <DefaultRoute handler={TasksShow} />
