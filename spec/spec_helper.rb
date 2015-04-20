@@ -10,6 +10,12 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
 
+if ENV['POLTERGEIST_TIMEOUT']
+  timeout = Integer(ENV['POLTERGEIST_TIMEOUT'])
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, timeout: timeout)
+  end
+end
 driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
 Capybara.javascript_driver = driver
 

@@ -1,3 +1,6 @@
+machine:
+  environment:
+    POLTERGEIST_TIMEOUT: 10
 test:
   post:
     - DRIVER=selenium bundle exec rspec spec/features/
