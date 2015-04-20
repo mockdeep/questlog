@@ -4,7 +4,9 @@
   var helpers = require('../helpers');
 
   var BulkTaskForm = React.createClass({
-    mixins: [ReactRouter.Navigation],
+    contextTypes: {
+      router: React.PropTypes.func
+    },
 
     getInitialState: function () {
       return {taskTitles: ''};
@@ -21,7 +23,9 @@
         url: '/bulk_tasks',
         method: 'post',
         data: {bulk_task: {titles: this.state.taskTitles.trim()}},
-        success: function () { this.transitionTo('/tasks'); }.bind(this)
+        success: function () {
+          this.context.router.transitionTo('/tasks');
+        }.bind(this)
       });
     },
 
