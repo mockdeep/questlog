@@ -1,6 +1,7 @@
 (function () {
-
   'use strict';
+
+  var ErrorDisplay = require('../components/error_display');
 
   Questlog.NewTaskForm = React.createClass({
     getInitialState: function () {
@@ -38,7 +39,7 @@
     render: function () {
       return (
         <form onSubmit={this.saveTask} id='new-form'>
-          <Questlog.ErrorDisplay errors={this.state.errors} />
+          <ErrorDisplay errors={this.state.errors} />
           <div className='row'>
             <div className='col-md-6'>
               <input

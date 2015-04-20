@@ -2,7 +2,7 @@
 
   'use strict';
 
-  Questlog.ErrorDisplay = React.createClass({
+  var ErrorDisplay = React.createClass({
     errorItems: function () {
       return _.map(this.props.errors, function (errorMessage) {
         return (<li key={errorMessage}>{errorMessage}</li>);
@@ -21,5 +21,7 @@
       );
     }
   });
+
+  module.exports = ErrorDisplay;
 
 })();
