@@ -2,9 +2,9 @@
 
   'use strict';
 
-  var DeleteButton = require('../components/delete_button');
+  var DeleteButton = require('./delete_button');
 
-  Questlog.TaskTitle = React.createClass({
+  var TaskTitle = React.createClass({
     className: function () {
       var classString = 'col-md-12 task-display';
       if (this.props.task.priority) {
@@ -56,5 +56,7 @@
       );
     }
   });
+
+  module.exports = TaskTitle;
 
 })();
