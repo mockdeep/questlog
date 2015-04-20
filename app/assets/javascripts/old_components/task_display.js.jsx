@@ -4,12 +4,13 @@
 
   var MainButtons = require('../components/main_buttons');
   var TaskTitle = require('../components/task_title');
+  var TagButtons = require('../components/tag_buttons');
 
   Questlog.TaskDisplay = React.createClass({
     render: function () {
       return (
         <div>
-          <Questlog.TagButtons task={this.props.task} tags={this.props.tags} />
+          <TagButtons task={this.props.task} tags={this.props.tags} />
           <TaskTitle
             task={this.props.task}
             loadTask={this.props.loadTask}
