@@ -1,8 +1,7 @@
 (function () {
-
   'use strict';
 
-  Questlog.SessionsNew = React.createClass({
+  var SessionsNew = React.createClass({
     render: function () {
       return (
         <div>
@@ -33,4 +32,5 @@
     }
   });
 
+  module.exports = SessionsNew;
 })();

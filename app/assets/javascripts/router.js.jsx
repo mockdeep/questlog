@@ -10,6 +10,7 @@
 
   var TasksShow = require('./components/tasks_show');
   var BulkTaskForm = require('./components/bulk_task_form');
+  var SessionsNew = require('./components/sessions_new');
 
   var AppBase = React.createClass({
     render: function () {
@@ -27,7 +28,7 @@
     <Route handler={AppBase} path='/'>
       <Route path='/bulk_tasks/new' handler={BulkTaskForm} />
       <Route path='/free_accounts/new' handler={Nothing} />
-      <Route path='/sessions/new' handler={Questlog.SessionsNew} />
+      <Route path='/sessions/new' handler={SessionsNew} />
       <Route path='/sessions' handler={Nothing} />
       <Route path='/tasks' handler={Questlog.TasksIndex} />
       <Route path='/privacy' handler={Questlog.PrivacyPage} />
