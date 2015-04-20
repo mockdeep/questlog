@@ -1,8 +1,7 @@
 (function () {
-
   'use strict';
 
-  Questlog.ScratchPage = React.createClass({
+  var ScratchPage = React.createClass({
 
     render: function () {
       return (
@@ -12,4 +11,5 @@
 
   });
 
+  module.exports = ScratchPage;
 })();
