@@ -3,6 +3,7 @@
 
   var NewTaskForm = require('../components/new_task_form');
   var TaskFooter = require('../components/common/task_footer');
+  var TaskDisplay = require('../components/task_display');
 
   Questlog.TasksShow = React.createClass({
     contextTypes: {
@@ -52,7 +53,7 @@
     render: function () {
       return (
         <div>
-          <Questlog.TaskDisplay
+          <TaskDisplay
             task={this.state.task}
             tags={this.state.tags}
             disable={this.disable}
