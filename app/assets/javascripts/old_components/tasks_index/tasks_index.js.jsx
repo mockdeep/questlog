@@ -3,6 +3,8 @@
 
   var update = require('react/lib/update');
 
+  var NewTaskForm = require('../../components/new_task_form');
+
   var isPending = function (task) {
     return task.pending;
   };
@@ -114,7 +116,7 @@
     render: function () {
       return (
         <div>
-          <Questlog.NewTaskForm loadTask={this.loadTasks} />
+          <NewTaskForm loadTask={this.loadTasks} />
           <br />
           <div id='current-tasks'>
             <h2>Current Tasks</h2>
