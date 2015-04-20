@@ -18,16 +18,16 @@
     }
   });
 
-  Questlog.Nothing = React.createClass({
+  var Nothing = React.createClass({
     render: function () { return false; }
   });
 
   var routes = (
     <Route handler={AppBase} path='/'>
       <Route path='/bulk_tasks/new' handler={Questlog.BulkTaskForm} />
-      <Route path='/free_accounts/new' handler={Questlog.Nothing} />
+      <Route path='/free_accounts/new' handler={Nothing} />
       <Route path='/sessions/new' handler={Questlog.SessionsNew} />
-      <Route path='/sessions' handler={Questlog.Nothing} />
+      <Route path='/sessions' handler={Nothing} />
       <Route path='/tasks' handler={Questlog.TasksIndex} />
       <Route path='/privacy' handler={Questlog.PrivacyPage} />
       <Route path='/what' handler={Questlog.WhatPage} />
