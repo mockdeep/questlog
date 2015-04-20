@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var HelpLink = require('../../components/common/help_link');
+  var HelpLink = require('./help_link');
 
-  Questlog.TaskFooter = React.createClass({
+  var TaskFooter = React.createClass({
     render: function () {
       return (
         <p>
@@ -19,5 +19,7 @@
       );
     }
   });
+
+  module.exports = TaskFooter;
 
 })();
