@@ -21,9 +21,10 @@
 //= require lodash
 //= require react-dnd
 //= require helpers
-//= require_tree .
+//= require router
+//= require tasks
 
-// browserify wraps this file, so now we need to assign elements on the window
+// browserify wraps this file, so now we need to assign variables globally
 Questlog = {};
 
 React = require('react');
