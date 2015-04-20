@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var TagButton = require('../components/tag_button');
+  var TagButton = require('./tag_button');
 
-  Questlog.TagButtons = React.createClass({
+  var TagButtons = React.createClass({
     isCurrent: function (tag) {
       return _.any(this.currentNames(), function (name) {
         return tag.name === name
@@ -31,4 +31,5 @@
     }
   });
 
+  module.exports = TagButtons;
 })();
