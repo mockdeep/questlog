@@ -15,6 +15,7 @@
   var SessionsNew = require('./components/sessions_new');
   var TasksIndex = require('./components/tasks_index');
   var TasksShow = require('./components/tasks_show');
+  var TimeframesIndex = require('./components/timeframes_index');
 
   var AppBase = React.createClass({
     render: function () {
@@ -38,7 +39,7 @@
       <Route path='/privacy' handler={PrivacyPage} />
       <Route path='/what' handler={WhatPage} />
       <Route path='/scratch' handler={ScratchPage} />
-      <Route path='/timeframes' handler={Questlog.TimeframesIndex} />
+      <Route path='/timeframes' handler={TimeframesIndex} />
       <Route name='tag' path='/:slug' handler={TasksShow} />
       <DefaultRoute handler={TasksShow} />
     </Route>
