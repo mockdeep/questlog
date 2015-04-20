@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var helpers = require('../helpers');
+
   var DoneButton = React.createClass({
     getInitialState: function () {
       return {buttonContent: 'Done! Give me another!'};
@@ -19,7 +21,7 @@
     markDone: function () {
       if (this.props.disabled) { return; }
       this.disableButton();
-      Questlog.request({
+      helpers.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {done: true}},
         success: this.updateButton,

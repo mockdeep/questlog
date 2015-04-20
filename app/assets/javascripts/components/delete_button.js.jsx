@@ -1,11 +1,13 @@
 (function () {
   'use strict';
 
+  var helpers = require('../helpers');
+
   var DeleteButton = React.createClass({
     deleteTask: function (event) {
       event.stopPropagation();
       if (confirm('Delete this task?')) {
-        Questlog.request({
+        helpers.request({
           url: 'tasks/' + this.props.task.id,
           method: 'delete',
           success: this.loadTask

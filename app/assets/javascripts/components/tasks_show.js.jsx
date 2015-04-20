@@ -4,6 +4,7 @@
   var NewTaskForm = require('./new_task_form');
   var TaskFooter = require('./common/task_footer');
   var TaskDisplay = require('./task_display');
+  var helpers = require('../helpers');
 
   var TasksShow = React.createClass({
     contextTypes: {
@@ -13,12 +14,12 @@
       return {task: {title: 'Loading...'}, disabled: true, tags: []};
     },
     loadTask: function (url) {
-      Questlog.request({
+      helpers.request({
         method: 'get',
         url: this.context.router.getCurrentParams().slug || '',
         success: this.updateTask
       });
-      Questlog.request({
+      helpers.request({
         method: 'get',
         url: '/tags',
         success: this.updateTags

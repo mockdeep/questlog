@@ -2,7 +2,7 @@
   'use strict';
 
   var ErrorDisplay = require('./error_display');
-  var flash = require('../helpers').flash;
+  var helpers = require('../helpers');
 
   var NewTaskForm = React.createClass({
     getInitialState: function () {
@@ -25,7 +25,7 @@
         return;
       }
       this.setState({buttonContent: 'Adding Task', disabled: true});
-      Questlog.request({
+      helpers.request({
         url: 'tasks',
         method: 'post',
         data: {task: {title: this.state.taskTitle.trim()}},
@@ -33,7 +33,7 @@
       });
     },
     loadTask: function () {
-      flash('success', 'Task added');
+      helpers.flash('success', 'Task added');
       this.props.loadTask();
       this.replaceState(this.getInitialState());
     },

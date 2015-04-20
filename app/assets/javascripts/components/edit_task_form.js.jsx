@@ -2,6 +2,7 @@
   'use strict';
 
   var ErrorDisplay = require('./error_display');
+  var helpers = require('../helpers');
 
   var EditTaskForm = React.createClass({
     getInitialState: function () {
@@ -24,7 +25,7 @@
         return;
       }
       this.setState({buttonContent: 'Updating Task', disabled: true});
-      Questlog.request({
+      helpers.request({
         url: 'tasks/' + this.props.task.id,
         data: {id: this.props.id, task: {title: this.state.taskTitle.trim()}},
         success: this.loadTask
