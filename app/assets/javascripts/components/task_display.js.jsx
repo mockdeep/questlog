@@ -2,12 +2,12 @@
 
   'use strict';
 
-  var MainButtons = require('../components/main_buttons');
-  var TaskTitle = require('../components/task_title');
-  var TagButtons = require('../components/tag_buttons');
-  var EditTaskForm = require('../components/edit_task_form');
+  var MainButtons = require('./main_buttons');
+  var TaskTitle = require('./task_title');
+  var TagButtons = require('./tag_buttons');
+  var EditTaskForm = require('./edit_task_form');
 
-  Questlog.TaskDisplay = React.createClass({
+  var TaskDisplay = React.createClass({
     render: function () {
       return (
         <div>
@@ -32,4 +32,5 @@
     }
   });
 
+  module.exports = TaskDisplay;
 })();
