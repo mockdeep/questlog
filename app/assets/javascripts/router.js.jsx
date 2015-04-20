@@ -9,6 +9,8 @@
   Questlog.Link = Router.Link;
 
   var BulkTaskForm = require('./components/bulk_task_form');
+  var PrivacyPage = require('./components/static/privacy_page');
+  var WhatPage = require('./components/static/what_page');
   var ScratchPage = require('./components/scratch_page');
   var SessionsNew = require('./components/sessions_new');
   var TasksShow = require('./components/tasks_show');
@@ -32,8 +34,8 @@
       <Route path='/sessions/new' handler={SessionsNew} />
       <Route path='/sessions' handler={Nothing} />
       <Route path='/tasks' handler={Questlog.TasksIndex} />
-      <Route path='/privacy' handler={Questlog.PrivacyPage} />
-      <Route path='/what' handler={Questlog.WhatPage} />
+      <Route path='/privacy' handler={PrivacyPage} />
+      <Route path='/what' handler={WhatPage} />
       <Route path='/scratch' handler={ScratchPage} />
       <Route path='/timeframes' handler={Questlog.TimeframesIndex} />
       <Route name='tag' path='/:slug' handler={TasksShow} />

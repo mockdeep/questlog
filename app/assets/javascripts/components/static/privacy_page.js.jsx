@@ -1,9 +1,7 @@
 (function () {
-
   'use strict';
 
-  Questlog.PrivacyPage = React.createClass({
-
+  var PrivacyPage = React.createClass({
     render: function () {
       return (
         <div>
@@ -12,7 +10,7 @@
         </div>
       );
     }
-
   });
 
+  module.exports = PrivacyPage;
 })();
