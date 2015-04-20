@@ -3,7 +3,7 @@
 
   var ErrorDisplay = require('../components/error_display');
 
-  Questlog.NewTaskForm = React.createClass({
+  var NewTaskForm = React.createClass({
     getInitialState: function () {
       return {
         buttonContent: 'Add Task',
@@ -65,5 +65,7 @@
       );
     }
   });
+
+  module.exports = NewTaskForm;
 
 })();
