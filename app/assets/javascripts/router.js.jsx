@@ -6,7 +6,6 @@
   var DefaultRoute = Router.DefaultRoute;
   var Route = Router.Route;
   var RouteHandler = Router.RouteHandler;
-  Questlog.Link = Router.Link;
 
   var BulkTaskForm = require('./components/bulk_task_form');
   var PrivacyPage = require('./components/static/privacy_page');

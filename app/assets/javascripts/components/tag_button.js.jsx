@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var Link = require('react-router').Link;
+
   var TagButton = React.createClass({
     path: function () {
       return '/' + this.props.tag.slug;
@@ -27,9 +29,9 @@
     render: function () {
       return (
         <div>
-          <Questlog.Link to={this.path()} className={this.className()}>
+          <Link to={this.path()} className={this.className()}>
             {this.props.tag.name} ({this.unfinishedTasksCount()})
-          </Questlog.Link>
+          </Link>
         </div>
       );
     }

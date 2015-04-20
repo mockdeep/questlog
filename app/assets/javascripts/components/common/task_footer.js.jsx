@@ -1,13 +1,15 @@
 (function () {
   'use strict';
 
+  var Link = require('react-router').Link;
+
   var HelpLink = require('./help_link');
 
   var TaskFooter = React.createClass({
     render: function () {
       return (
         <p>
-          <Questlog.Link to='/tasks'>All my tasks</Questlog.Link>
+          <Link to='/tasks'>All my tasks</Link>
           {' | '}
           <a href='/bulk_tasks/new'>Add multiple tasks</a>
           {' | '}
