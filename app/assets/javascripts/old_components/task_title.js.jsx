@@ -2,6 +2,8 @@
 
   'use strict';
 
+  var DeleteButton = require('../components/delete_button');
+
   Questlog.TaskTitle = React.createClass({
     className: function () {
       var classString = 'col-md-12 task-display';
@@ -30,7 +32,7 @@
             <table>
               <tr>
                 <td className='col-md-1'>
-                  <Questlog.DeleteButton
+                  <DeleteButton
                     task={this.props.task}
                     loadTask={this.props.loadTask}
                   />
