@@ -2,6 +2,7 @@
   'use strict';
 
   var NewTaskForm = require('../components/new_task_form');
+  var TaskFooter = require('../components/common/task_footer');
 
   Questlog.TasksShow = React.createClass({
     contextTypes: {
@@ -61,7 +62,7 @@
           <NewTaskForm loadTask={this.loadTask} />
 
           <hr />
-          <Questlog.TaskFooter />
+          <TaskFooter />
         </div>
       );
     }
