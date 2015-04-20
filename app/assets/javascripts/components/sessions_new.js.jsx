@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var authenticityToken = require('../helpers').authenticityToken;
+
   var SessionsNew = React.createClass({
     render: function () {
       return (
@@ -11,7 +13,7 @@
             <input
               type='hidden'
               name='authenticity_token'
-              value={Questlog.authenticityToken()}
+              value={authenticityToken()}
             />
             <p>
               <label htmlFor='email'>Email</label>
