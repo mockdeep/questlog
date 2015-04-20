@@ -6,16 +6,16 @@
     window.location.reload();
   };
 
+  var logError = function (error) {
+    console.log('error: ', error.statusText);
+  };
+
   var authenticityToken = function () {
     return $('meta[name="csrf-token"]').attr('content');
   };
 
-  Questlog.stopPropagation = function (event) {
+  var stopPropagation = function (event) {
     event.stopPropagation();
-  };
-
-  Questlog.logError = function (error) {
-    console.log('error: ', error.statusText);
   };
 
   Questlog.request = function (options) {
@@ -34,7 +34,7 @@
       method: 'put',
       headers: { 'X-CSRF-Token': authenticityToken() },
       success: reloadPage,
-      error: Questlog.logError
+      error: logError
     };
   }
 
@@ -44,6 +44,7 @@
 
   module.exports = {
     authenticityToken: authenticityToken,
+    stopPropagation: stopPropagation
   };
 
 })();

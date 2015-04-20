@@ -2,6 +2,8 @@
 
   'use strict';
 
+  var stopPropagation = require('../helpers').stopPropagation;
+
   var SelectOption = React.createClass({
     render: function () {
       return <option value={this.props.value}>{this.props.content}</option>;
@@ -91,7 +93,7 @@
           <label>{this.state.labelContent}</label>
           <select
             onChange={this.storeVal}
-            onClick={Questlog.stopPropagation}
+            onClick={stopPropagation}
             disabled={this.props.disabled}
           >
             {this.selectOptions()}
