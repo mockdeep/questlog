@@ -3,7 +3,7 @@
 
   var PureRenderMixin = require('react/addons').PureRenderMixin;
 
-  Questlog.TaskRow = React.createClass({
+  var TaskRow = React.createClass({
     mixins: [ReactDND.DragDropMixin, PureRenderMixin],
 
     statics: {
@@ -111,4 +111,5 @@
     }
   });
 
+  module.exports = TaskRow;
 })();

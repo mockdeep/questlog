@@ -4,6 +4,7 @@
   var update = require('react/lib/update');
 
   var NewTaskForm = require('./new_task_form');
+  var TaskRow = require('./task_row');
 
   var isPending = function (task) {
     return task.pending;
@@ -98,7 +99,7 @@
 
     taskRow: function (task) {
       return (
-        <Questlog.TaskRow
+        <TaskRow
           key={task.id}
           task={task}
           loadTasks={this.loadTasks}
