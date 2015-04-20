@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  var NewTaskForm = require('../components/new_task_form');
-  var TaskFooter = require('../components/common/task_footer');
-  var TaskDisplay = require('../components/task_display');
+  var NewTaskForm = require('./new_task_form');
+  var TaskFooter = require('./common/task_footer');
+  var TaskDisplay = require('./task_display');
 
-  Questlog.TasksShow = React.createClass({
+  var TasksShow = React.createClass({
     contextTypes: {
       router: React.PropTypes.func
     },
@@ -68,5 +68,7 @@
       );
     }
   });
+
+  module.exports = TasksShow;
 
 })();

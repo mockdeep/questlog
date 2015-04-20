@@ -8,6 +8,8 @@
   var RouteHandler = Router.RouteHandler;
   Questlog.Link = Router.Link;
 
+  var TasksShow = require('./components/tasks_show');
+
   var AppBase = React.createClass({
     render: function () {
       return (
@@ -31,8 +33,8 @@
       <Route path='/what' handler={Questlog.WhatPage} />
       <Route path='/scratch' handler={Questlog.ScratchPage} />
       <Route path='/timeframes' handler={Questlog.TimeframesIndex} />
-      <Route name='tag' path='/:slug' handler={Questlog.TasksShow} />
-      <DefaultRoute handler={Questlog.TasksShow} />
+      <Route name='tag' path='/:slug' handler={TasksShow} />
+      <DefaultRoute handler={TasksShow} />
     </Route>
   );
 
