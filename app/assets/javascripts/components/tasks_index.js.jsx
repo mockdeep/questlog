@@ -3,13 +3,13 @@
 
   var update = require('react/lib/update');
 
-  var NewTaskForm = require('../../components/new_task_form');
+  var NewTaskForm = require('./new_task_form');
 
   var isPending = function (task) {
     return task.pending;
   };
 
-  Questlog.TasksIndex = React.createClass({
+  var TasksIndex = React.createClass({
     getInitialState: function () {
       return {currentTasks: [], pendingTasks: []};
     },
@@ -136,4 +136,5 @@
     }
   });
 
+  module.exports = TasksIndex;
 })();
