@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  Questlog.DeleteButton = React.createClass({
+  var DeleteButton = React.createClass({
     deleteTask: function (event) {
       event.stopPropagation();
       if (confirm('Delete this task?')) {
@@ -29,5 +29,7 @@
       return <i {...this.rootOpts()} />;
     }
   });
+
+  module.exports = DeleteButton;
 
 })();
