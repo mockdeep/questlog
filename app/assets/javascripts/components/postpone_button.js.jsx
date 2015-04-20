@@ -2,7 +2,7 @@
 
   'use strict';
 
-  var stopPropagation = require('../helpers').stopPropagation;
+  var helpers = require('../helpers');
 
   var SelectOption = React.createClass({
     render: function () {
@@ -35,7 +35,7 @@
     postponeTask: function () {
       if (this.props.disabled) { return; }
       this.disableButton();
-      Questlog.request({
+      helpers.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {postpone: this.state.postponeSeconds}},
         success: this.updateButton,
@@ -93,7 +93,7 @@
           <label>{this.state.labelContent}</label>
           <select
             onChange={this.storeVal}
-            onClick={stopPropagation}
+            onClick={helpers.stopPropagation}
             disabled={this.props.disabled}
           >
             {this.selectOptions()}

@@ -18,7 +18,7 @@
     event.stopPropagation();
   };
 
-  Questlog.request = function (options) {
+  var request = function (options) {
     reqwest(mergeOptions(defaultRequestOptions(), options));
   };
 
@@ -45,6 +45,7 @@
   module.exports = {
     authenticityToken: authenticityToken,
     flash: flash,
+    request: request,
     stopPropagation: stopPropagation
   };
 

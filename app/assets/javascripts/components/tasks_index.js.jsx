@@ -5,6 +5,7 @@
 
   var NewTaskForm = require('./new_task_form');
   var TaskRow = require('./task_row');
+  var helpers = require('../helpers');
 
   var isPending = function (task) {
     return task.pending;
@@ -16,7 +17,7 @@
     },
 
     loadTasks: function () {
-      Questlog.request({
+      helpers.request({
         method: 'get',
         url: '/tasks',
         success: this.updateTasks
@@ -74,7 +75,7 @@
         newPriority = beforeTask.priority;
       }
 
-      Questlog.request({
+      helpers.request({
         method: 'put',
         url: '/bulk_tasks',
         data: { bulk_task: { positions: this.currentTaskPositions() } },

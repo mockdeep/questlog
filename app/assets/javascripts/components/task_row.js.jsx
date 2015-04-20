@@ -3,6 +3,8 @@
 
   var PureRenderMixin = require('react/addons').PureRenderMixin;
 
+  var helpers = require('../helpers');
+
   var TaskRow = React.createClass({
     mixins: [ReactDND.DragDropMixin, PureRenderMixin],
 
@@ -31,7 +33,7 @@
 
     markDone: function (event) {
       event.preventDefault();
-      Questlog.request({
+      helpers.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {done: true}},
         success: this.removeTask
@@ -44,7 +46,7 @@
     },
 
     updatePriority: function (event) {
-      Questlog.request({
+      helpers.request({
         url: 'tasks/' + this.props.task.id,
         data: {task: {priority: event.target.value}},
         success: this.removeTask
@@ -54,7 +56,7 @@
     deleteTask: function (event) {
       event.preventDefault();
       if (confirm('Delete this task?')) {
-        Questlog.request({
+        helpers.request({
           url: 'tasks/' + this.props.task.id,
           method: 'delete',
           success: this.props.loadTasks

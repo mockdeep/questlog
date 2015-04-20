@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var authenticityToken = require('../helpers').authenticityToken;
+  var helpers = require('../helpers');
 
   var SessionsNew = React.createClass({
     render: function () {
@@ -13,7 +13,7 @@
             <input
               type='hidden'
               name='authenticity_token'
-              value={authenticityToken()}
+              value={helpers.authenticityToken()}
             />
             <p>
               <label htmlFor='email'>Email</label>

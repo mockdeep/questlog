@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var helpers = require('../helpers');
+
   var BulkTaskForm = React.createClass({
     mixins: [ReactRouter.Navigation],
 
@@ -15,7 +17,7 @@
     saveTasks: function (event) {
       event.preventDefault();
       if (this.state.taskTitles.trim() == '') { return; }
-      Questlog.request({
+      helpers.request({
         url: '/bulk_tasks',
         method: 'post',
         data: {bulk_task: {titles: this.state.taskTitles.trim()}},
