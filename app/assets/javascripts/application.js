@@ -21,7 +21,6 @@
 //= require lodash
 //= require react-dnd
 //= require helpers
-//= require old_components
 //= require_tree .
 
 // browserify wraps this file, so now we need to assign elements on the window
