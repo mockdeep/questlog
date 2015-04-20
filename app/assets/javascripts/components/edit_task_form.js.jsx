@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var ErrorDisplay = require('../components/error_display');
+  var ErrorDisplay = require('./error_display');
 
-  Questlog.EditTaskForm = React.createClass({
+  var EditTaskForm = React.createClass({
     getInitialState: function () {
       return {
         buttonContent: 'Update Task',
@@ -71,4 +71,6 @@
       );
     }
   });
+
+  module.exports = EditTaskForm;
 })();
