@@ -2,6 +2,8 @@
 
   'use strict';
 
+  var MainButtons = require('../components/main_buttons');
+
   Questlog.TaskDisplay = React.createClass({
     render: function () {
       return (
@@ -11,7 +13,7 @@
             task={this.props.task}
             loadTask={this.props.loadTask}
           />
-          <Questlog.MainButtons
+          <MainButtons
             task={this.props.task}
             loadTask={this.props.loadTask}
             disabled={this.props.disabled}

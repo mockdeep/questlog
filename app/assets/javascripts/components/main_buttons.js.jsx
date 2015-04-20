@@ -1,10 +1,10 @@
 (function () {
   'use strict';
 
-  var DoneButton = require('../components/done_button');
-  var PostponeButton = require('../components/postpone_button');
+  var DoneButton = require('./done_button');
+  var PostponeButton = require('./postpone_button');
 
-  Questlog.MainButtons = React.createClass({
+  var MainButtons = React.createClass({
     render: function () {
       return (
         <div id='buttons' className='row main-button'>
@@ -28,4 +28,6 @@
       );
     }
   });
+
+  module.exports = MainButtons;
 })();
