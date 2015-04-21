@@ -1,117 +1,115 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var PureRenderMixin = require('react/addons').PureRenderMixin;
+var PureRenderMixin = require('react/addons').PureRenderMixin;
 
-  var helpers = require('../helpers');
+var helpers = require('../helpers');
 
-  var TaskRow = React.createClass({
-    mixins: [ReactDND.DragDropMixin, PureRenderMixin],
+var TaskRow = React.createClass({
+  mixins: [ReactDND.DragDropMixin, PureRenderMixin],
 
-    statics: {
-      configureDragDrop: function (register) {
-        register('task', {
-          dragSource: {
-            beginDrag: function (component) {
-              return { item: { id: component.props.task.id } };
-            },
-            canDrag: function (component) {
-              return !component.props.pending;
-            },
-            endDrag: function (component) {
-              component.props.saveTaskPositions(component);
-            }
+  statics: {
+    configureDragDrop: function (register) {
+      register('task', {
+        dragSource: {
+          beginDrag: function (component) {
+            return { item: { id: component.props.task.id } };
           },
-          dropTarget: {
-            enter: function (component, item) {
-              component.props.moveTask(item.id, component.props.task.id);
-            }
+          canDrag: function (component) {
+            return !component.props.pending;
+          },
+          endDrag: function (component) {
+            component.props.saveTaskPositions(component);
           }
-        });
-      }
-    },
-
-    markDone: function (event) {
-      event.preventDefault();
-      helpers.request({
-        url: 'tasks/' + this.props.task.id,
-        data: {task: {done: true}},
-        success: this.removeTask
+        },
+        dropTarget: {
+          enter: function (component, item) {
+            component.props.moveTask(item.id, component.props.task.id);
+          }
+        }
       });
-    },
-
-    removeTask: function () {
-      this.props.removeTask(this.props.task);
-      this.props.loadTasks();
-    },
-
-    updatePriority: function (event) {
-      helpers.request({
-        url: 'tasks/' + this.props.task.id,
-        data: {task: {priority: event.target.value}},
-        success: this.removeTask
-      });
-    },
-
-    deleteTask: function (event) {
-      event.preventDefault();
-      if (confirm('Delete this task?')) {
-        helpers.request({
-          url: 'tasks/' + this.props.task.id,
-          method: 'delete',
-          success: this.props.loadTasks
-        });
-      }
-    },
-
-    emblems: function () {
-      if (this.props.task.repeat_seconds) {
-        return <i className='fa fa-repeat' title='task repeats' />;
-      } else {
-        return '';
-      }
-    },
-
-    className: function () {
-      var classString = '';
-      if (this.priority()) {
-        classString += ' priority-' + this.priority();
-      }
-      return classString;
-    },
-
-    priority: function () {
-      return this.props.task.priority;
-    },
-
-    render: function () {
-      var dragSource = this.dragSourceFor('task');
-      var dropTarget = this.dropTargetFor('task');
-      var isDragging = this.getDragState('task').isDragging;
-      var style = {opacity: isDragging ? 0 : 1};
-
-      return (
-        <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
-          {this.props.task.title} {this.emblems()}
-          {' | Pri: '}
-          <select onChange={this.updatePriority} defaultValue={this.priority()}>
-            <option value=''>-</option>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-          </select>
-          {' | '}
-          <button className='btn btn-link' role='Link' onClick={this.markDone}>
-            Done!
-          </button>
-          {' | '}
-          <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
-            Delete
-          </button>
-        </li>
-      );
     }
-  });
+  },
 
-  module.exports = TaskRow;
-})();
+  markDone: function (event) {
+    event.preventDefault();
+    helpers.request({
+      url: 'tasks/' + this.props.task.id,
+      data: {task: {done: true}},
+      success: this.removeTask
+    });
+  },
+
+  removeTask: function () {
+    this.props.removeTask(this.props.task);
+    this.props.loadTasks();
+  },
+
+  updatePriority: function (event) {
+    helpers.request({
+      url: 'tasks/' + this.props.task.id,
+      data: {task: {priority: event.target.value}},
+      success: this.removeTask
+    });
+  },
+
+  deleteTask: function (event) {
+    event.preventDefault();
+    if (confirm('Delete this task?')) {
+      helpers.request({
+        url: 'tasks/' + this.props.task.id,
+        method: 'delete',
+        success: this.props.loadTasks
+      });
+    }
+  },
+
+  emblems: function () {
+    if (this.props.task.repeat_seconds) {
+      return <i className='fa fa-repeat' title='task repeats' />;
+    } else {
+      return '';
+    }
+  },
+
+  className: function () {
+    var classString = '';
+    if (this.priority()) {
+      classString += ' priority-' + this.priority();
+    }
+    return classString;
+  },
+
+  priority: function () {
+    return this.props.task.priority;
+  },
+
+  render: function () {
+    var dragSource = this.dragSourceFor('task');
+    var dropTarget = this.dropTargetFor('task');
+    var isDragging = this.getDragState('task').isDragging;
+    var style = {opacity: isDragging ? 0 : 1};
+
+    return (
+      <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
+        {this.props.task.title} {this.emblems()}
+        {' | Pri: '}
+        <select onChange={this.updatePriority} defaultValue={this.priority()}>
+          <option value=''>-</option>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+        </select>
+        {' | '}
+        <button className='btn btn-link' role='Link' onClick={this.markDone}>
+          Done!
+        </button>
+        {' | '}
+        <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
+          Delete
+        </button>
+      </li>
+    );
+  }
+});
+
+module.exports = TaskRow;
