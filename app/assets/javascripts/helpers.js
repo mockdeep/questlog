@@ -1,6 +1,7 @@
 (function () {
-
   'use strict';
+
+  var reqwest = require('reqwest');
 
   var reloadPage = function () {
     window.location.reload();
@@ -48,5 +49,4 @@
     request: request,
     stopPropagation: stopPropagation
   };
-
 })();
