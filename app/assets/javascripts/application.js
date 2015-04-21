@@ -24,8 +24,6 @@
 //= require router
 //= require tasks
 
-// browserify wraps this file, so now we need to assign variables globally
-Questlog = {};
-
+// browserify wraps this file, so we need to assign variables globally
 React = require('react');
 ReactRouter = require('react-router');

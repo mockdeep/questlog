@@ -1,27 +1,24 @@
-(function () {
-  'use strict';
+'use strict';
 
-  var Link = require('react-router').Link;
+var Link = require('react-router').Link;
 
-  var HelpLink = require('./help_link');
+var HelpLink = require('./help_link');
 
-  var TaskFooter = React.createClass({
-    render: function () {
-      return (
-        <p>
-          <Link to='/tasks'>All my tasks</Link>
-          {' | '}
-          <a href='/bulk_tasks/new'>Add multiple tasks</a>
-          {' | '}
-          <HelpLink />
-          <br />
-          Try adding a tag using '#', for example: <strong>#home</strong> or
-          <strong> #5-min</strong>.  Click <HelpLink /> for more.
-        </p>
-      );
-    }
-  });
+var TaskFooter = React.createClass({
+  render: function () {
+    return (
+      <p>
+        <Link to='/tasks'>All my tasks</Link>
+        {' | '}
+        <a href='/bulk_tasks/new'>Add multiple tasks</a>
+        {' | '}
+        <HelpLink />
+        <br />
+        Try adding a tag using '#', for example: <strong>#home</strong> or
+        <strong> #5-min</strong>.  Click <HelpLink /> for more.
+      </p>
+    );
+  }
+});
 
-  module.exports = TaskFooter;
-
-})();
+module.exports = TaskFooter;
