@@ -11,7 +11,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY
 // BLANK LINE SHOULD GO AFTER THE REQUIRES BELOW.
 //
-//= require es5-shim
 //= require reqwest
 //= require jquery
 //= require jquery_ujs
@@ -25,5 +24,6 @@
 //= require tasks
 
 // browserify wraps this file, so we need to assign variables globally
+require('es5-shim');
 React = require('react');
 ReactRouter = require('react-router');

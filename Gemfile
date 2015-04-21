@@ -28,7 +28,6 @@ gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
 
-gem 'rails-assets-es5-shim'
 gem 'rails-assets-lodash'
 gem 'rails-assets-normalize.css'
 gem 'rails-assets-react-dnd'
