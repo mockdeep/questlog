@@ -219,7 +219,6 @@ GEM
     rails-assets-react (0.12.2)
     rails-assets-react-dnd (0.9.8)
       rails-assets-react (~> 0.12.0)
-    rails-assets-reqwest (1.1.5)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -405,7 +404,6 @@ DEPENDENCIES
   rails-assets-lodash
   rails-assets-normalize.css
   rails-assets-react-dnd
-  rails-assets-reqwest
   rails_12factor
   rb-inotify
   react-rails
