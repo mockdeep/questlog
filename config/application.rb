@@ -14,8 +14,6 @@ module Questlog
 
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.react.addons = true
-
     browserify_options = '--transform reactify --extension=".js.jsx"'
     config.browserify_rails.commandline_options = browserify_options
 
