@@ -15,8 +15,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_self
-//= require helpers
-//= require router
 //= require tasks
 
 require('es5-shim');
+
+require('./router');
