@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var MainButtons = require('./main_buttons');
 var TaskTitle = require('./task_title');
 var TagButtons = require('./tag_buttons');

@@ -1,5 +1,6 @@
 'use strict';
 
+var React = require('react');
 var Link = require('react-router').Link;
 
 var HelpLink = require('./help_link');

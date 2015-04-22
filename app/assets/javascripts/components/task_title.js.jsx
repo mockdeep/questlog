@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var DeleteButton = require('./delete_button');
 
 var TaskTitle = React.createClass({

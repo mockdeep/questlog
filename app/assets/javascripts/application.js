@@ -22,7 +22,4 @@
 //= require router
 //= require tasks
 
-// browserify wraps this file, so we need to assign variables globally
 require('es5-shim');
-React = require('react');
-ReactRouter = require('react-router');

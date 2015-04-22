@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var TagButton = require('./tag_button');
 
 var TagButtons = React.createClass({

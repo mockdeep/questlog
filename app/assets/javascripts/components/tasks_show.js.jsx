@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var NewTaskForm = require('./new_task_form');
 var TaskFooter = require('./common/task_footer');
 var TaskDisplay = require('./task_display');
