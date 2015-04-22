@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.2'
 
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
