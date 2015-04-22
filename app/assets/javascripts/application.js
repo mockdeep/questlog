@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_self
-//= require react_ujs
 //= require helpers
 //= require router
 //= require tasks
