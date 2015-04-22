@@ -2,11 +2,12 @@
 
 var React = require('react/addons');
 var PureRenderMixin = React.PureRenderMixin;
+var DragDropMixin = require('react-dnd').DragDropMixin;
 
 var helpers = require('../helpers');
 
 var TaskRow = React.createClass({
-  mixins: [ReactDND.DragDropMixin, PureRenderMixin],
+  mixins: [DragDropMixin, PureRenderMixin],
 
   statics: {
     configureDragDrop: function (register) {

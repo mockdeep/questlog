@@ -17,7 +17,6 @@
 //= require_self
 //= require react_ujs
 //= require lodash
-//= require react-dnd
 //= require helpers
 //= require router
 //= require tasks
