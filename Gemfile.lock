@@ -398,8 +398,8 @@ DEPENDENCIES
   rack-cache
   rack-mini-profiler
   rails (~> 4.2.0)
-  rails-assets-lodash
-  rails-assets-normalize.css
+  rails-assets-lodash!
+  rails-assets-normalize.css!
   rails_12factor
   rb-inotify
   react-rails

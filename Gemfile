@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.1.5'
 
@@ -28,8 +27,10 @@ gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
 
-gem 'rails-assets-lodash'
-gem 'rails-assets-normalize.css'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-lodash'
+  gem 'rails-assets-normalize.css'
+end
 
 group :production do
   gem 'rails_12factor'
