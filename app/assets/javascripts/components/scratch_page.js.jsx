@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var ScratchPage = React.createClass({
 
   render: function () {

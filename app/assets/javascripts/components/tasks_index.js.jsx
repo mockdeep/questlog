@@ -1,5 +1,6 @@
 'use strict';
 
+var React = require('react');
 var update = require('react/lib/update');
 
 var NewTaskForm = require('./new_task_form');

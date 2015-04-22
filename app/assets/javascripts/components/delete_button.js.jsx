@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var helpers = require('../helpers');
 
 var DeleteButton = React.createClass({

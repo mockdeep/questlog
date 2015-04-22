@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var ErrorDisplay = React.createClass({
   errorItems: function () {
     return _.map(this.props.errors, function (errorMessage) {

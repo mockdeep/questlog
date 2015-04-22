@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var DoneButton = require('./done_button');
 var PostponeButton = require('./postpone_button');
 

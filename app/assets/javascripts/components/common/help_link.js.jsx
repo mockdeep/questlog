@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var HelpLink = React.createClass({
   render: function () {
     return (

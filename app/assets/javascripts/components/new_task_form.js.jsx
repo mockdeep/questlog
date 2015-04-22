@@ -1,5 +1,7 @@
 'use strict';
 
+var React = require('react');
+
 var ErrorDisplay = require('./error_display');
 var helpers = require('../helpers');
 

@@ -1,6 +1,7 @@
 'use strict';
 
-var PureRenderMixin = require('react/addons').PureRenderMixin;
+var React = require('react/addons');
+var PureRenderMixin = React.PureRenderMixin;
 
 var helpers = require('../helpers');
 
