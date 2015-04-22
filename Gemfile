@@ -28,7 +28,6 @@ gem 'skylight'
 gem 'stripe'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-lodash'
   gem 'rails-assets-normalize.css'
 end
 

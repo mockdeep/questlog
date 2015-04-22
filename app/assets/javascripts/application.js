@@ -16,7 +16,6 @@
 //= require bootstrap
 //= require_self
 //= require react_ujs
-//= require lodash
 //= require helpers
 //= require router
 //= require tasks
