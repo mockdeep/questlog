@@ -37,6 +37,9 @@ ClassLength:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
+Style/LambdaCall:
+  EnforcedStyle: braces
+
 TrailingComma:
   EnforcedStyleForMultiline: comma
 

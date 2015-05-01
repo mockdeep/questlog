@@ -39,6 +39,10 @@ RSpec.configure do |config|
     expect_config.syntax = :expect
   end
 
+  config.mock_with :rspec do |mock_config|
+    mock_config.verify_doubled_constant_names = true
+  end
+
   VCR.configure do |vcr_config|
     vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
     vcr_config.hook_into :webmock

@@ -16,4 +16,12 @@ describe('TimeframesIndex', function () {
     var domNode = timeframesIndex.getDOMNode();
     expect(domNode.textContent).toBe('Loading Timeframes...');
   });
+
+  it('renders the current median productivity when loaded', function () {
+    timeframesIndex.updateTimeframes({ medianProductivity: 4456 });
+    var domNode = timeframesIndex.getDOMNode();
+    var expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
+    expect(domNode.textContent).toBe(expectedMessage);
+  });
+
 });
