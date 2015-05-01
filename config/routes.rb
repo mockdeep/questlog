@@ -17,6 +17,7 @@ Questlog::Application.routes.draw do
   scope constraints: JsonConstraint.new do
     resources :tags, only: [:index]
     resources :tasks, only: [:index, :create, :update, :destroy]
+    resources :timeframes, only: [:index]
     resources :bulk_tasks, only: [:create]
     put :bulk_tasks, to: 'bulk_tasks#update'
 

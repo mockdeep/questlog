@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   belongs_to :account, dependent: :destroy, polymorphic: true
 
+  has_many :stats, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :unfinished_tasks,
            -> { where(tasks: { done_at: nil }) },
