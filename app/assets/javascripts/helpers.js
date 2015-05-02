@@ -11,7 +11,8 @@ var logError = function (error) {
 };
 
 var authenticityToken = function () {
-  return $('meta[name="csrf-token"]').attr('content');
+  var tokenTag = document.getElementsByName('csrf-token')[0];
+  return tokenTag && tokenTag.content;
 };
 
 var stopPropagation = function (event) {
