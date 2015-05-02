@@ -1,6 +1,7 @@
 'use strict';
 
 var reqwest = require('reqwest');
+var _ = require('lodash');
 
 var reloadPage = function () {
   window.location.reload();
@@ -40,7 +41,7 @@ function defaultRequestOptions() {
 }
 
 function mergeOptions(defaults, options) {
-  return $.extend({}, defaults, options);
+  return _.extend({}, defaults, options);
 }
 
 module.exports = {
