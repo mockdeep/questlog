@@ -5,6 +5,7 @@
     "browserify": "9.0.8",
     "browserify-incremental": "2.0.0",
     "es5-shim": "4.1.1",
+    "jquery": "2.1.4",
     "lodash": "3.7.0",
     "react": "0.13.1",
     "react-dnd": "0.9.8",
