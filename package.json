@@ -26,11 +26,9 @@
     "rootDir": "./spec/javascripts",
     "scriptPreprocessor": "<rootDir>/preprocessor.js",
     "setupTestFrameworkScriptFile": "<rootDir>/test_helper.js",
-    "moduleFileExtensions": [ "js", "jsx"],
-    "unmockedModulePathPatterns": [
-      "react"
-      ],
+    "moduleFileExtensions": ["js", "jsx"],
+    "unmockedModulePathPatterns": ["react"],
     "testFileExtensions": ["js", "jsx"],
-    "testPathIgnorePatterns": [ "preprocessor.js" ]
+    "testPathIgnorePatterns": ["preprocessor.js"]
   }
 }
