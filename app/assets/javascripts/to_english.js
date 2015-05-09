@@ -12,9 +12,9 @@ var pluralize = function (input, string) {
   return input === 1 ? out : out + 's';
 };
 
-var divideInput = function (input) {
-  hours = Math.round(input / oneHour);
-  minutes = Math.round((input - hours * oneHour) / oneMinute);
+var divideSeconds = function (seconds) {
+  hours = Math.floor(seconds / oneHour);
+  minutes = Math.floor((seconds % oneHour) / oneMinute);
   outputs = [];
   if (hours > 0) {
     outputs.push(pluralize(hours, 'hour'));
@@ -26,17 +26,17 @@ var divideInput = function (input) {
 };
 
 var ToEnglish = {
-  seconds: function (input) {
-    if (!isNumeric(input)) {
+  seconds: function (seconds) {
+    if (!isNumeric(seconds)) {
       throw new TypeError('input must be a number');
-    } else if (input < 0) {
+    } else if (seconds < 0) {
       throw new RangeError('number must not be negative');
-    } else if (input < 1) {
+    } else if (seconds < 1) {
       return 'None';
-    } else if (input < oneMinute) {
-      return pluralize(Math.floor(input), 'second');
+    } else if (seconds < oneMinute) {
+      return pluralize(Math.floor(seconds), 'second');
     } else {
-      return divideInput(input);
+      return divideSeconds(seconds);
     }
   }
 };
