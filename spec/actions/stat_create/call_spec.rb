@@ -1,14 +1,37 @@
 RSpec.describe StatCreate, '#call' do
 
-  let(:mock_stat_class) { class_spy(Stat) }
-  let(:stat_create) { StatCreate.new(stat_class: mock_stat_class) }
-  let(:date) { 1.month.ago }
+  let(:user) { create(:user) }
+  let(:stat_value_class) { class_spy(StatValue, new: 42) }
+  let(:stat_create) { StatCreate.new(stat_value_class: stat_value_class) }
+  let(:date) { Time.zone.now.beginning_of_day }
 
-  it 'creates a Stat' do
-    stat_create.(user: 'foo', value: 30, timestamp: date)
+  it 'creates a Stat if one does not exist for the current timestamp' do
+    expect do
+      stat_create.(user: user, value: 30)
+    end.to change(user.stats, :count).by(1)
 
-    expected_args = { user: 'foo', value: 30, timestamp: date.to_date }
-    expect(mock_stat_class).to have_received(:create!).with(expected_args)
+    expect(stat_value_class).to have_received(:new).with(user: user, value: 30)
+
+    stat = user.stats.last
+    expect(stat.value).to eq 42
+    expect(stat.timestamp).to eq date
+  end
+
+  it 'finds or initializes a Stat for the current timestamp' do
+    stat = user.stats.create!(value: 52, timestamp: date)
+
+    expect do
+      stat_create.(user: user, value: 30)
+    end.to change { stat.reload.value }.to(94)
+
+    expect(stat.timestamp).to eq date
+  end
+
+  it 'does not find a stat from a previous day' do
+    old_stat = user.stats.create!(value: 52, timestamp: date - 1.day)
+    expect do
+      stat_create.(user: user, value: 30)
+    end.not_to change { old_stat.reload.value }
   end
 
 end

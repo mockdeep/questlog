@@ -1,12 +1,14 @@
 class TaskUpdate
 
-  def initialize(task, stat_class: Stat)
+  def initialize(task)
     @task = task
-    @stat_class = stat_class
   end
 
-  def call(task_params)
+  def call(stat_create: StatCreate.new, **task_params)
     @task.attributes = task_params
+    if @task.changed_to_done? && !@task.release_at
+      stat_create.(user: @task.user, value: @task.estimate_seconds)
+    end
     @task.save!
   end
 
