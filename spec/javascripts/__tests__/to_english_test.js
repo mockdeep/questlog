@@ -17,6 +17,7 @@ describe('ToEnglish.seconds', function () {
     expect(ToEnglish.seconds(65)).toBe('1 minute');
     expect(ToEnglish.seconds(305)).toBe('5 minutes');
     expect(ToEnglish.seconds(605)).toBe('10 minutes');
+    expect(ToEnglish.seconds(1800)).toBe('30 minutes');
   });
 
   it('returns hours and minutes when > 1 hour', function () {
