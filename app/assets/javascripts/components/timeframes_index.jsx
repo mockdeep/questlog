@@ -22,7 +22,6 @@ var TimeframesIndex = React.createClass({
   },
 
   updateTimeframes: function (data) {
-    console.log(JSON.stringify(data));
     this.setState({
       medianProductivity: data.medianProductivity,
       loading: false
