@@ -13,9 +13,9 @@ var pluralize = function (input, string) {
 };
 
 var divideSeconds = function (seconds) {
-  hours = Math.floor(seconds / oneHour);
-  minutes = Math.floor((seconds % oneHour) / oneMinute);
-  outputs = [];
+  var hours = Math.floor(seconds / oneHour);
+  var minutes = Math.floor((seconds % oneHour) / oneMinute);
+  var outputs = [];
   if (hours > 0) {
     outputs.push(pluralize(hours, 'hour'));
   }
