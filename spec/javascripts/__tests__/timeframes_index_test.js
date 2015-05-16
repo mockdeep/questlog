@@ -18,10 +18,20 @@ describe('TimeframesIndex', function () {
   });
 
   it('renders the current median productivity when loaded', function () {
-    timeframesIndex.updateTimeframes({ medianProductivity: 4456 });
+    var input = {timeframes: [], meta: {medianProductivity: 4456}};
+    timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
     var expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
     expect(domNode.textContent).toBe(expectedMessage);
+  });
+
+  it('renders the given timeframes for the user', function () {
+    var timeframe = {name: 'Inbox', tasks: [{id: 5, title: 'do laundry'}]};
+    var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
+    timeframesIndex.updateTimeframes(input);
+    var domNode = timeframesIndex.getDOMNode();
+    expect(domNode.textContent).toContain('Inbox');
+    expect(domNode.textContent).toContain('do laundry');
   });
 
 });
