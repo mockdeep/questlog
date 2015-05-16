@@ -1,5 +1,7 @@
 RSpec.describe 'timeframes', js: true do
 
+  let(:user) { create(:free_user) }
+
   def tomorrow
     Timecop.travel(1.day.from_now)
     yield
@@ -49,6 +51,21 @@ RSpec.describe 'timeframes', js: true do
       visit '/timeframes'
       expected_text = 'Median Productivity: 1 hour, 5 minutes per day'
       expect(page).to have_text(expected_text)
+    end
+  end
+
+  it 'displays the timeframes for the user' do
+    feature_login_as(user)
+
+    visit '/timeframes'
+    expect(page).not_to have_css('.timeframe')
+
+    task = create(:task, user: user)
+    visit '/timeframes'
+
+    expect(page).not_to have_css('.timeframe')
+    within('#inbox') do
+      expect(page).to have_content task.title
     end
   end
 

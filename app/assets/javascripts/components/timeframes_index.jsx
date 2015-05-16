@@ -3,6 +3,20 @@
 var React = require('react');
 var helpers = require('../helpers');
 var ToEnglish = require('../to_english');
+var TaskRow = require('./task_row');
+
+function renderTimeframe(timeframe) {
+  return (
+    <div key={timeframe.name} id={timeframe.name.toLowerCase()}>
+      <h2>{timeframe.name}</h2>
+      {timeframe.tasks.map(renderTask)}
+    </div>
+  );
+};
+
+function renderTask(task) {
+  return (<TaskRow task={task} key={task.id} />);
+}
 
 var TimeframesIndex = React.createClass({
   getInitialState: function () {
@@ -23,7 +37,8 @@ var TimeframesIndex = React.createClass({
 
   updateTimeframes: function (data) {
     this.setState({
-      medianProductivity: data.medianProductivity,
+      timeframes: data.timeframes,
+      medianProductivity: data.meta.medianProductivity,
       loading: false
     });
   },
@@ -32,12 +47,19 @@ var TimeframesIndex = React.createClass({
     return ToEnglish.seconds(this.state.medianProductivity);
   },
 
+  renderedTimeframes: function () {
+    return this.state.timeframes.map(renderTimeframe);
+  },
+
   render: function () {
     if (this.state.loading) {
       return (<h1>Loading Timeframes...</h1>);
     } else {
       return (
-        <h1>Median Productivity: {this.productivityString()} per day</h1>
+        <div>
+          <h1>Median Productivity: {this.productivityString()} per day</h1>
+          {this.renderedTimeframes()}
+        </div>
       );
     }
   }
