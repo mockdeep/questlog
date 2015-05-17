@@ -5,10 +5,23 @@ var helpers = require('../helpers');
 var ToEnglish = require('../to_english');
 var TaskRow = require('./task_row');
 
+var timeframeNameMap = {
+  inbox: 'Inbox',
+  today: 'Today',
+  week: 'This Week',
+  month: 'This Month',
+  quarter: 'This Quarter',
+  year: 'This Year',
+  lustrum: 'This Lustrum',
+  decade: 'This Decade'
+};
+
 function renderTimeframe(timeframe) {
+  var className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
+
   return (
-    <div key={timeframe.name} id={timeframe.name.toLowerCase()}>
-      <h2>{timeframe.name}</h2>
+    <div key={timeframe.name} id={timeframe.name.toLowerCase()} className={className}>
+      <h2>{timeframeNameMap[timeframe.name]}</h2>
       {timeframe.tasks.map(renderTask)}
     </div>
   );
@@ -16,6 +29,10 @@ function renderTimeframe(timeframe) {
 
 function renderTask(task) {
   return (<TaskRow task={task} key={task.id} />);
+}
+
+function timeframeHasTasks(timeframe) {
+  return timeframe.tasks.length > 0;
 }
 
 var TimeframesIndex = React.createClass({
@@ -48,7 +65,11 @@ var TimeframesIndex = React.createClass({
   },
 
   renderedTimeframes: function () {
-    return this.state.timeframes.map(renderTimeframe);
+    return this.timeframesWithTasks().map(renderTimeframe);
+  },
+
+  timeframesWithTasks: function () {
+    return this.state.timeframes.filter(timeframeHasTasks);
   },
 
   render: function () {

@@ -11,5 +11,10 @@ describe Task, 'validations' do
   it { should allow_value(nil).for(:priority) }
   it { should_not allow_value(0).for(:priority) }
   it { should_not allow_value(4).for(:priority) }
+  it do
+    is_expected.to validate_inclusion_of(:timeframe)
+      .in_array(Timeframe::NAMES)
+      .allow_nil(true)
+  end
 
 end
