@@ -26,12 +26,20 @@ describe('TimeframesIndex', function () {
   });
 
   it('renders the given timeframes for the user', function () {
-    var timeframe = {name: 'Inbox', tasks: [{id: 5, title: 'do laundry'}]};
+    var timeframe = {name: 'inbox', tasks: [{id: 5, title: 'do laundry'}]};
     var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
     expect(domNode.textContent).toContain('Inbox');
     expect(domNode.textContent).toContain('do laundry');
+  });
+
+  it('does not render empty timeframes', function () {
+    var timeframe = {name: 'Inbox', tasks: []};
+    var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
+    timeframesIndex.updateTimeframes(input);
+    var domNode = timeframesIndex.getDOMNode();
+    expect(domNode.textContent).not.toContain('Inbox');
   });
 
 });
