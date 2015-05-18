@@ -63,7 +63,7 @@ private
   end
 
   def permitted_params
-    [:done, :postpone, :title, :priority]
+    [:done, :postpone, :title, :priority, :timeframe]
   end
 
   def parsed_title
