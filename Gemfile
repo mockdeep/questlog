@@ -63,7 +63,7 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'launchy'
-  gem 'poltergeist'
+  gem 'capybara-webkit'
   gem 'rb-inotify'
   gem 'selenium-webdriver'
   gem 'simplecov'

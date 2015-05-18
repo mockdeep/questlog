@@ -8,15 +8,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 require 'rspec/rails'
 require 'shoulda/matchers'
-require 'capybara/poltergeist'
-
-if ENV['POLTERGEIST_TIMEOUT']
-  timeout = Integer(ENV['POLTERGEIST_TIMEOUT'])
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, timeout: timeout)
-  end
-end
-driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
+driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :webkit
 Capybara.javascript_driver = driver
 
 ActiveRecord::Migration.maintain_test_schema!
