@@ -54,6 +54,14 @@ var TaskRow = React.createClass({
     });
   },
 
+  updateTimeframe: function (event) {
+    helpers.request({
+      url: 'tasks/' + this.props.task.id,
+      data: {task: {timeframe: event.target.value}},
+      success: this.props.loadTimeframes
+    });
+  },
+
   deleteTask: function (event) {
     event.preventDefault();
     if (confirm('Delete this task?')) {
@@ -85,6 +93,19 @@ var TaskRow = React.createClass({
     return this.props.task.priority;
   },
 
+  timeframe: function () {
+    return this.props.task.timeframe;
+  },
+
+  timeframeSelector: function () {
+    return (
+      <select defaultValue={this.timeframe()} onChange={this.updateTimeframe} name='timeframe-select'>
+        <option value=''>-</option>
+        <option value='week'>This Week</option>
+      </select>
+    );
+  },
+
   render: function () {
     var dragSource = this.dragSourceFor('task');
     var dropTarget = this.dropTargetFor('task');
@@ -101,6 +122,8 @@ var TaskRow = React.createClass({
           <option value='2'>2</option>
           <option value='3'>3</option>
         </select>
+        {this.props.timeframesEnabled ? ' | When: ' : ''}
+        {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
         {' | '}
         <button className='btn btn-link' role='Link' onClick={this.markDone}>
           Done!

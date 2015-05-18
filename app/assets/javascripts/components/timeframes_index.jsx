@@ -16,26 +16,26 @@ var timeframeNameMap = {
   decade: 'This Decade'
 };
 
-function renderTimeframe(timeframe) {
-  var className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
-
-  return (
-    <div key={timeframe.name} id={timeframe.name.toLowerCase()} className={className}>
-      <h2>{timeframeNameMap[timeframe.name]}</h2>
-      {timeframe.tasks.map(renderTask)}
-    </div>
-  );
-};
-
-function renderTask(task) {
-  return (<TaskRow task={task} key={task.id} />);
-}
-
 function timeframeHasTasks(timeframe) {
   return timeframe.tasks.length > 0;
 }
 
 var TimeframesIndex = React.createClass({
+  renderTimeframe: function (timeframe) {
+    var className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
+
+    return (
+      <div key={timeframe.name} id={timeframe.name.toLowerCase()} className={className}>
+        <h2>{timeframeNameMap[timeframe.name]}</h2>
+        {timeframe.tasks.map(this.renderTask)}
+      </div>
+    );
+  },
+
+  renderTask: function (task) {
+    return (<TaskRow task={task} key={task.id} timeframesEnabled={true} loadTimeframes={this.loadTimeframes} />);
+  },
+
   getInitialState: function () {
     return { medianProductivity: null, loading: true };
   },
@@ -45,6 +45,7 @@ var TimeframesIndex = React.createClass({
   },
 
   loadTimeframes: function () {
+    console.log('loading timeframes...');
     helpers.request({
       method: 'get',
       url: '/timeframes',
@@ -65,7 +66,7 @@ var TimeframesIndex = React.createClass({
   },
 
   renderedTimeframes: function () {
-    return this.timeframesWithTasks().map(renderTimeframe);
+    return this.timeframesWithTasks().map(this.renderTimeframe);
   },
 
   timeframesWithTasks: function () {
