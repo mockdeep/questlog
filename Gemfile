@@ -61,10 +61,11 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'launchy'
-  gem 'capybara-webkit'
+  gem 'poltergeist', github: 'teampoltergeist/poltergeist'
   gem 'rb-inotify'
   gem 'selenium-webdriver'
   gem 'simplecov'
