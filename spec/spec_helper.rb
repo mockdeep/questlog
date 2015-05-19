@@ -8,7 +8,9 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 require 'rspec/rails'
 require 'shoulda/matchers'
-driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :webkit
+require 'capybara/poltergeist'
+
+driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
 Capybara.javascript_driver = driver
 
 ActiveRecord::Migration.maintain_test_schema!
