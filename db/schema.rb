@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512155958) do
+ActiveRecord::Schema.define(version: 20150519020541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "intarray"
+  enable_extension "hstore"
 
   create_table "free_accounts", force: :cascade do |t|
     t.string   "email",           limit: 255, null: false
@@ -94,12 +95,13 @@ ActiveRecord::Schema.define(version: 20150512155958) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255
     t.string   "password_digest",        limit: 255
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "unfinished_tasks_count",             default: 0
     t.integer  "account_id"
     t.string   "account_type",           limit: 255
     t.string   "customer_id",            limit: 255
+    t.hstore   "options",                            default: {}, null: false
   end
 
   add_index "users", ["account_id", "account_type"], name: "index_users_on_account_id_and_account_type", unique: true, using: :btree
