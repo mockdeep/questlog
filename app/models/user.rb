@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   delegate :guest?, :email, to: :account
 
+  hstore_accessor :options, timeframes_enabled: :boolean
+
   def next_task(tag_id = nil)
     if tag_id
       tags.friendly.find(tag_id).next_task

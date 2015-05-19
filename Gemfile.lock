@@ -140,6 +140,8 @@ GEM
     hike (1.2.3)
     hitimes (1.2.2)
     honeybadger (2.0.11)
+    hstore_accessor (1.0.2)
+      activerecord (>= 4.0.0)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -373,6 +375,7 @@ DEPENDENCIES
   haml-lint
   haml-rails
   honeybadger
+  hstore_accessor
   jquery-rails
   launchy
   newrelic_rpm
