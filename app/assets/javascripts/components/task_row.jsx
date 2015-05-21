@@ -3,6 +3,9 @@
 var React = require('react/addons');
 var PureRenderMixin = React.PureRenderMixin;
 var DragDropMixin = require('react-dnd').DragDropMixin;
+var _ = require('lodash');
+
+var timeframeNameMap = require('./timeframe_name_map');
 
 var helpers = require('../helpers');
 
@@ -97,11 +100,17 @@ var TaskRow = React.createClass({
     return this.props.task.timeframe;
   },
 
+  timeframeOptions: function () {
+    return _.map(timeframeNameMap, function (title, name) {
+      if (name == 'inbox') { title = '-'; }
+      return (<option value={name} key={name}>{title}</option>);
+    });
+  },
+
   timeframeSelector: function () {
     return (
       <select defaultValue={this.timeframe()} onChange={this.updateTimeframe} name='timeframe-select'>
-        <option value=''>-</option>
-        <option value='week'>This Week</option>
+        {this.timeframeOptions()}
       </select>
     );
   },

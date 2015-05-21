@@ -63,19 +63,32 @@ RSpec.describe 'timeframes', js: true do
     task = create(:task, user: user)
     visit '/timeframes'
 
-    p task.title
     expect(page).to have_no_css('.timeframe')
     within('#inbox') do
       within('li', text: task.title) do
-        p 'about to select'
         select('This Week', from: 'timeframe-select')
-        p 'selected'
       end
     end
 
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe', text: 'This Week') do
+      within('li', text: task.title) do
+        select('Today', from: 'timeframe-select')
+      end
+    end
+
+    expect(page).to have_no_css('.timeframe', text: 'This Week')
+
+    within('.timeframe', text: 'Today') do
+      within('li', text: task.title) do
+        select('-', from: 'timeframe-select')
+      end
+    end
+
+    expect(page).to have_no_css('.timeframe')
+
+    within('#inbox') do
       expect(page).to have_content(task.title)
     end
   end
