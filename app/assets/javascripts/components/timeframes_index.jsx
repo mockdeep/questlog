@@ -1,30 +1,16 @@
 'use strict';
 
 var React = require('react');
+
 var helpers = require('../helpers');
 var ToEnglish = require('../to_english');
-var TaskRow = require('./task_row');
-var timeframeNameMap = require('./timeframe_name_map');
+var TimeframeSection = require('./timeframe_section');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.tasks.length > 0;
 }
 
 var TimeframesIndex = React.createClass({
-  renderTimeframe: function (timeframe) {
-    var className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
-
-    return (
-      <div key={timeframe.name} id={timeframe.name.toLowerCase()} className={className}>
-        <h2>{timeframeNameMap[timeframe.name]}</h2>
-        {timeframe.tasks.map(this.renderTask)}
-      </div>
-    );
-  },
-
-  renderTask: function (task) {
-    return (<TaskRow task={task} key={task.id} timeframesEnabled={true} loadTimeframes={this.loadTimeframes} />);
-  },
 
   getInitialState: function () {
     return { medianProductivity: null, loading: true };
@@ -52,6 +38,16 @@ var TimeframesIndex = React.createClass({
 
   productivityString: function () {
     return ToEnglish.seconds(this.state.medianProductivity);
+  },
+
+  renderTimeframe: function (timeframe) {
+    return (
+      <TimeframeSection
+        key={timeframe.name}
+        timeframe={timeframe}
+        loadTimeframes={this.loadTimeframes}
+      />
+    );
   },
 
   renderedTimeframes: function () {
