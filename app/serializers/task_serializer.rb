@@ -1,7 +1,14 @@
 class TaskSerializer < ActiveModel::Serializer
 
   attributes(
-    :id, :priority, :title, :repeat_seconds, :skip_count, :tag_names, :pending
+    :estimate_seconds,
+    :id,
+    :pending,
+    :priority,
+    :repeat_seconds,
+    :skip_count,
+    :tag_names,
+    :title,
   )
 
   def pending
