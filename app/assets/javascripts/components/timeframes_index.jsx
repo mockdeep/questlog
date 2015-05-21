@@ -4,17 +4,7 @@ var React = require('react');
 var helpers = require('../helpers');
 var ToEnglish = require('../to_english');
 var TaskRow = require('./task_row');
-
-var timeframeNameMap = {
-  inbox: 'Inbox',
-  today: 'Today',
-  week: 'This Week',
-  month: 'This Month',
-  quarter: 'This Quarter',
-  year: 'This Year',
-  lustrum: 'This Lustrum',
-  decade: 'This Decade'
-};
+var timeframeNameMap = require('./timeframe_name_map');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.tasks.length > 0;
@@ -45,7 +35,6 @@ var TimeframesIndex = React.createClass({
   },
 
   loadTimeframes: function () {
-    console.log('loading timeframes...');
     helpers.request({
       method: 'get',
       url: '/timeframes',
