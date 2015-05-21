@@ -19,6 +19,7 @@ describe TasksController, '#show' do
         repeat_seconds: task.repeat_seconds,
         skip_count: task.skip_count,
         tag_names: task.tag_names,
+        estimate_seconds: nil,
         pending: false,
       }
       expected = { task: task_params }.deep_stringify_keys

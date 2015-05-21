@@ -60,20 +60,34 @@ RSpec.describe 'timeframes', js: true do
     visit '/timeframes'
     expect(page).not_to have_css('.timeframe')
 
-    task = create(:task, user: user)
+    task_1 = create(:task, user: user)
+    task_2 = create(:task, user: user, estimate_seconds: 360)
+
     visit '/timeframes'
 
     expect(page).to have_no_css('.timeframe')
     within('#inbox') do
-      within('li', text: task.title) do
+      expect(find('h2')).to have_text('Inbox 36/?')
+      within('li', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
+      end
+
+      expect(find('h2')).to have_text('Inbox 6/?')
+      within('li', text: task_2.title) do
+        select('Today', from: 'timeframe-select')
       end
     end
 
     expect(page).to have_no_css('#inbox')
 
+    within('.timeframe', text: 'Today') do
+      expect(find('h2')).to have_text('Today 6/?')
+      expect(find('li')).to have_text(task_2.title)
+    end
+
     within('.timeframe', text: 'This Week') do
-      within('li', text: task.title) do
+      expect(find('h2')).to have_text('This Week 30/?')
+      within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
     end
@@ -81,7 +95,13 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe', text: 'This Week')
 
     within('.timeframe', text: 'Today') do
-      within('li', text: task.title) do
+      expect(find('h2')).to have_text('Today 36/?')
+      within('li', text: task_1.title) do
+        select('-', from: 'timeframe-select')
+      end
+
+      expect(find('h2')).to have_text('Today 6/?')
+      within('li', text: task_2.title) do
         select('-', from: 'timeframe-select')
       end
     end
@@ -89,7 +109,8 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe')
 
     within('#inbox') do
-      expect(page).to have_content(task.title)
+      expect(page).to have_content(task_1.title)
+      expect(page).to have_content(task_2.title)
     end
   end
 
