@@ -33,11 +33,6 @@ var TasksIndex = React.createClass({
     });
   },
 
-  removeTask: function (task) {
-    this.setState({currentTasks: _.without(this.state.currentTasks, task)});
-    this.setState({pendingTasks: _.without(this.state.pendingTasks, task)});
-  },
-
   moveTask: function (id, afterId) {
     var tasks = this.state.currentTasks;
 
@@ -105,7 +100,6 @@ var TasksIndex = React.createClass({
         key={task.id}
         task={task}
         loadTasks={this.loadTasks}
-        removeTask={this.removeTask}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
       />
