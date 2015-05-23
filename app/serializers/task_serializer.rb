@@ -9,6 +9,7 @@ class TaskSerializer < ActiveModel::Serializer
     :skip_count,
     :tag_names,
     :title,
+    :timeframe,
   )
 
   def pending
