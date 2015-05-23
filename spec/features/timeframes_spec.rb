@@ -81,12 +81,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe', text: 'Today') do
-      expect(find('h2')).to have_text('Today 6/?')
+      expect(find('h2')).to have_text('Today 6/60')
       expect(find('li')).to have_text(task_2.title)
     end
 
     within('.timeframe', text: 'This Week') do
-      expect(find('h2')).to have_text('This Week 30/?')
+      expect(find('h2')).to have_text('This Week 30/0')
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
@@ -95,12 +95,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe', text: 'This Week')
 
     within('.timeframe', text: 'Today') do
-      expect(find('h2')).to have_text('Today 36/?')
+      expect(find('h2')).to have_text('Today 36/60')
       within('li', text: task_1.title) do
         select('-', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text('Today 6/?')
+      expect(find('h2')).to have_text('Today 6/60')
       within('li', text: task_2.title) do
         select('-', from: 'timeframe-select')
       end

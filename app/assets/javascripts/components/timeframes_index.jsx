@@ -45,6 +45,7 @@ var TimeframesIndex = React.createClass({
       <TimeframeSection
         key={timeframe.name}
         timeframe={timeframe}
+        medianProductivity={this.state.medianProductivity}
         loadTimeframes={this.loadTimeframes}
       />
     );
