@@ -40,20 +40,15 @@ var TaskRow = React.createClass({
     helpers.request({
       url: 'tasks/' + this.props.task.id,
       data: {task: {done: true}},
-      success: this.removeTask
+      success: this.props.loadTasks
     });
-  },
-
-  removeTask: function () {
-    this.props.removeTask(this.props.task);
-    this.props.loadTasks();
   },
 
   updatePriority: function (event) {
     helpers.request({
       url: 'tasks/' + this.props.task.id,
       data: {task: {priority: event.target.value}},
-      success: this.removeTask
+      success: this.props.loadTasks
     });
   },
 
@@ -61,7 +56,7 @@ var TaskRow = React.createClass({
     helpers.request({
       url: 'tasks/' + this.props.task.id,
       data: {task: {timeframe: event.target.value}},
-      success: this.props.loadTimeframes
+      success: this.props.loadTasks
     });
   },
 

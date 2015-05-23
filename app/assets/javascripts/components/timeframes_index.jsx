@@ -17,10 +17,10 @@ var TimeframesIndex = React.createClass({
   },
 
   componentDidMount: function () {
-    this.loadTimeframes();
+    this.loadTasks();
   },
 
-  loadTimeframes: function () {
+  loadTasks: function () {
     helpers.request({
       method: 'get',
       url: '/timeframes',
@@ -46,7 +46,7 @@ var TimeframesIndex = React.createClass({
         key={timeframe.name}
         timeframe={timeframe}
         medianProductivity={this.state.medianProductivity}
-        loadTimeframes={this.loadTimeframes}
+        loadTasks={this.loadTasks}
       />
     );
   },
