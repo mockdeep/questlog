@@ -11,6 +11,8 @@ var TaskFooter = React.createClass({
       <p>
         <Link to='/tasks'>All my tasks</Link>
         {' | '}
+        <Link to='/timeframes'>Timeframes</Link>
+        {' | '}
         <a href='/bulk_tasks/new'>Add multiple tasks</a>
         {' | '}
         <HelpLink />
