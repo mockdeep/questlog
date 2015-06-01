@@ -56,23 +56,25 @@ RSpec.describe 'timeframes', js: true do
 
   it 'displays the timeframes for the user' do
     feature_login_as(user)
+    create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
+    create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
 
     visit '/timeframes'
     expect(page).not_to have_css('.timeframe')
 
     task_1 = create(:task, user: user)
-    task_2 = create(:task, user: user, estimate_seconds: 360)
+    task_2 = create(:task, user: user, estimate_seconds: 365)
 
     visit '/timeframes'
 
     expect(page).to have_no_css('.timeframe')
     within('#inbox') do
-      expect(find('h2')).to have_text('Inbox 36/?')
+      expect(find('h2')).to have_text(/\AInbox 36\/\?\z/)
       within('li', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text('Inbox 6/?')
+      expect(find('h2')).to have_text(/\AInbox 6\/\?\z/)
       within('li', text: task_2.title) do
         select('Today', from: 'timeframe-select')
       end
@@ -81,12 +83,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe', text: 'Today') do
-      expect(find('h2')).to have_text('Today 6/60')
+      expect(find('h2')).to have_text(/\AToday 6\/63\z/)
       expect(find('li')).to have_text(task_2.title)
     end
 
     within('.timeframe', text: 'This Week') do
-      expect(find('h2')).to have_text('This Week 30/0')
+      expect(find('h2')).to have_text(/\AThis Week 30\/316\z/)
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
@@ -95,12 +97,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe', text: 'This Week')
 
     within('.timeframe', text: 'Today') do
-      expect(find('h2')).to have_text('Today 36/60')
+      expect(find('h2')).to have_text(/\AToday 36\/63\z/)
       within('li', text: task_1.title) do
         select('-', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text('Today 6/60')
+      expect(find('h2')).to have_text(/\AToday 6\/63\z/)
       within('li', text: task_2.title) do
         select('-', from: 'timeframe-select')
       end

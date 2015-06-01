@@ -24,13 +24,16 @@ var TimeframeSection = React.createClass({
   },
 
   timeTotal: function () {
-    return _.sum(this.props.timeframe.tasks, this.getEstimate) / 60;
+    return Math.floor(_.sum(this.props.timeframe.tasks, this.getEstimate) / 60);
+  },
+
+  baseBalance: function () {
+    return TimeBalancer.base_balances()[this.props.timeframe.name];
   },
 
   maxTime: function () {
-    var timeframeName = this.props.timeframe.name;
-    if (timeframeName === 'inbox') { return '?'; }
-    return TimeBalancer.base_balances()[timeframeName] * this.props.medianProductivity / 60;
+    if (this.props.timeframe.name === 'inbox') { return '?'; }
+    return Math.floor(this.baseBalance() * this.props.medianProductivity / 60);
   },
 
   render: function () {
@@ -39,7 +42,9 @@ var TimeframeSection = React.createClass({
 
     return (
       <div key={timeframeName} id={timeframeName} className={className}>
-        <h2>{timeframeNameMap[timeframeName]} {this.timeTotal()}/{this.maxTime()}</h2>
+        <h2>
+          {timeframeNameMap[timeframeName]} {this.timeTotal()}/{this.maxTime()}
+        </h2>
         {this.props.timeframe.tasks.map(this.renderTask)}
       </div>
     );
