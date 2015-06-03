@@ -56,16 +56,23 @@ RSpec.describe 'timeframes', js: true do
 
   it 'displays the timeframes for the user' do
     feature_login_as(user)
+
+    Timecop.travel(Time.zone.parse('2014/04/16'))
+    sinon_time = Time.zone.now.to_i * 1000
+    page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
+
     create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
     create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
 
-    visit '/timeframes'
+    click_link('Timeframes')
+
     expect(page).not_to have_css('.timeframe')
 
     task_1 = create(:task, user: user)
     task_2 = create(:task, user: user, estimate_seconds: 365)
 
     visit '/timeframes'
+    page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
 
     expect(page).to have_no_css('.timeframe')
     within('#inbox') do
@@ -88,7 +95,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     within('.timeframe', text: 'This Week') do
-      expect(find('h2')).to have_text(/\AThis Week 30\/316\z/)
+      expect(find('h2')).to have_text(/\AThis Week 30\/190\z/)
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end

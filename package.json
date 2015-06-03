@@ -12,7 +12,8 @@
     "react-dnd": "0.9.8",
     "react-router": "0.13.2",
     "reactify": "1.1.0",
-    "reqwest": "1.1.5"
+    "reqwest": "1.1.5",
+    "sinon": "^1.14.1"
   },
   "devDependencies": {
     "jest-cli": "0.4.0",
