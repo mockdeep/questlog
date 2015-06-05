@@ -4,7 +4,7 @@ var React = require('react');
 var update = require('react/lib/update');
 var _ = require('lodash');
 
-var NewTaskForm = require('./new_task_form');
+var NewTaskForm = require('./tasks/_new_task_form');
 var TaskRow = require('./task_row');
 var helpers = require('../helpers');
 

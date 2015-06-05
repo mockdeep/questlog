@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var ErrorDisplay = require('./error_display');
-var helpers = require('../helpers');
+var ErrorDisplay = require('../error_display');
+var helpers = require('../../helpers');
 
 var NewTaskForm = React.createClass({
   getInitialState: function () {

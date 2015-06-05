@@ -2,10 +2,10 @@
 
 var React = require('react');
 
-var NewTaskForm = require('./new_task_form');
-var TaskFooter = require('./common/task_footer');
-var TaskDisplay = require('./task_display');
-var helpers = require('../helpers');
+var NewTaskForm = require('./_new_task_form');
+var TaskFooter = require('../common/_task_footer');
+var TaskDisplay = require('./_task_display');
+var helpers = require('../../helpers');
 
 var TasksShow = React.createClass({
   contextTypes: {
