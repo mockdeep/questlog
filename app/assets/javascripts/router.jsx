@@ -13,7 +13,7 @@ var WhatPage = require('./components/static/what_page');
 var ScratchPage = require('./components/scratch_page');
 var SessionsNew = require('./components/sessions_new');
 var TasksIndex = require('./components/tasks_index');
-var TasksShow = require('./components/tasks_show');
+var TasksShow = require('./components/tasks/show');
 var TimeframesIndex = require('./components/timeframes_index');
 
 var AppBase = React.createClass({
