@@ -10,7 +10,6 @@ var RouteHandler = Router.RouteHandler;
 var BulkTasksNew = require('./components/bulk_tasks/new');
 var PrivacyPage = require('./components/static/privacy_page');
 var WhatPage = require('./components/static/what_page');
-var ScratchPage = require('./components/scratch_page');
 var SessionsNew = require('./components/sessions_new');
 var TasksIndex = require('./components/tasks/index');
 var TasksShow = require('./components/tasks/show');
@@ -37,7 +36,6 @@ var routes = (
     <Route path='/tasks' handler={TasksIndex} />
     <Route path='/privacy' handler={PrivacyPage} />
     <Route path='/what' handler={WhatPage} />
-    <Route path='/scratch' handler={ScratchPage} />
     <Route path='/timeframes' handler={TimeframesIndex} />
     <Route name='tag' path='/:slug' handler={TasksShow} />
     <DefaultRoute handler={TasksShow} />
