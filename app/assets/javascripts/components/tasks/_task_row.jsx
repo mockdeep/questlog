@@ -5,7 +5,7 @@ var PureRenderMixin = React.PureRenderMixin;
 var DragDropMixin = require('react-dnd').DragDropMixin;
 var _ = require('lodash');
 
-var timeframeNameMap = require('../timeframe_name_map');
+var timeframeNameMap = require('../../timeframe_name_map');
 
 var helpers = require('../../helpers');
 

@@ -14,7 +14,7 @@ var ScratchPage = require('./components/scratch_page');
 var SessionsNew = require('./components/sessions_new');
 var TasksIndex = require('./components/tasks/index');
 var TasksShow = require('./components/tasks/show');
-var TimeframesIndex = require('./components/timeframes_index');
+var TimeframesIndex = require('./components/timeframes/index');
 
 var AppBase = React.createClass({
   render: function () {
