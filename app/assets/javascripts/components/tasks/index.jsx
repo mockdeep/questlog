@@ -4,9 +4,9 @@ var React = require('react');
 var update = require('react/lib/update');
 var _ = require('lodash');
 
-var NewTaskForm = require('./tasks/_new_task_form');
-var TaskRow = require('./task_row');
-var helpers = require('../helpers');
+var NewTaskForm = require('./_new_task_form');
+var TaskRow = require('./_task_row');
+var helpers = require('../../helpers');
 
 var isPending = function (task) {
   return task.pending;

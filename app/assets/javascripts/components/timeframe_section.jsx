@@ -4,7 +4,7 @@ var React = require('react');
 var _ = require('lodash');
 
 var TimeBalancer = require('../time_balancer');
-var TaskRow = require('./task_row');
+var TaskRow = require('./tasks/_task_row');
 var timeframeNameMap = require('./timeframe_name_map');
 
 var TimeframeSection = React.createClass({
