@@ -2,9 +2,9 @@
 
 var React = require('react');
 
-var helpers = require('../helpers');
-var ToEnglish = require('../to_english');
-var TimeframeSection = require('./timeframe_section');
+var helpers = require('../../helpers');
+var ToEnglish = require('../../to_english');
+var TimeframeSection = require('./_timeframe_section');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.tasks.length > 0;
