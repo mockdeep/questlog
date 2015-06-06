@@ -2,9 +2,9 @@
 
 var React = require('react');
 
-var helpers = require('../helpers');
+var helpers = require('../../helpers');
 
-var BulkTaskForm = React.createClass({
+var BulkTasksNew = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
@@ -68,4 +68,4 @@ var BulkTaskForm = React.createClass({
   }
 });
 
-module.exports = BulkTaskForm;
+module.exports = BulkTasksNew;

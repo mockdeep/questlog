@@ -7,7 +7,7 @@ var DefaultRoute = Router.DefaultRoute;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
-var BulkTaskForm = require('./components/bulk_task_form');
+var BulkTasksNew = require('./components/bulk_tasks/new');
 var PrivacyPage = require('./components/static/privacy_page');
 var WhatPage = require('./components/static/what_page');
 var ScratchPage = require('./components/scratch_page');
@@ -30,7 +30,7 @@ var Nothing = React.createClass({
 
 var routes = (
   <Route handler={AppBase} path='/'>
-    <Route path='/bulk_tasks/new' handler={BulkTaskForm} />
+    <Route path='/bulk_tasks/new' handler={BulkTasksNew} />
     <Route path='/free_accounts/new' handler={Nothing} />
     <Route path='/sessions/new' handler={SessionsNew} />
     <Route path='/sessions' handler={Nothing} />
