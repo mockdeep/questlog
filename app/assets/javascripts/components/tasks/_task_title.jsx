@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var DeleteButton = require('./delete_button');
+var DeleteButton = require('./_delete_button');
 
 var TaskTitle = React.createClass({
   className: function () {
