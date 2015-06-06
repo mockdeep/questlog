@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var DoneButton = require('./done_button');
-var PostponeButton = require('./postpone_button');
+var DoneButton = require('./_done_button');
+var PostponeButton = require('./_postpone_button');
 
 var MainButtons = React.createClass({
   render: function () {

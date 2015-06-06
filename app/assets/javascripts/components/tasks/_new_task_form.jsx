@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var ErrorDisplay = require('../error_display');
+var ErrorDisplay = require('../common/_error_display');
 var helpers = require('../../helpers');
 
 var NewTaskForm = React.createClass({

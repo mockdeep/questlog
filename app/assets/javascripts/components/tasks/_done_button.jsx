@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var helpers = require('../helpers');
+var helpers = require('../../helpers');
 
 var DoneButton = React.createClass({
   getInitialState: function () {

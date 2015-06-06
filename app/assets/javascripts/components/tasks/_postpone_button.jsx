@@ -3,7 +3,7 @@
 var React = require('react');
 var _ = require('lodash');
 
-var helpers = require('../helpers');
+var helpers = require('../../helpers');
 
 var SelectOption = React.createClass({
   render: function () {
