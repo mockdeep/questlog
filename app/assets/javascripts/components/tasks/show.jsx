@@ -7,24 +7,22 @@ var TaskFooter = require('../common/_task_footer');
 var TaskDisplay = require('./_task_display');
 
 var TagStore = require('../../stores/tag_store');
-var helpers = require('../../helpers');
 
 var TasksShow = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
+
   getInitialState: function () {
     return {task: {title: 'Loading...'}, disabled: true, tags: []};
   },
+
   loadTask: function (url) {
     var tagName = this.context.router.getCurrentParams().slug || '';
     TagStore.get(tagName).then(this.updateTask);
-    helpers.request({
-      method: 'get',
-      url: '/tags',
-      success: this.updateTags
-    });
+    TagStore.getAll().then(this.updateTags);
   },
+
   updateTask: function (data) {
     if (data) {
       this.setState({task: data.task, disabled: false});
@@ -33,15 +31,19 @@ var TasksShow = React.createClass({
     }
     this.setTitle();
   },
+
   updateTags: function (data) {
     this.setState({tags: data.tags});
   },
+
   disable: function () {
     this.setState({disabled: true});
   },
+
   setTitle: function () {
     document.title = 'Task: ' + this.state.task.title;
   },
+
   componentDidMount: function () {
     this.loadTask();
     this.setTitle();
@@ -51,6 +53,7 @@ var TasksShow = React.createClass({
     this.loadTask(nextProps.url);
     this.setTitle();
   },
+
   render: function () {
     return (
       <div>
