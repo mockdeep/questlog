@@ -5,6 +5,14 @@ var request = require('../helpers').request;
 module.exports = {
   url: '/tasks',
 
+  getAll: function () {
+    return request({
+      method: 'get',
+      url: this.url,
+      success: function () { /* do nothing */ }
+    });
+  },
+
   create: function (attrs) {
     return request({
       url: this.url,
