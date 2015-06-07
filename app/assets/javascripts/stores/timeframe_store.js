@@ -1,15 +1,7 @@
 'use strict';
 
-var request = require('../helpers').request;
+var _ = require('lodash');
 
-module.exports = {
-  url: '/timeframes',
+var RestfulStore = require('./restful_store');
 
-  getAll: function () {
-    return request({
-      method: 'get',
-      url: this.url,
-      success: function () { /* do nothing */ }
-    });
-  }
-};
+module.exports = _.extend({name: 'timeframe'}, RestfulStore);
