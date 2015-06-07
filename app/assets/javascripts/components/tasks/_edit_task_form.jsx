@@ -3,7 +3,7 @@
 var React = require('react');
 
 var ErrorDisplay = require('../common/_error_display');
-var helpers = require('../../helpers');
+var TaskStore = require('../../stores/task_store');
 
 var EditTaskForm = React.createClass({
   getInitialState: function () {
@@ -14,9 +14,11 @@ var EditTaskForm = React.createClass({
       errors: []
     };
   },
+
   setTitle: function (event) {
     this.setState({taskTitle: event.target.value});
   },
+
   saveTask: function (event) {
     event.preventDefault();
     if (this.state.disabled) { return; }
@@ -26,20 +28,20 @@ var EditTaskForm = React.createClass({
       return;
     }
     this.setState({buttonContent: 'Updating Task', disabled: true});
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {id: this.props.id, task: {title: this.state.taskTitle.trim()}},
-      success: this.loadTask
-    });
+    var attrs = {title: this.state.taskTitle.trim()};
+    TaskStore.update(this.props.task.id, attrs).then(this.loadTask);
   },
+
   loadTask: function () {
     $('#edit-task').click();
     this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
+
   componentWillReceiveProps: function (newProps) {
     this.setState({taskTitle: newProps.task.title});
   },
+
   render: function () {
     return (
       <div className='row'>

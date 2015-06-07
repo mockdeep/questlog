@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var helpers = require('../../helpers');
+var TaskStore = require('../../stores/task_store');
 
 var DoneButton = React.createClass({
   getInitialState: function () {
@@ -22,17 +22,15 @@ var DoneButton = React.createClass({
   markDone: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {task: {done: true}},
-      success: this.updateButton,
-    });
+    TaskStore.update(this.props.task.id, {done: true}).then(this.updateButton);
   },
+
   componentWillReceiveProps: function (newProps) {
     if (!newProps.disabled) {
       this.replaceState(this.getInitialState());
     }
   },
+
   render: function () {
     return (
       <input
