@@ -1,26 +1,7 @@
 'use strict';
 
-var request = require('../helpers').request;
+var _ = require('lodash');
 
-module.exports = {
+var RestfulStore = require('./restful_store');
 
-  url: '/bulk_tasks',
-
-  create: function (attrs) {
-    return request({
-      url: this.url,
-      method: 'post',
-      data: {bulk_task: attrs},
-      success: function () { /* do nothing */ }
-    });
-  },
-
-  update: function (attrs) {
-    return request({
-      url: this.url,
-      data: {bulk_task: attrs},
-      success: function () { /* do nothing */ }
-    });
-  }
-};
-
+module.exports = _.extend({ name: 'bulk_task' }, RestfulStore);
