@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var helpers = require('../../helpers');
 var ToEnglish = require('../../to_english');
+var TimeframeStore = require('../../stores/timeframe_store');
 var TimeframeSection = require('./_timeframe_section');
 
 function timeframeHasTasks(timeframe) {
@@ -21,11 +21,7 @@ var TimeframesIndex = React.createClass({
   },
 
   loadTasks: function () {
-    helpers.request({
-      method: 'get',
-      url: '/timeframes',
-      success: this.updateTimeframes
-    });
+    TimeframeStore.getAll().then(this.updateTimeframes);
   },
 
   updateTimeframes: function (data) {
