@@ -13,6 +13,14 @@ module.exports = {
       data: {bulk_task: attrs},
       success: function () { /* do nothing */ }
     });
+  },
+
+  update: function (attrs) {
+    return request({
+      url: this.url,
+      data: {bulk_task: attrs},
+      success: function () { /* do nothing */ }
+    });
   }
 };
 
