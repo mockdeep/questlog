@@ -5,10 +5,10 @@ var update = require('react/lib/update');
 var _ = require('lodash');
 
 var TaskStore = require('../../stores/task_store');
+var BulkTaskStore = require('../../stores/bulk_task_store');
 
 var NewTaskForm = require('./_new_task_form');
 var TaskRow = require('./_task_row');
-var helpers = require('../../helpers');
 
 var isPending = function (task) {
   return task.pending;
@@ -69,12 +69,7 @@ var TasksIndex = React.createClass({
       newPriority = beforeTask.priority;
     }
 
-    helpers.request({
-      method: 'put',
-      url: '/bulk_tasks',
-      data: { bulk_task: { positions: this.currentTaskPositions() } },
-      success: function () { }
-    });
+    BulkTaskStore.update({positions: this.currentTaskPositions()});
     component.updatePriority({target: { value: newPriority }});
   },
 
