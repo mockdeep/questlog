@@ -4,6 +4,8 @@ var React = require('react');
 var update = require('react/lib/update');
 var _ = require('lodash');
 
+var TaskStore = require('../../stores/task_store');
+
 var NewTaskForm = require('./_new_task_form');
 var TaskRow = require('./_task_row');
 var helpers = require('../../helpers');
@@ -18,11 +20,7 @@ var TasksIndex = React.createClass({
   },
 
   loadTasks: function () {
-    helpers.request({
-      method: 'get',
-      url: '/tasks',
-      success: this.updateTasks
-    });
+    TaskStore.getAll().then(this.updateTasks);
   },
 
   updateTasks: function (data) {
