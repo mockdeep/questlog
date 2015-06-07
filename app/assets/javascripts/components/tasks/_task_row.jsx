@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 var timeframeNameMap = require('../../timeframe_name_map');
 
-var helpers = require('../../helpers');
+var TaskStore = require('../../stores/task_store');
 
 var TaskRow = React.createClass({
   mixins: [DragDropMixin, PureRenderMixin],
@@ -37,37 +37,24 @@ var TaskRow = React.createClass({
 
   markDone: function (event) {
     event.preventDefault();
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {task: {done: true}},
-      success: this.props.loadTasks
-    });
+    var attrs = {done: true};
+    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
   },
 
   updatePriority: function (event) {
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {task: {priority: event.target.value}},
-      success: this.props.loadTasks
-    });
+    var attrs = {priority: event.target.value};
+    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
   },
 
   updateTimeframe: function (event) {
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {task: {timeframe: event.target.value}},
-      success: this.props.loadTasks
-    });
+    var attrs = {timeframe: event.target.value};
+    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
   },
 
   deleteTask: function (event) {
     event.preventDefault();
     if (confirm('Delete this task?')) {
-      helpers.request({
-        url: 'tasks/' + this.props.task.id,
-        method: 'delete',
-        success: this.props.loadTasks
-      });
+      TaskStore.destroy(this.props.task.id).then(this.props.loadTasks);
     }
   },
 
