@@ -5,6 +5,8 @@ var React = require('react');
 var NewTaskForm = require('./_new_task_form');
 var TaskFooter = require('../common/_task_footer');
 var TaskDisplay = require('./_task_display');
+
+var TagStore = require('../../stores/tag_store');
 var helpers = require('../../helpers');
 
 var TasksShow = React.createClass({
@@ -15,11 +17,8 @@ var TasksShow = React.createClass({
     return {task: {title: 'Loading...'}, disabled: true, tags: []};
   },
   loadTask: function (url) {
-    helpers.request({
-      method: 'get',
-      url: this.context.router.getCurrentParams().slug || '',
-      success: this.updateTask
-    });
+    var tagName = this.context.router.getCurrentParams().slug || '';
+    TagStore.get(tagName).then(this.updateTask);
     helpers.request({
       method: 'get',
       url: '/tags',
