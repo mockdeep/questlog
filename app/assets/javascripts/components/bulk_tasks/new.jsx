@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var helpers = require('../../helpers');
+var BulkTaskStore = require('../../stores/bulk_task_store');
 
 var BulkTasksNew = React.createClass({
   contextTypes: {
@@ -17,17 +17,15 @@ var BulkTasksNew = React.createClass({
     this.setState({taskTitles: event.target.value});
   },
 
+  redirectToTasksIndex: function () {
+    this.context.router.transitionTo('/tasks');
+  },
+
   saveTasks: function (event) {
     event.preventDefault();
     if (this.state.taskTitles.trim() == '') { return; }
-    helpers.request({
-      url: '/bulk_tasks',
-      method: 'post',
-      data: {bulk_task: {titles: this.state.taskTitles.trim()}},
-      success: function () {
-        this.context.router.transitionTo('/tasks');
-      }.bind(this)
-    });
+    BulkTaskStore.create({titles: this.state.taskTitles.trim()})
+      .then(this.redirectToTasksIndex);
   },
 
   rootAttrs: function () {

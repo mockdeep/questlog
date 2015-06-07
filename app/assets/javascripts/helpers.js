@@ -21,7 +21,7 @@ var stopPropagation = function (event) {
 };
 
 var request = function (options) {
-  reqwest(mergeOptions(defaultRequestOptions(), options));
+  return reqwest(mergeOptions(defaultRequestOptions(), options));
 };
 
 var flash = function (status, message) {
