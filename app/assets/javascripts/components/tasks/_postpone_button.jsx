@@ -3,7 +3,8 @@
 var React = require('react');
 var _ = require('lodash');
 
-var helpers = require('../../helpers');
+var stopPropagation = require('../../helpers').stopPropagation;
+var TaskStore = require('../../stores/task_store');
 
 var SelectOption = React.createClass({
   render: function () {
@@ -36,11 +37,8 @@ var PostponeButton = React.createClass({
   postponeTask: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    helpers.request({
-      url: 'tasks/' + this.props.task.id,
-      data: {task: {postpone: this.state.postponeSeconds}},
-      success: this.updateButton,
-    });
+    var attrs = {postpone: this.state.postponeSeconds};
+    TaskStore.update(this.props.task.id, attrs).then(this.updateButton);
   },
 
   selectOptionsOptions: [
@@ -94,7 +92,7 @@ var PostponeButton = React.createClass({
         <label>{this.state.labelContent}</label>
         <select
           onChange={this.storeVal}
-          onClick={helpers.stopPropagation}
+          onClick={stopPropagation}
           disabled={this.props.disabled}
         >
           {this.selectOptions()}
