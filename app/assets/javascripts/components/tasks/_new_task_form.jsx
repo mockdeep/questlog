@@ -3,7 +3,8 @@
 var React = require('react');
 
 var ErrorDisplay = require('../common/_error_display');
-var helpers = require('../../helpers');
+var TaskStore = require('../../stores/task_store');
+var flash = require('../../helpers').flash;
 
 var NewTaskForm = React.createClass({
   getInitialState: function () {
@@ -26,15 +27,10 @@ var NewTaskForm = React.createClass({
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});
-    helpers.request({
-      url: 'tasks',
-      method: 'post',
-      data: {task: {title: this.state.taskTitle.trim()}},
-      success: this.loadTask
-    });
+    TaskStore.create({title: this.state.taskTitle.trim()}).then(this.loadTask);
   },
   loadTask: function () {
-    helpers.flash('success', 'Task added');
+    flash('success', 'Task added');
     this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
