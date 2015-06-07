@@ -1,17 +1,12 @@
 'use strict';
 
+var _ = require('lodash');
+
 var request = require('../helpers').request;
+var RestfulStore = require('./restful_store');
 
-module.exports = {
+module.exports = _.extend({
   url: '/tags',
-
-  getAll: function () {
-    return request({
-      method: 'get',
-      url: this.url,
-      success: function () { /* do nothing */ }
-    });
-  },
 
   get: function (url) {
     return request({
@@ -20,4 +15,4 @@ module.exports = {
       success: function () { /* do nothing */ }
     });
   }
-};
+}, RestfulStore);
