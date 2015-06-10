@@ -1,10 +1,10 @@
 'use strict';
 
-jest.dontMock(componentPath('components/timeframes_index'));
+jest.dontMock(componentPath('components/timeframes/index'));
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
-var TimeframesIndex = require(componentPath('components/timeframes_index'));
+var TimeframesIndex = require(componentPath('components/timeframes/index'));
 var timeframesIndex;
 
 beforeEach(function () {
