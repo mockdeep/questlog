@@ -20,7 +20,6 @@ var TasksShow = React.createClass({
   loadTask: function (url) {
     var tagName = this.context.router.getCurrentParams().slug || '';
     TagStore.get(tagName).then(this.updateTask);
-    TagStore.getAll().then(this.updateTags);
   },
 
   updateTask: function (data) {
@@ -32,8 +31,8 @@ var TasksShow = React.createClass({
     this.setTitle();
   },
 
-  updateTags: function (data) {
-    this.setState({tags: data.tags});
+  loadTags: function () {
+    this.setState({tags: TagStore.getAll()});
   },
 
   disable: function () {
@@ -45,8 +44,14 @@ var TasksShow = React.createClass({
   },
 
   componentDidMount: function () {
+    TagStore.on('change', this.loadTags);
+    this.loadTags();
     this.loadTask();
     this.setTitle();
+  },
+
+  componentWillUnmount: function () {
+    TagStore.off('change', this.loadTags);
   },
 
   componentWillReceiveProps: function (nextProps) {

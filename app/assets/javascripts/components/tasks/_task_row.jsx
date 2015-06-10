@@ -38,23 +38,23 @@ var TaskRow = React.createClass({
   markDone: function (event) {
     event.preventDefault();
     var attrs = {done: true};
-    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
+    TaskStore.update(this.props.task.id, attrs);
   },
 
   updatePriority: function (event) {
     var attrs = {priority: event.target.value};
-    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
+    TaskStore.update(this.props.task.id, attrs);
   },
 
   updateTimeframe: function (event) {
     var attrs = {timeframe: event.target.value};
-    TaskStore.update(this.props.task.id, attrs).then(this.props.loadTasks);
+    TaskStore.update(this.props.task.id, attrs);
   },
 
   deleteTask: function (event) {
     event.preventDefault();
     if (confirm('Delete this task?')) {
-      TaskStore.destroy(this.props.task.id).then(this.props.loadTasks);
+      TaskStore.destroy(this.props.task.id);
     }
   },
 
