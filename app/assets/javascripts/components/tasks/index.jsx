@@ -20,11 +20,11 @@ var TasksIndex = React.createClass({
   },
 
   loadTasks: function () {
-    TaskStore.getAll().then(this.updateTasks);
+    this.updateTasks(TaskStore.getAll());
   },
 
-  updateTasks: function (data) {
-    var partitionedTasks = _.partition(data.tasks, isPending);
+  updateTasks: function (tasks) {
+    var partitionedTasks = _.partition(tasks, isPending);
     this.setState({
       pendingTasks: partitionedTasks[0],
       currentTasks: partitionedTasks[1]
@@ -92,7 +92,6 @@ var TasksIndex = React.createClass({
       <TaskRow
         key={task.id}
         task={task}
-        loadTasks={this.loadTasks}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
       />
@@ -100,7 +99,12 @@ var TasksIndex = React.createClass({
   },
 
   componentDidMount: function () {
+    TaskStore.on('change', this.loadTasks);
     this.loadTasks();
+  },
+
+  componentWillUnmount: function () {
+    TaskStore.off('change', this.loadTasks);
   },
 
   render: function () {
