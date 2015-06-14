@@ -44,7 +44,11 @@ class Task < ActiveRecord::Base
   end
 
   def self.next
-    undone.ordered.first
+    undone.ordered.find_by(timeframe: next_timeframe)
+  end
+
+  def self.next_timeframe
+    (Timeframe::NAMES & undone.uniq(:timeframe).pluck(:timeframe)).first
   end
 
   def done=(done)
