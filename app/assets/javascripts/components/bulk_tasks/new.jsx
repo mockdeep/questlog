@@ -25,7 +25,7 @@ var BulkTasksNew = React.createClass({
     event.preventDefault();
     if (this.state.taskTitles.trim() == '') { return; }
     BulkTaskStore.create({titles: this.state.taskTitles.trim()})
-      .then(this.redirectToTasksIndex);
+    this.redirectToTasksIndex();
   },
 
   rootAttrs: function () {
