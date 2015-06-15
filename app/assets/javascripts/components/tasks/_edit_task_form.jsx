@@ -29,12 +29,12 @@ var EditTaskForm = React.createClass({
     }
     this.setState({buttonContent: 'Updating Task', disabled: true});
     var attrs = {title: this.state.taskTitle.trim()};
-    TaskStore.update(this.props.task.id, attrs).then(this.loadTask);
+    TaskStore.update(this.props.task.id, attrs);
+    this.toggleDisplay();
   },
 
-  loadTask: function () {
+  toggleDisplay: function () {
     $('#edit-task').click();
-    this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
 
