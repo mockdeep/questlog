@@ -8,7 +8,7 @@ var DeleteButton = React.createClass({
   deleteTask: function (event) {
     event.stopPropagation();
     if (confirm('Delete this task?')) {
-      TaskStore.destroy(this.props.task.id).then(this.loadTask);
+      TaskStore.destroy(this.props.task.id);
     }
   },
 
