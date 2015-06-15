@@ -12,10 +12,6 @@ var DeleteButton = React.createClass({
     }
   },
 
-  loadTask: function () {
-    this.props.loadTask();
-  },
-
   rootOpts: function () {
     return {
       className: 'fa fa-times delete-button',

@@ -14,15 +14,10 @@ var DoneButton = React.createClass({
     this.props.disable();
   },
 
-  updateButton: function () {
-    this.setState({buttonContent: 'Success!'});
-    this.props.loadTask();
-  },
-
   markDone: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    TaskStore.update(this.props.task.id, {done: true}).then(this.updateButton);
+    TaskStore.update(this.props.task.id, {done: true});
   },
 
   componentWillReceiveProps: function (newProps) {
