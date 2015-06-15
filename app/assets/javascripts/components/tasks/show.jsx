@@ -7,6 +7,7 @@ var TaskFooter = require('../common/_task_footer');
 var TaskDisplay = require('./_task_display');
 
 var TagStore = require('../../stores/tag_store');
+var TaskStore = require('../../stores/task_store');
 
 var TasksShow = React.createClass({
   contextTypes: {
@@ -45,6 +46,7 @@ var TasksShow = React.createClass({
 
   componentDidMount: function () {
     TagStore.on('change', this.loadTags);
+    TaskStore.on('change', this.loadTask);
     this.loadTags();
     this.loadTask();
     this.setTitle();
@@ -52,6 +54,7 @@ var TasksShow = React.createClass({
 
   componentWillUnmount: function () {
     TagStore.off('change', this.loadTags);
+    TaskStore.off('change', this.loadTask);
   },
 
   componentWillReceiveProps: function (nextProps) {
