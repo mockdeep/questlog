@@ -12,7 +12,6 @@ var MainButtons = React.createClass({
         <div className='col-md-6'>
           <DoneButton
             task={this.props.task}
-            loadTask={this.props.loadTask}
             disabled={this.props.disabled}
             disable={this.props.disable}
           />
