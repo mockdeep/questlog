@@ -4,6 +4,14 @@ var _ = require('lodash');
 
 var request = require('../helpers').request;
 
+var nowThen = function () {
+  // dunno if this is actually working...
+  var args = Array.prototype.slice(arguments);
+  return {
+    then: function (callback) { callback.call(null, args); }
+  };
+};
+
 module.exports = {
   models: [],
   loaded: false,
@@ -47,8 +55,15 @@ module.exports = {
   },
 
   getAll: function () {
-    if (!this.loaded) { this.load(); }
-    return this.models;
+    if (this.loaded) {
+      return nowThen({data: this.models});
+    } else {
+      return request({
+        method: 'get',
+        url: this.url(),
+        success: this.updateModels.bind(this)
+      });
+    }
   },
 
   create: function (attrs) {
