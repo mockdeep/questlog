@@ -33,7 +33,11 @@ var TasksShow = React.createClass({
   },
 
   loadTags: function () {
-    this.setState({tags: TagStore.getAll()});
+    TagStore.getAll().then(this.setTags);
+  },
+
+  setTags: function (data) {
+    this.setState({tags: data.tags});
   },
 
   disable: function () {

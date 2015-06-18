@@ -20,11 +20,11 @@ var TasksIndex = React.createClass({
   },
 
   loadTasks: function () {
-    this.updateTasks(TaskStore.getAll());
+    TaskStore.getAll().then(this.setTasks);
   },
 
-  updateTasks: function (tasks) {
-    var partitionedTasks = _.partition(tasks, isPending);
+  setTasks: function (data) {
+    var partitionedTasks = _.partition(data.tasks, isPending);
     this.setState({
       pendingTasks: partitionedTasks[0],
       currentTasks: partitionedTasks[1]
