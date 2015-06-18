@@ -37,25 +37,20 @@ var TaskRow = React.createClass({
 
   markDone: function (event) {
     event.preventDefault();
-    var attrs = {done: true};
-    TaskStore.update(this.props.task.id, attrs);
+    TaskStore.update(this.props.task.id, {done: true});
   },
 
   updatePriority: function (event) {
-    var attrs = {priority: event.target.value};
-    TaskStore.update(this.props.task.id, attrs);
+    TaskStore.update(this.props.task.id, {priority: event.target.value});
   },
 
   updateTimeframe: function (event) {
-    var attrs = {timeframe: event.target.value};
-    TaskStore.update(this.props.task.id, attrs);
+    TaskStore.update(this.props.task.id, {timeframe: event.target.value});
   },
 
   deleteTask: function (event) {
     event.preventDefault();
-    if (confirm('Delete this task?')) {
-      TaskStore.destroy(this.props.task.id);
-    }
+    if (confirm('Delete this task?')) { TaskStore.destroy(this.props.task.id); }
   },
 
   emblems: function () {
