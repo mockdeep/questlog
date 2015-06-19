@@ -3,14 +3,7 @@
 var _ = require('lodash');
 
 var request = require('../helpers').request;
-
-var nowThen = function () {
-  // dunno if this is actually working...
-  var args = Array.prototype.slice(arguments);
-  return {
-    then: function (callback) { callback.call(null, args); }
-  };
-};
+var nowThen = require('../util/now_then');
 
 module.exports = {
   models: [],
