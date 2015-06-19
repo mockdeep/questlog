@@ -3,7 +3,6 @@
 var _ = require('lodash');
 
 var request = require('../helpers').request;
-var nowThen = require('../util/now_then');
 
 module.exports = {
   models: [],
@@ -49,7 +48,9 @@ module.exports = {
 
   getAll: function () {
     if (this.loaded) {
-      return nowThen({data: this.models});
+      var data = {};
+      data[this.name + 's'] = this.models;
+      return new Promise(function (resolve) { resolve(data); });
     } else {
       return request({
         method: 'get',
