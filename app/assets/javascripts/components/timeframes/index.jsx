@@ -14,7 +14,7 @@ function timeframeHasTasks(timeframe) {
 var TimeframesIndex = React.createClass({
 
   getInitialState: function () {
-    return { medianProductivity: null, loading: true };
+    return { timeframes: [], medianProductivity: null, loading: true };
   },
 
   componentDidMount: function () {
