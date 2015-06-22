@@ -16,8 +16,10 @@
 //= require bootstrap
 //= require tasks
 
-$ = jQuery = require('jquery');
+'use strict';
+window.$ = window.jQuery = require('jquery');
 
 require('es5-shim');
 
 require('./router');
+if (!window.Promise) { window.Promise = require('promise-polyfill'); }
