@@ -8,6 +8,7 @@
     "jquery": "2.1.4",
     "lodash": "3.7.0",
     "moment": "2.10.3",
+    "promise-polyfill": "2.0.2",
     "react": "0.13.1",
     "react-dnd": "0.9.8",
     "react-router": "0.13.2",
@@ -17,7 +18,6 @@
   },
   "devDependencies": {
     "jest-cli": "0.4.0",
-    "promise-polyfill": "2.0.2",
     "react-tools": "0.13.1"
   },
   "engines": {
