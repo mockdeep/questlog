@@ -75,7 +75,7 @@ RSpec.describe 'timeframes', js: true do
     page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
 
     expect(page).to have_no_css('.timeframe')
-    within('#inbox') do
+    within('.inbox#inbox') do
       expect(find('h2')).to have_text(/\AInbox 36\/\?\z/)
       within('li', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
@@ -89,21 +89,21 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_css('#inbox')
 
-    within('.timeframe', text: 'Today') do
+    within('.timeframe#today') do
       expect(find('h2')).to have_text(/\AToday 6\/63\z/)
       expect(find('li')).to have_text(task_2.title)
     end
 
-    within('.timeframe', text: 'This Week') do
+    within('.timeframe#week') do
       expect(find('h2')).to have_text(/\AThis Week 30\/190\z/)
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
     end
 
-    expect(page).to have_no_css('.timeframe', text: 'This Week')
+    expect(page).to have_no_css('.timeframe#week')
 
-    within('.timeframe', text: 'Today') do
+    within('.timeframe#today') do
       expect(find('h2')).to have_text(/\AToday 36\/63\z/)
       within('li', text: task_1.title) do
         select('-', from: 'timeframe-select')
@@ -117,7 +117,7 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_css('.timeframe')
 
-    within('#inbox') do
+    within('.inbox#inbox') do
       expect(page).to have_content(task_1.title)
       expect(page).to have_content(task_2.title)
     end
