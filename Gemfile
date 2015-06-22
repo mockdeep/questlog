@@ -48,13 +48,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bullet'
+  gem 'bullet', '4.14.4'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
   gem 'rspec-rails'
   gem 'guard-rubocop'
   gem 'haml-lint'
+  gem 'rubocop', '~> 0.31.0'
   gem 'scss-lint'
   gem 'shoulda-matchers', require: false
 end
