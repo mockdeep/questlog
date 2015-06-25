@@ -20,7 +20,7 @@ var TasksShow = React.createClass({
 
   loadTask: function (url) {
     var tagName = this.context.router.getCurrentParams().slug || '';
-    TagStore.get(tagName).then(this.updateTask);
+    return TagStore.get(tagName).then(this.updateTask);
   },
 
   updateTask: function (data) {
@@ -33,7 +33,7 @@ var TasksShow = React.createClass({
   },
 
   loadTags: function () {
-    TagStore.getAll().then(this.setTags);
+    return TagStore.getAll().then(this.setTags);
   },
 
   setTags: function (data) {
@@ -49,11 +49,13 @@ var TasksShow = React.createClass({
   },
 
   componentDidMount: function () {
-    TagStore.on('change', this.loadTags);
-    TaskStore.on('change', this.loadTask);
-    this.loadTags();
-    this.loadTask();
-    this.setTitle();
+    this.loadTags().then(function () {
+      TagStore.on('change', this.loadTags);
+    }.bind(this));
+    this.loadTask().then(function () {
+      TaskStore.on('change', this.loadTask);
+      this.setTitle();
+    }.bind(this));
   },
 
   componentWillUnmount: function () {
