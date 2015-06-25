@@ -71,8 +71,8 @@ RSpec.describe 'timeframes', js: true do
     task_1 = create(:task, user: user)
     task_2 = create(:task, user: user, estimate_seconds: 365)
 
-    visit '/timeframes'
     page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
+    click_link('Refresh')
 
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
