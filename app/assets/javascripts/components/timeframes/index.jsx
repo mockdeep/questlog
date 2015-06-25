@@ -3,6 +3,7 @@
 var React = require('react');
 
 var ToEnglish = require('../../to_english');
+var TaskStore = require('../../stores/task_store');
 var TimeframeStore = require('../../stores/timeframe_store');
 var TimeframeSection = require('./_timeframe_section');
 
@@ -56,13 +57,19 @@ var TimeframesIndex = React.createClass({
     return this.state.timeframes.filter(timeframeHasTasks);
   },
 
+  refresh: function (event) {
+    event.preventDefault();
+    TaskStore.unload();
+  },
+
   render: function () {
     if (this.state.loading) {
       return (<h1>Loading Timeframes...</h1>);
     } else {
       return (
         <div>
-          <h1>Median Productivity: {this.productivityString()} per day</h1>
+          <h2>Median Productivity: {this.productivityString()} per day</h2>
+          <a onClick={this.refresh} href='/timeframes'>Refresh</a>
           {this.renderedTimeframes()}
         </div>
       );
