@@ -26,7 +26,7 @@ function timeframes(time) {
 
 var TimeBalancer = {
   base_balances: function (time) {
-    time = time || moment();
+    time = moment(time);
     return timeframes(time);
   }
 }

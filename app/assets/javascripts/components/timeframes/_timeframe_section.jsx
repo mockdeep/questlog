@@ -28,7 +28,8 @@ var TimeframeSection = React.createClass({
   },
 
   baseBalance: function () {
-    return TimeBalancer.base_balances()[this.props.timeframe.name];
+    var balanceTime = window.balanceTime;
+    return TimeBalancer.base_balances(balanceTime)[this.props.timeframe.name];
   },
 
   maxTime: function () {
