@@ -58,8 +58,8 @@ RSpec.describe 'timeframes', js: true do
     feature_login_as(user)
 
     Timecop.travel(Time.zone.parse('2014/04/16'))
-    sinon_time = Time.zone.now.to_i * 1000
-    page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
+    milliseconds = Time.zone.now.to_i * 1000
+    page.execute_script("window.balanceTime = #{milliseconds}")
 
     create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
     create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
@@ -71,7 +71,6 @@ RSpec.describe 'timeframes', js: true do
     task_1 = create(:task, user: user)
     task_2 = create(:task, user: user, estimate_seconds: 365)
 
-    page.execute_script("window.sinon.useFakeTimers(#{sinon_time});")
     click_link('Refresh')
 
     expect(page).to have_no_css('.timeframe')
