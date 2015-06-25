@@ -18,8 +18,14 @@ var TimeframesIndex = React.createClass({
   },
 
   componentDidMount: function () {
-    TimeframeStore.on('change', this.loadTasks);
-    this.loadTasks();
+    TimeframeStore.getAll().then(function (data) {
+      this.updateTimeframes(data);
+      TimeframeStore.on('change', this.loadTasks);
+    }.bind(this));
+  },
+
+  componentWillUnmount: function () {
+    TimeframeStore.off('change', this.loadTasks);
   },
 
   loadTasks: function () {
