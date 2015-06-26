@@ -23,8 +23,15 @@ var TimeframeSection = React.createClass({
     return _.isNumber(task.estimate_seconds) ? task.estimate_seconds : 1800;
   },
 
+  currentTasks: function () { return this.props.timeframe.currentTasks; },
+  pendingTasks: function () { return this.props.timeframe.pendingTasks; },
+
+  allTasks: function () {
+    return this.currentTasks().concat(this.pendingTasks());
+  },
+
   timeTotal: function () {
-    return Math.floor(_.sum(this.props.timeframe.tasks, this.getEstimate) / 60);
+    return Math.floor(_.sum(this.allTasks(), this.getEstimate) / 60);
   },
 
   baseBalance: function () {
@@ -37,6 +44,28 @@ var TimeframeSection = React.createClass({
     return Math.floor(this.baseBalance() * this.props.medianProductivity / 60);
   },
 
+  currentTasksDiv: function () {
+    if (this.props.timeframe.currentTasks.length > 0) {
+      return (
+        <div>
+          <h3>Current Tasks</h3>
+          {this.props.timeframe.currentTasks.map(this.renderTask)}
+        </div>
+      );
+    }
+  },
+
+  pendingTasksDiv: function () {
+    if (this.props.timeframe.pendingTasks.length > 0) {
+      return (
+        <div className='pending'>
+          <h3>Pending Tasks</h3>
+          {this.props.timeframe.pendingTasks.map(this.renderTask)}
+        </div>
+      );
+    }
+  },
+
   render: function () {
     var timeframeName = this.props.timeframe.name;
     var className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
@@ -46,7 +75,8 @@ var TimeframeSection = React.createClass({
         <h2>
           {timeframeNameMap[timeframeName]} {this.timeTotal()}/{this.maxTime()}
         </h2>
-        {this.props.timeframe.tasks.map(this.renderTask)}
+        {this.currentTasksDiv()}
+        {this.pendingTasksDiv()}
       </div>
     );
   }
