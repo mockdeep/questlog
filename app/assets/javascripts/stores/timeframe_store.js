@@ -30,6 +30,7 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     });
     tasks.forEach(function (task) {
       var timeframeName = task.timeframe || 'inbox';
+      if (task.pending) { return; }
       timeframes[timeframeName].tasks.push(task);
     });
     this.models = timeframeList.map(function (timeframeName) {
