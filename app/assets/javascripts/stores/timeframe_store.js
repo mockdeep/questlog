@@ -26,12 +26,19 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     var tasks = data.tasks;
     var timeframes = {};
     timeframeList.forEach(function (timeframeName) {
-      timeframes[timeframeName] = { name: timeframeName, tasks: [] };
+      timeframes[timeframeName] = {
+        name: timeframeName,
+        currentTasks: [],
+        pendingTasks: []
+      };
     });
     tasks.forEach(function (task) {
       var timeframeName = task.timeframe || 'inbox';
-      if (task.pending) { return; }
-      timeframes[timeframeName].tasks.push(task);
+      if (task.pending) {
+        timeframes[timeframeName].pendingTasks.push(task);
+      } else {
+        timeframes[timeframeName].currentTasks.push(task);
+      }
     });
     this.models = timeframeList.map(function (timeframeName) {
       return timeframes[timeframeName];

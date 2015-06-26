@@ -8,7 +8,7 @@ var TimeframeStore = require('../../stores/timeframe_store');
 var TimeframeSection = require('./_timeframe_section');
 
 function timeframeHasTasks(timeframe) {
-  return timeframe.tasks.length > 0;
+  return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
 var TimeframesIndex = React.createClass({
