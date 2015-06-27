@@ -57,13 +57,13 @@ class Task < ActiveRecord::Base
 
   def mark_done(done)
     self.done_at = done ? Time.zone.now : nil
-    if changed_to_done?
-      @decrement_counters = true
+    if done_at?
+      self.release_at = Time.zone.now + repeat_seconds if repeat_seconds
       self.skip_count = 0
-      self.release_at ||= Time.zone.now + repeat_seconds if repeat_seconds
-    elsif changed_to_not_done?
-      @increment_counters = true
+      @decrement_counters = true if changed_to_done?
+    else
       self.release_at = nil
+      @increment_counters = true if changed_to_not_done?
     end
   end
 
