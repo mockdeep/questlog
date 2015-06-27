@@ -22,11 +22,15 @@ describe('TimeframesIndex', function () {
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
     var expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
-    expect(domNode.textContent).toBe(expectedMessage);
+    expect(domNode.textContent).toContain(expectedMessage);
   });
 
   it('renders the given timeframes for the user', function () {
-    var timeframe = {name: 'inbox', tasks: [{id: 5, title: 'do laundry'}]};
+    var timeframe = {
+      name: 'inbox',
+      currentTasks: [{id: 5, title: 'do laundry'}],
+      pendingTasks: []
+    };
     var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
@@ -35,7 +39,7 @@ describe('TimeframesIndex', function () {
   });
 
   it('does not render empty timeframes', function () {
-    var timeframe = {name: 'Inbox', tasks: []};
+    var timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
     var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();

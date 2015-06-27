@@ -2,6 +2,8 @@
 
 var _ = require('lodash');
 var request = require('../helpers').request;
+var moment = require('moment');
+var Promise = window.Promise || require('promise-polyfill');
 
 var RestfulStore = require('./restful_store');
 var TaskStore = require('./task_store');
@@ -17,7 +19,35 @@ var timeframeList = [
   'decade'
 ]
 
+var timeframeEnds = {
+  today: moment().endOf('day'),
+  week: moment().endOf('week'),
+  month: moment().endOf('month'),
+  quarter: moment().endOf('quarter'),
+  year: moment().endOf('year'),
+}
+
 var medianProductivity;
+
+function timeframeNameForPendingTask(task) {
+  var index = timeframeList.indexOf(task.timeframe) - 1;
+  var timeframeName;
+  var timeframeEnd;
+  var releaseAt = moment(task.release_at);
+
+  do {
+    index += 1;
+    timeframeName = timeframeList[index];
+    timeframeEnd = timeframeEnds[timeframeName];
+    if (!timeframeEnd) { return timeframeName; }
+  } while (releaseAt.diff(timeframeEnd) > 0)
+  return timeframeList[index];
+}
+
+function timeframeNameForTask(task) {
+  if (!task.timeframe) { return 'inbox'; }
+  return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
+}
 
 var TimeframeStore = _.extend({}, RestfulStore, {
   name: 'timeframe',
@@ -33,7 +63,7 @@ var TimeframeStore = _.extend({}, RestfulStore, {
       };
     });
     tasks.forEach(function (task) {
-      var timeframeName = task.timeframe || 'inbox';
+      var timeframeName = timeframeNameForTask(task);
       if (task.pending) {
         timeframes[timeframeName].pendingTasks.push(task);
       } else {

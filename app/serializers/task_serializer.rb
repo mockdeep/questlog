@@ -6,6 +6,7 @@ class TaskSerializer < ActiveModel::Serializer
     :pending,
     :priority,
     :repeat_seconds,
+    :release_at,
     :skip_count,
     :tag_names,
     :title,
