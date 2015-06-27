@@ -3,6 +3,7 @@
 var React = require('react');
 
 var DeleteButton = require('./_delete_button');
+var timeframeNameMap = require('../../timeframe_name_map');
 
 var TaskTitle = React.createClass({
   className: function () {
@@ -25,6 +26,14 @@ var TaskTitle = React.createClass({
       return '';
     }
   },
+
+  timeframeName: function () {
+    if (this.props.task.timeframe) {
+      var timeframeName = timeframeNameMap[this.props.task.timeframe];
+      return (<div className='timeframe'>{timeframeName}</div>);
+    }
+  },
+
   render: function () {
     return (
       <div className='row'>
@@ -32,6 +41,7 @@ var TaskTitle = React.createClass({
           <table>
             <tr>
               <td className='col-md-1'>
+                {this.timeframeName()}
                 <DeleteButton
                   task={this.props.task}
                   loadTask={this.props.loadTask}
