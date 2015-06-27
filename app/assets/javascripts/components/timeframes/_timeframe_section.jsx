@@ -48,7 +48,6 @@ var TimeframeSection = React.createClass({
     if (this.props.timeframe.currentTasks.length > 0) {
       return (
         <div>
-          <h3>Current Tasks</h3>
           {this.props.timeframe.currentTasks.map(this.renderTask)}
         </div>
       );
@@ -59,7 +58,6 @@ var TimeframeSection = React.createClass({
     if (this.props.timeframe.pendingTasks.length > 0) {
       return (
         <div className='pending'>
-          <h3>Pending Tasks</h3>
           {this.props.timeframe.pendingTasks.map(this.renderTask)}
         </div>
       );
@@ -72,6 +70,7 @@ var TimeframeSection = React.createClass({
 
     return (
       <div key={timeframeName} id={timeframeName} className={className}>
+        <hr />
         <h2>
           {timeframeNameMap[timeframeName]} {this.timeTotal()}/{this.maxTime()}
         </h2>
