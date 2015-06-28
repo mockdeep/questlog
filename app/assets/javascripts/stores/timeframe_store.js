@@ -44,6 +44,11 @@ function timeframeNameForPendingTask(task) {
   return timeframeList[index];
 }
 
+function calculateMinutes(timeframe) {
+  var allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
+  return Math.floor(_.sum(allTasks, 'estimate_seconds') / 60);
+}
+
 function timeframeNameForTask(task) {
   if (!task.timeframe) { return 'inbox'; }
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
@@ -71,7 +76,9 @@ var TimeframeStore = _.extend({}, RestfulStore, {
       }
     });
     this.models = timeframeList.map(function (timeframeName) {
-      return timeframes[timeframeName];
+      var timeframe = timeframes[timeframeName];
+      timeframe.minuteTotal = calculateMinutes(timeframe);
+      return timeframe;
     });
   },
 

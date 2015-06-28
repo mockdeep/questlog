@@ -26,8 +26,8 @@ var TimeframeSection = React.createClass({
     return this.currentTasks().concat(this.pendingTasks());
   },
 
-  timeTotal: function () {
-    return Math.floor(_.sum(this.allTasks(), 'estimate_seconds') / 60);
+  minuteTotal: function () {
+    return this.props.timeframe.minuteTotal;
   },
 
   baseBalance: function () {
@@ -68,7 +68,7 @@ var TimeframeSection = React.createClass({
       <div key={timeframeName} id={timeframeName} className={className}>
         <hr />
         <h2>
-          {timeframeNameMap[timeframeName]} {this.timeTotal()}/{this.maxTime()}
+          {timeframeNameMap[timeframeName]} {this.minuteTotal()}/{this.maxTime()}
         </h2>
         {this.currentTasksDiv()}
         {this.pendingTasksDiv()}
