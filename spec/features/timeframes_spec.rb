@@ -75,12 +75,12 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
-      expect(find('h2')).to have_text(/\AInbox 36\/\?\z/)
+      expect(find('h2')).to have_text(/\AInbox 36\/∞\z/)
       within('li', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text(/\AInbox 6\/\?\z/)
+      expect(find('h2')).to have_text(/\AInbox 6\/∞\z/)
       within('li', text: task_2.title) do
         select('Today', from: 'timeframe-select')
       end
