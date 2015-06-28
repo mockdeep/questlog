@@ -19,10 +19,6 @@ var TimeframeSection = React.createClass({
     );
   },
 
-  getEstimate: function (task) {
-    return _.isNumber(task.estimate_seconds) ? task.estimate_seconds : 1800;
-  },
-
   currentTasks: function () { return this.props.timeframe.currentTasks; },
   pendingTasks: function () { return this.props.timeframe.pendingTasks; },
 
@@ -31,7 +27,7 @@ var TimeframeSection = React.createClass({
   },
 
   timeTotal: function () {
-    return Math.floor(_.sum(this.allTasks(), this.getEstimate) / 60);
+    return Math.floor(_.sum(this.allTasks(), 'estimate_seconds') / 60);
   },
 
   baseBalance: function () {
