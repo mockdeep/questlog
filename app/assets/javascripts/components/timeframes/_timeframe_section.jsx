@@ -21,10 +21,6 @@ var TimeframeSection = React.createClass({
   currentTasks: function () { return this.props.timeframe.currentTasks; },
   pendingTasks: function () { return this.props.timeframe.pendingTasks; },
 
-  allTasks: function () {
-    return this.currentTasks().concat(this.pendingTasks());
-  },
-
   minuteTotal: function () {
     return this.props.timeframe.minuteTotal;
   },
