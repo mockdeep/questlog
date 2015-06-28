@@ -3,7 +3,6 @@
 var React = require('react');
 var _ = require('lodash');
 
-var TimeBalancer = require('../../time_balancer');
 var TaskRow = require('../tasks/_task_row');
 var timeframeNameMap = require('../../timeframe_name_map');
 
@@ -30,14 +29,9 @@ var TimeframeSection = React.createClass({
     return this.props.timeframe.minuteTotal;
   },
 
-  baseBalance: function () {
-    var balanceTime = window.balanceTime;
-    return TimeBalancer.base_balances(balanceTime)[this.props.timeframe.name];
-  },
-
   maxTime: function () {
-    if (this.props.timeframe.name === 'inbox') { return '?'; }
-    return Math.floor(this.baseBalance() * this.props.medianProductivity / 60);
+    var minuteMax = this.props.timeframe.minuteMax;
+    return isFinite(minuteMax) ? minuteMax : '∞';
   },
 
   currentTasksDiv: function () {

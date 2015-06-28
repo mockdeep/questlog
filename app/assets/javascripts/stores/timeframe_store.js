@@ -2,6 +2,8 @@
 
 var _ = require('lodash');
 var request = require('../helpers').request;
+var TimeBalancer = require('../time_balancer');
+
 var moment = require('moment');
 var Promise = window.Promise || require('promise-polyfill');
 
@@ -49,6 +51,20 @@ function calculateMinutes(timeframe) {
   return Math.floor(_.sum(allTasks, 'estimate_seconds') / 60);
 }
 
+function baseBalance(timeframeName) {
+  var balanceTime = window.balanceTime;
+  return TimeBalancer.base_balances(balanceTime)[timeframeName];
+}
+
+function calculateMaxMinutes(timeframe) {
+  var baseMinutes = baseBalance(timeframe.name);
+  if (baseMinutes) {
+    return Math.floor(baseMinutes * medianProductivity / 60);
+  } else {
+    return Infinity;
+  }
+}
+
 function timeframeNameForTask(task) {
   if (!task.timeframe) { return 'inbox'; }
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
@@ -78,6 +94,7 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     this.models = timeframeList.map(function (timeframeName) {
       var timeframe = timeframes[timeframeName];
       timeframe.minuteTotal = calculateMinutes(timeframe);
+      timeframe.minuteMax = calculateMaxMinutes(timeframe);
       return timeframe;
     });
   },
@@ -92,12 +109,12 @@ var TimeframeStore = _.extend({}, RestfulStore, {
   getAll: function () {
     return new Promise(function (resolve, reject) {
       TaskStore.getAll().then(function (data) {
-        this.updateModels(data);
         request({
           method: 'get',
           url: this.url(),
-          success: function (data) {
-            medianProductivity = data.meta.medianProductivity;
+          success: function (timeframe_data) {
+            medianProductivity = timeframe_data.meta.medianProductivity;
+            this.updateModels(data);
             resolve(this.getData());
           }.bind(this)
         });
