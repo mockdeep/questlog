@@ -58,10 +58,10 @@ function baseBalance(timeframeName) {
 
 function calculateMaxMinutes(timeframe) {
   var baseMinutes = baseBalance(timeframe.name);
-  if (baseMinutes) {
-    return Math.floor(baseMinutes * medianProductivity / 60);
-  } else {
+  if (typeof baseMinutes === 'undefined') {
     return Infinity;
+  } else {
+    return Math.floor(baseMinutes * medianProductivity / 60);
   }
 }
 
