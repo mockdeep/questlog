@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var request = require('../helpers').request;
 var TimeBalancer = require('../time_balancer');
+var timeframeNameMap = require('../timeframe_name_map');
 
 var moment = require('moment');
 var Promise = window.Promise || require('promise-polyfill');
@@ -95,6 +96,7 @@ var TimeframeStore = _.extend({}, RestfulStore, {
       var timeframe = timeframes[timeframeName];
       timeframe.minuteTotal = calculateMinutes(timeframe);
       timeframe.minuteMax = calculateMaxMinutes(timeframe);
+      timeframe.title = timeframeNameMap[timeframe.name];
       return timeframe;
     });
   },

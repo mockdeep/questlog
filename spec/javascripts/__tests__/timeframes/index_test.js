@@ -1,6 +1,6 @@
 'use strict';
 
-jest.dontMock(componentPath('components/timeframes/index'));
+jest.dontMock(componentPath('timeframe_name_map'));
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
@@ -28,6 +28,7 @@ describe('TimeframesIndex', function () {
   it('renders the given timeframes for the user', function () {
     var timeframe = {
       name: 'inbox',
+      title: 'Inbox',
       currentTasks: [{id: 5, title: 'do laundry'}],
       pendingTasks: []
     };
