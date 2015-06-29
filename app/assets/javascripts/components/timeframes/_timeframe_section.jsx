@@ -4,7 +4,6 @@ var React = require('react');
 var _ = require('lodash');
 
 var TaskRow = require('../tasks/_task_row');
-var timeframeNameMap = require('../../timeframe_name_map');
 
 var TimeframeSection = React.createClass({
   renderTask: function (task) {
@@ -60,7 +59,6 @@ var TimeframeSection = React.createClass({
   },
 
   overLimit: function () {
-    //return true;
     return this.minuteTotal() > this.maxTime();
   },
 
@@ -72,7 +70,7 @@ var TimeframeSection = React.createClass({
       <div key={timeframeName} id={timeframeName} className={className}>
         <hr />
         <h2>
-          {timeframeNameMap[timeframeName]} {this.ratioSpan()}
+          {this.props.timeframe.title} {this.ratioSpan()}
         </h2>
         {this.currentTasksDiv()}
         {this.pendingTasksDiv()}
