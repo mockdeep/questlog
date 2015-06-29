@@ -44,11 +44,20 @@ var TimeframesIndex = React.createClass({
     return ToEnglish.seconds(this.state.medianProductivity);
   },
 
+  timeframeSpace: function () {
+    var counts = {};
+    this.state.timeframes.forEach(function (timeframe) {
+      counts[timeframe.name] = timeframe.minuteMax - timeframe.minuteTotal;
+    });
+    return counts;
+  },
+
   renderTimeframe: function (timeframe) {
     return (
       <TimeframeSection
         key={timeframe.name}
         timeframe={timeframe}
+        timeframeSpace={this.timeframeSpace()}
         medianProductivity={this.state.medianProductivity}
         loadTasks={this.loadTasks}
       />
