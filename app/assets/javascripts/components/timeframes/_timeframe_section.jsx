@@ -51,6 +51,19 @@ var TimeframeSection = React.createClass({
     }
   },
 
+  ratioSpan: function () {
+    var className = this.overLimit() ? 'danger' : '';
+
+    return (
+      <span className={className}>{this.minuteTotal()}/{this.maxTime()}</span>
+    );
+  },
+
+  overLimit: function () {
+    //return true;
+    return this.minuteTotal() > this.maxTime();
+  },
+
   render: function () {
     var timeframeName = this.props.timeframe.name;
     var className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
@@ -59,7 +72,7 @@ var TimeframeSection = React.createClass({
       <div key={timeframeName} id={timeframeName} className={className}>
         <hr />
         <h2>
-          {timeframeNameMap[timeframeName]} {this.minuteTotal()}/{this.maxTime()}
+          {timeframeNameMap[timeframeName]} {this.ratioSpan()}
         </h2>
         {this.currentTasksDiv()}
         {this.pendingTasksDiv()}
