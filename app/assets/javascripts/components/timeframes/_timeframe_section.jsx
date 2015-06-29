@@ -10,6 +10,7 @@ var TimeframeSection = React.createClass({
   renderTask: function (task) {
     return (
       <TaskRow
+        timeframeSpace={this.props.timeframeSpace}
         task={task}
         key={task.id}
         timeframesEnabled={true}

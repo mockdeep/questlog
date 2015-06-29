@@ -77,10 +77,33 @@ var TaskRow = React.createClass({
     return this.props.task.timeframe;
   },
 
+  timeframeHasSpace: function (name) {
+    return this.props.timeframeSpace[name] > this.estimateMinutes();
+  },
+
+  optionText: function (title, name) {
+    var text = title;
+    var space = this.props.timeframeSpace[name]
+    if (this.timeframe() !== name && isFinite(space)) {
+      text += ' (' + space + ')';
+    }
+    return text;
+  },
+
+  estimateMinutes: function () {
+    return Math.floor(this.props.task.estimate_seconds / 60);
+  },
+
   timeframeOptions: function () {
+    var self = this;
     return _.map(timeframeNameMap, function (title, name) {
-      if (name == 'inbox') { title = '-'; }
-      return (<option value={name} key={name}>{title}</option>);
+      var disabled = !self.timeframeHasSpace(name);
+      if (name === 'inbox') { title = '-'; }
+      return (
+        <option value={name} disabled={disabled} key={name}>
+          {self.optionText(title, name)}
+        </option>
+      );
     });
   },
 
