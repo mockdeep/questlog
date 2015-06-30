@@ -35,6 +35,10 @@ var TaskRow = React.createClass({
     }
   },
 
+  getInitialState: function () {
+    return {timeframeClicked: false};
+  },
+
   markDone: function (event) {
     event.preventDefault();
     TaskStore.update(this.props.task.id, {done: true});
@@ -83,7 +87,7 @@ var TaskRow = React.createClass({
 
   optionText: function (title, name) {
     var text = title;
-    var space = this.props.timeframeSpace[name]
+    var space = this.props.timeframeSpace[name];
     if (this.timeframe() !== name && isFinite(space)) {
       text += ' (' + space + ')';
     }
@@ -95,6 +99,15 @@ var TaskRow = React.createClass({
   },
 
   timeframeOptions: function () {
+    if (!this.state.timeframeClicked) {
+      // hack optimization so that each task row doesn't need to re-render
+      return _.map(timeframeNameMap, function (title, name) {
+        if (name === 'inbox') { title = '-'; }
+        return (
+          <option value={name} key={name}>{title}</option>
+        );
+      });
+    }
     var self = this;
     return _.map(timeframeNameMap, function (title, name) {
       var disabled = !self.timeframeHasSpace(name);
@@ -109,10 +122,20 @@ var TaskRow = React.createClass({
 
   timeframeSelector: function () {
     return (
-      <select defaultValue={this.timeframe()} onChange={this.updateTimeframe} name='timeframe-select'>
+      <select
+        className='timeframe-select'
+        onFocus={this.timeframeClicked}
+        defaultValue={this.timeframe()}
+        onChange={this.updateTimeframe}
+        name='timeframe-select'
+      >
         {this.timeframeOptions()}
       </select>
     );
+  },
+
+  timeframeClicked: function () {
+    this.setState({timeframeClicked: true});
   },
 
   render: function () {
