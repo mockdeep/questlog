@@ -138,6 +138,12 @@ var TaskRow = React.createClass({
     this.setState({timeframeClicked: true});
   },
 
+  taskEstimate: function () {
+    if (this.props.timeframesEnabled) {
+      return '(' + Math.floor(this.props.task.estimate_seconds / 60) + ') ';
+    }
+  },
+
   render: function () {
     var dragSource = this.dragSourceFor('task');
     var dropTarget = this.dropTargetFor('task');
@@ -146,7 +152,7 @@ var TaskRow = React.createClass({
 
     return (
       <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
-        {this.props.task.title} {this.emblems()}
+        {this.taskEstimate()}{this.props.task.title} {this.emblems()}
         {' | Pri: '}
         <select onChange={this.updatePriority} defaultValue={this.priority()}>
           <option value=''>-</option>
