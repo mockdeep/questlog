@@ -4,6 +4,8 @@ var React = require('react');
 
 var ToEnglish = require('../../to_english');
 var TaskStore = require('../../stores/task_store');
+
+var NewTaskForm = require('../tasks/_new_task_form');
 var TimeframeStore = require('../../stores/timeframe_store');
 var TimeframeSection = require('./_timeframe_section');
 
@@ -83,6 +85,7 @@ var TimeframesIndex = React.createClass({
     } else {
       return (
         <div>
+          <NewTaskForm loadTask={this.loadTasks} />
           <h2>Median Productivity: {this.productivityString()} per day</h2>
           <a onClick={this.refresh} href='/timeframes'>Refresh</a>
           {this.renderedTimeframes()}
