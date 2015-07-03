@@ -82,7 +82,7 @@ var TaskRow = React.createClass({
   },
 
   timeframeHasSpace: function (name) {
-    return this.props.timeframeSpace[name] > this.estimateMinutes();
+    return this.props.timeframeSpace[name] >= this.estimateMinutes();
   },
 
   optionText: function (title, name) {
