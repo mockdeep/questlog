@@ -5,6 +5,7 @@
     "browserify": "9.0.8",
     "browserify-incremental": "2.0.0",
     "es5-shim": "4.1.1",
+    "immutable": "^3.7.4",
     "jquery": "2.1.4",
     "lodash": "3.7.0",
     "moment": "2.10.3",
