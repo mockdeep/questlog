@@ -1,8 +1,8 @@
 'use strict';
 
-var Record = require('immutable').Record;
+var Immutable = require('immutable');
 
-module.exports = Record({
+module.exports = Immutable.Record({
   id: null,
   estimate_seconds: null,
   pending: null,
