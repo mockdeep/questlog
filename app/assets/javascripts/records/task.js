@@ -21,5 +21,4 @@ Object.defineProperty(Task.prototype, 'estimate_minutes', {
   }
 });
 
-window.Task = Task;
 module.exports = Task;
