@@ -8,6 +8,7 @@ var timeframeNameMap = require('../timeframe_name_map');
 var moment = require('moment');
 var Promise = window.Promise || require('promise-polyfill');
 
+var Timeframe = require('../records/timeframe');
 var RestfulStore = require('./restful_store');
 var TaskStore = require('./task_store');
 
@@ -97,7 +98,7 @@ var TimeframeStore = _.extend({}, RestfulStore, {
       timeframe.minuteTotal = calculateMinutes(timeframe);
       timeframe.minuteMax = calculateMaxMinutes(timeframe);
       timeframe.title = timeframeNameMap[timeframe.name];
-      return timeframe;
+      return new Timeframe(timeframe);
     });
   },
 
