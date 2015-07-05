@@ -9,9 +9,8 @@ module.exports = _.extend({}, RestfulStore, {
   name: 'task',
 
   updateModels: function (data) {
-    data.tasks = data.tasks.map(function (task) {
-      task.estimate_seconds = task.estimate_seconds || 1800;
-      return new Task(task);
+    data.tasks = data.tasks.map(function (task_data) {
+      return new Task(task_data);
     });
     RestfulStore.updateModels.call(this, data);
   }
