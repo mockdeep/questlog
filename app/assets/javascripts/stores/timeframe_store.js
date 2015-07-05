@@ -49,7 +49,7 @@ function timeframeNameForPendingTask(task) {
 
 function calculateMinutes(timeframe) {
   var allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
-  return Math.floor(_.sum(allTasks, 'estimate_seconds') / 60);
+  return _.sum(allTasks, 'estimate_minutes');
 }
 
 function baseBalance(timeframeName) {

@@ -2,7 +2,7 @@
 
 var Record = require('immutable').Record;
 
-module.exports = new Record({
+var Task = new Record({
   id: null,
   estimate_seconds: null,
   pending: null,
@@ -14,3 +14,12 @@ module.exports = new Record({
   tag_names: null,
   skip_count: null
 });
+
+Object.defineProperty(Task.prototype, 'estimate_minutes', {
+  get: function () {
+    return Math.floor((this.estimate_seconds || 1800) / 60);
+  }
+});
+
+window.Task = Task;
+module.exports = Task;
