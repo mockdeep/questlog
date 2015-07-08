@@ -48,11 +48,6 @@ function timeframeNameForPendingTask(task) {
   return timeframeList[index];
 }
 
-function calculateMinutes(timeframe) {
-  var allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
-  return _.sum(allTasks, 'estimate_minutes');
-}
-
 function baseBalance(timeframeName) {
   var balanceTime = window.balanceTime;
   return TimeBalancer.base_balances(balanceTime)[timeframeName];
@@ -95,7 +90,6 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     });
     this.models = timeframeList.map(function (timeframeName) {
       var timeframe = timeframes[timeframeName];
-      timeframe.minuteTotal = calculateMinutes(timeframe);
       timeframe.minuteMax = calculateMaxMinutes(timeframe);
       timeframe.title = timeframeNameMap[timeframe.name];
       return new Timeframe(timeframe);
