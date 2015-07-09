@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var request = require('../helpers').request;
-var TimeBalancer = require('../time_balancer');
 var timeframeNameMap = require('../timeframe_name_map');
 
 var moment = require('moment');
@@ -48,20 +47,6 @@ function timeframeNameForPendingTask(task) {
   return timeframeList[index];
 }
 
-function baseBalance(timeframeName) {
-  var balanceTime = window.balanceTime;
-  return TimeBalancer.base_balances(balanceTime)[timeframeName];
-}
-
-function calculateMaxMinutes(timeframe) {
-  var baseMinutes = baseBalance(timeframe.name);
-  if (typeof baseMinutes === 'undefined') {
-    return Infinity;
-  } else {
-    return Math.floor(baseMinutes * medianProductivity / 60);
-  }
-}
-
 function timeframeNameForTask(task) {
   if (!task.timeframe) { return 'inbox'; }
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
@@ -90,8 +75,8 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     });
     this.models = timeframeList.map(function (timeframeName) {
       var timeframe = timeframes[timeframeName];
-      timeframe.minuteMax = calculateMaxMinutes(timeframe);
       timeframe.title = timeframeNameMap[timeframe.name];
+      timeframe.medianProductivity = medianProductivity;
       return new Timeframe(timeframe);
     });
   },
