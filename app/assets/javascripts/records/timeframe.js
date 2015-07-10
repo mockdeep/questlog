@@ -4,13 +4,13 @@ var Record = require('immutable').Record;
 var _ = require('lodash');
 
 var TimeBalancer = require('../time_balancer');
+var timeframeNameMap = require('../timeframe_name_map');
 
 var Timeframe = new Record({
   currentTasks: [],
   pendingTasks: [],
   medianProductivity: null,
-  name: null,
-  title: null
+  name: null
 });
 
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
@@ -23,6 +23,12 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
 Object.defineProperty(Timeframe.prototype, 'minuteMax', {
   get: function () {
     return calculateMaxMinutes(this.name, this.medianProductivity);
+  }
+});
+
+Object.defineProperty(Timeframe.prototype, 'title', {
+  get: function () {
+    return timeframeNameMap[this.name];
   }
 });
 
