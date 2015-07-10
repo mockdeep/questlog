@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var request = require('../helpers').request;
-var timeframeNameMap = require('../timeframe_name_map');
 
 var moment = require('moment');
 var Promise = window.Promise || require('promise-polyfill');
@@ -75,7 +74,6 @@ var TimeframeStore = _.extend({}, RestfulStore, {
     });
     this.models = timeframeList.map(function (timeframeName) {
       var timeframe = timeframes[timeframeName];
-      timeframe.title = timeframeNameMap[timeframe.name];
       timeframe.medianProductivity = medianProductivity;
       return new Timeframe(timeframe);
     });
