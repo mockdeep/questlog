@@ -74,7 +74,7 @@ var TaskRow = React.createClass({
   },
 
   priority: function () {
-    return this.props.task.priority;
+    return this.props.task.priority || '';
   },
 
   timeframe: function () {
@@ -150,7 +150,7 @@ var TaskRow = React.createClass({
       <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
         {this.taskEstimate()}{this.props.task.title} {this.emblems()}
         {' | Pri: '}
-        <select onChange={this.updatePriority} defaultValue={this.priority()}>
+        <select onChange={this.updatePriority} value={this.priority()}>
           <option value=''>-</option>
           <option value='1'>1</option>
           <option value='2'>2</option>
