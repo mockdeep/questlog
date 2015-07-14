@@ -1,10 +1,10 @@
 'use strict';
 
-jest.dontMock('lodash');
-jest.dontMock('moment');
-
 var _ = require('lodash');
 var moment = require('moment');
+var expect = require('chai').expect;
+
+var componentPath = require('./helper').componentPath;
 
 var TimeBalancer = require(componentPath('time_balancer'));
 
@@ -33,7 +33,7 @@ describe('TimeBalancer.base_balances', function () {
     ];
 
     _.each(expected_pairs, function (pair) {
-      expect(TimeBalancer.base_balances(pair[0])).toEqual(pair[1]);
+      expect(TimeBalancer.base_balances(pair[0])).to.eql(pair[1]);
     });
   });
 });
