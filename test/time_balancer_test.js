@@ -2,9 +2,6 @@
 
 var _ = require('lodash');
 var moment = require('moment');
-var expect = require('chai').expect;
-
-var componentPath = require('./helper').componentPath;
 
 var TimeBalancer = require(componentPath('time_balancer'));
 
