@@ -2,9 +2,6 @@
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
-var expect = require('chai').expect;
-
-var componentPath = require('../helper').componentPath;
 
 var TimeframesIndex = require(componentPath('components/timeframes/index'));
 var timeframesIndex;

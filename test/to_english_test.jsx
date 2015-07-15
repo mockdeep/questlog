@@ -1,8 +1,5 @@
 'use strict';
 
-var componentPath = require('./helper').componentPath;
-var expect = require('chai').expect;
-
 var ToEnglish = require(componentPath('to_english'));
 
 describe('ToEnglish.seconds', function () {

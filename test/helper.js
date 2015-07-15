@@ -9,6 +9,5 @@ global.document = jsdom.jsdom('<html><body></body></html>');
 global.window = document.parentWindow;
 global.navigator = { userAgent: 'mocha' };
 
-module.exports = {
-  componentPath: function (componentName) { return jsPath + componentName; }
-}
+global.expect = require('chai').expect;
+global.componentPath = function (componentName) { return jsPath + componentName; };
