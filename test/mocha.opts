@@ -1,0 +1,3 @@
+--compilers jsx:test/compiler
+--recursive
+-r test/helper.js
