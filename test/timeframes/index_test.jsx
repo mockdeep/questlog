@@ -1,9 +1,11 @@
 'use strict';
 
-jest.dontMock(componentPath('timeframe_name_map'));
-
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
+var expect = require('chai').expect;
+
+var componentPath = require('../helper').componentPath;
+
 var TimeframesIndex = require(componentPath('components/timeframes/index'));
 var timeframesIndex;
 
@@ -14,7 +16,7 @@ beforeEach(function () {
 describe('TimeframesIndex', function () {
   it('renders a loading message before content has been loaded', function () {
     var domNode = timeframesIndex.getDOMNode();
-    expect(domNode.textContent).toBe('Loading Timeframes...');
+    expect(domNode.textContent).to.equal('Loading Timeframes...');
   });
 
   it('renders the current median productivity when loaded', function () {
@@ -22,7 +24,7 @@ describe('TimeframesIndex', function () {
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
     var expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
-    expect(domNode.textContent).toContain(expectedMessage);
+    expect(domNode.textContent).to.contain(expectedMessage);
   });
 
   it('renders the given timeframes for the user', function () {
@@ -35,8 +37,8 @@ describe('TimeframesIndex', function () {
     var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
-    expect(domNode.textContent).toContain('Inbox');
-    expect(domNode.textContent).toContain('do laundry');
+    expect(domNode.textContent).to.contain('Inbox');
+    expect(domNode.textContent).to.contain('do laundry');
   });
 
   it('does not render empty timeframes', function () {
@@ -44,7 +46,7 @@ describe('TimeframesIndex', function () {
     var input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
     timeframesIndex.updateTimeframes(input);
     var domNode = timeframesIndex.getDOMNode();
-    expect(domNode.textContent).not.toContain('Inbox');
+    expect(domNode.textContent).not.to.contain('Inbox');
   });
 
 });
