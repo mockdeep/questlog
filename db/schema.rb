@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519020541) do
+ActiveRecord::Schema.define(version: 20150718222606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20150519020541) do
     t.datetime "timestamp",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name",       null: false
   end
 
+  add_index "stats", ["name"], name: "index_stats_on_name", using: :btree
   add_index "stats", ["user_id"], name: "index_stats_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
