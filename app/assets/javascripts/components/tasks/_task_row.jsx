@@ -140,6 +140,20 @@ var TaskRow = React.createClass({
     }
   },
 
+  undoTask: function () {
+    TaskStore.update(this.props.task.id, {done: false});
+  },
+
+  undoButton: function () {
+    if (this.props.task.pending) {
+      return (
+        <button className='btn btn-link' role='Link' onClick={this.undoTask}>
+          Undo
+        </button>
+      );
+    }
+  },
+
   render: function () {
     var dragSource = this.dragSourceFor('task');
     var dropTarget = this.dropTargetFor('task');
@@ -159,6 +173,8 @@ var TaskRow = React.createClass({
         {this.props.timeframesEnabled ? ' | When: ' : ''}
         {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
         {' | '}
+        {this.props.task.pending ? this.undoButton() : ''}
+        {this.props.task.pending ? ' | ' : ''}
         <button className='btn btn-link' role='Link' onClick={this.markDone}>
           Done!
         </button>

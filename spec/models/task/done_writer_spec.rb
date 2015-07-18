@@ -120,6 +120,14 @@ describe Task, '#done=' do
     end
   end
 
+  context 'when given "false"' do
+    it 'sets done_at to nil' do
+      task.done = true
+      task.done = 'false'
+      expect(task.done_at).to eq nil
+    end
+  end
+
   context 'when the task is invalid' do
     it 'does not update counters' do
       task.save!
