@@ -64,4 +64,18 @@ describe 'tasks index page', js: true do
     expect(page.find('#task')['class']).to include('priority-3')
   end
 
+  it 'allows a user to undo a task' do
+    task = create(
+      :task,
+      user: user,
+      done_at: Time.zone.now,
+      release_at: 1.week.from_now,
+    )
+    visit('/tasks')
+    expect(pending_tasks).to have_content(task.title)
+    within('li', text: task.title) { click_button('Undo') }
+    expect(pending_tasks).not_to have_content(task.title)
+    expect(current_tasks).to have_content(task.title)
+  end
+
 end
