@@ -8,7 +8,11 @@ class TaskUpdate
     task_params[:timeframe] = nil if task_params[:timeframe] == 'inbox'
     @task.attributes = task_params
     if task_params[:done]
-      stat_create.(user: @task.user, value: @task.estimate_seconds)
+      stat_create.(
+        user: @task.user,
+        value: @task.estimate_seconds,
+        name: 'seconds-completed',
+      )
     end
     @task.save!
   end

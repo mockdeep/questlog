@@ -37,7 +37,7 @@ RSpec.describe TaskUpdate, '#call' do
     it 'adds the tasks estimate to the stats for the current day' do
       allow(task).to receive(:persisted?).and_return(false)
       task_update.(task_update_params.merge(done: true))
-      expected_args = { user: user, value: 300 }
+      expected_args = { user: user, value: 300, name: 'seconds-completed' }
       expect(mock_stat_create).to have_received(:call).with(expected_args)
     end
   end
