@@ -1,7 +1,7 @@
 class BulkTasksController < ApplicationController
 
   def create
-    BulkTask.create(create_params)
+    BulkTask.create(create_params.symbolize_keys)
     redirect_to(tasks_path)
   end
 
