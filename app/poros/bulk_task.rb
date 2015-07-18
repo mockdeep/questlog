@@ -13,10 +13,7 @@ class BulkTask
     false
   end
 
-  def self.create(params)
-    user = params.fetch(:user)
-    titles = params.fetch(:titles)
-
+  def self.create(user:, titles:)
     user.tasks.create(task_params(titles))
   end
 

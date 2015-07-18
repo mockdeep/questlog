@@ -20,7 +20,7 @@ describe BulkTask, '#create' do
   it 'does not create tasks without a user' do
     expect do
       BulkTask.create(titles: "who\ncares")
-    end.to raise_error(KeyError)
+    end.to raise_error(ArgumentError)
   end
 
 end
