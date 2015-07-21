@@ -25,7 +25,7 @@ describe TasksController, '#show' do
 
   context 'when there are no unfinished tasks' do
     it '@task is nil' do
-      task.update_attributes(done: true)
+      task.update(done: true)
       get(:show, format: :json)
       expect(assigns(:task)).to be_nil
     end

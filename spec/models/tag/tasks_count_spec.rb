@@ -25,7 +25,7 @@ describe Tag, '#tasks_count' do
     it 'is decremented' do
       task = create(:task, tags: [tag], user: user)
       expect(tag.reload.unfinished_tasks_count).to eq 1
-      task.update_attributes(done: true)
+      task.update(done: true)
       expect(tag.reload.unfinished_tasks_count).to eq 0
     end
   end
@@ -42,9 +42,9 @@ describe Tag, '#tasks_count' do
     it 'is decremented and then incremented' do
       task = create(:task, tags: [tag], user: user)
       expect(tag.reload.unfinished_tasks_count).to eq 1
-      task.update_attributes(done: true)
+      task.update(done: true)
       expect(tag.reload.unfinished_tasks_count).to eq 0
-      task.update_attributes(done: false)
+      task.update(done: false)
       expect(tag.reload.unfinished_tasks_count).to eq 1
     end
   end
@@ -73,10 +73,10 @@ describe Tag, '#tasks_count' do
       tag2 = create(:tag, user: user)
       task = create(:task, tags: [tag, tag2], user: user)
       expect(tag.reload.unfinished_tasks_count).to eq 1
-      task.update_attributes!(done: true)
+      task.update!(done: true)
       expect(tag.reload.unfinished_tasks_count).to eq 0
       Task.transaction do
-        task.update_attributes!(done: false)
+        task.update!(done: false)
       end
       expect(tag.reload.unfinished_tasks_count).to eq 1
       expect(tag2.reload.unfinished_tasks_count).to eq 1

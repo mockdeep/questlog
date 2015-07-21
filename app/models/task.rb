@@ -85,7 +85,7 @@ class Task < ActiveRecord::Base
   end
 
   def release!
-    update_attributes!(done: false, position: next_position)
+    update!(done: false, position: next_position)
   end
 
   def done?

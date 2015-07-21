@@ -16,16 +16,16 @@ describe Task, '#done=' do
 
     context 'when it was previously nil' do
       it 'decrements unfinished_tasks_count for its associated tags' do
-        task.update_attributes(tags: [tag])
+        task.update(tags: [tag])
         expect(tag.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes(done: true)
+        task.update(done: true)
         expect(tag.reload.unfinished_tasks_count).to eq 0
       end
 
       it 'decrements unfinished_tasks_count for its associated user' do
         task.save!
         expect do
-          task.update_attributes(done: true)
+          task.update(done: true)
         end.to change { user.reload.unfinished_tasks_count }.from(1).to(0)
       end
 
@@ -54,7 +54,7 @@ describe Task, '#done=' do
           task.save!
 
           threaded do
-            Task.find(task.id).update_attributes!(done: true)
+            Task.find(task.id).update!(done: true)
           end
 
           expect(user.reload.unfinished_tasks_count).to eq 0
@@ -64,17 +64,17 @@ describe Task, '#done=' do
 
     context 'if it was not previously nil' do
       it 'does not change unfinished_tasks_count for its tags' do
-        task.update_attributes!(tags: [tag], done: true)
+        task.update!(tags: [tag], done: true)
         expect(tag.reload.unfinished_tasks_count).to eq 0
         expect do
-          task.update_attributes(done: true)
+          task.update(done: true)
         end.not_to change { tag.reload.unfinished_tasks_count }
       end
 
       it 'does not change unfinished_tasks_count for its associated user' do
-        task.update_attributes!(done: true)
+        task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
-        task.update_attributes!(done: true)
+        task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
       end
 
@@ -95,32 +95,32 @@ describe Task, '#done=' do
 
     context 'if it was previously nil' do
       it 'does not change unfinished_tasks_count for its tags' do
-        task.update_attributes(tags: [tag])
+        task.update(tags: [tag])
         expect(tag.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes(done: false)
+        task.update(done: false)
         expect(tag.reload.unfinished_tasks_count).to eq 1
       end
 
       it 'does not change unfinished_tasks_count for its associated user' do
         task.save!
         expect(user.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes(done: false)
+        task.update(done: false)
         expect(user.reload.unfinished_tasks_count).to eq 1
       end
     end
 
     context 'if it was not previously nil' do
       it 'increments unfinished_tasks_count for its associated tags' do
-        task.update_attributes!(tags: [tag], done: true)
+        task.update!(tags: [tag], done: true)
         expect do
-          task.update_attributes(done: false)
+          task.update(done: false)
         end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
       end
 
       it 'increments unfinished_tasks_count for its associated tags' do
-        task.update_attributes!(done: true)
+        task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
-        task.update_attributes!(done: false)
+        task.update!(done: false)
         expect(user.reload.unfinished_tasks_count).to eq 1
       end
     end
@@ -139,7 +139,7 @@ describe Task, '#done=' do
       task.save!
       expect(user.reload.unfinished_tasks_count).to eq 1
       expect do
-        # can't use #update_attributes because it's transactional
+        # can't use #update because it's transactional
         # test would pass regardless
         task.attributes = { done: true, title: nil }
         task.save

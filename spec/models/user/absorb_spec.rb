@@ -13,7 +13,7 @@ describe User, '#absorb' do
   end
 
   it 'updates the tasks counter' do
-    task.update_attributes(done: true)
+    task.update(done: true)
     other_user = create(:user)
     create(:task, user: other_user)
     expect do

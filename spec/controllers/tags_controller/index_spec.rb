@@ -35,7 +35,7 @@ RSpec.describe TagsController, '#index' do
 
   it 'returns only tags with tasks' do
     tag = create(:tag, user: user, tasks: [task])
-    task.update_attributes(estimate_seconds: 600)
+    task.update(estimate_seconds: 600)
     create(:tag, user: user)
     get(:index, valid_params)
     desired_attrs = %w(id slug unfinished_tasks_count name)

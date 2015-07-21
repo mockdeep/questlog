@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-    current_user.update_attributes!(customer_id: customer.id)
+    current_user.update!(customer_id: customer.id)
     create_charge
   rescue Stripe::CardError => e
     flash[:error] = e.message

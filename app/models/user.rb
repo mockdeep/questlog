@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
         end
         other_tag.destroy
       else
-        other_tag.update_attributes!(user: self)
+        other_tag.update!(user: self)
       end
     end
   end
