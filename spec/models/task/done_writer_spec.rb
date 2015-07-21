@@ -77,6 +77,12 @@ describe Task, '#done=' do
         task.update_attributes!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
       end
+
+      it 'clears out the release_at when there is no repeat' do
+        task.update!(release_at: 1.week.from_now)
+        task.update!(done: true)
+        expect(task.release_at).to be_nil
+      end
     end
   end
 
