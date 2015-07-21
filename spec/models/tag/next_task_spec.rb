@@ -11,7 +11,7 @@ describe Tag, '#next_task' do
     tag.tasks << task1
     tag.tasks << task2
     expect(tag.next_task).to eq task1
-    task1.update_attributes!(done: true)
+    task1.update!(done: true)
     expect(tag.next_task).to eq task2
   end
 

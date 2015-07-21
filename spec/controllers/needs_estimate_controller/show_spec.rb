@@ -13,7 +13,7 @@ RSpec.describe NeedsEstimateController, '#show' do
     end
 
     it 'renders "null" when there are no tasks' do
-      task.update_attributes!(estimate_seconds: 600)
+      task.update!(estimate_seconds: 600)
       get(:show, format: :json)
       expect(response.body).to eq 'null'
     end

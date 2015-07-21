@@ -27,7 +27,7 @@ describe User, '#tasks_count' do
       it 'is decremented' do
         task = create(:task, user: user)
         expect(user.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes(done: true)
+        task.update(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
       end
     end
@@ -44,9 +44,9 @@ describe User, '#tasks_count' do
       it 'is decremented and then incremented' do
         task = create(:task, user: user)
         expect(user.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes(done: true)
+        task.update(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
-        task.update_attributes(done: false)
+        task.update(done: false)
         expect(user.reload.unfinished_tasks_count).to eq 1
       end
     end
@@ -55,10 +55,10 @@ describe User, '#tasks_count' do
       it 'still increments and decrements properly' do
         task = create(:task, user: user)
         expect(user.reload.unfinished_tasks_count).to eq 1
-        task.update_attributes!(done: true)
+        task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
         Task.transaction do
-          task.update_attributes!(done: false)
+          task.update!(done: false)
         end
         expect(user.reload.unfinished_tasks_count).to eq 1
       end

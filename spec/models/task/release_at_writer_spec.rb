@@ -7,7 +7,7 @@ describe Task, '#release_at=' do
   let(:tag) { create(:tag, user: user) }
 
   it 'does not change "done" when it has already been changed' do
-    task.update_attributes!(done: true)
+    task.update!(done: true)
     task.done = false
     expect { task.release_at = 2.days.from_now }.not_to change(task, :done?)
   end

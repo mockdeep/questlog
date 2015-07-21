@@ -40,7 +40,7 @@ describe TasksController, '#destroy' do
   end
 
   it 'allows deletion of pending tasks' do
-    task.update_attributes!(done: true, release_at: 1.hour.from_now)
+    task.update!(done: true, release_at: 1.hour.from_now)
     expect { delete(:destroy, id: task.id) }.not_to raise_error
   end
 
