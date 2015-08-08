@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react');
+var HTML5Backend = require('react-dnd/modules/backends/HTML5');
+var DragDropContext = require('react-dnd').DragDropContext;
 
 var ToEnglish = require('../../to_english');
 var TaskStore = require('../../stores/task_store');
@@ -95,4 +97,4 @@ var TimeframesIndex = React.createClass({
   }
 });
 
-module.exports = TimeframesIndex;
+module.exports = DragDropContext(HTML5Backend)(TimeframesIndex);

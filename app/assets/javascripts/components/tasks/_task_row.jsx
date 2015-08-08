@@ -2,38 +2,48 @@
 
 var React = require('react/addons');
 var PureRenderMixin = React.PureRenderMixin;
-var DragDropMixin = require('react-dnd').DragDropMixin;
+var DragSource = require('react-dnd').DragSource;
+var DropTarget = require('react-dnd').DropTarget;
 var _ = require('lodash');
 
 var timeframeNameMap = require('../../timeframe_name_map');
 
 var TaskStore = require('../../stores/task_store');
 
-var TaskRow = React.createClass({
-  mixins: [DragDropMixin, PureRenderMixin],
-
-  statics: {
-    configureDragDrop: function (register) {
-      register('task', {
-        dragSource: {
-          beginDrag: function (component) {
-            return { item: { id: component.props.task.id } };
-          },
-          canDrag: function (component) {
-            return !component.props.pending;
-          },
-          endDrag: function (component) {
-            component.props.saveTaskPositions(component);
-          }
-        },
-        dropTarget: {
-          enter: function (component, item) {
-            component.props.moveTask(item.id, component.props.task.id);
-          }
-        }
-      });
-    }
+var taskSource = {
+  canDrag: function (props) {
+    return !props.timeframesEnabled;
   },
+
+  beginDrag: function (props) {
+    return { item: { id: props.task.id } };
+  },
+
+  endDrag: function (props, monitor, component) {
+    props.saveTaskPositions(component);
+  }
+};
+
+var taskTarget = {
+  hover: function (props, monitor) {
+    var draggedId = monitor.getItem().item.id;
+    props.moveTask(draggedId, props.task.id);
+  }
+}
+
+function sourceCollect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  };
+}
+
+function targetCollect(connect, monitor) {
+  return { connectDropTarget: connect.dropTarget() };
+}
+
+var TaskRow = React.createClass({
+  mixins: [PureRenderMixin],
 
   getInitialState: function () {
     return {timeframeClicked: false};
@@ -155,36 +165,38 @@ var TaskRow = React.createClass({
   },
 
   render: function () {
-    var dragSource = this.dragSourceFor('task');
-    var dropTarget = this.dropTargetFor('task');
-    var isDragging = this.getDragState('task').isDragging;
-    var style = {opacity: isDragging ? 0 : 1};
+    var style = {opacity: this.props.isDragging ? 0 : 1};
 
     return (
-      <li className={this.className()} {...dragSource} {...dropTarget} style={style}>
-        {this.taskEstimate()}{this.props.task.title} {this.emblems()}
-        {' | Pri: '}
-        <select onChange={this.updatePriority} value={this.priority()}>
-          <option value=''>-</option>
-          <option value='1'>1</option>
-          <option value='2'>2</option>
-          <option value='3'>3</option>
-        </select>
-        {this.props.timeframesEnabled ? ' | When: ' : ''}
-        {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
-        {' | '}
-        {this.props.task.pending ? this.undoButton() : ''}
-        {this.props.task.pending ? ' | ' : ''}
-        <button className='btn btn-link' role='Link' onClick={this.markDone}>
-          Done!
-        </button>
-        {' | '}
-        <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
-          Delete
-        </button>
-      </li>
+      this.props.connectDropTarget(this.props.connectDragSource(
+        <li className={this.className()} style={style}>
+          {this.taskEstimate()}{this.props.task.title} {this.emblems()}
+          {' | Pri: '}
+          <select onChange={this.updatePriority} value={this.priority()}>
+            <option value=''>-</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+          </select>
+          {this.props.timeframesEnabled ? ' | When: ' : ''}
+          {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
+          {' | '}
+          {this.props.task.pending ? this.undoButton() : ''}
+          {this.props.task.pending ? ' | ' : ''}
+          <button className='btn btn-link' role='Link' onClick={this.markDone}>
+            Done!
+          </button>
+          {' | '}
+          <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
+            Delete
+          </button>
+        </li>
+      ))
     );
   }
 });
 
-module.exports = TaskRow;
+module.exports = _.flow(
+  DragSource('task', taskSource, sourceCollect),
+  DropTarget('task', taskTarget, targetCollect)
+)(TaskRow);

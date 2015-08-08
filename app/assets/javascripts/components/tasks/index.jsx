@@ -3,6 +3,8 @@
 var React = require('react');
 var update = require('react/lib/update');
 var _ = require('lodash');
+var HTML5Backend = require('react-dnd/modules/backends/HTML5');
+var DragDropContext = require('react-dnd').DragDropContext;
 
 var TaskStore = require('../../stores/task_store');
 var BulkTaskStore = require('../../stores/bulk_task_store');
@@ -130,4 +132,4 @@ var TasksIndex = React.createClass({
   }
 });
 
-module.exports = TasksIndex;
+module.exports = DragDropContext(HTML5Backend)(TasksIndex);
