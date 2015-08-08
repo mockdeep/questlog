@@ -1,6 +1,8 @@
 machine:
   environment:
     POLTERGEIST_TIMEOUT: 180
+  node:
+    version: iojs-v3.0.0
 test:
   post:
     - DRIVER=selenium bundle exec rspec spec/features/
