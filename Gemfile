@@ -48,6 +48,7 @@ group :development do
 end
 
 group :development, :test do
+  # https://github.com/flyerhzm/bullet/issues/251
   gem 'bullet', '4.14.4'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -66,6 +67,7 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'launchy'
+  # https://github.com/teampoltergeist/poltergeist/pull/608
   gem 'poltergeist', github: 'teampoltergeist/poltergeist'
   gem 'rb-inotify'
   gem 'selenium-webdriver'
