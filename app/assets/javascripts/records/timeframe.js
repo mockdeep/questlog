@@ -22,7 +22,10 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
 
 Object.defineProperty(Timeframe.prototype, 'minuteMax', {
   get: function () {
-    return calculateMaxMinutes(this.name, this.medianProductivity);
+    if (!this._minuteMax) {
+      this._minuteMax = calculateMaxMinutes(this.name, this.medianProductivity);
+    }
+    return this._minuteMax;
   }
 });
 
