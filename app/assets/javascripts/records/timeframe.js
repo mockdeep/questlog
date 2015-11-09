@@ -41,7 +41,7 @@ function calculateMaxMinutes(name, medianProductivity) {
     return Infinity;
   } else {
     var minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
-    return name === 'today' ? minuteMax : Math.floor(minuteMax / 4);
+    return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
   }
 }
 
