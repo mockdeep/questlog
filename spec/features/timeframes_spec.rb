@@ -94,7 +94,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     within('.timeframe#week') do
-      expect(find('h2')).to have_text(/\AThis Week 30\/190\z/)
+      expect(find('h2')).to have_text(/\AThis Week 30\/95\z/)
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
