@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
@@ -55,9 +55,9 @@ group :development, :test do
   gem 'guard'
   gem 'rspec-rails'
   gem 'guard-rubocop'
-  gem 'haml-lint'
-  gem 'rubocop'
-  gem 'scss-lint'
+  gem 'haml-lint', require: false
+  gem 'rubocop', require: false
+  gem 'scss_lint', require: false
   gem 'shoulda-matchers', require: false
 end
 
