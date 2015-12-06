@@ -7,7 +7,6 @@ require File.expand_path('../../config/environment', __FILE__)
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 require 'rspec/rails'
-require 'shoulda/matchers'
 require 'capybara/poltergeist'
 
 driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
@@ -64,6 +63,13 @@ RSpec.configure do |config|
 
   config.append_after(:each, type: :feature) do
     DatabaseCleaner.strategy = :transaction
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
 
