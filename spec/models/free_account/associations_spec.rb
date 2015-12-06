@@ -2,6 +2,6 @@ require 'spec_helper'
 
 describe FreeAccount, '#associations' do
 
-  it { should have_one(:user) }
+  it { is_expected.to have_one(:user) }
 
 end

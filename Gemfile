@@ -58,7 +58,7 @@ group :development, :test do
   gem 'haml-lint', require: false
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 group :test do

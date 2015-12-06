@@ -11,7 +11,6 @@ class Task < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   validates :priority, inclusion: { in: [1, 2, 3] }, allow_nil: true
-  validates :time_estimate, numericality: true, allow_nil: true
   validates :timeframe, inclusion: { in: Timeframe::NAMES }, allow_nil: true
   validates :title, :user, presence: true
   validates(
