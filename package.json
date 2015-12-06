@@ -2,8 +2,8 @@
   "name": "Questlog",
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
-    "browserify": "^11.0.1",
-    "browserify-incremental": "^3.0.1",
+    "browserify": "*",
+    "browserify-incremental": "*",
     "es5-shim": "^4.1.1",
     "immutable": "^3.7.4",
     "jquery": "2.1.4",
