@@ -145,7 +145,8 @@
       "dependencies": {
         "through2": {
           "version": "2.0.0",
-          "from": "through2@>=2.0.0 <3.0.0"
+          "from": "through2@2.0.0",
+          "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.0.tgz"
         }
       }
     },
@@ -308,14 +309,7 @@
     "commoner": {
       "version": "0.10.4",
       "from": "commoner@>=0.10.0 <0.11.0",
-      "resolved": "https://registry.npmjs.org/commoner/-/commoner-0.10.4.tgz",
-      "dependencies": {
-        "glob": {
-          "version": "5.0.15",
-          "from": "glob@>=5.0.15 <6.0.0",
-          "resolved": "https://registry.npmjs.org/glob/-/glob-5.0.15.tgz"
-        }
-      }
+      "resolved": "https://registry.npmjs.org/commoner/-/commoner-0.10.4.tgz"
     },
     "concat-map": {
       "version": "0.0.1",
@@ -436,7 +430,8 @@
       "dependencies": {
         "through2": {
           "version": "2.0.0",
-          "from": "through2@>=2.0.0 <3.0.0"
+          "from": "through2@2.0.0",
+          "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.0.tgz"
         }
       }
     },
@@ -743,7 +738,8 @@
       "dependencies": {
         "through2": {
           "version": "2.0.0",
-          "from": "through2@>=2.0.0 <3.0.0"
+          "from": "through2@2.0.0",
+          "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.0.tgz"
         }
       }
     },
@@ -960,7 +956,8 @@
       "dependencies": {
         "through2": {
           "version": "2.0.0",
-          "from": "through2@>=2.0.0 <3.0.0"
+          "from": "through2@2.0.0",
+          "resolved": "https://registry.npmjs.org/through2/-/through2-2.0.0.tgz"
         }
       }
     },
