@@ -10,7 +10,7 @@
     "lodash": "*",
     "moment": "*",
     "promise-polyfill": "*",
-    "react": "^0.13.1",
+    "react": "*",
     "react-dnd": "^1.1.4",
     "react-router": "^0.13.2",
     "reactify": "*",
@@ -20,6 +20,8 @@
     "chai": "^3.0.0",
     "jsdom": "^6.0.1",
     "mocha": "^2.2.5",
+    "react-addons-test-utils": "^0.14.3",
+    "react-dom": "^0.14.3",
     "react-tools": "^0.13.3"
   },
   "engines": {
