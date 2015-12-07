@@ -19,7 +19,7 @@ var TasksShow = React.createClass({
   },
 
   loadTask: function (url) {
-    var tagName = this.context.router.getCurrentParams().slug || '';
+    var tagName = this.props.params.slug || '';
     return TagStore.get(tagName).then(this.updateTask);
   },
 

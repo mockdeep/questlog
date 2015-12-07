@@ -2,11 +2,13 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Router = require('react-router');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
+var createBrowserHistory = require('history/lib/createBrowserHistory');
 
-var DefaultRoute = Router.DefaultRoute;
-var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
+var history = createBrowserHistory();
 
 var BulkTasksNew = require('./components/bulk_tasks/new');
 var PrivacyPage = require('./components/static/privacy_page');
@@ -19,7 +21,7 @@ var TimeframesIndex = require('./components/timeframes/index');
 var AppBase = React.createClass({
   render: function () {
     return (
-      <RouteHandler />
+      <div>{this.props.children}</div>
     );
   }
 });
@@ -29,20 +31,18 @@ var Nothing = React.createClass({
 });
 
 var routes = (
-  <Route handler={AppBase} path='/'>
-    <Route path='/bulk_tasks/new' handler={BulkTasksNew} />
-    <Route path='/free_accounts/new' handler={Nothing} />
-    <Route path='/sessions/new' handler={SessionsNew} />
-    <Route path='/sessions' handler={Nothing} />
-    <Route path='/tasks' handler={TasksIndex} />
-    <Route path='/privacy' handler={PrivacyPage} />
-    <Route path='/what' handler={WhatPage} />
-    <Route path='/timeframes' handler={TimeframesIndex} />
-    <Route name='tag' path='/:slug' handler={TasksShow} />
-    <DefaultRoute handler={TasksShow} />
+  <Route path='/' component={AppBase}>
+    <Route path='/bulk_tasks/new' component={BulkTasksNew} />
+    <Route path='/free_accounts/new' component={Nothing} />
+    <Route path='/sessions/new' component={SessionsNew} />
+    <Route path='/sessions' component={Nothing} />
+    <Route path='/tasks' component={TasksIndex} />
+    <Route path='/privacy' component={PrivacyPage} />
+    <Route path='/what' component={WhatPage} />
+    <Route path='/timeframes' component={TimeframesIndex} />
+    <IndexRoute component={TasksShow} />
+    <Route path='/:slug' component={TasksShow} />
   </Route>
 );
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-  ReactDOM.render(<Handler />, $('#app-base')[0]);
-});
+ReactDOM.render(<Router history={history}>{routes}</Router>, $('#app-base')[0]);

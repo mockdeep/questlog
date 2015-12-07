@@ -1,13 +1,12 @@
 'use strict';
 
 var React = require('react');
+var History = require('react-router').History;
 
 var BulkTaskStore = require('../../stores/bulk_task_store');
 
 var BulkTasksNew = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
+  mixins: [History],
 
   getInitialState: function () {
     return {taskTitles: ''};
@@ -18,7 +17,7 @@ var BulkTasksNew = React.createClass({
   },
 
   redirectToTasksIndex: function () {
-    this.context.router.transitionTo('/tasks');
+    this.history.push('/tasks');
   },
 
   saveTasks: function (event) {
