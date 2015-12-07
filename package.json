@@ -5,6 +5,7 @@
     "browserify": "*",
     "browserify-incremental": "*",
     "es5-shim": "*",
+    "history": "*",
     "immutable": "*",
     "jquery": "*",
     "lodash": "*",
@@ -13,7 +14,7 @@
     "react": "*",
     "react-dnd": "^1.1.4",
     "react-dom": "*",
-    "react-router": "^0.13.2",
+    "react-router": "*",
     "reactify": "*",
     "reqwest": "*"
   },
