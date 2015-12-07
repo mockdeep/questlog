@@ -39,27 +39,29 @@ var TaskTitle = React.createClass({
       <div className='row'>
         <div id='task' className={this.className()}>
           <table>
-            <tr>
-              <td className='col-md-1'>
-                {this.timeframeName()}
-                <DeleteButton
-                  task={this.props.task}
-                  loadTask={this.props.loadTask}
-                />
-              </td>
-              <td className='col-md-10 title'>
-                {this.props.task.title}
-                <span className='emblems'>{this.emblems()}</span>
-              </td>
+            <tbody>
+              <tr>
+                <td className='col-md-1'>
+                  {this.timeframeName()}
+                  <DeleteButton
+                    task={this.props.task}
+                    loadTask={this.props.loadTask}
+                  />
+                </td>
+                <td className='col-md-10 title'>
+                  {this.props.task.title}
+                  <span className='emblems'>{this.emblems()}</span>
+                </td>
 
-              <td className='col-md-1'>
-                <i
-                  className='fa fa-arrow-down edit-button'
-                  id='edit-task'
-                  title='edit task'
-                />
-              </td>
-            </tr>
+                <td className='col-md-1'>
+                  <i
+                    className='fa fa-arrow-down edit-button'
+                    id='edit-task'
+                    title='edit task'
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
