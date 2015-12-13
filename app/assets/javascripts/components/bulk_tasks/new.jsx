@@ -17,7 +17,7 @@ var BulkTasksNew = React.createClass({
   },
 
   redirectToTasksIndex: function () {
-    this.history.push('/tasks');
+    this.history.pushState(null, '/tasks');
   },
 
   saveTasks: function (event) {
