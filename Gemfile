@@ -70,6 +70,7 @@ group :test do
   # https://github.com/teampoltergeist/poltergeist/pull/608
   gem 'poltergeist', github: 'teampoltergeist/poltergeist'
   gem 'rb-inotify'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'timecop'
