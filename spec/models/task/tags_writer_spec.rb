@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#tags=' do
+RSpec.describe Task, '#tags=' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }

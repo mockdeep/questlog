@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe ReleaseAtParser, '#parse' do
+RSpec.describe ReleaseAtParser, '#parse' do
 
   let(:parser) { ReleaseAtParser.new }
 

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe User, 'associations' do
+RSpec.describe User, 'associations' do
 
   it { is_expected.to belong_to(:account).dependent(:destroy) }
 

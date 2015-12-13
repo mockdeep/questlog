@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Tag, '.ordered' do
+RSpec.describe Tag, '.ordered' do
 
   it 'returns tags ordered by name' do
     tag1 = create(:tag, name: 'bill')

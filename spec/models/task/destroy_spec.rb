@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#destroy' do
+RSpec.describe Task, '#destroy' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }

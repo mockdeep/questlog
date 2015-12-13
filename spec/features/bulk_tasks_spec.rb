@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'bulk task creation', js: true do
+RSpec.describe 'bulk task creation', js: true do
 
   let(:user) { create(:free_user) }
 

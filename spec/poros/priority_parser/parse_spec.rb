@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe PriorityParser, '#parse' do
+RSpec.describe PriorityParser, '#parse' do
 
   let(:parser) { PriorityParser.new }
 

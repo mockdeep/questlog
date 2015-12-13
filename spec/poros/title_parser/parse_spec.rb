@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe TitleParser, '#parse' do
+RSpec.describe TitleParser, '#parse' do
 
   let(:parser) { TitleParser.new }
 

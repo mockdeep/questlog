@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe SessionsController, '#destroy' do
+RSpec.describe SessionsController, '#destroy' do
 
   let(:user) { create(:user) }
 

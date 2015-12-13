@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Tag, '#any?' do
+RSpec.describe Tag, '#any?' do
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user: user) }
 

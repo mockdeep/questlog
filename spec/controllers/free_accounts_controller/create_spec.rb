@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe FreeAccountsController, '#create' do
+RSpec.describe FreeAccountsController, '#create' do
 
   let(:valid_params) { attributes_for(:free_account) }
   let(:user) { create(:user) }

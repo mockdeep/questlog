@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe BulkTasksController, '#create' do
+RSpec.describe BulkTasksController, '#create' do
 
   let(:params) { { titles: "*1d breath\n#home @10pm go to bed" } }
   let(:user) { create(:free_user) }

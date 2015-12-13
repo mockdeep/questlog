@@ -372,6 +372,7 @@ DEPENDENCIES
   bullet (= 4.14.4)
   capybara
   capybara-webkit
+  coderay
   dalli
   database_cleaner
   dotenv-rails

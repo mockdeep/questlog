@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Tagging, 'associations' do
+RSpec.describe Tagging, 'associations' do
 
   let(:task) { create(:task) }
   let(:tag) { create(:tag) }

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#tag_names' do
+RSpec.describe Task, '#tag_names' do
 
   let(:task) { create(:task) }
   let(:tag) { create(:tag, name: 'what') }

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe UntaggedTasksController, '#show' do
+RSpec.describe UntaggedTasksController, '#show' do
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:tag) { create(:tag, user: user) }
