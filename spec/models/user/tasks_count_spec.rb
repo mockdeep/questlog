@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe User, '#tasks_count' do
+RSpec.describe User, '#tasks_count' do
 
   let(:user) { create(:user) }
 

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#done=' do
+RSpec.describe Task, '#done=' do
 
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }

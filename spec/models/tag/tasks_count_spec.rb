@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Tag, '#tasks_count' do
+RSpec.describe Tag, '#tasks_count' do
 
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user: user) }

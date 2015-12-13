@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '.next' do
+RSpec.describe Task, '.next' do
 
   let(:user) { create(:user) }
 

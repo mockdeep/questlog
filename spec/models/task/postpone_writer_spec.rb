@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#postpone=' do
+RSpec.describe Task, '#postpone=' do
 
   let(:task) { build(:task) }
 

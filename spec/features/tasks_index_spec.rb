@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'tasks index page', js: true do
+RSpec.describe 'tasks index page', js: true do
 
   let(:user) { create(:free_user) }
 

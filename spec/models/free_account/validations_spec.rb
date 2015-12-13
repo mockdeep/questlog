@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe FreeAccount, 'validations' do
+RSpec.describe FreeAccount, 'validations' do
 
   it { is_expected.to validate_presence_of(:email) }
 

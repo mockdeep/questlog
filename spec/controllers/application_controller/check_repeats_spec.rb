@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe ApplicationController, '#check_repeats' do
+RSpec.describe ApplicationController, '#check_repeats' do
 
   let(:user) { create(:user) }
 

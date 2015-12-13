@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe TasksController, '#create' do
+RSpec.describe TasksController, '#create' do
 
   let(:valid_params) { { format: :json, task: attributes_for(:task) } }
 

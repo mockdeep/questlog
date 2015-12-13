@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, 'validations' do
+RSpec.describe Task, 'validations' do
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:user) }

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe BulkTask, '#create' do
+RSpec.describe BulkTask, '#create' do
 
   let(:user) { create(:free_user) }
 

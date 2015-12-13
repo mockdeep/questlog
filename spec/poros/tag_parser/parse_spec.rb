@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe TagParser, '#parse' do
+RSpec.describe TagParser, '#parse' do
 
   let(:parser) { TagParser.new }
 

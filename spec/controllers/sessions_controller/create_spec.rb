@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe SessionsController, '#create' do
+RSpec.describe SessionsController, '#create' do
 
   let(:user) { create(:user) }
   let(:params) { { email: 'some_email', password: 'some_password' } }

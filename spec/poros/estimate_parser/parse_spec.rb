@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe EstimateParser, '#parse' do
+RSpec.describe EstimateParser, '#parse' do
 
   let(:parser) { EstimateParser.new }
 

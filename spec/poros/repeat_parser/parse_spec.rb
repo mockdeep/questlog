@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe RepeatParser, '#parse' do
+RSpec.describe RepeatParser, '#parse' do
 
   let(:parser) { RepeatParser.new }
 

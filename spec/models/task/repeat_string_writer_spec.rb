@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#repeat_string=' do
+RSpec.describe Task, '#repeat_string=' do
 
   let(:task) { Task.new }
 

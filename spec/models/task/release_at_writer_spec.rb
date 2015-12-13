@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Task, '#release_at=' do
+RSpec.describe Task, '#release_at=' do
 
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }

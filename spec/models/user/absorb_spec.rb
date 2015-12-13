@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe User, '#absorb' do
+RSpec.describe User, '#absorb' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
