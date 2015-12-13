@@ -3,7 +3,7 @@
 var React = require('react');
 var update = require('react/lib/update');
 var _ = require('lodash');
-var HTML5Backend = require('react-dnd/modules/backends/HTML5');
+var HTML5Backend = require('react-dnd-html5-backend');
 var DragDropContext = require('react-dnd').DragDropContext;
 
 var TaskStore = require('../../stores/task_store');
