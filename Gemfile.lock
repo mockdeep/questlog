@@ -120,6 +120,11 @@ GEM
     get_process_mem (0.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -246,6 +251,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redis (3.2.2)
+    request_store (1.2.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -380,6 +386,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   friendly_id
+  gon
   guard
   guard-rspec
   guard-rubocop
