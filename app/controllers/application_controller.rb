@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_headers
   before_action :authorize_profiler
   before_action :check_repeats
+  before_action :set_gon_variables
 
 private
 
@@ -41,6 +42,14 @@ private
   def check_repeats
     return unless current_user.persisted?
     current_user.tasks.ready_to_release.order(:release_at).each(&:release!)
+  end
+
+  def set_gon_variables
+    gon.push(
+      honeybadger_api_key: ENV['HONEYBADGER_API_KEY'],
+      rails_env: Rails.env,
+      user_id: current_user.id,
+    )
   end
 
   def find_user
