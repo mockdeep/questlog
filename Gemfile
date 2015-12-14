@@ -19,6 +19,7 @@ gem 'honeybadger'
 gem 'hstore_accessor'
 gem 'jquery-rails'
 gem 'newrelic_rpm'
+gem 'normalize-rails'
 gem 'pg'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -27,10 +28,6 @@ gem 'rack-mini-profiler'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-normalize.css'
-end
 
 group :production do
   gem 'rails_12factor'
