@@ -26,7 +26,7 @@ class TasksController < ApplicationController
 
   def update
     task = current_user.tasks.find(params[:id])
-    TaskUpdate.new(task).(task_params.symbolize_keys)
+    TaskUpdate.new.(task, task_params.symbolize_keys)
     flash[:success] = task_update_message
     respond_to do |format|
       format.json { render json: task, status: :ok }
