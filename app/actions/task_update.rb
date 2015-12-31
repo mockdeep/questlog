@@ -1,10 +1,14 @@
 class TaskUpdate
 
+  def self.call(*params)
+    new.(*params)
+  end
+
   def call(task, task_params)
     task_params[:timeframe] = nil if task_params[:timeframe] == 'inbox'
     task.attributes = task_params
     if task_params[:done]
-      StatCreate.new.(
+      StatCreate.(
         user: task.user,
         value: task.estimate_seconds,
         name: 'seconds-completed',

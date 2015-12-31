@@ -1,5 +1,9 @@
 class StatCreate
 
+  def self.call(*params)
+    new.(*params)
+  end
+
   def call(value:, user:, name:)
     find_params = { name: name, user: user, timestamp: today }
     stat = Stat.find_or_initialize_by(find_params)
