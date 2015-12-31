@@ -2,7 +2,7 @@ RSpec.describe TaskUpdate, '#call' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, estimate_seconds: 301, user: user) }
-  let(:task_update) { TaskUpdate.new(task) }
+  let(:task_update) { TaskUpdate.new }
   let(:task_update_params) do
     {
       title: 'foo',
@@ -13,7 +13,7 @@ RSpec.describe TaskUpdate, '#call' do
   end
 
   it 'updates the task' do
-    task_update.(task_update_params)
+    task_update.(task, task_update_params)
     task.reload
     expect(task.title).to eq 'foo'
     expect(task.tag_names).to eq %w(home)
@@ -23,20 +23,20 @@ RSpec.describe TaskUpdate, '#call' do
 
   it 'does not update the stat count when the task is not marked complete' do
     expect do
-      task_update.(task_update_params)
+      task_update.(task, task_update_params)
     end.not_to change(Stat, :count)
   end
 
   it 'does not update the stat count when the task is postponed' do
     expect do
-      task_update.(task_update_params.merge(postpone: 300))
+      task_update.(task, task_update_params.merge(postpone: 300))
     end.not_to change(Stat, :count)
   end
 
   it 'updates the stats for the day when the task has been marked complete' do
     allow(task).to receive(:persisted?).and_return(false)
     expect do
-      task_update.(task_update_params.merge(done: true))
+      task_update.(task, task_update_params.merge(done: true))
     end.to change(Stat, :count).by(1)
     stat = Stat.last
     expect(stat.timestamp).to eq Time.zone.now.beginning_of_day
