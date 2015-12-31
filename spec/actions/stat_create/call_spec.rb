@@ -1,8 +1,7 @@
 RSpec.describe StatCreate, '#call' do
 
   let(:user) { create(:user) }
-  let(:stat_value_class) { class_spy(StatValue, new: 42) }
-  let(:stat_create) { StatCreate.new(stat_value_class: stat_value_class) }
+  let(:stat_create) { StatCreate.new }
   let(:date) { Time.zone.now.beginning_of_day }
 
   it 'creates a Stat if one does not exist for the current timestamp' do
@@ -10,10 +9,8 @@ RSpec.describe StatCreate, '#call' do
       stat_create.(user: user, value: 30, name: 'seconds-completed')
     end.to change(user.stats, :count).by(1)
 
-    expect(stat_value_class).to have_received(:new).with(user: user, value: 30)
-
     stat = user.stats.last
-    expect(stat.value).to eq 42
+    expect(stat.value).to eq 30
     expect(stat.timestamp).to eq date
   end
 
@@ -22,7 +19,7 @@ RSpec.describe StatCreate, '#call' do
 
     expect do
       stat_create.(user: user, value: 30, name: 'seconds-completed')
-    end.to change { stat.reload.value }.to(94)
+    end.to change { stat.reload.value }.to(82)
 
     expect(stat.timestamp).to eq date
   end
