@@ -2,9 +2,8 @@ RSpec.describe TaskUpdate, '#call' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, estimate_seconds: 301, user: user) }
-  let(:mock_stat_create) { instance_spy(StatCreate) }
   let(:task_update) { TaskUpdate.new(task) }
-  let(:task_params) do
+  let(:task_update_params) do
     {
       title: 'foo',
       tag_names: %w(home),
@@ -12,7 +11,6 @@ RSpec.describe TaskUpdate, '#call' do
       estimate_seconds: 300,
     }
   end
-  let(:task_update_params) { task_params.merge(stat_create: mock_stat_create) }
 
   it 'updates the task' do
     task_update.(task_update_params)
@@ -24,22 +22,27 @@ RSpec.describe TaskUpdate, '#call' do
   end
 
   it 'does not update the stat count when the task is not marked complete' do
-    task_update.(task_update_params)
-    expect(mock_stat_create).not_to have_received(:call)
+    expect do
+      task_update.(task_update_params)
+    end.not_to change(Stat, :count)
   end
 
   it 'does not update the stat count when the task is postponed' do
-    task_update.(task_update_params.merge(postpone: 300))
-    expect(mock_stat_create).not_to have_received(:call)
+    expect do
+      task_update.(task_update_params.merge(postpone: 300))
+    end.not_to change(Stat, :count)
   end
 
-  context 'when the task has been marked complete' do
-    it 'adds the tasks estimate to the stats for the current day' do
-      allow(task).to receive(:persisted?).and_return(false)
+  it 'updates the stats for the day when the task has been marked complete' do
+    allow(task).to receive(:persisted?).and_return(false)
+    expect do
       task_update.(task_update_params.merge(done: true))
-      expected_args = { user: user, value: 300, name: 'seconds-completed' }
-      expect(mock_stat_create).to have_received(:call).with(expected_args)
-    end
+    end.to change(Stat, :count).by(1)
+    stat = Stat.last
+    expect(stat.timestamp).to eq Time.zone.now.beginning_of_day
+    expect(stat.user).to eq user
+    expect(stat.value).to eq 300
+    expect(stat.name).to eq 'seconds-completed'
   end
 
 end
