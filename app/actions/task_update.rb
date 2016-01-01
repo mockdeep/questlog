@@ -1,8 +1,6 @@
 class TaskUpdate
 
-  def self.call(*params)
-    new.(*params)
-  end
+  include Callable
 
   def call(task, task_params)
     task_params[:timeframe] = nil if task_params[:timeframe] == 'inbox'
