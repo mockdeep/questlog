@@ -1,8 +1,6 @@
 class StatCreate
 
-  def self.call(*params)
-    new.(*params)
-  end
+  include Callable
 
   def call(value:, user:, name:)
     find_params = { name: name, user: user, timestamp: today }
