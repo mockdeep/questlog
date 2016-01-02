@@ -69,7 +69,7 @@ private
   end
 
   def parsed_title
-    TitleParser.new.parse(params[:task][:title])
+    TitleParser.(params[:task][:title])
   end
 
   def task_update_message

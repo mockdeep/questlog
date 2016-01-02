@@ -1,5 +1,7 @@
 class TitleParser
 
+  include Callable
+
   PARSERS = [
     TagParser,
     PriorityParser,
@@ -8,7 +10,7 @@ class TitleParser
     ReleaseAtParser,
   ]
 
-  def parse(title)
+  def call(title)
     return {} unless title
 
     parsed_results(title).delete_if { |_, value| value.blank? }
@@ -18,7 +20,7 @@ private
 
   def parsed_results(title)
     PARSERS.each_with_object(title: title) do |parser, result|
-      result.merge!(parser.new.parse(result[:title]))
+      result.merge!(parser.(result[:title]))
     end
   end
 

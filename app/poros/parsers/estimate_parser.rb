@@ -1,7 +1,9 @@
 class EstimateParser
 
-  def parse(title)
-    result = TimeframeParser.new.parse(title, '~')
+  include Callable
+
+  def call(title)
+    result = TimeframeParser.(title, '~')
     { title: result[:title], estimate_seconds: result[:seconds] }
   end
 
