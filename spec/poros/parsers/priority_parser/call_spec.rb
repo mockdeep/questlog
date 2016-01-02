@@ -1,9 +1,9 @@
-RSpec.describe PriorityParser, '#parse' do
+RSpec.describe PriorityParser, '#call' do
 
   let(:parser) { PriorityParser.new }
 
   it 'returns nil when there is no priority mark in the string' do
-    expect(parser.parse('whatevs')).to eq(title: 'whatevs', priority: nil)
+    expect(parser.('whatevs')).to eq(title: 'whatevs', priority: nil)
   end
 
   it 'returns the numeric priority when there is a !1 priority in the string' do
@@ -15,14 +15,14 @@ RSpec.describe PriorityParser, '#parse' do
       'pri !1 not !2' => { title: 'pri not !2', priority: 1 },
     }
     strings_and_expecteds.each do |string, expected|
-      expect(parser.parse(string)).to eq expected
+      expect(parser.(string)).to eq expected
     end
   end
 
   it 'returns nil for priority when there is an !improper priority' do
-    expect(parser.parse('!what?')).to eq(title: '!what?', priority: nil)
-    expect(parser.parse('!1way')).to eq(title: '!1way', priority: nil)
-    expect(parser.parse('not!1')).to eq(title: 'not!1', priority: nil)
+    expect(parser.('!what?')).to eq(title: '!what?', priority: nil)
+    expect(parser.('!1way')).to eq(title: '!1way', priority: nil)
+    expect(parser.('not!1')).to eq(title: 'not!1', priority: nil)
   end
 
   it "returns the numeric priority when there is a '1 priority in the string" do
@@ -34,14 +34,14 @@ RSpec.describe PriorityParser, '#parse' do
       "pri '1 not '2" => { title: "pri not '2", priority: 1 },
     }
     strings_and_expecteds.each do |string, expected|
-      expect(parser.parse(string)).to eq expected
+      expect(parser.(string)).to eq expected
     end
   end
 
   it "returns nil for priority when there is an 'improper priority" do
-    expect(parser.parse("'what?")).to eq(title: "'what?", priority: nil)
-    expect(parser.parse("'1way")).to eq(title: "'1way", priority: nil)
-    expect(parser.parse("not'1")).to eq(title: "not'1", priority: nil)
+    expect(parser.("'what?")).to eq(title: "'what?", priority: nil)
+    expect(parser.("'1way")).to eq(title: "'1way", priority: nil)
+    expect(parser.("not'1")).to eq(title: "not'1", priority: nil)
   end
 
 end

@@ -1,6 +1,8 @@
 class PriorityParser
 
-  def parse(title)
+  include Callable
+
+  def call(title)
     words = title.split
     index = words.index { |word| word.match(/^!\d$/) }
     index ||= words.index { |word| word.match(/^'\d$/) }

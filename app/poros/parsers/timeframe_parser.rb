@@ -1,6 +1,8 @@
 class TimeframeParser
 
-  def parse(title, marker)
+  include Callable
+
+  def call(title, marker)
     words = title.split
     regex = /^#{marker}(\d+)(#{time_mappings.keys.join('|')})$/
     index = words.index { |word| word.match(regex) }

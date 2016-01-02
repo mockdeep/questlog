@@ -1,6 +1,8 @@
 class ReleaseAtParser
 
-  def parse(title)
+  include Callable
+
+  def call(title)
     words = title.split
     tags = words.select { |word| word.match(/^\@\S+$/) }
     timestamp = find_timestamp(tags)
