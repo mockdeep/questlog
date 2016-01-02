@@ -9,6 +9,7 @@ module Questlog
   class Application < Rails::Application
 
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('app', 'poros', 'parsers')
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
