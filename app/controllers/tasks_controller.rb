@@ -46,14 +46,7 @@ class TasksController < ApplicationController
 private
 
   def load_task
-    if params[:slug] && current_user.account.guest?
-      tag = current_user.tags.find_by_slug(params[:slug])
-      if tag
-        @task = tag.next_task
-      else
-        login_first
-      end
-    elsif params[:slug]
+    if params[:slug]
       @task = current_user.tags.friendly.find(params[:slug]).next_task
     else
       @task = current_user.next_task(params[:slug])
