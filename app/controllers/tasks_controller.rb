@@ -33,8 +33,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    task = current_user.tasks.find_by_id(params[:id])
-    task.destroy if task
+    task = current_user.tasks.find(params[:id])
+    TaskDestroy.(task)
     respond_to do |format|
       format.json { render json: {}, status: :ok }
     end
