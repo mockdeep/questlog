@@ -1,7 +1,5 @@
 class TasksController < ApplicationController
 
-  before_action :load_task, only: :show
-
   def index
     respond_to do |format|
       format.json { render json: current_user.undone_and_pending_tasks }
@@ -9,8 +7,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    task = current_user.next_task(params[:slug])
     respond_to do |format|
-      format.json { render json: @task }
+      format.json { render json: task }
     end
   end
 
@@ -44,14 +43,6 @@ class TasksController < ApplicationController
   end
 
 private
-
-  def load_task
-    if params[:slug]
-      @task = current_user.tags.friendly.find(params[:slug]).next_task
-    else
-      @task = current_user.next_task(params[:slug])
-    end
-  end
 
   def task_params
     params.require(:task).permit(*permitted_params).merge(parsed_title)

@@ -1,7 +1,8 @@
 RSpec.describe TasksController, '#show' do
   let(:task) { create(:task) }
   let(:user) { task.user }
-  let(:tag) { create(:tag, user: user) }
+  let(:task_2) { create(:task, title: 'blah') }
+  let(:tag) { create(:tag, user: user, tasks: [task_2], slug: 'foo') }
 
   before(:each) do
     login_as(user)
@@ -19,20 +20,10 @@ RSpec.describe TasksController, '#show' do
       get(:show, format: :json)
       expect(response.body).to eq 'null'
     end
-  end
 
-  context 'when there are no unfinished tasks' do
-    it '@task is nil' do
-      task.update(done: true)
-      get(:show, format: :json)
-      expect(assigns(:task)).to be_nil
-    end
-  end
-
-  context 'when there are unfinished tasks' do
-    it '@task is a Task' do
-      get(:show, format: :json)
-      expect(assigns(:task)).to eq task
+    it 'renders tasks associated with a tag given a slug' do
+      get(:show, format: :json, slug: tag.slug)
+      expect(JSON.parse(response.body)['task']['title']).to eq 'blah'
     end
   end
 
