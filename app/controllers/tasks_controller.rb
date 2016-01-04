@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def create
     persist_current_user
 
-    task = current_user.tasks.create!(task_params)
+    task = TaskCreate.(task_params.merge(user: current_user))
     respond_to do |format|
       format.json { render json: task, status: :created }
     end
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   def update
     task = current_user.tasks.find(params[:id])
-    TaskUpdate.(task, task_params.symbolize_keys)
+    TaskUpdate.(task, task_params)
     respond_to do |format|
       format.json { render json: task, status: :ok }
     end
@@ -41,7 +41,10 @@ class TasksController < ApplicationController
 private
 
   def task_params
-    params.require(:task).permit(*permitted_params).merge(parsed_title)
+    params.require(:task)
+      .permit(*permitted_params)
+      .merge(parsed_title)
+      .symbolize_keys
   end
 
   def permitted_params

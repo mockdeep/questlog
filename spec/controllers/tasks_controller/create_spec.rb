@@ -21,7 +21,7 @@ RSpec.describe TasksController, '#create' do
   end
 
   context 'when the task is valid' do
-    it 'renders status Created' do
+    it 'renders status created' do
       post(:create, valid_params)
       expect(response.status_message).to eq 'Created'
       expect(response.status).to eq 201
