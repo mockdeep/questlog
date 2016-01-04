@@ -17,7 +17,6 @@ class TasksController < ApplicationController
     persist_current_user
 
     task = current_user.tasks.create!(task_params)
-    flash[:success] = 'Task added'
     respond_to do |format|
       format.json { render json: task, status: :created }
     end
@@ -26,7 +25,6 @@ class TasksController < ApplicationController
   def update
     task = current_user.tasks.find(params[:id])
     TaskUpdate.(task, task_params.symbolize_keys)
-    flash[:success] = task_update_message
     respond_to do |format|
       format.json { render json: task, status: :ok }
     end
