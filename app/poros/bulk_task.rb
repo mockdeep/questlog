@@ -13,8 +13,4 @@ class BulkTask
     false
   end
 
-  def self.update(user:, positions:)
-    user.tasks.reposition(positions.map(&:to_i))
-  end
-
 end
