@@ -28,6 +28,9 @@ CollectionMethods:
 Documentation:
   Enabled: false
 
+Style/TrivialAccessors:
+  AllowPredicates: true
+
 Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 

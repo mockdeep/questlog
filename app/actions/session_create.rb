@@ -7,10 +7,11 @@ class SessionCreate
     if profile
       user = profile.user
       user.absorb(current_user) if current_user.persisted?
-      OpenStruct.new(success?: true, object: user)
+      success = true
     else
-      OpenStruct.new(success?: false, object: user)
+      success = false
     end
+    ActionResult.new(success: success, object: user)
   end
 
 end
