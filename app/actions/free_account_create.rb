@@ -4,11 +4,7 @@ class FreeAccountCreate
 
   def call(account_params)
     account = FreeAccount.new(account_params)
-    if account.save
-      OpenStruct.new(success?: true, object: account)
-    else
-      OpenStruct.new(success?: false, object: account)
-    end
+    ActionResult.new(success: account.save, object: account)
   end
 
 end

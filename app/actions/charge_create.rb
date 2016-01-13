@@ -8,9 +8,9 @@ class ChargeCreate
     customer = create_customer(email: email, token: token)
     user.update!(customer_id: customer.id)
     create_charge(customer: customer)
-    OpenStruct.new(success?: true)
+    ActionResult.new(success: true)
   rescue Stripe::CardError => e
-    OpenStruct.new(success?: false, error_message: e.message)
+    ActionResult.new(success: false, errors: [e.message])
   end
 
 private
