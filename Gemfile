@@ -48,6 +48,7 @@ end
 group :development, :test do
   # https://github.com/flyerhzm/bullet/issues/251
   gem 'bullet', '4.14.4'
+  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
