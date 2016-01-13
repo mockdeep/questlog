@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
 
   def create
-    profile = Profile.authenticate(params[:email], params[:password])
-    if profile
-      user = profile.user
-      user.absorb(current_user) if current_user.persisted?
-      self.current_user = user
+    result = SessionCreate.(session_params.merge(current_user: current_user))
+    if result.success?
+      self.current_user = result.object
       return_or_redirect_to root_path, notice: 'Logged in!'
     else
       flash[:error] = 'Invalid email or password'
@@ -16,6 +14,12 @@ class SessionsController < ApplicationController
   def destroy
     session.clear
     redirect_to root_path, notice: 'Logged out!'
+  end
+
+private
+
+  def session_params
+    params.symbolize_keys.slice(:email, :password)
   end
 
 end
