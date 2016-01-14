@@ -6,9 +6,9 @@ var DragSource = require('react-dnd').DragSource;
 var DropTarget = require('react-dnd').DropTarget;
 var _ = require('lodash');
 
-var timeframeNameMap = require('../../timeframe_name_map');
+var timeframeNameMap = require('timeframe_name_map');
 
-var TaskStore = require('../../stores/task_store');
+var TaskStore = require('stores/task_store');
 
 var taskSource = {
   canDrag: function (props) {

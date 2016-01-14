@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 
-var request = require('../helpers').request;
+var request = require('helpers').request;
 
 module.exports = {
   models: [],

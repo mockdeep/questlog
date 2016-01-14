@@ -4,12 +4,12 @@ var React = require('react');
 var HTML5Backend = require('react-dnd-html5-backend');
 var DragDropContext = require('react-dnd').DragDropContext;
 
-var ToEnglish = require('../../to_english');
-var TaskStore = require('../../stores/task_store');
+var ToEnglish = require('to_english');
+var TaskStore = require('stores/task_store');
 
-var NewTaskForm = require('../tasks/_new_task_form');
-var TimeframeStore = require('../../stores/timeframe_store');
-var TimeframeSection = require('./_timeframe_section');
+var NewTaskForm = require('components/tasks/_new_task_form');
+var TimeframeStore = require('stores/timeframe_store');
+var TimeframeSection = require('components/timeframes/_timeframe_section');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;

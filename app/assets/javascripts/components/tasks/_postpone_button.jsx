@@ -3,8 +3,8 @@
 var React = require('react');
 var _ = require('lodash');
 
-var stopPropagation = require('../../helpers').stopPropagation;
-var TaskStore = require('../../stores/task_store');
+var stopPropagation = require('helpers').stopPropagation;
+var TaskStore = require('stores/task_store');
 
 var SelectOption = React.createClass({
   render: function () {

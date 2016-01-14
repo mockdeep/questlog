@@ -2,9 +2,9 @@
 
 var React = require('react');
 
-var ErrorDisplay = require('../common/_error_display');
-var TaskStore = require('../../stores/task_store');
-var flash = require('../../helpers').flash;
+var ErrorDisplay = require('components/common/_error_display');
+var TaskStore = require('stores/task_store');
+var flash = require('helpers').flash;
 
 var NewTaskForm = React.createClass({
   getInitialState: function () {

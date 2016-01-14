@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var moment = require('moment');
 
-var TimeBalancer = require(componentPath('time_balancer'));
+var TimeBalancer = require('time_balancer');
 
 describe('TimeBalancer.base_balances', function () {
 

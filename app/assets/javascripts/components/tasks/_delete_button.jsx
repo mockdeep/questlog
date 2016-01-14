@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var TaskStore = require('../../stores/task_store');
+var TaskStore = require('stores/task_store');
 
 var DeleteButton = React.createClass({
   deleteTask: function (event) {

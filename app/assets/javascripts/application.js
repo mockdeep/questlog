@@ -17,5 +17,5 @@ Honeybadger.setContext({ user_id: gon.user_id });
 
 require('es5-shim');
 
-require('./router');
+require('router');
 if (!window.Promise) { window.Promise = require('promise-polyfill'); }

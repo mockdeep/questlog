@@ -2,9 +2,9 @@
 
 var _ = require('lodash');
 
-var request = require('../helpers').request;
-var RestfulStore = require('./restful_store');
-var TaskStore = require('./task_store');
+var request = require('helpers').request;
+var RestfulStore = require('stores/restful_store');
+var TaskStore = require('stores/task_store');
 
 var TagStore = _.extend({}, RestfulStore, {
   name: 'tag',

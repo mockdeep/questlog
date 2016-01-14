@@ -2,12 +2,12 @@
 
 var React = require('react');
 
-var NewTaskForm = require('./_new_task_form');
-var TaskFooter = require('../common/_task_footer');
-var TaskDisplay = require('./_task_display');
+var NewTaskForm = require('components/tasks/_new_task_form');
+var TaskFooter = require('components/common/_task_footer');
+var TaskDisplay = require('components/tasks/_task_display');
 
-var TagStore = require('../../stores/tag_store');
-var TaskStore = require('../../stores/task_store');
+var TagStore = require('stores/tag_store');
+var TaskStore = require('stores/task_store');
 
 var TasksShow = React.createClass({
   contextTypes: {

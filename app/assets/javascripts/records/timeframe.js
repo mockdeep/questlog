@@ -3,8 +3,8 @@
 var Record = require('immutable').Record;
 var _ = require('lodash');
 
-var TimeBalancer = require('../time_balancer');
-var timeframeNameMap = require('../timeframe_name_map');
+var TimeBalancer = require('time_balancer');
+var timeframeNameMap = require('timeframe_name_map');
 
 var Timeframe = new Record({
   currentTasks: [],
