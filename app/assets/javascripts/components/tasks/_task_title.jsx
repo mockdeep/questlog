@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var DeleteButton = require('./_delete_button');
-var timeframeNameMap = require('../../timeframe_name_map');
+var DeleteButton = require('components/tasks/_delete_button');
+var timeframeNameMap = require('timeframe_name_map');
 
 var TaskTitle = React.createClass({
   className: function () {

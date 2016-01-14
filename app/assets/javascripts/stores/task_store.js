@@ -2,8 +2,8 @@
 
 var _ = require('lodash');
 
-var RestfulStore = require('./restful_store');
-var Task = require('../records/task');
+var RestfulStore = require('stores/restful_store');
+var Task = require('records/task');
 
 module.exports = _.extend({}, RestfulStore, {
   name: 'task',

@@ -1,14 +1,14 @@
 'use strict';
 
 var _ = require('lodash');
-var request = require('../helpers').request;
+var request = require('helpers').request;
 
 var moment = require('moment');
 var Promise = window.Promise || require('promise-polyfill');
 
-var Timeframe = require('../records/timeframe');
-var RestfulStore = require('./restful_store');
-var TaskStore = require('./task_store');
+var Timeframe = require('records/timeframe');
+var RestfulStore = require('stores/restful_store');
+var TaskStore = require('stores/task_store');
 
 var timeframeList = [
   'inbox',

@@ -1,6 +1,6 @@
 'use strict';
 
-var ToEnglish = require(componentPath('to_english'));
+var ToEnglish = require('to_english');
 
 describe('ToEnglish.seconds', function () {
 

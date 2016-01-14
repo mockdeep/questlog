@@ -3,7 +3,7 @@
 var React = require('react');
 var _ = require('lodash');
 
-var TagButton = require('./_tag_button');
+var TagButton = require('components/tasks/_tag_button');
 
 var TagButtons = React.createClass({
   isCurrent: function (tag) {

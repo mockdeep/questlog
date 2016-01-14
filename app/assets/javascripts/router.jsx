@@ -10,13 +10,13 @@ var createBrowserHistory = require('history/lib/createBrowserHistory');
 var RouteHandler = Router.RouteHandler;
 var history = createBrowserHistory();
 
-var BulkTasksNew = require('./components/bulk_tasks/new');
-var PrivacyPage = require('./components/static/privacy_page');
-var WhatPage = require('./components/static/what_page');
-var SessionsNew = require('./components/sessions/new');
-var TasksIndex = require('./components/tasks/index');
-var TasksShow = require('./components/tasks/show');
-var TimeframesIndex = require('./components/timeframes/index');
+var BulkTasksNew = require('components/bulk_tasks/new');
+var PrivacyPage = require('components/static/privacy_page');
+var WhatPage = require('components/static/what_page');
+var SessionsNew = require('components/sessions/new');
+var TasksIndex = require('components/tasks/index');
+var TasksShow = require('components/tasks/show');
+var TimeframesIndex = require('components/timeframes/index');
 
 var AppBase = React.createClass({
   render: function () {

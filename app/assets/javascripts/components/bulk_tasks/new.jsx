@@ -3,7 +3,7 @@
 var React = require('react');
 var History = require('react-router').History;
 
-var BulkTaskStore = require('../../stores/bulk_task_store');
+var BulkTaskStore = require('stores/bulk_task_store');
 
 var BulkTasksNew = React.createClass({
   mixins: [History],

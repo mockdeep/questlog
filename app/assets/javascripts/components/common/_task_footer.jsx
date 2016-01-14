@@ -3,7 +3,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 
-var HelpLink = require('./_help_link');
+var HelpLink = require('components/common/_help_link');
 
 var TaskFooter = React.createClass({
   render: function () {
