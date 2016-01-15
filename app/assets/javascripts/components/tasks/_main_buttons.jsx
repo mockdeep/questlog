@@ -22,6 +22,7 @@ var MainButtons = React.createClass({
             loadTask={this.props.loadTask}
             disabled={this.props.disabled}
             disable={this.props.disable}
+            storeTask={this.props.storeTask}
           />
         </div>
       </div>

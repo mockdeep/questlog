@@ -49,7 +49,7 @@ var TasksShow = React.createClass({
   },
 
   storeTask: function (taskId, attrs) {
-    TaskStore.update(taskId, attrs);
+    return TaskStore.update(taskId, attrs);
   },
 
   componentDidMount: function () {
