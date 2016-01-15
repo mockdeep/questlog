@@ -23,7 +23,10 @@ var TaskDisplay = React.createClass({
           disable={this.props.disable}
         />
         <hr />
-        <EditTaskForm task={this.props.task} />
+        <EditTaskForm
+          task={this.props.task}
+          storeTask={this.props.storeTask}
+        />
       </div>
     );
   }
