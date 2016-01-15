@@ -48,6 +48,10 @@ var TasksShow = React.createClass({
     document.title = 'Task: ' + this.state.task.title;
   },
 
+  storeTask: function (taskId, attrs) {
+    TaskStore.update(taskId, attrs);
+  },
+
   componentDidMount: function () {
     this.loadTags().then(function () {
       TagStore.on('change', this.loadTags);
@@ -77,6 +81,7 @@ var TasksShow = React.createClass({
           disable={this.disable}
           loadTask={this.loadTask}
           disabled={this.state.disabled}
+          storeTask={this.storeTask}
         />
         <NewTaskForm loadTask={this.loadTask} />
 
