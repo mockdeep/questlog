@@ -4,7 +4,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var TestUtils = require('react-addons-test-utils');
 
-var TimeframesIndex = require('components/timeframes/index');
+var TimeframesIndex = require('containers/timeframes/index');
 var timeframesIndex;
 
 beforeEach(function () {
