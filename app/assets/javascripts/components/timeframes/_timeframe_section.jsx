@@ -14,6 +14,8 @@ var TimeframeSection = React.createClass({
         key={task.id}
         timeframesEnabled={true}
         loadTasks={this.props.loadTasks}
+        storeTask={this.props.storeTask}
+        destroyTask={this.props.destroyTask}
       />
     );
   },

@@ -8,8 +8,6 @@ var _ = require('lodash');
 
 var timeframeNameMap = require('timeframe_name_map');
 
-var TaskStore = require('stores/task_store');
-
 var taskSource = {
   canDrag: function (props) {
     return !props.timeframesEnabled;
@@ -51,20 +49,22 @@ var TaskRow = React.createClass({
 
   markDone: function (event) {
     event.preventDefault();
-    TaskStore.update(this.props.task.id, {done: true});
+    this.props.storeTask(this.props.task.id, {done: true});
   },
 
   updatePriority: function (event) {
-    TaskStore.update(this.props.task.id, {priority: event.target.value});
+    this.props.storeTask(this.props.task.id, {priority: event.target.value});
   },
 
   updateTimeframe: function (event) {
-    TaskStore.update(this.props.task.id, {timeframe: event.target.value});
+    this.props.storeTask(this.props.task.id, {timeframe: event.target.value});
   },
 
   deleteTask: function (event) {
     event.preventDefault();
-    if (confirm('Delete this task?')) { TaskStore.destroy(this.props.task.id); }
+    if (confirm('Delete this task?')) {
+      this.props.destroyTask(this.props.task.id);
+    }
   },
 
   emblems: function () {
@@ -151,7 +151,7 @@ var TaskRow = React.createClass({
   },
 
   undoTask: function () {
-    TaskStore.update(this.props.task.id, {done: false});
+    this.props.storeTask(this.props.task.id, {done: false});
   },
 
   undoButton: function () {

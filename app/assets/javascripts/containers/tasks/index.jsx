@@ -89,6 +89,14 @@ var TasksIndex = React.createClass({
     return _.map(this.state.pendingTasks, this.taskRow);
   },
 
+  storeTask: function (taskId, attrs) {
+    return TaskStore.update(taskId, attrs);
+  },
+
+  destroyTask: function (taskId) {
+    TaskStore.destroy(taskId);
+  },
+
   taskRow: function (task) {
     return (
       <TaskRow
@@ -96,6 +104,8 @@ var TasksIndex = React.createClass({
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
+        storeTask={this.storeTask}
+        destroyTask={this.destroyTask}
       />
     );
   },

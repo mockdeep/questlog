@@ -56,6 +56,14 @@ var TimeframesIndex = React.createClass({
     return counts;
   },
 
+  storeTask: function (taskId, attrs) {
+    return TaskStore.update(taskId, attrs);
+  },
+
+  destroyTask: function (taskId) {
+    TaskStore.destroy(taskId);
+  },
+
   renderTimeframe: function (timeframe) {
     return (
       <TimeframeSection
@@ -64,6 +72,8 @@ var TimeframesIndex = React.createClass({
         timeframeSpace={this.timeframeSpace()}
         medianProductivity={this.state.medianProductivity}
         loadTasks={this.loadTasks}
+        storeTask={this.storeTask}
+        destroyTask={this.destroyTask}
       />
     );
   },
