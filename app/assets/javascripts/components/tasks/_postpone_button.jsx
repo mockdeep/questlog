@@ -4,7 +4,6 @@ var React = require('react');
 var _ = require('lodash');
 
 var stopPropagation = require('helpers').stopPropagation;
-var TaskStore = require('stores/task_store');
 
 var SelectOption = React.createClass({
   render: function () {
@@ -38,7 +37,7 @@ var PostponeButton = React.createClass({
     if (this.props.disabled) { return; }
     this.disableButton();
     var attrs = {postpone: this.state.postponeSeconds};
-    TaskStore.update(this.props.task.id, attrs).then(this.updateButton);
+    this.props.storeTask(this.props.task.id, attrs).then(this.updateButton);
   },
 
   selectOptionsOptions: [
