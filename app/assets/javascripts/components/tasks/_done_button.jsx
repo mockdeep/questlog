@@ -5,6 +5,10 @@ var React = require('react');
 var TaskStore = require('stores/task_store');
 
 var DoneButton = React.createClass({
+  propTypes: {
+    completeTask: React.PropTypes.func.isRequired
+  },
+
   getInitialState: function () {
     return {buttonContent: 'Done! Give me another!'};
   },
@@ -17,7 +21,7 @@ var DoneButton = React.createClass({
   markDone: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    TaskStore.update(this.props.task.id, {done: true});
+    this.props.completeTask(this.props.task.id);
   },
 
   componentWillReceiveProps: function (newProps) {

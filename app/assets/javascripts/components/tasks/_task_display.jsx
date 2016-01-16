@@ -30,6 +30,7 @@ var TaskDisplay = React.createClass({
           storePostponeSeconds={this.props.storePostponeSeconds}
           postponeSeconds={this.props.postponeSeconds}
           postponeTask={this.props.postponeTask}
+          completeTask={this.props.completeTask}
         />
         <hr />
         <EditTaskForm
