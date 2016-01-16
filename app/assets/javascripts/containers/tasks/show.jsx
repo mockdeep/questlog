@@ -84,6 +84,11 @@ var TasksShow = React.createClass({
     return TaskStore.create(attrs);
   },
 
+  postponeTask: function (taskId) {
+    var attrs = {postpone: this.state.postponeSeconds};
+    return this.storeTask(taskId, attrs);
+  },
+
   render: function () {
     return (
       <div>
@@ -96,6 +101,7 @@ var TasksShow = React.createClass({
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}
           postponeSeconds={this.state.postponeSeconds}
+          postponeTask={this.postponeTask}
         />
         <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 

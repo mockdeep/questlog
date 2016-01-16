@@ -5,6 +5,10 @@ var React = require('react');
 var ErrorDisplay = require('components/common/_error_display');
 
 var EditTaskForm = React.createClass({
+  propTypes: {
+    storeTask: React.PropTypes.func.isRequired
+  },
+
   getInitialState: function () {
     return {
       buttonContent: 'Update Task',

@@ -13,7 +13,8 @@ var SelectOption = React.createClass({
 
 var PostponeButton = React.createClass({
   propTypes: {
-    postponeSeconds: React.PropTypes.number.isRequired
+    postponeSeconds: React.PropTypes.number.isRequired,
+    postponeTask: React.PropTypes.func.isRequired
   },
   getInitialState: function () {
     return {labelContent: 'Postpone for:'};
@@ -32,8 +33,7 @@ var PostponeButton = React.createClass({
   postponeTask: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    var attrs = {postpone: this.props.postponeSeconds};
-    this.props.storeTask(this.props.task.id, attrs).then(this.updateButton);
+    this.props.postponeTask(this.props.task.id).then(this.updateButton);
   },
 
   selectOptionsOptions: [

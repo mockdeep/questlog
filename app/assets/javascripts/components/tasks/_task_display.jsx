@@ -9,7 +9,9 @@ var EditTaskForm = require('components/tasks/_edit_task_form');
 
 var TaskDisplay = React.createClass({
   propTypes: {
-    postponeSeconds: React.PropTypes.number.isRequired
+    postponeSeconds: React.PropTypes.number.isRequired,
+    postponeTask: React.PropTypes.func.isRequired,
+    storeTask: React.PropTypes.func.isRequired
   },
 
   render: function () {
@@ -25,9 +27,9 @@ var TaskDisplay = React.createClass({
           loadTask={this.props.loadTask}
           disabled={this.props.disabled}
           disable={this.props.disable}
-          storeTask={this.props.storeTask}
           storePostponeSeconds={this.props.storePostponeSeconds}
           postponeSeconds={this.props.postponeSeconds}
+          postponeTask={this.props.postponeTask}
         />
         <hr />
         <EditTaskForm
