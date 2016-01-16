@@ -119,10 +119,14 @@ var TasksIndex = React.createClass({
     TaskStore.off('change', this.loadTasks);
   },
 
+  createTask: function (attrs) {
+    return TaskStore.create(attrs);
+  },
+
   render: function () {
     return (
       <div>
-        <NewTaskForm loadTask={this.loadTasks} />
+        <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />
         <br />
         <div id='current-tasks'>
           <h2>Current Tasks</h2>
