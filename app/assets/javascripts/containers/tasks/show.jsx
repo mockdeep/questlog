@@ -72,6 +72,10 @@ var TasksShow = React.createClass({
     this.setTitle();
   },
 
+  createTask: function (attrs) {
+    return TaskStore.create(attrs);
+  },
+
   render: function () {
     return (
       <div>
@@ -83,7 +87,7 @@ var TasksShow = React.createClass({
           disabled={this.state.disabled}
           storeTask={this.storeTask}
         />
-        <NewTaskForm loadTask={this.loadTask} />
+        <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 
         <hr />
         <TaskFooter />

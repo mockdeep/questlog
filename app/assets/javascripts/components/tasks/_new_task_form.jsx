@@ -3,7 +3,6 @@
 var React = require('react');
 
 var ErrorDisplay = require('components/common/_error_display');
-var TaskStore = require('stores/task_store');
 var flash = require('helpers').flash;
 
 var NewTaskForm = React.createClass({
@@ -27,7 +26,7 @@ var NewTaskForm = React.createClass({
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});
-    TaskStore.create({title: this.state.taskTitle.trim()}).then(this.loadTask);
+    this.props.createTask({title: this.state.taskTitle.trim()}).then(this.loadTask);
   },
   loadTask: function () {
     flash('success', 'Task added');
