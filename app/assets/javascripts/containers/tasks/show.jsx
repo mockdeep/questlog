@@ -89,6 +89,10 @@ var TasksShow = React.createClass({
     return this.storeTask(taskId, attrs);
   },
 
+  completeTask: function (taskId) {
+    this.storeTask(taskId, {done: true});
+  },
+
   render: function () {
     return (
       <div>
@@ -102,6 +106,7 @@ var TasksShow = React.createClass({
           storePostponeSeconds={this.storePostponeSeconds}
           postponeSeconds={this.state.postponeSeconds}
           postponeTask={this.postponeTask}
+          completeTask={this.completeTask}
         />
         <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 
