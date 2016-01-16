@@ -15,7 +15,11 @@ var TasksShow = React.createClass({
   },
 
   getInitialState: function () {
-    return {task: {title: 'Loading...'}, disabled: true, tags: []};
+    return {
+      task: {title: 'Loading...'},
+      disabled: true, tags: [],
+      postponeSeconds: 300
+    };
   },
 
   loadTask: function (url) {
@@ -30,6 +34,10 @@ var TasksShow = React.createClass({
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
     }
     this.setTitle();
+  },
+
+  storePostponeSeconds: function (postponeSeconds) {
+    this.setState({postponeSeconds: postponeSeconds});
   },
 
   loadTags: function () {
@@ -86,6 +94,8 @@ var TasksShow = React.createClass({
           loadTask={this.loadTask}
           disabled={this.state.disabled}
           storeTask={this.storeTask}
+          storePostponeSeconds={this.storePostponeSeconds}
+          postponeSeconds={this.state.postponeSeconds}
         />
         <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 
