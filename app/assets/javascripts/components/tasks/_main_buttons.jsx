@@ -6,6 +6,10 @@ var DoneButton = require('components/tasks/_done_button');
 var PostponeButton = require('components/tasks/_postpone_button');
 
 var MainButtons = React.createClass({
+  propTypes: {
+    postponeSeconds: React.PropTypes.number.isRequired
+  },
+
   render: function () {
     return (
       <div id='buttons' className='row main-button'>
@@ -23,6 +27,8 @@ var MainButtons = React.createClass({
             disabled={this.props.disabled}
             disable={this.props.disable}
             storeTask={this.props.storeTask}
+            storePostponeSeconds={this.props.storePostponeSeconds}
+            postponeSeconds={this.props.postponeSeconds}
           />
         </div>
       </div>

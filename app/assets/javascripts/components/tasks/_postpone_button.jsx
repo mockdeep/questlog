@@ -12,15 +12,11 @@ var SelectOption = React.createClass({
 });
 
 var PostponeButton = React.createClass({
-  getInitialState: function () {
-    return {
-      postponeSeconds: this.selectOptionsOptions[0].value,
-      labelContent: 'Postpone for:',
-    };
+  propTypes: {
+    postponeSeconds: React.PropTypes.number.isRequired
   },
-
-  storeVal: function (event) {
-    this.setState({postponeSeconds: event.target.value});
+  getInitialState: function () {
+    return {labelContent: 'Postpone for:'};
   },
 
   disableButton: function () {
@@ -36,7 +32,7 @@ var PostponeButton = React.createClass({
   postponeTask: function () {
     if (this.props.disabled) { return; }
     this.disableButton();
-    var attrs = {postpone: this.state.postponeSeconds};
+    var attrs = {postpone: this.props.postponeSeconds};
     this.props.storeTask(this.props.task.id, attrs).then(this.updateButton);
   },
 
@@ -80,6 +76,10 @@ var PostponeButton = React.createClass({
     }
   },
 
+  storePostponeSeconds: function (event) {
+    this.props.storePostponeSeconds(event.target.value);
+  },
+
   render: function () {
     return (
       <div
@@ -90,7 +90,7 @@ var PostponeButton = React.createClass({
       >
         <label>{this.state.labelContent}</label>
         <select
-          onChange={this.storeVal}
+          onChange={this.storePostponeSeconds}
           onClick={stopPropagation}
           disabled={this.props.disabled}
         >
