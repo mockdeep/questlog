@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var _ = require('lodash');
 
 var NewTaskForm = require('components/tasks/_new_task_form');
 var TaskFooter = require('components/common/_task_footer');
@@ -90,6 +91,9 @@ var TasksShow = React.createClass({
   },
 
   completeTask: function (taskId) {
+    this.setState({
+      task: _.extend({}, this.state.task, {status: 'marking_done'})
+    });
     this.storeTask(taskId, {done: true});
   },
 
