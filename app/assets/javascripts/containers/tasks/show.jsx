@@ -17,7 +17,7 @@ var TasksShow = React.createClass({
 
   getInitialState: function () {
     return {
-      task: {title: 'Loading...', status: 'loading'},
+      task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true, tags: [],
       postponeSeconds: 300
     };
@@ -30,7 +30,7 @@ var TasksShow = React.createClass({
 
   updateTask: function (data) {
     if (data) {
-      var task = _.extend({}, data.task, {status: 'ready'});
+      var task = _.extend({}, data.task, {loadingState: 'ready'});
       this.setState({task: task, disabled: false});
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
@@ -58,7 +58,10 @@ var TasksShow = React.createClass({
     document.title = 'Task: ' + this.state.task.title;
   },
 
-  storeTask: function (taskId, attrs) {
+  storeTask: function (taskId, attrs, opts) {
+    var loadingState = opts && opts.loadingState || 'updating';
+    var newTask = _.extend({}, this.state.task, {loadingState: loadingState});
+    this.setState({task: newTask});
     return TaskStore.update(taskId, attrs);
   },
 
@@ -92,10 +95,7 @@ var TasksShow = React.createClass({
   },
 
   completeTask: function (taskId) {
-    this.setState({
-      task: _.extend({}, this.state.task, {status: 'marking_done'})
-    });
-    this.storeTask(taskId, {done: true});
+    this.storeTask(taskId, {done: true}, {taskStatus: 'marking_done'});
   },
 
   deleteTask: function (taskId) {
