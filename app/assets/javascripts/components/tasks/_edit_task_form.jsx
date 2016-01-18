@@ -28,12 +28,12 @@ var EditTaskForm = React.createClass({
     if (this.state.taskTitle.trim() === '') {
       var newErrors = this.state.errors.concat('task title can\'t be blank');
       this.setState({errors: newErrors});
-      return;
+    } else {
+      this.setState({buttonContent: 'Updating Task', disabled: true});
+      var attrs = {title: this.state.taskTitle.trim()};
+      this.props.storeTask(this.props.task.id, attrs);
+      this.toggleDisplay();
     }
-    this.setState({buttonContent: 'Updating Task', disabled: true});
-    var attrs = {title: this.state.taskTitle.trim()};
-    this.props.storeTask(this.props.task.id, attrs);
-    this.toggleDisplay();
   },
 
   toggleDisplay: function () {
