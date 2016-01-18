@@ -7,6 +7,10 @@ require File.expand_path('../config/application', __FILE__)
 Questlog::Application.load_tasks
 
 if Rails.env.test? || Rails.env.development?
+  task :mocha do
+    puts `npm test`
+  end
+
   task :scss_lint do
     sh('bundle exec scss-lint app')
   end
@@ -20,5 +24,5 @@ if Rails.env.test? || Rails.env.development?
   # require 'scss_lint/rake_task'
   # SCSSLint::RakeTask.new
 
-  task default: [:spec, :rubocop, :haml_lint, :scss_lint]
+  task default: [:spec, :rubocop, :haml_lint, :scss_lint, :mocha]
 end
