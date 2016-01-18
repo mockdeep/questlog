@@ -3,7 +3,7 @@
 var React = require('react');
 var _ = require('lodash');
 
-var TaskRow = require('components/tasks/_task_row');
+var TaskRow = require('components/tasks/task_row');
 
 var TimeframeSection = React.createClass({
   renderTask: function (task) {

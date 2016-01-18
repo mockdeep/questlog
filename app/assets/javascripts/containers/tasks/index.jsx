@@ -9,8 +9,8 @@ var DragDropContext = require('react-dnd').DragDropContext;
 var TaskStore = require('stores/task_store');
 var BulkTaskStore = require('stores/bulk_task_store');
 
-var NewTaskForm = require('components/tasks/_new_task_form');
-var TaskRow = require('components/tasks/_task_row');
+var NewTaskForm = require('components/tasks/new_task_form');
+var TaskRow = require('components/tasks/task_row');
 
 var isPending = function (task) {
   return task.pending;
