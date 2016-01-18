@@ -12,7 +12,6 @@ var EditTaskForm = React.createClass({
   getInitialState: function () {
     return {
       buttonContent: 'Update Task',
-      disabled: false,
       taskTitle: this.props.task.title,
       errors: []
     };
@@ -24,16 +23,20 @@ var EditTaskForm = React.createClass({
 
   saveTask: function (event) {
     event.preventDefault();
-    if (this.state.disabled) { return; }
+    if (!this.isTaskReady) { return; }
     if (this.state.taskTitle.trim() === '') {
       var newErrors = this.state.errors.concat('task title can\'t be blank');
       this.setState({errors: newErrors});
     } else {
-      this.setState({buttonContent: 'Updating Task', disabled: true});
+      this.setState({buttonContent: 'Updating Task'});
       var attrs = {title: this.state.taskTitle.trim()};
       this.props.storeTask(this.props.task.id, attrs);
       this.toggleDisplay();
     }
+  },
+
+  isTaskReady: function () {
+    return this.props.task.loadingState === 'ready';
   },
 
   toggleDisplay: function () {
@@ -66,7 +69,7 @@ var EditTaskForm = React.createClass({
               <div className='col-md-6'>
                 <input
                   type='submit'
-                  disabled={this.state.disabled}
+                  disabled={!this.isTaskReady}
                   className='btn btn-success btn-block'
                   value={this.state.buttonContent}
                 />
