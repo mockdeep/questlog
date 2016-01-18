@@ -11,7 +11,8 @@ var TaskDisplay = React.createClass({
   propTypes: {
     postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
-    storeTask: React.PropTypes.func.isRequired
+    storeTask: React.PropTypes.func.isRequired,
+    deleteTask: React.PropTypes.func.isRequired
   },
 
   render: function () {
@@ -21,6 +22,7 @@ var TaskDisplay = React.createClass({
         <TaskTitle
           task={this.props.task}
           loadTask={this.props.loadTask}
+          deleteTask={this.props.deleteTask}
         />
         <MainButtons
           task={this.props.task}

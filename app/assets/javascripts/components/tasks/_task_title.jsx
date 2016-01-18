@@ -6,6 +6,10 @@ var DeleteButton = require('components/tasks/_delete_button');
 var timeframeNameMap = require('timeframe_name_map');
 
 var TaskTitle = React.createClass({
+  proptypes: {
+    deleteTask: React.PropTypes.func.isRequired
+  },
+
   className: function () {
     var classString = 'col-md-12 task-display';
     if (this.props.task.priority) {
@@ -46,6 +50,7 @@ var TaskTitle = React.createClass({
                   <DeleteButton
                     task={this.props.task}
                     loadTask={this.props.loadTask}
+                    deleteTask={this.props.deleteTask}
                   />
                 </td>
                 <td className='col-md-10 title'>

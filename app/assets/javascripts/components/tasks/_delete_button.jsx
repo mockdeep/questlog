@@ -2,13 +2,15 @@
 
 var React = require('react');
 
-var TaskStore = require('stores/task_store');
-
 var DeleteButton = React.createClass({
+  propTypes: {
+    deleteTask: React.PropTypes.func.isRequired
+  },
+
   deleteTask: function (event) {
     event.stopPropagation();
     if (confirm('Delete this task?')) {
-      TaskStore.destroy(this.props.task.id);
+      this.props.deleteTask(this.props.task.id);
     }
   },
 

@@ -93,6 +93,10 @@ var TasksShow = React.createClass({
     this.storeTask(taskId, {done: true});
   },
 
+  deleteTask: function (taskId) {
+    TaskStore.destroy(taskId);
+  },
+
   render: function () {
     return (
       <div>
@@ -107,6 +111,7 @@ var TasksShow = React.createClass({
           postponeSeconds={this.state.postponeSeconds}
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
+          deleteTask={this.deleteTask}
         />
         <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 
