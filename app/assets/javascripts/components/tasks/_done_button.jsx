@@ -16,7 +16,7 @@ var DoneButton = React.createClass({
     return this.props.task.loadingState === 'ready';
   },
 
-  doneMessage: function () {
+  buttonMessage: function () {
     var isMarkingDone = this.props.task.loadingState === 'marking_done';
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   },
@@ -28,7 +28,7 @@ var DoneButton = React.createClass({
         disabled={!this.isTaskReady()}
         className='btn btn-primary btn-lg btn-block'
         onClick={this.markDone}
-        value={this.doneMessage()}
+        value={this.buttonMessage()}
       />
     );
   }
