@@ -7,14 +7,13 @@ var DoneButton = React.createClass({
     completeTask: React.PropTypes.func.isRequired
   },
 
-  disableButton: function () {
-    this.props.disable();
+  markDone: function () {
+    if (!this.isTaskReady()) { return; }
+    this.props.completeTask(this.props.task.id);
   },
 
-  markDone: function () {
-    if (this.props.disabled) { return; }
-    this.disableButton();
-    this.props.completeTask(this.props.task.id);
+  isTaskReady: function () {
+    return this.props.task.status === 'ready';
   },
 
   doneMessage: function () {
@@ -26,7 +25,7 @@ var DoneButton = React.createClass({
     return (
       <input
         type='button'
-        disabled={this.props.disabled}
+        disabled={!this.isTaskReady()}
         className='btn btn-primary btn-lg btn-block'
         onClick={this.markDone}
         value={this.doneMessage()}
