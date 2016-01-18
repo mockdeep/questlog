@@ -13,11 +13,11 @@ var DoneButton = React.createClass({
   },
 
   isTaskReady: function () {
-    return this.props.task.status === 'ready';
+    return this.props.task.loadingState === 'ready';
   },
 
   doneMessage: function () {
-    var isMarkingDone = this.props.task.status === 'marking_done';
+    var isMarkingDone = this.props.task.loadingState === 'marking_done';
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   },
 
