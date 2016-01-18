@@ -7,9 +7,9 @@ var DragDropContext = require('react-dnd').DragDropContext;
 var ToEnglish = require('to_english');
 var TaskStore = require('stores/task_store');
 
-var NewTaskForm = require('components/tasks/_new_task_form');
+var NewTaskForm = require('components/tasks/new_task_form');
 var TimeframeStore = require('stores/timeframe_store');
-var TimeframeSection = require('components/timeframes/_timeframe_section');
+var TimeframeSection = require('components/timeframes/timeframe_section');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;

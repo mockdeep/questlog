@@ -3,9 +3,9 @@
 var React = require('react');
 var _ = require('lodash');
 
-var NewTaskForm = require('components/tasks/_new_task_form');
-var TaskFooter = require('components/common/_task_footer');
-var TaskDisplay = require('components/tasks/_task_display');
+var NewTaskForm = require('components/tasks/new_task_form');
+var TaskFooter = require('components/common/task_footer');
+var TaskDisplay = require('components/tasks/task_display');
 
 var TagStore = require('stores/tag_store');
 var TaskStore = require('stores/task_store');

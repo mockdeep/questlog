@@ -2,10 +2,10 @@
 
 var React = require('react');
 
-var MainButtons = require('components/tasks/_main_buttons');
-var TaskTitle = require('components/tasks/_task_title');
-var TagButtons = require('components/tasks/_tag_buttons');
-var EditTaskForm = require('components/tasks/_edit_task_form');
+var MainButtons = require('components/tasks/main_buttons');
+var TaskTitle = require('components/tasks/task_title');
+var TagButtons = require('components/tasks/tag_buttons');
+var EditTaskForm = require('components/tasks/edit_task_form');
 
 var TaskDisplay = React.createClass({
   propTypes: {
