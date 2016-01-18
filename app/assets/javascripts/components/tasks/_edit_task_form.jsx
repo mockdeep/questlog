@@ -10,11 +10,7 @@ var EditTaskForm = React.createClass({
   },
 
   getInitialState: function () {
-    return {
-      buttonContent: 'Update Task',
-      taskTitle: this.props.task.title,
-      errors: []
-    };
+    return {taskTitle: this.props.task.title, errors: []};
   },
 
   setTitle: function (event) {
@@ -28,7 +24,6 @@ var EditTaskForm = React.createClass({
       var newErrors = this.state.errors.concat('task title can\'t be blank');
       this.setState({errors: newErrors});
     } else {
-      this.setState({buttonContent: 'Updating Task'});
       var attrs = {title: this.state.taskTitle.trim()};
       this.props.storeTask(this.props.task.id, attrs);
       this.toggleDisplay();
@@ -42,6 +37,11 @@ var EditTaskForm = React.createClass({
   toggleDisplay: function () {
     $('#edit-task').click();
     this.replaceState(this.getInitialState());
+  },
+
+  buttonMessage: function () {
+    var isUpdating = this.props.task.loadingState === 'updating';
+    return isUpdating ? 'Updating Task' : 'Update Task';
   },
 
   componentWillReceiveProps: function (newProps) {
@@ -71,7 +71,7 @@ var EditTaskForm = React.createClass({
                   type='submit'
                   disabled={!this.isTaskReady}
                   className='btn btn-success btn-block'
-                  value={this.state.buttonContent}
+                  value={this.buttonMessage()}
                 />
               </div>
             </div>
