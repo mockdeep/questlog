@@ -2,8 +2,6 @@
 
 var React = require('react');
 
-var TaskStore = require('stores/task_store');
-
 var DoneButton = React.createClass({
   propTypes: {
     completeTask: React.PropTypes.func.isRequired
