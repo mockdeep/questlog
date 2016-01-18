@@ -17,7 +17,7 @@ var TasksShow = React.createClass({
 
   getInitialState: function () {
     return {
-      task: {title: 'Loading...'},
+      task: {title: 'Loading...', status: 'loading'},
       disabled: true, tags: [],
       postponeSeconds: 300
     };
@@ -30,7 +30,8 @@ var TasksShow = React.createClass({
 
   updateTask: function (data) {
     if (data) {
-      this.setState({task: data.task, disabled: false});
+      var task = _.extend({}, data.task, {status: 'ready'});
+      this.setState({task: task, disabled: false});
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
     }
