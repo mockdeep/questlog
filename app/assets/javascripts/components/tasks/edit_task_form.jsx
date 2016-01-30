@@ -6,7 +6,8 @@ var ErrorDisplay = require('components/common/error_display');
 
 var EditTaskForm = React.createClass({
   propTypes: {
-    storeTask: React.PropTypes.func.isRequired
+    storeTask: React.PropTypes.func.isRequired,
+    task: React.PropTypes.object.isRequired
   },
 
   getInitialState: function () {

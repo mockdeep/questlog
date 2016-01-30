@@ -4,6 +4,11 @@ var React = require('react');
 var Link = require('react-router').Link;
 
 var TagButton = React.createClass({
+  propTypes: {
+    current: React.PropTypes.bool.isRequired,
+    tag: React.PropTypes.object.isRequired
+  },
+
   path: function () {
     return '/' + this.props.tag.slug;
   },

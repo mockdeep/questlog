@@ -7,6 +7,11 @@ var ErrorDisplay = require('components/common/error_display');
 var flash = require('helpers').flash;
 
 var NewTaskForm = React.createClass({
+  propTypes: {
+    createTask: React.PropTypes.func.isRequired,
+    loadTask: React.PropTypes.func.isRequired
+  },
+
   getInitialState: function () {
     return {
       buttonContent: 'Add Task',

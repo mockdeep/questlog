@@ -4,7 +4,8 @@ var React = require('react');
 
 var DeleteButton = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired
+    deleteTask: React.PropTypes.func.isRequired,
+    task: React.PropTypes.object.isRequired
   },
 
   deleteTask: function (event) {

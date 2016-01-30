@@ -6,6 +6,14 @@ var _ = require('lodash');
 var TaskRow = require('components/tasks/task_row');
 
 var TimeframeSection = React.createClass({
+  propTypes: {
+    timeframe: React.PropTypes.object.isRequired,
+    timeframeSpace: React.PropTypes.object.isRequired,
+    loadTasks: React.PropTypes.func.isRequired,
+    storeTask: React.PropTypes.func.isRequired,
+    destroyTask: React.PropTypes.func.isRequired
+  },
+
   renderTask: function (task) {
     return (
       <TaskRow
