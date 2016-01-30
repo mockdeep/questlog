@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var extend = require('lodash').extend;
 
 var ErrorDisplay = require('components/common/error_display');
 var flash = require('helpers').flash;
@@ -11,28 +12,37 @@ var NewTaskForm = React.createClass({
       buttonContent: 'Add Task',
       disabled: false,
       errors: [],
-      taskTitle: ''
+      task: {title: ''}
     };
   },
+
   setTitle: function (event) {
-    this.setState({taskTitle: event.target.value});
+    var newTask = extend({}, this.state.task, {title: event.target.value});
+    this.setState({task: newTask});
   },
+
   saveTask: function (event) {
     event.preventDefault();
     if (this.state.disabled) { return; }
-    if (this.state.taskTitle.trim() === '') {
+    if (this.state.task.title.trim() === '') {
       var newErrors = this.state.errors.concat('task title can\'t be blank');
       this.setState({errors: newErrors});
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});
-    this.props.createTask({title: this.state.taskTitle.trim()}).then(this.loadTask);
+    this.props.createTask({title: this.state.task.title.trim()}).then(this.loadTask);
   },
+
   loadTask: function () {
     flash('success', 'Task added');
     this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
+
+  buttonMessage: function () {
+    return this.state.buttonContent;
+  },
+
   render: function () {
     return (
       <form onSubmit={this.saveTask} id='new-form'>
@@ -45,7 +55,7 @@ var NewTaskForm = React.createClass({
               id='new-title'
               className='task-input'
               onChange={this.setTitle}
-              value={this.state.taskTitle}
+              value={this.state.task.title}
               ref='title'
             />
           </div>
@@ -54,7 +64,7 @@ var NewTaskForm = React.createClass({
               type='submit'
               disabled={this.state.disabled}
               className='btn btn-success btn-block'
-              value={this.state.buttonContent}
+              value={this.buttonMessage()}
             />
           </div>
         </div>
