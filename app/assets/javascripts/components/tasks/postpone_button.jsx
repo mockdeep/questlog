@@ -6,6 +6,11 @@ var _ = require('lodash');
 var stopPropagation = require('helpers').stopPropagation;
 
 var SelectOption = React.createClass({
+  propTypes: {
+    value: React.PropTypes.string.isRequired,
+    content: React.PropTypes.string.isRequired
+  },
+
   render: function () {
     return <option value={this.props.value}>{this.props.content}</option>;
   }
@@ -13,9 +18,15 @@ var SelectOption = React.createClass({
 
 var PostponeButton = React.createClass({
   propTypes: {
+    task: React.PropTypes.object.isRequired,
     postponeSeconds: React.PropTypes.number.isRequired,
-    postponeTask: React.PropTypes.func.isRequired
+    disabled: React.PropTypes.bool.isRequired,
+    storePostponeSeconds: React.PropTypes.func.isRequired,
+    postponeTask: React.PropTypes.func.isRequired,
+    loadTask: React.PropTypes.func.isRequired,
+    disable: React.PropTypes.func.isRequired
   },
+
   disableButton: function () {
     this.props.disable();
   },

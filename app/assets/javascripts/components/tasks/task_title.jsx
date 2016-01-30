@@ -7,6 +7,8 @@ var timeframeNameMap = require('timeframe_name_map');
 
 var TaskTitle = React.createClass({
   proptypes: {
+    task: React.PropTypes.object.isRequired,
+    loadTask: React.PropTypes.func.isRequired,
     deleteTask: React.PropTypes.func.isRequired
   },
 

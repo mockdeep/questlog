@@ -4,7 +4,8 @@ var React = require('react');
 
 var DoneButton = React.createClass({
   propTypes: {
-    completeTask: React.PropTypes.func.isRequired
+    completeTask: React.PropTypes.func.isRequired,
+    task: React.PropTypes.object.isRequired
   },
 
   markDone: function () {

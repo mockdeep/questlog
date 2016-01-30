@@ -43,6 +43,17 @@ function targetCollect(connect, monitor) {
 var TaskRow = React.createClass({
   mixins: [PureRenderMixin],
 
+  propTypes: {
+    task: React.PropTypes.object.isRequired,
+    timeframeSpace: React.PropTypes.object,
+    timeframesEnabled: React.PropTypes.bool,
+    isDragging: React.PropTypes.bool.isRequired,
+    storeTask: React.PropTypes.func.isRequired,
+    destroyTask: React.PropTypes.func.isRequired,
+    connectDropTarget: React.PropTypes.func.isRequired,
+    connectDragSource: React.PropTypes.func.isRequired
+  },
+
   getInitialState: function () {
     return {timeframeClicked: false};
   },

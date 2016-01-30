@@ -4,6 +4,10 @@ var React = require('react');
 var _ = require('lodash');
 
 var ErrorDisplay = React.createClass({
+  propTypes: {
+    errors: React.PropTypes.array.isRequired
+  },
+
   errorItems: function () {
     return _.map(this.props.errors, function (errorMessage) {
       return (<li key={errorMessage}>{errorMessage}</li>);

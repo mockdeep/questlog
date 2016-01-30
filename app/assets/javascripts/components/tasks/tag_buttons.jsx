@@ -6,6 +6,11 @@ var _ = require('lodash');
 var TagButton = require('components/tasks/tag_button');
 
 var TagButtons = React.createClass({
+  propTypes: {
+    tags: React.PropTypes.array.isRequired,
+    task: React.PropTypes.object.isRequired
+  },
+
   isCurrent: function (tag) {
     return _.any(this.currentNames(), function (name) {
       return tag.name === name

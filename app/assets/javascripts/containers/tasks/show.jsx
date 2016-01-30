@@ -11,6 +11,10 @@ var TagStore = require('stores/tag_store');
 var TaskStore = require('stores/task_store');
 
 var TasksShow = React.createClass({
+  propTypes: {
+    params: React.PropTypes.object.isRequired
+  },
+
   contextTypes: {
     router: React.PropTypes.func
   },
