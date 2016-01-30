@@ -91,7 +91,7 @@ var TasksShow = React.createClass({
 
   postponeTask: function (taskId) {
     var attrs = {postpone: this.state.postponeSeconds};
-    return this.storeTask(taskId, attrs);
+    return this.storeTask(taskId, attrs, {taskStatus: 'postponing'});
   },
 
   completeTask: function (taskId) {

@@ -16,17 +16,11 @@ var PostponeButton = React.createClass({
     postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired
   },
-  getInitialState: function () {
-    return {labelContent: 'Postpone for:'};
-  },
-
   disableButton: function () {
-    this.setState({labelContent: 'Postponing...'});
     this.props.disable();
   },
 
   updateButton: function () {
-    this.setState({labelContent: 'Postponed for:'});
     this.props.loadTask();
   },
 
@@ -70,14 +64,12 @@ var PostponeButton = React.createClass({
 
   className: 'btn btn-info btn-lg btn-block postpone-button',
 
-  componentWillReceiveProps: function (newProps) {
-    if (!newProps.disabled) {
-      this.setState({labelContent: 'Postpone for:'});
-    }
-  },
-
   storePostponeSeconds: function (event) {
     this.props.storePostponeSeconds(event.target.value);
+  },
+
+  buttonMessage: function () {
+    return isPostponing(this.props.task) ? 'Postponing...' : 'Postpone for:';
   },
 
   render: function () {
@@ -88,7 +80,7 @@ var PostponeButton = React.createClass({
         className={this.className}
         onClick={this.postponeTask}
       >
-        <label>{this.state.labelContent}</label>
+        <label>{this.buttonMessage()}</label>
         <select
           onChange={this.storePostponeSeconds}
           onClick={stopPropagation}
@@ -100,5 +92,9 @@ var PostponeButton = React.createClass({
     );
   }
 });
+
+function isPostponing(task) {
+  return task.loadingState === 'postponing';
+}
 
 module.exports = PostponeButton;
