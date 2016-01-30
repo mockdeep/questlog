@@ -136,7 +136,7 @@ def pending_tasks
 end
 
 def postpone_button
-  find('#postpone').find('label')
+  find('#postpone', text: 'Postpone for:').find('label')
 end
 
 def task_title
