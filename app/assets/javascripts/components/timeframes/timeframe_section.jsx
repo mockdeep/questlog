@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
 
 var TaskRow = require('components/tasks/task_row');
 

@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
+var extend = require('lodash').extend;
 
 var NewTaskForm = require('components/tasks/new_task_form');
 var TaskFooter = require('components/common/task_footer');
@@ -34,7 +34,7 @@ var TasksShow = React.createClass({
 
   updateTask: function (data) {
     if (data) {
-      var task = _.extend({}, data.task, {loadingState: 'ready'});
+      var task = extend({}, data.task, {loadingState: 'ready'});
       this.setState({task: task, disabled: false});
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
@@ -64,7 +64,7 @@ var TasksShow = React.createClass({
 
   storeTask: function (taskId, attrs, opts) {
     var loadingState = opts && opts.loadingState || 'updating';
-    var newTask = _.extend({}, this.state.task, {loadingState: loadingState});
+    var newTask = extend({}, this.state.task, {loadingState: loadingState});
     this.setState({task: newTask});
     return TaskStore.update(taskId, attrs);
   },

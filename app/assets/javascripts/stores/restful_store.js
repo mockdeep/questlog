@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var without = require('lodash').without;
 
 var request = require('helpers').request;
 
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   off: function (event, callback) {
-    this.callbacks[event] = _.without(this.callbacks[event], callback);
+    this.callbacks[event] = without(this.callbacks[event], callback);
   },
 
   trigger: function (event) {

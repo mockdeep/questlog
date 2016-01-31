@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var helpers = require('helpers');
+var authenticityToken = require('helpers').authenticityToken;
 
 var SessionsNew = React.createClass({
   render: function () {
@@ -14,7 +14,7 @@ var SessionsNew = React.createClass({
           <input
             type='hidden'
             name='authenticity_token'
-            value={helpers.authenticityToken()}
+            value={authenticityToken()}
           />
           <p>
             <label htmlFor='email'>Email</label>

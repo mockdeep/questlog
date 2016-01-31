@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var moment = require('moment');
 
 var TimeBalancer = require('time_balancer');
@@ -29,7 +28,7 @@ describe('TimeBalancer.base_balances', function () {
       [moment([2014, 11, 31, 10]), { today: 1, week: 3, month: 0, quarter: 0, year: 0 }]
     ];
 
-    _.each(expected_pairs, function (pair) {
+    expected_pairs.map(function (pair) {
       expect(TimeBalancer.base_balances(pair[0])).to.eql(pair[1]);
     });
   });

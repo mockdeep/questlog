@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
 
 var ErrorDisplay = React.createClass({
   propTypes: {
@@ -9,7 +8,7 @@ var ErrorDisplay = React.createClass({
   },
 
   errorItems: function () {
-    return _.map(this.props.errors, function (errorMessage) {
+    return this.props.errors.map(function (errorMessage) {
       return (<li key={errorMessage}>{errorMessage}</li>);
     });
   },

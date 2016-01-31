@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
 
 var stopPropagation = require('helpers').stopPropagation;
 
@@ -58,7 +57,7 @@ var PostponeButton = React.createClass({
   ],
 
   selectOptions: function () {
-    return _.map(this.selectOptionsOptions, function (optionOptions) {
+    return this.selectOptionsOptions.map(function (optionOptions) {
       return this.selectOption(optionOptions);
     }.bind(this));
   },

@@ -5,6 +5,8 @@ var PureRenderMixin = React.PureRenderMixin;
 var DragSource = require('react-dnd').DragSource;
 var DropTarget = require('react-dnd').DropTarget;
 var _ = require('lodash');
+var map = _.map;
+var flow = _.flow;
 
 var timeframeNameMap = require('timeframe_name_map');
 
@@ -118,7 +120,7 @@ var TaskRow = React.createClass({
   timeframeOptions: function () {
     if (!this.state.timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
-      return _.map(timeframeNameMap, function (title, name) {
+      return map(timeframeNameMap, function (title, name) {
         if (name === 'inbox') { title = '-'; }
         return (
           <option value={name} key={name}>{title}</option>
@@ -126,7 +128,7 @@ var TaskRow = React.createClass({
       });
     }
     var self = this;
-    return _.map(timeframeNameMap, function (title, name) {
+    return map(timeframeNameMap, function (title, name) {
       var disabled = !self.timeframeHasSpace(name);
       if (name === 'inbox') { title = '-'; }
       return (
@@ -207,7 +209,7 @@ var TaskRow = React.createClass({
   }
 });
 
-module.exports = _.flow(
+module.exports = flow(
   DragSource('task', taskSource, sourceCollect),
   DropTarget('task', taskTarget, targetCollect)
 )(TaskRow);
