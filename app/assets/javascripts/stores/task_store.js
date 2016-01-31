@@ -1,11 +1,11 @@
 'use strict';
 
-var _ = require('lodash');
+var extend = require('lodash').extend;
 
 var RestfulStore = require('stores/restful_store');
 var Task = require('records/task');
 
-module.exports = _.extend({}, RestfulStore, {
+module.exports = extend({}, RestfulStore, {
   name: 'task',
 
   updateModels: function (data) {

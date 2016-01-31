@@ -2,7 +2,7 @@
 
 var React = require('react');
 var update = require('react/lib/update');
-var _ = require('lodash');
+var partition = require('lodash').partition;
 var HTML5Backend = require('react-dnd-html5-backend');
 var DragDropContext = require('react-dnd').DragDropContext;
 
@@ -26,7 +26,7 @@ var TasksIndex = React.createClass({
   },
 
   setTasks: function (data) {
-    var partitionedTasks = _.partition(data.tasks, isPending);
+    var partitionedTasks = partition(data.tasks, isPending);
     this.setState({
       pendingTasks: partitionedTasks[0],
       currentTasks: partitionedTasks[1]
@@ -36,8 +36,8 @@ var TasksIndex = React.createClass({
   moveTask: function (id, afterId) {
     var tasks = this.state.currentTasks;
 
-    var task = _.find(tasks, function (t) { return t.id === id; });
-    var afterTask = _.find(tasks, function (t) { return t.id === afterId; });
+    var task = tasks.find(function (t) { return t.id === id; });
+    var afterTask = tasks.find(function (t) { return t.id === afterId; });
     var taskIndex = tasks.indexOf(task);
     var afterIndex = tasks.indexOf(afterTask);
 
@@ -55,7 +55,7 @@ var TasksIndex = React.createClass({
     var taskId = component.props.task.id;
     var tasks = this.state.currentTasks;
 
-    var task = _.find(tasks, function (t) { return t.id === taskId; });
+    var task = tasks.find(function (t) { return t.id === taskId; });
     var taskIndex = tasks.indexOf(task);
     var afterTask = tasks[taskIndex + 1];
     var beforeTask = tasks[taskIndex - 1];
@@ -76,17 +76,17 @@ var TasksIndex = React.createClass({
   },
 
   currentTaskPositions: function () {
-    return _.map(this.state.currentTasks, function (task) {
+    return this.state.currentTasks.map(function (task) {
       return task.id;
     });
   },
 
   currentTaskRows: function () {
-    return _.map(this.state.currentTasks, this.taskRow);
+    return this.state.currentTasks.map(this.taskRow);
   },
 
   pendingTaskRows: function () {
-    return _.map(this.state.pendingTasks, this.taskRow);
+    return this.state.pendingTasks.map(this.taskRow);
   },
 
   storeTask: function (taskId, attrs) {

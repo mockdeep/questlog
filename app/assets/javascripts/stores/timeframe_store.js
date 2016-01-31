@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var extend = require('lodash').extend;
 var request = require('helpers').request;
 
 var moment = require('moment');
@@ -51,7 +51,7 @@ function timeframeNameForTask(task) {
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
 }
 
-var TimeframeStore = _.extend({}, RestfulStore, {
+var TimeframeStore = extend({}, RestfulStore, {
   name: 'timeframe',
 
   updateModels: function (data) {

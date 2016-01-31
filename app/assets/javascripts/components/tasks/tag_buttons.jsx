@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var _ = require('lodash');
+var any = require('lodash').any;
 
 var TagButton = require('components/tasks/tag_button');
 
@@ -12,12 +12,12 @@ var TagButtons = React.createClass({
   },
 
   isCurrent: function (tag) {
-    return _.any(this.currentNames(), function (name) {
+    return any(this.currentNames(), function (name) {
       return tag.name === name
     });
   },
   tagButtons: function () {
-    return _.map(this.props.tags, this.tagButton);
+    return this.props.tags.map(this.tagButton);
   },
   tagButton: function (tag) {
     return (

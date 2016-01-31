@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require('lodash');
+var extend = require('lodash').extend;
 
 var request = require('helpers').request;
 
 var RestfulStore = require('stores/restful_store');
 var TaskStore = require('stores/task_store');
 
-var BulkTaskStore = _.extend({}, RestfulStore, {
+var BulkTaskStore = extend({}, RestfulStore, {
   name: 'bulk_task',
 
   update: function (attrs) {

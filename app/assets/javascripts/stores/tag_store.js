@@ -1,12 +1,12 @@
 'use strict';
 
-var _ = require('lodash');
+var extend = require('lodash').extend;
 
 var request = require('helpers').request;
 var RestfulStore = require('stores/restful_store');
 var TaskStore = require('stores/task_store');
 
-var TagStore = _.extend({}, RestfulStore, {
+var TagStore = extend({}, RestfulStore, {
   name: 'tag',
 
   get: function (url) {
