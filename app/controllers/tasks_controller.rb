@@ -42,9 +42,9 @@ private
 
   def task_params
     params.require(:task)
-      .permit(*permitted_params)
-      .merge(parsed_title)
-      .symbolize_keys
+          .permit(*permitted_params)
+          .merge(parsed_title)
+          .symbolize_keys
   end
 
   def permitted_params

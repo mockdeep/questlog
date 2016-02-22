@@ -24,7 +24,7 @@ RSpec.describe Callable do
     end
 
     expect do
-      MyCallableClass.() # rubocop:disable Style/MethodCallParentheses
+      MyCallableClass.()
     end.to raise_error(NotImplementedError)
   end
 

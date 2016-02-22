@@ -40,7 +40,7 @@ RSpec.describe TagsController, '#index' do
     get(:index, valid_params)
     desired_attrs = %w(id slug unfinished_tasks_count name)
     tag_attrs = tag.reload.attributes.slice(*desired_attrs)
-    tag_attrs.merge!('priority' => nil)
+    tag_attrs['priority'] = nil
     expected = { 'tags' => [all_tag, tag_attrs] }
     expect(JSON.parse(response.body)).to eq(expected)
   end

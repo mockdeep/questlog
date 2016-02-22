@@ -38,7 +38,7 @@ class Task < ActiveRecord::Base
 
   def self.reposition(ids)
     return unless ids.any?
-    fail ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
+    raise ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
     where(id: ids).update_all(['position = idx(array[?], id)', ids])
   end
 
@@ -61,8 +61,8 @@ class Task < ActiveRecord::Base
       self.release_at = Time.zone.now + repeat_seconds if repeat_seconds
       self.skip_count = 0
       @decrement_counters = true if changed_to_done?
-    else
-      @increment_counters = true if changed_to_not_done?
+    elsif changed_to_not_done?
+      @increment_counters = true
     end
   end
 

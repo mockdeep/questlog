@@ -8,7 +8,7 @@ class TitleParser
     RepeatParser,
     EstimateParser,
     ReleaseAtParser,
-  ]
+  ].freeze
 
   def call(title)
     return {} unless title

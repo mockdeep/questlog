@@ -54,7 +54,7 @@ group :development, :test do
   gem 'guard'
   gem 'rspec-rails'
   gem 'guard-rubocop'
-  gem 'haml-lint', require: false
+  gem 'haml_lint', require: false
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
   gem 'shoulda-matchers'
@@ -67,8 +67,7 @@ group :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'launchy'
-  # https://github.com/teampoltergeist/poltergeist/pull/608
-  gem 'poltergeist', github: 'teampoltergeist/poltergeist'
+  gem 'poltergeist'
   gem 'rb-inotify'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
