@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.2
   Include:
     - !ruby/regexp /.*\.rake\z/
     - Gemfile
@@ -8,7 +9,9 @@ AllCops:
   Exclude:
     - db/schema.rb
     - !ruby/regexp /node_modules\/.*/
-  RunRailsCops: true
+
+Rails:
+  Enabled: true
 
 AccessModifierIndentation:
   EnforcedStyle: outdent
@@ -43,7 +46,10 @@ Style/EmptyLinesAroundModuleBody:
 Style/LambdaCall:
   EnforcedStyle: braces
 
-TrailingComma:
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
 # enable or confirm the rules below

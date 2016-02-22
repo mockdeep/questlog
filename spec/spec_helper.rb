@@ -89,7 +89,7 @@ def configure_for_threading!
 end
 
 def threaded(thread_count = 5)
-  threads = thread_count.times.map do
+  threads = Array.new(thread_count) do
     Thread.new do
       yield
       ActiveRecord::Base.connection.close
