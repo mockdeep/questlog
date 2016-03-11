@@ -7,7 +7,7 @@
     "babelify": "^7.2.0",
     "browserify": "*",
     "browserify-incremental": "*",
-    "es5-shim": "*",
+    "es5-shim": "^4.5.7",
     "history": "*",
     "immutable": "*",
     "jquery": "*",
