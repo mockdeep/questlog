@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303155734) do
+ActiveRecord::Schema.define(version: 20160517003354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160303155734) do
     t.string   "name",       null: false
   end
 
+  add_index "stats", ["name", "user_id", "timestamp"], name: "index_stats_on_name_and_user_id_and_timestamp", unique: true, using: :btree
   add_index "stats", ["name"], name: "index_stats_on_name", using: :btree
   add_index "stats", ["user_id"], name: "index_stats_on_user_id", using: :btree
 
