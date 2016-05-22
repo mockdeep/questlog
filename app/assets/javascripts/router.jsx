@@ -7,7 +7,6 @@ var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 
-var RouteHandler = Router.RouteHandler;
 var history = createBrowserHistory();
 
 var BulkTasksNew = require('containers/bulk_tasks/new');
@@ -19,6 +18,9 @@ var TasksShow = require('containers/tasks/show');
 var TimeframesIndex = require('containers/timeframes/index');
 
 var AppBase = React.createClass({
+  propTypes: {
+    children: React.PropTypes.object.isRequired
+  },
   render: function () {
     return (
       <div>{this.props.children}</div>

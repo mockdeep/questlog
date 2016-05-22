@@ -1,9 +1,10 @@
+'use strict';
+
 $(document).ready(function () {
-  'use strict';
+  const editIcon = $('#edit-task');
 
   $('#new-title').focus();
 
-  var editIcon = $('#edit-task');
   editIcon.click(function () {
     if (editIcon.hasClass('fa-arrow-down')) {
       $('#new-form').fadeOut(200, function () {

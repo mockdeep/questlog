@@ -8,6 +8,7 @@ var reloadPage = function () {
 };
 
 var logError = function (error) {
+  // eslint-disable-next-line no-console
   console.log('error: ', error.statusText);
 };
 
@@ -25,7 +26,7 @@ var request = function (options) {
 };
 
 var flash = function (status, message) {
-  var $myFlash = $('<div />', { class: 'flash-' + status, text: message });
+  var $myFlash = $('<div />', { 'class': 'flash-' + status, text: message });
   $('#flashes').append($myFlash);
   $('[class^=flash-]').fadeOut(1500);
 };

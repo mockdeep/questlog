@@ -31,7 +31,7 @@ var BulkTasksNew = React.createClass({
     return {
       className: 'new_bulk_task',
       onSubmit: this.saveTasks,
-      id: 'new_bulk_task',
+      id: 'new_bulk_task'
     };
   },
 

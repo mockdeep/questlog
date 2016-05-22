@@ -1,9 +1,8 @@
 'use strict';
 
-var ToEnglish = require('to_english');
+const ToEnglish = require('to_english');
 
 describe('ToEnglish.seconds', function () {
-
   it('returns seconds when < 1 minute', function () {
     expect(ToEnglish.seconds(0)).to.equal('None');
     expect(ToEnglish.seconds(1)).to.equal('1 second');
@@ -30,12 +29,10 @@ describe('ToEnglish.seconds', function () {
   });
 
   it('throws an error when given a negative number', function () {
-    var expectedError = new RangeError('number must not be negative');
     expect(function () { ToEnglish.seconds(-1); }).to.throw(RangeError, 'number must not be negative');
   });
 
   it('throws an error given an invalid type', function () {
-    var expectedError = new TypeError('input must be a number');
     expect(function () { ToEnglish.seconds('0'); }).to.throw(TypeError, 'input must be a number');
     expect(function () { ToEnglish.seconds('Blah'); }).to.throw(TypeError, 'input must be a number');
     expect(function () { ToEnglish.seconds(['Blah']); }).to.throw(TypeError, 'input must be a number');

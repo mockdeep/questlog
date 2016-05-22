@@ -19,7 +19,7 @@ var taskSource = {
     return { item: { id: props.task.id } };
   },
 
-  endDrag: function (props, monitor, component) {
+  endDrag: function (props, _, component) {
     props.saveTaskPositions(component);
   }
 };
@@ -38,7 +38,7 @@ function sourceCollect(connect, monitor) {
   };
 }
 
-function targetCollect(connect, monitor) {
+function targetCollect(connect) {
   return { connectDropTarget: connect.dropTarget() };
 }
 

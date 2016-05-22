@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "eslint": "^2.10.2",
+    "eslint-plugin-react": "^5.1.1",
     "jsdom": "^7.2.0",
     "mocha": "^2.2.5",
     "react-addons-test-utils": "^0.14.7",
@@ -34,6 +36,7 @@
     "node": "4.2.2"
   },
   "scripts": {
+    "pretest": "eslint app/assets/javascripts/ test/ --ext .js,.jsx",
     "test": "mocha"
   }
 }

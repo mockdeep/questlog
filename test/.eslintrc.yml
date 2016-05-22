@@ -1,0 +1,7 @@
+env:
+  mocha: true
+  node: true
+globals:
+  expect: true
+rules:
+  no-magic-numbers: ['off']

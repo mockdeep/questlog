@@ -22,12 +22,13 @@ var TasksShow = React.createClass({
   getInitialState: function () {
     return {
       task: {title: 'Loading...', loadingState: 'loading'},
-      disabled: true, tags: [],
+      disabled: true,
+      tags: [],
       postponeSeconds: 300
     };
   },
 
-  loadTask: function (url) {
+  loadTask: function () {
     var tagName = this.props.params.slug || '';
     return TagStore.get(tagName).then(this.updateTask);
   },

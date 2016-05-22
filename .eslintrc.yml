@@ -1,0 +1,33 @@
+root: true
+# extends: ['./.eslint-all.js', 'plugin:react/recommended']
+extends: ['eslint:recommended', 'plugin:react/recommended']
+plugins: [react]
+env:
+  browser: true
+  es6: true
+  node: true
+globals:
+  $: true
+ecmaFeatures:
+  jsx: true
+rules:
+  padded-blocks: [error, never]
+  quotes: [error, single]
+  quote-props: [error, as-needed, { keywords: true }]
+  brace-style: [error, 1tbs, { allowSingleLine: true }]
+  prefer-arrow-callback: [off] # for now...
+  func-names: [off] # for now...
+  indent: [error, 2]
+  max-len: [error, 115]
+  max-statements-per-line: [error, { max: 2 }]
+  object-property-newline: [error, { allowMultiplePropertiesPerLine: true }]
+  one-var: [error, never]
+  init-declarations: [off]
+  no-magic-numbers: [off]
+  object-shorthand: [off] # for now...
+  no-ternary: [off]
+  space-before-function-paren: [error, { anonymous: always, named: never }]
+  max-statements: [error, { max: 14 }]
+  require-jsdoc: [off]
+  prefer-reflect: [off] # for now...
+  no-inline-comments: [off]

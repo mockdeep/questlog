@@ -1,16 +1,18 @@
 'use strict';
 
-var extend = require('lodash').extend;
-var request = require('helpers').request;
+const extend = require('lodash').extend;
+const request = require('helpers').request;
 
-var moment = require('moment');
-var Promise = window.Promise || require('promise-polyfill');
+const moment = require('moment');
 
-var Timeframe = require('records/timeframe');
-var RestfulStore = require('stores/restful_store');
-var TaskStore = require('stores/task_store');
+// eslint-disable-next-line global-require
+const Promise = window.Promise || require('promise-polyfill');
 
-var timeframeList = [
+const Timeframe = require('records/timeframe');
+const RestfulStore = require('stores/restful_store');
+const TaskStore = require('stores/task_store');
+
+const timeframeList = [
   'inbox',
   'today',
   'week',
@@ -19,44 +21,47 @@ var timeframeList = [
   'year',
   'lustrum',
   'decade'
-]
+];
 
-var timeframeEnds = {
+const timeframeEnds = {
   today: moment().endOf('day'),
   week: moment().endOf('week'),
   month: moment().endOf('month'),
   quarter: moment().endOf('quarter'),
-  year: moment().endOf('year'),
-}
+  year: moment().endOf('year')
+};
 
-var medianProductivity;
+let medianProductivity;
 
-function timeframeNameForPendingTask(task) {
-  var index = timeframeList.indexOf(task.timeframe) - 1;
-  var timeframeName;
-  var timeframeEnd;
-  var releaseAt = moment(task.release_at);
+const timeframeNameForPendingTask = function (task) {
+  const releaseAt = moment(task.release_at);
+  let index = timeframeList.indexOf(task.timeframe) - 1;
+  let timeframeName;
+  let timeframeEnd;
 
   do {
     index += 1;
     timeframeName = timeframeList[index];
     timeframeEnd = timeframeEnds[timeframeName];
     if (!timeframeEnd) { return timeframeName; }
-  } while (releaseAt.diff(timeframeEnd) > 0)
+  } while (releaseAt.diff(timeframeEnd) > 0);
+
   return timeframeList[index];
-}
+};
 
-function timeframeNameForTask(task) {
+const timeframeNameForTask = function (task) {
   if (!task.timeframe) { return 'inbox'; }
-  return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
-}
 
-var TimeframeStore = extend({}, RestfulStore, {
+  return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
+};
+
+const TimeframeStore = extend({}, RestfulStore, {
   name: 'timeframe',
 
   updateModels: function (data) {
-    var tasks = data.tasks;
-    var timeframes = {};
+    const tasks = data.tasks;
+    const timeframes = {};
+
     timeframeList.forEach(function (timeframeName) {
       timeframes[timeframeName] = {
         name: timeframeName,
@@ -65,7 +70,8 @@ var TimeframeStore = extend({}, RestfulStore, {
       };
     });
     tasks.forEach(function (task) {
-      var timeframeName = timeframeNameForTask(task);
+      const timeframeName = timeframeNameForTask(task);
+
       if (task.pending) {
         timeframes[timeframeName].pendingTasks.push(task);
       } else {
@@ -73,8 +79,10 @@ var TimeframeStore = extend({}, RestfulStore, {
       }
     });
     this.models = timeframeList.map(function (timeframeName) {
-      var timeframe = timeframes[timeframeName];
+      const timeframe = timeframes[timeframeName];
+
       timeframe.medianProductivity = medianProductivity;
+
       return new Timeframe(timeframe);
     });
   },
@@ -87,13 +95,13 @@ var TimeframeStore = extend({}, RestfulStore, {
   },
 
   getAll: function () {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
       TaskStore.getAll().then(function (data) {
         request({
           method: 'get',
           url: this.url(),
-          success: function (timeframe_data) {
-            medianProductivity = timeframe_data.meta.medianProductivity;
+          success: function (timeframeData) {
+            medianProductivity = timeframeData.meta.medianProductivity;
             this.updateModels(data);
             resolve(this.getData());
           }.bind(this)
