@@ -1,10 +1,14 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var stopPropagation = require('helpers').stopPropagation;
+const stopPropagation = require('helpers').stopPropagation;
 
-var SelectOption = React.createClass({
+const isPostponing = function (task) {
+  return task.loadingState === 'postponing';
+};
+
+const SelectOption = React.createClass({
   propTypes: {
     value: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
@@ -15,7 +19,7 @@ var SelectOption = React.createClass({
   }
 });
 
-var PostponeButton = React.createClass({
+const PostponeButton = React.createClass({
   propTypes: {
     task: React.PropTypes.object.isRequired,
     postponeSeconds: React.PropTypes.number.isRequired,
@@ -102,9 +106,5 @@ var PostponeButton = React.createClass({
     );
   }
 });
-
-function isPostponing(task) {
-  return task.loadingState === 'postponing';
-}
 
 module.exports = PostponeButton;

@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var ErrorDisplay = require('components/common/error_display');
+const ErrorDisplay = require('components/common/error_display');
 
-var EditTaskForm = React.createClass({
+const EditTaskForm = React.createClass({
   propTypes: {
     storeTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired
@@ -22,10 +22,12 @@ var EditTaskForm = React.createClass({
     event.preventDefault();
     if (!this.isTaskReady) { return; }
     if (this.state.taskTitle.trim() === '') {
-      var newErrors = this.state.errors.concat('task title can\'t be blank');
+      const newErrors = this.state.errors.concat('task title can\'t be blank');
+
       this.setState({errors: newErrors});
     } else {
-      var attrs = {title: this.state.taskTitle.trim()};
+      const attrs = {title: this.state.taskTitle.trim()};
+
       this.props.storeTask(this.props.task.id, attrs);
       this.toggleDisplay();
     }
@@ -41,7 +43,8 @@ var EditTaskForm = React.createClass({
   },
 
   buttonMessage: function () {
-    var isUpdating = this.props.task.loadingState === 'updating';
+    const isUpdating = this.props.task.loadingState === 'updating';
+
     return isUpdating ? 'Updating Task' : 'Update Task';
   },
 

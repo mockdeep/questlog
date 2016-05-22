@@ -1,48 +1,49 @@
 'use strict';
 
-var React = require('react');
-var PureRenderMixin = React.PureRenderMixin;
-var DragSource = require('react-dnd').DragSource;
-var DropTarget = require('react-dnd').DropTarget;
-var _ = require('lodash');
-var map = _.map;
-var flow = _.flow;
+const React = require('react');
+const PureRenderMixin = React.PureRenderMixin;
+const dragSource = require('react-dnd').DragSource;
+const dropTarget = require('react-dnd').DropTarget;
+const _ = require('lodash');
+const map = _.map;
+const flow = _.flow;
 
-var timeframeNameMap = require('timeframe_name_map');
+const timeframeNameMap = require('timeframe_name_map');
 
-var taskSource = {
+const taskSource = {
   canDrag: function (props) {
     return !props.timeframesEnabled;
   },
 
   beginDrag: function (props) {
-    return { item: { id: props.task.id } };
+    return {item: {id: props.task.id}};
   },
 
-  endDrag: function (props, _, component) {
+  endDrag: function (props, _monitor, component) {
     props.saveTaskPositions(component);
   }
 };
 
-var taskTarget = {
+const taskTarget = {
   hover: function (props, monitor) {
-    var draggedId = monitor.getItem().item.id;
+    const draggedId = monitor.getItem().item.id;
+
     props.moveTask(draggedId, props.task.id);
   }
-}
+};
 
-function sourceCollect(connect, monitor) {
+const sourceCollect = function (connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   };
-}
+};
 
-function targetCollect(connect) {
-  return { connectDropTarget: connect.dropTarget() };
-}
+const targetCollect = function (connect) {
+  return {connectDropTarget: connect.dropTarget()};
+};
 
-var TaskRow = React.createClass({
+const TaskRow = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -75,6 +76,7 @@ var TaskRow = React.createClass({
 
   deleteTask: function (event) {
     event.preventDefault();
+    // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
       this.props.destroyTask(this.props.task.id);
     }
@@ -89,10 +91,12 @@ var TaskRow = React.createClass({
   },
 
   className: function () {
-    var classString = '';
+    let classString = '';
+
     if (this.priority()) {
-      classString += ' priority-' + this.priority();
+      classString += ` priority-${this.priority()}`;
     }
+
     return classString;
   },
 
@@ -109,11 +113,13 @@ var TaskRow = React.createClass({
   },
 
   optionText: function (title, name) {
-    var text = title;
-    var space = this.props.timeframeSpace[name];
+    const space = this.props.timeframeSpace[name];
+    let text = title;
+
     if (this.timeframe() !== name && isFinite(space)) {
-      text += ' (' + space + ')';
+      text += ` (${space})`;
     }
+
     return text;
   },
 
@@ -121,19 +127,22 @@ var TaskRow = React.createClass({
     if (!this.state.timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
       return map(timeframeNameMap, function (title, name) {
-        if (name === 'inbox') { title = '-'; }
+        const optionTitle = name === 'inbox' ? '-' : title;
+
         return (
-          <option value={name} key={name}>{title}</option>
+          <option value={name} key={name}>{optionTitle}</option>
         );
       });
     }
-    var self = this;
+    const that = this;
+
     return map(timeframeNameMap, function (title, name) {
-      var disabled = !self.timeframeHasSpace(name);
-      if (name === 'inbox') { title = '-'; }
+      const disabled = !that.timeframeHasSpace(name);
+      const optionTitle = name === 'inbox' ? '-' : title;
+
       return (
         <option value={name} disabled={disabled} key={name}>
-          {self.optionText(title, name)}
+          {that.optionText(optionTitle, name)}
         </option>
       );
     });
@@ -158,9 +167,9 @@ var TaskRow = React.createClass({
   },
 
   taskEstimate: function () {
-    if (this.props.timeframesEnabled) {
-      return '(' + this.props.task.estimate_minutes + ') ';
-    }
+    if (!this.props.timeframesEnabled) { return false; }
+
+    return `(${this.props.task.estimate_minutes}) `;
   },
 
   undoTask: function () {
@@ -168,17 +177,17 @@ var TaskRow = React.createClass({
   },
 
   undoButton: function () {
-    if (this.props.task.pending) {
-      return (
-        <button className='btn btn-link' role='Link' onClick={this.undoTask}>
-          Undo
-        </button>
-      );
-    }
+    if (!this.props.task.pending) { return false; }
+
+    return (
+      <button className='btn btn-link' role='Link' onClick={this.undoTask}>
+        Undo
+      </button>
+    );
   },
 
   render: function () {
-    var style = {opacity: this.props.isDragging ? 0 : 1};
+    const style = {opacity: this.props.isDragging ? 0 : 1};
 
     return (
       this.props.connectDropTarget(this.props.connectDragSource(
@@ -210,6 +219,6 @@ var TaskRow = React.createClass({
 });
 
 module.exports = flow(
-  DragSource('task', taskSource, sourceCollect),
-  DropTarget('task', taskTarget, targetCollect)
+  dragSource('task', taskSource, sourceCollect),
+  dropTarget('task', taskTarget, targetCollect)
 )(TaskRow);

@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var authenticityToken = require('helpers').authenticityToken;
+const authenticityToken = require('helpers').authenticityToken;
 
-var SessionsNew = React.createClass({
+const SessionsNew = React.createClass({
   render: function () {
     return (
       <div>

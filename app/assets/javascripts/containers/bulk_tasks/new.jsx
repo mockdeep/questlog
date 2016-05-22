@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
-var History = require('react-router').History;
+const React = require('react');
+const History = require('react-router').History;
 
-var BulkTaskStore = require('stores/bulk_task_store');
+const BulkTaskStore = require('stores/bulk_task_store');
 
-var BulkTasksNew = React.createClass({
+const BulkTasksNew = React.createClass({
   mixins: [History],
 
   getInitialState: function () {
@@ -22,8 +22,9 @@ var BulkTasksNew = React.createClass({
 
   saveTasks: function (event) {
     event.preventDefault();
-    if (this.state.taskTitles.trim() == '') { return; }
-    var tasksParams = {titles: this.state.taskTitles.trim()};
+    if (this.state.taskTitles.trim() === '') { return; }
+    const tasksParams = {titles: this.state.taskTitles.trim()};
+
     BulkTaskStore.create(tasksParams).then(this.redirectToTasksIndex());
   },
 

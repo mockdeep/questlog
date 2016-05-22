@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var PrivacyPage = React.createClass({
+const PrivacyPage = React.createClass({
   render: function () {
     return (
       <div>

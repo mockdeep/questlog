@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
-var Link = require('react-router').Link;
+const React = require('react');
+const Link = require('react-router').Link;
 
-var HelpLink = require('components/common/help_link');
+const HelpLink = require('components/common/help_link');
 
-var TaskFooter = React.createClass({
+const TaskFooter = React.createClass({
   render: function () {
     return (
       <p>

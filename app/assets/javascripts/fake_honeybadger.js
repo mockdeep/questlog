@@ -1,5 +1,7 @@
-module.exports = {
-  configure: function () { },
+'use strict';
 
-  setContext: function () { }
+module.exports = {
+  configure: function () { /* do nothing */ },
+
+  setContext: function () { /* do nothing */ }
 };

@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var TaskRow = require('components/tasks/task_row');
+const TaskRow = require('components/tasks/task_row');
 
-var TimeframeSection = React.createClass({
+const TimeframeSection = React.createClass({
   propTypes: {
     timeframe: React.PropTypes.object.isRequired,
     timeframeSpace: React.PropTypes.object.isRequired,
@@ -35,32 +35,33 @@ var TimeframeSection = React.createClass({
   },
 
   maxTime: function () {
-    var minuteMax = this.props.timeframe.minuteMax;
+    const minuteMax = this.props.timeframe.minuteMax;
+
     return isFinite(minuteMax) ? minuteMax : '∞';
   },
 
   currentTasksDiv: function () {
-    if (this.props.timeframe.currentTasks.length > 0) {
-      return (
-        <div>
-          {this.props.timeframe.currentTasks.map(this.renderTask)}
-        </div>
-      );
-    }
+    if (this.props.timeframe.currentTasks.length === 0) { return false; }
+
+    return (
+      <div>
+        {this.props.timeframe.currentTasks.map(this.renderTask)}
+      </div>
+    );
   },
 
   pendingTasksDiv: function () {
-    if (this.props.timeframe.pendingTasks.length > 0) {
-      return (
-        <div className='pending'>
-          {this.props.timeframe.pendingTasks.map(this.renderTask)}
-        </div>
-      );
-    }
+    if (this.props.timeframe.pendingTasks.length === 0) { return false; }
+
+    return (
+      <div className='pending'>
+        {this.props.timeframe.pendingTasks.map(this.renderTask)}
+      </div>
+    );
   },
 
   ratioSpan: function () {
-    var className = this.overLimit() ? 'danger' : '';
+    const className = this.overLimit() ? 'danger' : '';
 
     return (
       <span className={className}>{this.minuteTotal()}/{this.maxTime()}</span>
@@ -72,8 +73,8 @@ var TimeframeSection = React.createClass({
   },
 
   render: function () {
-    var timeframeName = this.props.timeframe.name;
-    var className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
+    const timeframeName = this.props.timeframe.name;
+    const className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
 
     return (
       <div key={timeframeName} id={timeframeName} className={className}>

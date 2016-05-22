@@ -1,8 +1,8 @@
 'use strict';
 
-var without = require('lodash').without;
+const without = require('lodash').without;
 
-var request = require('helpers').request;
+const request = require('helpers').request;
 
 module.exports = {
   models: [],
@@ -20,11 +20,11 @@ module.exports = {
 
   trigger: function (event) {
     if (!this.callbacks || !this.callbacks[event]) { return; }
-    this.callbacks[event].map(function (callback) { callback(); });
+    this.callbacks[event].forEach(function (callback) { callback(); });
   },
 
   url: function () {
-    return '/' + this.name + 's';
+    return `/${this.name}s`;
   },
 
   load: function () {
@@ -41,15 +41,17 @@ module.exports = {
   },
 
   updateModels: function (data) {
-    this.models = data[this.name + 's'];
+    this.models = data[`${this.name}s`];
     this.loaded = true;
     this.trigger('change');
   },
 
   getAll: function () {
     if (this.loaded) {
-      var data = {};
-      data[this.name + 's'] = this.models;
+      const data = {};
+
+      data[`${this.name}s`] = this.models;
+
       return new Promise(function (resolve) { resolve(data); });
     } else {
       return request({
@@ -61,8 +63,10 @@ module.exports = {
   },
 
   create: function (attrs) {
-    var data = {};
+    const data = {};
+
     data[this.name] = attrs;
+
     return request({
       url: this.url(),
       method: 'post',
@@ -72,10 +76,12 @@ module.exports = {
   },
 
   update: function (id, attrs) {
-    var data = {};
+    const data = {};
+
     data[this.name] = attrs;
+
     return request({
-      url: this.url() + '/' + id,
+      url: `${this.url()}/${id}`,
       data: data,
       success: this.unload.bind(this)
     });
@@ -83,7 +89,7 @@ module.exports = {
 
   destroy: function (id) {
     return request({
-      url: this.url() + '/' + id,
+      url: `${this.url()}/${id}`,
       method: 'delete',
       success: this.unload.bind(this)
     });

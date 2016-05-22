@@ -1,8 +1,8 @@
+/* eslint-disable no-undef, global-require, camelcase */
 //= require_self
 //= require jquery_ujs
 //= require bootstrap
 //= require tasks
-/* eslint-disable no-undef */
 
 'use strict';
 window.$ = window.jQuery = require('jquery');
@@ -14,7 +14,7 @@ Honeybadger.configure({
   onerror: true
 });
 
-Honeybadger.setContext({ user_id: gon.user_id });
+Honeybadger.setContext({user_id: gon.user_id});
 
 require('es5-shim');
 

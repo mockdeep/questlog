@@ -1,15 +1,15 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var ErrorDisplay = React.createClass({
+const ErrorDisplay = React.createClass({
   propTypes: {
     errors: React.PropTypes.array.isRequired
   },
 
   errorItems: function () {
     return this.props.errors.map(function (errorMessage) {
-      return (<li key={errorMessage}>{errorMessage}</li>);
+      return <li key={errorMessage}>{errorMessage}</li>;
     });
   },
 

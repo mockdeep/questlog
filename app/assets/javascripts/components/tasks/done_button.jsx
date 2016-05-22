@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var DoneButton = React.createClass({
+const DoneButton = React.createClass({
   propTypes: {
     completeTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired
@@ -18,7 +18,8 @@ var DoneButton = React.createClass({
   },
 
   buttonMessage: function () {
-    var isMarkingDone = this.props.task.loadingState === 'marking_done';
+    const isMarkingDone = this.props.task.loadingState === 'marking_done';
+
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   },
 

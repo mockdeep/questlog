@@ -1,24 +1,24 @@
 'use strict';
 
-var React = require('react');
-var HTML5Backend = require('react-dnd-html5-backend');
-var DragDropContext = require('react-dnd').DragDropContext;
+const React = require('react');
+const HTML5Backend = require('react-dnd-html5-backend');
+const dragDropContext = require('react-dnd').DragDropContext;
 
-var ToEnglish = require('to_english');
-var TaskStore = require('stores/task_store');
+const ToEnglish = require('to_english');
+const TaskStore = require('stores/task_store');
 
-var NewTaskForm = require('components/tasks/new_task_form');
-var TimeframeStore = require('stores/timeframe_store');
-var TimeframeSection = require('components/timeframes/timeframe_section');
+const NewTaskForm = require('components/tasks/new_task_form');
+const TimeframeStore = require('stores/timeframe_store');
+const TimeframeSection = require('components/timeframes/timeframe_section');
 
-function timeframeHasTasks(timeframe) {
+const timeframeHasTasks = function (timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
-}
+};
 
-var TimeframesIndex = React.createClass({
+const TimeframesIndex = React.createClass({
 
   getInitialState: function () {
-    return { timeframes: [], medianProductivity: null, loading: true };
+    return {timeframes: [], medianProductivity: null, loading: true};
   },
 
   componentDidMount: function () {
@@ -49,10 +49,12 @@ var TimeframesIndex = React.createClass({
   },
 
   timeframeSpace: function () {
-    var counts = {};
+    const counts = {};
+
     this.state.timeframes.forEach(function (timeframe) {
       counts[timeframe.name] = timeframe.minuteMax - timeframe.minuteTotal;
     });
+
     return counts;
   },
 
@@ -97,7 +99,7 @@ var TimeframesIndex = React.createClass({
 
   render: function () {
     if (this.state.loading) {
-      return (<h1>Loading Timeframes...</h1>);
+      return <h1>Loading Timeframes...</h1>;
     } else {
       return (
         <div>
@@ -111,4 +113,4 @@ var TimeframesIndex = React.createClass({
   }
 });
 
-module.exports = DragDropContext(HTML5Backend)(TimeframesIndex);
+module.exports = dragDropContext(HTML5Backend)(TimeframesIndex);

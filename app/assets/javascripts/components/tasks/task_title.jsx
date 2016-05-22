@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var DeleteButton = require('components/tasks/delete_button');
-var timeframeNameMap = require('timeframe_name_map');
+const DeleteButton = require('components/tasks/delete_button');
+const timeframeNameMap = require('timeframe_name_map');
 
-var TaskTitle = React.createClass({
+const TaskTitle = React.createClass({
   propTypes: {
     task: React.PropTypes.object.isRequired,
     loadTask: React.PropTypes.func.isRequired,
@@ -13,17 +13,19 @@ var TaskTitle = React.createClass({
   },
 
   className: function () {
-    var classString = 'col-md-12 task-display';
+    let classString = 'col-md-12 task-display';
+
     if (this.props.task.priority) {
-      classString = classString + ' priority-' + this.props.task.priority;
+      classString = `${classString} priority-${this.props.task.priority}`;
     }
     if (this.props.task.skip_count >= 15) {
-      classString = classString + ' over-skipped';
+      classString = `${classString} over-skipped`;
     }
+
     return classString;
   },
   title: function () {
-    return 'skip count: ' + this.props.task.skip_count;
+    return `skip count: ${this.props.task.skip_count}`;
   },
   emblems: function () {
     if (this.props.task.repeat_seconds) {
@@ -34,10 +36,11 @@ var TaskTitle = React.createClass({
   },
 
   timeframeName: function () {
-    if (this.props.task.timeframe) {
-      var timeframeName = timeframeNameMap[this.props.task.timeframe];
-      return (<div className='timeframe'>{timeframeName}</div>);
-    }
+    if (!this.props.task.timeframe) { return false; }
+
+    const timeframeName = timeframeNameMap[this.props.task.timeframe];
+
+    return <div className='timeframe'>{timeframeName}</div>;
   },
 
   render: function () {

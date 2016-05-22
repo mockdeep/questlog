@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react');
-var Link = require('react-router').Link;
+const React = require('react');
+const Link = require('react-router').Link;
 
-var WhatPage = React.createClass({
+const WhatPage = React.createClass({
   render: function () {
     return (
       <div>

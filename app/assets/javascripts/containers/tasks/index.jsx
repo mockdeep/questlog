@@ -1,22 +1,26 @@
 'use strict';
 
-var React = require('react');
-var update = require('react/lib/update');
-var partition = require('lodash').partition;
-var HTML5Backend = require('react-dnd-html5-backend');
-var DragDropContext = require('react-dnd').DragDropContext;
+const React = require('react');
+const update = require('react/lib/update');
+const partition = require('lodash').partition;
+const HTML5Backend = require('react-dnd-html5-backend');
+const dragDropContext = require('react-dnd').DragDropContext;
 
-var TaskStore = require('stores/task_store');
-var BulkTaskStore = require('stores/bulk_task_store');
+const TaskStore = require('stores/task_store');
+const BulkTaskStore = require('stores/bulk_task_store');
 
-var NewTaskForm = require('components/tasks/new_task_form');
-var TaskRow = require('components/tasks/task_row');
+const NewTaskForm = require('components/tasks/new_task_form');
+const TaskRow = require('components/tasks/task_row');
 
-var isPending = function (task) {
+const isPending = function (task) {
   return task.pending;
 };
 
-var TasksIndex = React.createClass({
+const findTask = function (tasks, taskId) {
+  return tasks.find(function (task) { return task.id === taskId; });
+};
+
+const TasksIndex = React.createClass({
   getInitialState: function () {
     return {currentTasks: [], pendingTasks: []};
   },
@@ -26,7 +30,8 @@ var TasksIndex = React.createClass({
   },
 
   setTasks: function (data) {
-    var partitionedTasks = partition(data.tasks, isPending);
+    const partitionedTasks = partition(data.tasks, isPending);
+
     this.setState({
       pendingTasks: partitionedTasks[0],
       currentTasks: partitionedTasks[1]
@@ -34,14 +39,14 @@ var TasksIndex = React.createClass({
   },
 
   moveTask: function (id, afterId) {
-    var tasks = this.state.currentTasks;
+    const tasks = this.state.currentTasks;
 
-    var task = tasks.find(function (t) { return t.id === id; });
-    var afterTask = tasks.find(function (t) { return t.id === afterId; });
-    var taskIndex = tasks.indexOf(task);
-    var afterIndex = tasks.indexOf(afterTask);
+    const task = findTask(tasks, id);
+    const afterTask = findTask(tasks, afterId);
+    const taskIndex = tasks.indexOf(task);
+    const afterIndex = tasks.indexOf(afterTask);
 
-    var newTasks = update(tasks, {
+    const newTasks = update(tasks, {
       $splice: [
         [taskIndex, 1],
         [afterIndex, 0, task]
@@ -52,14 +57,14 @@ var TasksIndex = React.createClass({
   },
 
   saveTaskPositions: function (component) {
-    var taskId = component.props.task.id;
-    var tasks = this.state.currentTasks;
+    const taskId = component.props.task.id;
+    const tasks = this.state.currentTasks;
 
-    var task = tasks.find(function (t) { return t.id === taskId; });
-    var taskIndex = tasks.indexOf(task);
-    var afterTask = tasks[taskIndex + 1];
-    var beforeTask = tasks[taskIndex - 1];
-    var newPriority = task.priority;
+    const task = findTask(tasks, taskId);
+    const taskIndex = tasks.indexOf(task);
+    const afterTask = tasks[taskIndex + 1];
+    const beforeTask = tasks[taskIndex - 1];
+    let newPriority = task.priority;
 
     if (beforeTask && afterTask) {
       if (task.priority !== beforeTask.priority && task.priority !== afterTask.priority) {
@@ -72,7 +77,7 @@ var TasksIndex = React.createClass({
     }
 
     BulkTaskStore.update({positions: this.currentTaskPositions()});
-    component.updatePriority({target: { value: newPriority }});
+    component.updatePriority({target: {value: newPriority}});
   },
 
   currentTaskPositions: function () {
@@ -146,4 +151,4 @@ var TasksIndex = React.createClass({
   }
 });
 
-module.exports = DragDropContext(HTML5Backend)(TasksIndex);
+module.exports = dragDropContext(HTML5Backend)(TasksIndex);
