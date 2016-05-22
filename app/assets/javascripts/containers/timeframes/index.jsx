@@ -98,18 +98,16 @@ const TimeframesIndex = React.createClass({
   },
 
   render() {
-    if (this.state.loading) {
-      return <h1>{'Loading Timeframes...'}</h1>;
-    } else {
-      return (
-        <div>
-          <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />
-          <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
-          <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
-          {this.renderedTimeframes()}
-        </div>
-      );
-    }
+    if (this.state.loading) { return <h1>{'Loading Timeframes...'}</h1>; }
+
+    return (
+      <div>
+        <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />
+        <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
+        <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
+        {this.renderedTimeframes()}
+      </div>
+    );
   }
 });
 

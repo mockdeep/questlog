@@ -28,11 +28,9 @@ const TaskTitle = React.createClass({
     return `skip count: ${this.props.task.skip_count}`;
   },
   emblems() {
-    if (this.props.task.repeat_seconds) {
-      return <i className='fa fa-repeat' title='task repeats' />;
-    } else {
-      return '';
-    }
+    if (!this.props.task.repeat_seconds) { return false; }
+
+    return <i className='fa fa-repeat' title='task repeats' />;
   },
 
   timeframeName() {
