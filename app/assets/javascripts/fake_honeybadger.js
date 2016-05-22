@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  configure: function () { /* do nothing */ },
+  configure() { /* do nothing */ },
 
-  setContext: function () { /* do nothing */ }
+  setContext() { /* do nothing */ }
 };

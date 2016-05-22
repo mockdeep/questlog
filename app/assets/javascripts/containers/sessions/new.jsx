@@ -5,7 +5,7 @@ const React = require('react');
 const authenticityToken = require('helpers').authenticityToken;
 
 const SessionsNew = React.createClass({
-  render: function () {
+  render() {
     return (
       <div>
         <h1>{'Log in'}</h1>

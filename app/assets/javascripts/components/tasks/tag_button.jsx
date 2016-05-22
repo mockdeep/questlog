@@ -9,13 +9,13 @@ const TagButton = React.createClass({
     tag: React.PropTypes.object.isRequired
   },
 
-  path: function () {
+  path() {
     return `/${this.props.tag.slug}`;
   },
-  activeButton: function () {
+  activeButton() {
     return this.path() === window.location.pathname;
   },
-  className: function () {
+  className() {
     let classString = 'button btn btn-default';
 
     if (this.activeButton()) {
@@ -30,10 +30,10 @@ const TagButton = React.createClass({
 
     return classString;
   },
-  unfinishedTasksCount: function () {
+  unfinishedTasksCount() {
     return this.props.tag.unfinished_tasks_count;
   },
-  render: function () {
+  render() {
     return (
       <div>
         <Link to={this.path()} className={this.className()}>

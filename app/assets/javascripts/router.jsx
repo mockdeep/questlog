@@ -21,7 +21,7 @@ const AppBase = React.createClass({
   propTypes: {
     children: React.PropTypes.object.isRequired
   },
-  render: function () {
+  render() {
     return (
       <div>{this.props.children}</div>
     );
@@ -29,7 +29,7 @@ const AppBase = React.createClass({
 });
 
 const Nothing = React.createClass({
-  render: function () { return false; }
+  render() { return false; }
 });
 
 const routes =

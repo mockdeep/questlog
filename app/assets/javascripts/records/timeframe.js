@@ -32,7 +32,7 @@ const calculateMaxMinutes = function (name, medianProductivity) {
 };
 
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
-  get: function () {
+  get() {
     const allTasks = this.pendingTasks.concat(this.currentTasks);
 
     return sum(allTasks, 'estimate_minutes');
@@ -40,7 +40,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
 });
 
 Object.defineProperty(Timeframe.prototype, 'minuteMax', {
-  get: function () {
+  get() {
     if (!this._minuteMax) {
       this._minuteMax = calculateMaxMinutes(this.name, this.medianProductivity);
     }
@@ -50,7 +50,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteMax', {
 });
 
 Object.defineProperty(Timeframe.prototype, 'title', {
-  get: function () {
+  get() {
     return timeframeNameMap[this.name];
   }
 });

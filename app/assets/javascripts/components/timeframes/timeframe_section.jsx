@@ -13,7 +13,7 @@ const TimeframeSection = React.createClass({
     timeframeSpace: React.PropTypes.object.isRequired
   },
 
-  renderTask: function (task) {
+  renderTask(task) {
     return (
       <TaskRow
         timeframesEnabled
@@ -27,20 +27,20 @@ const TimeframeSection = React.createClass({
     );
   },
 
-  currentTasks: function () { return this.props.timeframe.currentTasks; },
-  pendingTasks: function () { return this.props.timeframe.pendingTasks; },
+  currentTasks() { return this.props.timeframe.currentTasks; },
+  pendingTasks() { return this.props.timeframe.pendingTasks; },
 
-  minuteTotal: function () {
+  minuteTotal() {
     return this.props.timeframe.minuteTotal;
   },
 
-  maxTime: function () {
+  maxTime() {
     const minuteMax = this.props.timeframe.minuteMax;
 
     return isFinite(minuteMax) ? minuteMax : '∞';
   },
 
-  currentTasksDiv: function () {
+  currentTasksDiv() {
     if (this.props.timeframe.currentTasks.length === 0) { return false; }
 
     return (
@@ -50,7 +50,7 @@ const TimeframeSection = React.createClass({
     );
   },
 
-  pendingTasksDiv: function () {
+  pendingTasksDiv() {
     if (this.props.timeframe.pendingTasks.length === 0) { return false; }
 
     return (
@@ -60,7 +60,7 @@ const TimeframeSection = React.createClass({
     );
   },
 
-  ratioSpan: function () {
+  ratioSpan() {
     const className = this.overLimit() ? 'danger' : '';
 
     return (
@@ -70,11 +70,11 @@ const TimeframeSection = React.createClass({
     );
   },
 
-  overLimit: function () {
+  overLimit() {
     return this.minuteTotal() > this.maxTime();
   },
 
-  render: function () {
+  render() {
     const timeframeName = this.props.timeframe.name;
     const className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
 

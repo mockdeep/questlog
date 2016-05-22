@@ -9,12 +9,8 @@ const TaskStore = require('stores/task_store');
 const TagStore = extend({}, RestfulStore, {
   name: 'tag',
 
-  get: function (url) {
-    return request({
-      method: 'get',
-      url: url,
-      success: function () { /* do nothing */ }
-    });
+  get(url) {
+    return request({url, method: 'get', success() { /* do nothing */ }});
   }
 });
 

@@ -10,19 +10,14 @@ const TaskStore = require('stores/task_store');
 const BulkTaskStore = extend({}, RestfulStore, {
   name: 'bulk_task',
 
-  update: function (attrs) {
+  update(attrs) {
     const data = {};
 
     data[this.name] = attrs;
 
-    return request({
-      url: this.url(),
-      data: data,
-      success: this.unload.bind(this)
-    });
+    return request({data, url: this.url(), success: this.unload.bind(this)});
   }
 });
 
 BulkTaskStore.on('change', function () { TaskStore.unload(); });
 module.exports = BulkTaskStore;
-

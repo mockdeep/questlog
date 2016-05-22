@@ -17,7 +17,7 @@ const MainButtons = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  render: function () {
+  render() {
     return (
       <div id='buttons' className='row main-button'>
         <div className='col-md-6'>

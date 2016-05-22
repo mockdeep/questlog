@@ -22,7 +22,7 @@ const TaskDisplay = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  render: function () {
+  render() {
     return (
       <div>
         <TagButtons task={this.props.task} tags={this.props.tags} />

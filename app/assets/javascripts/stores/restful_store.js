@@ -8,26 +8,26 @@ module.exports = {
   models: [],
   loaded: false,
 
-  on: function (event, callback) {
+  on(event, callback) {
     this.callbacks = this.callbacks || {};
     this.callbacks[event] = this.callbacks[event] || [];
     this.callbacks[event].push(callback);
   },
 
-  off: function (event, callback) {
+  off(event, callback) {
     this.callbacks[event] = without(this.callbacks[event], callback);
   },
 
-  trigger: function (event) {
+  trigger(event) {
     if (!this.callbacks || !this.callbacks[event]) { return; }
     this.callbacks[event].forEach(function (callback) { callback(); });
   },
 
-  url: function () {
+  url() {
     return `/${this.name}s`;
   },
 
-  load: function () {
+  load() {
     request({
       method: 'get',
       url: this.url(),
@@ -35,18 +35,18 @@ module.exports = {
     });
   },
 
-  unload: function () {
+  unload() {
     this.loaded = false;
     this.trigger('change');
   },
 
-  updateModels: function (data) {
+  updateModels(data) {
     this.models = data[`${this.name}s`];
     this.loaded = true;
     this.trigger('change');
   },
 
-  getAll: function () {
+  getAll() {
     if (this.loaded) {
       const data = {};
 
@@ -62,32 +62,32 @@ module.exports = {
     }
   },
 
-  create: function (attrs) {
+  create(attrs) {
     const data = {};
 
     data[this.name] = attrs;
 
     return request({
+      data,
       url: this.url(),
       method: 'post',
-      data: data,
       success: this.unload.bind(this)
     });
   },
 
-  update: function (id, attrs) {
+  update(id, attrs) {
     const data = {};
 
     data[this.name] = attrs;
 
     return request({
+      data,
       url: `${this.url()}/${id}`,
-      data: data,
       success: this.unload.bind(this)
     });
   },
 
-  destroy: function (id) {
+  destroy(id) {
     return request({
       url: `${this.url()}/${id}`,
       method: 'delete',

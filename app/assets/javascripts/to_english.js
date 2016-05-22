@@ -29,7 +29,7 @@ const divideSeconds = function (seconds) {
 };
 
 const ToEnglish = {
-  seconds: function (seconds) {
+  seconds(seconds) {
     if (!isNumeric(seconds)) {
       throw new TypeError('input must be a number');
     } else if (seconds < 0) {

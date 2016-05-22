@@ -6,7 +6,7 @@ const Link = require('react-router').Link;
 const HelpLink = require('components/common/help_link');
 
 const TaskFooter = React.createClass({
-  render: function () {
+  render() {
     return (
       <p>
         <Link to='/tasks'>{'All my tasks'}</Link>

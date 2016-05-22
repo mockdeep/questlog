@@ -8,7 +8,7 @@ const Task = require('records/task');
 module.exports = extend({}, RestfulStore, {
   name: 'task',
 
-  updateModels: function (data) {
+  updateModels(data) {
     data.tasks = data.tasks.map(function (taskData) {
       return new Task(taskData);
     });

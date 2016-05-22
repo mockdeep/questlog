@@ -14,7 +14,7 @@ const SelectOption = React.createClass({
     value: React.PropTypes.string.isRequired
   },
 
-  render: function () {
+  render() {
     return <option value={this.props.value}>{this.props.content}</option>;
   }
 });
@@ -30,15 +30,15 @@ const PostponeButton = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  disableButton: function () {
+  disableButton() {
     this.props.disable();
   },
 
-  updateButton: function () {
+  updateButton() {
     this.props.loadTask();
   },
 
-  postponeTask: function () {
+  postponeTask() {
     if (this.props.disabled) { return; }
     this.disableButton();
     this.props.postponeTask(this.props.task.id).then(this.updateButton);
@@ -60,13 +60,13 @@ const PostponeButton = React.createClass({
     {value: '2592000', content: '1 month'}
   ],
 
-  selectOptions: function () {
+  selectOptions() {
     return this.selectOptionsOptions.map(function (optionOptions) {
       return this.selectOption(optionOptions);
     }.bind(this));
   },
 
-  selectOption: function (optionOptions) {
+  selectOption(optionOptions) {
     return (
       <SelectOption
         value={optionOptions.value}
@@ -78,15 +78,15 @@ const PostponeButton = React.createClass({
 
   className: 'btn btn-info btn-lg btn-block postpone-button',
 
-  storePostponeSeconds: function (event) {
+  storePostponeSeconds(event) {
     this.props.storePostponeSeconds(event.target.value);
   },
 
-  buttonMessage: function () {
+  buttonMessage() {
     return isPostponing(this.props.task) ? 'Postponing...' : 'Postpone for:';
   },
 
-  render: function () {
+  render() {
     return (
       <div
         id='postpone'
