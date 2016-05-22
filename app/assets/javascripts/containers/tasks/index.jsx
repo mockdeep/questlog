@@ -21,24 +21,24 @@ const findTask = function (tasks, taskId) {
 };
 
 const TasksIndex = React.createClass({
-  getInitialState: function () {
+  getInitialState() {
     return {currentTasks: [], pendingTasks: []};
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     TaskStore.on('change', this.loadTasks);
     this.loadTasks();
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     TaskStore.off('change', this.loadTasks);
   },
 
-  loadTasks: function () {
+  loadTasks() {
     TaskStore.getAll().then(this.setTasks);
   },
 
-  setTasks: function (data) {
+  setTasks(data) {
     const partitionedTasks = partition(data.tasks, isPending);
 
     this.setState({
@@ -47,7 +47,7 @@ const TasksIndex = React.createClass({
     });
   },
 
-  moveTask: function (id, afterId) {
+  moveTask(id, afterId) {
     const tasks = this.state.currentTasks;
 
     const task = findTask(tasks, id);
@@ -65,7 +65,7 @@ const TasksIndex = React.createClass({
     this.setState({currentTasks: newTasks});
   },
 
-  saveTaskPositions: function (component) {
+  saveTaskPositions(component) {
     const taskId = component.props.task.id;
     const tasks = this.state.currentTasks;
 
@@ -89,29 +89,29 @@ const TasksIndex = React.createClass({
     component.updatePriority({target: {value: newPriority}});
   },
 
-  currentTaskPositions: function () {
+  currentTaskPositions() {
     return this.state.currentTasks.map(function (task) {
       return task.id;
     });
   },
 
-  currentTaskRows: function () {
+  currentTaskRows() {
     return this.state.currentTasks.map(this.taskRow);
   },
 
-  pendingTaskRows: function () {
+  pendingTaskRows() {
     return this.state.pendingTasks.map(this.taskRow);
   },
 
-  storeTask: function (taskId, attrs) {
+  storeTask(taskId, attrs) {
     return TaskStore.update(taskId, attrs);
   },
 
-  destroyTask: function (taskId) {
+  destroyTask(taskId) {
     TaskStore.destroy(taskId);
   },
 
-  taskRow: function (task) {
+  taskRow(task) {
     return (
       <TaskRow
         key={task.id}
@@ -124,11 +124,11 @@ const TasksIndex = React.createClass({
     );
   },
 
-  createTask: function (attrs) {
+  createTask(attrs) {
     return TaskStore.create(attrs);
   },
 
-  render: function () {
+  render() {
     return (
       <div>
         <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />

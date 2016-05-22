@@ -12,7 +12,7 @@ const TaskTitle = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  className: function () {
+  className() {
     let classString = 'col-md-12 task-display';
 
     if (this.props.task.priority) {
@@ -24,10 +24,10 @@ const TaskTitle = React.createClass({
 
     return classString;
   },
-  title: function () {
+  title() {
     return `skip count: ${this.props.task.skip_count}`;
   },
-  emblems: function () {
+  emblems() {
     if (this.props.task.repeat_seconds) {
       return <i className='fa fa-repeat' title='task repeats' />;
     } else {
@@ -35,7 +35,7 @@ const TaskTitle = React.createClass({
     }
   },
 
-  timeframeName: function () {
+  timeframeName() {
     if (!this.props.task.timeframe) { return false; }
 
     const timeframeName = timeframeNameMap[this.props.task.timeframe];
@@ -43,7 +43,7 @@ const TaskTitle = React.createClass({
     return <div className='timeframe'>{timeframeName}</div>;
   },
 
-  render: function () {
+  render() {
     return (
       <div className='row'>
         <div id='task' className={this.className()}>

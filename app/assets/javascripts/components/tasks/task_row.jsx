@@ -11,21 +11,21 @@ const flow = _.flow;
 const timeframeNameMap = require('timeframe_name_map');
 
 const taskSource = {
-  canDrag: function (props) {
+  canDrag(props) {
     return !props.timeframesEnabled;
   },
 
-  beginDrag: function (props) {
+  beginDrag(props) {
     return {item: {id: props.task.id}};
   },
 
-  endDrag: function (props, _monitor, component) {
+  endDrag(props, _monitor, component) {
     props.saveTaskPositions(component);
   }
 };
 
 const taskTarget = {
-  hover: function (props, monitor) {
+  hover(props, monitor) {
     const draggedId = monitor.getItem().item.id;
 
     props.moveTask(draggedId, props.task.id);
@@ -57,24 +57,24 @@ const TaskRow = React.createClass({
 
   mixins: [PureRenderMixin],
 
-  getInitialState: function () {
+  getInitialState() {
     return {timeframeClicked: false};
   },
 
-  markDone: function (event) {
+  markDone(event) {
     event.preventDefault();
     this.props.storeTask(this.props.task.id, {done: true});
   },
 
-  updatePriority: function (event) {
+  updatePriority(event) {
     this.props.storeTask(this.props.task.id, {priority: event.target.value});
   },
 
-  updateTimeframe: function (event) {
+  updateTimeframe(event) {
     this.props.storeTask(this.props.task.id, {timeframe: event.target.value});
   },
 
-  deleteTask: function (event) {
+  deleteTask(event) {
     event.preventDefault();
     // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
@@ -82,7 +82,7 @@ const TaskRow = React.createClass({
     }
   },
 
-  emblems: function () {
+  emblems() {
     if (this.props.task.repeat_seconds) {
       return <i className='fa fa-repeat' title='task repeats' />;
     } else {
@@ -90,7 +90,7 @@ const TaskRow = React.createClass({
     }
   },
 
-  className: function () {
+  className() {
     let classString = '';
 
     if (this.priority()) {
@@ -100,19 +100,19 @@ const TaskRow = React.createClass({
     return classString;
   },
 
-  priority: function () {
+  priority() {
     return this.props.task.priority || '';
   },
 
-  timeframe: function () {
+  timeframe() {
     return this.props.task.timeframe;
   },
 
-  timeframeHasSpace: function (name) {
+  timeframeHasSpace(name) {
     return this.props.timeframeSpace[name] >= this.props.task.estimate_minutes;
   },
 
-  optionText: function (title, name) {
+  optionText(title, name) {
     const space = this.props.timeframeSpace[name];
     let text = title;
 
@@ -123,7 +123,7 @@ const TaskRow = React.createClass({
     return text;
   },
 
-  timeframeOptions: function () {
+  timeframeOptions() {
     if (!this.state.timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
       return map(timeframeNameMap, function (title, name) {
@@ -148,7 +148,7 @@ const TaskRow = React.createClass({
     });
   },
 
-  timeframeSelector: function () {
+  timeframeSelector() {
     return (
       <select
         className='timeframe-select'
@@ -162,21 +162,21 @@ const TaskRow = React.createClass({
     );
   },
 
-  timeframeClicked: function () {
+  timeframeClicked() {
     this.setState({timeframeClicked: true});
   },
 
-  taskEstimate: function () {
+  taskEstimate() {
     if (!this.props.timeframesEnabled) { return false; }
 
     return `(${this.props.task.estimate_minutes}) `;
   },
 
-  undoTask: function () {
+  undoTask() {
     this.props.storeTask(this.props.task.id, {done: false});
   },
 
-  undoButton: function () {
+  undoButton() {
     if (!this.props.task.pending) { return false; }
 
     return (
@@ -186,7 +186,7 @@ const TaskRow = React.createClass({
     );
   },
 
-  render: function () {
+  render() {
     const style = {opacity: this.props.isDragging ? 0 : 1};
 
     return (

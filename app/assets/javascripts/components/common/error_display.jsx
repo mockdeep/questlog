@@ -7,13 +7,13 @@ const ErrorDisplay = React.createClass({
     errors: React.PropTypes.array.isRequired
   },
 
-  errorItems: function () {
+  errorItems() {
     return this.props.errors.map(function (errorMessage) {
       return <li key={errorMessage}>{errorMessage}</li>;
     });
   },
 
-  render: function () {
+  render() {
     return (
       <div className='row'>
         <div className='col-md-12'>

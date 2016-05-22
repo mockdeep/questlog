@@ -3,7 +3,7 @@
 const React = require('react');
 
 const PrivacyPage = React.createClass({
-  render: function () {
+  render() {
     return (
       <div>
         <p>{'I won\'t sell your data.'}</p>

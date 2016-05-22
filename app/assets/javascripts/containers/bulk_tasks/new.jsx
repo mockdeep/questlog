@@ -8,19 +8,19 @@ const BulkTaskStore = require('stores/bulk_task_store');
 const BulkTasksNew = React.createClass({
   mixins: [History],
 
-  getInitialState: function () {
+  getInitialState() {
     return {taskTitles: ''};
   },
 
-  setTitles: function (event) {
+  setTitles(event) {
     this.setState({taskTitles: event.target.value});
   },
 
-  redirectToTasksIndex: function () {
+  redirectToTasksIndex() {
     this.history.pushState(null, '/tasks');
   },
 
-  saveTasks: function (event) {
+  saveTasks(event) {
     event.preventDefault();
     if (this.state.taskTitles.trim() === '') { return; }
     const tasksParams = {titles: this.state.taskTitles.trim()};
@@ -28,7 +28,7 @@ const BulkTasksNew = React.createClass({
     BulkTaskStore.create(tasksParams).then(this.redirectToTasksIndex());
   },
 
-  rootAttrs: function () {
+  rootAttrs() {
     return {
       className: 'new_bulk_task',
       onSubmit: this.saveTasks,
@@ -36,7 +36,7 @@ const BulkTasksNew = React.createClass({
     };
   },
 
-  render: function () {
+  render() {
     return (
       <form {...this.rootAttrs()}>
         <div className='row'>

@@ -19,7 +19,7 @@ const TasksShow = React.createClass({
     router: React.PropTypes.func
   },
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
@@ -28,7 +28,7 @@ const TasksShow = React.createClass({
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     this.loadTags().then(function () {
       TagStore.on('change', this.loadTags);
     }.bind(this));
@@ -38,81 +38,81 @@ const TasksShow = React.createClass({
     }.bind(this));
   },
 
-  componentWillReceiveProps: function (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.loadTask(nextProps.url);
     this.setTitle();
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     TagStore.off('change', this.loadTags);
     TaskStore.off('change', this.loadTask);
   },
 
-  storePostponeSeconds: function (postponeSeconds) {
-    this.setState({postponeSeconds: postponeSeconds});
+  storePostponeSeconds(postponeSeconds) {
+    this.setState({postponeSeconds});
   },
 
-  loadTags: function () {
+  loadTags() {
     return TagStore.getAll().then(this.setTags);
   },
 
-  setTags: function (data) {
+  setTags(data) {
     this.setState({tags: data.tags});
   },
 
-  disable: function () {
+  disable() {
     this.setState({disabled: true});
   },
 
-  setTitle: function () {
+  setTitle() {
     document.title = `Task: ${this.state.task.title}`;
   },
 
-  storeTask: function (taskId, attrs, opts) {
+  storeTask(taskId, attrs, opts) {
     const loadingState = opts && opts.loadingState || 'updating';
-    const newTask = extend({}, this.state.task, {loadingState: loadingState});
+    const newTask = extend({}, this.state.task, {loadingState});
 
     this.setState({task: newTask});
 
     return TaskStore.update(taskId, attrs);
   },
 
-  loadTask: function () {
+  loadTask() {
     const tagName = this.props.params.slug || '';
 
     return TagStore.get(tagName).then(this.updateTask);
   },
 
-  updateTask: function (data) {
+  updateTask(data) {
     if (data) {
       const task = extend({}, data.task, {loadingState: 'ready'});
 
-      this.setState({task: task, disabled: false});
+      this.setState({task, disabled: false});
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
     }
     this.setTitle();
   },
 
-  createTask: function (attrs) {
+  createTask(attrs) {
     return TaskStore.create(attrs);
   },
 
-  postponeTask: function (taskId) {
+  postponeTask(taskId) {
     const attrs = {postpone: this.state.postponeSeconds};
 
     return this.storeTask(taskId, attrs, {taskStatus: 'postponing'});
   },
 
-  completeTask: function (taskId) {
+  completeTask(taskId) {
     this.storeTask(taskId, {done: true}, {taskStatus: 'marking_done'});
   },
 
-  deleteTask: function (taskId) {
+  deleteTask(taskId) {
     TaskStore.destroy(taskId);
   },
 
-  render: function () {
+  render() {
     return (
       <div>
         <TaskDisplay

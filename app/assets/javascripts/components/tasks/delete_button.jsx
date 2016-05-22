@@ -8,7 +8,7 @@ const DeleteButton = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  deleteTask: function (event) {
+  deleteTask(event) {
     event.stopPropagation();
     // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
@@ -16,7 +16,7 @@ const DeleteButton = React.createClass({
     }
   },
 
-  rootOpts: function () {
+  rootOpts() {
     return {
       className: 'fa fa-times delete-button',
       title: 'delete task',
@@ -24,7 +24,7 @@ const DeleteButton = React.createClass({
     };
   },
 
-  render: function () {
+  render() {
     return <i {...this.rootOpts()} />;
   }
 });

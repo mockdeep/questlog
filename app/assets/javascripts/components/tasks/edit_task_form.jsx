@@ -10,19 +10,19 @@ const EditTaskForm = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  getInitialState: function () {
+  getInitialState() {
     return {taskTitle: this.props.task.title, errors: []};
   },
 
-  componentWillReceiveProps: function (newProps) {
+  componentWillReceiveProps(newProps) {
     this.setState({taskTitle: newProps.task.title});
   },
 
-  setTitle: function (event) {
+  setTitle(event) {
     this.setState({taskTitle: event.target.value});
   },
 
-  saveTask: function (event) {
+  saveTask(event) {
     event.preventDefault();
     if (!this.isTaskReady) { return; }
     if (this.state.taskTitle.trim() === '') {
@@ -37,22 +37,22 @@ const EditTaskForm = React.createClass({
     }
   },
 
-  isTaskReady: function () {
+  isTaskReady() {
     return this.props.task.loadingState === 'ready';
   },
 
-  toggleDisplay: function () {
+  toggleDisplay() {
     $('#edit-task').click();
     this.replaceState(this.getInitialState());
   },
 
-  buttonMessage: function () {
+  buttonMessage() {
     const isUpdating = this.props.task.loadingState === 'updating';
 
     return isUpdating ? 'Updating Task' : 'Update Task';
   },
 
-  render: function () {
+  render() {
     return (
       <div className='row'>
         <div className='col-md-12 edit-form' id='edit-form'>

@@ -17,26 +17,26 @@ const timeframeHasTasks = function (timeframe) {
 
 const TimeframesIndex = React.createClass({
 
-  getInitialState: function () {
+  getInitialState() {
     return {timeframes: [], medianProductivity: null, loading: true};
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     TimeframeStore.getAll().then(function (data) {
       this.updateTimeframes(data);
       TimeframeStore.on('change', this.loadTasks);
     }.bind(this));
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     TimeframeStore.off('change', this.loadTasks);
   },
 
-  loadTasks: function () {
+  loadTasks() {
     TimeframeStore.getAll().then(this.updateTimeframes);
   },
 
-  updateTimeframes: function (data) {
+  updateTimeframes(data) {
     this.setState({
       timeframes: data.timeframes,
       medianProductivity: data.meta.medianProductivity,
@@ -44,11 +44,11 @@ const TimeframesIndex = React.createClass({
     });
   },
 
-  productivityString: function () {
+  productivityString() {
     return ToEnglish.seconds(this.state.medianProductivity);
   },
 
-  timeframeSpace: function () {
+  timeframeSpace() {
     const counts = {};
 
     this.state.timeframes.forEach(function (timeframe) {
@@ -58,15 +58,15 @@ const TimeframesIndex = React.createClass({
     return counts;
   },
 
-  storeTask: function (taskId, attrs) {
+  storeTask(taskId, attrs) {
     return TaskStore.update(taskId, attrs);
   },
 
-  destroyTask: function (taskId) {
+  destroyTask(taskId) {
     TaskStore.destroy(taskId);
   },
 
-  renderTimeframe: function (timeframe) {
+  renderTimeframe(timeframe) {
     return (
       <TimeframeSection
         key={timeframe.name}
@@ -80,24 +80,24 @@ const TimeframesIndex = React.createClass({
     );
   },
 
-  renderedTimeframes: function () {
+  renderedTimeframes() {
     return this.timeframesWithTasks().map(this.renderTimeframe);
   },
 
-  timeframesWithTasks: function () {
+  timeframesWithTasks() {
     return this.state.timeframes.filter(timeframeHasTasks);
   },
 
-  refresh: function (event) {
+  refresh(event) {
     event.preventDefault();
     TaskStore.unload();
   },
 
-  createTask: function (attrs) {
+  createTask(attrs) {
     return TaskStore.create(attrs);
   },
 
-  render: function () {
+  render() {
     if (this.state.loading) {
       return <h1>{'Loading Timeframes...'}</h1>;
     } else {

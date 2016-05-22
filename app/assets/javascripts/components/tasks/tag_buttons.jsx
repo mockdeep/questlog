@@ -11,23 +11,23 @@ const TagButtons = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  isCurrent: function (tag) {
+  isCurrent(tag) {
     return any(this.currentNames(), function (name) {
       return tag.name === name;
     });
   },
-  tagButtons: function () {
+  tagButtons() {
     return this.props.tags.map(this.tagButton);
   },
-  tagButton: function (tag) {
+  tagButton(tag) {
     return (
       <TagButton tag={tag} key={tag.id} current={this.isCurrent(tag)} />
     );
   },
-  currentNames: function () {
+  currentNames() {
     return this.props.task.tag_names;
   },
-  render: function () {
+  render() {
     return (
       <div className='row'>
         <div className='col-md-12 tag-buttons'>

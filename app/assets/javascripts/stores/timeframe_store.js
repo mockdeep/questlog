@@ -58,7 +58,7 @@ const timeframeNameForTask = function (task) {
 const TimeframeStore = extend({}, RestfulStore, {
   name: 'timeframe',
 
-  updateModels: function (data) {
+  updateModels(data) {
     const tasks = data.tasks;
     const timeframes = {};
 
@@ -87,14 +87,14 @@ const TimeframeStore = extend({}, RestfulStore, {
     });
   },
 
-  getData: function () {
+  getData() {
     return {
       timeframes: this.models,
-      meta: {medianProductivity: medianProductivity}
+      meta: {medianProductivity}
     };
   },
 
-  getAll: function () {
+  getAll() {
     return new Promise(function (resolve) {
       TaskStore.getAll().then(function (data) {
         request({

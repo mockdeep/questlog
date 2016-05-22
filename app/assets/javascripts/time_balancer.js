@@ -30,7 +30,7 @@ const timeframes = function (time) {
 };
 
 const TimeBalancer = {
-  baseBalances: function (time) {
+  baseBalances(time) {
     return timeframes(moment(time));
   }
 };

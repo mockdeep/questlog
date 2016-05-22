@@ -19,7 +19,7 @@ const Task = new Record({
 });
 
 Object.defineProperty(Task.prototype, 'estimate_minutes', {
-  get: function () {
+  get() {
     return Math.floor((this.estimate_seconds || 1800) / 60);
   }
 });

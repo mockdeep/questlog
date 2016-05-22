@@ -4,7 +4,7 @@ const React = require('react');
 const Link = require('react-router').Link;
 
 const WhatPage = React.createClass({
-  render: function () {
+  render() {
     return (
       <div>
         <h1>{'What\'s a Questlog?'}</h1>

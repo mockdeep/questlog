@@ -14,7 +14,6 @@ rules:
   # to enable someday
   func-names: [off]
   no-else-return: [off] # need to think about this
-  object-shorthand: [off]
   prefer-arrow-callback: [off]
   prefer-reflect: [off]
   'react/forbid-prop-types': [off]

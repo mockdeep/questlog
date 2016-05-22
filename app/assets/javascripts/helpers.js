@@ -47,9 +47,4 @@ const flash = function (status, message) {
   $('[class^=flash-]').fadeOut(1500);
 };
 
-module.exports = {
-  authenticityToken: authenticityToken,
-  flash: flash,
-  request: request,
-  stopPropagation: stopPropagation
-};
+module.exports = {authenticityToken, flash, request, stopPropagation};

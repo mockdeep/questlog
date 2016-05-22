@@ -8,22 +8,22 @@ const DoneButton = React.createClass({
     task: React.PropTypes.object.isRequired
   },
 
-  markDone: function () {
+  markDone() {
     if (!this.isTaskReady()) { return; }
     this.props.completeTask(this.props.task.id);
   },
 
-  isTaskReady: function () {
+  isTaskReady() {
     return this.props.task.loadingState === 'ready';
   },
 
-  buttonMessage: function () {
+  buttonMessage() {
     const isMarkingDone = this.props.task.loadingState === 'marking_done';
 
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   },
 
-  render: function () {
+  render() {
     return (
       <input
         type='button'
