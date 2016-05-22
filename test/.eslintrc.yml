@@ -6,3 +6,4 @@ globals:
 rules:
   func-names: [off]
   no-magic-numbers: [off]
+  prefer-arrow-callback: [off]
