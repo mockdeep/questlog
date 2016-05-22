@@ -10,8 +10,8 @@ const isPostponing = function (task) {
 
 const SelectOption = React.createClass({
   propTypes: {
-    value: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired
+    content: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired
   },
 
   render: function () {
@@ -21,13 +21,13 @@ const SelectOption = React.createClass({
 
 const PostponeButton = React.createClass({
   propTypes: {
-    task: React.PropTypes.object.isRequired,
-    postponeSeconds: React.PropTypes.number.isRequired,
+    disable: React.PropTypes.func.isRequired,
     disabled: React.PropTypes.bool.isRequired,
-    storePostponeSeconds: React.PropTypes.func.isRequired,
-    postponeTask: React.PropTypes.func.isRequired,
     loadTask: React.PropTypes.func.isRequired,
-    disable: React.PropTypes.func.isRequired
+    postponeSeconds: React.PropTypes.number.isRequired,
+    postponeTask: React.PropTypes.func.isRequired,
+    storePostponeSeconds: React.PropTypes.func.isRequired,
+    task: React.PropTypes.object.isRequired
   },
 
   disableButton: function () {

@@ -9,17 +9,17 @@ const EditTaskForm = require('components/tasks/edit_task_form');
 
 const TaskDisplay = React.createClass({
   propTypes: {
-    task: React.PropTypes.object.isRequired,
-    tags: React.PropTypes.array.isRequired,
-    disabled: React.PropTypes.bool.isRequired,
-    disable: React.PropTypes.func.isRequired,
-    postponeSeconds: React.PropTypes.number.isRequired,
-    storePostponeSeconds: React.PropTypes.func.isRequired,
-    postponeTask: React.PropTypes.func.isRequired,
     completeTask: React.PropTypes.func.isRequired,
-    storeTask: React.PropTypes.func.isRequired,
+    deleteTask: React.PropTypes.func.isRequired,
+    disable: React.PropTypes.func.isRequired,
+    disabled: React.PropTypes.bool.isRequired,
     loadTask: React.PropTypes.func.isRequired,
-    deleteTask: React.PropTypes.func.isRequired
+    postponeSeconds: React.PropTypes.number.isRequired,
+    postponeTask: React.PropTypes.func.isRequired,
+    storePostponeSeconds: React.PropTypes.func.isRequired,
+    storeTask: React.PropTypes.func.isRequired,
+    tags: React.PropTypes.array.isRequired,
+    task: React.PropTypes.object.isRequired
   },
 
   render: function () {

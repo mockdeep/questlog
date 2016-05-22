@@ -28,21 +28,24 @@ const TasksShow = React.createClass({
     };
   },
 
-  loadTask: function () {
-    const tagName = this.props.params.slug || '';
-
-    return TagStore.get(tagName).then(this.updateTask);
+  componentDidMount: function () {
+    this.loadTags().then(function () {
+      TagStore.on('change', this.loadTags);
+    }.bind(this));
+    this.loadTask().then(function () {
+      TaskStore.on('change', this.loadTask);
+      this.setTitle();
+    }.bind(this));
   },
 
-  updateTask: function (data) {
-    if (data) {
-      const task = extend({}, data.task, {loadingState: 'ready'});
-
-      this.setState({task: task, disabled: false});
-    } else {
-      this.setState({task: {title: '(no tasks!)'}, disabled: true});
-    }
+  componentWillReceiveProps: function (nextProps) {
+    this.loadTask(nextProps.url);
     this.setTitle();
+  },
+
+  componentWillUnmount: function () {
+    TagStore.off('change', this.loadTags);
+    TaskStore.off('change', this.loadTask);
   },
 
   storePostponeSeconds: function (postponeSeconds) {
@@ -74,23 +77,20 @@ const TasksShow = React.createClass({
     return TaskStore.update(taskId, attrs);
   },
 
-  componentDidMount: function () {
-    this.loadTags().then(function () {
-      TagStore.on('change', this.loadTags);
-    }.bind(this));
-    this.loadTask().then(function () {
-      TaskStore.on('change', this.loadTask);
-      this.setTitle();
-    }.bind(this));
+  loadTask: function () {
+    const tagName = this.props.params.slug || '';
+
+    return TagStore.get(tagName).then(this.updateTask);
   },
 
-  componentWillUnmount: function () {
-    TagStore.off('change', this.loadTags);
-    TaskStore.off('change', this.loadTask);
-  },
+  updateTask: function (data) {
+    if (data) {
+      const task = extend({}, data.task, {loadingState: 'ready'});
 
-  componentWillReceiveProps: function (nextProps) {
-    this.loadTask(nextProps.url);
+      this.setState({task: task, disabled: false});
+    } else {
+      this.setState({task: {title: '(no tasks!)'}, disabled: true});
+    }
     this.setTitle();
   },
 

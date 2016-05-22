@@ -44,18 +44,18 @@ const targetCollect = function (connect) {
 };
 
 const TaskRow = React.createClass({
-  mixins: [PureRenderMixin],
-
   propTypes: {
-    task: React.PropTypes.object.isRequired,
-    timeframeSpace: React.PropTypes.object,
-    timeframesEnabled: React.PropTypes.bool,
+    connectDragSource: React.PropTypes.func.isRequired,
+    connectDropTarget: React.PropTypes.func.isRequired,
+    destroyTask: React.PropTypes.func.isRequired,
     isDragging: React.PropTypes.bool.isRequired,
     storeTask: React.PropTypes.func.isRequired,
-    destroyTask: React.PropTypes.func.isRequired,
-    connectDropTarget: React.PropTypes.func.isRequired,
-    connectDragSource: React.PropTypes.func.isRequired
+    task: React.PropTypes.object.isRequired,
+    timeframeSpace: React.PropTypes.object,
+    timeframesEnabled: React.PropTypes.bool
   },
+
+  mixins: [PureRenderMixin],
 
   getInitialState: function () {
     return {timeframeClicked: false};
@@ -181,7 +181,7 @@ const TaskRow = React.createClass({
 
     return (
       <button className='btn btn-link' role='Link' onClick={this.undoTask}>
-        Undo
+        {'Undo'}
       </button>
     );
   },
@@ -195,10 +195,10 @@ const TaskRow = React.createClass({
           {this.taskEstimate()}{this.props.task.title} {this.emblems()}
           {' | Pri: '}
           <select onChange={this.updatePriority} value={this.priority()}>
-            <option value=''>-</option>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
+            <option value=''>{'-'}</option>
+            <option value='1'>{'1'}</option>
+            <option value='2'>{'2'}</option>
+            <option value='3'>{'3'}</option>
           </select>
           {this.props.timeframesEnabled ? ' | When: ' : ''}
           {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
@@ -206,11 +206,11 @@ const TaskRow = React.createClass({
           {this.props.task.pending ? this.undoButton() : ''}
           {this.props.task.pending ? ' | ' : ''}
           <button className='btn btn-link' role='Link' onClick={this.markDone}>
-            Done!
+            {'Done!'}
           </button>
           {' | '}
           <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
-            Delete
+            {'Delete'}
           </button>
         </li>
       ))

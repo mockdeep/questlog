@@ -7,14 +7,14 @@ const PostponeButton = require('components/tasks/postpone_button');
 
 const MainButtons = React.createClass({
   propTypes: {
-    task: React.PropTypes.object.isRequired,
+    completeTask: React.PropTypes.func.isRequired,
+    disable: React.PropTypes.func.isRequired,
+    disabled: React.PropTypes.bool.isRequired,
+    loadTask: React.PropTypes.func.isRequired,
     postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
-    completeTask: React.PropTypes.func.isRequired,
-    loadTask: React.PropTypes.func.isRequired,
     storePostponeSeconds: React.PropTypes.func.isRequired,
-    disable: React.PropTypes.func.isRequired,
-    disabled: React.PropTypes.bool.isRequired
+    task: React.PropTypes.object.isRequired
   },
 
   render: function () {

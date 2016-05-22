@@ -14,6 +14,10 @@ const EditTaskForm = React.createClass({
     return {taskTitle: this.props.task.title, errors: []};
   },
 
+  componentWillReceiveProps: function (newProps) {
+    this.setState({taskTitle: newProps.task.title});
+  },
+
   setTitle: function (event) {
     this.setState({taskTitle: event.target.value});
   },
@@ -46,10 +50,6 @@ const EditTaskForm = React.createClass({
     const isUpdating = this.props.task.loadingState === 'updating';
 
     return isUpdating ? 'Updating Task' : 'Update Task';
-  },
-
-  componentWillReceiveProps: function (newProps) {
-    this.setState({taskTitle: newProps.task.title});
   },
 
   render: function () {

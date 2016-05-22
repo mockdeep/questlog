@@ -8,7 +8,7 @@ const SessionsNew = React.createClass({
   render: function () {
     return (
       <div>
-        <h1>Log in</h1>
+        <h1>{'Log in'}</h1>
 
         <form action='/sessions' acceptCharset='UTF-8' method='post'>
           <input
@@ -17,12 +17,12 @@ const SessionsNew = React.createClass({
             value={authenticityToken()}
           />
           <p>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='email'>{'Email'}</label>
             <br />
             <input type='text' name='email' id='email' />
           </p>
           <p>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password'>{'Password'}</label>
             <br />
             <input type='password' name='password' id='password' />
           </p>
