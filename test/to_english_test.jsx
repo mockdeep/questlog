@@ -29,13 +29,17 @@ describe('ToEnglish.seconds', function () {
   });
 
   it('throws an error when given a negative number', function () {
-    expect(function () { ToEnglish.seconds(-1); }).to.throw(RangeError, 'number must not be negative');
+    const message = 'number must not be negative';
+
+    expect(ToEnglish.seconds.bind(null, -1)).to.throw(RangeError, message);
   });
 
   it('throws an error given an invalid type', function () {
-    expect(function () { ToEnglish.seconds('0'); }).to.throw(TypeError, 'input must be a number');
-    expect(function () { ToEnglish.seconds('Blah'); }).to.throw(TypeError, 'input must be a number');
-    expect(function () { ToEnglish.seconds(['Blah']); }).to.throw(TypeError, 'input must be a number');
-    expect(function () { ToEnglish.seconds({Bla: 0}); }).to.throw(TypeError, 'input must be a number');
+    const message = 'input must be a number';
+
+    expect(ToEnglish.seconds.bind(null, '0')).to.throw(TypeError, message);
+    expect(ToEnglish.seconds.bind(null, 'Blah')).to.throw(TypeError, message);
+    expect(ToEnglish.seconds.bind(null, ['Blah'])).to.throw(TypeError, message);
+    expect(ToEnglish.seconds.bind(null, {Bla: 0})).to.throw(TypeError, message);
   });
 });
