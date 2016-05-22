@@ -1,6 +1,5 @@
 root: true
-# extends: ['./.eslint-all.js', 'plugin:react/recommended']
-extends: ['eslint:recommended', 'plugin:react/recommended']
+extends: ['./.eslint-all.js', 'plugin:react/recommended']
 plugins: [react]
 env:
   browser: true
@@ -31,3 +30,8 @@ rules:
   require-jsdoc: [off]
   prefer-reflect: [off] # for now...
   no-inline-comments: [off]
+  no-else-return: [off] # need to think about this
+  jsx-quotes: [error, prefer-single]
+  no-underscore-dangle: [error, { allowAfterThis: true }]
+  id-length: [error, { exceptions: [_, $] }]
+  spaced-comment: [error, always, { markers: [=] }]

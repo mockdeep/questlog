@@ -1,23 +1,23 @@
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var IndexRoute = require('react-router').IndexRoute;
-var createBrowserHistory = require('history/lib/createBrowserHistory');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Router = require('react-router').Router;
+const Route = require('react-router').Route;
+const IndexRoute = require('react-router').IndexRoute;
+const createBrowserHistory = require('history/lib/createBrowserHistory');
 
-var history = createBrowserHistory();
+const history = createBrowserHistory();
 
-var BulkTasksNew = require('containers/bulk_tasks/new');
-var PrivacyPage = require('containers/static/privacy_page');
-var WhatPage = require('containers/static/what_page');
-var SessionsNew = require('containers/sessions/new');
-var TasksIndex = require('containers/tasks/index');
-var TasksShow = require('containers/tasks/show');
-var TimeframesIndex = require('containers/timeframes/index');
+const BulkTasksNew = require('containers/bulk_tasks/new');
+const PrivacyPage = require('containers/static/privacy_page');
+const WhatPage = require('containers/static/what_page');
+const SessionsNew = require('containers/sessions/new');
+const TasksIndex = require('containers/tasks/index');
+const TasksShow = require('containers/tasks/show');
+const TimeframesIndex = require('containers/timeframes/index');
 
-var AppBase = React.createClass({
+const AppBase = React.createClass({
   propTypes: {
     children: React.PropTypes.object.isRequired
   },
@@ -28,11 +28,11 @@ var AppBase = React.createClass({
   }
 });
 
-var Nothing = React.createClass({
+const Nothing = React.createClass({
   render: function () { return false; }
 });
 
-var routes = (
+const routes =
   <Route path='/' component={AppBase}>
     <Route path='/bulk_tasks/new' component={BulkTasksNew} />
     <Route path='/free_accounts/new' component={Nothing} />
@@ -44,7 +44,6 @@ var routes = (
     <Route path='/timeframes' component={TimeframesIndex} />
     <IndexRoute component={TasksShow} />
     <Route path='/:slug' component={TasksShow} />
-  </Route>
-);
+  </Route>;
 
 ReactDOM.render(<Router history={history}>{routes}</Router>, $('#app-base')[0]);

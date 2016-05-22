@@ -1,49 +1,51 @@
 'use strict';
 
-var reqwest = require('reqwest');
-var extend = require('lodash').extend;
+const reqwest = require('reqwest');
+const extend = require('lodash').extend;
 
-var reloadPage = function () {
+const reloadPage = function () {
   window.location.reload();
 };
 
-var logError = function (error) {
+const logError = function (error) {
   // eslint-disable-next-line no-console
   console.log('error: ', error.statusText);
 };
 
-var authenticityToken = function () {
-  var tokenTag = document.getElementsByName('csrf-token')[0];
+const authenticityToken = function () {
+  const tokenTag = document.getElementsByName('csrf-token')[0];
+
   return tokenTag && tokenTag.content;
 };
 
-var stopPropagation = function (event) {
+const stopPropagation = function (event) {
   event.stopPropagation();
 };
 
-var request = function (options) {
-  return reqwest(mergeOptions(defaultRequestOptions(), options));
-};
-
-var flash = function (status, message) {
-  var $myFlash = $('<div />', { 'class': 'flash-' + status, text: message });
-  $('#flashes').append($myFlash);
-  $('[class^=flash-]').fadeOut(1500);
-};
-
-function defaultRequestOptions() {
+const defaultRequestOptions = function () {
   return {
     type: 'json',
     method: 'put',
-    headers: { 'X-CSRF-Token': authenticityToken() },
+    headers: {'X-CSRF-Token': authenticityToken()},
     success: reloadPage,
     error: logError
   };
-}
+};
 
-function mergeOptions(defaults, options) {
+const mergeOptions = function (defaults, options) {
   return extend({}, defaults, options);
-}
+};
+
+const request = function (options) {
+  return reqwest(mergeOptions(defaultRequestOptions(), options));
+};
+
+const flash = function (status, message) {
+  const $myFlash = $('<div />', {'class': `flash-${status}`, text: message});
+
+  $('#flashes').append($myFlash);
+  $('[class^=flash-]').fadeOut(1500);
+};
 
 module.exports = {
   authenticityToken: authenticityToken,

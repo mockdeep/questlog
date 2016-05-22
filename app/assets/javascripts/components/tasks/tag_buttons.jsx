@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
-var any = require('lodash').any;
+const React = require('react');
+const any = require('lodash').any;
 
-var TagButton = require('components/tasks/tag_button');
+const TagButton = require('components/tasks/tag_button');
 
-var TagButtons = React.createClass({
+const TagButtons = React.createClass({
   propTypes: {
     tags: React.PropTypes.array.isRequired,
     task: React.PropTypes.object.isRequired
@@ -13,7 +13,7 @@ var TagButtons = React.createClass({
 
   isCurrent: function (tag) {
     return any(this.currentNames(), function (name) {
-      return tag.name === name
+      return tag.name === name;
     });
   },
   tagButtons: function () {

@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var DoneButton = require('components/tasks/done_button');
-var PostponeButton = require('components/tasks/postpone_button');
+const DoneButton = require('components/tasks/done_button');
+const PostponeButton = require('components/tasks/postpone_button');
 
-var MainButtons = React.createClass({
+const MainButtons = React.createClass({
   propTypes: {
     task: React.PropTypes.object.isRequired,
     postponeSeconds: React.PropTypes.number.isRequired,

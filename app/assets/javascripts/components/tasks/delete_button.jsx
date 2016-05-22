@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var DeleteButton = React.createClass({
+const DeleteButton = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired
@@ -10,6 +10,7 @@ var DeleteButton = React.createClass({
 
   deleteTask: function (event) {
     event.stopPropagation();
+    // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
       this.props.deleteTask(this.props.task.id);
     }

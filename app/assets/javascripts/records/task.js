@@ -1,8 +1,11 @@
+/* eslint-disable camelcase */
+/* need to change server calls to return camelcase */
+
 'use strict';
 
-var Record = require('immutable').Record;
+const Record = require('immutable').Record;
 
-var Task = new Record({
+const Task = new Record({
   id: null,
   estimate_seconds: null,
   pending: null,

@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react');
-var extend = require('lodash').extend;
+const React = require('react');
+const extend = require('lodash').extend;
 
-var ErrorDisplay = require('components/common/error_display');
-var flash = require('helpers').flash;
+const ErrorDisplay = require('components/common/error_display');
+const flash = require('helpers').flash;
 
-var NewTaskForm = React.createClass({
+const NewTaskForm = React.createClass({
   propTypes: {
     createTask: React.PropTypes.func.isRequired,
     loadTask: React.PropTypes.func.isRequired
@@ -22,7 +22,8 @@ var NewTaskForm = React.createClass({
   },
 
   setTitle: function (event) {
-    var newTask = extend({}, this.state.task, {title: event.target.value});
+    const newTask = extend({}, this.state.task, {title: event.target.value});
+
     this.setState({task: newTask});
   },
 
@@ -30,8 +31,10 @@ var NewTaskForm = React.createClass({
     event.preventDefault();
     if (this.state.disabled) { return; }
     if (this.state.task.title.trim() === '') {
-      var newErrors = this.state.errors.concat('task title can\'t be blank');
+      const newErrors = this.state.errors.concat('task title can\'t be blank');
+
       this.setState({errors: newErrors});
+
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});

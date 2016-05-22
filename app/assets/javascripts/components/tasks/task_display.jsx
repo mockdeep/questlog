@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var MainButtons = require('components/tasks/main_buttons');
-var TaskTitle = require('components/tasks/task_title');
-var TagButtons = require('components/tasks/tag_buttons');
-var EditTaskForm = require('components/tasks/edit_task_form');
+const MainButtons = require('components/tasks/main_buttons');
+const TaskTitle = require('components/tasks/task_title');
+const TagButtons = require('components/tasks/tag_buttons');
+const EditTaskForm = require('components/tasks/edit_task_form');
 
-var TaskDisplay = React.createClass({
+const TaskDisplay = React.createClass({
   propTypes: {
     task: React.PropTypes.object.isRequired,
     tags: React.PropTypes.array.isRequired,

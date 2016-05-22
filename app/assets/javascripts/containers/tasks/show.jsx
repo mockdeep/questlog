@@ -1,16 +1,16 @@
 'use strict';
 
-var React = require('react');
-var extend = require('lodash').extend;
+const React = require('react');
+const extend = require('lodash').extend;
 
-var NewTaskForm = require('components/tasks/new_task_form');
-var TaskFooter = require('components/common/task_footer');
-var TaskDisplay = require('components/tasks/task_display');
+const NewTaskForm = require('components/tasks/new_task_form');
+const TaskFooter = require('components/common/task_footer');
+const TaskDisplay = require('components/tasks/task_display');
 
-var TagStore = require('stores/tag_store');
-var TaskStore = require('stores/task_store');
+const TagStore = require('stores/tag_store');
+const TaskStore = require('stores/task_store');
 
-var TasksShow = React.createClass({
+const TasksShow = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired
   },
@@ -29,13 +29,15 @@ var TasksShow = React.createClass({
   },
 
   loadTask: function () {
-    var tagName = this.props.params.slug || '';
+    const tagName = this.props.params.slug || '';
+
     return TagStore.get(tagName).then(this.updateTask);
   },
 
   updateTask: function (data) {
     if (data) {
-      var task = extend({}, data.task, {loadingState: 'ready'});
+      const task = extend({}, data.task, {loadingState: 'ready'});
+
       this.setState({task: task, disabled: false});
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
@@ -60,13 +62,15 @@ var TasksShow = React.createClass({
   },
 
   setTitle: function () {
-    document.title = 'Task: ' + this.state.task.title;
+    document.title = `Task: ${this.state.task.title}`;
   },
 
   storeTask: function (taskId, attrs, opts) {
-    var loadingState = opts && opts.loadingState || 'updating';
-    var newTask = extend({}, this.state.task, {loadingState: loadingState});
+    const loadingState = opts && opts.loadingState || 'updating';
+    const newTask = extend({}, this.state.task, {loadingState: loadingState});
+
     this.setState({task: newTask});
+
     return TaskStore.update(taskId, attrs);
   },
 
@@ -95,7 +99,8 @@ var TasksShow = React.createClass({
   },
 
   postponeTask: function (taskId) {
-    var attrs = {postpone: this.state.postponeSeconds};
+    const attrs = {postpone: this.state.postponeSeconds};
+
     return this.storeTask(taskId, attrs, {taskStatus: 'postponing'});
   },
 

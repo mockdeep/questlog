@@ -1,31 +1,33 @@
 'use strict';
 
-var React = require('react');
-var Link = require('react-router').Link;
+const React = require('react');
+const Link = require('react-router').Link;
 
-var TagButton = React.createClass({
+const TagButton = React.createClass({
   propTypes: {
     current: React.PropTypes.bool.isRequired,
     tag: React.PropTypes.object.isRequired
   },
 
   path: function () {
-    return '/' + this.props.tag.slug;
+    return `/${this.props.tag.slug}`;
   },
   activeButton: function () {
     return this.path() === window.location.pathname;
   },
   className: function () {
-    var classString = 'button btn btn-default';
+    let classString = 'button btn btn-default';
+
     if (this.activeButton()) {
-      classString = classString + ' active';
+      classString = `${classString} active`;
     }
     if (this.props.current) {
-      classString = classString + ' current';
+      classString = `${classString} current`;
     }
     if (this.props.tag.priority) {
-      classString = classString + ' priority-' + this.props.tag.priority + '-btn';
+      classString = `${classString} priority-${this.props.tag.priority}-btn`;
     }
+
     return classString;
   },
   unfinishedTasksCount: function () {

@@ -1,21 +1,40 @@
 'use strict';
 
-var Record = require('immutable').Record;
-var sum = require('lodash').sum;
+const Record = require('immutable').Record;
+const sum = require('lodash').sum;
 
-var TimeBalancer = require('time_balancer');
-var timeframeNameMap = require('timeframe_name_map');
+const TimeBalancer = require('time_balancer');
+const timeframeNameMap = require('timeframe_name_map');
 
-var Timeframe = new Record({
+const Timeframe = new Record({
   currentTasks: [],
   pendingTasks: [],
   medianProductivity: null,
   name: null
 });
 
+const baseBalance = function (name) {
+  const balanceTime = window.balanceTime;
+
+  return TimeBalancer.baseBalances(balanceTime)[name];
+};
+
+const calculateMaxMinutes = function (name, medianProductivity) {
+  const baseMinutes = baseBalance(name);
+
+  if (typeof baseMinutes === 'undefined') {
+    return Infinity;
+  } else {
+    const minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
+
+    return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
+  }
+};
+
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
   get: function () {
-    var allTasks = this.pendingTasks.concat(this.currentTasks);
+    const allTasks = this.pendingTasks.concat(this.currentTasks);
+
     return sum(allTasks, 'estimate_minutes');
   }
 });
@@ -25,6 +44,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteMax', {
     if (!this._minuteMax) {
       this._minuteMax = calculateMaxMinutes(this.name, this.medianProductivity);
     }
+
     return this._minuteMax;
   }
 });
@@ -34,20 +54,5 @@ Object.defineProperty(Timeframe.prototype, 'title', {
     return timeframeNameMap[this.name];
   }
 });
-
-function calculateMaxMinutes(name, medianProductivity) {
-  var baseMinutes = baseBalance(name);
-  if (typeof baseMinutes === 'undefined') {
-    return Infinity;
-  } else {
-    var minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
-    return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
-  }
-}
-
-function baseBalance(name) {
-  var balanceTime = window.balanceTime;
-  return TimeBalancer.baseBalances(balanceTime)[name];
-}
 
 module.exports = Timeframe;
