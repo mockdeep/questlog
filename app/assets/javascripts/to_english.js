@@ -1,31 +1,34 @@
 'use strict';
 
-var oneMinute = 60;
-var oneHour = oneMinute * 60;
+const oneMinute = 60;
+const oneHour = oneMinute * 60;
 
-var isNumeric = function (input) {
+const isNumeric = function (input) {
   return input - 0 === input;
 };
 
-var pluralize = function (input, string) {
-  var out = input + ' ' + string;
-  return input === 1 ? out : out + 's';
+const pluralize = function (input, string) {
+  const out = `${input} ${string}`;
+
+  return input === 1 ? out : `${out}s`;
 };
 
-var divideSeconds = function (seconds) {
-  var hours = Math.floor(seconds / oneHour);
-  var minutes = Math.floor((seconds % oneHour) / oneMinute);
-  var outputs = [];
+const divideSeconds = function (seconds) {
+  const hours = Math.floor(seconds / oneHour);
+  const minutes = Math.floor(seconds % oneHour / oneMinute);
+  const outputs = [];
+
   if (hours > 0) {
     outputs.push(pluralize(hours, 'hour'));
   }
   if (minutes > 0) {
     outputs.push(pluralize(minutes, 'minute'));
   }
+
   return outputs.join(', ');
 };
 
-var ToEnglish = {
+const ToEnglish = {
   seconds: function (seconds) {
     if (!isNumeric(seconds)) {
       throw new TypeError('input must be a number');

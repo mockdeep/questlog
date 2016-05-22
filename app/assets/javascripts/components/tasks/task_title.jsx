@@ -6,7 +6,7 @@ var DeleteButton = require('components/tasks/delete_button');
 var timeframeNameMap = require('timeframe_name_map');
 
 var TaskTitle = React.createClass({
-  proptypes: {
+  propTypes: {
     task: React.PropTypes.object.isRequired,
     loadTask: React.PropTypes.func.isRequired,
     deleteTask: React.PropTypes.func.isRequired
@@ -23,7 +23,7 @@ var TaskTitle = React.createClass({
     return classString;
   },
   title: function () {
-    return "skip count: " + this.props.task.skip_count;
+    return 'skip count: ' + this.props.task.skip_count;
   },
   emblems: function () {
     if (this.props.task.repeat_seconds) {

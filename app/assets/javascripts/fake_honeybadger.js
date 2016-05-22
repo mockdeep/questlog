@@ -1,5 +1,5 @@
 module.exports = {
-  configure: function (data) { },
+  configure: function () { },
 
-  setContext: function (data) { }
+  setContext: function () { }
 };

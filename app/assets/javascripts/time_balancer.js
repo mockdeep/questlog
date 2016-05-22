@@ -1,18 +1,23 @@
 'use strict';
 
-var moment = require('moment');
+const moment = require('moment');
 
-function daysBetween(startTime, endTime) {
+const daysBetween = function (startTime, endTime) {
   return endTime.diff(startTime, 'days');
-}
+};
 
-function timeframes(time) {
-  var endOfWeek = moment(time).endOf('week');
-  var endOfMonth = moment(time).endOf('month');
+const timeframes = function (time) {
+  const endOfWeek = moment(time).endOf('week');
+  let endOfMonth = moment(time).endOf('month');
+
   if (endOfMonth.isBefore(endOfWeek)) { endOfMonth = endOfWeek; }
-  var endOfQuarter = moment(time).endOf('quarter');
+
+  let endOfQuarter = moment(time).endOf('quarter');
+
   if (endOfQuarter.isBefore(endOfWeek)) { endOfQuarter = endOfWeek; }
-  var endOfYear = moment(time).endOf('year');
+
+  let endOfYear = moment(time).endOf('year');
+
   if (endOfYear.isBefore(endOfWeek)) { endOfYear = endOfWeek; }
 
   return {
@@ -22,13 +27,12 @@ function timeframes(time) {
     quarter: daysBetween(endOfMonth, endOfQuarter),
     year: daysBetween(endOfQuarter, endOfYear)
   };
-}
+};
 
-var TimeBalancer = {
-  base_balances: function (time) {
-    time = moment(time);
-    return timeframes(time);
+const TimeBalancer = {
+  baseBalances: function (time) {
+    return timeframes(moment(time));
   }
-}
+};
 
 module.exports = TimeBalancer;

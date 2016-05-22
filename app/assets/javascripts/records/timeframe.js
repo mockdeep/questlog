@@ -47,7 +47,7 @@ function calculateMaxMinutes(name, medianProductivity) {
 
 function baseBalance(name) {
   var balanceTime = window.balanceTime;
-  return TimeBalancer.base_balances(balanceTime)[name];
+  return TimeBalancer.baseBalances(balanceTime)[name];
 }
 
 module.exports = Timeframe;
