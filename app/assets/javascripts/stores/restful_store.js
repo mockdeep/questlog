@@ -49,19 +49,23 @@ module.exports = {
   },
 
   getAll() {
+    let promise;
+
     if (this.loaded) {
       const data = {};
 
       data[`${this.name}s`] = this.models;
 
-      return new Promise(function resolvePromise(resolve) { resolve(data); });
+      promise = new Promise(function resolvePromise(resolve) { resolve(data); });
     } else {
-      return request({
+      promise = request({
         method: 'get',
         url: this.url(),
         success: this.updateModels.bind(this)
       });
     }
+
+    return promise;
   },
 
   create(attrs) {

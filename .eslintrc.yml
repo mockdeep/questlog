@@ -12,7 +12,6 @@ ecmaFeatures:
   jsx: true
 rules:
   # to enable someday
-  no-else-return: [off] # need to think about this
   prefer-arrow-callback: [off]
   prefer-reflect: [off]
   'react/forbid-prop-types': [off]

@@ -22,13 +22,11 @@ function baseBalance(name) {
 function calculateMaxMinutes(name, medianProductivity) {
   const baseMinutes = baseBalance(name);
 
-  if (typeof baseMinutes === 'undefined') {
-    return Infinity;
-  } else {
-    const minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
+  if (typeof baseMinutes === 'undefined') { return Infinity; }
 
-    return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
-  }
+  const minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
+
+  return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
 }
 
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
