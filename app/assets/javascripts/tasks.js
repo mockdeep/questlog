@@ -1,27 +1,27 @@
 'use strict';
 
-$(document).ready(function () {
+$(document).ready(function setJqueryCallbacks() {
   const editIcon = $('#edit-task');
 
   $('#new-title').focus();
 
-  editIcon.click(function () {
+  editIcon.click(function toggleEditDisplay() {
     if (editIcon.hasClass('fa-arrow-down')) {
-      $('#new-form').fadeOut(200, function () {
-        $('#buttons').fadeOut(200, function () {
+      $('#new-form').fadeOut(200, function hideButtons() {
+        $('#buttons').fadeOut(200, function showEditForm() {
           $('#edit-form').fadeIn(200);
           $('#edit-title').focus();
         });
       });
     } else {
-      $('#edit-form').fadeOut(200, function () {
-        $('#buttons').fadeIn(200, function () {
+      $('#edit-form').fadeOut(200, function showButtons() {
+        $('#buttons').fadeIn(200, function showNewForm() {
           $('#new-form').fadeIn(200);
           $('#new-title').focus();
         });
       });
     }
-    editIcon.fadeOut(function () {
+    editIcon.fadeOut(function toggleIcons() {
       editIcon.toggleClass('fa-arrow-down');
       editIcon.toggleClass('fa-arrow-up');
       editIcon.fadeIn();

@@ -8,7 +8,7 @@ const ErrorDisplay = React.createClass({
   },
 
   errorItems() {
-    return this.props.errors.map(function (errorMessage) {
+    return this.props.errors.map(function errorItem(errorMessage) {
       return <li key={errorMessage}>{errorMessage}</li>;
     });
   },

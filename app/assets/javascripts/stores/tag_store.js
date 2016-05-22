@@ -14,6 +14,9 @@ const TagStore = extend({}, RestfulStore, {
   }
 });
 
-TaskStore.on('change', function () { TagStore.loaded = false; TagStore.trigger('change'); });
+TaskStore.on('change', function triggerTagStoreChange() {
+  TagStore.loaded = false;
+  TagStore.trigger('change');
+});
 
 module.exports = TagStore;

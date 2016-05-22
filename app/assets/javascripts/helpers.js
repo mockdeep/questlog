@@ -3,26 +3,26 @@
 const reqwest = require('reqwest');
 const extend = require('lodash').extend;
 
-const reloadPage = function () {
+function reloadPage() {
   window.location.reload();
-};
+}
 
-const logError = function (error) {
+function logError(error) {
   // eslint-disable-next-line no-console
   console.log('error: ', error.statusText);
-};
+}
 
-const authenticityToken = function () {
+function authenticityToken() {
   const tokenTag = document.getElementsByName('csrf-token')[0];
 
   return tokenTag && tokenTag.content;
-};
+}
 
-const stopPropagation = function (event) {
+function stopPropagation(event) {
   event.stopPropagation();
-};
+}
 
-const defaultRequestOptions = function () {
+function defaultRequestOptions() {
   return {
     type: 'json',
     method: 'put',
@@ -30,21 +30,21 @@ const defaultRequestOptions = function () {
     success: reloadPage,
     error: logError
   };
-};
+}
 
-const mergeOptions = function (defaults, options) {
+function mergeOptions(defaults, options) {
   return extend({}, defaults, options);
-};
+}
 
-const request = function (options) {
+function request(options) {
   return reqwest(mergeOptions(defaultRequestOptions(), options));
-};
+}
 
-const flash = function (status, message) {
+function flash(status, message) {
   const $myFlash = $('<div />', {'class': `flash-${status}`, text: message});
 
   $('#flashes').append($myFlash);
   $('[class^=flash-]').fadeOut(1500);
-};
+}
 
 module.exports = {authenticityToken, flash, request, stopPropagation};

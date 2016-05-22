@@ -29,10 +29,10 @@ const TasksShow = React.createClass({
   },
 
   componentDidMount() {
-    this.loadTags().then(function () {
+    this.loadTags().then(function setTagStoreCallback() {
       TagStore.on('change', this.loadTags);
     }.bind(this));
-    this.loadTask().then(function () {
+    this.loadTask().then(function setTaskStoreCallback() {
       TaskStore.on('change', this.loadTask);
       this.setTitle();
     }.bind(this));

@@ -4,9 +4,9 @@ const React = require('react');
 
 const stopPropagation = require('helpers').stopPropagation;
 
-const isPostponing = function (task) {
+function isPostponing(task) {
   return task.loadingState === 'postponing';
-};
+}
 
 const SelectOption = React.createClass({
   propTypes: {
@@ -61,9 +61,7 @@ const PostponeButton = React.createClass({
   ],
 
   selectOptions() {
-    return this.selectOptionsOptions.map(function (optionOptions) {
-      return this.selectOption(optionOptions);
-    }.bind(this));
+    return this.selectOptionsOptions.map(this.selectOption);
   },
 
   selectOption(optionOptions) {

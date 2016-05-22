@@ -12,13 +12,13 @@ const BulkTaskStore = require('stores/bulk_task_store');
 const NewTaskForm = require('components/tasks/new_task_form');
 const TaskRow = require('components/tasks/task_row');
 
-const isPending = function (task) {
+function isPending(task) {
   return task.pending;
-};
+}
 
-const findTask = function (tasks, taskId) {
-  return tasks.find(function (task) { return task.id === taskId; });
-};
+function findTask(tasks, taskId) {
+  return tasks.find(function taskMatches(task) { return task.id === taskId; });
+}
 
 const TasksIndex = React.createClass({
   getInitialState() {
@@ -90,7 +90,7 @@ const TasksIndex = React.createClass({
   },
 
   currentTaskPositions() {
-    return this.state.currentTasks.map(function (task) {
+    return this.state.currentTasks.map(function taskId(task) {
       return task.id;
     });
   },
