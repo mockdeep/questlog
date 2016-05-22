@@ -10,28 +10,30 @@ globals:
 ecmaFeatures:
   jsx: true
 rules:
-  padded-blocks: [error, never]
-  quotes: [error, single]
-  quote-props: [error, as-needed, { keywords: true }]
-  brace-style: [error, 1tbs, { allowSingleLine: true }]
-  prefer-arrow-callback: [off] # for now...
+  # to enable
   func-names: [off] # for now...
+  no-else-return: [off] # need to think about this
+  object-shorthand: [off] # for now...
+  prefer-arrow-callback: [off] # for now...
+  prefer-reflect: [off] # for now...
+  # other stuff
+  brace-style: [error, 1tbs, { allowSingleLine: true }]
+  id-length: [error, { exceptions: [_, $] }]
   indent: [error, 2]
+  init-declarations: [off]
+  jsx-quotes: [error, prefer-single]
   max-len: [error, 115]
   max-statements-per-line: [error, { max: 2 }]
+  max-statements: [error, { max: 14 }]
+  no-inline-comments: [off]
+  no-magic-numbers: [off]
+  no-ternary: [off]
+  no-underscore-dangle: [error, { allowAfterThis: true }]
   object-property-newline: [error, { allowMultiplePropertiesPerLine: true }]
   one-var: [error, never]
-  init-declarations: [off]
-  no-magic-numbers: [off]
-  object-shorthand: [off] # for now...
-  no-ternary: [off]
-  space-before-function-paren: [error, { anonymous: always, named: never }]
-  max-statements: [error, { max: 14 }]
+  padded-blocks: [error, never]
+  quote-props: [error, as-needed, { keywords: true }]
+  quotes: [error, single]
   require-jsdoc: [off]
-  prefer-reflect: [off] # for now...
-  no-inline-comments: [off]
-  no-else-return: [off] # need to think about this
-  jsx-quotes: [error, prefer-single]
-  no-underscore-dangle: [error, { allowAfterThis: true }]
-  id-length: [error, { exceptions: [_, $] }]
+  space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
