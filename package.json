@@ -36,7 +36,7 @@
     "node": "4.2.2"
   },
   "scripts": {
-    "pretest": "eslint app/assets/javascripts/ test/ --ext .js,.jsx",
+    "pretest": "eslint ./ --ext .js,.jsx",
     "test": "mocha"
   }
 }

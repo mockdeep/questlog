@@ -37,7 +37,7 @@ const TagButton = React.createClass({
     return (
       <div>
         <Link to={this.path()} className={this.className()}>
-          {this.props.tag.name} ({this.unfinishedTasksCount()})
+          {`${this.props.tag.name} (${this.unfinishedTasksCount()})`}
         </Link>
       </div>
     );

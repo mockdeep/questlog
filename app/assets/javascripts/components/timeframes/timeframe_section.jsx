@@ -6,20 +6,20 @@ const TaskRow = require('components/tasks/task_row');
 
 const TimeframeSection = React.createClass({
   propTypes: {
-    timeframe: React.PropTypes.object.isRequired,
-    timeframeSpace: React.PropTypes.object.isRequired,
+    destroyTask: React.PropTypes.func.isRequired,
     loadTasks: React.PropTypes.func.isRequired,
     storeTask: React.PropTypes.func.isRequired,
-    destroyTask: React.PropTypes.func.isRequired
+    timeframe: React.PropTypes.object.isRequired,
+    timeframeSpace: React.PropTypes.object.isRequired
   },
 
   renderTask: function (task) {
     return (
       <TaskRow
+        timeframesEnabled
         timeframeSpace={this.props.timeframeSpace}
         task={task}
         key={task.id}
-        timeframesEnabled={true}
         loadTasks={this.props.loadTasks}
         storeTask={this.props.storeTask}
         destroyTask={this.props.destroyTask}
@@ -64,7 +64,9 @@ const TimeframeSection = React.createClass({
     const className = this.overLimit() ? 'danger' : '';
 
     return (
-      <span className={className}>{this.minuteTotal()}/{this.maxTime()}</span>
+      <span className={className}>
+        {`${this.minuteTotal()}/${this.maxTime()}`}
+      </span>
     );
   },
 

@@ -1,4 +1,5 @@
 root: true
+# have to include `plugin:react/recommended` to avoid errors
 extends: ['./.eslint-all.js', 'plugin:react/recommended']
 plugins: [react]
 env:
@@ -10,12 +11,18 @@ globals:
 ecmaFeatures:
   jsx: true
 rules:
-  # to enable
-  func-names: [off] # for now...
+  # to enable someday
+  func-names: [off]
   no-else-return: [off] # need to think about this
-  object-shorthand: [off] # for now...
-  prefer-arrow-callback: [off] # for now...
-  prefer-reflect: [off] # for now...
+  object-shorthand: [off]
+  prefer-arrow-callback: [off]
+  prefer-reflect: [off]
+  'react/forbid-prop-types': [off]
+  'react/no-multi-comp': [off]
+  'react/no-set-state': [off]
+  'react/no-string-refs': [off]
+  'react/prefer-es6-class': [off]
+  'react/prefer-stateless-function': [off]
   # other stuff
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   id-length: [error, { exceptions: [_, $] }]
@@ -37,3 +44,9 @@ rules:
   require-jsdoc: [off]
   space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
+  'react/jsx-handler-names': [off]
+  'react/jsx-indent': [error, 2]
+  'react/jsx-indent-props': [error, 2]
+  'react/jsx-max-props-per-line': [off]
+  'react/jsx-sort-props': [off]
+  'react/wrap-multilines': [error, { declaration: false }]

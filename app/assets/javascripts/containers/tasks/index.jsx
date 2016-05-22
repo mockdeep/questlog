@@ -25,6 +25,15 @@ const TasksIndex = React.createClass({
     return {currentTasks: [], pendingTasks: []};
   },
 
+  componentDidMount: function () {
+    TaskStore.on('change', this.loadTasks);
+    this.loadTasks();
+  },
+
+  componentWillUnmount: function () {
+    TaskStore.off('change', this.loadTasks);
+  },
+
   loadTasks: function () {
     TaskStore.getAll().then(this.setTasks);
   },
@@ -115,15 +124,6 @@ const TasksIndex = React.createClass({
     );
   },
 
-  componentDidMount: function () {
-    TaskStore.on('change', this.loadTasks);
-    this.loadTasks();
-  },
-
-  componentWillUnmount: function () {
-    TaskStore.off('change', this.loadTasks);
-  },
-
   createTask: function (attrs) {
     return TaskStore.create(attrs);
   },
@@ -134,14 +134,14 @@ const TasksIndex = React.createClass({
         <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />
         <br />
         <div id='current-tasks'>
-          <h2>Current Tasks</h2>
+          <h2>{'Current Tasks'}</h2>
           <ul>
             {this.currentTaskRows()}
           </ul>
         </div>
 
         <div id='pending-tasks'>
-          <h2>Pending Tasks</h2>
+          <h2>{'Pending Tasks'}</h2>
           <ul>
             {this.pendingTaskRows()}
           </ul>
