@@ -11,9 +11,9 @@ const NewTaskForm = require('components/tasks/new_task_form');
 const TimeframeStore = require('stores/timeframe_store');
 const TimeframeSection = require('components/timeframes/timeframe_section');
 
-const timeframeHasTasks = function (timeframe) {
+function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
-};
+}
 
 const TimeframesIndex = React.createClass({
 
@@ -22,7 +22,7 @@ const TimeframesIndex = React.createClass({
   },
 
   componentDidMount() {
-    TimeframeStore.getAll().then(function (data) {
+    TimeframeStore.getAll().then(function loadTimeframeData(data) {
       this.updateTimeframes(data);
       TimeframeStore.on('change', this.loadTasks);
     }.bind(this));
@@ -51,7 +51,7 @@ const TimeframesIndex = React.createClass({
   timeframeSpace() {
     const counts = {};
 
-    this.state.timeframes.forEach(function (timeframe) {
+    this.state.timeframes.forEach(function setTimeframeCount(timeframe) {
       counts[timeframe.name] = timeframe.minuteMax - timeframe.minuteTotal;
     });
 

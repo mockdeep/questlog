@@ -19,5 +19,5 @@ const BulkTaskStore = extend({}, RestfulStore, {
   }
 });
 
-BulkTaskStore.on('change', function () { TaskStore.unload(); });
+BulkTaskStore.on('change', function unloadTaskStore() { TaskStore.unload(); });
 module.exports = BulkTaskStore;

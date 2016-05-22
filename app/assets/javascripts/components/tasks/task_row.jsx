@@ -32,16 +32,16 @@ const taskTarget = {
   }
 };
 
-const sourceCollect = function (connect, monitor) {
+function sourceCollect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   };
-};
+}
 
-const targetCollect = function (connect) {
+function targetCollect(connect) {
   return {connectDropTarget: connect.dropTarget()};
-};
+}
 
 const TaskRow = React.createClass({
   propTypes: {
@@ -126,7 +126,7 @@ const TaskRow = React.createClass({
   timeframeOptions() {
     if (!this.state.timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
-      return map(timeframeNameMap, function (title, name) {
+      return map(timeframeNameMap, function timeframeOption(title, name) {
         const optionTitle = name === 'inbox' ? '-' : title;
 
         return (
@@ -136,7 +136,7 @@ const TaskRow = React.createClass({
     }
     const that = this;
 
-    return map(timeframeNameMap, function (title, name) {
+    return map(timeframeNameMap, function detailedTimeframeOption(title, name) {
       const disabled = !that.timeframeHasSpace(name);
       const optionTitle = name === 'inbox' ? '-' : title;
 

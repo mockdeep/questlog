@@ -13,13 +13,13 @@ const Timeframe = new Record({
   name: null
 });
 
-const baseBalance = function (name) {
+function baseBalance(name) {
   const balanceTime = window.balanceTime;
 
   return TimeBalancer.baseBalances(balanceTime)[name];
-};
+}
 
-const calculateMaxMinutes = function (name, medianProductivity) {
+function calculateMaxMinutes(name, medianProductivity) {
   const baseMinutes = baseBalance(name);
 
   if (typeof baseMinutes === 'undefined') {
@@ -29,7 +29,7 @@ const calculateMaxMinutes = function (name, medianProductivity) {
 
     return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
   }
-};
+}
 
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
   get() {

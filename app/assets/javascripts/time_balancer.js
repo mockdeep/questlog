@@ -2,11 +2,11 @@
 
 const moment = require('moment');
 
-const daysBetween = function (startTime, endTime) {
+function daysBetween(startTime, endTime) {
   return endTime.diff(startTime, 'days');
-};
+}
 
-const timeframes = function (time) {
+function timeframes(time) {
   const endOfWeek = moment(time).endOf('week');
   let endOfMonth = moment(time).endOf('month');
 
@@ -27,7 +27,7 @@ const timeframes = function (time) {
     quarter: daysBetween(endOfMonth, endOfQuarter),
     year: daysBetween(endOfQuarter, endOfYear)
   };
-};
+}
 
 const TimeBalancer = {
   baseBalances(time) {

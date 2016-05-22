@@ -33,7 +33,7 @@ const timeframeEnds = {
 
 let medianProductivity;
 
-const timeframeNameForPendingTask = function (task) {
+function timeframeNameForPendingTask(task) {
   const releaseAt = moment(task.release_at);
   let index = timeframeList.indexOf(task.timeframe) - 1;
   let timeframeName;
@@ -47,13 +47,13 @@ const timeframeNameForPendingTask = function (task) {
   } while (releaseAt.diff(timeframeEnd) > 0);
 
   return timeframeList[index];
-};
+}
 
-const timeframeNameForTask = function (task) {
+function timeframeNameForTask(task) {
   if (!task.timeframe) { return 'inbox'; }
 
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
-};
+}
 
 const TimeframeStore = extend({}, RestfulStore, {
   name: 'timeframe',
@@ -62,14 +62,14 @@ const TimeframeStore = extend({}, RestfulStore, {
     const tasks = data.tasks;
     const timeframes = {};
 
-    timeframeList.forEach(function (timeframeName) {
+    timeframeList.forEach(function addTimeframe(timeframeName) {
       timeframes[timeframeName] = {
         name: timeframeName,
         currentTasks: [],
         pendingTasks: []
       };
     });
-    tasks.forEach(function (task) {
+    tasks.forEach(function addTaskToTimeframe(task) {
       const timeframeName = timeframeNameForTask(task);
 
       if (task.pending) {
@@ -78,7 +78,7 @@ const TimeframeStore = extend({}, RestfulStore, {
         timeframes[timeframeName].currentTasks.push(task);
       }
     });
-    this.models = timeframeList.map(function (timeframeName) {
+    this.models = timeframeList.map(function buildTimeframe(timeframeName) {
       const timeframe = timeframes[timeframeName];
 
       timeframe.medianProductivity = medianProductivity;
@@ -95,12 +95,12 @@ const TimeframeStore = extend({}, RestfulStore, {
   },
 
   getAll() {
-    return new Promise(function (resolve) {
-      TaskStore.getAll().then(function (data) {
+    return new Promise(function fetchTasks(resolve) {
+      TaskStore.getAll().then(function fetchTimeframes(data) {
         request({
           method: 'get',
           url: this.url(),
-          success: function (timeframeData) {
+          success: function loadTimeframeData(timeframeData) {
             medianProductivity = timeframeData.meta.medianProductivity;
             this.updateModels(data);
             resolve(this.getData());
@@ -111,6 +111,8 @@ const TimeframeStore = extend({}, RestfulStore, {
   }
 });
 
-TaskStore.on('change', function () { TimeframeStore.unload(); });
+TaskStore.on('change', function unloadTimeframeStore() {
+  TimeframeStore.unload();
+});
 
 module.exports = TimeframeStore;

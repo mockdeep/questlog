@@ -20,7 +20,9 @@ module.exports = {
 
   trigger(event) {
     if (!this.callbacks || !this.callbacks[event]) { return; }
-    this.callbacks[event].forEach(function (callback) { callback(); });
+    this.callbacks[event].forEach(function triggerCallback(callback) {
+      callback();
+    });
   },
 
   url() {
@@ -52,7 +54,7 @@ module.exports = {
 
       data[`${this.name}s`] = this.models;
 
-      return new Promise(function (resolve) { resolve(data); });
+      return new Promise(function resolvePromise(resolve) { resolve(data); });
     } else {
       return request({
         method: 'get',

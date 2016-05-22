@@ -12,7 +12,7 @@ const TagButtons = React.createClass({
   },
 
   isCurrent(tag) {
-    return any(this.currentNames(), function (name) {
+    return any(this.currentNames(), function tagNameMatches(name) {
       return tag.name === name;
     });
   },
