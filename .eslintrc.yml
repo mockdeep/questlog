@@ -12,7 +12,6 @@ ecmaFeatures:
   jsx: true
 rules:
   # to enable someday
-  prefer-reflect: [off]
   'react/forbid-prop-types': [off]
   'react/no-multi-comp': [off]
   'react/no-set-state': [off]
@@ -37,6 +36,7 @@ rules:
   one-var: [error, never]
   padded-blocks: [error, never]
   prefer-arrow-callback: [error, { allowNamedFunctions: true }]
+  prefer-reflect: [off]
   quote-props: [error, as-needed, { keywords: true }]
   quotes: [error, single]
   require-jsdoc: [off]
