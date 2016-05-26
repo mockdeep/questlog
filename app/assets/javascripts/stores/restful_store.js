@@ -56,7 +56,7 @@ module.exports = {
 
       data[`${this.name}s`] = this.models;
 
-      promise = new Promise(function resolvePromise(resolve) { resolve(data); });
+      promise = new Promise(function resolveNow(resolve) { resolve(data); });
     } else {
       promise = request({
         method: 'get',
