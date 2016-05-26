@@ -38,7 +38,9 @@ const NewTaskForm = React.createClass({
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});
-    this.props.createTask({title: this.state.task.title.trim()}).then(this.loadTask);
+    const taskAttrs = {title: this.state.task.title.trim()};
+
+    this.props.createTask(taskAttrs).then(this.loadTask);
   },
 
   loadTask() {

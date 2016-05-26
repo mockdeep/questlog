@@ -207,7 +207,11 @@ const TaskRow = React.createClass({
             {'Done!'}
           </button>
           {' | '}
-          <button className='btn btn-link' role='Link' onClick={this.deleteTask}>
+          <button
+            className='btn btn-link'
+            role='Link'
+            onClick={this.deleteTask}
+          >
             {'Delete'}
           </button>
         </li>
