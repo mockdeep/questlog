@@ -19,7 +19,7 @@ const TaskFooter = React.createClass({
         <br />
         {'Try adding a tag using "#", for example: '}
         <strong>{'#home'}</strong>{' or '}<strong>{'#5-min'}</strong>{'. '}
-        {'Click'}<HelpLink />{'for more.'}
+        {'Click '}<HelpLink />{' for more.'}
       </p>
     );
   }
