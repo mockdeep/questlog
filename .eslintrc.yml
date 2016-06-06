@@ -1,6 +1,6 @@
 root: true
 # have to include `plugin:react/recommended` to avoid errors
-extends: ['./.eslint-all.js', 'plugin:react/recommended']
+extends: ['./eslint-all.js', 'plugin:react/recommended']
 plugins: [react]
 env:
   browser: true
