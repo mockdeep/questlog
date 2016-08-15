@@ -2,6 +2,8 @@
 
 const path = require('path');
 const jsdom = require('jsdom');
+const chai = require('chai');
+const dirtyChai = require('dirty-chai');
 
 // add the application directory to require paths
 const jsPath = path.normalize(`${__dirname}../../app/assets/javascripts/`);
@@ -18,4 +20,5 @@ global.document = jsdom.jsdom('<html><body></body></html>');
 global.window = document.defaultView;
 global.navigator = {userAgent: 'mocha'};
 
-global.expect = require('chai').expect;
+chai.use(dirtyChai);
+global.expect = chai.expect;
