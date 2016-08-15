@@ -10,6 +10,8 @@ const TaskDisplay = require('components/tasks/task_display');
 const TagStore = require('stores/tag_store');
 const TaskStore = require('stores/task_store');
 
+const QNotification = require('q_notification');
+
 const TasksShow = React.createClass({
   propTypes: {params: React.PropTypes.object.isRequired},
 
@@ -22,7 +24,7 @@ const TasksShow = React.createClass({
       tags: [],
       postponeSeconds: 300,
       notificationsEnabled: false,
-      notificationsPermitted: Notification.permission === 'granted'
+      notificationsPermitted: QNotification.isPermissionGranted()
     };
   },
 

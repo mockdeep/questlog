@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "dirty-chai": "^1.2.2",
     "eslint": "^2.10.2",
     "eslint-plugin-react": "^5.1.1",
     "jsdom": "^7.2.0",
