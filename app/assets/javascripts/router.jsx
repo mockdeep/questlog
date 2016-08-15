@@ -18,9 +18,7 @@ const TasksShow = require('containers/tasks/show');
 const TimeframesIndex = require('containers/timeframes/index');
 
 const AppBase = React.createClass({
-  propTypes: {
-    children: React.PropTypes.object.isRequired
-  },
+  propTypes: {children: React.PropTypes.object.isRequired},
   render() {
     return (
       <div>{this.props.children}</div>
@@ -28,9 +26,7 @@ const AppBase = React.createClass({
   }
 });
 
-const Nothing = React.createClass({
-  render() { return false; }
-});
+const Nothing = React.createClass({render() { return false; }});
 
 const routes =
   <Route path='/' component={AppBase}>
