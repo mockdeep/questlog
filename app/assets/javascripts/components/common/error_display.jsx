@@ -3,9 +3,7 @@
 const React = require('react');
 
 const ErrorDisplay = React.createClass({
-  propTypes: {
-    errors: React.PropTypes.array.isRequired
-  },
+  propTypes: {errors: React.PropTypes.array.isRequired},
 
   errorItems() {
     return this.props.errors.map(function errorItem(errorMessage) {
