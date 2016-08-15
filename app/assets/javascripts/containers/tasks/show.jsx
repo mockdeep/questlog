@@ -130,15 +130,25 @@ const TasksShow = React.createClass({
   },
 
   toggleNotifications(event) {
-    if (event.target.checked && this.notificationsPermitted()) {
+    if (event.target.checked) {
+      this.enableNotifications();
+    } else {
+      this.disableNotifications();
+    }
+  },
+
+  enableNotifications() {
+    if (this.notificationsPermitted()) {
       this.setState({notificationsEnabled: true}, this.notifyOnInterval);
-    } else if (event.target.checked) {
+    } else {
       this.setState({notificationsEnabled: true});
       this.requestNotificationPermission(this.notifyOnInterval);
-    } else {
-      this.closeNotification();
-      this.setState({notificationsEnabled: false});
     }
+  },
+
+  disableNotifications() {
+    this.closeNotification();
+    this.setState({notificationsEnabled: false});
   },
 
   storeTask(taskId, attrs, opts) {
