@@ -20,6 +20,7 @@ rules:
   react/prefer-stateless-function: [off]
   max-len: [error, 110]
   max-statements: [error, { max: 14 }]
+  no-mixed-operators: [off]
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   func-style: [error, declaration]
