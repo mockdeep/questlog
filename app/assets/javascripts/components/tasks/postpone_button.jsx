@@ -2,7 +2,7 @@
 
 const React = require('react');
 
-const stopPropagation = require('helpers').stopPropagation;
+const stopPropagation = require('_helpers/stop_propagation');
 
 function isPostponing(task) {
   return task.loadingState === 'postponing';

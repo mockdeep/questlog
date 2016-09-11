@@ -1,7 +1,7 @@
 'use strict';
 
 const extend = require('lodash').extend;
-const request = require('helpers').request;
+const request = require('_helpers/request');
 
 const moment = require('moment');
 
