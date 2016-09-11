@@ -1,22 +1,27 @@
-/* eslint-disable no-undef, global-require, camelcase */
 //= require_self
 //= require jquery_ujs
 //= require bootstrap
 //= require tasks
 
 'use strict';
-window.$ = window.jQuery = require('jquery');
 
-window.Honeybadger = window.Honeybadger || require('fake_honeybadger');
-Honeybadger.configure({
-  api_key: gon.honeybadger_api_key,
-  environment: gon.rails_env,
+require('es5-shim');
+const $ = require('jquery');
+const PromisePolyfill = require('promise-polyfill');
+const FakeHoneybadger = require('fake_honeybadger');
+
+window.$ = window.jQuery = $;
+
+require('router');
+
+window.Honeybadger = window.Honeybadger || FakeHoneybadger;
+window.Honeybadger.configure({
+  api_key: window.gon.honeybadger_api_key, // eslint-disable-line camelcase
+  environment: window.gon.rails_env,
   onerror: true
 });
 
-Honeybadger.setContext({user_id: gon.user_id});
+// eslint-disable-next-line camelcase
+window.Honeybadger.setContext({user_id: window.gon.user_id});
 
-require('es5-shim');
-
-require('router');
-if (!window.Promise) { window.Promise = require('promise-polyfill'); }
+window.Promise = window.Promise || PromisePolyfill;
