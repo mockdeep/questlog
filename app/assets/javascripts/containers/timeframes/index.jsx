@@ -4,7 +4,7 @@ const React = require('react');
 const HTML5Backend = require('react-dnd-html5-backend');
 const dragDropContext = require('react-dnd').DragDropContext;
 
-const ToEnglish = require('to_english');
+const ToEnglish = require('helpers/to_english');
 const TaskStore = require('stores/task_store');
 
 const NewTaskForm = require('components/tasks/new_task_form');
