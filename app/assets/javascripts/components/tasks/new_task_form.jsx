@@ -4,7 +4,7 @@ const React = require('react');
 const extend = require('lodash').extend;
 
 const ErrorDisplay = require('components/common/error_display');
-const flash = require('helpers').flash;
+const flash = require('_helpers/flash');
 
 const NewTaskForm = React.createClass({
   propTypes: {

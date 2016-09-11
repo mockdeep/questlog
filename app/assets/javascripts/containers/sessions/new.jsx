@@ -2,7 +2,7 @@
 
 const React = require('react');
 
-const authenticityToken = require('helpers').authenticityToken;
+const authenticityToken = require('_helpers/authenticity_token');
 
 const SessionsNew = React.createClass({
   render() {

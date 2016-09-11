@@ -2,7 +2,7 @@
 
 const without = require('lodash').without;
 
-const request = require('helpers').request;
+const request = require('_helpers/request');
 
 module.exports = {
   models: [],
