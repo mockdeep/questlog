@@ -13,8 +13,8 @@ const BulkTasksNew = require('containers/bulk_tasks/new');
 const PrivacyPage = require('containers/static/privacy_page');
 const WhatPage = require('containers/static/what_page');
 const SessionsNew = require('containers/sessions/new');
-const TasksIndex = require('containers/tasks/index');
-const TasksShow = require('containers/tasks/show');
+const TasksIndex = require('containers/tasks/list');
+const TasksShow = require('containers/tasks/item');
 const TimeframesIndex = require('containers/timeframes/index');
 
 const AppBase = React.createClass({
