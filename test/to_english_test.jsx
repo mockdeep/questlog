@@ -1,6 +1,6 @@
 'use strict';
 
-const ToEnglish = require('to_english');
+const ToEnglish = require('helpers/to_english');
 
 describe('ToEnglish.seconds', function () {
   it('returns seconds when < 1 minute', function () {
