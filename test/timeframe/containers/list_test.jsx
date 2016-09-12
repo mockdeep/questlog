@@ -4,7 +4,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 
-const TimeframesIndex = require('containers/timeframes/index');
+const TimeframesIndex = require('timeframe/containers/list');
 
 let timeframesIndex;
 

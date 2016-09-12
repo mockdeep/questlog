@@ -15,7 +15,7 @@ const WhatPage = require('containers/static/what_page');
 const SessionsNew = require('containers/sessions/new');
 const TasksIndex = require('task/containers/list');
 const TasksShow = require('task/containers/item');
-const TimeframesIndex = require('containers/timeframes/index');
+const TimeframesIndex = require('timeframe/containers/list');
 
 const AppBase = React.createClass({
   propTypes: {children: React.PropTypes.object.isRequired},
