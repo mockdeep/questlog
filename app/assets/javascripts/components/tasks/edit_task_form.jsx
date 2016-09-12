@@ -2,7 +2,7 @@
 
 const React = require('react');
 
-const ErrorDisplay = require('components/common/error_display');
+const ErrorDisplay = require('_common/components/error_display');
 
 const EditTaskForm = React.createClass({
   propTypes: {
