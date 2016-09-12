@@ -9,7 +9,7 @@ const moment = require('moment');
 const Promise = window.Promise || require('promise-polyfill');
 
 const Timeframe = require('timeframe/model');
-const RestfulStore = require('stores/restful_store');
+const RestfulStore = require('_common/restful_store');
 const TaskStore = require('stores/task_store');
 
 const timeframeList = [
