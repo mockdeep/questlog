@@ -6,7 +6,7 @@ const partition = require('lodash').partition;
 const HTML5Backend = require('react-dnd-html5-backend');
 const dragDropContext = require('react-dnd').DragDropContext;
 
-const TaskStore = require('stores/task_store');
+const TaskStore = require('task/store');
 const BulkTaskStore = require('task/bulk_store');
 
 const NewTaskForm = require('components/tasks/new_task_form');

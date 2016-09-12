@@ -8,7 +8,7 @@ const TaskFooter = require('components/common/task_footer');
 const TaskDisplay = require('components/tasks/task_display');
 
 const TagStore = require('tag/store');
-const TaskStore = require('stores/task_store');
+const TaskStore = require('task/store');
 
 const QNotification = require('q_notification');
 
