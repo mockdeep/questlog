@@ -3,7 +3,7 @@
 const extend = require('lodash').extend;
 
 const request = require('_helpers/request');
-const RestfulStore = require('stores/restful_store');
+const RestfulStore = require('_common/restful_store');
 const TaskStore = require('stores/task_store');
 
 const TagStore = extend({}, RestfulStore, {

@@ -2,7 +2,7 @@
 
 const extend = require('lodash').extend;
 
-const RestfulStore = require('stores/restful_store');
+const RestfulStore = require('_common/restful_store');
 const Task = require('task/model');
 
 module.exports = extend({}, RestfulStore, {
