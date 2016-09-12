@@ -3,7 +3,7 @@
 const Record = require('immutable').Record;
 const sum = require('lodash').sum;
 
-const TimeBalancer = require('time_balancer');
+const TimeBalancer = require('_helpers/time_balancer');
 const timeframeNameMap = require('timeframe_name_map');
 
 const Timeframe = new Record({
