@@ -8,7 +8,7 @@ const moment = require('moment');
 // eslint-disable-next-line global-require
 const Promise = window.Promise || require('promise-polyfill');
 
-const Timeframe = require('records/timeframe');
+const Timeframe = require('timeframe/model');
 const RestfulStore = require('stores/restful_store');
 const TaskStore = require('stores/task_store');
 
