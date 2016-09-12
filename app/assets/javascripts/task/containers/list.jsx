@@ -7,7 +7,7 @@ const HTML5Backend = require('react-dnd-html5-backend');
 const dragDropContext = require('react-dnd').DragDropContext;
 
 const TaskStore = require('stores/task_store');
-const BulkTaskStore = require('stores/bulk_task_store');
+const BulkTaskStore = require('task/bulk_store');
 
 const NewTaskForm = require('components/tasks/new_task_form');
 const TaskRow = require('components/tasks/task_row');
