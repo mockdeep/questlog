@@ -8,7 +8,7 @@ const ToEnglish = require('_helpers/to_english');
 const TaskStore = require('task/store');
 
 const NewTaskForm = require('components/tasks/new_task_form');
-const TimeframeStore = require('stores/timeframe_store');
+const TimeframeStore = require('timeframe/store');
 const TimeframeSection = require('components/timeframes/timeframe_section');
 
 function timeframeHasTasks(timeframe) {
