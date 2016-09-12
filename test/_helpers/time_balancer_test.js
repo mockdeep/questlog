@@ -2,7 +2,7 @@
 
 const moment = require('moment');
 
-const TimeBalancer = require('time_balancer');
+const TimeBalancer = require('_helpers/time_balancer');
 
 describe('TimeBalancer.baseBalances', function () {
   it('returns a collection of base time pairs', function () {
