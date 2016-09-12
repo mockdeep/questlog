@@ -10,7 +10,7 @@ const Promise = window.Promise || require('promise-polyfill');
 
 const Timeframe = require('timeframe/model');
 const RestfulStore = require('_common/restful_store');
-const TaskStore = require('stores/task_store');
+const TaskStore = require('task/store');
 
 const timeframeList = [
   'inbox',
