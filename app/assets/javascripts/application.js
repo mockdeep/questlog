@@ -8,7 +8,7 @@
 require('es5-shim');
 const $ = require('jquery');
 const PromisePolyfill = require('promise-polyfill');
-const FakeHoneybadger = require('fake_honeybadger');
+const FakeHoneybadger = require('_dev/fake_honeybadger');
 
 window.$ = window.jQuery = $;
 
