@@ -3,7 +3,7 @@
 const React = require('react');
 const extend = require('lodash').extend;
 
-const ErrorDisplay = require('components/common/error_display');
+const ErrorDisplay = require('_common/components/error_display');
 const flash = require('_helpers/flash');
 
 const NewTaskForm = React.createClass({
