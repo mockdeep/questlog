@@ -2,7 +2,7 @@
 
 const React = require('react');
 
-const TaskRow = require('components/tasks/task_row');
+const TaskRow = require('task/components/task_row');
 
 const TimeframeSection = React.createClass({
   propTypes: {

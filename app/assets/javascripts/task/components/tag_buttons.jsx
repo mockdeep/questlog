@@ -3,7 +3,7 @@
 const React = require('react');
 const any = require('lodash').any;
 
-const TagButton = require('components/tasks/tag_button');
+const TagButton = require('task/components/tag_button');
 
 const TagButtons = React.createClass({
   propTypes: {
