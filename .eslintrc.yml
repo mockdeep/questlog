@@ -12,15 +12,18 @@ ecmaFeatures:
   jsx: true
 rules:
   # to enable someday
+  max-len: [error, 110]
+  max-statements: [error, { max: 14 }]
+  multiline-ternary: [off]
+  no-mixed-operators: [off]
   react/forbid-prop-types: [off]
+  react/no-find-dom-node: [off]
   react/no-multi-comp: [off]
   react/no-set-state: [off]
   react/no-string-refs: [off]
   react/prefer-es6-class: [off]
   react/prefer-stateless-function: [off]
-  max-len: [error, 110]
-  max-statements: [error, { max: 14 }]
-  no-mixed-operators: [off]
+  sort-keys: [off]
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   func-style: [error, declaration]
@@ -39,7 +42,7 @@ rules:
   spaced-comment: [error, always, { markers: [=] }]
   react/jsx-indent: [error, 2]
   react/jsx-indent-props: [error, 2]
-  react/wrap-multilines: [error, { declaration: false }]
+  react/jsx-wrap-multilines: [error, { declaration: false }]
   # disabled
   init-declarations: [off]
   no-inline-comments: [off]
