@@ -4,7 +4,7 @@ const React = require('react');
 const extend = require('lodash').extend;
 
 const NewTaskForm = require('components/tasks/new_task_form');
-const TaskFooter = require('components/common/task_footer');
+const TaskFooter = require('_common/components/task_footer');
 const TaskDisplay = require('components/tasks/task_display');
 
 const TagStore = require('tag/store');
