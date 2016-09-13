@@ -9,7 +9,7 @@ const dragDropContext = require('react-dnd').DragDropContext;
 const TaskStore = require('task/store');
 const BulkTaskStore = require('task/bulk_store');
 
-const NewTaskForm = require('components/tasks/new_task_form');
+const NewTaskForm = require('task/components/new_task_form');
 const TaskRow = require('components/tasks/task_row');
 
 function isPending(task) {
