@@ -3,7 +3,7 @@
 const React = require('react');
 const extend = require('lodash').extend;
 
-const NewTaskForm = require('components/tasks/new_task_form');
+const NewTaskForm = require('task/components/new_task_form');
 const TaskFooter = require('_common/components/task_footer');
 const TaskDisplay = require('components/tasks/task_display');
 
