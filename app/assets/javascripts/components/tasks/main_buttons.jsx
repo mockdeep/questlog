@@ -2,8 +2,8 @@
 
 const React = require('react');
 
-const DoneButton = require('components/tasks/done_button');
-const PostponeButton = require('components/tasks/postpone_button');
+const DoneButton = require('task/components/done_button');
+const PostponeButton = require('task/components/postpone_button');
 
 const MainButtons = React.createClass({
   propTypes: {
