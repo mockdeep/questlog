@@ -10,7 +10,7 @@ const TaskStore = require('task/store');
 const BulkTaskStore = require('task/bulk_store');
 
 const NewTaskForm = require('task/components/new_task_form');
-const TaskRow = require('components/tasks/task_row');
+const TaskRow = require('task/components/task_row');
 
 function isPending(task) {
   return task.pending;

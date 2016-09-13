@@ -5,7 +5,7 @@ const extend = require('lodash').extend;
 
 const NewTaskForm = require('task/components/new_task_form');
 const TaskFooter = require('_common/components/task_footer');
-const TaskDisplay = require('components/tasks/task_display');
+const TaskDisplay = require('task/components/task_display');
 
 const TagStore = require('tag/store');
 const TaskStore = require('task/store');
