@@ -2,10 +2,10 @@
 
 const React = require('react');
 
-const MainButtons = require('components/tasks/main_buttons');
-const TaskTitle = require('components/tasks/task_title');
-const TagButtons = require('components/tasks/tag_buttons');
-const EditTaskForm = require('components/tasks/edit_task_form');
+const MainButtons = require('task/components/main_buttons');
+const TaskTitle = require('task/components/task_title');
+const TagButtons = require('task/components/tag_buttons');
+const EditTaskForm = require('task/components/edit_task_form');
 
 const TaskDisplay = React.createClass({
   propTypes: {
