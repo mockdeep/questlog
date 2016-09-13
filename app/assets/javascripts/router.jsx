@@ -10,8 +10,8 @@ const createBrowserHistory = require('history/lib/createBrowserHistory');
 const history = createBrowserHistory();
 
 const BulkTasksNew = require('task/containers/bulk_new');
-const PrivacyPage = require('containers/static/privacy_page');
-const WhatPage = require('containers/static/what_page');
+const PrivacyPage = require('static/containers/privacy_page');
+const WhatPage = require('static/containers/what_page');
 const SessionsNew = require('session/containers/new');
 const TasksIndex = require('task/containers/list');
 const TasksShow = require('task/containers/item');
