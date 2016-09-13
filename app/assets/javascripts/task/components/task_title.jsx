@@ -3,7 +3,7 @@
 const React = require('react');
 
 const DeleteButton = require('task/components/delete_button');
-const timeframeNameMap = require('timeframe_name_map');
+const timeframeNameMap = require('timeframe/name_map');
 
 const TaskTitle = React.createClass({
   propTypes: {

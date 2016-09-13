@@ -8,7 +8,7 @@ const _ = require('lodash');
 const map = _.map;
 const flow = _.flow;
 
-const timeframeNameMap = require('timeframe_name_map');
+const timeframeNameMap = require('timeframe/name_map');
 
 const taskSource = {
   canDrag(props) {
