@@ -9,7 +9,7 @@ const TaskStore = require('task/store');
 
 const NewTaskForm = require('task/components/new_task_form');
 const TimeframeStore = require('timeframe/store');
-const TimeframeSection = require('components/timeframes/timeframe_section');
+const TimeframeSection = require('timeframe/components/section');
 
 function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
