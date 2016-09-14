@@ -13,7 +13,7 @@
     "jquery": "*",
     "lodash": "*",
     "moment": "^2.15.0",
-    "promise-polyfill": "*",
+    "promise-polyfill": "^6.0.2",
     "react": "*",
     "react-dnd": "*",
     "react-dnd-html5-backend": "*",
