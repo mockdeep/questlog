@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-const any = require('lodash').any;
+const some = require('lodash').some;
 
 const TagButton = require('task/components/tag_button');
 
@@ -12,7 +12,7 @@ const TagButtons = React.createClass({
   },
 
   isCurrent(tag) {
-    return any(this.currentNames(), function tagNameMatches(name) {
+    return some(this.currentNames(), function tagNameMatches(name) {
       return tag.name === name;
     });
   },
