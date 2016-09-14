@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function setJqueryCallbacks() {
+$(function setJqueryCallbacks() {
   const editIcon = $('#edit-task');
 
   $('#new-title').focus();
