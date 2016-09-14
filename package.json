@@ -8,7 +8,7 @@
     "browserify": "^13.1.0",
     "browserify-incremental": "^3.1.1",
     "es5-shim": "^4.5.9",
-    "history": "*",
+    "history": "^1.17.0",
     "immutable": "^3.8.1",
     "jquery": "*",
     "lodash": "*",
@@ -18,7 +18,7 @@
     "react-dnd": "*",
     "react-dnd-html5-backend": "*",
     "react-dom": "*",
-    "react-router": "*",
+    "react-router": "^1.0.3",
     "reactify": "*",
     "reqwest": "*"
   },
