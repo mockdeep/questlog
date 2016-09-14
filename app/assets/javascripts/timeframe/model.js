@@ -1,7 +1,7 @@
 'use strict';
 
 const Record = require('immutable').Record;
-const sum = require('lodash').sum;
+const sumBy = require('lodash').sumBy;
 
 const TimeBalancer = require('_helpers/time_balancer');
 const timeframeNameMap = require('timeframe/name_map');
@@ -33,7 +33,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
   get() {
     const allTasks = this.pendingTasks.concat(this.currentTasks);
 
-    return sum(allTasks, 'estimate_minutes');
+    return sumBy(allTasks, 'estimate_minutes');
   }
 });
 

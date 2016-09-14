@@ -24,6 +24,7 @@ rules:
   react/prefer-es6-class: [off]
   react/prefer-stateless-function: [off]
   sort-keys: [off]
+  camelcase: [off]
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   func-style: [error, declaration]
