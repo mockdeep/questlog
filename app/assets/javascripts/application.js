@@ -6,13 +6,17 @@
 'use strict';
 
 require('es5-shim');
+
+const ReactDOM = require('react-dom');
 const $ = require('jquery');
 const PromisePolyfill = require('promise-polyfill');
 const FakeHoneybadger = require('_dev/fake_honeybadger');
 
+const router = require('router');
+
 window.$ = window.jQuery = $;
 
-require('router');
+ReactDOM.render(router, $('#app-base')[0]);
 
 window.Honeybadger = window.Honeybadger || FakeHoneybadger;
 window.Honeybadger.configure({
