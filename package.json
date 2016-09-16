@@ -14,7 +14,7 @@
     "lodash": "^4.15.0",
     "moment": "^2.15.0",
     "promise-polyfill": "^6.0.2",
-    "react": "*",
+    "react": "^0.14.8",
     "react-dnd": "*",
     "react-dnd-html5-backend": "*",
     "react-dom": "*",

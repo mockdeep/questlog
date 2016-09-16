@@ -60,7 +60,7 @@
       "version": "1.0.1"
     },
     "asap": {
-      "version": "2.0.3"
+      "version": "2.0.4"
     },
     "asn1": {
       "version": "0.2.3"
@@ -1186,7 +1186,24 @@
       "version": "6.3.1"
     },
     "envify": {
-      "version": "3.4.0"
+      "version": "3.4.1",
+      "dependencies": {
+        "base62": {
+          "version": "1.1.1"
+        },
+        "esprima-fb": {
+          "version": "15001.1.0-dev-harmony-fb"
+        },
+        "jstransform": {
+          "version": "11.0.3"
+        },
+        "object-assign": {
+          "version": "2.1.1"
+        },
+        "source-map": {
+          "version": "0.4.4"
+        }
+      }
     },
     "es5-ext": {
       "version": "0.10.11",
@@ -1757,7 +1774,7 @@
       "version": "2.0.3"
     },
     "react": {
-      "version": "0.14.7"
+      "version": "0.14.8"
     },
     "react-dnd": {
       "version": "2.0.2",
