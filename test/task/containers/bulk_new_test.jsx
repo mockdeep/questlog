@@ -19,19 +19,21 @@ const FakeStore = {
 };
 const fakeHistory = {
   reset() { this.paths = []; },
-  pushState(something, path) {
+  push(path) {
     this.paths = this.paths || [];
     this.paths.push(path);
   }
 };
-const proxyArgs = {'task/bulk_store': FakeStore};
+const proxyArgs = {
+  'task/bulk_store': FakeStore,
+  'react-router': {browserHistory: fakeHistory}
+};
 const BulkTasksNew = proxyquire('task/containers/bulk_new', proxyArgs);
 
 let bulkTasksNew;
 
 beforeEach(function () {
   bulkTasksNew = TestUtils.renderIntoDocument(<BulkTasksNew />);
-  bulkTasksNew.history = fakeHistory;
 });
 
 afterEach(function () {
