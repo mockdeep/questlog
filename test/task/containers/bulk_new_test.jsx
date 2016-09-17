@@ -45,6 +45,8 @@ describe('BulkTasksNew', function () {
 
     TestUtils.Simulate.submit(domNode);
 
+    expect(fakeHistory.paths).to.eql([]);
+
     return createPromise.then(function () {
       expect(fakeHistory.paths).to.eql(['/tasks']);
     });

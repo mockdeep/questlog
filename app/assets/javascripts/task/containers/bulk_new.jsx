@@ -25,7 +25,7 @@ const BulkTasksNew = React.createClass({
     if (this.state.taskTitles.trim() === '') { return; }
     const tasksParams = {titles: this.state.taskTitles.trim()};
 
-    BulkTaskStore.create(tasksParams).then(this.redirectToTaskList());
+    BulkTaskStore.create(tasksParams).then(this.redirectToTaskList);
   },
 
   rootAttrs() {
