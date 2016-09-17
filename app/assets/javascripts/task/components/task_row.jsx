@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-const PureRenderMixin = React.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const dragSource = require('react-dnd').DragSource;
 const dropTarget = require('react-dnd').DropTarget;
 const _ = require('lodash');
