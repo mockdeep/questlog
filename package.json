@@ -16,7 +16,7 @@
     "react": "^0.14.8",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
-    "react-dom": "*",
+    "react-dom": "^0.14.8",
     "react-router": "^2.8.1",
     "reactify": "*",
     "reqwest": "*"
