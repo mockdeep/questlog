@@ -15,8 +15,6 @@ const QNotification = require('q_notification');
 const TaskItem = React.createClass({
   propTypes: {params: React.PropTypes.object.isRequired},
 
-  contextTypes: {router: React.PropTypes.func},
-
   getInitialState() {
     return {
       task: {title: 'Loading...', loadingState: 'loading'},
