@@ -16,7 +16,9 @@ process.env.NODE_PATH = `${jsPath}:${process.env.NODE_PATH}`;
 require('module').Module._initPaths();
 
 // set up global dom
-global.document = jsdom.jsdom('<html><body></body></html>');
+const jsdomConfig = {url: 'https://questlog.io'};
+
+global.document = jsdom.jsdom('<html><body></body></html>', jsdomConfig);
 global.window = document.defaultView;
 global.navigator = {userAgent: 'mocha'};
 
