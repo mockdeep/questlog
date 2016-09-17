@@ -5,11 +5,16 @@ const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 const proxyquire = require('proxyquire');
 
+let createPromise;
 const FakeStore = {
   create() {
-    return new Promise(function (resolve) {
-      process.nextTick(resolve());
+    createPromise = new Promise(function (resolve) {
+      process.nextTick(function () {
+        resolve();
+      });
     });
+
+    return createPromise;
   }
 };
 const fakeHistory = {
@@ -39,6 +44,9 @@ describe('BulkTasksNew', function () {
     const domNode = ReactDOM.findDOMNode(bulkTasksNew);
 
     TestUtils.Simulate.submit(domNode);
-    expect(fakeHistory.paths).to.eql(['/tasks']);
+
+    return createPromise.then(function () {
+      expect(fakeHistory.paths).to.eql(['/tasks']);
+    });
   });
 });
