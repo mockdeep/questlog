@@ -15,7 +15,7 @@ function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
-const TimeframesIndex = React.createClass({
+const TimeframeList = React.createClass({
 
   getInitialState() {
     return {timeframes: [], medianProductivity: null, loading: true};
@@ -111,4 +111,4 @@ const TimeframesIndex = React.createClass({
   }
 });
 
-module.exports = dragDropContext(HTML5Backend)(TimeframesIndex);
+module.exports = dragDropContext(HTML5Backend)(TimeframeList);

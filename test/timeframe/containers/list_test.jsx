@@ -4,17 +4,17 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 
-const TimeframesIndex = require('timeframe/containers/list');
+const TimeframeList = require('timeframe/containers/list');
 
-let timeframesIndex;
+let timeframeList;
 
 beforeEach(function () {
-  timeframesIndex = TestUtils.renderIntoDocument(<TimeframesIndex />);
+  timeframeList = TestUtils.renderIntoDocument(<TimeframeList />);
 });
 
-describe('TimeframesIndex', function () {
+describe('TimeframeList', function () {
   it('renders a loading message before content has been loaded', function () {
-    const domNode = ReactDOM.findDOMNode(timeframesIndex);
+    const domNode = ReactDOM.findDOMNode(timeframeList);
 
     expect(domNode.textContent).to.equal('Loading Timeframes...');
   });
@@ -22,8 +22,8 @@ describe('TimeframesIndex', function () {
   it('renders the current median productivity when loaded', function () {
     const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
-    timeframesIndex.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframesIndex);
+    timeframeList.refs.child.updateTimeframes(input);
+    const domNode = ReactDOM.findDOMNode(timeframeList);
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
     expect(domNode.textContent).to.contain(expectedMessage);
@@ -38,8 +38,8 @@ describe('TimeframesIndex', function () {
     };
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    timeframesIndex.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframesIndex);
+    timeframeList.refs.child.updateTimeframes(input);
+    const domNode = ReactDOM.findDOMNode(timeframeList);
 
     expect(domNode.textContent).to.contain('Inbox');
     expect(domNode.textContent).to.contain('do laundry');
@@ -49,8 +49,8 @@ describe('TimeframesIndex', function () {
     const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    timeframesIndex.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframesIndex);
+    timeframeList.refs.child.updateTimeframes(input);
+    const domNode = ReactDOM.findDOMNode(timeframeList);
 
     expect(domNode.textContent).not.to.contain('Inbox');
   });

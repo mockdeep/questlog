@@ -16,7 +16,7 @@ const BulkTasksNew = React.createClass({
     this.setState({taskTitles: event.target.value});
   },
 
-  redirectToTasksIndex() {
+  redirectToTaskList() {
     this.history.pushState(null, '/tasks');
   },
 
@@ -25,7 +25,7 @@ const BulkTasksNew = React.createClass({
     if (this.state.taskTitles.trim() === '') { return; }
     const tasksParams = {titles: this.state.taskTitles.trim()};
 
-    BulkTaskStore.create(tasksParams).then(this.redirectToTasksIndex());
+    BulkTaskStore.create(tasksParams).then(this.redirectToTaskList());
   },
 
   rootAttrs() {

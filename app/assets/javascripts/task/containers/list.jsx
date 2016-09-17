@@ -20,7 +20,7 @@ function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
 }
 
-const TasksIndex = React.createClass({
+const TaskList = React.createClass({
   getInitialState() {
     return {currentTasks: [], pendingTasks: []};
   },
@@ -151,4 +151,4 @@ const TasksIndex = React.createClass({
   }
 });
 
-module.exports = dragDropContext(HTML5Backend)(TasksIndex);
+module.exports = dragDropContext(HTML5Backend)(TaskList);

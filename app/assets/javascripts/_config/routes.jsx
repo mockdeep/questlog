@@ -9,9 +9,9 @@ const BulkTasksNew = require('task/containers/bulk_new');
 const PrivacyPage = require('static/containers/privacy_page');
 const WhatPage = require('static/containers/what_page');
 const SessionsNew = require('session/containers/new');
-const TasksIndex = require('task/containers/list');
-const TasksShow = require('task/containers/item');
-const TimeframesIndex = require('timeframe/containers/list');
+const TaskList = require('task/containers/list');
+const TaskItem = require('task/containers/item');
+const TimeframeList = require('timeframe/containers/list');
 
 const Nothing = React.createClass({render() { return false; }});
 
@@ -21,11 +21,11 @@ module.exports = ( // eslint-disable-line no-extra-parens
     <Route path='/free_accounts/new' component={Nothing} />
     <Route path='/sessions/new' component={SessionsNew} />
     <Route path='/sessions' component={Nothing} />
-    <Route path='/tasks' component={TasksIndex} />
+    <Route path='/tasks' component={TaskList} />
     <Route path='/privacy' component={PrivacyPage} />
     <Route path='/what' component={WhatPage} />
-    <Route path='/timeframes' component={TimeframesIndex} />
-    <IndexRoute component={TasksShow} />
-    <Route path='/:slug' component={TasksShow} />
+    <Route path='/timeframes' component={TimeframeList} />
+    <IndexRoute component={TaskItem} />
+    <Route path='/:slug' component={TaskItem} />
   </Route>
 );
