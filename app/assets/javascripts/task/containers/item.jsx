@@ -12,7 +12,7 @@ const TaskStore = require('task/store');
 
 const QNotification = require('q_notification');
 
-const TasksShow = React.createClass({
+const TaskItem = React.createClass({
   propTypes: {params: React.PropTypes.object.isRequired},
 
   contextTypes: {router: React.PropTypes.func},
@@ -226,4 +226,4 @@ const TasksShow = React.createClass({
   }
 });
 
-module.exports = TasksShow;
+module.exports = TaskItem;
