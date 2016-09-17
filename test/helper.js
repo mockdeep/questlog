@@ -22,5 +22,9 @@ global.document = jsdom.jsdom('<html><body></body></html>', jsdomConfig);
 global.window = document.defaultView;
 global.navigator = {userAgent: 'mocha'};
 
+console.error = function (message) { // eslint-disable-line no-console
+  throw new Error(message);
+};
+
 chai.use(dirtyChai);
 global.expect = chai.expect;
