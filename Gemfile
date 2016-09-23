@@ -53,10 +53,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
-  gem 'rspec-rails'
   gem 'guard-rubocop'
   gem 'haml_lint', require: false
+  gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'scss_lint', require: false
   gem 'shoulda-matchers'
 end
