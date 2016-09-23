@@ -1,5 +1,7 @@
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
+  DefaultFormatter: fuubar
+  DisplayCopNames: true
   Include:
     - !ruby/regexp /.*\.rake\z/
     - Gemfile
@@ -70,3 +72,10 @@ Metrics/AbcSize:
 # https://github.com/bbatsov/rubocop/issues/1568
 EmptyLinesAroundBlockBody:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/VariableNumber:
+  Enabled: false
+  EnforcedStyle: snake_case

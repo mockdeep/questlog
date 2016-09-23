@@ -9,7 +9,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 require 'rspec/rails'
 require 'capybara/poltergeist'
 
-driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :poltergeist
+driver = ENV.fetch('DRIVER', :poltergeist).to_sym
 Capybara.javascript_driver = driver
 
 ActiveRecord::Migration.maintain_test_schema!
