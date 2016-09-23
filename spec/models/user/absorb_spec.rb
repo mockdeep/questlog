@@ -28,19 +28,19 @@ RSpec.describe User, '#absorb' do
   it 'merges tags' do
     other_user = create(:user)
     create(:tag, name: 'solo', user: other_user)
-    other_tag2 = create(:tag, name: 'duplicate', user: other_user)
+    other_tag_2 = create(:tag, name: 'duplicate', user: other_user)
     other_task = create(
       :task,
       title: 'bloo',
       user: other_user,
-      tags: [other_tag2],
+      tags: [other_tag_2],
     )
     create(:tag, name: 'another-solo', user: user)
-    tag2 = create(:tag, name: 'duplicate', user: user)
+    tag_2 = create(:tag, name: 'duplicate', user: user)
     expected_names = %w(another-solo duplicate solo)
     user.absorb(other_user)
     expect(user.reload.tags.pluck(:name).sort).to eq expected_names
-    expect(other_task.reload.tags).to eq [tag2]
+    expect(other_task.reload.tags).to eq [tag_2]
   end
 
 end

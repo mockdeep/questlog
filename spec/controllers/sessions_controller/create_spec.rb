@@ -13,8 +13,8 @@ RSpec.describe SessionsController, '#create' do
 
     context 'when using a guest account' do
       it 'absorbs the current user into the logged in user' do
-        user2 = create(:user)
-        session[:user_id] = user2.id
+        user_2 = create(:user)
+        session[:user_id] = user_2.id
         expect(user).to receive(:absorb).with(instance_of(User))
         post(:create, params)
       end

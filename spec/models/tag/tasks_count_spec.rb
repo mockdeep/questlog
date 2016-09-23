@@ -49,27 +49,27 @@ RSpec.describe Tag, '#tasks_count' do
 
   context 'when there are more than one task and more than one tag' do
     it 'increments and decrements properly' do
-      task1 = create(:task, user: user)
-      task2 = create(:task, user: user)
-      tag1 = create(:tag, user: user)
-      tag2 = create(:tag, user: user)
-      expect(tag1.unfinished_tasks_count).to eq 0
-      expect(tag2.unfinished_tasks_count).to eq 0
-      tag1.tasks << task1
-      tag1.tasks << task2
-      expect(tag1.reload.unfinished_tasks_count).to eq 2
-      expect(tag2.reload.unfinished_tasks_count).to eq 0
-      tag2.tasks << task1
-      tag2.tasks << task2
-      expect(tag1.reload.unfinished_tasks_count).to eq 2
-      expect(tag2.reload.unfinished_tasks_count).to eq 2
+      task_1 = create(:task, user: user)
+      task_2 = create(:task, user: user)
+      tag_1 = create(:tag, user: user)
+      tag_2 = create(:tag, user: user)
+      expect(tag_1.unfinished_tasks_count).to eq 0
+      expect(tag_2.unfinished_tasks_count).to eq 0
+      tag_1.tasks << task_1
+      tag_1.tasks << task_2
+      expect(tag_1.reload.unfinished_tasks_count).to eq 2
+      expect(tag_2.reload.unfinished_tasks_count).to eq 0
+      tag_2.tasks << task_1
+      tag_2.tasks << task_2
+      expect(tag_1.reload.unfinished_tasks_count).to eq 2
+      expect(tag_2.reload.unfinished_tasks_count).to eq 2
     end
   end
 
   context 'when a task is updated within a transaction' do
     it 'still increments and decrements properly' do
-      tag2 = create(:tag, user: user)
-      task = create(:task, tags: [tag, tag2], user: user)
+      tag_2 = create(:tag, user: user)
+      task = create(:task, tags: [tag, tag_2], user: user)
       expect(tag.reload.unfinished_tasks_count).to eq 1
       task.update!(done: true)
       expect(tag.reload.unfinished_tasks_count).to eq 0
@@ -77,7 +77,7 @@ RSpec.describe Tag, '#tasks_count' do
         task.update!(done: false)
       end
       expect(tag.reload.unfinished_tasks_count).to eq 1
-      expect(tag2.reload.unfinished_tasks_count).to eq 1
+      expect(tag_2.reload.unfinished_tasks_count).to eq 1
     end
   end
 
