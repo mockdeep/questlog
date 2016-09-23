@@ -77,5 +77,4 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/VariableNumber:
-  Enabled: false
   EnforcedStyle: snake_case

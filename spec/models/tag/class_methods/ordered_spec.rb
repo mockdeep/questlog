@@ -1,10 +1,10 @@
 RSpec.describe Tag, '.ordered' do
 
   it 'returns tags ordered by name' do
-    tag1 = create(:tag, name: 'bill')
-    tag2 = create(:tag, name: 'alice')
-    tag3 = create(:tag, name: 'charlie')
-    expect(Tag.ordered).to eq [tag2, tag1, tag3]
+    tag_1 = create(:tag, name: 'bill')
+    tag_2 = create(:tag, name: 'alice')
+    tag_3 = create(:tag, name: 'charlie')
+    expect(Tag.ordered).to eq [tag_2, tag_1, tag_3]
   end
 
 end
