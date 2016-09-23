@@ -21,7 +21,7 @@ class Tag < ActiveRecord::Base
   scope :active, -> { where('tags.unfinished_tasks_count > 0') }
 
   def any?
-    unfinished_tasks_count > 0
+    unfinished_tasks_count.positive?
   end
 
   def next_task

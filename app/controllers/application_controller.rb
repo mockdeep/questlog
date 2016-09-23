@@ -34,7 +34,7 @@ private
   end
 
   def authorize_profiler
-    return unless Rails.env.development? || current_user && current_user.admin?
+    return unless Rails.env.development? || current_user.admin?
 
     Rack::MiniProfiler.authorize_request
   end
