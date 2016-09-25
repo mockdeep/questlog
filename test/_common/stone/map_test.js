@@ -6,8 +6,21 @@ const frozenError = /object is not extensible/;
 
 describe('Stone.Map', function () {
   describe('constructor', function () {
-    it('returns a new empty Map object given no arguments', function () {
-      const map = new Stone.Map();
+    it('throws an error given no arguments', function () {
+      const message = /must be initialized with an object/;
+
+      expect(function () { return new Stone.Map(); }).to.throw(message);
+    });
+
+    it('throws an error when first argument is not an object', function () {
+      const message = /must be initialized with an object/;
+
+      expect(function () { return new Stone.Map('foo'); }).to.throw(message);
+      expect(function () { return new Stone.Map([]); }).to.throw(message);
+    });
+
+    it('returns a new empty Map object', function () {
+      const map = new Stone.Map({});
 
       expect(map).to.eql({});
       expect(map).to.be.instanceOf(Stone.Map);
@@ -61,14 +74,14 @@ describe('Stone.Map', function () {
   });
 
   it('throws an error on direct property assignment', function () {
-    const map = new Stone.Map();
+    const map = new Stone.Map({});
 
     expect(function () { map.foo = 'bar'; }).to.throw(frozenError);
   });
 
   describe('#set', function () {
     it('throws an error given no arguments', function () {
-      const map = new Stone.Map();
+      const map = new Stone.Map({});
 
       expect(map.set).to.throw(/must pass key and value/);
     });
@@ -109,11 +122,12 @@ describe('Stone.Map', function () {
 
       expect(function () { map.set([], 'nanoo'); }).to.throw(invalidKeyError);
     });
+    xit('makes new values immutable');
   });
 
   describe('#merge', function () {
     it('throws an error given no arguments', function () {
-      const map = new Stone.Map();
+      const map = new Stone.Map({});
 
       expect(map.merge).to.throw(/must pass an object with values/);
     });
@@ -140,5 +154,6 @@ describe('Stone.Map', function () {
 
       expect(map.alf).to.eq(1);
     });
+    xit('makes new values immutable');
   });
 });

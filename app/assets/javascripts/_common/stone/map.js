@@ -1,6 +1,7 @@
 'use strict';
 
 // const StoneError = require('./error');
+const getType = require('./get_type');
 
 function deepSet(map, key, value) {
   if (key.length === 0) {
@@ -15,8 +16,15 @@ function deepSet(map, key, value) {
   return map.set(topKey, map[topKey].set(rest, value));
 }
 
-module.exports = function Map(source = {}) {
+module.exports = function Map(source) {
   const that = this;
+  const sourceType = getType(source);
+
+  if (sourceType !== 'Object') {
+    const message = `must be initialized with an object, got ${sourceType}`;
+
+    throw new TypeError(message);
+  }
 
   Object.keys(source).forEach(function assignKey(key) {
     const value = source[key];
