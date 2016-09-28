@@ -21,8 +21,7 @@ function List(source) {
     return value;
   });
 
-  // eslint-disable-next-line no-proto
-  list.__proto__ = List.prototype;
+  Object.setPrototypeOf(list, List.prototype);
   Object.freeze(list);
 
   return list;
