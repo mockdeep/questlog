@@ -1229,12 +1229,7 @@
       }
     },
     "espree": {
-      "version": "3.1.6",
-      "dependencies": {
-        "acorn": {
-          "version": "3.2.0"
-        }
-      }
+      "version": "3.3.1"
     },
     "esprima": {
       "version": "2.7.3"
