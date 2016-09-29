@@ -27,4 +27,6 @@ function List(source) {
   return list;
 }
 
+List.prototype = Array.prototype;
+
 module.exports = List;
