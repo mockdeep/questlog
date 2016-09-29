@@ -23,6 +23,7 @@ describe('Stone.List', function () {
       const list = new Stone.List([]);
 
       expect(list).to.eql([]);
+      expect(Array.isArray(list)).to.be.true();
       expect(list).to.be.instanceOf(Stone.List);
     });
 
@@ -39,6 +40,18 @@ describe('Stone.List', function () {
       expect(list).to.eql(['alf', 'mork', ['and', 'mindy']]);
       expect(list[2]).to.be.instanceOf(Stone.List);
       expect(function () { list[3] = 'phone home'; }).to.throw(frozenError);
+    });
+
+    it('throws an error when using mutation methods', function () {
+      const list = new Stone.List(['alf', 'mork']);
+
+      expect(function () { list.push(5); }).to.throw(frozenError);
+    });
+
+    it('allows you to concat new stuff', function () {
+      const list = new Stone.List(['alf', 'mork']);
+
+      expect(list.concat(5)).to.eql(['alf', 'mork', 5]);
     });
 
     it('returns the same List when nested within an array', function () {
