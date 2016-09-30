@@ -19,7 +19,7 @@ describe('StoneArray', function () {
       expect(function () { return new StoneArray({}); }).to.throw(message);
     });
 
-    it('returns a new empty List object', function () {
+    it('returns a new empty StoneArray', function () {
       const array = new StoneArray([]);
 
       expect(array).to.eql([]);
@@ -27,7 +27,7 @@ describe('StoneArray', function () {
       expect(array).to.be.instanceOf(StoneArray);
     });
 
-    it('returns a new List with same keys as the given array', function () {
+    it('returns a new StoneArray with same keys as the given array', function () {
       const array = new StoneArray(['alf', 'mork']);
 
       expect(array).to.eql(['alf', 'mork']);
@@ -54,7 +54,7 @@ describe('StoneArray', function () {
       expect(array.concat(5)).to.eql(['alf', 'mork', 5]);
     });
 
-    it('returns the same List when nested within an array', function () {
+    it('returns the same StoneArray when nested within an array', function () {
       const mork = new StoneArray(['and', 'mindy']);
       const array = new StoneArray(['alf', 'mork', mork]);
 

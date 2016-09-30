@@ -2,31 +2,31 @@
 
 const getType = require('./get_type');
 
-function List(source) {
+function StoneArray(source) {
   const sourceType = getType(source);
 
-  if (sourceType !== 'Array' && !(source instanceof List)) {
+  if (sourceType !== 'Array' && !(source instanceof StoneArray)) {
     const message = `must be initialized with an array, got ${sourceType}`;
 
     throw new TypeError(message);
   }
 
-  const list = source.map(function mapValue(value) {
-    if (value instanceof List) {
+  const array = source.map(function mapValue(value) {
+    if (value instanceof StoneArray) {
       return value;
     } else if (getType(value) === 'Array') {
-      return new List(value);
+      return new StoneArray(value);
     }
 
     return value;
   });
 
-  Object.setPrototypeOf(list, List.prototype);
-  Object.freeze(list);
+  Object.setPrototypeOf(array, StoneArray.prototype);
+  Object.freeze(array);
 
-  return list;
+  return array;
 }
 
-List.prototype = Array.prototype;
+StoneArray.prototype = Array.prototype;
 
-module.exports = List;
+module.exports = StoneArray;
