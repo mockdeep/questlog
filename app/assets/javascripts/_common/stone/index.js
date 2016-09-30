@@ -1,6 +1,6 @@
 'use strict';
 
-const Map = require('./map');
+const StoneObject = require('./object');
 const StoneArray = require('./array');
 
-module.exports = {Map, StoneArray};
+module.exports = {StoneObject, StoneArray};

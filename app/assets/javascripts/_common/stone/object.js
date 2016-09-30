@@ -3,7 +3,7 @@
 // const StoneError = require('./error');
 const getType = require('./get_type');
 
-function deepSet(map, key, value) {
+function deepSet(object, key, value) {
   if (key.length === 0) {
     throw new TypeError('array key must have at least one element');
   }
@@ -11,12 +11,12 @@ function deepSet(map, key, value) {
   const topKey = key[0];
   const rest = key.slice(1);
 
-  if (rest.length === 0) { return map.set(topKey, value); }
+  if (rest.length === 0) { return object.set(topKey, value); }
 
-  return map.set(topKey, map[topKey].set(rest, value));
+  return object.set(topKey, object[topKey].set(rest, value));
 }
 
-module.exports = function Map(source) {
+module.exports = function StoneObject(source) {
   const that = this;
   const sourceType = getType(source);
 
@@ -29,10 +29,10 @@ module.exports = function Map(source) {
   Object.keys(source).forEach(function assignKey(key) {
     const value = source[key];
 
-    if (value instanceof Map) {
+    if (value instanceof StoneObject) {
       that[key] = value;
     } else if (typeof value === 'object') {
-      that[key] = new Map(value);
+      that[key] = new StoneObject(value);
     } else {
       that[key] = value;
     }
@@ -50,7 +50,7 @@ module.exports = function Map(source) {
 
     newObj[key] = value;
 
-    return new Map(newObj);
+    return new StoneObject(newObj);
   }
 
   function merge(newSource) {
@@ -66,7 +66,7 @@ module.exports = function Map(source) {
 
     const newObj = Object.assign({}, that, newSource);
 
-    return new Map(newObj);
+    return new StoneObject(newObj);
   }
 
   Object.defineProperty(that, 'set', {value: set});
