@@ -1,6 +1,7 @@
 'use strict';
 
 const getType = require('./get_type');
+let petrify; // eslint-disable-line prefer-const
 
 function StoneArray(source) {
   const sourceType = getType(source);
@@ -12,21 +13,18 @@ function StoneArray(source) {
   }
 
   const array = source.map(function mapValue(value) {
-    if (value instanceof StoneArray) {
-      return value;
-    } else if (getType(value) === 'Array') {
-      return new StoneArray(value);
-    }
-
-    return value;
+    return petrify(value);
   });
 
   Object.setPrototypeOf(array, StoneArray.prototype);
+  Object.defineProperty(array, 'concat', {value: Array.prototype.concat});
+  Object.defineProperty(array, 'push', {value: Array.prototype.push});
   Object.freeze(array);
 
   return array;
 }
 
-StoneArray.prototype = Array.prototype;
-
 module.exports = StoneArray;
+
+// avoids circular dependency
+petrify = require('./petrify');
