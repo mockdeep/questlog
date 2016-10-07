@@ -1,6 +1,7 @@
 'use strict';
 
-const StoneArray = require('_common/stone').StoneArray;
+const StoneArray = require('_common/stone/array');
+const StoneObject = require('_common/stone/object');
 
 const frozenError = /object is not extensible/;
 
@@ -34,12 +35,21 @@ describe('StoneArray', function () {
       expect(array).to.be.instanceOf(StoneArray);
     });
 
-    it('returns nested immutable structures all the way down', function () {
-      const array = new StoneArray(['alf', 'mork', ['and', 'mindy']]);
+    it('returns nested immutable StoneArrays all the way down', function () {
+      const sourceArray = ['alf', 'mork', ['and', 'mindy']];
+      const array = new StoneArray(sourceArray);
 
-      expect(array).to.eql(['alf', 'mork', ['and', 'mindy']]);
+      expect(array).to.eql(sourceArray);
       expect(array[2]).to.be.instanceOf(StoneArray);
       expect(function () { array[3] = 'phone home'; }).to.throw(frozenError);
+    });
+
+    it('returns StoneObjects within StoneArrays', function () {
+      const sourceArray = ['alf', 'mork', {and: 'mindy'}];
+      const array = new StoneArray(sourceArray);
+
+      expect(array).to.eql(sourceArray);
+      expect(array[2]).to.be.instanceOf(StoneObject);
     });
 
     it('throws an error when using mutation methods', function () {

@@ -1,7 +1,7 @@
 'use strict';
 
-// const StoneError = require('./error');
 const getType = require('./get_type');
+let petrify; // eslint-disable-line prefer-const
 
 function deepSet(object, key, value) {
   if (key.length === 0) {
@@ -27,15 +27,7 @@ module.exports = function StoneObject(source) {
   }
 
   Object.keys(source).forEach(function assignKey(key) {
-    const value = source[key];
-
-    if (value instanceof StoneObject) {
-      that[key] = value;
-    } else if (typeof value === 'object') {
-      that[key] = new StoneObject(value);
-    } else {
-      that[key] = value;
-    }
+    that[key] = petrify(source[key]);
   });
 
   function set(key, value) {
@@ -73,3 +65,6 @@ module.exports = function StoneObject(source) {
   Object.defineProperty(that, 'merge', {value: merge});
   Object.freeze(that);
 };
+
+// avoids circular dependency
+petrify = require('./petrify');

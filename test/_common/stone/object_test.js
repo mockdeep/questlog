@@ -1,6 +1,7 @@
 'use strict';
 
-const StoneObject = require('_common/stone').StoneObject;
+const StoneArray = require('_common/stone/array');
+const StoneObject = require('_common/stone/object');
 
 const frozenError = /object is not extensible/;
 
@@ -39,6 +40,14 @@ describe('StoneObject', function () {
       expect(object).to.eql({alf: 1, mork: {and: 'mindy'}});
       expect(object.mork).to.be.instanceOf(StoneObject);
       expect(function () { object.et = 'phone home'; }).to.throw(frozenError);
+    });
+
+    it('returns StoneArrays within StoneObjects', function () {
+      const sourceObject = {alf: 1, mork: ['and', 'mindy']};
+      const object = new StoneObject(sourceObject);
+
+      expect(object).to.eql(sourceObject);
+      expect(object.mork).to.be.instanceOf(StoneArray);
     });
 
     it('returns the same StoneObject when nested within an object', function () {
