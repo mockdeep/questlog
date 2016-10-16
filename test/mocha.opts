@@ -1,4 +1,4 @@
--r babel-core/register
---compilers jsx:babel-core/register
+--require babel-register
+--compilers jsx:babel-register
 --recursive
--r test/helper.js
+--require test/helper.js
