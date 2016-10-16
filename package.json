@@ -24,6 +24,7 @@
     "reqwest": "*"
   },
   "devDependencies": {
+    "babel-register": "^6.16.3",
     "chai": "^3.0.0",
     "dirty-chai": "^1.2.2",
     "eslint": "^3.5.0",
