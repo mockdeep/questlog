@@ -2,6 +2,8 @@ root: true
 # have to include `plugin:react/recommended` to avoid errors
 extends: ['eslint:all', 'plugin:react/recommended']
 plugins: [react]
+parserOptions:
+  sourceType: module
 env:
   browser: true
   es6: true
@@ -25,6 +27,7 @@ rules:
   react/prefer-stateless-function: [off]
   sort-keys: [off]
   camelcase: [off]
+  strict: [off] # need to switch module syntax
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   func-style: [error, declaration]
