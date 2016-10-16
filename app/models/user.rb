@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     tag_names = tags.pluck(:name)
     other_tags.each do |other_tag|
       if tag_names.include?(other_tag.name)
-        tag = tags.find_by_name(other_tag.name)
+        tag = tags.find_by(name: other_tag.name)
         other_tag.tasks.each do |task|
           task.tags << tag
         end
