@@ -3,7 +3,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-const proxyquire = require('proxyquire');
+
+import * as td from 'testdouble';
 
 let createPromise;
 const FakeStore = {
@@ -24,11 +25,11 @@ const fakeHistory = {
     this.paths.push(path);
   }
 };
-const proxyArgs = {
-  'task/bulk_store': FakeStore,
-  'react-router': {browserHistory: fakeHistory}
-};
-const BulkTasksNew = proxyquire('task/containers/bulk_new', proxyArgs);
+
+td.replace('task/bulk_store', FakeStore);
+td.replace('react-router', {browserHistory: fakeHistory});
+
+const BulkTasksNew = require('task/containers/bulk_new');
 
 let bulkTasksNew;
 
