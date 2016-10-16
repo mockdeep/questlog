@@ -37,7 +37,7 @@
     "node": "4.2.2"
   },
   "scripts": {
-    "pretest": "eslint ./ --ext .js,.jsx",
+    "pretest": "eslint ./ --ext .js,.jsx --cache",
     "test": "mocha"
   }
 }
