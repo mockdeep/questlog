@@ -4,11 +4,15 @@ const TestUtils = require('react-addons-test-utils');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Route = require('react-router').Route;
-const proxyquire = require('proxyquire');
+
+import * as td from 'testdouble';
 
 function AppBase() { return <div>boogers</div>; }
 const fakeRoutes = <Route path='/' component={AppBase} />;
-const router = proxyquire('router', {'_config/routes': fakeRoutes});
+
+td.replace('_config/routes', fakeRoutes);
+
+const router = require('router');
 
 describe('router', function () {
   it('renders routes', function () {
