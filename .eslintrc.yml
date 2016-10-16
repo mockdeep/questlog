@@ -17,6 +17,7 @@ rules:
   max-len: [error, 110]
   max-statements: [error, { max: 14 }]
   multiline-ternary: [off]
+  # no-console: [off]
   no-mixed-operators: [off]
   react/forbid-prop-types: [off]
   react/no-find-dom-node: [off]
@@ -26,6 +27,7 @@ rules:
   react/prefer-es6-class: [off]
   react/prefer-stateless-function: [off]
   sort-keys: [off]
+  sort-imports: [off]
   camelcase: [off]
   strict: [off] # need to switch module syntax
   # departures from default
