@@ -9,11 +9,15 @@ const TaskDisplay = require('task/components/task_display');
 
 const TagStore = require('tag/store');
 const TaskStore = require('task/store');
-
 const QNotification = require('q_notification');
 
 const TaskItem = React.createClass({
-  propTypes: {params: React.PropTypes.object.isRequired},
+  propTypes: {
+    params: React.PropTypes.object.isRequired,
+    notificationsEnabled: React.PropTypes.bool.isRequired,
+    enableNotifications: React.PropTypes.func.isRequired,
+    disableNotifications: React.PropTypes.func.isRequired
+  },
 
   getInitialState() {
     return {
@@ -21,7 +25,6 @@ const TaskItem = React.createClass({
       disabled: true,
       tags: [],
       postponeSeconds: 300,
-      notificationsEnabled: false,
       notificationsPermitted: QNotification.isPermissionGranted()
     };
   },
@@ -34,6 +37,7 @@ const TaskItem = React.createClass({
     this.loadTask().then(function setTaskStoreCallback() {
       TaskStore.on('change', this.loadTask);
       this.setTitle();
+      this.notifyOnInterval();
     }.bind(this));
   },
 
@@ -42,8 +46,11 @@ const TaskItem = React.createClass({
     this.setTitle();
   },
 
-  componentDidUpdate(_prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.task.id !== this.state.task.id) { this.notifyTask(); }
+    if (this.props.notificationsEnabled && !prevProps.notificationsEnabled) {
+      this.notifyOnInterval();
+    }
   },
 
   componentWillUnmount() {
@@ -79,7 +86,7 @@ const TaskItem = React.createClass({
   },
 
   notificationsEnabled() {
-    return this.state.notificationsEnabled;
+    return this.props.notificationsEnabled;
   },
 
   notificationsPermitted() {
@@ -121,7 +128,7 @@ const TaskItem = React.createClass({
         return;
       }
 
-      this.setState({notificationsEnabled: false});
+      this.props.disableNotifications();
     }.bind(this));
   },
 
@@ -135,16 +142,15 @@ const TaskItem = React.createClass({
 
   enableNotifications() {
     if (this.notificationsPermitted()) {
-      this.setState({notificationsEnabled: true}, this.notifyOnInterval);
+      this.props.enableNotifications();
     } else {
-      this.setState({notificationsEnabled: true});
-      this.requestNotificationPermission(this.notifyOnInterval);
+      this.requestNotificationPermission(this.props.enableNotifications);
     }
   },
 
   disableNotifications() {
     this.closeNotification();
-    this.setState({notificationsEnabled: false});
+    this.props.disableNotifications();
   },
 
   storeTask(taskId, attrs, opts) {
