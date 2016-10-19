@@ -1,30 +1,33 @@
 'use strict';
 
 import React from 'react';
-import store from '_common/store';
 import {connect} from 'react-redux';
 import {updateUser} from 'user/actions';
 
 const TaskItem = require('task/containers/item');
 
-function enableNotifications() {
-  store.dispatch(updateUser({notificationsEnabled: true}));
-}
-
-function disableNotifications() {
-  store.dispatch(updateUser({notificationsEnabled: false}));
-}
-
 const ItemConnector = React.createClass({
-  propTypes: {params: React.PropTypes.object.isRequired},
+  propTypes: {
+    params: React.PropTypes.object.isRequired,
+    updateUser: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired
+  },
+
+  enableNotifications() {
+    this.props.updateUser({notificationsEnabled: true});
+  },
+
+  disableNotifications() {
+    this.props.updateUser({notificationsEnabled: false});
+  },
 
   render() {
     return (
       <TaskItem
         params={this.props.params}
-        notificationsEnabled={Boolean(store.getState().user.notificationsEnabled)}
-        enableNotifications={enableNotifications}
-        disableNotifications={disableNotifications}
+        notificationsEnabled={Boolean(this.props.user.notificationsEnabled)}
+        enableNotifications={this.enableNotifications}
+        disableNotifications={this.disableNotifications}
       />
     );
   }
@@ -34,4 +37,4 @@ function mapStateToProps(state) {
   return {user: state.user};
 }
 
-export default connect(mapStateToProps)(ItemConnector);
+export default connect(mapStateToProps, {updateUser})(ItemConnector);
