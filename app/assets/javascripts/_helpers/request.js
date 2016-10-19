@@ -1,9 +1,9 @@
 'use strict';
 
-const reqwest = require('reqwest');
-const extend = require('lodash').extend;
+import reqwest from 'reqwest';
+import {extend} from 'lodash';
 
-const authenticityToken = require('_helpers/authenticity_token');
+import authenticityToken from '_helpers/authenticity_token';
 
 function mergeOptions(defaults, options) {
   return extend({}, defaults, options);
@@ -28,6 +28,6 @@ function defaultRequestOptions() {
   };
 }
 
-module.exports = function request(options) {
+export default function request(options) {
   return reqwest(mergeOptions(defaultRequestOptions(), options));
-};
+}

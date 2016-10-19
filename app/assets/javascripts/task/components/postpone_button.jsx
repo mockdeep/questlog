@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const stopPropagation = require('_helpers/stop_propagation');
+import stopPropagation from '_helpers/stop_propagation';
 
 function isPostponing(task) {
   return task.loadingState === 'postponing';
@@ -105,4 +105,4 @@ const PostponeButton = React.createClass({
   }
 });
 
-module.exports = PostponeButton;
+export default PostponeButton;

@@ -1,11 +1,11 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const MainButtons = require('task/components/main_buttons');
-const TaskTitle = require('task/components/task_title');
-const TagButtons = require('task/components/tag_buttons');
-const EditTaskForm = require('task/components/edit_task_form');
+import MainButtons from 'task/components/main_buttons';
+import TaskTitle from 'task/components/task_title';
+import TagButtons from 'task/components/tag_buttons';
+import EditTaskForm from 'task/components/edit_task_form';
 
 const TaskDisplay = React.createClass({
   propTypes: {
@@ -51,4 +51,4 @@ const TaskDisplay = React.createClass({
   }
 });
 
-module.exports = TaskDisplay;
+export default TaskDisplay;

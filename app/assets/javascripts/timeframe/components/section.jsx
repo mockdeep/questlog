@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const TaskRow = require('task/components/task_row');
+import TaskRow from 'task/components/task_row';
 
 const TimeframeSection = React.createClass({
   propTypes: {
@@ -91,4 +91,4 @@ const TimeframeSection = React.createClass({
   }
 });
 
-module.exports = TimeframeSection;
+export default TimeframeSection;

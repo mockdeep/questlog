@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const DeleteButton = require('task/components/delete_button');
-const timeframeNameMap = require('timeframe/name_map');
+import DeleteButton from 'task/components/delete_button';
+import timeframeNameMap from 'timeframe/name_map';
 
 const TaskTitle = React.createClass({
   propTypes: {
@@ -77,4 +77,4 @@ const TaskTitle = React.createClass({
   }
 });
 
-module.exports = TaskTitle;
+export default TaskTitle;

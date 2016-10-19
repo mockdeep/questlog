@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
-const browserHistory = require('react-router').browserHistory;
+import React from 'react';
+import {browserHistory} from 'react-router';
 
-const BulkTaskStore = require('task/bulk_store');
+import BulkTaskStore from 'task/bulk_store';
 
 const BulkTasksNew = React.createClass({
   getInitialState() {
@@ -64,4 +64,4 @@ const BulkTasksNew = React.createClass({
   }
 });
 
-module.exports = BulkTasksNew;
+export default BulkTasksNew;

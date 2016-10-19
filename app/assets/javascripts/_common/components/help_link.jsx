@@ -1,6 +1,6 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 const HelpLink = React.createClass({
   render() {
@@ -10,4 +10,4 @@ const HelpLink = React.createClass({
   }
 });
 
-module.exports = HelpLink;
+export default HelpLink;

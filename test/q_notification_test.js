@@ -1,6 +1,6 @@
 'use strict';
 
-const QNotification = require('q_notification');
+import QNotification from 'q_notification';
 
 window.Notification = {};
 

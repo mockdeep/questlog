@@ -1,7 +1,7 @@
 'use strict';
 
-const React = require('react');
-const Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
 const TagButton = React.createClass({
   propTypes: {
@@ -44,4 +44,4 @@ const TagButton = React.createClass({
   }
 });
 
-module.exports = TagButton;
+export default TagButton;

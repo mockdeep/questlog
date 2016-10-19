@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const ErrorDisplay = require('_common/components/error_display');
+import ErrorDisplay from '_common/components/error_display';
 
 const EditTaskForm = React.createClass({
   propTypes: {
@@ -86,4 +86,4 @@ const EditTaskForm = React.createClass({
   }
 });
 
-module.exports = EditTaskForm;
+export default EditTaskForm;

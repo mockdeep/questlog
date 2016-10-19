@@ -3,11 +3,10 @@
 import {Provider} from 'react-redux';
 import store from '_common/store';
 
-const React = require('react');
-const Router = require('react-router').Router;
-const browserHistory = require('react-router').browserHistory;
+import React from 'react';
+import {Router, browserHistory} from 'react-router';
 
-const routes = require('_config/routes');
+import routes from '_config/routes';
 
 export default (
   <Provider store={store}>

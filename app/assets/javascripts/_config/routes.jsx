@@ -1,22 +1,21 @@
 'use strict';
 
-const React = require('react');
-const Route = require('react-router').Route;
-const IndexRoute = require('react-router').IndexRoute;
+import React from 'react';
+import {Route, IndexRoute} from 'react-router';
 
 import TaskConnector from 'task/connectors/item';
 
-const AppBase = require('app_base');
-const BulkTasksNew = require('task/containers/bulk_new');
-const PrivacyPage = require('static/containers/privacy_page');
-const WhatPage = require('static/containers/what_page');
-const SessionsNew = require('session/containers/new');
-const TaskList = require('task/containers/list');
-const TimeframeList = require('timeframe/containers/list');
+import AppBase from 'app_base';
+import BulkTasksNew from 'task/containers/bulk_new';
+import PrivacyPage from 'static/containers/privacy_page';
+import WhatPage from 'static/containers/what_page';
+import SessionsNew from 'session/containers/new';
+import TaskList from 'task/containers/list';
+import TimeframeList from 'timeframe/containers/list';
 
 const Nothing = React.createClass({render() { return false; }});
 
-module.exports = ( // eslint-disable-line no-extra-parens
+export default ( // eslint-disable-line no-extra-parens
   <Route path='/' component={AppBase}>
     <Route path='/bulk_tasks/new' component={BulkTasksNew} />
     <Route path='/free_accounts/new' component={Nothing} />

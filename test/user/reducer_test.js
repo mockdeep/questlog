@@ -1,7 +1,7 @@
 'use strict';
 
-const reducer = require('user/reducer');
-const actions = require('user/actions');
+import reducer from 'user/reducer';
+import * as actions from 'user/actions';
 
 describe('user/reducer', function () {
   describe('INIT', function () {

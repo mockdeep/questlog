@@ -1,10 +1,10 @@
 'use strict';
 
-const Record = require('immutable').Record;
-const sumBy = require('lodash').sumBy;
+import {Record} from 'immutable';
+import {sumBy} from 'lodash';
 
-const TimeBalancer = require('_helpers/time_balancer');
-const timeframeNameMap = require('timeframe/name_map');
+import TimeBalancer from '_helpers/time_balancer';
+import timeframeNameMap from 'timeframe/name_map';
 
 const Timeframe = new Record({
   currentTasks: [],
@@ -53,4 +53,4 @@ Object.defineProperty(Timeframe.prototype, 'title', {
   }
 });
 
-module.exports = Timeframe;
+export default Timeframe;

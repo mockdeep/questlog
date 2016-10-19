@@ -1,6 +1,6 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 const PrivacyPage = React.createClass({
   render() {
@@ -13,4 +13,4 @@ const PrivacyPage = React.createClass({
   }
 });
 
-module.exports = PrivacyPage;
+export default PrivacyPage;

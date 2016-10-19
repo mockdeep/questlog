@@ -1,11 +1,11 @@
 'use strict';
 
-const extend = require('lodash').extend;
+import {extend} from 'lodash';
 
-const RestfulStore = require('_common/restful_store');
-const Task = require('task/model');
+import RestfulStore from '_common/restful_store';
+import Task from 'task/model';
 
-module.exports = extend({}, RestfulStore, {
+export default extend({}, RestfulStore, {
   name: 'task',
 
   updateModels(data) {

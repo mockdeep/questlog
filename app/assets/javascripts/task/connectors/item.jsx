@@ -3,8 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateUser} from 'user/actions';
-
-const TaskItem = require('task/containers/item');
+import TaskItem from 'task/containers/item';
 
 const ItemConnector = React.createClass({
   propTypes: {

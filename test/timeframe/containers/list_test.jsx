@@ -1,10 +1,10 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 
-const TimeframeList = require('timeframe/containers/list');
+import TimeframeList from 'timeframe/containers/list';
 
 let timeframeList;
 

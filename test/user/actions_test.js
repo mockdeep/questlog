@@ -1,6 +1,6 @@
 'use strict';
 
-const actions = require('user/actions');
+import * as actions from 'user/actions';
 
 describe('#updateUser', function () {
   it('returns an UPDATE action for the payload', function () {

@@ -44,4 +44,4 @@ const ToEnglish = {
   }
 };
 
-module.exports = ToEnglish;
+export default ToEnglish;

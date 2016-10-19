@@ -1,15 +1,15 @@
 'use strict';
 
-const React = require('react');
-const extend = require('lodash').extend;
+import React from 'react';
+import {extend} from 'lodash';
 
-const NewTaskForm = require('task/components/new_task_form');
-const TaskFooter = require('_common/components/task_footer');
-const TaskDisplay = require('task/components/task_display');
+import NewTaskForm from 'task/components/new_task_form';
+import TaskFooter from '_common/components/task_footer';
+import TaskDisplay from 'task/components/task_display';
 
-const TagStore = require('tag/store');
-const TaskStore = require('task/store');
-const QNotification = require('q_notification');
+import TagStore from 'tag/store';
+import TaskStore from 'task/store';
+import QNotification from 'q_notification';
 
 const TaskItem = React.createClass({
   propTypes: {
@@ -230,4 +230,4 @@ const TaskItem = React.createClass({
   }
 });
 
-module.exports = TaskItem;
+export default TaskItem;

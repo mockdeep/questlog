@@ -3,7 +3,7 @@
 
 'use strict';
 
-const Record = require('immutable').Record;
+import {Record} from 'immutable';
 
 const Task = new Record({
   id: null,
@@ -24,4 +24,4 @@ Object.defineProperty(Task.prototype, 'estimate_minutes', {
   }
 });
 
-module.exports = Task;
+export default Task;

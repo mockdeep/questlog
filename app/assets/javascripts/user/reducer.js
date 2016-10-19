@@ -1,6 +1,6 @@
 'use strict';
 
-const StoneObject = require('_common/stone/object');
+import StoneObject from '_common/stone/object';
 
 function initUser() {
   return new StoneObject({});
@@ -16,10 +16,10 @@ const operations = {
   'user/UPDATE': updateUser
 };
 
-module.exports = function userReducer(previous_state, action) {
+export default function userReducer(previous_state, action) {
   const operation = operations[action.type];
 
   if (!operation) { throw new Error(`invalid action type: "${action.type}"`); }
 
   return operation(previous_state, action.payload);
-};
+}

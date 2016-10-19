@@ -1,7 +1,7 @@
 'use strict';
 
-const getType = require('./get_type');
-let petrify; // eslint-disable-line prefer-const
+import getType from './get_type';
+import petrify from './petrify';
 
 function deepSet(object, key, value) {
   if (key.length === 0) {
@@ -16,7 +16,7 @@ function deepSet(object, key, value) {
   return object.set(topKey, object[topKey].set(rest, value));
 }
 
-module.exports = function StoneObject(source) {
+export default function StoneObject(source) {
   const that = this;
   const sourceType = getType(source);
 
@@ -64,7 +64,4 @@ module.exports = function StoneObject(source) {
   Object.defineProperty(that, 'set', {value: set});
   Object.defineProperty(that, 'merge', {value: merge});
   Object.freeze(that);
-};
-
-// avoids circular dependency
-petrify = require('./petrify');
+}

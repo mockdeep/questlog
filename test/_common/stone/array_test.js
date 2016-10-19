@@ -1,7 +1,7 @@
 'use strict';
 
-const StoneArray = require('_common/stone/array');
-const StoneObject = require('_common/stone/object');
+import StoneArray from '_common/stone/array';
+import StoneObject from '_common/stone/object';
 
 const frozenError = /object is not extensible/;
 

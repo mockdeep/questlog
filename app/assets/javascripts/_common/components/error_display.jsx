@@ -1,6 +1,6 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 const ErrorDisplay = React.createClass({
   propTypes: {errors: React.PropTypes.array.isRequired},
@@ -24,4 +24,4 @@ const ErrorDisplay = React.createClass({
   }
 });
 
-module.exports = ErrorDisplay;
+export default ErrorDisplay;

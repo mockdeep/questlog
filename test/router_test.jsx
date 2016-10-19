@@ -1,9 +1,9 @@
 'use strict';
 
-const TestUtils = require('react-addons-test-utils');
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Route = require('react-router').Route;
+import TestUtils from 'react-addons-test-utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Route} from 'react-router';
 
 import * as td from 'testdouble';
 
@@ -12,7 +12,7 @@ const fakeRoutes = <Route path='/' component={AppBase} />;
 
 td.replace('_config/routes', fakeRoutes);
 
-// this should change to `import` when td fixes this issue:
+// this should change to `import` if/when td fixes this issue:
 // https://github.com/testdouble/testdouble.js/issues/147
 const router = require('router').default;
 
