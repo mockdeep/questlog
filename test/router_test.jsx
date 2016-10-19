@@ -12,7 +12,9 @@ const fakeRoutes = <Route path='/' component={AppBase} />;
 
 td.replace('_config/routes', fakeRoutes);
 
-const router = require('router');
+// this should change to `import` when td fixes this issue:
+// https://github.com/testdouble/testdouble.js/issues/147
+const router = require('router').default;
 
 describe('router', function () {
   it('renders routes', function () {

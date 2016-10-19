@@ -9,7 +9,7 @@ const browserHistory = require('react-router').browserHistory;
 
 const routes = require('_config/routes');
 
-module.exports = ( // eslint-disable-line no-extra-parens
+export default (
   <Provider store={store}>
     <Router history={browserHistory}>{routes}</Router>
   </Provider>
