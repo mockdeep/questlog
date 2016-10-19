@@ -1,7 +1,7 @@
 'use strict';
 
-const React = require('react');
-const Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
 const WhatPage = React.createClass({
   render() {
@@ -15,4 +15,4 @@ const WhatPage = React.createClass({
   }
 });
 
-module.exports = WhatPage;
+export default WhatPage;

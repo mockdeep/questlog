@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
   inbox: 'Inbox',
   today: 'Today',
   week: 'This Week',

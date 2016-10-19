@@ -1,8 +1,8 @@
 'use strict';
 
-const moment = require('moment');
+import moment from 'moment';
 
-const TimeBalancer = require('_helpers/time_balancer');
+import TimeBalancer from '_helpers/time_balancer';
 
 describe('TimeBalancer.baseBalances', function () {
   it('returns a collection of base time pairs', function () {

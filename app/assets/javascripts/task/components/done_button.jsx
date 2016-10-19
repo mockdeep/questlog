@@ -1,6 +1,6 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 const DoneButton = React.createClass({
   propTypes: {
@@ -36,4 +36,4 @@ const DoneButton = React.createClass({
   }
 });
 
-module.exports = DoneButton;
+export default DoneButton;

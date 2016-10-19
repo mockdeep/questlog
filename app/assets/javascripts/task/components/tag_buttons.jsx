@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
-const some = require('lodash').some;
+import React from 'react';
+import {some} from 'lodash';
 
-const TagButton = require('task/components/tag_button');
+import TagButton from 'task/components/tag_button';
 
 const TagButtons = React.createClass({
   propTypes: {
@@ -38,4 +38,4 @@ const TagButtons = React.createClass({
   }
 });
 
-module.exports = TagButtons;
+export default TagButtons;

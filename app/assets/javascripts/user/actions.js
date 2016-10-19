@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = {
-  updateUser(payload) {
-    return {type: 'user/UPDATE', payload};
-  }
-};
+function updateUser(payload) {
+  return {type: 'user/UPDATE', payload};
+}
+
+export {updateUser};

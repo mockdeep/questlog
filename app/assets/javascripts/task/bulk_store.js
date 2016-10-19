@@ -1,11 +1,11 @@
 'use strict';
 
-const extend = require('lodash').extend;
+import {extend} from 'lodash';
 
-const request = require('_helpers/request');
+import request from '_helpers/request';
 
-const RestfulStore = require('_common/restful_store');
-const TaskStore = require('task/store');
+import RestfulStore from '_common/restful_store';
+import TaskStore from 'task/store';
 
 const BulkTaskStore = extend({}, RestfulStore, {
   name: 'bulk_task',
@@ -20,4 +20,4 @@ const BulkTaskStore = extend({}, RestfulStore, {
 });
 
 BulkTaskStore.on('change', function unloadTaskStore() { TaskStore.unload(); });
-module.exports = BulkTaskStore;
+export default BulkTaskStore;

@@ -1,15 +1,15 @@
 'use strict';
 
-const React = require('react');
-const HTML5Backend = require('react-dnd-html5-backend');
-const dragDropContext = require('react-dnd').DragDropContext;
+import React from 'react';
+import HTML5Backend from 'react-dnd-html5-backend';
+import {DragDropContext as dragDropContext} from 'react-dnd';
 
-const ToEnglish = require('_helpers/to_english');
-const TaskStore = require('task/store');
+import ToEnglish from '_helpers/to_english';
+import TaskStore from 'task/store';
 
-const NewTaskForm = require('task/components/new_task_form');
-const TimeframeStore = require('timeframe/store');
-const TimeframeSection = require('timeframe/components/section');
+import NewTaskForm from 'task/components/new_task_form';
+import TimeframeStore from 'timeframe/store';
+import TimeframeSection from 'timeframe/components/section';
 
 function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
@@ -111,4 +111,4 @@ const TimeframeList = React.createClass({
   }
 });
 
-module.exports = dragDropContext(HTML5Backend)(TimeframeList);
+export default dragDropContext(HTML5Backend)(TimeframeList);

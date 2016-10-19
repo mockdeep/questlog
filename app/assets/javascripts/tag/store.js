@@ -1,10 +1,10 @@
 'use strict';
 
-const extend = require('lodash').extend;
+import {extend} from 'lodash';
 
-const request = require('_helpers/request');
-const RestfulStore = require('_common/restful_store');
-const TaskStore = require('task/store');
+import request from '_helpers/request';
+import RestfulStore from '_common/restful_store';
+import TaskStore from 'task/store';
 
 const TagStore = extend({}, RestfulStore, {
   name: 'tag',
@@ -19,4 +19,4 @@ TaskStore.on('change', function triggerTagStoreChange() {
   TagStore.trigger('change');
 });
 
-module.exports = TagStore;
+export default TagStore;

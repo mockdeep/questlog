@@ -7,4 +7,4 @@ function StoneError(message) {
 
 StoneError.prototype = Error.prototype;
 
-module.exports = StoneError;
+export default StoneError;

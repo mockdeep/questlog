@@ -1,16 +1,16 @@
 'use strict';
 
-const React = require('react');
-const update = require('react/lib/update');
-const partition = require('lodash').partition;
-const HTML5Backend = require('react-dnd-html5-backend');
-const dragDropContext = require('react-dnd').DragDropContext;
+import React from 'react';
+import update from 'react/lib/update';
+import {partition} from 'lodash';
+import HTML5Backend from 'react-dnd-html5-backend';
+import {DragDropContext as dragDropContext} from 'react-dnd';
 
-const TaskStore = require('task/store');
-const BulkTaskStore = require('task/bulk_store');
+import TaskStore from 'task/store';
+import BulkTaskStore from 'task/bulk_store';
 
-const NewTaskForm = require('task/components/new_task_form');
-const TaskRow = require('task/components/task_row');
+import NewTaskForm from 'task/components/new_task_form';
+import TaskRow from 'task/components/task_row';
 
 function isPending(task) {
   return task.pending;
@@ -151,4 +151,4 @@ const TaskList = React.createClass({
   }
 });
 
-module.exports = dragDropContext(HTML5Backend)(TaskList);
+export default dragDropContext(HTML5Backend)(TaskList);

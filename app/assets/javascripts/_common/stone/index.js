@@ -1,6 +1,6 @@
 'use strict';
 
-const StoneObject = require('./object');
-const StoneArray = require('./array');
+import StoneObject from './object';
+import StoneArray from './array';
 
-module.exports = {StoneObject, StoneArray};
+export default {StoneObject, StoneArray};

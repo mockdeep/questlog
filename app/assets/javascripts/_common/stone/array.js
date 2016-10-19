@@ -1,7 +1,7 @@
 'use strict';
 
-const getType = require('./get_type');
-let petrify; // eslint-disable-line prefer-const
+import getType from './get_type';
+import petrify from './petrify';
 
 function StoneArray(source) {
   const sourceType = getType(source);
@@ -24,7 +24,4 @@ function StoneArray(source) {
   return array;
 }
 
-module.exports = StoneArray;
-
-// avoids circular dependency
-petrify = require('./petrify');
+export default StoneArray;

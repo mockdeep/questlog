@@ -1,10 +1,10 @@
 'use strict';
 
-const React = require('react');
-const extend = require('lodash').extend;
+import React from 'react';
+import {extend} from 'lodash';
 
-const ErrorDisplay = require('_common/components/error_display');
-const flash = require('_helpers/flash');
+import ErrorDisplay from '_common/components/error_display';
+import flash from '_helpers/flash';
 
 const NewTaskForm = React.createClass({
   propTypes: {
@@ -83,4 +83,4 @@ const NewTaskForm = React.createClass({
   }
 });
 
-module.exports = NewTaskForm;
+export default NewTaskForm;

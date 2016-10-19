@@ -1,6 +1,5 @@
 'use strict';
 
-module.exports = function stopPropagation(event) {
+export default function stopPropagation(event) {
   event.stopPropagation();
-};
-
+}

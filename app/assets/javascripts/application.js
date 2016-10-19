@@ -7,12 +7,12 @@
 
 require('es5-shim');
 
-const ReactDOM = require('react-dom');
-const $ = require('jquery');
-const PromisePolyfill = require('promise-polyfill');
-const FakeHoneybadger = require('_dev/fake_honeybadger');
+import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import PromisePolyfill from 'promise-polyfill';
+import FakeHoneybadger from '_dev/fake_honeybadger';
 
-const router = require('router');
+import router from 'router';
 
 window.$ = window.jQuery = $;
 

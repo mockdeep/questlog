@@ -1,10 +1,10 @@
 'use strict';
 
-let StoneObject; // eslint-disable-line prefer-const
-let StoneArray; // eslint-disable-line prefer-const
-const getType = require('./get_type');
+import StoneObject from './object';
+import StoneArray from './array';
+import getType from './get_type';
 
-module.exports = function petrify(value) {
+export default function petrify(value) {
   const valueType = getType(value);
 
   if (value instanceof StoneObject || value instanceof StoneArray) {
@@ -16,8 +16,4 @@ module.exports = function petrify(value) {
   }
 
   return value;
-};
-
-// avoids circular dependency
-StoneObject = require('./object');
-StoneArray = require('./array');
+}

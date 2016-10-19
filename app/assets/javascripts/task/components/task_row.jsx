@@ -1,14 +1,11 @@
 'use strict';
 
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const dragSource = require('react-dnd').DragSource;
-const dropTarget = require('react-dnd').DropTarget;
-const _ = require('lodash');
-const map = _.map;
-const flow = _.flow;
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
+import {map, flow} from 'lodash';
 
-const timeframeNameMap = require('timeframe/name_map');
+import timeframeNameMap from 'timeframe/name_map';
 
 const taskSource = {
   canDrag(props) {
@@ -220,7 +217,7 @@ const TaskRow = React.createClass({
   }
 });
 
-module.exports = flow(
+export default flow(
   dragSource('task', taskSource, sourceCollect),
   dropTarget('task', taskTarget, targetCollect)
 )(TaskRow);

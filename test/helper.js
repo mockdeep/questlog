@@ -1,9 +1,9 @@
 'use strict';
 
-const path = require('path');
-const jsdom = require('jsdom');
-const chai = require('chai');
-const dirtyChai = require('dirty-chai');
+import path from 'path';
+import jsdom from 'jsdom';
+import chai from 'chai';
+import dirtyChai from 'dirty-chai';
 
 // add the application directory to require paths
 const jsPath = path.normalize(`${__dirname}../../app/assets/javascripts/`);
@@ -12,8 +12,9 @@ const jsPath = path.normalize(`${__dirname}../../app/assets/javascripts/`);
 process.env.NODE_PATH = `${jsPath}:${process.env.NODE_PATH}`;
 
 // can switch to using `app-module-path` to avoid the following
+import Module from 'module';
 // eslint-disable-next-line no-underscore-dangle
-require('module').Module._initPaths();
+Module._initPaths();
 
 // set up global dom
 const jsdomConfig = {url: 'https://questlog.io'};

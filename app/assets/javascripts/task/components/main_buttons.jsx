@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const DoneButton = require('task/components/done_button');
-const PostponeButton = require('task/components/postpone_button');
+import DoneButton from 'task/components/done_button';
+import PostponeButton from 'task/components/postpone_button';
 
 const MainButtons = React.createClass({
   propTypes: {
@@ -44,4 +44,4 @@ const MainButtons = React.createClass({
   }
 });
 
-module.exports = MainButtons;
+export default MainButtons;

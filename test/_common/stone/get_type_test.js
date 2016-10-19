@@ -1,6 +1,6 @@
 'use strict';
 
-const getType = require('_common/stone/get_type');
+import getType from '_common/stone/get_type';
 
 describe('getType', function () {
   it('returns "Number" given a number', function () {

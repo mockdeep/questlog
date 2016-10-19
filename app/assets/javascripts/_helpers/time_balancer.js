@@ -1,6 +1,6 @@
 'use strict';
 
-const moment = require('moment');
+import moment from 'moment';
 
 function daysBetween(startTime, endTime) {
   return endTime.diff(startTime, 'days');
@@ -35,4 +35,4 @@ const TimeBalancer = {
   }
 };
 
-module.exports = TimeBalancer;
+export default TimeBalancer;

@@ -1,16 +1,16 @@
 'use strict';
 
-const extend = require('lodash').extend;
-const request = require('_helpers/request');
+import {extend} from 'lodash';
+import request from '_helpers/request';
 
-const moment = require('moment');
+import moment from 'moment';
 
 // eslint-disable-next-line global-require
 const Promise = window.Promise || require('promise-polyfill');
 
-const Timeframe = require('timeframe/model');
-const RestfulStore = require('_common/restful_store');
-const TaskStore = require('task/store');
+import Timeframe from 'timeframe/model';
+import RestfulStore from '_common/restful_store';
+import TaskStore from 'task/store';
 
 const timeframeList = [
   'inbox',
@@ -115,4 +115,4 @@ TaskStore.on('change', function unloadTimeframeStore() {
   TimeframeStore.unload();
 });
 
-module.exports = TimeframeStore;
+export default TimeframeStore;

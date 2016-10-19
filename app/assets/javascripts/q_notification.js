@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
 
   isPermissionGranted() {
     return window.Notification.permission === 'granted';

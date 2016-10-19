@@ -1,10 +1,10 @@
 'use strict';
 
-const without = require('lodash').without;
+import {without} from 'lodash';
 
-const request = require('_helpers/request');
+import request from '_helpers/request';
 
-module.exports = {
+export default {
   models: [],
   loaded: false,
 

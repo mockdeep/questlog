@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
-const authenticityToken = require('_helpers/authenticity_token');
+import authenticityToken from '_helpers/authenticity_token';
 
 const SessionsNew = React.createClass({
   render() {
@@ -35,4 +35,4 @@ const SessionsNew = React.createClass({
   }
 });
 
-module.exports = SessionsNew;
+export default SessionsNew;

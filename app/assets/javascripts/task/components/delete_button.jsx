@@ -1,6 +1,6 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
 
 const DeleteButton = React.createClass({
   propTypes: {
@@ -29,4 +29,4 @@ const DeleteButton = React.createClass({
   }
 });
 
-module.exports = DeleteButton;
+export default DeleteButton;

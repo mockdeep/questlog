@@ -1,9 +1,9 @@
 'use strict';
 
-const React = require('react');
-const Link = require('react-router').Link;
+import React from 'react';
+import {Link} from 'react-router';
 
-const HelpLink = require('_common/components/help_link');
+import HelpLink from '_common/components/help_link';
 
 const TaskFooter = React.createClass({
   render() {
@@ -25,4 +25,4 @@ const TaskFooter = React.createClass({
   }
 });
 
-module.exports = TaskFooter;
+export default TaskFooter;

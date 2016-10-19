@@ -1,6 +1,6 @@
 'use strict';
 
-const Timeframe = require('timeframe/model');
+import Timeframe from 'timeframe/model';
 
 describe('Timeframe#minuteTotal', function () {
   it('returns the total number of minutes from tasks', function () {

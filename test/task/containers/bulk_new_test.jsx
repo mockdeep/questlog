@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 
 import * as td from 'testdouble';
 
@@ -29,7 +29,9 @@ const fakeHistory = {
 td.replace('task/bulk_store', FakeStore);
 td.replace('react-router', {browserHistory: fakeHistory});
 
-const BulkTasksNew = require('task/containers/bulk_new');
+// this should change to `import` if/when td fixes this issue:
+// https://github.com/testdouble/testdouble.js/issues/147
+const BulkTasksNew = require('task/containers/bulk_new').default;
 
 let bulkTasksNew;
 
