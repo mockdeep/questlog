@@ -15,7 +15,7 @@ function initStore() {
   return new StoneObject(result);
 }
 
-function baseReducer(previousState, action) {
+function rootReducer(previousState, action) {
   if (action.type === '@@redux/INIT') { return initStore(); }
 
   const reducerPrefix = action.type.split('/')[0];
@@ -30,4 +30,4 @@ function baseReducer(previousState, action) {
   return new StoneObject(newState);
 }
 
-export default baseReducer;
+export default rootReducer;
