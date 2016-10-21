@@ -9,12 +9,12 @@ import TaskDisplay from 'task/components/task_display';
 
 import TagStore from 'tag/store';
 import TaskStore from 'task/store';
-import QNotification from 'q_notification';
 
 const TaskItem = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
+    notificationsPermitted: React.PropTypes.bool.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired
   },
@@ -24,8 +24,7 @@ const TaskItem = React.createClass({
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
       tags: [],
-      postponeSeconds: 300,
-      notificationsPermitted: QNotification.isPermissionGranted()
+      postponeSeconds: 300
     };
   },
 
@@ -90,7 +89,7 @@ const TaskItem = React.createClass({
   },
 
   notificationsPermitted() {
-    return this.state.notificationsPermitted;
+    return this.props.notificationsPermitted;
   },
 
   notifyTask() {
