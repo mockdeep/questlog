@@ -1,8 +1,8 @@
 'use strict';
 
-import reducer from '_common/base_reducer';
+import reducer from '_common/root_reducer';
 
-describe('base_reducer', function () {
+describe('root_reducer', function () {
   describe('init', function () {
     it('returns a blank nested tree of state', function () {
       const action = {type: '@@redux/INIT'};
