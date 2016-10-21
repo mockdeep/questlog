@@ -80,16 +80,8 @@ const TaskItem = React.createClass({
 
   shouldShowNotifications() {
     return Boolean(this.state.task.id) &&
-           this.notificationsEnabled() &&
-           this.notificationsPermitted();
-  },
-
-  notificationsEnabled() {
-    return this.props.notificationsEnabled;
-  },
-
-  notificationsPermitted() {
-    return this.props.notificationsPermitted;
+           this.props.notificationsEnabled &&
+           this.props.notificationsPermitted;
   },
 
   notifyTask() {
@@ -140,7 +132,7 @@ const TaskItem = React.createClass({
   },
 
   enableNotifications() {
-    if (this.notificationsPermitted()) {
+    if (this.props.notificationsPermitted) {
       this.props.enableNotifications();
     } else {
       this.requestNotificationPermission(this.props.enableNotifications);
