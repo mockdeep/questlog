@@ -3,31 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
+import {replace} from 'testdouble';
 
-import * as td from 'testdouble';
+import fakeHistory from '_test_helpers/fake_history';
+import FakeStore from '_test_helpers/fake_store';
 
-let createPromise;
-const FakeStore = {
-  create() {
-    createPromise = new Promise(function (resolve) {
-      process.nextTick(function () {
-        resolve();
-      });
-    });
-
-    return createPromise;
-  }
-};
-const fakeHistory = {
-  reset() { this.paths = []; },
-  push(path) {
-    this.paths = this.paths || [];
-    this.paths.push(path);
-  }
-};
-
-td.replace('task/bulk_store', FakeStore);
-td.replace('react-router', {browserHistory: fakeHistory});
+replace('task/bulk_store', FakeStore);
+replace('react-router', {browserHistory: fakeHistory});
 
 // this should change to `import` if/when td fixes this issue:
 // https://github.com/testdouble/testdouble.js/issues/147
@@ -52,7 +34,7 @@ describe('BulkTasksNew', function () {
 
     expect(fakeHistory.paths).to.eql([]);
 
-    return createPromise.then(function () {
+    return FakeStore.createPromise.then(function () {
       expect(fakeHistory.paths).to.eql(['/tasks']);
     });
   });

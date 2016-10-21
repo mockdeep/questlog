@@ -7,9 +7,10 @@ import dirtyChai from 'dirty-chai';
 
 // add the application directory to require paths
 const jsPath = path.normalize(`${__dirname}../../app/assets/javascripts/`);
+const testPath = path.normalize(__dirname);
 
 // eslint-disable-next-line no-process-env
-process.env.NODE_PATH = `${jsPath}:${process.env.NODE_PATH}`;
+process.env.NODE_PATH = `${jsPath}:${testPath}:${process.env.NODE_PATH}`;
 
 // can switch to using `app-module-path` to avoid the following
 import Module from 'module';
