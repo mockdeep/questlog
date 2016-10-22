@@ -40,7 +40,7 @@
     "node": "4.2.2"
   },
   "scripts": {
-    "pretest": "eslint ./ --ext .js,.jsx --cache",
+    "pretest": "eslint ./ --cache",
     "test": "mocha"
   }
 }
