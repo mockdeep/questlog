@@ -111,10 +111,10 @@ const TaskItem = React.createClass({
     setTimeout(this.notifyOnInterval, 60000);
   },
 
-  requestNotificationPermission(callback) {
+  requestNotificationPermission() {
     Notification.requestPermission().then(function notificationPermit(result) {
       if (result === 'granted') {
-        callback();
+        this.props.enableNotifications();
 
         return;
       }
@@ -135,7 +135,7 @@ const TaskItem = React.createClass({
     if (this.props.notificationsPermitted) {
       this.props.enableNotifications();
     } else {
-      this.requestNotificationPermission(this.props.enableNotifications);
+      this.requestNotificationPermission();
     }
   },
 
