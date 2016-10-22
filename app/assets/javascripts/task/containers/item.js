@@ -114,17 +114,9 @@ const TaskItem = React.createClass({
 
   toggleNotifications(event) {
     if (event.target.checked) {
-      this.enableNotifications();
-    } else {
-      this.disableNotifications();
-    }
-  },
-
-  enableNotifications() {
-    if (this.props.notificationsPermitted) {
       this.props.enableNotifications();
     } else {
-      this.props.requestNotificationPermission();
+      this.disableNotifications();
     }
   },
 
