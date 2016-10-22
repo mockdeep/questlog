@@ -8,6 +8,7 @@ import ItemContainer from 'task/containers/item';
 
 const enableNotifications = td.function();
 const disableNotifications = td.function();
+const requestNotificationPermission = td.function();
 let itemContainer;
 
 beforeEach(function () {
@@ -17,6 +18,7 @@ beforeEach(function () {
     notificationsPermitted={true}
     enableNotifications={enableNotifications}
     disableNotifications={disableNotifications}
+    requestNotificationPermission={requestNotificationPermission}
   />);
 });
 
