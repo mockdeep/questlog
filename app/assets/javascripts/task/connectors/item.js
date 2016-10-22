@@ -29,10 +29,23 @@ const ItemConnector = React.createClass({
     return Boolean(this.props.user.notificationsEnabled);
   },
 
+  requestNotificationPermission() {
+    Notification.requestPermission().then(function notificationPermit(result) {
+      if (result === 'granted') {
+        this.enableNotifications();
+
+        return;
+      }
+
+      this.disableNotifications();
+    }.bind(this));
+  },
+
   render() {
     return (
       <TaskItem
         params={this.props.params}
+        requestNotificationPermission={this.requestNotificationPermission}
         notificationsEnabled={this.notificationsEnabled()}
         notificationsPermitted={this.notificationsPermitted()}
         enableNotifications={this.enableNotifications}

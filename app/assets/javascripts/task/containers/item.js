@@ -16,7 +16,8 @@ const TaskItem = React.createClass({
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
-    disableNotifications: React.PropTypes.func.isRequired
+    disableNotifications: React.PropTypes.func.isRequired,
+    requestNotificationPermission: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -111,18 +112,6 @@ const TaskItem = React.createClass({
     setTimeout(this.notifyOnInterval, 60000);
   },
 
-  requestNotificationPermission() {
-    Notification.requestPermission().then(function notificationPermit(result) {
-      if (result === 'granted') {
-        this.props.enableNotifications();
-
-        return;
-      }
-
-      this.props.disableNotifications();
-    }.bind(this));
-  },
-
   toggleNotifications(event) {
     if (event.target.checked) {
       this.enableNotifications();
@@ -135,7 +124,7 @@ const TaskItem = React.createClass({
     if (this.props.notificationsPermitted) {
       this.props.enableNotifications();
     } else {
-      this.requestNotificationPermission();
+      this.props.requestNotificationPermission();
     }
   },
 
