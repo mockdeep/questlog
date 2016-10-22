@@ -14,7 +14,11 @@ const ItemConnector = React.createClass({
   },
 
   enableNotifications() {
-    this.props.updateUser({notificationsEnabled: true});
+    if (this.notificationsPermitted()) {
+      this.props.updateUser({notificationsEnabled: true});
+    } else {
+      this.requestNotificationPermission();
+    }
   },
 
   disableNotifications() {
