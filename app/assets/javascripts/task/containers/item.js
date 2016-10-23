@@ -6,6 +6,7 @@ import {extend} from 'lodash';
 import NewTaskForm from 'task/components/new_task_form';
 import TaskFooter from '_common/components/task_footer';
 import TaskDisplay from 'task/components/task_display';
+import NotificationCheckbox from 'notification/containers/checkbox';
 
 import TagStore from 'tag/store';
 import TaskStore from 'task/store';
@@ -30,14 +31,12 @@ const TaskItem = React.createClass({
   },
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.closeNotification);
     this.loadTags().then(function setTagStoreCallback() {
       TagStore.on('change', this.loadTags);
     }.bind(this));
     this.loadTask().then(function setTaskStoreCallback() {
       TaskStore.on('change', this.loadTask);
       this.setTitle();
-      this.notifyOnInterval();
     }.bind(this));
   },
 
@@ -46,15 +45,7 @@ const TaskItem = React.createClass({
     this.setTitle();
   },
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.task.id !== this.state.task.id) { this.notifyTask(); }
-    if (this.props.notificationsEnabled && !prevProps.notificationsEnabled) {
-      this.notifyOnInterval();
-    }
-  },
-
   componentWillUnmount() {
-    this.closeNotification();
     TagStore.off('change', this.loadTags);
     TaskStore.off('change', this.loadTask);
   },
@@ -77,52 +68,6 @@ const TaskItem = React.createClass({
 
   setTitle() {
     document.title = `Task: ${this.state.task.title}`;
-  },
-
-  shouldShowNotifications() {
-    return Boolean(this.state.task.id) &&
-           this.props.notificationsEnabled &&
-           this.props.notificationsPermitted;
-  },
-
-  notifyTask() {
-    if (this.state.taskNotification) { this.state.taskNotification.close(); }
-    if (!this.shouldShowNotifications()) { return; }
-
-    const notification = new Notification(this.state.task.title);
-
-    notification.onclick = function notificationClick() {
-      this.completeTask(this.state.task.id);
-      notification.close();
-    }.bind(this);
-    this.setState({taskNotification: notification});
-  },
-
-  closeNotification() {
-    if (this.state.taskNotification) {
-      this.state.taskNotification.close();
-      this.setState({taskNotification: null});
-    }
-  },
-
-  notifyOnInterval() {
-    if (!this.shouldShowNotifications()) { return; }
-
-    this.notifyTask();
-    setTimeout(this.notifyOnInterval, 60000);
-  },
-
-  toggleNotifications(event) {
-    if (event.target.checked) {
-      this.props.enableNotifications();
-    } else {
-      this.disableNotifications();
-    }
-  },
-
-  disableNotifications() {
-    this.closeNotification();
-    this.props.disableNotifications();
   },
 
   storeTask(taskId, attrs, opts) {
@@ -188,14 +133,14 @@ const TaskItem = React.createClass({
         <NewTaskForm loadTask={this.loadTask} createTask={this.createTask} />
 
         <hr />
-        <label>
-          {'Nag me about next task: '}
-          <input
-            type='checkbox'
-            onClick={this.toggleNotifications}
-            value={this.shouldShowNotifications}
-          />
-        </label>
+        <NotificationCheckbox
+          task={this.state.task}
+          completeTask={this.completeTask}
+          enableNotifications={this.props.enableNotifications}
+          disableNotifications={this.props.disableNotifications}
+          notificationsEnabled={this.props.notificationsEnabled}
+          notificationsPermitted={this.props.notificationsPermitted}
+        />
         <TaskFooter />
       </div>
     );
