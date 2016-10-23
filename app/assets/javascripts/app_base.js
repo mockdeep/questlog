@@ -2,8 +2,7 @@
 
 import React from 'react';
 
-export default React.createClass({
-  displayName: 'QuestlogBase',
+const AppBase = React.createClass({
   propTypes: {children: React.PropTypes.object.isRequired},
   render() {
     return (
@@ -12,3 +11,4 @@ export default React.createClass({
   }
 });
 
+export default AppBase;
