@@ -1,6 +1,7 @@
 'use strict';
 
 import StoneObject from '_common/stone/object';
+import createBasicReducer from '_common/basic_reducer';
 
 function initUser() {
   return new StoneObject({});
@@ -16,10 +17,4 @@ const operations = {
   'user/UPDATE': updateUser
 };
 
-export default function userReducer(previous_state, action) {
-  const operation = operations[action.type];
-
-  if (!operation) { throw new Error(`invalid action type: "${action.type}"`); }
-
-  return operation(previous_state, action.payload);
-}
+export default createBasicReducer(operations);
