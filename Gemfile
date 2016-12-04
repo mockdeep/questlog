@@ -5,7 +5,7 @@ ruby '2.3.1'
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0'
 
 # https://github.com/rails-api/active_model_serializers/issues/1745
 gem 'active_model_serializers', '~> 0.9.4'
@@ -42,7 +42,6 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
   gem 'spring-commands-rspec'
 end
 

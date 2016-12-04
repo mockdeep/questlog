@@ -47,7 +47,7 @@ RSpec.describe FreeAccountsController, '#create' do
     end
 
     it 'renders the new template' do
-      expect(response).to render_template('free_accounts/new')
+      expect(response.body).to include('<h1>Sign Up</h1>')
     end
   end
 

@@ -7,7 +7,7 @@ class TagsController < ApplicationController
 private
 
   def tags
-    current_user.ordered_tags.active.tap do |tags|
+    current_user.ordered_tags.active.to_a.tap do |tags|
       tags.unshift(estimate_tag) if current_user.tasks.without_estimate.any?
       tags.unshift(untagged_tag) if current_user.untagged_tasks.any?
       tags.unshift(all_tag)
