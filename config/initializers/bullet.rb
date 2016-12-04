@@ -1,4 +1,5 @@
 if defined?(Bullet)
   Bullet.enable = true
-  Bullet.raise = true
+  Bullet.rails_logger = true
+  # Bullet.raise = true
 end
