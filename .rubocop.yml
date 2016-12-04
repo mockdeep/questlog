@@ -42,6 +42,8 @@ Style/TrivialAccessors:
 Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
 ClassLength:
   Max: 115
 
