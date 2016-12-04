@@ -14,13 +14,13 @@ RSpec.describe ChargesController, '#create' do
 
   it 'sets the customer id on the user' do
     expect do
-      post(:create, valid_params)
+      post(:create, params: valid_params)
     end.to change { user.reload.customer_id }.from(nil).to('an_id')
   end
 
   context 'when charge is successfully created' do
     it 'renders the a success page' do
-      post(:create, valid_params)
+      post(:create, params: valid_params)
       expect(response.body).to match(/Thanks, you paid/)
     end
   end
@@ -32,18 +32,18 @@ RSpec.describe ChargesController, '#create' do
     end
 
     it 'flashes an error' do
-      post(:create, valid_params)
+      post(:create, params: valid_params)
       expect(flash[:error]).to eq 'bad news'
     end
 
     it 'redirects to the charges page' do
-      post(:create, valid_params)
+      post(:create, params: valid_params)
       expect(response).to redirect_to charges_path
     end
 
     it 'still sets the customer id on the user' do
       expect do
-        post(:create, valid_params)
+        post(:create, params: valid_params)
       end.to change { user.reload.customer_id }.from(nil).to('an_id')
     end
   end

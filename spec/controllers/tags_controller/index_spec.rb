@@ -37,7 +37,7 @@ RSpec.describe TagsController, '#index' do
     tag = create(:tag, user: user, tasks: [task])
     task.update(estimate_seconds: 600)
     create(:tag, user: user)
-    get(:index, valid_params)
+    get(:index, params: valid_params)
     desired_attrs = %w(id slug unfinished_tasks_count name)
     tag_attrs = tag.reload.attributes.slice(*desired_attrs)
     tag_attrs['priority'] = nil
@@ -47,7 +47,7 @@ RSpec.describe TagsController, '#index' do
 
   it 'returns an "Untagged" tag when there are untagged tasks' do
     task
-    get(:index, valid_params)
+    get(:index, params: valid_params)
     expected = { 'tags' => [all_tag, untagged_tag, estimate_tag] }
     expect(JSON.parse(response.body)).to eq(expected)
   end

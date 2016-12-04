@@ -9,32 +9,32 @@ RSpec.describe TasksController, '#create' do
   context 'when the user does not exist' do
     it 'creates a new user' do
       expect do
-        post(:create, valid_params)
+        post(:create, params: valid_params)
       end.to change(User, :count).by(1)
     end
 
     it 'sets the current user in the session' do
       expect(session[:user_id]).to be_nil
-      post(:create, valid_params)
+      post(:create, params: valid_params)
       expect(session[:user_id]).not_to be_nil
     end
   end
 
   context 'when the task is valid' do
     it 'renders status created' do
-      post(:create, valid_params)
+      post(:create, params: valid_params)
       expect(response.status_message).to eq 'Created'
       expect(response.status).to eq 201
     end
 
     it 'creates the task' do
       expect do
-        post(:create, valid_params)
+        post(:create, params: valid_params)
       end.to change(Task, :count).by(1)
     end
 
     it 'renders the task as json' do
-      post(:create, valid_params.merge(task: { title: 'abc123 #home' }))
+      post(:create, params: valid_params.merge(task: { title: 'abc123 #home' }))
       task = JSON.parse(response.body)['task']
       expect(task['title']).to eq('abc123')
       expect(task['tag_names']).to eq(['home'])
