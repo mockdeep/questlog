@@ -59,9 +59,9 @@ GEM
       railties (>= 4.0.0, < 5.1)
       sprockets (>= 3.5.2)
     builder (3.2.2)
-    bullet (4.14.4)
+    bullet (5.4.2)
       activesupport (>= 3.0.0)
-      uniform_notifier (>= 1.6.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     capybara (2.7.1)
       addressable
@@ -376,7 +376,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   browserify-rails
-  bullet (= 4.14.4)
+  bullet
   byebug
   capybara
   capybara-webkit
