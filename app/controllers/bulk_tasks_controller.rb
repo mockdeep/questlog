@@ -18,11 +18,14 @@ class BulkTasksController < ApplicationController
 private
 
   def create_params
-    params.require(:bulk_task).permit(:titles).merge(user: current_user)
+    params.require(:bulk_task).permit(:titles).to_h.merge(user: current_user)
   end
 
   def update_params
-    params.require(:bulk_task).permit(positions: []).merge(user: current_user)
+    params.require(:bulk_task)
+          .permit(positions: [])
+          .to_h
+          .merge(user: current_user)
   end
 
 end
