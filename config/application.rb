@@ -13,8 +13,6 @@ module Questlog
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    config.active_record.raise_in_transactional_callbacks = true
-
     browserify_options = '-t babelify --extension=".jsx"'
     config.browserify_rails.commandline_options = browserify_options
 
