@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 private
 
   def session_params
-    params.symbolize_keys.slice(:email, :password)
+    params.require(:session).permit(:email, :password).to_h.symbolize_keys
   end
 
 end

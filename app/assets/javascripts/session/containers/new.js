@@ -19,12 +19,12 @@ const SessionsNew = React.createClass({
           <p>
             <label htmlFor='email'>{'Email'}</label>
             <br />
-            <input type='text' name='email' id='email' />
+            <input type='text' name='session[email]' id='email' />
           </p>
           <p>
             <label htmlFor='password'>{'Password'}</label>
             <br />
-            <input type='password' name='password' id='password' />
+            <input type='password' name='session[password]' id='password' />
           </p>
           <p className='button'>
             <input type='submit' name='commit' value='Login' />

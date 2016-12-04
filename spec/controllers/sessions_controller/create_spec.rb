@@ -1,7 +1,7 @@
 RSpec.describe SessionsController, '#create' do
 
   let(:user) { create(:user) }
-  let(:params) { { email: 'some_email', password: 'some_password' } }
+  let(:valid_attributes) { { email: 'some_email', password: 'some_password' } }
 
   context 'when a profile is found' do
     before(:each) do
@@ -16,22 +16,22 @@ RSpec.describe SessionsController, '#create' do
         user_2 = create(:user)
         session[:user_id] = user_2.id
         expect(user).to receive(:absorb).with(instance_of(User))
-        post(:create, params: params)
+        post(:create, params: { session: valid_attributes })
       end
     end
 
     it 'sets the current user to the user' do
-      post(:create, params: params)
+      post(:create, params: { session: valid_attributes })
       expect(session[:user_id]).to eq user.id
     end
 
     it 'redirects to root path' do
-      post(:create, params: params)
+      post(:create, params: { session: valid_attributes })
       expect(response).to redirect_to root_path
     end
 
     it 'flashes a success message' do
-      post(:create, params: params)
+      post(:create, params: { session: valid_attributes })
       expect(flash[:notice]).to match(/logged in/i)
     end
   end
@@ -42,12 +42,12 @@ RSpec.describe SessionsController, '#create' do
     end
 
     it 'flashes an error message' do
-      post(:create)
+      post(:create, params: { session: valid_attributes })
       expect(flash[:error]).to match(/invalid email or password/i)
     end
 
     it 'renders the "new" template' do
-      post(:create)
+      post(:create, params: { session: valid_attributes })
       expect(response).to redirect_to('/sessions/new')
     end
   end
