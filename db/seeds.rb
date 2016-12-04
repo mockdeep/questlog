@@ -1,4 +1,4 @@
-account = FreeAccount.create(
+account = FreeAccount.create!(
   email: 'demo@questlog.io',
   password: 'pizzas',
   password_confirmation: 'pizzas',
