@@ -4,7 +4,7 @@ RSpec.describe ApplicationController, '#check_repeats' do
 
   controller do
     def index
-      render nothing: true
+      head :ok
     end
   end
 
