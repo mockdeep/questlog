@@ -14,7 +14,7 @@ RSpec.describe TasksController, '#destroy' do
     task.tags = [tag]
     expect(tag.tasks).to eq([task])
     expect(tag.reload.unfinished_tasks_count).to eq(1)
-    delete(:destroy, valid_params)
+    delete(:destroy, params: valid_params)
 
     expect(tag.reload.tasks).to eq([])
     expect(tag.unfinished_tasks_count).to eq 0
@@ -23,7 +23,7 @@ RSpec.describe TasksController, '#destroy' do
 
   it 'allows deletion of pending tasks' do
     task.update!(done: true, release_at: 1.hour.from_now)
-    expect { delete(:destroy, valid_params) }.not_to raise_error
+    expect { delete(:destroy, params: valid_params) }.not_to raise_error
   end
 
 end

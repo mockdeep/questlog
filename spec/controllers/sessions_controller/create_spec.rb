@@ -16,22 +16,22 @@ RSpec.describe SessionsController, '#create' do
         user_2 = create(:user)
         session[:user_id] = user_2.id
         expect(user).to receive(:absorb).with(instance_of(User))
-        post(:create, params)
+        post(:create, params: params)
       end
     end
 
     it 'sets the current user to the user' do
-      post(:create, params)
+      post(:create, params: params)
       expect(session[:user_id]).to eq user.id
     end
 
     it 'redirects to root path' do
-      post(:create, params)
+      post(:create, params: params)
       expect(response).to redirect_to root_path
     end
 
     it 'flashes a success message' do
-      post(:create, params)
+      post(:create, params: params)
       expect(flash[:notice]).to match(/logged in/i)
     end
   end

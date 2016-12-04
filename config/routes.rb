@@ -19,7 +19,7 @@ Questlog::Application.routes.draw do
     resources :tasks, only: [:index, :create, :update, :destroy]
     resources :timeframes, only: [:index]
     resources :bulk_tasks, only: [:create]
-    put :bulk_tasks, to: 'bulk_tasks#update'
+    put(:bulk_tasks, to: 'bulk_tasks#update')
 
     get '', to: 'tasks#show'
     get '/untagged', to: 'untagged_tasks#show', as: :untagged

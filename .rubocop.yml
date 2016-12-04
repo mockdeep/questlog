@@ -68,9 +68,6 @@ Style/RegexpLiteral:
 Rails/TimeZone:
   Enabled: false
 
-Rails/HttpPositionalArguments:
-  Enabled: false
-
 MethodLength:
   Max: 12
 
