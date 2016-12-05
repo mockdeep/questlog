@@ -7,16 +7,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.cache_store = :dalli_store,
-                       ENV['MEMCACHIER_SERVERS'].split(','),
-                       {
-                         username: ENV['MEMCACHIER_USERNAME'],
-                         password: ENV['MEMCACHIER_PASSWORD'],
-                         socket_timeout: 1.5,
-                         socket_failure_delay: 0.2,
-                       }
-  config.action_dispatch.rack_cache = true
-
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.assets.js_compressor = :uglifier
@@ -24,11 +14,25 @@ Rails.application.configure do
 
   config.assets.compile = false
 
-  config.assets.digest = true
-
   config.force_ssl = true
 
   config.log_level = :debug
+
+  config.log_tags = [:request_id]
+
+  config.cache_store = :dalli_store,
+                       ENV.fetch('MEMCACHIER_SERVERS').split(','),
+                       {
+                         username: ENV.fetch('MEMCACHIER_USERNAME'),
+                         password: ENV.fetch('MEMCACHIER_PASSWORD'),
+                         socket_timeout: 1.5,
+                         socket_failure_delay: 0.2,
+                       }
+  config.action_dispatch.rack_cache = true
+
+  config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
+  config.action_mailer.perform_caching = false
 
   config.i18n.fallbacks = true
 
@@ -36,5 +40,12 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
   config.active_record.dump_schema_after_migration = false
+
 end
