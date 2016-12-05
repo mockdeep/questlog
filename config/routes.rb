@@ -1,4 +1,4 @@
-Questlog::Application.routes.draw do
+Rails.application.routes.draw do
   require_relative '../lib/html_constraint'
   require_relative '../lib/json_constraint'
 
