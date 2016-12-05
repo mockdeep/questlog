@@ -30,8 +30,6 @@ Rails.application.configure do
                        }
   config.action_dispatch.rack_cache = true
 
-  config.active_job.queue_adapter     = :sidekiq
-  config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   config.i18n.fallbacks = true
