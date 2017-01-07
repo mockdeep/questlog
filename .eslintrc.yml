@@ -14,22 +14,24 @@ ecmaFeatures:
   jsx: true
 rules:
   # to enable someday
+  capitalized-comments: off
   max-len: [error, 110]
   max-statements: [error, { max: 14 }]
-  multiline-ternary: [off]
-  # no-console: [off]
-  no-mixed-operators: [off]
-  react/forbid-prop-types: [off]
-  react/no-find-dom-node: [off]
-  react/no-multi-comp: [off]
-  react/no-set-state: [off]
-  react/no-string-refs: [off]
-  react/prefer-es6-class: [off]
-  react/prefer-stateless-function: [off]
-  sort-keys: [off]
-  sort-imports: [off]
-  camelcase: [off]
-  strict: [off] # need to switch module syntax
+  multiline-ternary: off
+  # no-console: off
+  no-mixed-operators: off
+  prefer-destructuring: off
+  react/forbid-prop-types: off
+  react/no-find-dom-node: off
+  react/no-multi-comp: off
+  react/no-set-state: off
+  react/no-string-refs: off
+  react/prefer-es6-class: off
+  react/prefer-stateless-function: off
+  sort-keys: off
+  sort-imports: off
+  camelcase: off
+  strict: off # need to switch module syntax
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   func-style: [error, declaration]
@@ -50,12 +52,12 @@ rules:
   react/jsx-indent-props: [error, 2]
   react/jsx-wrap-multilines: [error, { declaration: false }]
   # disabled
-  init-declarations: [off]
-  no-inline-comments: [off]
-  no-magic-numbers: [off]
-  no-ternary: [off]
-  prefer-reflect: [off]
-  require-jsdoc: [off]
-  react/jsx-handler-names: [off]
-  react/jsx-max-props-per-line: [off]
-  react/jsx-sort-props: [off]
+  init-declarations: off
+  no-inline-comments: off
+  no-magic-numbers: off
+  no-ternary: off
+  prefer-reflect: off
+  require-jsdoc: off
+  react/jsx-handler-names: off
+  react/jsx-max-props-per-line: off
+  react/jsx-sort-props: off
