@@ -1233,7 +1233,7 @@
       "version": "1.2.0"
     },
     "lodash": {
-      "version": "4.16.4"
+      "version": "4.17.4"
     },
     "lodash-es": {
       "version": "4.16.4"
@@ -1342,7 +1342,7 @@
       }
     },
     "moment": {
-      "version": "2.15.1"
+      "version": "2.17.1"
     },
     "ms": {
       "version": "0.7.1"
@@ -1486,12 +1486,7 @@
       "version": "0.2.1"
     },
     "quibble": {
-      "version": "0.4.0",
-      "dependencies": {
-        "lodash": {
-          "version": "4.17.4"
-        }
-      }
+      "version": "0.4.0"
     },
     "randombytes": {
       "version": "2.0.3"
