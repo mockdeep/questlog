@@ -507,7 +507,59 @@
       "version": "6.16.0"
     },
     "babel-register": {
-      "version": "6.16.3"
+      "version": "6.18.0",
+      "dependencies": {
+        "babel-code-frame": {
+          "version": "6.20.0"
+        },
+        "babel-core": {
+          "version": "6.21.0",
+          "dependencies": {
+            "babel-runtime": {
+              "version": "6.20.0"
+            }
+          }
+        },
+        "babel-generator": {
+          "version": "6.21.0",
+          "dependencies": {
+            "babel-runtime": {
+              "version": "6.20.0"
+            }
+          }
+        },
+        "babel-traverse": {
+          "version": "6.21.0",
+          "dependencies": {
+            "babel-runtime": {
+              "version": "6.20.0"
+            }
+          }
+        },
+        "babel-types": {
+          "version": "6.21.0",
+          "dependencies": {
+            "babel-runtime": {
+              "version": "6.20.0"
+            }
+          }
+        },
+        "detect-indent": {
+          "version": "4.0.0"
+        },
+        "js-tokens": {
+          "version": "2.0.0"
+        },
+        "json5": {
+          "version": "0.5.1"
+        },
+        "regenerator-runtime": {
+          "version": "0.10.1"
+        },
+        "repeating": {
+          "version": "2.0.1"
+        }
+      }
     },
     "babel-runtime": {
       "version": "6.11.6"
@@ -1025,12 +1077,7 @@
       "version": "1.2.0"
     },
     "home-or-tmp": {
-      "version": "1.0.0",
-      "dependencies": {
-        "user-home": {
-          "version": "1.1.1"
-        }
-      }
+      "version": "2.0.0"
     },
     "html-encoding-sniffer": {
       "version": "1.0.1"
@@ -1627,7 +1674,7 @@
       "version": "0.5.6"
     },
     "source-map-support": {
-      "version": "0.4.3"
+      "version": "0.4.8"
     },
     "sprintf-js": {
       "version": "1.0.3"
