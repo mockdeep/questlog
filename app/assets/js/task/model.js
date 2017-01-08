@@ -1,26 +1,23 @@
-/* eslint-disable camelcase */
-/* need to change server calls to return camelcase */
-
 'use strict';
 
 import {Record} from 'immutable';
 
 const Task = new Record({
   id: null,
-  estimate_seconds: null,
+  estimateSeconds: null,
   pending: null,
   priority: null,
-  repeat_seconds: null,
-  release_at: null,
+  repeatSeconds: null,
+  releaseAt: null,
   timeframe: null,
   title: null,
-  tag_names: null,
-  skip_count: null
+  tagNames: null,
+  skipCount: null
 });
 
-Object.defineProperty(Task.prototype, 'estimate_minutes', {
+Object.defineProperty(Task.prototype, 'estimateMinutes', {
   get() {
-    return Math.floor((this.estimate_seconds || 1800) / 60);
+    return Math.floor((this.estimateSeconds || 1800) / 60);
   }
 });
 

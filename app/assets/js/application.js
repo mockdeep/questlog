@@ -17,7 +17,7 @@ require('jquery-ujs');
 ReactDOM.render(router, $('#app-base')[0]);
 
 Honeybadger.configure({
-  api_key: window.gon.honeybadgerApiKey,
+  api_key: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
   environment: window.gon.railsEnv,
   onerror: true
 });

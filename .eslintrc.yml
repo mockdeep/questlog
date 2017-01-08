@@ -30,7 +30,6 @@ rules:
   react/prefer-stateless-function: off
   sort-keys: off
   sort-imports: off
-  camelcase: off
   strict: off # need to switch module syntax
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]

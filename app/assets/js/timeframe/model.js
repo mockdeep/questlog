@@ -33,7 +33,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
   get() {
     const allTasks = this.pendingTasks.concat(this.currentTasks);
 
-    return sumBy(allTasks, 'estimate_minutes');
+    return sumBy(allTasks, 'estimateMinutes');
   }
 });
 

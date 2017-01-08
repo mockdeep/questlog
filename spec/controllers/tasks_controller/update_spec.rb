@@ -41,9 +41,9 @@ RSpec.describe TasksController, '#update' do
     put(:update, params: valid_params)
     task = JSON.parse(response.body)['task']
     expect(task['title']).to eq 'foo'
-    expect(task['tag_names']).to eq %w(home)
+    expect(task['tagNames']).to eq %w(home)
     expect(task['priority']).to eq 3
-    expect(task['estimate_seconds']).to eq 300
+    expect(task['estimateSeconds']).to eq 300
   end
 
 end

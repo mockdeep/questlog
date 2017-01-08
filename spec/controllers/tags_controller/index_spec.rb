@@ -7,7 +7,7 @@ RSpec.describe TagsController, '#index' do
     {
       id: -2,
       name: 'Needs Estimate',
-      unfinished_tasks_count: 1,
+      unfinishedTasksCount: 1,
       slug: 'needs_estimate',
       priority: nil,
     }.stringify_keys
@@ -16,7 +16,7 @@ RSpec.describe TagsController, '#index' do
     {
       id: 0,
       name: 'All',
-      unfinished_tasks_count: 1,
+      unfinishedTasksCount: 1,
       slug: '',
       priority: nil,
     }.stringify_keys
@@ -25,7 +25,7 @@ RSpec.describe TagsController, '#index' do
     {
       id: -1,
       name: 'Untagged',
-      unfinished_tasks_count: 1,
+      unfinishedTasksCount: 1,
       slug: 'untagged',
       priority: nil,
     }.stringify_keys
@@ -38,9 +38,14 @@ RSpec.describe TagsController, '#index' do
     task.update(estimate_seconds: 600)
     create(:tag, user: user)
     get(:index, params: valid_params)
-    desired_attrs = %w(id slug unfinished_tasks_count name)
-    tag_attrs = tag.reload.attributes.slice(*desired_attrs)
-    tag_attrs['priority'] = nil
+    tag.reload
+    tag_attrs = {
+      id: tag.id,
+      name: tag.name,
+      priority: nil,
+      slug: tag.slug,
+      unfinishedTasksCount: tag.unfinished_tasks_count,
+    }.stringify_keys
     expected = { 'tags' => [all_tag, tag_attrs] }
     expect(JSON.parse(response.body)).to eq(expected)
   end
