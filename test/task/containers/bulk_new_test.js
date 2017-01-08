@@ -8,12 +8,12 @@ import {replace} from 'testdouble';
 import fakeHistory from '_test_helpers/fake_history';
 import FakeStore from '_test_helpers/fake_store';
 
-replace('task/bulk_store', FakeStore);
+replace('js/task/bulk_store', FakeStore);
 replace('react-router', {browserHistory: fakeHistory});
 
 // this should change to `import` if/when td fixes this issue:
 // https://github.com/testdouble/testdouble.js/issues/147
-const BulkTasksNew = require('task/containers/bulk_new').default;
+const BulkTasksNew = require('js/task/containers/bulk_new').default;
 
 let bulkTasksNew;
 

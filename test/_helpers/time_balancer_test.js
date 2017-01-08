@@ -2,7 +2,7 @@
 
 import moment from 'moment';
 
-import TimeBalancer from '_helpers/time_balancer';
+import TimeBalancer from 'js/_helpers/time_balancer';
 
 describe('TimeBalancer.baseBalances', function () {
   it('returns a collection of base time pairs', function () {

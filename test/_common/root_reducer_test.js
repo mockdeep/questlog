@@ -1,6 +1,6 @@
 'use strict';
 
-import reducer from '_common/root_reducer';
+import reducer from 'js/_common/root_reducer';
 
 describe('root_reducer', function () {
   describe('init', function () {

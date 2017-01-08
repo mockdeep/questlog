@@ -1,6 +1,6 @@
 'use strict';
 
-import Timeframe from 'timeframe/model';
+import Timeframe from 'js/timeframe/model';
 
 describe('Timeframe#minuteTotal', function () {
   it('returns the total number of minutes from tasks', function () {

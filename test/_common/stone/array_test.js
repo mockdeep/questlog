@@ -1,7 +1,7 @@
 'use strict';
 
-import StoneArray from '_common/stone/array';
-import StoneObject from '_common/stone/object';
+import StoneArray from 'js/_common/stone/array';
+import StoneObject from 'js/_common/stone/object';
 
 const frozenError = /object is not extensible/;
 

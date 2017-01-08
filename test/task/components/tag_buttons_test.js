@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import TagButtons from 'task/components/tag_buttons';
+import TagButtons from 'js/task/components/tag_buttons';
 
 const tags = [
   {id: 5, name: 'home', unfinished_tasks_count: 8},
