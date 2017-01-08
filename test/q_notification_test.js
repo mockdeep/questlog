@@ -1,6 +1,6 @@
 'use strict';
 
-import QNotification from 'q_notification';
+import QNotification from 'js/q_notification';
 
 window.Notification = {};
 

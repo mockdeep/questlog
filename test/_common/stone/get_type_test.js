@@ -1,6 +1,6 @@
 'use strict';
 
-import getType from '_common/stone/get_type';
+import getType from 'js/_common/stone/get_type';
 
 describe('getType', function () {
   it('returns "Number" given a number', function () {

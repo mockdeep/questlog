@@ -1,6 +1,6 @@
 'use strict';
 
-import ToEnglish from '_helpers/to_english';
+import ToEnglish from 'js/_helpers/to_english';
 
 describe('ToEnglish.seconds', function () {
   it('returns seconds when < 1 minute', function () {

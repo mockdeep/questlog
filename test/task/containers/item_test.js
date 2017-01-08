@@ -4,8 +4,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import * as td from 'testdouble';
 
-import ItemContainer from 'task/containers/item';
-import NotificationCheckbox from 'notification/containers/checkbox';
+import ItemContainer from 'js/task/containers/item';
+import NotificationCheckbox from 'js/notification/containers/checkbox';
 
 const enableNotifications = td.function();
 const disableNotifications = td.function();

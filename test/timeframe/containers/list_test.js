@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import TimeframeList from 'timeframe/containers/list';
+import TimeframeList from 'js/timeframe/containers/list';
 
 let timeframeList;
 

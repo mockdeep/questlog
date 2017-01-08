@@ -1,6 +1,6 @@
 'use strict';
 
-import * as actions from 'user/actions';
+import * as actions from 'js/user/actions';
 
 describe('#updateUser', function () {
   it('returns an UPDATE action for the payload', function () {

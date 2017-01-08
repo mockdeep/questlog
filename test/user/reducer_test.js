@@ -1,7 +1,7 @@
 'use strict';
 
-import reducer from 'user/reducer';
-import * as actions from 'user/actions';
+import reducer from 'js/user/reducer';
+import * as actions from 'js/user/actions';
 
 describe('user/reducer', function () {
   describe('INIT', function () {
