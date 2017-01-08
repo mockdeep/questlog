@@ -1200,6 +1200,9 @@
     "home-or-tmp": {
       "version": "2.0.0"
     },
+    "honeybadger-js": {
+      "version": "0.4.3"
+    },
     "hosted-git-info": {
       "version": "2.1.5"
     },
