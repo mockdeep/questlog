@@ -1,7 +1,6 @@
 //= require_self
 //= require jquery_ujs
 //= require bootstrap
-//= require tasks
 
 'use strict';
 
@@ -15,6 +14,7 @@ import FakeHoneybadger from 'js/_dev/fake_honeybadger';
 import router from 'router';
 
 window.$ = window.jQuery = $;
+import 'js/tasks';
 
 ReactDOM.render(router, $('#app-base')[0]);
 

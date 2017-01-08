@@ -1,5 +1,7 @@
 'use strict';
 
+import $ from 'jquery';
+
 $(function setJqueryCallbacks() {
   const editIcon = $('#edit-task');
 
