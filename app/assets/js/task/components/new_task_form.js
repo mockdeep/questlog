@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import {extend} from 'lodash';
 
 import ErrorDisplay from 'js/_common/components/error_display';
 import flash from 'js/_helpers/flash';
@@ -22,7 +21,8 @@ const NewTaskForm = React.createClass({
   },
 
   setTitle(event) {
-    const newTask = extend({}, this.state.task, {title: event.target.value});
+    const taskAttrs = {title: event.target.value};
+    const newTask = Object.assign({}, this.state.task, taskAttrs);
 
     this.setState({task: newTask});
   },

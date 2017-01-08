@@ -1,12 +1,11 @@
 'use strict';
 
 import reqwest from 'reqwest';
-import {extend} from 'lodash';
 
 import authenticityToken from 'js/_helpers/authenticity_token';
 
 function mergeOptions(defaults, options) {
-  return extend({}, defaults, options);
+  return Object.assign({}, defaults, options);
 }
 
 function reloadPage() {
