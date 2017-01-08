@@ -31,7 +31,7 @@ const TagButton = React.createClass({
     return classString;
   },
   unfinishedTasksCount() {
-    return this.props.tag.unfinished_tasks_count;
+    return this.props.tag.unfinishedTasksCount;
   },
   render() {
     return (

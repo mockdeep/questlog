@@ -7,8 +7,8 @@ function initUser() {
   return new StoneObject({});
 }
 
-function updateUser(previous_state, payload) {
-  return new StoneObject(Object.assign({}, previous_state, payload));
+function updateUser(previousState, payload) {
+  return new StoneObject(Object.assign({}, previousState, payload));
   // empty
 }
 

@@ -80,7 +80,7 @@ const TaskRow = React.createClass({
   },
 
   emblems() {
-    if (!this.props.task.repeat_seconds) { return false; }
+    if (!this.props.task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
   },
@@ -104,7 +104,7 @@ const TaskRow = React.createClass({
   },
 
   timeframeHasSpace(name) {
-    return this.props.timeframeSpace[name] >= this.props.task.estimate_minutes;
+    return this.props.timeframeSpace[name] >= this.props.task.estimateMinutes;
   },
 
   optionText(title, name) {
@@ -164,7 +164,7 @@ const TaskRow = React.createClass({
   taskEstimate() {
     if (!this.props.timeframesEnabled) { return false; }
 
-    return `(${this.props.task.estimate_minutes}) `;
+    return `(${this.props.task.estimateMinutes}) `;
   },
 
   undoTask() {

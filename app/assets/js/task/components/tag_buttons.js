@@ -25,7 +25,7 @@ const TagButtons = React.createClass({
     );
   },
   currentNames() {
-    return this.props.task.tag_names;
+    return this.props.task.tagNames;
   },
   render() {
     return (
