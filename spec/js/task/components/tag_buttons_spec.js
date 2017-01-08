@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import {mount} from 'enzyme';
 
 import TagButtons from 'js/task/components/tag_buttons';
 
@@ -12,17 +11,11 @@ const tags = [
 ];
 const task = {};
 
-let tagButtons;
-
-beforeEach(() => {
-  tagButtons = TestUtils.renderIntoDocument(<TagButtons task={task} tags={tags}/>);
-});
-
 describe('TagButtons', () => {
   it('renders some stuff', () => {
-    const domNode = ReactDOM.findDOMNode(tagButtons);
+    const wrapper = mount(<TagButtons task={task} tags={tags}/>);
 
-    expect(domNode.textContent).toContain('home (8)');
-    expect(domNode.textContent).toContain('work (13)');
+    expect(wrapper.text()).toContain('home (8)');
+    expect(wrapper.text()).toContain('work (13)');
   });
 });
