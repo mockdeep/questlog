@@ -1,13 +1,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import * as td from 'testdouble';
 
 import NotificationCheckbox from 'js/notification/containers/checkbox';
 
-const completeTask = td.function();
-const enableNotifications = td.function();
-const disableNotifications = td.function();
-const requestNotificationPermission = td.function();
+const completeTask = jest.fn();
+const enableNotifications = jest.fn();
+const disableNotifications = jest.fn();
+const requestNotificationPermission = jest.fn();
 
 let notificationCheckbox;
 
@@ -29,6 +28,6 @@ describe('NotificationCheckbox', () => {
 
     notificationCheckbox.find('input[type="checkbox"]').simulate('click', fakeEvent);
 
-    td.verify(enableNotifications());
+    expect(enableNotifications).toHaveBeenCalled();
   });
 });

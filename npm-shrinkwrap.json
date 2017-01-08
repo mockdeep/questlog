@@ -1316,9 +1316,6 @@
     "is-path-inside": {
       "version": "1.0.0"
     },
-    "is-plain-obj": {
-      "version": "1.1.0"
-    },
     "is-posix-bracket": {
       "version": "0.1.1"
     },
@@ -1330,9 +1327,6 @@
     },
     "is-regex": {
       "version": "1.0.3"
-    },
-    "is-regexp": {
-      "version": "1.0.0"
     },
     "is-resolvable": {
       "version": "1.0.0"
@@ -1901,9 +1895,6 @@
     "querystring-es3": {
       "version": "0.2.1"
     },
-    "quibble": {
-      "version": "0.4.0"
-    },
     "randomatic": {
       "version": "1.1.6"
     },
@@ -2143,9 +2134,6 @@
     },
     "string.prototype.codepointat": {
       "version": "0.2.0"
-    },
-    "stringify-object": {
-      "version": "2.4.0"
     },
     "stringstream": {
       "version": "0.0.5"
