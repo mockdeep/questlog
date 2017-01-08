@@ -1,0 +1,20 @@
+{
+  "collectCoverageFrom": ["app/assets/js/**/*.{js,jsx}"],
+  "coverageReporters": ["json", "lcov"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 10,
+      "functions": 10,
+      "lines": 10,
+      "statements": 10
+    }
+  },
+  "moduleFileExtensions": ["js", "jsx"],
+  "modulePaths": [
+    "<rootDir>/app/assets/",
+    "<rootDir>/vendor/assets/javascripts/",
+    "<rootDir>/spec/js/"
+  ],
+  "setupTestFrameworkScriptFile": "<rootDir>/spec/js/test_helper.js",
+  "testRegex": "/spec/js/.*_spec.js(x)?$"
+}
