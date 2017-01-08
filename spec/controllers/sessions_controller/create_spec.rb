@@ -15,8 +15,9 @@ RSpec.describe SessionsController, '#create' do
       it 'absorbs the current user into the logged in user' do
         user_2 = create(:user)
         session[:user_id] = user_2.id
-        expect(user).to receive(:absorb).with(instance_of(User))
+        allow(user).to receive(:absorb)
         post(:create, params: { session: valid_attributes })
+        expect(user).to have_received(:absorb).with(instance_of(User))
       end
     end
 

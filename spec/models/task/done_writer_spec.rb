@@ -45,18 +45,16 @@ RSpec.describe Task, '#done=' do
         end
       end
 
-      context 'when hit multiple times with the same request' do
-        it 'does not decrement multiple times' do
-          configure_for_threading!
+      it 'does not decrement multiple times when hit multiple threaded times' do
+        configure_for_threading!
 
-          task.save!
+        task.save!
 
-          threaded do
-            Task.find(task.id).update!(done: true)
-          end
-
-          expect(user.reload.unfinished_tasks_count).to eq 0
+        threaded do
+          Task.find(task.id).update!(done: true)
         end
+
+        expect(user.reload.unfinished_tasks_count).to eq 0
       end
     end
 
@@ -115,7 +113,7 @@ RSpec.describe Task, '#done=' do
         end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
       end
 
-      it 'increments unfinished_tasks_count for its associated tags' do
+      it 'increments unfinished_tasks_count for its associated user' do
         task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
         task.update!(done: false)
