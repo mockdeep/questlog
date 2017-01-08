@@ -1,6 +1,5 @@
 //= require_self
 //= require jquery_ujs
-//= require bootstrap
 
 'use strict';
 
@@ -12,9 +11,12 @@ import PromisePolyfill from 'promise-polyfill';
 import FakeHoneybadger from 'js/_dev/fake_honeybadger';
 
 import router from 'router';
+import 'js/tasks';
 
 window.$ = window.jQuery = $;
-import 'js/tasks';
+
+// depends on global jQuery, so can't be imported, as that gets hoisted
+require('bootstrap-sass');
 
 ReactDOM.render(router, $('#app-base')[0]);
 
