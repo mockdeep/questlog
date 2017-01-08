@@ -1,6 +1,3 @@
-//= require_self
-//= require jquery_ujs
-
 'use strict';
 
 require('es5-shim');
@@ -17,6 +14,7 @@ window.$ = window.jQuery = $;
 
 // depends on global jQuery, so can't be imported, as that gets hoisted
 require('bootstrap-sass');
+require('jquery-ujs');
 
 ReactDOM.render(router, $('#app-base')[0]);
 
