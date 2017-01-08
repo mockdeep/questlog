@@ -1,5 +1,7 @@
 @import 'variables/colors';
 
+$bg-task-display: #e9eeee;
+
 .tag-buttons {
   div {
     display: inline-block;
@@ -16,7 +18,7 @@
 }
 
 .pending {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .main-button {
@@ -183,7 +185,6 @@ h3 {
     color: $color-priority-3;
   }
 }
-
 
 .modal {
   table td {

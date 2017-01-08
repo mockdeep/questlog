@@ -33,12 +33,15 @@
     "eslint-plugin-react": "^6.3.0",
     "jest": "^18.1.0",
     "jsdom": "^9.5.0",
-    "react-addons-test-utils": "^15.4.2"
+    "react-addons-test-utils": "^15.4.2",
+    "stylelint": "^7.7.1"
   },
   "engines": {
     "node": "4.2.2"
   },
   "scripts": {
+    "lints": "npm run stylelint -s && npm run eslint -s && rake rubocop && rake haml_lint",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.js app/**/*.scss",
     "eslint": "./node_modules/eslint/bin/eslint.js ./ --ext .js,.jsx --cache",
     "jest": "./node_modules/jest/bin/jest.js --config config/jest.json",
     "pretest": "npm run -s eslint",
