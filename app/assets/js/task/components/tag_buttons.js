@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import {some} from 'lodash';
 
 import TagButton from 'js/task/components/tag_button';
 
@@ -12,7 +11,7 @@ const TagButtons = React.createClass({
   },
 
   isCurrent(tag) {
-    return some(this.currentNames(), function tagNameMatches(name) {
+    return this.currentNames().some(function tagNameMatches(name) {
       return tag.name === name;
     });
   },
@@ -25,7 +24,7 @@ const TagButtons = React.createClass({
     );
   },
   currentNames() {
-    return this.props.task.tagNames;
+    return this.props.task.tagNames || [];
   },
   render() {
     return (
