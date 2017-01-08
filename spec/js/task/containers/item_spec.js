@@ -2,14 +2,13 @@
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import * as td from 'testdouble';
 
 import ItemContainer from 'js/task/containers/item';
 import NotificationCheckbox from 'js/notification/containers/checkbox';
 
-const enableNotifications = td.function();
-const disableNotifications = td.function();
-const requestNotificationPermission = td.function();
+const enableNotifications = jest.fn();
+const disableNotifications = jest.fn();
+const requestNotificationPermission = jest.fn();
 let itemContainer;
 
 beforeEach(() => {
