@@ -1,13 +1,11 @@
 'use strict';
 
-import {extend} from 'lodash';
-
 import request from 'js/_helpers/request';
 
 import RestfulStore from 'js/_common/restful_store';
 import TaskStore from 'js/task/store';
 
-const BulkTaskStore = extend({}, RestfulStore, {
+const BulkTaskStore = Object.assign({}, RestfulStore, {
   name: 'bulk_task',
 
   update(attrs) {

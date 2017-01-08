@@ -1,6 +1,5 @@
 'use strict';
 
-import {extend} from 'lodash';
 import moment from 'moment';
 
 import request from 'js/_helpers/request';
@@ -51,7 +50,7 @@ function timeframeNameForTask(task) {
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
 }
 
-const TimeframeStore = extend({}, RestfulStore, {
+const TimeframeStore = Object.assign({}, RestfulStore, {
   name: 'timeframe',
 
   updateModels(data) {

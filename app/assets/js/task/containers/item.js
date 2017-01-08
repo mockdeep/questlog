@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import {extend} from 'lodash';
 
 import NewTaskForm from 'js/task/components/new_task_form';
 import TaskFooter from 'js/_common/components/task_footer';
@@ -72,7 +71,7 @@ const TaskItem = React.createClass({
 
   storeTask(taskId, attrs, opts) {
     const loadingState = opts && opts.loadingState || 'updating';
-    const newTask = extend({}, this.state.task, {loadingState});
+    const newTask = Object.assign({}, this.state.task, {loadingState});
 
     this.setState({task: newTask});
 
@@ -87,7 +86,7 @@ const TaskItem = React.createClass({
 
   updateTask(data) {
     if (data) {
-      const task = extend({}, data.task, {loadingState: 'ready'});
+      const task = Object.assign({}, data.task, {loadingState: 'ready'});
 
       this.setState({task, disabled: false});
     } else {

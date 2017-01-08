@@ -1,11 +1,9 @@
 'use strict';
 
-import {extend} from 'lodash';
-
 import RestfulStore from 'js/_common/restful_store';
 import Task from 'js/task/model';
 
-export default extend({}, RestfulStore, {
+export default Object.assign({}, RestfulStore, {
   name: 'task',
 
   updateModels(data) {
