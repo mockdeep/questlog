@@ -4,10 +4,6 @@ import {extend} from 'lodash';
 import moment from 'moment';
 
 import request from 'js/_helpers/request';
-
-// eslint-disable-next-line global-require
-const Promise = window.Promise || require('promise-polyfill');
-
 import Timeframe from 'js/timeframe/model';
 import RestfulStore from 'js/_common/restful_store';
 import TaskStore from 'js/task/store';
