@@ -20,12 +20,11 @@ ReactDOM.render(router, $('#app-base')[0]);
 
 window.Honeybadger = window.Honeybadger || FakeHoneybadger;
 window.Honeybadger.configure({
-  api_key: window.gon.honeybadger_api_key, // eslint-disable-line camelcase
-  environment: window.gon.rails_env,
+  api_key: window.gon.honeybadgerApiKey,
+  environment: window.gon.railsEnv,
   onerror: true
 });
 
-// eslint-disable-next-line camelcase
-window.Honeybadger.setContext({user_id: window.gon.user_id});
+window.Honeybadger.setContext({userId: window.gon.userId});
 
 window.Promise = window.Promise || PromisePolyfill;
