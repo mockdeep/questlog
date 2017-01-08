@@ -14,15 +14,15 @@ const task = {};
 
 let tagButtons;
 
-beforeEach(function () {
+beforeEach(() => {
   tagButtons = TestUtils.renderIntoDocument(<TagButtons task={task} tags={tags}/>);
 });
 
-describe('TagButtons', function () {
-  it('renders some stuff', function () {
+describe('TagButtons', () => {
+  it('renders some stuff', () => {
     const domNode = ReactDOM.findDOMNode(tagButtons);
 
-    expect(domNode.textContent).to.contain('home (8)');
-    expect(domNode.textContent).to.contain('work (13)');
+    expect(domNode.textContent).toContain('home (8)');
+    expect(domNode.textContent).toContain('work (13)');
   });
 });
