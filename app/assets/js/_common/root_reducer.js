@@ -1,4 +1,3 @@
-import StoneObject from 'js/_common/stone/object';
 import userReducer from 'js/user/reducer';
 
 const reducers = {user: userReducer};
@@ -12,7 +11,7 @@ function initStore() {
     result[reducerPrefix] = reducer(null, {type: `${reducerPrefix}/INIT`});
   });
 
-  return new StoneObject(result);
+  return result;
 }
 
 function rootReducer(previousState, action) {
@@ -27,7 +26,7 @@ function rootReducer(previousState, action) {
 
   newState[reducerPrefix] = reducer(previousState[reducerPrefix], action);
 
-  return new StoneObject(newState);
+  return newState;
 }
 
 export default rootReducer;

@@ -1,15 +1,13 @@
 'use strict';
 
-import StoneObject from 'js/_common/stone/object';
 import createBasicReducer from 'js/_common/basic_reducer';
 
 function initUser() {
-  return new StoneObject({});
+  return {};
 }
 
 function updateUser(previousState, payload) {
-  return new StoneObject(Object.assign({}, previousState, payload));
-  // empty
+  return Object.assign({}, previousState, payload);
 }
 
 const operations = {
