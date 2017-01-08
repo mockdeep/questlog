@@ -1,32 +1,29 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import {mount} from 'enzyme';
 
 import TimeframeList from 'js/timeframe/containers/list';
 
-let timeframeList;
+let wrapper;
 
 beforeEach(() => {
-  timeframeList = TestUtils.renderIntoDocument(<TimeframeList />);
+  wrapper = mount(<TimeframeList />);
 });
 
 describe('TimeframeList', () => {
   it('renders a loading message before content has been loaded', () => {
-    const domNode = ReactDOM.findDOMNode(timeframeList);
-
-    expect(domNode.textContent).toBe('Loading Timeframes...');
+    expect(wrapper.text()).toBe('Loading Timeframes...');
   });
 
   it('renders the current median productivity when loaded', () => {
     const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
-    timeframeList.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframeList);
+    wrapper.instance().refs.child.updateTimeframes(input);
+
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
-    expect(domNode.textContent).toContain(expectedMessage);
+    expect(wrapper.text()).toContain(expectedMessage);
   });
 
   it('renders the given timeframes for the user', () => {
@@ -38,20 +35,18 @@ describe('TimeframeList', () => {
     };
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    timeframeList.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframeList);
+    wrapper.instance().refs.child.updateTimeframes(input);
 
-    expect(domNode.textContent).toContain('Inbox');
-    expect(domNode.textContent).toContain('do laundry');
+    expect(wrapper.text()).toContain('Inbox');
+    expect(wrapper.text()).toContain('do laundry');
   });
 
   it('does not render empty timeframes', () => {
     const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    timeframeList.refs.child.updateTimeframes(input);
-    const domNode = ReactDOM.findDOMNode(timeframeList);
+    wrapper.instance().refs.child.updateTimeframes(input);
 
-    expect(domNode.textContent).not.toContain('Inbox');
+    expect(wrapper.text()).not.toContain('Inbox');
   });
 });
