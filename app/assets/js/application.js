@@ -1,10 +1,8 @@
 'use strict';
 
-require('es5-shim');
-
+import 'babel-polyfill';
 import $ from 'jquery';
 import Honeybadger from 'honeybadger-js';
-import PromisePolyfill from 'promise-polyfill';
 import ReactDOM from 'react-dom';
 
 import router from 'router';
@@ -25,5 +23,3 @@ Honeybadger.configure({
 });
 
 Honeybadger.setContext({userId: window.gon.userId});
-
-window.Promise = window.Promise || PromisePolyfill;
