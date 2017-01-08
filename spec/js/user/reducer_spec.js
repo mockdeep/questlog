@@ -10,13 +10,6 @@ describe('user/reducer', () => {
 
       expect(reducer(null, action)).toEqual({});
     });
-
-    it('returns an immutable object', () => {
-      const action = {type: 'user/INIT'};
-      const result = reducer(null, action);
-
-      expect(Object.isFrozen(result)).toBe(true);
-    });
   });
   describe('UPDATE', () => {
     it('returns a new object with updated config', () => {
@@ -24,13 +17,6 @@ describe('user/reducer', () => {
       const result = reducer({foo: 'bar'}, action);
 
       expect(result).toEqual({foo: 'bar', booger: 'flick'});
-    });
-
-    it('returns an immutable object', () => {
-      const action = actions.updateUser({payload: {booger: 'flick'}});
-      const result = reducer({foo: 'bar'}, action);
-
-      expect(Object.isFrozen(result)).toBe(true);
     });
   });
 

@@ -9,13 +9,6 @@ describe('root_reducer', () => {
 
       expect(reducer(null, action)).toEqual({user: {}});
     });
-
-    it('returns an immutable object', () => {
-      const action = {type: '@@redux/INIT'};
-      const result = reducer(null, action);
-
-      expect(Object.isFrozen(result)).toBe(true);
-    });
   });
 
   describe('user actions', () => {
