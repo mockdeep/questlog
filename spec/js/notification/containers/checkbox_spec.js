@@ -1,30 +1,34 @@
-'use strict';
-
 import React from 'react';
 import {shallow} from 'enzyme';
 import * as td from 'testdouble';
 
-import ItemContainer from 'js/task/containers/item';
 import NotificationCheckbox from 'js/notification/containers/checkbox';
 
+const completeTask = td.function();
 const enableNotifications = td.function();
 const disableNotifications = td.function();
 const requestNotificationPermission = td.function();
-let itemContainer;
 
-beforeEach(function () {
-  itemContainer = shallow(<ItemContainer
-    params={{}}
+let notificationCheckbox;
+
+beforeEach(() => {
+  notificationCheckbox = shallow(<NotificationCheckbox
+    task={{}}
     notificationsEnabled={false}
     notificationsPermitted={true}
+    completeTask={completeTask}
     enableNotifications={enableNotifications}
     disableNotifications={disableNotifications}
     requestNotificationPermission={requestNotificationPermission}
   />);
 });
 
-describe('ItemContainer', function () {
-  it('renders the notification checkbox', function () {
-    expect(itemContainer.find(NotificationCheckbox)).to.have.length(1);
+describe('NotificationCheckbox', () => {
+  it('enables notifications', () => {
+    const fakeEvent = {target: {checked: true}};
+
+    notificationCheckbox.find('input[type="checkbox"]').simulate('click', fakeEvent);
+
+    td.verify(enableNotifications());
   });
 });

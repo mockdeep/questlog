@@ -4,8 +4,8 @@ import moment from 'moment';
 
 import TimeBalancer from 'js/_helpers/time_balancer';
 
-describe('TimeBalancer.baseBalances', function () {
-  it('returns a collection of base time pairs', function () {
+describe('TimeBalancer.baseBalances', () => {
+  it('returns a collection of base time pairs', () => {
     const expectedPairs = [
       [moment([2014, 0, 1, 10]), {today: 1, week: 3, month: 27, quarter: 59, year: 275}],
       [moment([2014, 0, 2, 10]), {today: 1, week: 2, month: 27, quarter: 59, year: 275}],
@@ -27,8 +27,8 @@ describe('TimeBalancer.baseBalances', function () {
       [moment([2014, 11, 31, 10]), {today: 1, week: 3, month: 0, quarter: 0, year: 0}]
     ];
 
-    expectedPairs.forEach(function (pair) {
-      expect(TimeBalancer.baseBalances(pair[0])).to.eql(pair[1]);
+    expectedPairs.forEach((pair) => {
+      expect(TimeBalancer.baseBalances(pair[0])).toEqual(pair[1]);
     });
   });
 });
