@@ -3,8 +3,6 @@
 import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 
-import createMergedReducer from 'js/_common/merged_reducer';
+import appReducer from 'js/app_reducer';
 
-const reducer = createMergedReducer({});
-
-export default createStore(reducer, applyMiddleware(thunk));
+export default createStore(appReducer, applyMiddleware(thunk));
