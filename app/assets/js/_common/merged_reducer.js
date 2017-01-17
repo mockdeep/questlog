@@ -7,16 +7,19 @@ function getReducerKey(action) {
 function fetchReducer(reducerMap, reducerKey) {
   const reducer = reducerMap[reducerKey];
 
-  if (!reducer) { throw new Error(`no reducer found for: ${reducerKey}`); }
+  if (!reducer) { throw new Error(`no reducer found for: "${reducerKey}"`); }
 
   return reducer;
 }
 
-function initState(reducerMap, action) {
+function initState(reducerMap) {
   const newState = {};
 
   Object.keys(reducerMap).forEach((key) => {
-    newState[key] = reducerMap[key](null, action);
+    const action = {type: `${key}/INIT`};
+    const reducer = reducerMap[key];
+
+    newState[key] = reducer(null, action);
   });
 
   return newState;
@@ -24,7 +27,7 @@ function initState(reducerMap, action) {
 
 function createMergedReducer(reducerMap) {
   return function mergedReducer(previousState, action) {
-    if (action.type === '@@redux/INIT') { return initState(reducerMap, action); }
+    if (action.type === '@@redux/INIT') { return initState(reducerMap); }
 
     const reducerKey = getReducerKey(action);
     const reducer = fetchReducer(reducerMap, reducerKey);

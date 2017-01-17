@@ -1,6 +1,5 @@
 'use strict';
 
-// jest.mock('js/_config/routes', () => {poo: 'boogers'});
 import {shallow} from 'enzyme';
 
 import router from 'js/router';

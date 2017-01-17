@@ -2,7 +2,7 @@
 
 import reducer from 'js/_common/root_reducer';
 
-describe('root_reducer', () => {
+describe('rootReducer', () => {
   describe('init', () => {
     it('returns a blank nested tree of state', () => {
       const action = {type: '@@redux/INIT'};
@@ -23,7 +23,7 @@ describe('root_reducer', () => {
   describe('invalid action type', () => {
     it('throws an error', () => {
       const action = {type: 'booger/UPDATE', payload: {booger: 'flick'}};
-      const message = 'no reducer for action: "booger/UPDATE"';
+      const message = 'no reducer found for: "booger"';
 
       expect(() => { reducer({foo: 'bar'}, action); }).toThrow(message);
     });
