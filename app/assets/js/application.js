@@ -8,7 +8,8 @@ import ReactDOM from 'react-dom';
 import router from 'router';
 import 'js/tasks';
 
-window.$ = window.jQuery = $;
+window.$ = $;
+window.jQuery = $;
 
 // depends on global jQuery, so can't be imported, as that gets hoisted
 require('bootstrap-sass');
