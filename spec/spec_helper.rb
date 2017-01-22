@@ -4,7 +4,7 @@ SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 require 'rspec/rails'
 require 'capybara/poltergeist'
@@ -18,7 +18,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
   config.render_views
   config.include(FactoryGirl::Syntax::Methods)
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!

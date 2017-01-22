@@ -70,6 +70,9 @@ Style/TrailingCommaInArguments:
 Style/RegexpLiteral:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
 Rails/TimeZone:
   Enabled: false
 
@@ -90,6 +93,9 @@ Style/VariableNumber:
   EnforcedStyle: snake_case
 
 RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MessageSpies:
   Enabled: false
 
 RSpec/MultipleExpectations:
