@@ -15,11 +15,10 @@ ecmaFeatures:
 rules:
   # to enable someday
   capitalized-comments: off
-  max-len: [error, 110]
+  max-len: [error, 112]
   max-statements: [error, { max: 14 }]
-  multiline-ternary: off
   # no-console: off
-  no-mixed-operators: off
+  # no-mixed-operators: off
   prefer-destructuring: off
   react/forbid-prop-types: off
   react/no-find-dom-node: off
@@ -39,6 +38,8 @@ rules:
   indent: [error, 2]
   jsx-quotes: [error, prefer-single]
   max-statements-per-line: [error, { max: 2 }]
+  multiline-ternary: [error, never]
+  no-extra-parens: [error, all, { nestedBinaryExpressions: false }]
   no-underscore-dangle: [error, { allowAfterThis: true }]
   object-property-newline: [error, { allowMultiplePropertiesPerLine: true }]
   one-var: [error, never]
