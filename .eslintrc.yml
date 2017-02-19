@@ -1,6 +1,6 @@
 root: true
 # have to include `plugin:react/recommended` to avoid errors
-extends: ['eslint:all', 'plugin:react/recommended']
+extends: ['eslint:all', 'plugin:react/all']
 plugins: [react]
 parserOptions:
   sourceType: module
@@ -18,16 +18,25 @@ rules:
   max-len: [error, 112]
   max-statements: [error, { max: 14 }]
   # no-console: off
-  # no-mixed-operators: off
+  react/forbid-component-props: off
   react/forbid-prop-types: off
+  react/jsx-boolean-value: off
+  react/jsx-closing-bracket-location: off
+  react/jsx-filename-extension: off
+  react/jsx-space-before-closing: off
+  react/jsx-tag-spacing: off
   react/no-find-dom-node: off
   react/no-multi-comp: off
   react/no-set-state: off
   react/no-string-refs: off
+  react/no-unused-prop-types: off
   react/prefer-es6-class: off
   react/prefer-stateless-function: off
-  sort-keys: off
+  react/require-default-props: off
+  react/sort-comp: off
+  react/sort-prop-types: off
   sort-imports: off
+  sort-keys: off
   strict: off # need to switch module syntax
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
