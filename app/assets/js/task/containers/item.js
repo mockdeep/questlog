@@ -71,7 +71,7 @@ const TaskItem = React.createClass({
   },
 
   storeTask(taskId, attrs, opts) {
-    const loadingState = opts && opts.loadingState || 'updating';
+    const loadingState = (opts && opts.loadingState) || 'updating';
     const newTask = Object.assign({}, this.state.task, {loadingState});
 
     this.setState({task: newTask});
