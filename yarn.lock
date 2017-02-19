@@ -1425,9 +1425,9 @@ disposables@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/disposables/-/disposables-1.0.1.tgz#064727a25b54f502bd82b89aa2dfb8df9f1b39e3"
 
-dnd-core@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-2.0.2.tgz#4528da4fbeb1abb6c308414b2d2e8389f3514646"
+dnd-core@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-2.2.3.tgz#91acba9e1a377be1e9a02e890dcd9907ac9eb829"
   dependencies:
     asap "^2.0.3"
     invariant "^2.0.0"
@@ -3598,18 +3598,19 @@ react-addons-test-utils@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-dnd-html5-backend@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.1.2.tgz#bcff5866629c335b310b1062fe6537af35073c66"
+react-dnd-html5-backend@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.2.3.tgz#96cb65a0df5968b8ef5cf5afb4da02daaefe5681"
   dependencies:
     lodash "^4.2.0"
 
-react-dnd@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-2.1.4.tgz#dd2afeddddd5ff4507d795a5bd44361c84374c0f"
+react-dnd@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-2.2.3.tgz#75f6a66081fb32a41afa500755b4252fe5dd7a42"
   dependencies:
     disposables "^1.0.1"
-    dnd-core "^2.0.1"
+    dnd-core "^2.2.3"
+    hoist-non-react-statics "^1.2.0"
     invariant "^2.1.0"
     lodash "^4.2.0"
 
@@ -4495,13 +4496,9 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-wordwrap@0.0.2:
+wordwrap@0.0.2, wordwrap@~0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"
-
-wordwrap@~0.0.2:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
 
 wordwrap@~1.0.0:
   version "1.0.0"
