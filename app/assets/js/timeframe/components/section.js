@@ -35,7 +35,7 @@ const TimeframeSection = React.createClass({
   },
 
   maxTime() {
-    const minuteMax = this.props.timeframe.minuteMax;
+    const {minuteMax} = this.props.timeframe;
 
     return isFinite(minuteMax) ? minuteMax : '∞';
   },

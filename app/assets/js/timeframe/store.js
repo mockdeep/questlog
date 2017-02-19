@@ -54,7 +54,7 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
   name: 'timeframe',
 
   updateModels(data) {
-    const tasks = data.tasks;
+    const {tasks} = data;
     const timeframes = {};
 
     timeframeList.forEach(function addTimeframe(timeframeName) {
@@ -96,7 +96,8 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
           method: 'get',
           url: this.url(),
           success: function loadTimeframeData(timeframeData) {
-            medianProductivity = timeframeData.meta.medianProductivity;
+            ({medianProductivity} = timeframeData.meta);
+
             this.updateModels(data);
             resolve(this.getData());
           }.bind(this),
