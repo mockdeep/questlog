@@ -17,7 +17,8 @@ const TaskItem = React.createClass({
     notificationsPermitted: React.PropTypes.bool.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
-    requestNotificationPermission: React.PropTypes.func.isRequired
+    requestNotificationPermission: React.PropTypes.func.isRequired,
+    url: React.PropTypes.string
   },
 
   getInitialState() {
