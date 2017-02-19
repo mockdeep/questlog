@@ -14,7 +14,7 @@ const Timeframe = new Record({
 });
 
 function baseBalance(name) {
-  const balanceTime = window.balanceTime;
+  const {balanceTime} = window;
 
   return TimeBalancer.baseBalances(balanceTime)[name];
 }
