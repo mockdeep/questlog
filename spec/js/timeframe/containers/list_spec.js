@@ -19,7 +19,7 @@ describe('TimeframeList', () => {
   it('renders the current median productivity when loaded', () => {
     const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
-    wrapper.instance().refs.child.updateTimeframes(input);
+    wrapper.instance().child.updateTimeframes(input);
 
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
@@ -35,7 +35,7 @@ describe('TimeframeList', () => {
     };
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    wrapper.instance().refs.child.updateTimeframes(input);
+    wrapper.instance().child.updateTimeframes(input);
 
     expect(wrapper.text()).toContain('Inbox');
     expect(wrapper.text()).toContain('do laundry');
@@ -45,7 +45,7 @@ describe('TimeframeList', () => {
     const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    wrapper.instance().refs.child.updateTimeframes(input);
+    wrapper.instance().child.updateTimeframes(input);
 
     expect(wrapper.text()).not.toContain('Inbox');
   });
