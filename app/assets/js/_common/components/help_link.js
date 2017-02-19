@@ -7,7 +7,7 @@ const HelpLink = React.createClass({
     return (
       <a href='#' data-toggle='modal' data-target='#tips-modal'>{'Help'}</a>
     );
-  }
+  },
 });
 
 export default HelpLink;

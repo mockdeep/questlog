@@ -7,7 +7,7 @@ export default React.createClass({
     enableNotifications: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
-    notificationsPermitted: React.PropTypes.bool.isRequired
+    notificationsPermitted: React.PropTypes.bool.isRequired,
   },
 
   getInitialState() {
@@ -87,5 +87,5 @@ export default React.createClass({
         />
       </label>
     );
-  }
+  },
 });

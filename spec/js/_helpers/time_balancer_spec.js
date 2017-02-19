@@ -24,7 +24,7 @@ describe('TimeBalancer.baseBalances', () => {
       [moment([2014, 11, 1, 10]), {today: 1, week: 5, month: 25, quarter: 0, year: 0}],
       [moment([2014, 11, 25, 10]), {today: 1, week: 2, month: 4, quarter: 0, year: 0}],
       [moment([2014, 11, 28, 10]), {today: 1, week: 6, month: 0, quarter: 0, year: 0}],
-      [moment([2014, 11, 31, 10]), {today: 1, week: 3, month: 0, quarter: 0, year: 0}]
+      [moment([2014, 11, 31, 10]), {today: 1, week: 3, month: 0, quarter: 0, year: 0}],
     ];
 
     expectedPairs.forEach((pair) => {

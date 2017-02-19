@@ -11,7 +11,7 @@ const ItemConnector = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     updateUser: React.PropTypes.func.isRequired,
-    user: React.PropTypes.object.isRequired
+    user: React.PropTypes.object.isRequired,
   },
 
   enableNotifications() {
@@ -57,7 +57,7 @@ const ItemConnector = React.createClass({
         disableNotifications={this.disableNotifications}
       />
     );
-  }
+  },
 });
 
 function mapStateToProps(state) {

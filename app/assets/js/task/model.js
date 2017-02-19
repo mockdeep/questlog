@@ -12,13 +12,13 @@ const Task = new Record({
   timeframe: null,
   title: null,
   tagNames: null,
-  skipCount: null
+  skipCount: null,
 });
 
 Object.defineProperty(Task.prototype, 'estimateMinutes', {
   get() {
     return Math.floor((this.estimateSeconds || 1800) / 60);
-  }
+  },
 });
 
 export default Task;

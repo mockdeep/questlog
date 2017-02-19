@@ -18,7 +18,7 @@ const TaskItem = React.createClass({
     enableNotifications: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
     requestNotificationPermission: React.PropTypes.func.isRequired,
-    url: React.PropTypes.string
+    url: React.PropTypes.string,
   },
 
   getInitialState() {
@@ -26,7 +26,7 @@ const TaskItem = React.createClass({
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
       tags: [],
-      postponeSeconds: 300
+      postponeSeconds: 300,
     };
   },
 
@@ -144,7 +144,7 @@ const TaskItem = React.createClass({
         <TaskFooter />
       </div>
     );
-  }
+  },
 });
 
 export default TaskItem;

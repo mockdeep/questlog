@@ -12,7 +12,7 @@ const WhatPage = React.createClass({
         <Link to='/privacy'>{'Privacy'}</Link>
       </div>
     );
-  }
+  },
 });
 
 export default WhatPage;

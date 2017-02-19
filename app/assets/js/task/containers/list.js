@@ -43,7 +43,7 @@ const TaskList = React.createClass({
 
     this.setState({
       pendingTasks: partitionedTasks[0],
-      currentTasks: partitionedTasks[1]
+      currentTasks: partitionedTasks[1],
     });
   },
 
@@ -58,8 +58,8 @@ const TaskList = React.createClass({
     const newTasks = update(tasks, {
       $splice: [
         [taskIndex, 1],
-        [afterIndex, 0, task]
-      ]
+        [afterIndex, 0, task],
+      ],
     });
 
     this.setState({currentTasks: newTasks});
@@ -148,7 +148,7 @@ const TaskList = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default dragDropContext(HTML5Backend)(TaskList);

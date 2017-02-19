@@ -10,7 +10,7 @@ const TimeframeSection = React.createClass({
     loadTasks: React.PropTypes.func.isRequired,
     storeTask: React.PropTypes.func.isRequired,
     timeframe: React.PropTypes.object.isRequired,
-    timeframeSpace: React.PropTypes.object.isRequired
+    timeframeSpace: React.PropTypes.object.isRequired,
   },
 
   renderTask(task) {
@@ -88,7 +88,7 @@ const TimeframeSection = React.createClass({
         {this.pendingTasksDiv()}
       </div>
     );
-  }
+  },
 });
 
 export default TimeframeSection;

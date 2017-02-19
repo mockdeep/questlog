@@ -7,7 +7,7 @@ import ErrorDisplay from 'js/_common/components/error_display';
 const EditTaskForm = React.createClass({
   propTypes: {
     storeTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
@@ -83,7 +83,7 @@ const EditTaskForm = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default EditTaskForm;

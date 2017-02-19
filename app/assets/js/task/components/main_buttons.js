@@ -14,7 +14,7 @@ const MainButtons = React.createClass({
     postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
     storePostponeSeconds: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   render() {
@@ -41,7 +41,7 @@ const MainButtons = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default MainButtons;

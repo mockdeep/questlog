@@ -11,5 +11,5 @@ export default Object.assign({}, RestfulStore, {
       return new Task(taskData);
     });
     RestfulStore.updateModels.call(this, data);
-  }
+  },
 });

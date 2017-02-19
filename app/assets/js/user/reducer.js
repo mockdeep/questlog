@@ -12,7 +12,7 @@ function updateUser(previousState, payload) {
 
 const operations = {
   'user/INIT': initUser,
-  'user/UPDATE': updateUser
+  'user/UPDATE': updateUser,
 };
 
 export default createBasicReducer(operations);

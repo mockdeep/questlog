@@ -40,7 +40,7 @@ const TimeframeList = React.createClass({
     this.setState({
       timeframes: data.timeframes,
       medianProductivity: data.meta.medianProductivity,
-      loading: false
+      loading: false,
     });
   },
 
@@ -108,7 +108,7 @@ const TimeframeList = React.createClass({
         {this.renderedTimeframes()}
       </div>
     );
-  }
+  },
 });
 
 export default dragDropContext(HTML5Backend)(TimeframeList);

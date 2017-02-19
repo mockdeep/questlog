@@ -15,7 +15,7 @@ const timeframeList = [
   'quarter',
   'year',
   'lustrum',
-  'decade'
+  'decade',
 ];
 
 const timeframeEnds = {
@@ -23,7 +23,7 @@ const timeframeEnds = {
   week: moment().endOf('week'),
   month: moment().endOf('month'),
   quarter: moment().endOf('quarter'),
-  year: moment().endOf('year')
+  year: moment().endOf('year'),
 };
 
 let medianProductivity;
@@ -61,7 +61,7 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
       timeframes[timeframeName] = {
         name: timeframeName,
         currentTasks: [],
-        pendingTasks: []
+        pendingTasks: [],
       };
     });
     tasks.forEach(function addTaskToTimeframe(task) {
@@ -85,7 +85,7 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
   getData() {
     return {
       timeframes: this.models,
-      meta: {medianProductivity}
+      meta: {medianProductivity},
     };
   },
 
@@ -99,11 +99,11 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
             medianProductivity = timeframeData.meta.medianProductivity;
             this.updateModels(data);
             resolve(this.getData());
-          }.bind(this)
+          }.bind(this),
         });
       }.bind(this));
     }.bind(this));
-  }
+  },
 });
 
 TaskStore.on('change', function unloadTimeframeStore() {

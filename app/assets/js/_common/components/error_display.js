@@ -21,7 +21,7 @@ const ErrorDisplay = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default ErrorDisplay;

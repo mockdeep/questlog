@@ -19,7 +19,7 @@ const TaskDisplay = React.createClass({
     storePostponeSeconds: React.PropTypes.func.isRequired,
     storeTask: React.PropTypes.func.isRequired,
     tags: React.PropTypes.array.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   render() {
@@ -48,7 +48,7 @@ const TaskDisplay = React.createClass({
         />
       </div>
     );
-  }
+  },
 });
 
 export default TaskDisplay;

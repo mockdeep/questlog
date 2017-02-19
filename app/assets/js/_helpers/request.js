@@ -23,7 +23,7 @@ function defaultRequestOptions() {
     method: 'put',
     headers: {'X-CSRF-Token': authenticityToken()},
     success: reloadPage,
-    error: logError
+    error: logError,
   };
 }
 

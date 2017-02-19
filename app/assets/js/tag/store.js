@@ -9,7 +9,7 @@ const TagStore = Object.assign({}, RestfulStore, {
 
   get(url) {
     return request({url, method: 'get', success() { /* do nothing */ }});
-  }
+  },
 });
 
 TaskStore.on('change', function triggerTagStoreChange() {

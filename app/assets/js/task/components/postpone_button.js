@@ -11,12 +11,12 @@ function isPostponing(task) {
 const SelectOption = React.createClass({
   propTypes: {
     content: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired
+    value: React.PropTypes.string.isRequired,
   },
 
   render() {
     return <option value={this.props.value}>{this.props.content}</option>;
-  }
+  },
 });
 
 const PostponeButton = React.createClass({
@@ -27,7 +27,7 @@ const PostponeButton = React.createClass({
     postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
     storePostponeSeconds: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   disableButton() {
@@ -57,7 +57,7 @@ const PostponeButton = React.createClass({
     {value: '259200', content: '3 days'},
     {value: '604800', content: '1 week'},
     {value: '1209600', content: '2 weeks'},
-    {value: '2592000', content: '1 month'}
+    {value: '2592000', content: '1 month'},
   ],
 
   selectOptions() {
@@ -102,7 +102,7 @@ const PostponeButton = React.createClass({
         </select>
       </div>
     );
-  }
+  },
 });
 
 export default PostponeButton;

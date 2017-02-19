@@ -32,7 +32,7 @@ const SessionsNew = React.createClass({
         </form>
       </div>
     );
-  }
+  },
 });
 
 export default SessionsNew;

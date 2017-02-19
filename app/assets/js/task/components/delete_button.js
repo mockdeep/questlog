@@ -5,7 +5,7 @@ import React from 'react';
 const DeleteButton = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   deleteTask(event) {
@@ -20,13 +20,13 @@ const DeleteButton = React.createClass({
     return {
       className: 'fa fa-times delete-button',
       title: 'delete task',
-      onClick: this.deleteTask
+      onClick: this.deleteTask,
     };
   },
 
   render() {
     return <i {...this.rootOpts()} />;
-  }
+  },
 });
 
 export default DeleteButton;
