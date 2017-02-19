@@ -8,7 +8,7 @@ import flash from 'js/_helpers/flash';
 const NewTaskForm = React.createClass({
   propTypes: {
     createTask: React.PropTypes.func.isRequired,
-    loadTask: React.PropTypes.func.isRequired
+    loadTask: React.PropTypes.func.isRequired,
   },
 
   getInitialState() {
@@ -16,7 +16,7 @@ const NewTaskForm = React.createClass({
       buttonContent: 'Add Task',
       disabled: false,
       errors: [],
-      task: {title: ''}
+      task: {title: ''},
     };
   },
 
@@ -80,7 +80,7 @@ const NewTaskForm = React.createClass({
         </div>
       </form>
     );
-  }
+  },
 });
 
 export default NewTaskForm;

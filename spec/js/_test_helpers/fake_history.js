@@ -3,5 +3,5 @@ export default {
   push(path) {
     this.paths = this.paths || [];
     this.paths.push(path);
-  }
+  },
 };

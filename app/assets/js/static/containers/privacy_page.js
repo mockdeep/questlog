@@ -10,7 +10,7 @@ const PrivacyPage = React.createClass({
         <p>{'I will use your data to make Questlog better.'}</p>
       </div>
     );
-  }
+  },
 });
 
 export default PrivacyPage;

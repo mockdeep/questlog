@@ -41,7 +41,7 @@ const ToEnglish = {
     } else {
       return divideSeconds(seconds);
     }
-  }
+  },
 };
 
 export default ToEnglish;

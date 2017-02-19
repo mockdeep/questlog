@@ -14,7 +14,7 @@ const BulkTaskStore = Object.assign({}, RestfulStore, {
     data[this.name] = attrs;
 
     return request({data, url: this.url(), success: this.unload.bind(this)});
-  }
+  },
 });
 
 BulkTaskStore.on('change', function unloadTaskStore() { TaskStore.unload(); });

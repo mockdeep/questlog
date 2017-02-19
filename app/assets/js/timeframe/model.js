@@ -10,7 +10,7 @@ const Timeframe = new Record({
   currentTasks: [],
   pendingTasks: [],
   medianProductivity: null,
-  name: null
+  name: null,
 });
 
 function baseBalance(name) {
@@ -34,7 +34,7 @@ Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
     const allTasks = this.pendingTasks.concat(this.currentTasks);
 
     return sumBy(allTasks, 'estimateMinutes');
-  }
+  },
 });
 
 Object.defineProperty(Timeframe.prototype, 'minuteMax', {
@@ -44,13 +44,13 @@ Object.defineProperty(Timeframe.prototype, 'minuteMax', {
     }
 
     return this._minuteMax;
-  }
+  },
 });
 
 Object.defineProperty(Timeframe.prototype, 'title', {
   get() {
     return timeframeNameMap[this.name];
-  }
+  },
 });
 
 export default Timeframe;

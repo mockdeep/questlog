@@ -18,7 +18,7 @@ const taskSource = {
 
   endDrag(props, _monitor, component) {
     props.saveTaskPositions(component);
-  }
+  },
 };
 
 const taskTarget = {
@@ -26,13 +26,13 @@ const taskTarget = {
     const draggedId = monitor.getItem().item.id;
 
     props.moveTask(draggedId, props.task.id);
-  }
+  },
 };
 
 function sourceCollect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
   };
 }
 
@@ -49,7 +49,7 @@ const TaskRow = React.createClass({
     storeTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
     timeframeSpace: React.PropTypes.object,
-    timeframesEnabled: React.PropTypes.bool
+    timeframesEnabled: React.PropTypes.bool,
   },
 
   mixins: [PureRenderMixin],
@@ -214,7 +214,7 @@ const TaskRow = React.createClass({
         </li>
       ))
     );
-  }
+  },
 });
 
 export default flow(

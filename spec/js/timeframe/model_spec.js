@@ -13,7 +13,7 @@ describe('Timeframe#minuteTotal', () => {
     expect(timeframe.minuteTotal).toBe(18);
     timeframe = new Timeframe({
       currentTasks: [{estimateMinutes: 10}, {estimateMinutes: 8}],
-      pendingTasks: [{estimateMinutes: 5}, {estimateMinutes: 6}]
+      pendingTasks: [{estimateMinutes: 5}, {estimateMinutes: 6}],
     });
     expect(timeframe.minuteTotal).toBe(29);
   });

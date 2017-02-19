@@ -5,7 +5,7 @@ import React from 'react';
 const DoneButton = React.createClass({
   propTypes: {
     completeTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   markDone() {
@@ -33,7 +33,7 @@ const DoneButton = React.createClass({
         value={this.buttonMessage()}
       />
     );
-  }
+  },
 });
 
 export default DoneButton;

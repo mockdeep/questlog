@@ -7,7 +7,7 @@ import TagButton from 'js/task/components/tag_button';
 const TagButtons = React.createClass({
   propTypes: {
     tags: React.PropTypes.array.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   isCurrent(tag) {
@@ -34,7 +34,7 @@ const TagButtons = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default TagButtons;

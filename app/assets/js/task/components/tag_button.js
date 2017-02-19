@@ -6,7 +6,7 @@ import {Link} from 'react-router';
 const TagButton = React.createClass({
   propTypes: {
     current: React.PropTypes.bool.isRequired,
-    tag: React.PropTypes.object.isRequired
+    tag: React.PropTypes.object.isRequired,
   },
 
   path() {
@@ -41,7 +41,7 @@ const TagButton = React.createClass({
         </Link>
       </div>
     );
-  }
+  },
 });
 
 export default TagButton;

@@ -8,5 +8,5 @@ export default {
   quarter: 'This Quarter',
   year: 'This Year',
   lustrum: 'This Lustrum',
-  decade: 'This Decade'
+  decade: 'This Decade',
 };

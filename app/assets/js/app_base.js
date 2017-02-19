@@ -8,7 +8,7 @@ const AppBase = React.createClass({
     return (
       <div>{this.props.children}</div>
     );
-  }
+  },
 });
 
 export default AppBase;

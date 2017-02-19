@@ -25,14 +25,14 @@ function timeframes(time) {
     week: daysBetween(time, endOfWeek),
     month: daysBetween(endOfWeek, endOfMonth),
     quarter: daysBetween(endOfMonth, endOfQuarter),
-    year: daysBetween(endOfQuarter, endOfYear)
+    year: daysBetween(endOfQuarter, endOfYear),
   };
 }
 
 const TimeBalancer = {
   baseBalances(time) {
     return timeframes(moment(time));
-  }
+  },
 };
 
 export default TimeBalancer;

@@ -20,7 +20,7 @@ ReactDOM.render(router, $('#app-base')[0]);
 Honeybadger.configure({
   api_key: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
   environment: window.gon.railsEnv,
-  onerror: true
+  onerror: true,
 });
 
 Honeybadger.setContext({userId: window.gon.userId});

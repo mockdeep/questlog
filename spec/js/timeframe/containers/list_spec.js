@@ -31,7 +31,7 @@ describe('TimeframeList', () => {
       name: 'inbox',
       title: 'Inbox',
       currentTasks: [{id: 5, title: 'do laundry'}],
-      pendingTasks: []
+      pendingTasks: [],
     };
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 

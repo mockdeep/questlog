@@ -33,7 +33,7 @@ export default {
     request({
       method: 'get',
       url: this.url(),
-      success: this.updateModels.bind(this)
+      success: this.updateModels.bind(this),
     });
   },
 
@@ -61,7 +61,7 @@ export default {
       promise = request({
         method: 'get',
         url: this.url(),
-        success: this.updateModels.bind(this)
+        success: this.updateModels.bind(this),
       });
     }
 
@@ -77,7 +77,7 @@ export default {
       data,
       url: this.url(),
       method: 'post',
-      success: this.unload.bind(this)
+      success: this.unload.bind(this),
     });
   },
 
@@ -89,7 +89,7 @@ export default {
     return request({
       data,
       url: `${this.url()}/${id}`,
-      success: this.unload.bind(this)
+      success: this.unload.bind(this),
     });
   },
 
@@ -97,7 +97,7 @@ export default {
     return request({
       url: `${this.url()}/${id}`,
       method: 'delete',
-      success: this.unload.bind(this)
+      success: this.unload.bind(this),
     });
-  }
+  },
 };

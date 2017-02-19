@@ -7,7 +7,7 @@ import TagButtons from 'js/task/components/tag_buttons';
 
 const tags = [
   {id: 5, name: 'home', unfinishedTasksCount: 8},
-  {id: 23, name: 'work', unfinishedTasksCount: 13}
+  {id: 23, name: 'work', unfinishedTasksCount: 13},
 ];
 const task = {};
 

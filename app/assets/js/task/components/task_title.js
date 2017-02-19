@@ -9,7 +9,7 @@ const TaskTitle = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
     loadTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
   },
 
   className() {
@@ -74,7 +74,7 @@ const TaskTitle = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default TaskTitle;

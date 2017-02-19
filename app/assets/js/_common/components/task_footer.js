@@ -22,7 +22,7 @@ const TaskFooter = React.createClass({
         {'Click '}<HelpLink />{' for more.'}
       </p>
     );
-  }
+  },
 });
 
 export default TaskFooter;

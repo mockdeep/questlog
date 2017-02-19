@@ -33,6 +33,7 @@ rules:
   strict: off # need to switch module syntax
   # departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
+  comma-dangle: [error, always-multiline]
   func-style: [error, declaration]
   id-length: [error, { exceptions: [_, $] }]
   indent: [error, 2]
