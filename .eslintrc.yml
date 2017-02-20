@@ -43,7 +43,6 @@ rules:
   react/no-find-dom-node: off
   react/no-multi-comp: off
   react/no-set-state: off
-  react/no-string-refs: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/811
   react/no-unused-prop-types: off
   react/prefer-es6-class: off

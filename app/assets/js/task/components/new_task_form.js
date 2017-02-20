@@ -64,7 +64,6 @@ const NewTaskForm = React.createClass({
               className='task-input'
               onChange={this.setTitle}
               value={this.state.task.title}
-              ref='title'
             />
           </div>
           <div className='col-md-6'>
