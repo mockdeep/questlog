@@ -10,11 +10,11 @@ import TaskStore from 'js/task/store';
 
 const TaskItem = React.createClass({
   propTypes: {
-    params: React.PropTypes.object.isRequired,
+    disableNotifications: React.PropTypes.func.isRequired,
+    enableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
-    enableNotifications: React.PropTypes.func.isRequired,
-    disableNotifications: React.PropTypes.func.isRequired,
+    params: React.PropTypes.object.isRequired,
     requestNotificationPermission: React.PropTypes.func.isRequired,
     url: React.PropTypes.string,
   },
