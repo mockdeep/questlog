@@ -6,16 +6,14 @@ function isPostponing(task) {
   return task.loadingState === 'postponing';
 }
 
-const SelectOption = React.createClass({
-  propTypes: {
-    content: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired,
-  },
+function SelectOption(props) {
+  return <option value={props.value}>{props.content}</option>;
+}
 
-  render() {
-    return <option value={this.props.value}>{this.props.content}</option>;
-  },
-});
+SelectOption.propTypes = {
+  content: React.PropTypes.string.isRequired,
+  value: React.PropTypes.string.isRequired,
+};
 
 const PostponeButton = React.createClass({
   propTypes: {
