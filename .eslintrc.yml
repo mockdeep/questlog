@@ -48,7 +48,6 @@ rules:
   react/prefer-es6-class: off
   react/prefer-stateless-function: off
   react/require-default-props: off
-  react/sort-comp: off
   sort-imports: off # https://github.com/eslint/eslint/issues/7766
   sort-keys: off
 

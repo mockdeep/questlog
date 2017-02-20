@@ -19,15 +19,15 @@ export default React.createClass({
     this.notifyOnInterval();
   },
 
-  componentWillUnmount() {
-    this.closeNotification();
-  },
-
   componentDidUpdate(prevProps) {
     if (prevProps.task.id !== this.props.task.id) { this.notifyTask(); }
     if (this.props.notificationsEnabled && !prevProps.notificationsEnabled) {
       this.notifyOnInterval();
     }
+  },
+
+  componentWillUnmount() {
+    this.closeNotification();
   },
 
   notifyOnInterval() {
