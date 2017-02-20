@@ -1,25 +1,23 @@
 import React from 'react';
 
-const ErrorDisplay = React.createClass({
-  propTypes: {errors: React.PropTypes.array.isRequired},
+function errorItems(errors) {
+  return errors.map(function errorItem(errorMessage) {
+    return <li key={errorMessage}>{errorMessage}</li>;
+  });
+}
 
-  errorItems() {
-    return this.props.errors.map(function errorItem(errorMessage) {
-      return <li key={errorMessage}>{errorMessage}</li>;
-    });
-  },
-
-  render() {
-    return (
-      <div className='row'>
-        <div className='col-md-12'>
-          <div className='.error-messages'>
-            <ul>{this.errorItems()}</ul>
-          </div>
+function ErrorDisplay(props) {
+  return (
+    <div className='row'>
+      <div className='col-md-12'>
+        <div className='.error-messages'>
+          <ul>{errorItems(props.errors)}</ul>
         </div>
       </div>
-    );
-  },
-});
+    </div>
+  );
+}
+
+ErrorDisplay.propTypes = {errors: React.PropTypes.array.isRequired};
 
 export default ErrorDisplay;
