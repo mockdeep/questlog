@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import TagButton from 'js/task/components/tag_button';

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import authenticityToken from 'js/_helpers/authenticity_token';

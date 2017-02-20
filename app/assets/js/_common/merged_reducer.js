@@ -1,5 +1,3 @@
-'use strict';
-
 function getReducerKey(action) {
   return action.type.split('/')[0];
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 import reqwest from 'reqwest';
 
 import authenticityToken from 'js/_helpers/authenticity_token';

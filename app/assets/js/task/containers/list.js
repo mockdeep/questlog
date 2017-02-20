@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import update from 'react/lib/update';
 import {partition} from 'lodash';

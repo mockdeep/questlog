@@ -1,5 +1,3 @@
-'use strict';
-
 import {without} from 'lodash';
 
 import request from 'js/_helpers/request';

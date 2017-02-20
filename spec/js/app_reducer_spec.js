@@ -1,5 +1,3 @@
-'use strict';
-
 import reducer from 'js/app_reducer';
 
 describe('appReducer', () => {

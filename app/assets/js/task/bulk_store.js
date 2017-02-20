@@ -1,5 +1,3 @@
-'use strict';
-
 import request from 'js/_helpers/request';
 
 import RestfulStore from 'js/_common/restful_store';

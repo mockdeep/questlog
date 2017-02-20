@@ -1,5 +1,3 @@
-'use strict';
-
 import Timeframe from 'js/timeframe/model';
 
 describe('Timeframe#minuteTotal', () => {

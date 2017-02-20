@@ -1,5 +1,3 @@
-'use strict';
-
 import appStore from 'js/app_store';
 
 describe('appStore', () => {

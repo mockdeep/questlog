@@ -1,5 +1,3 @@
-'use strict';
-
 import reducer from 'js/user/reducer';
 import * as actions from 'js/user/actions';
 
@@ -29,5 +27,3 @@ describe('user/reducer', () => {
     });
   });
 });
-
-

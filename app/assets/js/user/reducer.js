@@ -1,5 +1,3 @@
-'use strict';
-
 import createBasicReducer from 'js/_common/basic_reducer';
 
 function initUser() {

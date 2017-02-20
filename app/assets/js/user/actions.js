@@ -1,5 +1,3 @@
-'use strict';
-
 function updateUser(payload) {
   return {type: 'user/UPDATE', payload};
 }

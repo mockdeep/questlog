@@ -1,5 +1,3 @@
-'use strict';
-
 import moment from 'moment';
 
 import TimeBalancer from 'js/_helpers/time_balancer';

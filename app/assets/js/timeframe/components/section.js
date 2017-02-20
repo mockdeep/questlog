@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import TaskRow from 'js/task/components/task_row';
