@@ -15,7 +15,6 @@ const TaskItem = React.createClass({
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
     params: React.PropTypes.object.isRequired,
-    requestNotificationPermission: React.PropTypes.func.isRequired,
     url: React.PropTypes.string,
   },
 

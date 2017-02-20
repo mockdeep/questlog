@@ -22,7 +22,6 @@ const PostponeButton = React.createClass({
     disable: React.PropTypes.func.isRequired,
     disabled: React.PropTypes.bool.isRequired,
     loadTask: React.PropTypes.func.isRequired,
-    postponeSeconds: React.PropTypes.number.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
     storePostponeSeconds: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,

@@ -6,7 +6,6 @@ import NotificationCheckbox from 'js/notification/containers/checkbox';
 
 const enableNotifications = jest.fn();
 const disableNotifications = jest.fn();
-const requestNotificationPermission = jest.fn();
 let itemContainer;
 
 beforeEach(() => {
@@ -16,7 +15,6 @@ beforeEach(() => {
     notificationsPermitted={true}
     enableNotifications={enableNotifications}
     disableNotifications={disableNotifications}
-    requestNotificationPermission={requestNotificationPermission}
   />);
 });
 
