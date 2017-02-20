@@ -21,22 +21,23 @@ settings:
     node:
       moduleDirectory: [app/assets, node_modules]
 rules:
-  # to enable someday
-  capitalized-comments: off
-  jsx-a11y/no-onchange: off
-  jsx-a11y/label-has-for: off
-  jsx-a11y/onclick-has-role: off
-  jsx-a11y/no-static-element-interactions: off
+  ### to enable/improve
+  init-declarations: off
   jsx-a11y/click-events-have-key-events: off
   jsx-a11y/href-no-hash: off
+  jsx-a11y/label-has-for: off
+  jsx-a11y/no-onchange: off
+  jsx-a11y/no-static-element-interactions: off
+  jsx-a11y/onclick-has-role: off
   max-len: [error, 112]
   max-statements: [error, { max: 14 }]
-  # no-console: off
+  no-magic-numbers: off
   react/forbid-component-props: off
   react/forbid-prop-types: off
   react/jsx-boolean-value: off
   react/jsx-closing-bracket-location: off
   react/jsx-filename-extension: off
+  react/jsx-sort-props: off
   react/jsx-space-before-closing: off
   react/jsx-tag-spacing: off
   react/no-find-dom-node: off
@@ -52,7 +53,8 @@ rules:
   sort-imports: off
   sort-keys: off
   strict: off # need to switch module syntax
-  # departures from default
+
+  ### departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   comma-dangle: [error, always-multiline]
   func-style: [error, declaration]
@@ -70,18 +72,16 @@ rules:
   prefer-destructuring: [error, { array: false }]
   quote-props: [error, as-needed, { keywords: true }]
   quotes: [error, single]
+  react/jsx-indent-props: [error, 2]
+  react/jsx-indent: [error, 2]
+  react/jsx-wrap-multilines: [error, { declaration: false }]
   space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
-  react/jsx-indent: [error, 2]
-  react/jsx-indent-props: [error, 2]
-  react/jsx-wrap-multilines: [error, { declaration: false }]
-  # disabled
-  init-declarations: off
+
+  ### dumb rules
+  capitalized-comments: off
   no-inline-comments: off
-  no-magic-numbers: off
   no-ternary: off
-  prefer-reflect: off
-  require-jsdoc: off
   react/jsx-handler-names: off
   react/jsx-max-props-per-line: off
-  react/jsx-sort-props: off
+  require-jsdoc: off
