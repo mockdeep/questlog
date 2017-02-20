@@ -5,8 +5,8 @@ import TaskConnector from 'js/task/connectors/item';
 
 import AppBase from 'js/app_base';
 import BulkTasksNew from 'js/task/containers/bulk_new';
-import PrivacyPage from 'js/static/containers/privacy_page';
-import WhatPage from 'js/static/containers/what_page';
+import PrivacyPage from 'js/static/components/privacy_page';
+import WhatPage from 'js/static/components/what_page';
 import SessionsNew from 'js/session/containers/new';
 import TaskList from 'js/task/containers/list';
 import TimeframeList from 'js/timeframe/containers/list';
