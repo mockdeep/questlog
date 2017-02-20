@@ -35,12 +35,8 @@ rules:
   react/forbid-component-props: off
   react/forbid-prop-types: off
   react/jsx-boolean-value: off
-  react/jsx-closing-bracket-location: off
   react/jsx-filename-extension: off
   react/jsx-sort-props: off
-  react/jsx-space-before-closing: off
-  react/jsx-tag-spacing: off
-  react/no-find-dom-node: off
   react/no-multi-comp: off
   react/no-set-state: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/811

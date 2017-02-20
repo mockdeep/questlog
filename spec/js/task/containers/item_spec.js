@@ -9,13 +9,15 @@ const disableNotifications = jest.fn();
 let itemContainer;
 
 beforeEach(() => {
-  itemContainer = shallow(<ItemContainer
-    params={{}}
-    notificationsEnabled={false}
-    notificationsPermitted={true}
-    enableNotifications={enableNotifications}
-    disableNotifications={disableNotifications}
-  />);
+  itemContainer = shallow(
+    <ItemContainer
+      params={{}}
+      notificationsEnabled={false}
+      notificationsPermitted={true}
+      enableNotifications={enableNotifications}
+      disableNotifications={disableNotifications}
+    />
+  );
 });
 
 describe('ItemContainer', () => {

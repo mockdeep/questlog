@@ -11,15 +11,17 @@ const requestNotificationPermission = jest.fn();
 let notificationCheckbox;
 
 beforeEach(() => {
-  notificationCheckbox = shallow(<NotificationCheckbox
-    task={{}}
-    notificationsEnabled={false}
-    notificationsPermitted={true}
-    completeTask={completeTask}
-    enableNotifications={enableNotifications}
-    disableNotifications={disableNotifications}
-    requestNotificationPermission={requestNotificationPermission}
-  />);
+  notificationCheckbox = shallow(
+    <NotificationCheckbox
+      task={{}}
+      notificationsEnabled={false}
+      notificationsPermitted={true}
+      completeTask={completeTask}
+      enableNotifications={enableNotifications}
+      disableNotifications={disableNotifications}
+      requestNotificationPermission={requestNotificationPermission}
+    />
+  );
 });
 
 describe('NotificationCheckbox', () => {
