@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Honeybadger from 'honeybadger-js';
 import ReactDOM from 'react-dom';
 
-import router from 'router';
+import router from 'js/router';
 import 'js/tasks';
 
 window.$ = $;

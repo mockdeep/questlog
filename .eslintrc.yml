@@ -1,7 +1,11 @@
 root: true
 # have to include `plugin:react/recommended` to avoid errors
-extends: ['eslint:all', 'plugin:react/all']
-plugins: [react]
+extends:
+  - eslint:all
+  - plugin:eslint-plugin-jsx-a11y/recommended
+  - plugin:import/errors
+  - plugin:react/all
+plugins: [eslint-plugin-jsx-a11y, import, react]
 parserOptions:
   sourceType: module
 env:
@@ -12,9 +16,19 @@ globals:
   $: true
 ecmaFeatures:
   jsx: true
+settings:
+  import/resolver:
+    node:
+      moduleDirectory: [app/assets, node_modules]
 rules:
   # to enable someday
   capitalized-comments: off
+  jsx-a11y/no-onchange: off
+  jsx-a11y/label-has-for: off
+  jsx-a11y/onclick-has-role: off
+  jsx-a11y/no-static-element-interactions: off
+  jsx-a11y/click-events-have-key-events: off
+  jsx-a11y/href-no-hash: off
   max-len: [error, 112]
   max-statements: [error, { max: 14 }]
   # no-console: off
