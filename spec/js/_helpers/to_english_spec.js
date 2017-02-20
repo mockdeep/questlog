@@ -1,5 +1,3 @@
-'use strict';
-
 import ToEnglish from 'js/_helpers/to_english';
 
 describe('ToEnglish.seconds', () => {

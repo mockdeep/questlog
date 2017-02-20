@@ -52,7 +52,6 @@ rules:
   react/sort-prop-types: off
   sort-imports: off
   sort-keys: off
-  strict: off # need to switch module syntax
 
   ### departures from default
   brace-style: [error, 1tbs, { allowSingleLine: true }]
@@ -64,6 +63,7 @@ rules:
   max-statements-per-line: [error, { max: 2 }]
   multiline-ternary: [error, never]
   no-extra-parens: [error, all, { nestedBinaryExpressions: false }]
+  no-multiple-empty-lines: [error, { max: 1, maxEOF: 0, maxBOF: 0 }]
   no-underscore-dangle: [error, { allowAfterThis: true }]
   object-property-newline: [error, { allowMultiplePropertiesPerLine: true }]
   one-var: [error, never]

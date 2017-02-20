@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import DeleteButton from 'js/task/components/delete_button';

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import NewTaskForm from 'js/task/components/new_task_form';

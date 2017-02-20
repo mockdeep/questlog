@@ -1,5 +1,3 @@
-'use strict';
-
 export default function flash(status, message) {
   const $myFlash = $('<div />', {'class': `flash-${status}`, text: message});
 

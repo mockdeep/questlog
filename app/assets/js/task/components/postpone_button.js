@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import stopPropagation from 'js/_helpers/stop_propagation';

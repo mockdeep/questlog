@@ -1,5 +1,3 @@
-'use strict';
-
 export default function authenticityToken() {
   const tokenTag = document.getElementsByName('csrf-token')[0];
 

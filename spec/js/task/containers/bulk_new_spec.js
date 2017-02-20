@@ -1,5 +1,3 @@
-'use strict';
-
 jest.mock('js/task/bulk_store');
 jest.mock('react-router');
 

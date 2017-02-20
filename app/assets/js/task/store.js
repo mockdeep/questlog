@@ -1,5 +1,3 @@
-'use strict';
-
 import RestfulStore from 'js/_common/restful_store';
 import Task from 'js/task/model';
 

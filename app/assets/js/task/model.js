@@ -1,5 +1,3 @@
-'use strict';
-
 import {Record} from 'immutable';
 
 const Task = new Record({

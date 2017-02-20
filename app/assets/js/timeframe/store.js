@@ -1,5 +1,3 @@
-'use strict';
-
 import moment from 'moment';
 
 import request from 'js/_helpers/request';

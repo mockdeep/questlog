@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import MainButtons from 'js/task/components/main_buttons';

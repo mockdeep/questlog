@@ -1,5 +1,3 @@
-'use strict';
-
 const oneMinute = 60;
 const oneHour = oneMinute * 60;
 

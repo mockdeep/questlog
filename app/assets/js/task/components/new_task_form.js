@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import ErrorDisplay from 'js/_common/components/error_display';
