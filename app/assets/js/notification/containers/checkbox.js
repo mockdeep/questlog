@@ -2,12 +2,12 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
-    task: React.PropTypes.object.isRequired,
     completeTask: React.PropTypes.func.isRequired,
-    enableNotifications: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
+    enableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
+    task: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
