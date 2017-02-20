@@ -11,7 +11,7 @@ import SessionsNew from 'js/session/containers/new';
 import TaskList from 'js/task/containers/list';
 import TimeframeList from 'js/timeframe/containers/list';
 
-const Nothing = React.createClass({render() { return false; }});
+function Nothing() { return false; }
 
 export default ( // eslint-disable-line no-extra-parens
   <Route path='/' component={AppBase}>

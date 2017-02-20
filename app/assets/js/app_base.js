@@ -1,12 +1,9 @@
 import React from 'react';
 
-const AppBase = React.createClass({
-  propTypes: {children: React.PropTypes.object.isRequired},
-  render() {
-    return (
-      <div>{this.props.children}</div>
-    );
-  },
-});
+function AppBase(props) {
+  return <div>{props.children}</div>;
+}
+
+AppBase.propTypes = {children: React.PropTypes.object.isRequired};
 
 export default AppBase;
