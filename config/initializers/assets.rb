@@ -1,4 +1,4 @@
-Rails.application.config.assets.version = '1.1'
+Rails.application.config.assets.version = '1.2'
 Rails.application.config.assets.paths += [
   # path to enable namespacing require paths, e.g.: `require('js/router')`
   Rails.root.join('app', 'assets'),
