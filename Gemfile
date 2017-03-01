@@ -28,6 +28,7 @@ gem 'rack-mini-profiler'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
+gem 'webpack-rails'
 
 group :production do
   gem 'rails_12factor'
@@ -41,7 +42,6 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'foreman'
   gem 'spring-commands-rspec'
 end
 
@@ -50,6 +50,7 @@ group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'foreman'
   gem 'guard'
   gem 'guard-rubocop'
   gem 'haml_lint', require: false
