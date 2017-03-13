@@ -26,7 +26,7 @@ const TaskTitle = React.createClass({
     return `skip count: ${this.props.task.skip_count}`;
   },
   emblems() {
-    if (!this.props.task.repeat_seconds) { return false; }
+    if (!this.props.task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
   },
