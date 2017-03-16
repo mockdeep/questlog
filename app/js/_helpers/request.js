@@ -3,7 +3,7 @@ import reqwest from 'reqwest';
 import authenticityToken from 'js/_helpers/authenticity_token';
 
 function mergeOptions(defaults, options) {
-  return Object.assign({}, defaults, options);
+  return {...defaults, ...options};
 }
 
 function reloadPage() {

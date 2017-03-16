@@ -5,7 +5,7 @@ function initUser() {
 }
 
 function updateUser(previousState, payload) {
-  return Object.assign({}, previousState, payload);
+  return {...previousState, ...payload};
 }
 
 const operations = {

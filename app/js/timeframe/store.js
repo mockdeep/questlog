@@ -48,7 +48,9 @@ function timeframeNameForTask(task) {
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
 }
 
-const TimeframeStore = Object.assign({}, RestfulStore, {
+const TimeframeStore = {
+  ...RestfulStore,
+
   name: 'timeframe',
 
   updateModels(data) {
@@ -103,7 +105,7 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
       }.bind(this));
     }.bind(this));
   },
-});
+};
 
 TaskStore.subscribe(function unloadTimeframeStore() {
   TimeframeStore.unload();

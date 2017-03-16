@@ -20,7 +20,7 @@ const NewTaskForm = React.createClass({
 
   setTitle(event) {
     const taskAttrs = {title: event.target.value};
-    const newTask = Object.assign({}, this.state.task, taskAttrs);
+    const newTask = {...this.state.task, ...taskAttrs};
 
     this.setState({task: newTask});
   },

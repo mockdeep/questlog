@@ -69,7 +69,7 @@ const TaskItem = React.createClass({
 
   storeTask(taskId, attrs, opts) {
     const loadingState = (opts && opts.loadingState) || 'updating';
-    const newTask = Object.assign({}, this.state.task, {loadingState});
+    const newTask = {...this.state.task, loadingState};
 
     this.setState({task: newTask});
 
@@ -84,7 +84,7 @@ const TaskItem = React.createClass({
 
   updateTask(data) {
     if (data) {
-      const task = Object.assign({}, data.task, {loadingState: 'ready'});
+      const task = {...data.task, loadingState: 'ready'};
 
       this.setState({task, disabled: false});
     } else {
