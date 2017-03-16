@@ -31,14 +31,6 @@ const TagStore = {
     this.listeners.forEach((listener) => { listener(); });
   },
 
-  load() {
-    request({
-      method: 'get',
-      url: this.url(),
-      success: this.updateModels.bind(this),
-    });
-  },
-
   unload() {
     this.loaded = false;
     this.notifyListeners();
@@ -70,19 +62,6 @@ const TagStore = {
     return promise;
   },
 
-  create(attrs) {
-    const data = {};
-
-    data[this.name] = attrs;
-
-    return request({
-      data,
-      url: this.url(),
-      method: 'post',
-      success: this.unload.bind(this),
-    });
-  },
-
   update(id, attrs) {
     const data = {};
 
@@ -91,14 +70,6 @@ const TagStore = {
     return request({
       data,
       url: `${this.url()}/${id}`,
-      success: this.unload.bind(this),
-    });
-  },
-
-  destroy(id) {
-    return request({
-      url: `${this.url()}/${id}`,
-      method: 'delete',
       success: this.unload.bind(this),
     });
   },

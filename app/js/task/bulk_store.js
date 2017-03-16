@@ -47,26 +47,6 @@ const BulkTaskStore = {
     this.notifyListeners();
   },
 
-  getAll() {
-    let promise;
-
-    if (this.loaded) {
-      const data = {};
-
-      data[`${this.name}s`] = this.models;
-
-      promise = new Promise(function resolveNow(resolve) { resolve(data); });
-    } else {
-      promise = request({
-        method: 'get',
-        url: this.url(),
-        success: this.updateModels.bind(this),
-      });
-    }
-
-    return promise;
-  },
-
   create(attrs) {
     const data = {};
 
@@ -76,14 +56,6 @@ const BulkTaskStore = {
       data,
       url: this.url(),
       method: 'post',
-      success: this.unload.bind(this),
-    });
-  },
-
-  destroy(id) {
-    return request({
-      url: `${this.url()}/${id}`,
-      method: 'delete',
       success: this.unload.bind(this),
     });
   },
