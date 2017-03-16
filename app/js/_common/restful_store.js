@@ -12,11 +12,23 @@ export default {
     this.callbacks[event].push(callback);
   },
 
+  subscribe(listener) {
+    this.listeners = this.listeners || [];
+    this.listeners.push(listener);
+  },
+
+  notifyListeners() {
+    if (!this.listeners) { return; }
+
+    this.listeners.forEach((listener) => { listener(); });
+  },
+
   off(event, callback) {
     this.callbacks[event] = without(this.callbacks[event], callback);
   },
 
   trigger(event) {
+    this.notifyListeners();
     if (!this.callbacks || !this.callbacks[event]) { return; }
     this.callbacks[event].forEach(function triggerCallback(callback) {
       callback();
