@@ -19,7 +19,7 @@ ecmaFeatures:
 settings:
   import/resolver:
     node:
-      moduleDirectory: [app/assets, node_modules]
+      moduleDirectory: [app, node_modules]
 rules:
   ### to enable/improve
   init-declarations: off
