@@ -15,6 +15,12 @@ export default {
   subscribe(listener) {
     this.listeners = this.listeners || [];
     this.listeners.push(listener);
+
+    return function unsubscribe() {
+      const index = this.listeners.indexOf(listener);
+
+      this.listeners.splice(index, 1);
+    }.bind(this);
   },
 
   notifyListeners() {

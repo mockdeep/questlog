@@ -24,12 +24,12 @@ const TaskList = React.createClass({
   },
 
   componentDidMount() {
-    TaskStore.on('change', this.loadTasks);
+    this.unsubscribeTasks = TaskStore.subscribe(this.loadTasks);
     this.loadTasks();
   },
 
   componentWillUnmount() {
-    TaskStore.off('change', this.loadTasks);
+    this.unsubscribeTasks();
   },
 
   loadTasks() {
