@@ -1,16 +1,8 @@
-import {without} from 'lodash';
-
 import request from 'js/_helpers/request';
 
 export default {
   models: [],
   loaded: false,
-
-  on(event, callback) {
-    this.callbacks = this.callbacks || {};
-    this.callbacks[event] = this.callbacks[event] || [];
-    this.callbacks[event].push(callback);
-  },
 
   subscribe(listener) {
     this.listeners = this.listeners || [];
@@ -29,18 +21,6 @@ export default {
     this.listeners.forEach((listener) => { listener(); });
   },
 
-  off(event, callback) {
-    this.callbacks[event] = without(this.callbacks[event], callback);
-  },
-
-  trigger(event) {
-    this.notifyListeners();
-    if (!this.callbacks || !this.callbacks[event]) { return; }
-    this.callbacks[event].forEach(function triggerCallback(callback) {
-      callback();
-    });
-  },
-
   url() {
     return `/${this.name}s`;
   },
@@ -55,13 +35,13 @@ export default {
 
   unload() {
     this.loaded = false;
-    this.trigger('change');
+    this.notifyListeners();
   },
 
   updateModels(data) {
     this.models = data[`${this.name}s`];
     this.loaded = true;
-    this.trigger('change');
+    this.notifyListeners();
   },
 
   getAll() {
