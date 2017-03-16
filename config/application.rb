@@ -24,9 +24,6 @@ module Questlog
 
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    browserify_options = '-t babelify --extension=".jsx"'
-    config.browserify_rails.commandline_options = browserify_options
-
   end
 
 end

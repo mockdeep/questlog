@@ -1,4 +1,6 @@
 Rails.application.configure do
+  # Make javascript_pack_tag lookup digest hash to enable long-term caching
+  config.x.webpacker[:digesting] = true
 
   config.cache_classes = true
 
