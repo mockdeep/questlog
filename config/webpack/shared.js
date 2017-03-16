@@ -7,7 +7,7 @@ const extname = require('path-complete-extname');
 const distDir = process.env.WEBPACK_DIST_DIR || 'packs';
 
 const config = {
-  entry: glob.sync(path.join('app', 'javascript', 'packs', '*.js*')).reduce(
+  entry: glob.sync(path.join('app', 'js', '_packs', '*.js*')).reduce(
     (map, entry) => {
       const basename = path.basename(entry, extname(entry));
       const localMap = map;
@@ -49,8 +49,7 @@ const config = {
   resolve: {
     extensions: ['.js'],
     modules: [
-      path.resolve('app/assets'),
-      path.resolve('app/javascript'),
+      path.resolve('app'),
       path.resolve('node_modules'),
     ],
   },
