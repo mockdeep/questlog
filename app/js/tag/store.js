@@ -12,7 +12,7 @@ const TagStore = Object.assign({}, RestfulStore, {
 
 TaskStore.subscribe(function triggerTagStoreChange() {
   TagStore.loaded = false;
-  TagStore.trigger('change');
+  TagStore.notifyListeners();
 });
 
 export default TagStore;
