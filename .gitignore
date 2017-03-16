@@ -13,10 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-npm-debug.log
+.byebug_history
 .eslintcache
 /coverage
-
-# Ignore Byebug command history file.
-.byebug_history
+/node_modules
+/public/packs
+npm-debug.log
