@@ -1,1 +1,1 @@
-import '../../assets/js/application';
+import '../../assets/js/app';
