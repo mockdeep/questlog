@@ -2,7 +2,6 @@ import moment from 'moment';
 
 import request from 'js/_helpers/request';
 import Timeframe from 'js/timeframe/model';
-import RestfulStore from 'js/_common/restful_store';
 import TaskStore from 'js/task/store';
 
 const timeframeList = [
@@ -49,9 +48,76 @@ function timeframeNameForTask(task) {
 }
 
 const TimeframeStore = {
-  ...RestfulStore,
-
+  models: [],
+  loaded: false,
   name: 'timeframe',
+
+  subscribe(listener) {
+    this.listeners = this.listeners || [];
+    this.listeners.push(listener);
+
+    return function unsubscribe() {
+      const index = this.listeners.indexOf(listener);
+
+      this.listeners.splice(index, 1);
+    }.bind(this);
+  },
+
+  notifyListeners() {
+    if (!this.listeners) { return; }
+
+    this.listeners.forEach((listener) => { listener(); });
+  },
+
+  url() {
+    return `/${this.name}s`;
+  },
+
+  load() {
+    request({
+      method: 'get',
+      url: this.url(),
+      success: this.updateModels.bind(this),
+    });
+  },
+
+  unload() {
+    this.loaded = false;
+    this.notifyListeners();
+  },
+
+  create(attrs) {
+    const data = {};
+
+    data[this.name] = attrs;
+
+    return request({
+      data,
+      url: this.url(),
+      method: 'post',
+      success: this.unload.bind(this),
+    });
+  },
+
+  update(id, attrs) {
+    const data = {};
+
+    data[this.name] = attrs;
+
+    return request({
+      data,
+      url: `${this.url()}/${id}`,
+      success: this.unload.bind(this),
+    });
+  },
+
+  destroy(id) {
+    return request({
+      url: `${this.url()}/${id}`,
+      method: 'delete',
+      success: this.unload.bind(this),
+    });
+  },
 
   updateModels(data) {
     const {tasks} = data;
