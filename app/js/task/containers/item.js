@@ -29,10 +29,10 @@ const TaskItem = React.createClass({
 
   componentDidMount() {
     this.loadTags().then(function setTagStoreCallback() {
-      TagStore.on('change', this.loadTags);
+      this.unsubscribeTags = TagStore.subscribe(this.loadTags);
     }.bind(this));
     this.loadTask().then(function setTaskStoreCallback() {
-      TaskStore.on('change', this.loadTask);
+      this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
       this.setTitle();
     }.bind(this));
   },
@@ -43,8 +43,8 @@ const TaskItem = React.createClass({
   },
 
   componentWillUnmount() {
-    TagStore.off('change', this.loadTags);
-    TaskStore.off('change', this.loadTask);
+    this.unsubscribeTags();
+    this.unsubscribeTasks();
   },
 
   storePostponeSeconds(postponeSeconds) {

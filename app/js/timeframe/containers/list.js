@@ -22,12 +22,12 @@ const TimeframeList = React.createClass({
   componentDidMount() {
     TimeframeStore.getAll().then(function loadTimeframeData(data) {
       this.updateTimeframes(data);
-      TimeframeStore.on('change', this.loadTasks);
+      this.unsubscribeTimeframes = TimeframeStore.subscribe(this.loadTasks);
     }.bind(this));
   },
 
   componentWillUnmount() {
-    TimeframeStore.off('change', this.loadTasks);
+    this.unsubscribeTimeframes();
   },
 
   loadTasks() {
