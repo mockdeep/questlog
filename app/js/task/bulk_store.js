@@ -15,5 +15,5 @@ const BulkTaskStore = Object.assign({}, RestfulStore, {
   },
 });
 
-BulkTaskStore.on('change', function unloadTaskStore() { TaskStore.unload(); });
+BulkTaskStore.subscribe(function unloadTaskStore() { TaskStore.unload(); });
 export default BulkTaskStore;

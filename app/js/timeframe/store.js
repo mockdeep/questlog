@@ -105,7 +105,7 @@ const TimeframeStore = Object.assign({}, RestfulStore, {
   },
 });
 
-TaskStore.on('change', function unloadTimeframeStore() {
+TaskStore.subscribe(function unloadTimeframeStore() {
   TimeframeStore.unload();
 });
 

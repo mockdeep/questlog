@@ -10,7 +10,7 @@ const TagStore = Object.assign({}, RestfulStore, {
   },
 });
 
-TaskStore.on('change', function triggerTagStoreChange() {
+TaskStore.subscribe(function triggerTagStoreChange() {
   TagStore.loaded = false;
   TagStore.trigger('change');
 });
