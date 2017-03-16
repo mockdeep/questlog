@@ -22,7 +22,6 @@ const config = {
 
   module: {
     rules: [
-      {test: /\.coffee(\.erb)?$/, loader: 'coffee-loader'},
       {
         test: /\.js(\.erb)?$/,
         exclude: /node_modules/,
@@ -48,7 +47,7 @@ const config = {
   ],
 
   resolve: {
-    extensions: ['.js', '.coffee'],
+    extensions: ['.js'],
     modules: [
       path.resolve('app/assets'),
       path.resolve('app/javascript'),
