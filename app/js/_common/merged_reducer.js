@@ -29,7 +29,7 @@ function createMergedReducer(reducerMap) {
 
     const reducerKey = getReducerKey(action);
     const reducer = fetchReducer(reducerMap, reducerKey);
-    const newState = Object.assign({}, previousState);
+    const newState = {...previousState};
 
     newState[reducerKey] = reducer(previousState[reducerKey], action);
 

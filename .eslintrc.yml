@@ -8,14 +8,16 @@ extends:
 plugins: [eslint-plugin-jsx-a11y, import, react]
 parserOptions:
   sourceType: module
+  ecmaVersion: 7
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true
 env:
   browser: true
   es6: true
   node: true
 globals:
   $: true
-ecmaFeatures:
-  jsx: true
 settings:
   import/resolver:
     node:

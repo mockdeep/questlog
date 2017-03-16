@@ -1,7 +1,9 @@
 import RestfulStore from 'js/_common/restful_store';
 import Task from 'js/task/model';
 
-export default Object.assign({}, RestfulStore, {
+export default {
+  ...RestfulStore,
+
   name: 'task',
 
   updateModels(data) {
@@ -10,4 +12,4 @@ export default Object.assign({}, RestfulStore, {
     });
     RestfulStore.updateModels.call(this, data);
   },
-});
+};

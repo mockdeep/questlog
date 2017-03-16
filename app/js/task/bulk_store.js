@@ -3,7 +3,9 @@ import request from 'js/_helpers/request';
 import RestfulStore from 'js/_common/restful_store';
 import TaskStore from 'js/task/store';
 
-const BulkTaskStore = Object.assign({}, RestfulStore, {
+const BulkTaskStore = {
+  ...RestfulStore,
+
   name: 'bulk_task',
 
   update(attrs) {
@@ -13,7 +15,7 @@ const BulkTaskStore = Object.assign({}, RestfulStore, {
 
     return request({data, url: this.url(), success: this.unload.bind(this)});
   },
-});
+};
 
 BulkTaskStore.subscribe(function unloadTaskStore() { TaskStore.unload(); });
 export default BulkTaskStore;
