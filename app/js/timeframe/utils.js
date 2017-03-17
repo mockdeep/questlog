@@ -1,3 +1,5 @@
+import {sumBy} from 'lodash';
+
 import TimeBalancer from 'js/_helpers/time_balancer';
 
 function baseBalance(name) {
@@ -16,4 +18,10 @@ function calculateMaxMinutes(name, medianProductivity) {
   return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
 }
 
-export {calculateMaxMinutes};
+function calculateTotalMinutes(timeframe) {
+  const allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
+
+  return sumBy(allTasks, 'estimateMinutes');
+}
+
+export {calculateMaxMinutes, calculateTotalMinutes};

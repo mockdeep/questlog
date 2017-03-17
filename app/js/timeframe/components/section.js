@@ -2,6 +2,7 @@ import React from 'react';
 
 import TaskRow from 'js/task/components/task_row';
 import timeframeNameMap from 'js/timeframe/name_map';
+import {calculateTotalMinutes} from 'js/timeframe/utils';
 
 const TimeframeSection = React.createClass({
   propTypes: {
@@ -30,7 +31,7 @@ const TimeframeSection = React.createClass({
   pendingTasks() { return this.props.timeframe.pendingTasks; },
 
   minuteTotal() {
-    return this.props.timeframe.minuteTotal;
+    return calculateTotalMinutes(this.props.timeframe);
   },
 
   maxTime() {
