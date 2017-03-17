@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TaskRow from 'js/task/components/task_row';
+import timeframeNameMap from 'js/timeframe/name_map';
 
 const TimeframeSection = React.createClass({
   propTypes: {
@@ -80,7 +81,7 @@ const TimeframeSection = React.createClass({
       <div key={timeframeName} id={timeframeName} className={className}>
         <hr />
         <h2>
-          {this.props.timeframe.title} {this.ratioSpan()}
+          {timeframeNameMap[this.props.timeframe.name]} {this.ratioSpan()}
         </h2>
         {this.currentTasksDiv()}
         {this.pendingTasksDiv()}
