@@ -1,8 +1,8 @@
 import {Record} from 'immutable';
 import {sumBy} from 'lodash';
 
-import TimeBalancer from 'js/_helpers/time_balancer';
 import timeframeNameMap from 'js/timeframe/name_map';
+import {calculateMaxMinutes} from 'js/timeframe/utils';
 
 const Timeframe = new Record({
   currentTasks: [],
@@ -10,22 +10,6 @@ const Timeframe = new Record({
   medianProductivity: null,
   name: null,
 });
-
-function baseBalance(name) {
-  const {balanceTime} = window;
-
-  return TimeBalancer.baseBalances(balanceTime)[name];
-}
-
-function calculateMaxMinutes(name, medianProductivity) {
-  const baseMinutes = baseBalance(name);
-
-  if (typeof baseMinutes === 'undefined') { return Infinity; }
-
-  const minuteMax = Math.floor(baseMinutes * medianProductivity / 60);
-
-  return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
-}
 
 Object.defineProperty(Timeframe.prototype, 'minuteTotal', {
   get() {

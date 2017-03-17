@@ -148,7 +148,7 @@ const TimeframeStore = {
     });
   },
 
-  getData() {
+  getState() {
     return {
       timeframes: this.models,
       meta: {medianProductivity},
@@ -165,7 +165,7 @@ const TimeframeStore = {
             ({medianProductivity} = timeframeData.meta);
 
             this.updateModels(data);
-            resolve(this.getData());
+            resolve(this.getState());
           }.bind(this),
         });
       }.bind(this));
