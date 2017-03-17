@@ -1,51 +1,12 @@
-import moment from 'moment';
-
 import request from 'js/_helpers/request';
 import TaskStore from 'js/task/store';
-import {calculateMaxMinutes} from 'js/timeframe/utils';
-
-const timeframeList = [
-  'inbox',
-  'today',
-  'week',
-  'month',
-  'quarter',
-  'year',
-  'lustrum',
-  'decade',
-];
-
-const timeframeEnds = {
-  today: moment().endOf('day'),
-  week: moment().endOf('week'),
-  month: moment().endOf('month'),
-  quarter: moment().endOf('quarter'),
-  year: moment().endOf('year'),
-};
+import {
+  calculateMaxMinutes,
+  timeframeList,
+  timeframeNameForTask,
+} from 'js/timeframe/utils';
 
 let medianProductivity;
-
-function timeframeNameForPendingTask(task) {
-  const releaseAt = moment(task.release_at);
-  let index = timeframeList.indexOf(task.timeframe) - 1;
-  let timeframeName;
-  let timeframeEnd;
-
-  do {
-    index += 1;
-    timeframeName = timeframeList[index];
-    timeframeEnd = timeframeEnds[timeframeName];
-    if (!timeframeEnd) { return timeframeName; }
-  } while (releaseAt.diff(timeframeEnd) > 0);
-
-  return timeframeList[index];
-}
-
-function timeframeNameForTask(task) {
-  if (!task.timeframe) { return 'inbox'; }
-
-  return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;
-}
 
 const TimeframeStore = {
   models: [],
