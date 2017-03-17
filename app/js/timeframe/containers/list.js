@@ -8,6 +8,7 @@ import TaskStore from 'js/task/store';
 import NewTaskForm from 'js/task/components/new_task_form';
 import TimeframeStore from 'js/timeframe/store';
 import TimeframeSection from 'js/timeframe/components/section';
+import {calculateTotalMinutes} from 'js/timeframe/utils';
 
 function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
@@ -50,7 +51,9 @@ const TimeframeList = React.createClass({
     const counts = {};
 
     this.state.timeframes.forEach(function setTimeframeCount(timeframe) {
-      counts[timeframe.name] = timeframe.minuteMax - timeframe.minuteTotal;
+      const minuteTotal = calculateTotalMinutes(timeframe);
+
+      counts[timeframe.name] = timeframe.minuteMax - minuteTotal;
     });
 
     return counts;
