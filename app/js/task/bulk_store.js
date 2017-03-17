@@ -28,22 +28,8 @@ const BulkTaskStore = {
     return `/${this.name}s`;
   },
 
-  load() {
-    request({
-      method: 'get',
-      url: this.url(),
-      success: this.updateModels.bind(this),
-    });
-  },
-
   unload() {
     this.loaded = false;
-    this.notifyListeners();
-  },
-
-  updateModels(data) {
-    this.models = data[`${this.name}s`];
-    this.loaded = true;
     this.notifyListeners();
   },
 
