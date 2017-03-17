@@ -3,6 +3,7 @@ import moment from 'moment';
 import request from 'js/_helpers/request';
 import Timeframe from 'js/timeframe/model';
 import TaskStore from 'js/task/store';
+import {calculateMaxMinutes} from 'js/timeframe/utils';
 
 const timeframeList = [
   'inbox',
@@ -143,6 +144,10 @@ const TimeframeStore = {
       const timeframe = timeframes[timeframeName];
 
       timeframe.medianProductivity = medianProductivity;
+      timeframe.minuteMax = calculateMaxMinutes(
+        timeframeName,
+        medianProductivity
+      );
 
       return new Timeframe(timeframe);
     });
