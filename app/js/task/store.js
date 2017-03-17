@@ -28,14 +28,6 @@ export default {
     return `/${this.name}s`;
   },
 
-  load() {
-    request({
-      method: 'get',
-      url: this.url(),
-      success: this.updateModels.bind(this),
-    });
-  },
-
   unload() {
     this.loaded = false;
     this.notifyListeners();
