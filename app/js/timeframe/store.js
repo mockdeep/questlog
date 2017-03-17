@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 import request from 'js/_helpers/request';
-import Timeframe from 'js/timeframe/model';
 import TaskStore from 'js/task/store';
 import {calculateMaxMinutes} from 'js/timeframe/utils';
 
@@ -149,7 +148,7 @@ const TimeframeStore = {
         medianProductivity
       );
 
-      return new Timeframe(timeframe);
+      return timeframe;
     });
   },
 
