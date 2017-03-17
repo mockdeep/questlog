@@ -3,12 +3,12 @@ import request from 'js/_helpers/request';
 import Task from 'js/task/model';
 
 export default {
-  models: [],
+  listeners: [],
   loaded: false,
+  models: [],
   name: 'task',
 
   subscribe(listener) {
-    this.listeners = this.listeners || [];
     this.listeners.push(listener);
 
     return function unsubscribe() {

@@ -9,12 +9,12 @@ import {
 let medianProductivity;
 
 const TimeframeStore = {
-  models: [],
+  listeners: [],
   loaded: false,
+  models: [],
   name: 'timeframe',
 
   subscribe(listener) {
-    this.listeners = this.listeners || [];
     this.listeners.push(listener);
 
     return function unsubscribe() {

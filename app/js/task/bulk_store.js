@@ -3,12 +3,12 @@ import request from 'js/_helpers/request';
 import TaskStore from 'js/task/store';
 
 const BulkTaskStore = {
-  models: [],
+  listeners: [],
   loaded: false,
+  models: [],
   name: 'bulk_task',
 
   subscribe(listener) {
-    this.listeners = this.listeners || [];
     this.listeners.push(listener);
 
     return function unsubscribe() {

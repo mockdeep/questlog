@@ -2,8 +2,9 @@ import request from 'js/_helpers/request';
 import TaskStore from 'js/task/store';
 
 const TagStore = {
-  models: [],
+  listeners: [],
   loaded: false,
+  models: [],
   name: 'tag',
 
   url() {
@@ -15,7 +16,6 @@ const TagStore = {
   },
 
   subscribe(listener) {
-    this.listeners = this.listeners || [];
     this.listeners.push(listener);
 
     return function unsubscribe() {
