@@ -9,6 +9,7 @@ export default {
   loaded: false,
   models: [],
   name: 'task',
+  url: '/tasks',
 
   subscribe(listener) {
     this.listeners.push(listener);
@@ -24,10 +25,6 @@ export default {
     if (!this.listeners) { return; }
 
     this.listeners.forEach((listener) => { listener(); });
-  },
-
-  url() {
-    return `/${this.name}s`;
   },
 
   unload() {
@@ -58,7 +55,7 @@ export default {
 
     request({
       method: 'get',
-      url: this.url(),
+      url: this.url,
       success: this.updateModels.bind(this),
     });
   },
@@ -70,7 +67,7 @@ export default {
 
     return request({
       data,
-      url: this.url(),
+      url: this.url,
       method: 'post',
       success: this.unload.bind(this),
     });
@@ -83,14 +80,14 @@ export default {
 
     return request({
       data,
-      url: `${this.url()}/${id}`,
+      url: `${this.url}/${id}`,
       success: this.unload.bind(this),
     });
   },
 
   destroy(id) {
     return request({
-      url: `${this.url()}/${id}`,
+      url: `${this.url}/${id}`,
       method: 'delete',
       success: this.unload.bind(this),
     });

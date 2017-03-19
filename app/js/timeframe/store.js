@@ -13,6 +13,7 @@ const TimeframeStore = {
   loaded: false,
   models: [],
   name: 'timeframe',
+  url: '/timeframes',
 
   subscribe(listener) {
     this.listeners.push(listener);
@@ -28,10 +29,6 @@ const TimeframeStore = {
     if (!this.listeners) { return; }
 
     this.listeners.forEach((listener) => { listener(); });
-  },
-
-  url() {
-    return `/${this.name}s`;
   },
 
   unload() {
@@ -87,7 +84,7 @@ const TimeframeStore = {
 
       request({
         method: 'get',
-        url: this.url(),
+        url: this.url,
         success: (timeframeData) => {
           ({medianProductivity} = timeframeData.meta);
 
