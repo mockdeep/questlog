@@ -81,17 +81,19 @@ const TimeframeStore = {
 
   getAll() {
     return new Promise((resolve) => {
-      TaskStore.getAll().then((data) => {
-        request({
-          method: 'get',
-          url: this.url(),
-          success: (timeframeData) => {
-            ({medianProductivity} = timeframeData.meta);
+      if (!TaskStore.getState().loaded) {
+        TaskStore.dispatch({type: 'tasks/FETCH'});
+      }
 
-            this.updateModels(data);
-            resolve(this.getState());
-          },
-        });
+      request({
+        method: 'get',
+        url: this.url(),
+        success: (timeframeData) => {
+          ({medianProductivity} = timeframeData.meta);
+
+          this.updateModels(TaskStore.getState());
+          resolve(this.getState());
+        },
       });
     });
   },
