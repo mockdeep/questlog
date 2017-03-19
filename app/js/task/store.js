@@ -2,6 +2,10 @@ import request from 'js/_helpers/request';
 
 import Task from 'js/task/model';
 
+function estimateMinutes(task) {
+  return Math.floor((task.estimateSeconds || 1800) / 60);
+}
+
 export default {
   listeners: [],
   loaded: false,
@@ -35,7 +39,10 @@ export default {
 
   updateModels(data) {
     data.tasks = data.tasks.map(function buildTask(taskData) {
-      return new Task(taskData);
+      return new Task({
+        ...taskData,
+        estimateMinutes: estimateMinutes(taskData),
+      });
     });
     this.models = data[`${this.name}s`];
     this.loaded = true;
