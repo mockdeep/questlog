@@ -80,20 +80,20 @@ const TimeframeStore = {
   },
 
   getAll() {
-    return new Promise(function fetchTasks(resolve) {
-      TaskStore.getAll().then(function fetchTimeframes(data) {
+    return new Promise((resolve) => {
+      TaskStore.getAll().then((data) => {
         request({
           method: 'get',
           url: this.url(),
-          success: function loadTimeframeData(timeframeData) {
+          success: (timeframeData) => {
             ({medianProductivity} = timeframeData.meta);
 
             this.updateModels(data);
             resolve(this.getState());
-          }.bind(this),
+          },
         });
-      }.bind(this));
-    }.bind(this));
+      });
+    });
   },
 };
 

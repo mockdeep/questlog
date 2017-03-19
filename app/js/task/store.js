@@ -50,7 +50,7 @@ export default {
 
       data[`${this.name}s`] = this.models;
 
-      promise = new Promise(function resolveNow(resolve) { resolve(data); });
+      promise = new Promise((resolve) => { resolve(data); });
     } else {
       promise = request({
         method: 'get',
