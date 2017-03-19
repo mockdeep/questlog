@@ -7,6 +7,7 @@ const BulkTaskStore = {
   loaded: false,
   models: [],
   name: 'bulk_task',
+  url: '/bulk_tasks',
 
   subscribe(listener) {
     this.listeners.push(listener);
@@ -24,10 +25,6 @@ const BulkTaskStore = {
     this.listeners.forEach((listener) => { listener(); });
   },
 
-  url() {
-    return `/${this.name}s`;
-  },
-
   unload() {
     this.loaded = false;
     this.notifyListeners();
@@ -40,7 +37,7 @@ const BulkTaskStore = {
 
     return request({
       data,
-      url: this.url(),
+      url: this.url,
       method: 'post',
       success: this.unload.bind(this),
     });
@@ -51,7 +48,7 @@ const BulkTaskStore = {
 
     data[this.name] = attrs;
 
-    return request({data, url: this.url(), success: this.unload.bind(this)});
+    return request({data, url: this.url, success: this.unload.bind(this)});
   },
 };
 

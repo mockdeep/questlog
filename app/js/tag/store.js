@@ -6,10 +6,7 @@ const TagStore = {
   loaded: false,
   models: [],
   name: 'tag',
-
-  url() {
-    return `/${this.name}s`;
-  },
+  url: '/tags',
 
   get(url) {
     return request({url, method: 'get', success() { /* do nothing */ }});
@@ -54,7 +51,7 @@ const TagStore = {
     } else {
       promise = request({
         method: 'get',
-        url: this.url(),
+        url: this.url,
         success: this.updateModels.bind(this),
       });
     }
@@ -69,7 +66,7 @@ const TagStore = {
 
     return request({
       data,
-      url: `${this.url()}/${id}`,
+      url: `${this.url}/${id}`,
       success: this.unload.bind(this),
     });
   },
