@@ -33,7 +33,11 @@ const TaskList = React.createClass({
   },
 
   loadTasks() {
-    TaskStore.getAll().then(this.setTasks);
+    if (!TaskStore.getState().loaded) {
+      TaskStore.dispatch({type: 'tasks/FETCH'});
+    }
+
+    this.setTasks(TaskStore.getState());
   },
 
   setTasks(data) {

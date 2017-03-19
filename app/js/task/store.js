@@ -42,24 +42,23 @@ export default {
     this.notifyListeners();
   },
 
-  getAll() {
-    let promise;
+  getState() {
+    return {
+      loaded: this.loaded,
+      tasks: this.models,
+    };
+  },
 
-    if (this.loaded) {
-      const data = {};
-
-      data[`${this.name}s`] = this.models;
-
-      promise = new Promise((resolve) => { resolve(data); });
-    } else {
-      promise = request({
-        method: 'get',
-        url: this.url(),
-        success: this.updateModels.bind(this),
-      });
+  dispatch(action) {
+    if (!action.type === 'tasks/FETCH') {
+      throw new Error(`invalid action type ${action.type}`);
     }
 
-    return promise;
+    request({
+      method: 'get',
+      url: this.url(),
+      success: this.updateModels.bind(this),
+    });
   },
 
   create(attrs) {
