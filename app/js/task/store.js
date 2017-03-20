@@ -49,10 +49,16 @@ export default {
   },
 
   dispatch(action) {
-    if (!action.type === 'tasks/FETCH') {
+    switch (action.type) {
+    case 'tasks/FETCH':
+      this.fetchTasks();
+      break;
+    default:
       throw new Error(`invalid action type ${action.type}`);
     }
+  },
 
+  fetchTasks() {
     request({
       method: 'get',
       url: this.url,
