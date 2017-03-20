@@ -1,3 +1,4 @@
+import flash from 'js/_helpers/flash';
 import request from 'js/_helpers/request';
 
 function estimateMinutes(task) {
@@ -75,7 +76,10 @@ export default {
       data,
       url: this.url,
       method: 'post',
-      success: this.unload.bind(this),
+      success: () => {
+        this.unload();
+        flash('success', 'Task added');
+      },
     });
   },
 
