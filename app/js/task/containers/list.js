@@ -127,13 +127,13 @@ const TaskList = React.createClass({
   },
 
   createTask(attrs) {
-    return TaskStore.create(attrs);
+    return TaskStore.create(attrs).then(this.loadTasks);
   },
 
   render() {
     return (
       <div>
-        <NewTaskForm loadTask={this.loadTasks} createTask={this.createTask} />
+        <NewTaskForm createTask={this.createTask} />
         <br />
         <div id='current-tasks'>
           <h2>{'Current Tasks'}</h2>

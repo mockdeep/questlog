@@ -3,10 +3,7 @@ import React from 'react';
 import ErrorDisplay from 'js/_common/components/error_display';
 
 const NewTaskForm = React.createClass({
-  propTypes: {
-    createTask: React.PropTypes.func.isRequired,
-    loadTask: React.PropTypes.func.isRequired,
-  },
+  propTypes: {createTask: React.PropTypes.func.isRequired},
 
   getInitialState() {
     return {
@@ -41,7 +38,6 @@ const NewTaskForm = React.createClass({
   },
 
   loadTask() {
-    this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
 
