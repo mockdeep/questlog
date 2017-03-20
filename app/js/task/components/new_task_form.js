@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ErrorDisplay from 'js/_common/components/error_display';
-import flash from 'js/_helpers/flash';
 
 const NewTaskForm = React.createClass({
   propTypes: {
@@ -42,7 +41,6 @@ const NewTaskForm = React.createClass({
   },
 
   loadTask() {
-    flash('success', 'Task added');
     this.props.loadTask();
     this.replaceState(this.getInitialState());
   },
