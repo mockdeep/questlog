@@ -1,15 +1,15 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
-import TaskConnector from 'js/task/connectors/item';
+import TaskContainer from 'js/task/containers/item';
 
 import AppBase from 'js/app_base';
-import BulkTasksNew from 'js/task/containers/bulk_new';
+import BulkTasksNew from 'js/task/components/bulk_new';
 import PrivacyPage from 'js/static/components/privacy_page';
 import WhatPage from 'js/static/components/what_page';
-import SessionsNew from 'js/session/containers/new';
-import TaskList from 'js/task/containers/list';
-import TimeframeList from 'js/timeframe/containers/list';
+import SessionsNew from 'js/session/components/new';
+import TaskList from 'js/task/components/list';
+import TimeframeList from 'js/timeframe/components/list';
 
 function Nothing() { return false; }
 
@@ -23,7 +23,7 @@ export default ( // eslint-disable-line no-extra-parens
     <Route path='/privacy' component={PrivacyPage} />
     <Route path='/what' component={WhatPage} />
     <Route path='/timeframes' component={TimeframeList} />
-    <IndexRoute component={TaskConnector} />
-    <Route path='/:slug' component={TaskConnector} />
+    <IndexRoute component={TaskContainer} />
+    <Route path='/:slug' component={TaskContainer} />
   </Route>
 );

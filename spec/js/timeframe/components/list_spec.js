@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import TimeframeList from 'js/timeframe/containers/list';
+import TimeframeList from 'js/timeframe/components/list';
 
 let wrapper;
 

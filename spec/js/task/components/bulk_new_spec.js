@@ -5,7 +5,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {mount} from 'enzyme';
 
-import BulkTasksNew from 'js/task/containers/bulk_new';
+import BulkTasksNew from 'js/task/components/bulk_new';
 import BulkTaskStore from 'js/task/bulk_store';
 
 describe('BulkTasksNew', () => {

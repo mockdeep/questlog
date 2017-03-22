@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import NotificationCheckbox from 'js/notification/containers/checkbox';
+import NotificationCheckbox from 'js/notification/components/checkbox';
 
 const completeTask = jest.fn();
 const enableNotifications = jest.fn();
