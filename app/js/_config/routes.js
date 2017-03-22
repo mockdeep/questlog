@@ -9,7 +9,7 @@ import PrivacyPage from 'js/static/components/privacy_page';
 import WhatPage from 'js/static/components/what_page';
 import SessionsNew from 'js/session/components/new';
 import TaskList from 'js/task/components/list';
-import TimeframeList from 'js/timeframe/components/list';
+import TimeframeList from 'js/timeframe/containers/list';
 
 function Nothing() { return false; }
 
