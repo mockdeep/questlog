@@ -5,7 +5,7 @@ import {DragDropContext as dragDropContext} from 'react-dnd';
 import ToEnglish from 'js/_helpers/to_english';
 import TaskStore from 'js/task/store';
 
-import NewTaskForm from 'js/task/components/new_task_form';
+import NewTaskForm from 'js/task/containers/new_task_form';
 import TimeframeStore from 'js/timeframe/store';
 import TimeframeSection from 'js/timeframe/components/section';
 import {calculateTotalMinutes} from 'js/timeframe/utils';

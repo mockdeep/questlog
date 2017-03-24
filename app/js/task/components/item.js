@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NewTaskForm from 'js/task/components/new_task_form';
+import NewTaskForm from 'js/task/containers/new_task_form';
 import TaskFooter from 'js/_common/components/task_footer';
 import TaskDisplay from 'js/task/components/task_display';
 import NotificationCheckbox from 'js/notification/components/checkbox';
