@@ -1,12 +1,15 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 
 import TimeframeList from 'js/timeframe/components/list';
+import TimeframeSection from 'js/timeframe/components/section';
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = mount(<TimeframeList />);
+  wrapper = shallow(<TimeframeList />).
+    first().
+    shallow();
 });
 
 describe('TimeframeList', () => {
@@ -17,7 +20,7 @@ describe('TimeframeList', () => {
   it('renders the current median productivity when loaded', () => {
     const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
-    wrapper.instance().child.updateTimeframes(input);
+    wrapper.instance().updateTimeframes(input);
 
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
@@ -33,18 +36,17 @@ describe('TimeframeList', () => {
     };
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    wrapper.instance().child.updateTimeframes(input);
+    wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.text()).toContain('Inbox');
-    expect(wrapper.text()).toContain('do laundry');
+    expect(wrapper.find(TimeframeSection).prop('timeframe')).toBe(timeframe);
   });
 
   it('does not render empty timeframes', () => {
     const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-    wrapper.instance().child.updateTimeframes(input);
+    wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.text()).not.toContain('Inbox');
+    expect(wrapper.find(TimeframeSection).length).toBe(0);
   });
 });

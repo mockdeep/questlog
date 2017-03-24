@@ -7,7 +7,7 @@ import {DragDropContext as dragDropContext} from 'react-dnd';
 import TaskStore from 'js/task/store';
 import BulkTaskStore from 'js/task/bulk_store';
 
-import NewTaskForm from 'js/task/components/new_task_form';
+import NewTaskForm from 'js/task/containers/new_task_form';
 import TaskRow from 'js/task/components/task_row';
 
 function isPending(task) {
