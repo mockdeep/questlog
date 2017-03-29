@@ -4,8 +4,9 @@ describe('appReducer', () => {
   describe('init', () => {
     it('returns a blank nested tree of state', () => {
       const action = {type: '@@redux/INIT'};
+      const expectedState = {user: {}, task: {newTask: {title: ''}}};
 
-      expect(reducer(null, action)).toEqual({user: {}});
+      expect(reducer(null, action)).toEqual(expectedState);
     });
   });
 
