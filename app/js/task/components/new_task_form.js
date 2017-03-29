@@ -13,7 +13,6 @@ const NewTaskForm = React.createClass({
     return {
       buttonContent: 'Add Task',
       disabled: false,
-      errors: [],
     };
   },
 
@@ -26,10 +25,13 @@ const NewTaskForm = React.createClass({
   saveTask(event) {
     event.preventDefault();
     if (this.state.disabled) { return; }
-    if (this.props.task.title.trim() === '') {
-      const newErrors = this.state.errors.concat('task title can\'t be blank');
+    const {task} = this.props;
 
-      this.setState({errors: newErrors});
+    if (task.title.trim() === '') {
+      const errorMessage = 'task title can\'t be blank';
+      const newErrors = _.uniq(task.errors.concat(errorMessage));
+
+      this.props.setNewTask({...task, errors: newErrors});
 
       return;
     }
@@ -40,7 +42,7 @@ const NewTaskForm = React.createClass({
   },
 
   loadTask() {
-    this.props.setNewTask({title: ''});
+    this.props.setNewTask({title: '', errors: []});
     this.replaceState(this.getInitialState());
   },
 
@@ -51,7 +53,7 @@ const NewTaskForm = React.createClass({
   render() {
     return (
       <form onSubmit={this.saveTask} id='new-form'>
-        <ErrorDisplay errors={this.state.errors} />
+        <ErrorDisplay errors={this.props.task.errors} />
         <div className='row'>
           <div className='col-md-6'>
             <input
