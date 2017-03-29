@@ -6,7 +6,7 @@ describe('appReducer', () => {
       const action = {type: '@@redux/INIT'};
       const expectedState = {
         user: {},
-        task: {newTask: {title: '', errors: []}},
+        task: {newTask: {title: ''}},
       };
 
       expect(reducer(null, action)).toEqual(expectedState);
