@@ -1,7 +1,7 @@
 import createBasicReducer from 'js/_common/basic_reducer';
 
 function initStore() {
-  return {newTask: {title: ''}};
+  return {newTask: {title: '', errors: []}};
 }
 
 function setNewTask(previousState, newTask) {
