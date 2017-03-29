@@ -1,7 +1,5 @@
 import React from 'react';
 
-import ErrorDisplay from 'js/_common/components/error_display';
-
 const NewTaskForm = React.createClass({
   propTypes: {
     createTask: React.PropTypes.func.isRequired,
@@ -24,17 +22,7 @@ const NewTaskForm = React.createClass({
 
   saveTask(event) {
     event.preventDefault();
-    if (this.state.disabled) { return; }
-    const {task} = this.props;
 
-    if (task.title.trim() === '') {
-      const errorMessage = 'task title can\'t be blank';
-      const newErrors = _.uniq(task.errors.concat(errorMessage));
-
-      this.props.setNewTask({...task, errors: newErrors});
-
-      return;
-    }
     this.setState({buttonContent: 'Adding Task', disabled: true});
     const taskAttrs = {title: this.props.task.title.trim()};
 
@@ -42,7 +30,7 @@ const NewTaskForm = React.createClass({
   },
 
   loadTask() {
-    this.props.setNewTask({title: '', errors: []});
+    this.props.setNewTask({title: ''});
     this.replaceState(this.getInitialState());
   },
 
@@ -50,10 +38,17 @@ const NewTaskForm = React.createClass({
     return this.state.buttonContent;
   },
 
+  validTask() {
+    return this.props.task.title.trim().length > 0;
+  },
+
+  disabled() {
+    return !this.validTask() || this.state.disabled;
+  },
+
   render() {
     return (
       <form onSubmit={this.saveTask} id='new-form'>
-        <ErrorDisplay errors={this.props.task.errors} />
         <div className='row'>
           <div className='col-md-6'>
             <input
@@ -68,7 +63,7 @@ const NewTaskForm = React.createClass({
           <div className='col-md-6'>
             <input
               type='submit'
-              disabled={this.state.disabled}
+              disabled={this.disabled()}
               className='btn btn-success btn-block'
               value={this.buttonMessage()}
             />
