@@ -3,28 +3,30 @@ import React from 'react';
 import ErrorDisplay from 'js/_common/components/error_display';
 
 const NewTaskForm = React.createClass({
-  propTypes: {createTask: React.PropTypes.func.isRequired},
+  propTypes: {
+    createTask: React.PropTypes.func.isRequired,
+    setNewTask: React.PropTypes.func.isRequired,
+    task: React.PropTypes.object.isRequired,
+  },
 
   getInitialState() {
     return {
       buttonContent: 'Add Task',
       disabled: false,
       errors: [],
-      task: {title: ''},
     };
   },
 
   setTitle(event) {
     const taskAttrs = {title: event.target.value};
-    const newTask = {...this.state.task, ...taskAttrs};
 
-    this.setState({task: newTask});
+    this.props.setNewTask({...this.props.task, ...taskAttrs});
   },
 
   saveTask(event) {
     event.preventDefault();
     if (this.state.disabled) { return; }
-    if (this.state.task.title.trim() === '') {
+    if (this.props.task.title.trim() === '') {
       const newErrors = this.state.errors.concat('task title can\'t be blank');
 
       this.setState({errors: newErrors});
@@ -32,12 +34,13 @@ const NewTaskForm = React.createClass({
       return;
     }
     this.setState({buttonContent: 'Adding Task', disabled: true});
-    const taskAttrs = {title: this.state.task.title.trim()};
+    const taskAttrs = {title: this.props.task.title.trim()};
 
     this.props.createTask(taskAttrs).then(this.loadTask);
   },
 
   loadTask() {
+    this.props.setNewTask({title: ''});
     this.replaceState(this.getInitialState());
   },
 
@@ -57,7 +60,7 @@ const NewTaskForm = React.createClass({
               id='new-title'
               className='task-input'
               onChange={this.setTitle}
-              value={this.state.task.title}
+              value={this.props.task.title}
             />
           </div>
           <div className='col-md-6'>
