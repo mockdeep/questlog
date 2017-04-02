@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import {deleteTask} from 'js/task/action_creators';
 import {updateUser} from 'js/user/action_creators';
 import TaskItem from 'js/task/components/item';
 import QNotification from 'js/q_notification';
 
 const ItemContainer = React.createClass({
   propTypes: {
+    deleteTask: React.PropTypes.func.isRequired,
     params: React.PropTypes.object.isRequired,
     updateUser: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
@@ -48,6 +50,7 @@ const ItemContainer = React.createClass({
     return (
       <TaskItem
         params={this.props.params}
+        deleteTask={this.props.deleteTask}
         requestNotificationPermission={this.requestNotificationPermission}
         notificationsEnabled={this.notificationsEnabled()}
         notificationsPermitted={this.notificationsPermitted()}
@@ -62,4 +65,6 @@ function mapStateToProps(state) {
   return {user: state.user};
 }
 
-export default connect(mapStateToProps, {updateUser})(ItemContainer);
+const actionCreators = {deleteTask, updateUser};
+
+export default connect(mapStateToProps, actionCreators)(ItemContainer);

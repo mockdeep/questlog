@@ -28,4 +28,14 @@ function createTask(payload) {
   };
 }
 
-export {createTask, setNewTask, setTaskAjaxState};
+function deleteTask(taskId) {
+  return () => {
+    request({
+      url: `tasks/${taskId}`,
+      method: 'delete',
+      success: () => { TaskStore.unload(); },
+    });
+  };
+}
+
+export {createTask, deleteTask, setNewTask, setTaskAjaxState};
