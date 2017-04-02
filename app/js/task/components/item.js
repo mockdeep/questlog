@@ -10,6 +10,7 @@ import TaskStore from 'js/task/store';
 
 const TaskItem = React.createClass({
   propTypes: {
+    deleteTask: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
@@ -103,10 +104,6 @@ const TaskItem = React.createClass({
     this.storeTask(taskId, {done: true}, {taskStatus: 'marking_done'});
   },
 
-  deleteTask(taskId) {
-    TaskStore.destroy(taskId);
-  },
-
   render() {
     return (
       <div>
@@ -121,7 +118,7 @@ const TaskItem = React.createClass({
           postponeSeconds={this.state.postponeSeconds}
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
-          deleteTask={this.deleteTask}
+          deleteTask={this.props.deleteTask}
         />
         <NewTaskForm />
 
