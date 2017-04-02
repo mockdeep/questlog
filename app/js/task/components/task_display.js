@@ -17,7 +17,6 @@ function TaskDisplay(props) {
         task={props.task}
         disabled={props.disabled}
         storePostponeSeconds={props.storePostponeSeconds}
-        postponeSeconds={props.postponeSeconds}
         postponeTask={props.postponeTask}
         completeTask={props.completeTask}
       />
@@ -34,7 +33,6 @@ TaskDisplay.propTypes = {
   completeTask: React.PropTypes.func.isRequired,
   deleteTask: React.PropTypes.func.isRequired,
   disabled: React.PropTypes.bool.isRequired,
-  postponeSeconds: React.PropTypes.number.isRequired,
   postponeTask: React.PropTypes.func.isRequired,
   storePostponeSeconds: React.PropTypes.func.isRequired,
   storeTask: React.PropTypes.func.isRequired,
