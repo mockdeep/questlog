@@ -6,7 +6,7 @@ import {calculateTotalMinutes} from 'js/timeframe/utils';
 
 const TimeframeSection = React.createClass({
   propTypes: {
-    destroyTask: React.PropTypes.func.isRequired,
+    deleteTask: React.PropTypes.func.isRequired,
     loadTasks: React.PropTypes.func.isRequired,
     storeTask: React.PropTypes.func.isRequired,
     timeframe: React.PropTypes.object.isRequired,
@@ -22,7 +22,7 @@ const TimeframeSection = React.createClass({
         key={task.id}
         loadTasks={this.props.loadTasks}
         storeTask={this.props.storeTask}
-        destroyTask={this.props.destroyTask}
+        deleteTask={this.props.deleteTask}
       />
     );
   },
