@@ -15,7 +15,10 @@ function timeframeHasTasks(timeframe) {
 }
 
 const TimeframeList = React.createClass({
-  propTypes: {deleteTask: React.PropTypes.func.isRequired},
+  propTypes: {
+    deleteTask: React.PropTypes.func.isRequired,
+    updateTask: React.PropTypes.func.isRequired,
+  },
 
   getInitialState() {
     return {timeframes: [], medianProductivity: null, loading: true};
@@ -60,10 +63,6 @@ const TimeframeList = React.createClass({
     return counts;
   },
 
-  storeTask(taskId, attrs) {
-    return TaskStore.update(taskId, attrs);
-  },
-
   renderTimeframe(timeframe) {
     return (
       <TimeframeSection
@@ -72,7 +71,7 @@ const TimeframeList = React.createClass({
         timeframeSpace={this.timeframeSpace()}
         medianProductivity={this.state.medianProductivity}
         loadTasks={this.loadTasks}
-        storeTask={this.storeTask}
+        storeTask={this.props.updateTask}
         deleteTask={this.props.deleteTask}
       />
     );
