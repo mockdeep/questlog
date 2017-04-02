@@ -77,12 +77,4 @@ export default {
       success: this.unload.bind(this),
     });
   },
-
-  destroy(id) {
-    return request({
-      url: `${this.url}/${id}`,
-      method: 'delete',
-      success: this.unload.bind(this),
-    });
-  },
 };
