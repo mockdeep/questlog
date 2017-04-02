@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {updateUser} from 'js/user/actions';
+import {updateUser} from 'js/user/action_creators';
 import TaskItem from 'js/task/components/item';
 import QNotification from 'js/q_notification';
 

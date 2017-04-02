@@ -1,5 +1,5 @@
 import reducer from 'js/user/reducer';
-import * as actions from 'js/user/actions';
+import * as actionCreators from 'js/user/action_creators';
 
 describe('user/reducer', () => {
   describe('INIT', () => {
@@ -11,7 +11,7 @@ describe('user/reducer', () => {
   });
   describe('UPDATE', () => {
     it('returns a new object with updated config', () => {
-      const action = actions.updateUser({booger: 'flick'});
+      const action = actionCreators.updateUser({booger: 'flick'});
       const result = reducer({foo: 'bar'}, action);
 
       expect(result).toEqual({foo: 'bar', booger: 'flick'});
