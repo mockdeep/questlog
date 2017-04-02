@@ -1,5 +1,31 @@
+import flash from 'js/_helpers/flash';
+import request from 'js/_helpers/request';
+import TaskStore from 'js/task/store';
+
 function setNewTask(payload) {
   return {type: 'task/SET_NEW', payload};
 }
 
-export {setNewTask};
+function setTaskAjaxState(payload) {
+  return {type: 'task/SET_AJAX_STATE', payload};
+}
+
+function createTask(payload) {
+  return (dispatch) => {
+    dispatch(setTaskAjaxState('taskSaving'));
+
+    request({
+      data: {task: payload},
+      url: '/tasks',
+      method: 'post',
+      success: () => {
+        dispatch(setTaskAjaxState(null));
+        dispatch(setNewTask({title: ''}));
+        TaskStore.unload();
+        flash('success', 'Task added');
+      },
+    });
+  };
+}
+
+export {createTask, setNewTask, setTaskAjaxState};

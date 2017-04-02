@@ -94,16 +94,12 @@ const TimeframeList = React.createClass({
     TaskStore.unload();
   },
 
-  createTask(attrs) {
-    return TaskStore.create(attrs).then(this.loadTasks);
-  },
-
   render() {
     if (this.state.loading) { return <h1>{'Loading Timeframes...'}</h1>; }
 
     return (
       <div>
-        <NewTaskForm createTask={this.createTask} />
+        <NewTaskForm />
         <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
         <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
         {this.renderedTimeframes()}
