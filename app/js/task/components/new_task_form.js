@@ -5,13 +5,7 @@ const NewTaskForm = React.createClass({
     createTask: React.PropTypes.func.isRequired,
     setNewTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
-  },
-
-  getInitialState() {
-    return {
-      buttonContent: 'Add Task',
-      disabled: false,
-    };
+    taskSaving: React.PropTypes.bool.isRequired,
   },
 
   setTitle(event) {
@@ -23,19 +17,11 @@ const NewTaskForm = React.createClass({
   saveTask(event) {
     event.preventDefault();
 
-    this.setState({buttonContent: 'Adding Task', disabled: true});
-    const taskAttrs = {title: this.props.task.title.trim()};
-
-    this.props.createTask(taskAttrs).then(this.loadTask);
-  },
-
-  loadTask() {
-    this.props.setNewTask({title: ''});
-    this.replaceState(this.getInitialState());
+    this.props.createTask({title: this.props.task.title.trim()});
   },
 
   buttonMessage() {
-    return this.state.buttonContent;
+    return this.props.taskSaving ? 'Adding Task' : 'Add Task';
   },
 
   validTask() {
@@ -43,7 +29,7 @@ const NewTaskForm = React.createClass({
   },
 
   disabled() {
-    return !this.validTask() || this.state.disabled;
+    return this.props.taskSaving || !this.validTask();
   },
 
   render() {

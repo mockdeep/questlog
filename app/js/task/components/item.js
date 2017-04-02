@@ -93,10 +93,6 @@ const TaskItem = React.createClass({
     this.setTitle();
   },
 
-  createTask(attrs) {
-    return TaskStore.create(attrs).then(this.loadTask);
-  },
-
   postponeTask(taskId) {
     const attrs = {postpone: this.state.postponeSeconds};
 
@@ -127,7 +123,7 @@ const TaskItem = React.createClass({
           completeTask={this.completeTask}
           deleteTask={this.deleteTask}
         />
-        <NewTaskForm createTask={this.createTask} />
+        <NewTaskForm />
 
         <hr />
         <NotificationCheckbox
