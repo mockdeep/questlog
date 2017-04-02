@@ -60,10 +60,6 @@ const TaskItem = React.createClass({
     this.setState({tags: data.tags});
   },
 
-  disable() {
-    this.setState({disabled: true});
-  },
-
   setTitle() {
     document.title = `Task: ${this.state.task.title}`;
   },
@@ -95,6 +91,8 @@ const TaskItem = React.createClass({
   },
 
   postponeTask(taskId) {
+    this.setState({disabled: true});
+
     const attrs = {postpone: this.state.postponeSeconds};
     const taskStatus = 'postponing';
 
@@ -111,7 +109,6 @@ const TaskItem = React.createClass({
         <TaskDisplay
           task={this.state.task}
           tags={this.state.tags}
-          disable={this.disable}
           disabled={this.state.disabled}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}

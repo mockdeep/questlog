@@ -10,7 +10,6 @@ function MainButtons(props) {
         <DoneButton
           task={props.task}
           disabled={props.disabled}
-          disable={props.disable}
           completeTask={props.completeTask}
         />
       </div>
@@ -18,7 +17,6 @@ function MainButtons(props) {
         <PostponeButton
           task={props.task}
           disabled={props.disabled}
-          disable={props.disable}
           storePostponeSeconds={props.storePostponeSeconds}
           postponeSeconds={props.postponeSeconds}
           postponeTask={props.postponeTask}
@@ -30,7 +28,6 @@ function MainButtons(props) {
 
 MainButtons.propTypes = {
   completeTask: React.PropTypes.func.isRequired,
-  disable: React.PropTypes.func.isRequired,
   disabled: React.PropTypes.bool.isRequired,
   postponeSeconds: React.PropTypes.number.isRequired,
   postponeTask: React.PropTypes.func.isRequired,
