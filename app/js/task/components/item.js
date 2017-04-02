@@ -112,7 +112,6 @@ const TaskItem = React.createClass({
           disabled={this.state.disabled}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}
-          postponeSeconds={this.state.postponeSeconds}
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
           deleteTask={this.props.deleteTask}
