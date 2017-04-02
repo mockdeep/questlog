@@ -96,8 +96,9 @@ const TaskItem = React.createClass({
 
   postponeTask(taskId) {
     const attrs = {postpone: this.state.postponeSeconds};
+    const taskStatus = 'postponing';
 
-    return this.storeTask(taskId, attrs, {taskStatus: 'postponing'});
+    this.storeTask(taskId, attrs, {taskStatus}).then(this.loadTask);
   },
 
   completeTask(taskId) {
@@ -111,7 +112,6 @@ const TaskItem = React.createClass({
           task={this.state.task}
           tags={this.state.tags}
           disable={this.disable}
-          loadTask={this.loadTask}
           disabled={this.state.disabled}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}

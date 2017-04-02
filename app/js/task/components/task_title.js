@@ -6,7 +6,6 @@ import timeframeNameMap from 'js/timeframe/name_map';
 const TaskTitle = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
-    loadTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
   },
 
@@ -50,7 +49,6 @@ const TaskTitle = React.createClass({
                   {this.timeframeName()}
                   <DeleteButton
                     task={this.props.task}
-                    loadTask={this.props.loadTask}
                     deleteTask={this.props.deleteTask}
                   />
                 </td>

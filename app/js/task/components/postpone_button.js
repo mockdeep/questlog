@@ -19,7 +19,6 @@ const PostponeButton = React.createClass({
   propTypes: {
     disable: React.PropTypes.func.isRequired,
     disabled: React.PropTypes.bool.isRequired,
-    loadTask: React.PropTypes.func.isRequired,
     postponeTask: React.PropTypes.func.isRequired,
     storePostponeSeconds: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
@@ -29,14 +28,10 @@ const PostponeButton = React.createClass({
     this.props.disable();
   },
 
-  updateButton() {
-    this.props.loadTask();
-  },
-
   postponeTask() {
     if (this.props.disabled) { return; }
     this.disableButton();
-    this.props.postponeTask(this.props.task.id).then(this.updateButton);
+    this.props.postponeTask(this.props.task.id);
   },
 
   selectOptionsOptions: [

@@ -11,12 +11,10 @@ function TaskDisplay(props) {
       <TagButtons task={props.task} tags={props.tags} />
       <TaskTitle
         task={props.task}
-        loadTask={props.loadTask}
         deleteTask={props.deleteTask}
       />
       <MainButtons
         task={props.task}
-        loadTask={props.loadTask}
         disabled={props.disabled}
         disable={props.disable}
         storePostponeSeconds={props.storePostponeSeconds}
@@ -38,7 +36,6 @@ TaskDisplay.propTypes = {
   deleteTask: React.PropTypes.func.isRequired,
   disable: React.PropTypes.func.isRequired,
   disabled: React.PropTypes.bool.isRequired,
-  loadTask: React.PropTypes.func.isRequired,
   postponeSeconds: React.PropTypes.number.isRequired,
   postponeTask: React.PropTypes.func.isRequired,
   storePostponeSeconds: React.PropTypes.func.isRequired,
