@@ -7,9 +7,11 @@ import TimeframeSection from 'js/timeframe/components/section';
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<TimeframeList deleteTask={jest.fn()} />).
-    first().
-    shallow();
+  const connector = shallow(
+    <TimeframeList deleteTask={jest.fn()} updateTask={jest.fn()} />
+  );
+
+  wrapper = connector.first().shallow();
 });
 
 describe('TimeframeList', () => {
