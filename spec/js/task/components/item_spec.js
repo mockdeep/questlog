@@ -16,6 +16,7 @@ beforeEach(() => {
       notificationsPermitted={true}
       enableNotifications={enableNotifications}
       disableNotifications={disableNotifications}
+      deleteTask={jest.fn()}
     />
   );
 });
