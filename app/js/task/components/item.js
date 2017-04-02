@@ -29,13 +29,13 @@ const TaskItem = React.createClass({
   },
 
   componentDidMount() {
-    this.loadTags().then(function setTagStoreCallback() {
+    this.loadTags().then(() => {
       this.unsubscribeTags = TagStore.subscribe(this.loadTags);
-    }.bind(this));
-    this.loadTask().then(function setTaskStoreCallback() {
+    });
+    this.loadTask().then(() => {
       this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
       this.setTitle();
-    }.bind(this));
+    });
   },
 
   componentWillReceiveProps(nextProps) {
