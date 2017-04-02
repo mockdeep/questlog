@@ -1,5 +1,4 @@
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {createTask, setNewTask} from 'js/task/action_creators';
 import NewTaskForm from 'js/task/components/new_task_form';
@@ -11,8 +10,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({createTask, setNewTask}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewTaskForm);
+export default connect(mapStateToProps, {createTask, setNewTask})(NewTaskForm);
