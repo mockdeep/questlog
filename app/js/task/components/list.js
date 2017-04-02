@@ -119,7 +119,7 @@ const TaskList = React.createClass({
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
         storeTask={this.storeTask}
-        destroyTask={this.props.deleteTask}
+        deleteTask={this.props.deleteTask}
       />
     );
   },

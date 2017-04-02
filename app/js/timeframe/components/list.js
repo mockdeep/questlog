@@ -73,7 +73,7 @@ const TimeframeList = React.createClass({
         medianProductivity={this.state.medianProductivity}
         loadTasks={this.loadTasks}
         storeTask={this.storeTask}
-        destroyTask={this.props.deleteTask}
+        deleteTask={this.props.deleteTask}
       />
     );
   },

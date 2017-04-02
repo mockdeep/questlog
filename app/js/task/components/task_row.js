@@ -42,7 +42,7 @@ const TaskRow = React.createClass({
   propTypes: {
     connectDragSource: React.PropTypes.func.isRequired,
     connectDropTarget: React.PropTypes.func.isRequired,
-    destroyTask: React.PropTypes.func.isRequired,
+    deleteTask: React.PropTypes.func.isRequired,
     isDragging: React.PropTypes.bool.isRequired,
     storeTask: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
@@ -73,7 +73,7 @@ const TaskRow = React.createClass({
     event.preventDefault();
     // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
-      this.props.destroyTask(this.props.task.id);
+      this.props.deleteTask(this.props.task.id);
     }
   },
 
