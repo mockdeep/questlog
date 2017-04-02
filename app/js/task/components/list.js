@@ -19,7 +19,10 @@ function findTask(tasks, taskId) {
 }
 
 const TaskList = React.createClass({
-  propTypes: {deleteTask: React.PropTypes.func.isRequired},
+  propTypes: {
+    deleteTask: React.PropTypes.func.isRequired,
+    updateTask: React.PropTypes.func.isRequired,
+  },
 
   getInitialState() {
     return {currentTasks: [], pendingTasks: []};
@@ -107,10 +110,6 @@ const TaskList = React.createClass({
     return this.state.pendingTasks.map(this.taskRow);
   },
 
-  storeTask(taskId, attrs) {
-    return TaskStore.update(taskId, attrs);
-  },
-
   taskRow(task) {
     return (
       <TaskRow
@@ -118,7 +117,7 @@ const TaskList = React.createClass({
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
-        storeTask={this.storeTask}
+        storeTask={this.props.updateTask}
         deleteTask={this.props.deleteTask}
       />
     );
