@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import ItemContainer from 'js/task/components/item';
-import NotificationCheckbox from 'js/notification/components/checkbox';
+import NotificationCheckbox from 'js/notification/containers/checkbox';
 
 const enableNotifications = jest.fn();
 const disableNotifications = jest.fn();

@@ -3,7 +3,7 @@ import React from 'react';
 import NewTaskForm from 'js/task/containers/new_task_form';
 import TaskFooter from 'js/_common/components/task_footer';
 import TaskDisplay from 'js/task/components/task_display';
-import NotificationCheckbox from 'js/notification/components/checkbox';
+import NotificationCheckbox from 'js/notification/containers/checkbox';
 
 import TagStore from 'js/tag/store';
 import TaskStore from 'js/task/store';
