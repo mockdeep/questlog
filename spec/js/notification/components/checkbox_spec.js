@@ -3,9 +3,11 @@ import {shallow} from 'enzyme';
 
 import NotificationCheckbox from 'js/notification/components/checkbox';
 
+const addNotification = jest.fn();
 const completeTask = jest.fn();
-const enableNotifications = jest.fn();
 const disableNotifications = jest.fn();
+const enableNotifications = jest.fn();
+const removeNotification = jest.fn();
 const requestNotificationPermission = jest.fn();
 
 let notificationCheckbox;
@@ -14,6 +16,8 @@ beforeEach(() => {
   notificationCheckbox = shallow(
     <NotificationCheckbox
       task={{}}
+      addNotification={addNotification}
+      removeNotification={removeNotification}
       notificationsEnabled={false}
       notificationsPermitted={true}
       completeTask={completeTask}

@@ -2,16 +2,14 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
+    addNotification: React.PropTypes.func.isRequired,
     completeTask: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
+    removeNotification: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
-  },
-
-  getInitialState() {
-    return {};
   },
 
   componentDidMount() {
@@ -38,7 +36,7 @@ export default React.createClass({
   },
 
   notifyTask() {
-    if (this.state.taskNotification) { this.state.taskNotification.close(); }
+    this.props.removeNotification({type: 'task'});
     if (!this.shouldShowNotifications()) { return; }
 
     const notification = new Notification(this.props.task.title);
@@ -47,7 +45,7 @@ export default React.createClass({
       this.props.completeTask(this.props.task.id);
       notification.close();
     }.bind(this);
-    this.setState({taskNotification: notification});
+    this.props.addNotification({type: 'task', notification});
   },
 
   shouldShowNotifications() {
@@ -70,10 +68,7 @@ export default React.createClass({
   },
 
   closeNotification() {
-    if (this.state.taskNotification) {
-      this.state.taskNotification.close();
-      this.setState({taskNotification: null});
-    }
+    this.props.removeNotification({type: 'task'});
   },
 
   render() {

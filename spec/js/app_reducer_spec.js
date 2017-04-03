@@ -6,6 +6,7 @@ describe('appReducer', () => {
       const action = {type: '@@redux/INIT'};
       const expectedState = {
         user: {},
+        notification: {task: null},
         task: {newTask: {title: ''}},
       };
 
