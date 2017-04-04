@@ -10,6 +10,22 @@ function setTaskAjaxState(payload) {
   return {type: 'task/SET_AJAX_STATE', payload};
 }
 
+function setTasks(payload) {
+  return {type: 'task/SET', payload};
+}
+
+function fetchTasks() {
+  return (dispatch) => {
+    request({
+      method: 'get',
+      url: '/tasks',
+      success: (data) => {
+        dispatch(setTasks(data.tasks));
+      },
+    });
+  };
+}
+
 function createTask(payload) {
   return (dispatch) => {
     dispatch(setTaskAjaxState('taskSaving'));
@@ -48,4 +64,4 @@ function updateTask(taskId, payload) {
   };
 }
 
-export {createTask, deleteTask, setNewTask, updateTask};
+export {createTask, deleteTask, fetchTasks, setNewTask, updateTask};

@@ -75,6 +75,7 @@ rules:
 
   ### dumb rules
   capitalized-comments: off
+  line-comment-position: off
   no-inline-comments: off
   no-ternary: off
   react/jsx-handler-names: off
