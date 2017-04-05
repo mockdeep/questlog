@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: :scoped, scope: :user_id
 
   belongs_to :user
 
