@@ -19,3 +19,5 @@
 /node_modules
 /public/packs
 npm-debug.log
+/public/packs
+/node_modules

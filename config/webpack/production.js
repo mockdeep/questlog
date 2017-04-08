@@ -1,14 +1,12 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CompressionPlugin = require('compression-webpack-plugin');
-
 const sharedConfig = require('./shared.js');
 
-module.exports = merge(sharedConfig.config, {
+module.exports = merge(sharedConfig, {
   output: {filename: '[name]-[chunkhash].js'},
 
   plugins: [
-    new webpack.LoaderOptionsPlugin({minimize: true}),
     new webpack.optimize.UglifyJsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',

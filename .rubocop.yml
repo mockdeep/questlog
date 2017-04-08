@@ -41,6 +41,10 @@ Metrics/BlockLength:
     - config/environments/production.rb
     - spec/**/*.rb
 
+Metrics/LineLength:
+  Exclude:
+    - bin/*
+
 Style/TrivialAccessors:
   AllowPredicates: true
 

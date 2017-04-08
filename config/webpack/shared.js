@@ -1,63 +1,48 @@
+/* eslint global-require: off */
+
 const webpack = require('webpack');
-const path = require('path');
-const process = require('process');
-const glob = require('glob');
+const {basename, join, resolve} = require('path');
+const {sync} = require('glob');
+const {readdirSync} = require('fs');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
+const {env, paths, publicPath, loadersDir} = require('./configuration.js');
 
-const distDir = process.env.WEBPACK_DIST_DIR || 'packs';
+const extensionGlob = `*{${paths.extensions.join(',')}}*`;
 
-const config = {
-  entry: glob.sync(path.join('app', 'javascript', 'packs', '*.js*')).reduce(
+const packPaths = sync(join(paths.source, paths.entry, extensionGlob));
+
+module.exports = {
+  entry: packPaths.reduce(
     (map, entry) => {
-      const basename = path.basename(entry, extname(entry));
       const localMap = map;
 
-      localMap[basename] = path.resolve(entry);
+      localMap[basename(entry, extname(entry))] = resolve(entry);
 
       return localMap;
     }, {}
   ),
 
-  output: {filename: '[name].js', path: path.resolve('public', distDir)},
+  output: {filename: '[name].js', path: resolve(paths.output, paths.entry)},
 
   module: {
-    rules: [
-      {
-        test: /\.js(\.erb)?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            ['env', {modules: false}],
-          ],
-        },
-      },
-      {
-        test: /\.erb$/,
-        enforce: 'pre',
-        exclude: /node_modules/,
-        loader: 'rails-erb-loader',
-        options: {runner: 'DISABLE_SPRING=1 bin/rails runner'},
-      },
-    ],
+    rules: readdirSync(loadersDir).map((file) =>
+      require(join(loadersDir, file))
+    ),
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin(Object.keys(process.env)),
+    new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
+    new ManifestPlugin({fileName: 'manifest.json', publicPath, writeToFileEmit: true}),
   ],
 
   resolve: {
-    extensions: ['.js'],
+    extensions: paths.extensions,
     modules: [
-      path.resolve('app/javascript'),
-      path.resolve('node_modules'),
+      resolve(paths.source),
+      resolve(paths.node_modules),
     ],
   },
 
-  resolveLoader: {modules: [path.resolve('node_modules')]},
-};
-
-module.exports = {
-  distDir,
-  config,
+  resolveLoader: {modules: [paths.node_modules]},
 };
