@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import TagButtons from 'js/task/components/tag_buttons';
+import TagButtons from 'src/task/components/tag_buttons';
 
 const tags = [
   {id: 5, name: 'home', unfinishedTasksCount: 8},

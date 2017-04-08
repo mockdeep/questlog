@@ -1,5 +1,5 @@
-import reducer from 'js/user/reducer';
-import * as actionCreators from 'js/user/action_creators';
+import reducer from 'src/user/reducer';
+import * as actionCreators from 'src/user/action_creators';
 
 describe('user/reducer', () => {
   describe('INIT', () => {

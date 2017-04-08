@@ -1,4 +1,4 @@
-import appStore from 'js/app_store';
+import appStore from 'src/app_store';
 
 describe('appStore', () => {
   it('behaves like a store', () => {

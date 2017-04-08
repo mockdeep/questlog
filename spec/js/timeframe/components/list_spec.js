@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TimeframeList from 'js/timeframe/components/list';
-import TimeframeSection from 'js/timeframe/components/section';
+import TimeframeList from 'src/timeframe/components/list';
+import TimeframeSection from 'src/timeframe/components/section';
 
 let wrapper;
 

@@ -1,4 +1,4 @@
-import {calculateTotalMinutes} from 'js/timeframe/utils';
+import {calculateTotalMinutes} from 'src/timeframe/utils';
 
 describe('calculateTotalMinutes()', () => {
   it('returns the total number of minutes from tasks', () => {

@@ -1,5 +1,5 @@
 {
-  "collectCoverageFrom": ["app/js/**/*.{js,jsx}"],
+  "collectCoverageFrom": ["app/javascript/**/*.{js,jsx}"],
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {
     "global": {
@@ -11,7 +11,7 @@
   },
   "moduleFileExtensions": ["js", "jsx"],
   "modulePaths": [
-    "<rootDir>/app/",
+    "<rootDir>/app/javascript",
     "<rootDir>/vendor/assets/javascripts/",
     "<rootDir>/spec/js/"
   ],
