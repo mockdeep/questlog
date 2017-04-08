@@ -1,6 +1,7 @@
 RSpec.describe Timeframe, '.for' do
 
   let(:user) { create(:user) }
+
   it 'returns a collection of timeframes for the given user' do
     expect(Timeframe.for(user: user)).to eq [
       Timeframe.new(name: 'inbox', tasks: []),

@@ -6,11 +6,10 @@ RSpec.describe BulkTasksController, '#update' do
   let(:task_3) { create(:task, position: 3, user: user) }
   let(:task_4) { create(:task, position: 4, user: user) }
   let(:task_5) { create(:task, position: 5, user: user) }
-
-  before(:each) { login_as(user) }
-
   let(:positions) { [task_4, task_2, task_1, task_3, task_5].map(&:id) }
   let(:valid_params) { { bulk_task: { positions: positions } } }
+
+  before(:each) { login_as(user) }
 
   it 'allows setting positions on tasks' do
     put(:update, params: valid_params)
