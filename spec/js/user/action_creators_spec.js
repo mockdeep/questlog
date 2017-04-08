@@ -1,4 +1,4 @@
-import * as actionCreators from 'js/user/action_creators';
+import * as actionCreators from 'src/user/action_creators';
 
 describe('#updateUser', () => {
   it('returns an UPDATE action for the payload', () => {

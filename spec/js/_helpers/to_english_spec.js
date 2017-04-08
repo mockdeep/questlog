@@ -1,4 +1,4 @@
-import ToEnglish from 'js/_helpers/to_english';
+import ToEnglish from 'src/_helpers/to_english';
 
 describe('ToEnglish.seconds', () => {
   it('returns seconds when < 1 minute', () => {

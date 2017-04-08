@@ -21,7 +21,7 @@ globals:
 settings:
   import/resolver:
     node:
-      moduleDirectory: [app, node_modules]
+      moduleDirectory: [app/javascript, node_modules]
 rules:
   ### to enable/improve
   init-declarations: off

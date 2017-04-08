@@ -2,7 +2,7 @@ jest.mock('reqwest');
 
 import {shallow} from 'enzyme';
 
-import router from 'js/router';
+import router from 'src/router';
 
 describe('router', () => {
   it('renders routes', () => {

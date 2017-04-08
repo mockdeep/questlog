@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import TimeBalancer from 'js/_helpers/time_balancer';
+import TimeBalancer from 'src/_helpers/time_balancer';
 
 describe('TimeBalancer.baseBalances', () => {
   it('returns a collection of base time pairs', () => {

@@ -1,4 +1,4 @@
-import QNotification from 'js/q_notification';
+import QNotification from 'src/q_notification';
 
 window.Notification = {};
 

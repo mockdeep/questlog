@@ -1,4 +1,4 @@
-import reducer from 'js/app_reducer';
+import reducer from 'src/app_reducer';
 
 describe('appReducer', () => {
   describe('init', () => {

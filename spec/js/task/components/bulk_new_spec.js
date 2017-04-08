@@ -1,12 +1,12 @@
-jest.mock('js/task/bulk_store');
+jest.mock('src/task/bulk_store');
 jest.mock('react-router');
 
 import React from 'react';
 import {browserHistory} from 'react-router';
 import {mount} from 'enzyme';
 
-import BulkTasksNew from 'js/task/components/bulk_new';
-import BulkTaskStore from 'js/task/bulk_store';
+import BulkTasksNew from 'src/task/components/bulk_new';
+import BulkTaskStore from 'src/task/bulk_store';
 
 describe('BulkTasksNew', () => {
   it('redirects to TaskList on successful save', () => {
