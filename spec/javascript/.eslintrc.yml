@@ -3,5 +3,6 @@ env:
   node: true
 plugins: [jest]
 rules:
-  jest/no-exclusive-tests: error
+  jest/no-disabled-tests: error
+  jest/no-focused-tests: error
   jest/no-identical-title: error
