@@ -21,7 +21,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.active_support.deprecation = [:log, :stderr]
+  config.active_support.deprecation = %i[log stderr]
 
   config.active_record.migration_error = :page_load
 

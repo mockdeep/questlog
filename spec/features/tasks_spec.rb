@@ -122,7 +122,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_selector(repeat_selector)
     task = Task.first
     expect(task.title).to eq 'do laundry'
-    expect(task.tags.pluck(:name).sort).to eq %w(at-home chore)
+    expect(task.tags.pluck(:name).sort).to eq %w[at-home chore]
     expect(task.priority).to eq 2
     expect(task.repeat_seconds).to eq 1.week
     # expect(task.repeat_string).to eq 'every week'

@@ -2,7 +2,7 @@ class Timeframe
 
   include ActiveModel::Serialization
 
-  NAMES = %w(today week month quarter year lustrum decade century).freeze
+  NAMES = %w[today week month quarter year lustrum decade century].freeze
 
   attr_reader :tasks, :name
 

@@ -9,9 +9,9 @@ RSpec.describe TagParser, '#call' do
 
   it 'returns an array of tag_names when there are #tags in the string' do
     result = parser.('#at-home take out trash')
-    expect(result).to eq(title: 'take out trash', tag_names: %w(at-home))
+    expect(result).to eq(title: 'take out trash', tag_names: %w[at-home])
     result = parser.('#at-home eat stuff #at-work')
-    expected = { title: 'eat stuff', tag_names: %w(at-home at-work) }
+    expected = { title: 'eat stuff', tag_names: %w[at-home at-work] }
     expect(result).to eq(expected)
   end
 

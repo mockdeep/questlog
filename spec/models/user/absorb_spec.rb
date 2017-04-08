@@ -37,7 +37,7 @@ RSpec.describe User, '#absorb' do
     )
     create(:tag, name: 'another-solo', user: user)
     tag_2 = create(:tag, name: 'duplicate', user: user)
-    expected_names = %w(another-solo duplicate solo)
+    expected_names = %w[another-solo duplicate solo]
     user.absorb(other_user)
     expect(user.reload.tags.pluck(:name).sort).to eq expected_names
     expect(other_task.reload.tags).to eq [tag_2]

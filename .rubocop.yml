@@ -71,6 +71,10 @@ Style/TrailingCommaInArguments:
 # enable or confirm the rules below
 # ............................................................................ #
 
+# https://github.com/bbatsov/rubocop/pull/4237
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 

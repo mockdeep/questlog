@@ -13,5 +13,5 @@ if Rails.env.test? || Rails.env.development?
   require 'haml_lint/rake_task'
   HamlLint::RakeTask.new
 
-  task default: [:rubocop, :haml_lint]
+  task default: %i[rubocop haml_lint]
 end
