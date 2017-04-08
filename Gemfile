@@ -27,7 +27,7 @@ gem 'rack-mini-profiler'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
-gem 'webpacker', github: 'rails/webpacker'
+gem 'webpacker'
 
 group :production do
   gem 'rails_12factor'

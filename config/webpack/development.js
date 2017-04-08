@@ -1,16 +1,10 @@
-const webpack = require('webpack');
 const merge = require('webpack-merge');
-
 const sharedConfig = require('./shared.js');
 
-module.exports = merge(sharedConfig.config, {
+module.exports = merge(sharedConfig, {
   devtool: 'sourcemap',
 
   stats: {errorDetails: true},
 
   output: {pathinfo: true},
-
-  plugins: [
-    new webpack.LoaderOptionsPlugin({debug: true}),
-  ],
 });
