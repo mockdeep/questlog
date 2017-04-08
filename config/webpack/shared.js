@@ -7,7 +7,7 @@ const extname = require('path-complete-extname');
 const distDir = process.env.WEBPACK_DIST_DIR || 'packs';
 
 const config = {
-  entry: glob.sync(path.join('app', 'js', '_packs', '*.js*')).reduce(
+  entry: glob.sync(path.join('app', 'js', 'packs', '*.js*')).reduce(
     (map, entry) => {
       const basename = path.basename(entry, extname(entry));
       const localMap = map;
