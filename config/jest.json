@@ -13,8 +13,8 @@
   "modulePaths": [
     "<rootDir>/app/javascript",
     "<rootDir>/vendor/assets/javascripts/",
-    "<rootDir>/spec/js/"
+    "<rootDir>/spec/javascript/"
   ],
-  "setupTestFrameworkScriptFile": "<rootDir>/spec/js/test_helper.js",
-  "testRegex": "/spec/js/.*_spec.js(x)?$"
+  "setupTestFrameworkScriptFile": "<rootDir>/spec/javascript/test_helper.js",
+  "testRegex": "/spec/javascript/.*_spec.js(x)?$"
 }
