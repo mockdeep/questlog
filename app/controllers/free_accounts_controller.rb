@@ -25,7 +25,7 @@ private
   end
 
   def permitted_params
-    [:email, :password, :password_confirmation]
+    %i[email password password_confirmation]
   end
 
 end

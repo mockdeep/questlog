@@ -12,7 +12,7 @@ class RenameQuickiesToTasks < ActiveRecord::Migration
     rename_column :taggings, :quickie_id, :task_id
 
     add_index :taggings, :task_id
-    add_index :taggings, [:context_id, :task_id], unique: true
+    add_index :taggings, %i[context_id task_id], unique: true
 
     rename_column :users, :quickies_count, :tasks_count
     rename_column :contexts, :quickies_count, :tasks_count

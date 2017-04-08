@@ -8,7 +8,7 @@ class RemoveIndices < ActiveRecord::Migration
     remove_index :quickies, :user_id
 
     remove_index :taggings, :quickie_id
-    remove_index :taggings, [:context_id, :quickie_id]
+    remove_index :taggings, %i[context_id quickie_id]
   end
 
   def down
@@ -19,7 +19,7 @@ class RemoveIndices < ActiveRecord::Migration
     add_index :quickies, :user_id
 
     add_index :taggings, :quickie_id
-    add_index :taggings, [:context_id, :quickie_id]
+    add_index :taggings, %i[context_id quickie_id]
   end
 
 end

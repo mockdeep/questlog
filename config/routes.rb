@@ -8,15 +8,15 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create]
     delete '/sessions' => 'sessions#destroy', as: 'session'
 
-    resources :free_accounts, only: [:new, :create]
-    resources :charges, only: [:new, :create]
+    resources :free_accounts, only: %i[new create]
+    resources :charges, only: %i[new create]
 
     get '/*path', to: 'pages#index'
   end
 
   scope constraints: JsonConstraint.new do
     resources :tags, only: [:index]
-    resources :tasks, only: [:index, :create, :update, :destroy]
+    resources :tasks, only: %i[index create update destroy]
     resources :timeframes, only: [:index]
     resources :bulk_tasks, only: [:create]
     put(:bulk_tasks, to: 'bulk_tasks#update')

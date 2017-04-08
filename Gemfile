@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.3'
 
 # needs to be included before any other gems that use environment variables
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 
 gem 'rails', '~> 5.0.0'
 
