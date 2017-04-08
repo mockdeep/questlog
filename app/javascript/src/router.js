@@ -8,8 +8,8 @@ import {fetchTasks} from 'src/task/action_creators';
 
 appStore.dispatch(fetchTasks());
 
-export default (
+export default
   <Provider store={appStore}>
     <Router history={browserHistory}>{routes}</Router>
   </Provider>
-);
+;
