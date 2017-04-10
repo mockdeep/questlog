@@ -38,7 +38,7 @@ const ItemContainer = React.createClass({
   },
 
   requestNotificationPermission() {
-    Notification.requestPermission().then(function notificationPermit(result) {
+    Notification.requestPermission().then((result) => {
       if (result === 'granted') {
         this.enableNotifications();
 
@@ -46,7 +46,7 @@ const ItemContainer = React.createClass({
       }
 
       this.disableNotifications();
-    }.bind(this));
+    });
   },
 
   render() {
