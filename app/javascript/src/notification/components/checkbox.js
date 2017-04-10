@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default React.createClass({
+const NotificationCheckbox = React.createClass({
   propTypes: {
     addNotification: React.PropTypes.func.isRequired,
     completeTask: React.PropTypes.func.isRequired,
@@ -41,10 +41,10 @@ export default React.createClass({
 
     const notification = new Notification(this.props.task.title);
 
-    notification.onclick = function notificationClick() {
+    notification.onclick = () => {
       this.props.completeTask(this.props.task.id);
       notification.close();
-    }.bind(this);
+    };
     this.props.addNotification({type: 'task', notification});
   },
 
@@ -84,3 +84,5 @@ export default React.createClass({
     );
   },
 });
+
+export default NotificationCheckbox;
