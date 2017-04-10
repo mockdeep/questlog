@@ -11,11 +11,7 @@ import TaskStore from 'src/task/store';
 const TaskItem = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
-    disableNotifications: React.PropTypes.func.isRequired,
-    enableNotifications: React.PropTypes.func.isRequired,
     fetchTasks: React.PropTypes.func.isRequired,
-    notificationsEnabled: React.PropTypes.bool.isRequired,
-    notificationsPermitted: React.PropTypes.bool.isRequired,
     params: React.PropTypes.object.isRequired,
     tags: React.PropTypes.array.isRequired,
     url: React.PropTypes.string,
@@ -111,10 +107,6 @@ const TaskItem = React.createClass({
         <NotificationCheckbox
           task={this.state.task}
           completeTask={this.completeTask}
-          enableNotifications={this.props.enableNotifications}
-          disableNotifications={this.props.disableNotifications}
-          notificationsEnabled={this.props.notificationsEnabled}
-          notificationsPermitted={this.props.notificationsPermitted}
         />
         <TaskFooter />
       </div>
