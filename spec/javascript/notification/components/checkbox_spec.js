@@ -3,6 +3,11 @@ import {shallow} from 'enzyme';
 
 import NotificationCheckbox from 'src/notification/components/checkbox';
 
+const requestPermission = jest.fn();
+const Notification = {requestPermission};
+
+window.Notification = Notification;
+
 const addNotification = jest.fn();
 const completeTask = jest.fn();
 const disableNotifications = jest.fn();
@@ -13,6 +18,7 @@ const requestNotificationPermission = jest.fn();
 let notificationCheckbox;
 
 beforeEach(() => {
+  requestPermission.mockReturnValue({then: jest.fn()});
   notificationCheckbox = shallow(
     <NotificationCheckbox
       task={{}}
@@ -24,6 +30,7 @@ beforeEach(() => {
       enableNotifications={enableNotifications}
       disableNotifications={disableNotifications}
       requestNotificationPermission={requestNotificationPermission}
+      updateUser={jest.fn()}
     />
   );
 });
@@ -34,6 +41,6 @@ describe('NotificationCheckbox', () => {
 
     notificationCheckbox.find('input[type="checkbox"]').simulate('click', fakeEvent);
 
-    expect(enableNotifications).toHaveBeenCalled();
+    expect(requestPermission).toHaveBeenCalled();
   });
 });

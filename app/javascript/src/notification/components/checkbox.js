@@ -1,15 +1,15 @@
 import React from 'react';
 
+import QNotification from 'src/q_notification';
+
 const NotificationCheckbox = React.createClass({
   propTypes: {
     addNotification: React.PropTypes.func.isRequired,
     completeTask: React.PropTypes.func.isRequired,
-    disableNotifications: React.PropTypes.func.isRequired,
-    enableNotifications: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
-    notificationsPermitted: React.PropTypes.bool.isRequired,
     removeNotification: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
+    updateUser: React.PropTypes.func.isRequired,
   },
 
   componentDidMount() {
@@ -26,6 +26,30 @@ const NotificationCheckbox = React.createClass({
 
   componentWillUnmount() {
     this.closeNotification();
+  },
+
+  notificationsPermitted() {
+    return QNotification.isPermissionGranted();
+  },
+
+  requestNotificationPermission() {
+    Notification.requestPermission().then((result) => {
+      if (result === 'granted') {
+        this.enableNotifications();
+
+        return;
+      }
+
+      this.disableNotifications();
+    });
+  },
+
+  enableNotifications() {
+    if (this.notificationsPermitted()) {
+      this.props.updateUser({notificationsEnabled: true});
+    } else {
+      this.requestNotificationPermission();
+    }
   },
 
   notifyOnInterval() {
@@ -51,12 +75,12 @@ const NotificationCheckbox = React.createClass({
   shouldShowNotifications() {
     return Boolean(this.props.task.id) &&
            this.props.notificationsEnabled &&
-           this.props.notificationsPermitted;
+           this.notificationsPermitted();
   },
 
   toggleNotifications(event) {
     if (event.target.checked) {
-      this.props.enableNotifications();
+      this.enableNotifications();
     } else {
       this.disableNotifications();
     }
@@ -64,7 +88,7 @@ const NotificationCheckbox = React.createClass({
 
   disableNotifications() {
     this.closeNotification();
-    this.props.disableNotifications();
+    this.props.updateUser({notificationsEnabled: false});
   },
 
   closeNotification() {
