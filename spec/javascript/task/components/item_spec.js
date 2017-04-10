@@ -17,6 +17,8 @@ beforeEach(() => {
       enableNotifications={enableNotifications}
       disableNotifications={disableNotifications}
       deleteTask={jest.fn()}
+      fetchTasks={jest.fn()}
+      tags={[]}
     />
   );
 });

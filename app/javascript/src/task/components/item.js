@@ -13,9 +13,11 @@ const TaskItem = React.createClass({
     deleteTask: React.PropTypes.func.isRequired,
     disableNotifications: React.PropTypes.func.isRequired,
     enableNotifications: React.PropTypes.func.isRequired,
+    fetchTasks: React.PropTypes.func.isRequired,
     notificationsEnabled: React.PropTypes.bool.isRequired,
     notificationsPermitted: React.PropTypes.bool.isRequired,
     params: React.PropTypes.object.isRequired,
+    tags: React.PropTypes.array.isRequired,
     url: React.PropTypes.string,
   },
 
@@ -23,15 +25,11 @@ const TaskItem = React.createClass({
     return {
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
-      tags: [],
       postponeSeconds: 300,
     };
   },
 
   componentDidMount() {
-    this.loadTags().then(() => {
-      this.unsubscribeTags = TagStore.subscribe(this.loadTags);
-    });
     this.loadTask().then(() => {
       this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
       this.setTitle();
@@ -44,20 +42,11 @@ const TaskItem = React.createClass({
   },
 
   componentWillUnmount() {
-    this.unsubscribeTags();
     this.unsubscribeTasks();
   },
 
   storePostponeSeconds(postponeSeconds) {
     this.setState({postponeSeconds});
-  },
-
-  loadTags() {
-    return TagStore.getAll().then(this.setTags);
-  },
-
-  setTags(data) {
-    this.setState({tags: data.tags});
   },
 
   setTitle() {
@@ -70,7 +59,7 @@ const TaskItem = React.createClass({
 
     this.setState({task: newTask});
 
-    return TaskStore.update(taskId, attrs);
+    return TaskStore.update(taskId, attrs).then(this.props.fetchTasks);
   },
 
   loadTask() {
@@ -108,7 +97,7 @@ const TaskItem = React.createClass({
       <div>
         <TaskDisplay
           task={this.state.task}
-          tags={this.state.tags}
+          tags={this.props.tags}
           disabled={this.state.disabled}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}

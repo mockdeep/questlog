@@ -1,6 +1,7 @@
 import flash from 'src/_helpers/flash';
 import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
+import {fetchTags} from 'src/tag/action_creators';
 
 function setNewTask(payload) {
   return {type: 'task/SET_NEW', payload};
@@ -20,6 +21,7 @@ function fetchTasks() {
       method: 'get',
       url: '/tasks',
       success: (data) => {
+        dispatch(fetchTags());
         dispatch(setTasks(data.tasks));
       },
     });
@@ -37,6 +39,7 @@ function createTask(payload) {
       success: () => {
         dispatch(setTaskAjaxState(null));
         dispatch(setNewTask({title: ''}));
+        dispatch(fetchTasks());
         TaskStore.unload();
         flash('success', 'Task added');
       },
@@ -45,21 +48,27 @@ function createTask(payload) {
 }
 
 function deleteTask(taskId) {
-  return () => {
+  return (dispatch) => {
     request({
       url: `tasks/${taskId}`,
       method: 'delete',
-      success: () => { TaskStore.unload(); },
+      success: () => {
+        dispatch(fetchTasks());
+        TaskStore.unload();
+      },
     });
   };
 }
 
 function updateTask(taskId, payload) {
-  return () => {
+  return (dispatch) => {
     request({
       data: {task: payload},
       url: `tasks/${taskId}`,
-      success: () => { TaskStore.unload(); },
+      success: () => {
+        dispatch(fetchTasks());
+        TaskStore.unload();
+      },
     });
   };
 }
