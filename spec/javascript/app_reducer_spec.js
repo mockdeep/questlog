@@ -7,6 +7,7 @@ describe('appReducer', () => {
       const expectedState = {
         user: {},
         notification: {task: null},
+        tag: {byId: {}, orderedIds: []},
         task: {newTask: {title: ''}},
       };
 

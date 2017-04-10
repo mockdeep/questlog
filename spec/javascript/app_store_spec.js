@@ -5,6 +5,7 @@ describe('appStore', () => {
     const expectedState = {
       user: {},
       notification: {task: null},
+      tag: {byId: {}, orderedIds: []},
       task: {newTask: {title: ''}},
     };
     const subSpy = jest.fn();

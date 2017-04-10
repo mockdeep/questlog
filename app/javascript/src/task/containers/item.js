@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {deleteTask, updateTask} from 'src/task/action_creators';
+import {deleteTask, fetchTasks, updateTask} from 'src/task/action_creators';
+import {getOrderedTags} from 'src/tag/selectors';
 import {updateUser} from 'src/user/action_creators';
 import TaskItem from 'src/task/components/item';
 import QNotification from 'src/q_notification';
@@ -9,7 +10,9 @@ import QNotification from 'src/q_notification';
 const ItemContainer = React.createClass({
   propTypes: {
     deleteTask: React.PropTypes.func.isRequired,
+    fetchTasks: React.PropTypes.func.isRequired,
     params: React.PropTypes.object.isRequired,
+    tags: React.PropTypes.array.isRequired,
     updateUser: React.PropTypes.func.isRequired,
     user: React.PropTypes.object.isRequired,
   },
@@ -51,20 +54,22 @@ const ItemContainer = React.createClass({
       <TaskItem
         params={this.props.params}
         deleteTask={this.props.deleteTask}
+        fetchTasks={this.props.fetchTasks}
         requestNotificationPermission={this.requestNotificationPermission}
         notificationsEnabled={this.notificationsEnabled()}
         notificationsPermitted={this.notificationsPermitted()}
         enableNotifications={this.enableNotifications}
         disableNotifications={this.disableNotifications}
+        tags={this.props.tags}
       />
     );
   },
 });
 
 function mapStateToProps(state) {
-  return {user: state.user};
+  return {user: state.user, tags: getOrderedTags(state)};
 }
 
-const actionCreators = {deleteTask, updateTask, updateUser};
+const actionCreators = {deleteTask, fetchTasks, updateTask, updateUser};
 
 export default connect(mapStateToProps, actionCreators)(ItemContainer);
