@@ -7,8 +7,6 @@ gem 'dotenv-rails', groups: %i[development test]
 
 gem 'rails', '~> 5.0.0'
 
-# https://github.com/rails-api/active_model_serializers/issues/1745
-gem 'active_model_serializers', '~> 0.9.4'
 gem 'autoprefixer-rails'
 gem 'bcrypt'
 gem 'dalli'

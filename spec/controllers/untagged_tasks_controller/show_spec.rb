@@ -10,8 +10,9 @@ RSpec.describe UntaggedTasksController, '#show' do
   context 'format.json' do
     it 'renders the task as json' do
       get(:show, format: :json)
-      serial_task = TaskSerializer.new(task).as_json.deep_stringify_keys
-      expect(JSON.parse(response.body)).to eq serial_task
+      # serial_task = TaskSerializer.new(task).as_json.deep_stringify_keys
+      expected = { 'task' => hash_including('id' => task.id) }
+      expect(JSON.parse(response.body)).to match(expected)
     end
 
     it 'renders "null" when there are no tasks' do
