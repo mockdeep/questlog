@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
 
 private
 
+  def serialize(object, **options)
+    serializer_for(object).(object, options) if object
+  end
+
+  def serializer_for(object)
+    "#{object.class}Serializer".constantize.new
+  end
+
   def configure_headers
     response.headers['Vary'] = 'Accept'
   end

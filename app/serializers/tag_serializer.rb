@@ -1,5 +1,7 @@
-class TagSerializer < ActiveModel::Serializer
+class TagSerializer
 
-  attributes :id, :name, :unfinished_tasks_count, :slug, :priority
+  include Serializeable
+
+  serialize(:id, :name, :unfinished_tasks_count, :slug, :priority)
 
 end

@@ -4,7 +4,7 @@ class UntaggedTasksController < ApplicationController
     task = current_user.tasks.untagged.next
 
     respond_to do |format|
-      format.json { render json: task }
+      format.json { render json: serialize(task) }
     end
   end
 

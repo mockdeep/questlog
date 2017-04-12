@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 
   def index
-    respond_to { |format| format.json { render json: tags } }
+    respond_to { |format| format.json { render json: serialize(tags) } }
   end
 
 private

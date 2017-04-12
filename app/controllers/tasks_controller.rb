@@ -2,14 +2,16 @@ class TasksController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: current_user.undone_and_pending_tasks }
+      format.json do
+        render json: serialize(current_user.undone_and_pending_tasks)
+      end
     end
   end
 
   def show
     task = current_user.next_task(params[:slug])
     respond_to do |format|
-      format.json { render json: task }
+      format.json { render json: serialize(task) }
     end
   end
 
@@ -18,7 +20,7 @@ class TasksController < ApplicationController
 
     task = TaskCreate.(task_params.merge(user: current_user))
     respond_to do |format|
-      format.json { render json: task, status: :created }
+      format.json { render json: serialize(task), status: :created }
     end
   end
 
@@ -26,7 +28,7 @@ class TasksController < ApplicationController
     task = current_user.tasks.find(params[:id])
     TaskUpdate.(task, task_params)
     respond_to do |format|
-      format.json { render json: task, status: :ok }
+      format.json { render json: serialize(task), status: :ok }
     end
   end
 

@@ -1,6 +1,8 @@
-class TaskSerializer < ActiveModel::Serializer
+class TaskSerializer
 
-  attributes(
+  include Serializeable
+
+  serialize(
     :estimate_seconds,
     :id,
     :pending,
@@ -13,8 +15,8 @@ class TaskSerializer < ActiveModel::Serializer
     :timeframe,
   )
 
-  def pending
-    object.release_at.present?
+  def pending(task)
+    task.release_at.present?
   end
 
 end
