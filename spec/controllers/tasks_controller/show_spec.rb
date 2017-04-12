@@ -11,7 +11,20 @@ RSpec.describe TasksController, '#show' do
   context 'format.json' do
     it 'renders the task as json' do
       get(:show, format: :json)
-      serial_task = TaskSerializer.new(task).as_json.deep_stringify_keys
+      serial_task = {
+        'task' => {
+          'estimateSeconds' => nil,
+          'id' => task.id,
+          'pending' => false,
+          'priority' => nil,
+          'repeatSeconds' => nil,
+          'releaseAt' => nil,
+          'skipCount' => 0,
+          'tagNames' => [],
+          'title' => task.title,
+          'timeframe' => nil,
+        },
+      }
       expect(JSON.parse(response.body)).to eq serial_task
     end
 
