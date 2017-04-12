@@ -5,10 +5,6 @@ RSpec.describe TimeframesController, '#index' do
 
   before(:each) { login_as(user) }
 
-  def serialize(task)
-    TaskSerializer.new(task).as_json(root: false).stringify_keys
-  end
-
   it 'returns the median productivity for the current user' do
     Stat.create!(stat_params.merge(value: 35.minutes, timestamp: 1.month.ago))
     Stat.create!(stat_params.merge(value: 1.hour, timestamp: 1.week.ago))
@@ -23,7 +19,7 @@ RSpec.describe TimeframesController, '#index' do
 
   it 'returns the inbox timeframe for the current user' do
     task = create(:task, user: user)
-    serial_task = serialize(task)
+    serial_task = hash_including('id' => task.id, 'timeframe' => nil)
     get(:index)
     timeframes = JSON.parse(response.body)['timeframes']
     expect(timeframes).to include('name' => 'inbox', 'tasks' => [serial_task])
@@ -34,9 +30,9 @@ RSpec.describe TimeframesController, '#index' do
     task_2 = create(:task, user: user, timeframe: 'week')
     task_3 = create(:task, user: user, timeframe: 'year')
 
-    serial_task_1 = serialize(task_1)
-    serial_task_2 = serialize(task_2)
-    serial_task_3 = serialize(task_3)
+    serial_task_1 = hash_including('id' => task_1.id, 'timeframe' => nil)
+    serial_task_2 = hash_including('id' => task_2.id, 'timeframe' => 'week')
+    serial_task_3 = hash_including('id' => task_3.id, 'timeframe' => 'year')
 
     get(:index)
 
