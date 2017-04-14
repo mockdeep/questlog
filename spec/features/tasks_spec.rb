@@ -102,13 +102,16 @@ RSpec.describe 'Tasks page', js: true do
 
   it 'allows a user to delete a task' do
     feature_login_as(user)
-    add_task('do laundry')
+    add_task('do laundry #home')
     expect(task_title).to have_content('do laundry')
-    add_task('feed dog')
+    expect(page).to have_content('home (1)')
+    add_task('feed dog #home')
+    expect(page).to have_content('home (2)')
     expect(task_title).to have_content('do laundry')
     find('.delete-button').click
     confirm_alert
     expect(task_title).to have_content('feed dog')
+    expect(page).to have_content('home (1)')
   end
 
   it 'parses and adds attributes on tasks' do
