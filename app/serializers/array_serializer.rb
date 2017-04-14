@@ -14,16 +14,8 @@ class ArraySerializer
 
 private
 
-  def serialize(object)
-    serializer_for(object).(object, root: false) if object
-  end
-
-  def serializer_for(object)
-    "#{object.class}Serializer".constantize.new
-  end
-
   def serialize_object(array)
-    array.map { |task| serialize(task) }
+    array.map { |task| serialize(task, root: false) }
   end
 
 end

@@ -46,6 +46,14 @@ module Serializeable
     end
   end
 
+  def serialize(object, **options)
+    serializer_for(object).(object, options) if object
+  end
+
+  def serializer_for(object)
+    "#{object.class}Serializer".constantize.new
+  end
+
   def serialize_object(object)
     self.class.serialized_attributes.each_with_object({}) do |attribute, result|
       key_name = attribute.to_s.camelize(:lower).to_sym
