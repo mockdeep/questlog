@@ -59,6 +59,9 @@ ClassLength:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
+Style/IndentArray:
+  EnforcedStyle: consistent
+
 Style/LambdaCall:
   EnforcedStyle: braces
 

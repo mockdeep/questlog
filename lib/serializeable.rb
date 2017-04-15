@@ -1,5 +1,9 @@
 module Serializeable
 
+  class SerializerError < StandardError; end
+
+  BASE_CLASSES = Set.new(%w[NilClass String Fixnum FalseClass TrueClass Time])
+
   # concerns
   # different types of associations in Rails
   # making sure there are serializers where appropriate (e.g.: models)
@@ -8,6 +12,8 @@ module Serializeable
   #       meta: "some meta info",
   #       included: [some_associated_model]
   #     }
+  # sub-class serializers
+  # minimizing public API
 
   module ClassMethods
 
@@ -32,23 +38,36 @@ module Serializeable
   end
 
   def serialize(object)
+    return object if BASE_CLASSES.include?(object.class.name)
+
     serializer_for(object).(object)
   end
 
   def serializer_for(object)
-    "#{object.class}Serializer".constantize
+    if object.respond_to?(:to_ary)
+      CollectionSerializer
+    else
+      "#{object.class}Serializer".constantize
+    end
+  rescue NameError
+    raise SerializerError, "no serializer found for #{object.class}"
   end
 
   def serialize_object(object)
     self.class.serialized_attributes.each_with_object({}) do |attribute, result|
       key_name = attribute.to_s.camelize(:lower).to_sym
-      result[key_name] =
-        if respond_to?(attribute)
-          public_send(attribute, object)
-        else
-          result[key_name] = object.public_send(attribute)
-        end
+      result[key_name] = serialize_attribute(attribute, object)
     end
+  end
+
+  def serialize_attribute(attribute, object)
+    value =
+      if respond_to?(attribute)
+        public_send(attribute, object)
+      else
+        object.public_send(attribute)
+      end
+    serialize(value)
   end
 
 end
