@@ -21,10 +21,6 @@ module Serializeable
       @serialized_attributes
     end
 
-    def root_name
-      name.chomp('Serializer').underscore
-    end
-
   end
 
   def self.included(base)
