@@ -5,7 +5,7 @@ class TimeframeSerializer
   serialize(:name, :tasks)
 
   def tasks(timeframe)
-    timeframe.tasks.map { |task| serialize(task, root: false) }
+    timeframe.tasks.map { |task| serialize(task) }
   end
 
 end

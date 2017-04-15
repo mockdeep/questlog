@@ -15,7 +15,7 @@ class ArraySerializer
 private
 
   def serialize_object(array)
-    array.map { |task| serialize(task, root: false) }
+    array.map { |task| serialize(task) }
   end
 
 end

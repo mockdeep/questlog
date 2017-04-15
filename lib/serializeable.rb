@@ -2,19 +2,12 @@ module Serializeable
 
   # concerns
   # different types of associations in Rails
-  # array serializer?
-  # tying into the controller?
-  #   how does AMS handle it?
-  #   how does ROAR handle it?
   # making sure there are serializers where appropriate (e.g.: models)
-  # what is minimalist json api implementation?
-  #   verify:
   #     {
   #       data: [one_model, two_model],
   #       meta: "some meta info",
-  #       includes: [some_associated_model]
+  #       included: [some_associated_model]
   #     }
-  # should I look into hal format?
 
   module ClassMethods
 
@@ -36,18 +29,12 @@ module Serializeable
     base.public_send :extend, ClassMethods
   end
 
-  def call(object, root: true, meta: nil)
-    if root
-      serialized = { self.class.root_name => serialize_object(object) }
-      serialized[:meta] = meta if meta
-      serialized
-    else
-      serialize_object(object)
-    end
+  def call(object)
+    serialize_object(object)
   end
 
-  def serialize(object, **options)
-    serializer_for(object).(object, options) if object
+  def serialize(object)
+    serializer_for(object).(object)
   end
 
   def serializer_for(object)

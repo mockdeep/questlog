@@ -10,11 +10,19 @@ class ApplicationController < ActionController::Base
 private
 
   def serialize(object, **options)
-    serializer_for(object).(object, options) if object
+    return unless object
+    root = options.fetch(:root, serialization_root)
+    result = { root => object && serializer_for(object).(object) }
+    result[:meta] = options[:meta] if options.key?(:meta)
+    result
   end
 
   def serializer_for(object)
     "#{object.class}Serializer".constantize.new
+  end
+
+  def serialization_root
+    action_name == 'index' ? controller_name : controller_name.singularize
   end
 
   def configure_headers
