@@ -18,7 +18,7 @@ RSpec.describe UntaggedTasksController, '#show' do
     it 'renders "null" when there are no tasks' do
       task.destroy!
       get(:show, format: :json)
-      expect(response.body).to eq 'null'
+      expect(JSON.parse(response.body)).to eq('task' => nil)
     end
   end
 
