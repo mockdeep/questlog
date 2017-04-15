@@ -17,7 +17,7 @@ RSpec.describe TaskSerializer, '#as_json' do
 
     expected_attrs = camelize_keys(task_attrs).merge(id: task.id, pending: true)
 
-    expect(serializer.(task)).to eq('task' => expected_attrs)
+    expect(serializer.(task)).to eq(expected_attrs)
   end
 
   def camelize_keys(hash)
