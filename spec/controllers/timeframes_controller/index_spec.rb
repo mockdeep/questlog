@@ -21,7 +21,7 @@ RSpec.describe TimeframesController, '#index' do
     task = create(:task, user: user)
     serial_task = hash_including('id' => task.id, 'timeframe' => nil)
     get(:index)
-    timeframes = JSON.parse(response.body)['timeframes']
+    timeframes = JSON.parse(response.body)['data']
     expect(timeframes).to include('name' => 'inbox', 'tasks' => [serial_task])
   end
 
@@ -36,7 +36,7 @@ RSpec.describe TimeframesController, '#index' do
 
     get(:index)
 
-    timeframes = JSON.parse(response.body)['timeframes']
+    timeframes = JSON.parse(response.body)['data']
     expect(timeframes).to include('name' => 'inbox', 'tasks' => [serial_task_1])
     expect(timeframes).to include('name' => 'week', 'tasks' => [serial_task_2])
     expect(timeframes).to include('name' => 'month', 'tasks' => [])

@@ -64,9 +64,9 @@ const TaskItem = React.createClass({
     return TagStore.get(tagName).then(this.updateTask);
   },
 
-  updateTask(data) {
-    if (data.task) {
-      const task = {...data.task, loadingState: 'ready'};
+  updateTask({data}) {
+    if (data) {
+      const task = {...data, loadingState: 'ready'};
 
       this.setState({task, disabled: false});
     } else {

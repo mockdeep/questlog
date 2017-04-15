@@ -12,7 +12,7 @@ RSpec.describe TasksController, '#show' do
     it 'renders the task as json' do
       get(:show, format: :json)
       serial_task = {
-        'task' => {
+        'data' => {
           'estimateSeconds' => nil,
           'id' => task.id,
           'pending' => false,
@@ -31,12 +31,12 @@ RSpec.describe TasksController, '#show' do
     it 'renders "null" when there are no tasks' do
       task.destroy!
       get(:show, params: { format: :json })
-      expect(JSON.parse(response.body)).to eq('task' => nil)
+      expect(JSON.parse(response.body)).to eq('data' => nil)
     end
 
     it 'renders tasks associated with a tag given a slug' do
       get(:show, params: { format: :json, slug: tag.slug })
-      expect(JSON.parse(response.body)['task']['title']).to eq 'blah'
+      expect(JSON.parse(response.body)['data']['title']).to eq 'blah'
     end
   end
 

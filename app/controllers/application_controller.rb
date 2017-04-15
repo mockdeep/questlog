@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
 private
 
   def serialize(object, **options)
-    root = options.fetch(:root, serialization_root)
-    result = { root => object && serializer_for(object).(object) }
+    result = { data: object && serializer_for(object).(object) }
     result[:meta] = options[:meta] if options.key?(:meta)
     result
   end

@@ -9,9 +9,7 @@ function fetchTags() {
     request({
       method: 'get',
       url: '/tags',
-      success: (data) => {
-        dispatch(setTags(data.tags));
-      },
+      success: ({data}) => { dispatch(setTags(data)); },
     });
   };
 }

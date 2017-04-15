@@ -17,7 +17,7 @@ RSpec.describe TasksController, '#index' do
     get(:index, format: :json)
 
     serial_tasks = {
-      'tasks' => [
+      'data' => [
         hash_including(
           'id' => task_3.id,
           'releaseAt' => nil,
