@@ -20,9 +20,9 @@ function fetchTasks() {
     request({
       method: 'get',
       url: '/tasks',
-      success: (data) => {
+      success: ({data}) => {
         dispatch(fetchTags());
-        dispatch(setTasks(data.tasks));
+        dispatch(setTasks(data));
       },
     });
   };

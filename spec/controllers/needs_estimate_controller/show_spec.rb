@@ -9,7 +9,7 @@ RSpec.describe NeedsEstimateController, '#show' do
     it 'renders the task as json' do
       get(:show, format: :json)
       serial_task = {
-        'task' => hash_including('id' => task.id, 'estimateSeconds' => nil),
+        'data' => hash_including('id' => task.id, 'estimateSeconds' => nil),
       }
 
       expect(JSON.parse(response.body)).to match serial_task
@@ -18,7 +18,7 @@ RSpec.describe NeedsEstimateController, '#show' do
     it 'renders "null" when there are no tasks' do
       task.update!(estimate_seconds: 600)
       get(:show, format: :json)
-      expect(JSON.parse(response.body)).to eq('task' => nil)
+      expect(JSON.parse(response.body)).to eq('data' => nil)
     end
   end
 end

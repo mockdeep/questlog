@@ -32,11 +32,10 @@ export default {
     this.notifyListeners();
   },
 
-  updateModels(data) {
-    data.tasks = data.tasks.map(function buildTask(taskData) {
+  updateModels({data}) {
+    this.models = data.map(function buildTask(taskData) {
       return {...taskData, estimateMinutes: estimateMinutes(taskData)};
     });
-    this.models = data[`${this.name}s`];
     this.loaded = true;
     this.notifyListeners();
   },

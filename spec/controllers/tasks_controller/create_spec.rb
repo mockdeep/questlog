@@ -35,7 +35,7 @@ RSpec.describe TasksController, '#create' do
 
     it 'renders the task as json' do
       post(:create, params: valid_params.merge(task: { title: 'abc123 #home' }))
-      task = JSON.parse(response.body)['task']
+      task = JSON.parse(response.body)['data']
       expect(task['title']).to eq('abc123')
       expect(task['tagNames']).to eq(['home'])
     end

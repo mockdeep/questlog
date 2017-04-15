@@ -46,14 +46,14 @@ RSpec.describe TagsController, '#index' do
       slug: tag.slug,
       unfinishedTasksCount: tag.unfinished_tasks_count,
     }.stringify_keys
-    expected = { 'tags' => [all_tag, tag_attrs] }
+    expected = { 'data' => [all_tag, tag_attrs] }
     expect(JSON.parse(response.body)).to eq(expected)
   end
 
   it 'returns an "Untagged" tag when there are untagged tasks' do
     task
     get(:index, params: valid_params)
-    expected = { 'tags' => [all_tag, untagged_tag, estimate_tag] }
+    expected = { 'data' => [all_tag, untagged_tag, estimate_tag] }
     expect(JSON.parse(response.body)).to eq(expected)
   end
 

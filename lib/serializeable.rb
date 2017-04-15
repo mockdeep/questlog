@@ -5,7 +5,6 @@ module Serializeable
   BASE_CLASSES = Set.new(%w[NilClass String Fixnum FalseClass TrueClass Time])
 
   # concerns
-  # different types of associations in Rails
   # making sure there are serializers where appropriate (e.g.: models)
   #     {
   #       data: [one_model, two_model],
@@ -14,6 +13,7 @@ module Serializeable
   #     }
   # sub-class serializers
   # minimizing public API
+  # camel vs snake case
 
   module ClassMethods
 
