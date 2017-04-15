@@ -11,6 +11,8 @@ module Serializeable
 
   module ClassMethods
 
+    delegate :call, to: :new
+
     def serialize(*attributes)
       @serialized_attributes = attributes
     end
@@ -38,7 +40,7 @@ module Serializeable
   end
 
   def serializer_for(object)
-    "#{object.class}Serializer".constantize.new
+    "#{object.class}Serializer".constantize
   end
 
   def serialize_object(object)

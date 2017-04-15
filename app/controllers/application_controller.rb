@@ -17,7 +17,7 @@ private
   end
 
   def serializer_for(object)
-    "#{object.class}Serializer".constantize.new
+    "#{object.class}Serializer".constantize
   end
 
   def serialization_root
