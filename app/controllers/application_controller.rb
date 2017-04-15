@@ -17,7 +17,11 @@ private
   end
 
   def serializer_for(object)
-    "#{object.class}Serializer".constantize
+    if object.respond_to?(:to_ary)
+      CollectionSerializer
+    else
+      "#{object.class}Serializer".constantize
+    end
   end
 
   def serialization_root
