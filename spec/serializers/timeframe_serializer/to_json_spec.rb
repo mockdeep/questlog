@@ -10,7 +10,7 @@ RSpec.describe TimeframeSerializer, '#to_json' do
       tasks: [hash_including(id: task.id)],
     }
 
-    serialized = timeframe_serializer.call(timeframe)
+    serialized = timeframe_serializer.(timeframe)
     expect(serialized).to match expected
   end
 
