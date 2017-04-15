@@ -31,7 +31,7 @@ RSpec.describe TasksController, '#show' do
     it 'renders "null" when there are no tasks' do
       task.destroy!
       get(:show, params: { format: :json })
-      expect(response.body).to eq 'null'
+      expect(JSON.parse(response.body)).to eq('task' => nil)
     end
 
     it 'renders tasks associated with a tag given a slug' do

@@ -65,7 +65,7 @@ const TaskItem = React.createClass({
   },
 
   updateTask(data) {
-    if (data) {
+    if (data.task) {
       const task = {...data.task, loadingState: 'ready'};
 
       this.setState({task, disabled: false});
