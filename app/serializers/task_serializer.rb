@@ -1,6 +1,6 @@
 class TaskSerializer
 
-  include Serializeable
+  include Serializable
 
   serialize(
     :estimate_seconds,

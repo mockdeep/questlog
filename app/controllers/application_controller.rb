@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
 private
 
-  include Serializeable::Helpers
+  include Serializable::Helpers
 
   def configure_headers
     response.headers['Vary'] = 'Accept'
