@@ -9,22 +9,8 @@ class ApplicationController < ActionController::Base
 
 private
 
-  def serialize(object, **options)
-    result = { data: object && serializer_for(object).(object) }
-    result[:meta] = options[:meta] if options.key?(:meta)
-    result
-  end
-
-  def serializer_for(object)
-    if object.respond_to?(:to_ary)
-      CollectionSerializer
-    else
-      "#{object.class}Serializer".constantize
-    end
-  end
-
-  def serialization_root
-    action_name == 'index' ? controller_name : controller_name.singularize
+  def serialize(*args)
+    Serializeable::RootSerializer.(*args)
   end
 
   def configure_headers
