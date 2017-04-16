@@ -118,16 +118,14 @@ module Serializable
     end
 
     def call(object)
+      "#{object.class}Serializer".constantize
+    rescue NameError
       if BASE_CLASSES.include?(object.class.name)
         BaseClassSerializer
       elsif object.respond_to?(:to_ary)
         CollectionSerializer
       else
-        begin
-          "#{object.class}Serializer".constantize
-        rescue NameError
-          raise SerializerError, "no serializer found for #{object.class}"
-        end
+        raise SerializerError, "no serializer found for #{object.class}"
       end
     end
 
