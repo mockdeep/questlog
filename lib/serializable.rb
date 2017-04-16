@@ -36,19 +36,21 @@ module Serializable
     end
 
     def serialize(object)
-      if BASE_CLASSES.include?(object.class.name)
-        BaseClassSerializer.(object)
-      elsif object.respond_to?(:to_ary)
-        CollectionSerializer.(object)
-      else
-        serializer_for(object).(object)
-      end
+      serializer_for(object).(object)
     end
 
     def serializer_for(object)
-      "#{object.class}Serializer".constantize
-    rescue NameError
-      raise SerializerError, "no serializer found for #{object.class}"
+      if BASE_CLASSES.include?(object.class.name)
+        BaseClassSerializer
+      elsif object.respond_to?(:to_ary)
+        CollectionSerializer
+      else
+        begin
+          "#{object.class}Serializer".constantize
+        rescue NameError
+          raise SerializerError, "no serializer found for #{object.class}"
+        end
+      end
     end
 
     def serialize_object(object)
