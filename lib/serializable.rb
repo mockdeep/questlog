@@ -39,7 +39,7 @@ module Serializable
       if BASE_CLASSES.include?(object.class.name)
         BaseClassSerializer.(object)
       elsif object.respond_to?(:to_ary)
-        object.map(&method(:serialize))
+        CollectionSerializer.(object)
       else
         serializer_for(object).(object)
       end
@@ -111,6 +111,20 @@ module Serializable
 
     def call(object)
       object
+    end
+
+  end
+
+  class CollectionSerializer
+
+    include Serializable::InstanceMethods
+
+    def self.call(object)
+      new.(object)
+    end
+
+    def call(object)
+      object.map(&method(:serialize))
     end
 
   end
