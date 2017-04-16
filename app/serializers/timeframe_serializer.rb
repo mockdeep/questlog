@@ -1,6 +1,6 @@
 class TimeframeSerializer
 
-  include Serializeable
+  include Serializable
 
   serialize(:name, :tasks)
 

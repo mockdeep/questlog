@@ -1,4 +1,4 @@
-module Serializeable
+module Serializable
 
   class SerializerError < StandardError; end
 
@@ -77,7 +77,7 @@ module Serializeable
   module Helpers
 
     def serialize(*args)
-      Serializeable::RootSerializer.(*args)
+      Serializable::RootSerializer.(*args)
     end
 
   end
@@ -89,7 +89,7 @@ module Serializeable
 
   class RootSerializer
 
-    include Serializeable::InstanceMethods
+    include Serializable::InstanceMethods
 
     def self.call(*args)
       new.(*args)
