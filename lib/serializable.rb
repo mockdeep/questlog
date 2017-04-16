@@ -2,17 +2,13 @@ module Serializable
 
   class SerializerError < StandardError; end
 
-  BASE_CLASSES = Set.new(%w[NilClass String Fixnum FalseClass TrueClass Time])
-
   # concerns
-  # making sure there are serializers where appropriate (e.g.: models)
   #     {
   #       data: [one_model, two_model],
   #       meta: "some meta info",
   #       included: [some_associated_model]
   #     }
   # sub-class serializers
-  # minimizing public API
   # camel vs snake case
 
   module ClassMethods
@@ -112,6 +108,8 @@ module Serializable
   end
 
   class Locator
+
+    BASE_CLASSES = Set.new(%w[NilClass String Fixnum FalseClass TrueClass Time])
 
     def self.call(object)
       new.(object)
