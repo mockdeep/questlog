@@ -113,19 +113,20 @@ module Serializable
 
   class Locator
 
-    def self.call(*args)
-      new.(*args)
+    def self.call(object)
+      new.(object)
     end
 
     def call(object)
-      "#{object.class}Serializer".constantize
+      class_name = object.class.name
+      "#{class_name}Serializer".constantize
     rescue NameError
-      if BASE_CLASSES.include?(object.class.name)
+      if BASE_CLASSES.include?(class_name)
         BaseClassSerializer
       elsif object.respond_to?(:to_ary)
         CollectionSerializer
       else
-        raise SerializerError, "no serializer found for #{object.class}"
+        raise SerializerError, "no serializer found for #{class_name}"
       end
     end
 
