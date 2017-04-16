@@ -34,7 +34,7 @@ module Serializable
     def call(object)
       serialized_attributes.each_with_object({}) do |attribute, result|
         key_name = attribute.to_s.camelize(:lower).to_sym
-        result[key_name] = serialize_attribute(attribute, object)
+        result[key_name] = serialize(fetch_attribute(attribute, object))
       end
     end
 
@@ -42,14 +42,12 @@ module Serializable
       Locator.(object).(object)
     end
 
-    def serialize_attribute(attribute, object)
-      value =
-        if respond_to?(attribute)
-          public_send(attribute, object)
-        else
-          object.public_send(attribute)
-        end
-      serialize(value)
+    def fetch_attribute(attribute, object)
+      if respond_to?(attribute)
+        public_send(attribute, object)
+      else
+        object.public_send(attribute)
+      end
     end
 
     def serialized_attributes
