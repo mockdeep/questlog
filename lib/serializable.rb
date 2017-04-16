@@ -36,21 +36,7 @@ module Serializable
     end
 
     def serialize(object)
-      serializer_for(object).(object)
-    end
-
-    def serializer_for(object)
-      if BASE_CLASSES.include?(object.class.name)
-        BaseClassSerializer
-      elsif object.respond_to?(:to_ary)
-        CollectionSerializer
-      else
-        begin
-          "#{object.class}Serializer".constantize
-        rescue NameError
-          raise SerializerError, "no serializer found for #{object.class}"
-        end
-      end
+      Locator.(object).(object)
     end
 
     def serialize_object(object)
@@ -127,6 +113,28 @@ module Serializable
 
     def call(object)
       object.map(&method(:serialize))
+    end
+
+  end
+
+  class Locator
+
+    def self.call(*args)
+      new.(*args)
+    end
+
+    def call(object)
+      if BASE_CLASSES.include?(object.class.name)
+        BaseClassSerializer
+      elsif object.respond_to?(:to_ary)
+        CollectionSerializer
+      else
+        begin
+          "#{object.class}Serializer".constantize
+        rescue NameError
+          raise SerializerError, "no serializer found for #{object.class}"
+        end
+      end
     end
 
   end
