@@ -29,9 +29,13 @@ module Serializable
 
     def call(object)
       serialized_attributes.each_with_object({}) do |attribute, result|
-        key_name = attribute.to_s.camelize(:lower).to_sym
-        result[key_name] = serialize(fetch_attribute(attribute, object))
+        value = fetch_attribute(attribute, object)
+        result[key_name(attribute)] = serialize(value)
       end
+    end
+
+    def key_name(attribute)
+      attribute.to_s.camelize(:lower).to_sym
     end
 
     def serialize(object)
