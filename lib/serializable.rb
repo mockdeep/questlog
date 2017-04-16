@@ -36,9 +36,9 @@ module Serializable
     end
 
     def serialize(object)
-      return object if BASE_CLASSES.include?(object.class.name)
-
-      if object.respond_to?(:to_ary)
+      if BASE_CLASSES.include?(object.class.name)
+        BaseClassSerializer.(object)
+      elsif object.respond_to?(:to_ary)
         object.map(&method(:serialize))
       else
         serializer_for(object).(object)
@@ -99,6 +99,18 @@ module Serializable
       result = { data: serialize(object) }
       result[:meta] = options[:meta] if options.key?(:meta)
       result
+    end
+
+  end
+
+  class BaseClassSerializer
+
+    def self.call(object)
+      new.(object)
+    end
+
+    def call(object)
+      object
     end
 
   end
