@@ -74,6 +74,14 @@ module Serializeable
 
   end
 
+  module Helpers
+
+    def serialize(*args)
+      Serializeable::RootSerializer.(*args)
+    end
+
+  end
+
   def self.included(base)
     base.public_send :extend, ClassMethods
     base.public_send :include, InstanceMethods
