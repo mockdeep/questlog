@@ -32,18 +32,14 @@ module Serializable
   module InstanceMethods
 
     def call(object)
-      serialize_object(object)
-    end
-
-    def serialize(object)
-      Locator.(object).(object)
-    end
-
-    def serialize_object(object)
       serialized_attributes.each_with_object({}) do |attribute, result|
         key_name = attribute.to_s.camelize(:lower).to_sym
         result[key_name] = serialize_attribute(attribute, object)
       end
+    end
+
+    def serialize(object)
+      Locator.(object).(object)
     end
 
     def serialize_attribute(attribute, object)
