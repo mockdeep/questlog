@@ -9,7 +9,6 @@ module Serializable
   #       included: [some_associated_model]
   #     }
   # sub-class serializers
-  # camel vs snake case
 
   module ClassMethods
 
@@ -25,7 +24,24 @@ module Serializable
 
   end
 
+  module Config
+
+    def self.key_format=(key_format)
+      @key_format = key_format
+    end
+
+    def self.key_format
+      @key_format ||= :camelcase
+    end
+
+  end
+
   module InstanceMethods
+
+    KEY_TRANSFORMS = {
+      camelcase: -> (key) { key.to_s.camelize(:lower) },
+      snakecase: -> (key) { key },
+    }.freeze
 
     def call(object)
       serialized_attributes.each_with_object({}) do |attribute, result|
@@ -35,7 +51,7 @@ module Serializable
     end
 
     def key_name(attribute)
-      attribute.to_s.camelize(:lower).to_sym
+      KEY_TRANSFORMS.fetch(Config.key_format).(attribute).to_sym
     end
 
     def serialize(object)
