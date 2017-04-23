@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const NewTaskForm = React.createClass({
   propTypes: {
-    createTask: React.PropTypes.func.isRequired,
-    setNewTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
-    taskSaving: React.PropTypes.bool.isRequired,
+    createTask: PropTypes.func.isRequired,
+    setNewTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
+    taskSaving: PropTypes.bool.isRequired,
   },
 
   setTitle(event) {

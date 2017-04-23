@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import DoneButton from 'src/task/components/done_button';
@@ -26,11 +27,11 @@ function MainButtons(props) {
 }
 
 MainButtons.propTypes = {
-  completeTask: React.PropTypes.func.isRequired,
-  disabled: React.PropTypes.bool.isRequired,
-  postponeTask: React.PropTypes.func.isRequired,
-  storePostponeSeconds: React.PropTypes.func.isRequired,
-  task: React.PropTypes.object.isRequired,
+  completeTask: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  postponeTask: PropTypes.func.isRequired,
+  storePostponeSeconds: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
 };
 
 export default MainButtons;

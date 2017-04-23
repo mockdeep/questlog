@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const DoneButton = React.createClass({
   propTypes: {
-    completeTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
+    completeTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   markDone() {

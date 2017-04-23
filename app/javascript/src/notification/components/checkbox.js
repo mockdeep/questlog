@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import QNotification from 'src/q_notification';
 
 const NotificationCheckbox = React.createClass({
   propTypes: {
-    addNotification: React.PropTypes.func.isRequired,
-    completeTask: React.PropTypes.func.isRequired,
-    notificationsEnabled: React.PropTypes.bool.isRequired,
-    removeNotification: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
-    updateUser: React.PropTypes.func.isRequired,
+    addNotification: PropTypes.func.isRequired,
+    completeTask: PropTypes.func.isRequired,
+    notificationsEnabled: PropTypes.bool.isRequired,
+    removeNotification: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
+    updateUser: PropTypes.func.isRequired,
   },
 
   componentDidMount() {

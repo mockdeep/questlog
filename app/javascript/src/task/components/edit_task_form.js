@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import ErrorDisplay from 'src/_common/components/error_display';
 
 const EditTaskForm = React.createClass({
   propTypes: {
-    storeTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
+    storeTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   getInitialState() {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'react/lib/update';
 import {partition} from 'lodash';
@@ -20,8 +21,8 @@ function findTask(tasks, taskId) {
 
 const TaskList = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    updateTask: React.PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    updateTask: PropTypes.func.isRequired,
   },
 
   getInitialState() {

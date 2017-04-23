@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router';
 
 const TagButton = React.createClass({
   propTypes: {
-    current: React.PropTypes.bool.isRequired,
-    tag: React.PropTypes.object.isRequired,
+    current: PropTypes.bool.isRequired,
+    tag: PropTypes.object.isRequired,
   },
 
   path() {

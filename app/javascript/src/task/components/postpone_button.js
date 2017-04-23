@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import stopPropagation from 'src/_helpers/stop_propagation';
@@ -11,16 +12,16 @@ function SelectOption(props) {
 }
 
 SelectOption.propTypes = {
-  content: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const PostponeButton = React.createClass({
   propTypes: {
-    disabled: React.PropTypes.bool.isRequired,
-    postponeTask: React.PropTypes.func.isRequired,
-    storePostponeSeconds: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    postponeTask: PropTypes.func.isRequired,
+    storePostponeSeconds: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   postponeTask() {

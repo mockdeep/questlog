@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const DeleteButton = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   deleteTask(event) {

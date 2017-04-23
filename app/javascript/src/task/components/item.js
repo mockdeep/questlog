@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
@@ -10,11 +11,11 @@ import TaskStore from 'src/task/store';
 
 const TaskItem = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    fetchTasks: React.PropTypes.func.isRequired,
-    params: React.PropTypes.object.isRequired,
-    tags: React.PropTypes.array.isRequired,
-    url: React.PropTypes.string,
+    deleteTask: PropTypes.func.isRequired,
+    fetchTasks: PropTypes.func.isRequired,
+    params: PropTypes.object.isRequired,
+    tags: PropTypes.array.isRequired,
+    url: PropTypes.string,
   },
 
   getInitialState() {

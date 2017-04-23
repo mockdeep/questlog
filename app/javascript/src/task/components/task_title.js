@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
@@ -5,8 +6,8 @@ import timeframeNameMap from 'src/timeframe/name_map';
 
 const TaskTitle = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   className() {
