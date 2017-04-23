@@ -1,11 +1,12 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const DeleteButton = React.createClass({
-  propTypes: {
-    deleteTask: PropTypes.func.isRequired,
-    task: PropTypes.object.isRequired,
-  },
+class DeleteButton extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   deleteTask(event) {
     event.stopPropagation();
@@ -13,7 +14,7 @@ const DeleteButton = React.createClass({
     if (confirm('Delete this task?')) {
       this.props.deleteTask(this.props.task.id);
     }
-  },
+  }
 
   rootOpts() {
     return {
@@ -21,11 +22,16 @@ const DeleteButton = React.createClass({
       title: 'delete task',
       onClick: this.deleteTask,
     };
-  },
+  }
 
   render() {
     return <i {...this.rootOpts()} />;
-  },
-});
+  }
+}
+
+DeleteButton.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+};
 
 export default DeleteButton;

@@ -1,20 +1,23 @@
+import autobind from 'class-autobind';
 import React from 'react';
 import {browserHistory} from 'react-router';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
-const BulkTasksNew = React.createClass({
-  getInitialState() {
-    return {taskTitles: ''};
-  },
+class BulkTasksNew extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {taskTitles: ''};
+    autobind(this);
+  }
 
   setTitles(event) {
     this.setState({taskTitles: event.target.value});
-  },
+  }
 
   redirectToTaskList() {
     browserHistory.push('/tasks');
-  },
+  }
 
   saveTasks(event) {
     event.preventDefault();
@@ -22,7 +25,7 @@ const BulkTasksNew = React.createClass({
     const tasksParams = {titles: this.state.taskTitles.trim()};
 
     BulkTaskStore.create(tasksParams).then(this.redirectToTaskList);
-  },
+  }
 
   rootAttrs() {
     return {
@@ -30,7 +33,7 @@ const BulkTasksNew = React.createClass({
       onSubmit: this.saveTasks,
       id: 'new_bulk_task',
     };
-  },
+  }
 
   render() {
     return (
@@ -59,7 +62,7 @@ const BulkTasksNew = React.createClass({
         </div>
       </form>
     );
-  },
-});
+  }
+}
 
 export default BulkTasksNew;

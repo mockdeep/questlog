@@ -1,37 +1,34 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import QNotification from 'src/q_notification';
 
-const NotificationCheckbox = React.createClass({
-  propTypes: {
-    addNotification: PropTypes.func.isRequired,
-    completeTask: PropTypes.func.isRequired,
-    notificationsEnabled: PropTypes.bool.isRequired,
-    removeNotification: PropTypes.func.isRequired,
-    task: PropTypes.object.isRequired,
-    updateUser: PropTypes.func.isRequired,
-  },
+class NotificationCheckbox extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   componentDidMount() {
     window.addEventListener('beforeunload', this.closeNotification);
     this.notifyOnInterval();
-  },
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.task.id !== this.props.task.id) { this.notifyTask(); }
     if (this.props.notificationsEnabled && !prevProps.notificationsEnabled) {
       this.notifyOnInterval();
     }
-  },
+  }
 
   componentWillUnmount() {
     this.closeNotification();
-  },
+  }
 
   notificationsPermitted() {
     return QNotification.isPermissionGranted();
-  },
+  }
 
   requestNotificationPermission() {
     Notification.requestPermission().then((result) => {
@@ -43,7 +40,7 @@ const NotificationCheckbox = React.createClass({
 
       this.disableNotifications();
     });
-  },
+  }
 
   enableNotifications() {
     if (this.notificationsPermitted()) {
@@ -51,14 +48,14 @@ const NotificationCheckbox = React.createClass({
     } else {
       this.requestNotificationPermission();
     }
-  },
+  }
 
   notifyOnInterval() {
     if (!this.shouldShowNotifications()) { return; }
 
     this.notifyTask();
     setTimeout(this.notifyOnInterval, 60000);
-  },
+  }
 
   notifyTask() {
     this.props.removeNotification({type: 'task'});
@@ -71,13 +68,13 @@ const NotificationCheckbox = React.createClass({
       notification.close();
     };
     this.props.addNotification({type: 'task', notification});
-  },
+  }
 
   shouldShowNotifications() {
     return Boolean(this.props.task.id) &&
            this.props.notificationsEnabled &&
            this.notificationsPermitted();
-  },
+  }
 
   toggleNotifications(event) {
     if (event.target.checked) {
@@ -85,16 +82,16 @@ const NotificationCheckbox = React.createClass({
     } else {
       this.disableNotifications();
     }
-  },
+  }
 
   disableNotifications() {
     this.closeNotification();
     this.props.updateUser({notificationsEnabled: false});
-  },
+  }
 
   closeNotification() {
     this.props.removeNotification({type: 'task'});
-  },
+  }
 
   render() {
     return (
@@ -107,7 +104,16 @@ const NotificationCheckbox = React.createClass({
         />
       </label>
     );
-  },
-});
+  }
+}
+
+NotificationCheckbox.propTypes = {
+  addNotification: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
+  notificationsEnabled: PropTypes.bool.isRequired,
+  removeNotification: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired,
+};
 
 export default NotificationCheckbox;

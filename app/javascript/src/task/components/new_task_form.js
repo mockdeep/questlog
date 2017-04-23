@@ -1,37 +1,36 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const NewTaskForm = React.createClass({
-  propTypes: {
-    createTask: PropTypes.func.isRequired,
-    setNewTask: PropTypes.func.isRequired,
-    task: PropTypes.object.isRequired,
-    taskSaving: PropTypes.bool.isRequired,
-  },
+class NewTaskForm extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   setTitle(event) {
     const taskAttrs = {title: event.target.value};
 
     this.props.setNewTask({...this.props.task, ...taskAttrs});
-  },
+  }
 
   saveTask(event) {
     event.preventDefault();
 
     this.props.createTask({title: this.props.task.title.trim()});
-  },
+  }
 
   buttonMessage() {
     return this.props.taskSaving ? 'Adding Task' : 'Add Task';
-  },
+  }
 
   validTask() {
     return this.props.task.title.trim().length > 0;
-  },
+  }
 
   disabled() {
     return this.props.taskSaving || !this.validTask();
-  },
+  }
 
   render() {
     return (
@@ -58,7 +57,14 @@ const NewTaskForm = React.createClass({
         </div>
       </form>
     );
-  },
-});
+  }
+}
+
+NewTaskForm.propTypes = {
+  createTask: PropTypes.func.isRequired,
+  setNewTask: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+  taskSaving: PropTypes.bool.isRequired,
+};
 
 export default NewTaskForm;

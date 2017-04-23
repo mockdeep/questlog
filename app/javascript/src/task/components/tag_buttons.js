@@ -1,30 +1,33 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import TagButton from 'src/task/components/tag_button';
 
-const TagButtons = React.createClass({
-  propTypes: {
-    tags: PropTypes.array.isRequired,
-    task: PropTypes.object.isRequired,
-  },
+class TagButtons extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   isCurrent(tag) {
     return this.currentNames().some(function tagNameMatches(name) {
       return tag.name === name;
     });
-  },
+  }
+
   tagButtons() {
     return this.props.tags.map(this.tagButton);
-  },
+  }
+
   tagButton(tag) {
-    return (
-      <TagButton tag={tag} key={tag.id} current={this.isCurrent(tag)} />
-    );
-  },
+    return <TagButton tag={tag} key={tag.id} current={this.isCurrent(tag)} />;
+  }
+
   currentNames() {
     return this.props.task.tagNames || [];
-  },
+  }
+
   render() {
     return (
       <div className='row'>
@@ -33,7 +36,12 @@ const TagButtons = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
+
+TagButtons.propTypes = {
+  tags: PropTypes.array.isRequired,
+  task: PropTypes.object.isRequired,
+};
 
 export default TagButtons;
