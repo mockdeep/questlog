@@ -1,6 +1,6 @@
 class TitleParser
 
-  include Callable
+  include JunkDrawer::Callable
 
   PARSERS = [
     TagParser,

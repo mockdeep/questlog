@@ -1,6 +1,6 @@
 class SessionCreate
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(current_user:, email: nil, password: nil)
     profile = Profile.authenticate(email, password)

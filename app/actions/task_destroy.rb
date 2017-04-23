@@ -1,6 +1,6 @@
 class TaskDestroy
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(task)
     task.destroy

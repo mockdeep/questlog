@@ -1,6 +1,6 @@
 class StatCreate
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(value:, user:, name:)
     find_params = { name: name, user: user, timestamp: today }
