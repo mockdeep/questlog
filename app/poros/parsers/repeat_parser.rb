@@ -1,6 +1,6 @@
 class RepeatParser
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(title)
     result = TimeframeParser.(title, '\*')

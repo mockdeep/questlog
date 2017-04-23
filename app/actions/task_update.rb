@@ -1,6 +1,6 @@
 class TaskUpdate
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(task, task_params)
     task_params[:timeframe] = nil if task_params[:timeframe] == 'inbox'

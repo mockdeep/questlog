@@ -1,6 +1,6 @@
 class PriorityParser
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(title)
     words = title.split

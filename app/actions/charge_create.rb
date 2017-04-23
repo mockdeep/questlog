@@ -1,6 +1,6 @@
 class ChargeCreate
 
-  include Callable
+  include JunkDrawer::Callable
 
   CHARGE_AMOUNT = 500 # cents
 

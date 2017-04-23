@@ -1,6 +1,6 @@
 class BulkTaskCreate
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(user:, titles:)
     user.tasks.create(task_params(titles))

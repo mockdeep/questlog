@@ -1,6 +1,6 @@
 class TimeframeParser
 
-  include Callable
+  include JunkDrawer::Callable
 
   def call(title, marker)
     words = title.split
