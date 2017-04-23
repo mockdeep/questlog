@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
@@ -40,14 +41,14 @@ function targetCollect(connect) {
 
 const TaskRow = React.createClass({
   propTypes: {
-    connectDragSource: React.PropTypes.func.isRequired,
-    connectDropTarget: React.PropTypes.func.isRequired,
-    deleteTask: React.PropTypes.func.isRequired,
-    isDragging: React.PropTypes.bool.isRequired,
-    storeTask: React.PropTypes.func.isRequired,
-    task: React.PropTypes.object.isRequired,
-    timeframeSpace: React.PropTypes.object,
-    timeframesEnabled: React.PropTypes.bool,
+    connectDragSource: PropTypes.func.isRequired,
+    connectDropTarget: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired,
+    storeTask: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
+    timeframeSpace: PropTypes.object,
+    timeframesEnabled: PropTypes.bool,
   },
 
   mixins: [PureRenderMixin],

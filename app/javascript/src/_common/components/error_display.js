@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function errorItems(errors) {
@@ -18,6 +19,6 @@ function ErrorDisplay(props) {
   );
 }
 
-ErrorDisplay.propTypes = {errors: React.PropTypes.array.isRequired};
+ErrorDisplay.propTypes = {errors: PropTypes.array.isRequired};
 
 export default ErrorDisplay;

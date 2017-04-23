@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import TagButton from 'src/task/components/tag_button';
 
 const TagButtons = React.createClass({
   propTypes: {
-    tags: React.PropTypes.array.isRequired,
-    task: React.PropTypes.object.isRequired,
+    tags: PropTypes.array.isRequired,
+    task: PropTypes.object.isRequired,
   },
 
   isCurrent(tag) {

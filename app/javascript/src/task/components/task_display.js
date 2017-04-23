@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import MainButtons from 'src/task/components/main_buttons';
@@ -30,14 +31,14 @@ function TaskDisplay(props) {
 }
 
 TaskDisplay.propTypes = {
-  completeTask: React.PropTypes.func.isRequired,
-  deleteTask: React.PropTypes.func.isRequired,
-  disabled: React.PropTypes.bool.isRequired,
-  postponeTask: React.PropTypes.func.isRequired,
-  storePostponeSeconds: React.PropTypes.func.isRequired,
-  storeTask: React.PropTypes.func.isRequired,
-  tags: React.PropTypes.array.isRequired,
-  task: React.PropTypes.object.isRequired,
+  completeTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  postponeTask: PropTypes.func.isRequired,
+  storePostponeSeconds: PropTypes.func.isRequired,
+  storeTask: PropTypes.func.isRequired,
+  tags: PropTypes.array.isRequired,
+  task: PropTypes.object.isRequired,
 };
 
 export default TaskDisplay;

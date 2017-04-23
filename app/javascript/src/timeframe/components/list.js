@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext as dragDropContext} from 'react-dnd';
@@ -16,8 +17,8 @@ function timeframeHasTasks(timeframe) {
 
 const TimeframeList = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    updateTask: React.PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    updateTask: PropTypes.func.isRequired,
   },
 
   getInitialState() {

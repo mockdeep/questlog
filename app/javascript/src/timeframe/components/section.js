@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import TaskRow from 'src/task/components/task_row';
@@ -6,11 +7,11 @@ import {calculateTotalMinutes} from 'src/timeframe/utils';
 
 const TimeframeSection = React.createClass({
   propTypes: {
-    deleteTask: React.PropTypes.func.isRequired,
-    loadTasks: React.PropTypes.func.isRequired,
-    storeTask: React.PropTypes.func.isRequired,
-    timeframe: React.PropTypes.object.isRequired,
-    timeframeSpace: React.PropTypes.object.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    loadTasks: PropTypes.func.isRequired,
+    storeTask: PropTypes.func.isRequired,
+    timeframe: PropTypes.object.isRequired,
+    timeframeSpace: PropTypes.object.isRequired,
   },
 
   renderTask(task) {
