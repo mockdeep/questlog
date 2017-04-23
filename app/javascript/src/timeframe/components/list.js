@@ -1,3 +1,4 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -15,30 +16,27 @@ function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
-const TimeframeList = React.createClass({
-  propTypes: {
-    deleteTask: PropTypes.func.isRequired,
-    updateTask: PropTypes.func.isRequired,
-  },
-
-  getInitialState() {
-    return {timeframes: [], medianProductivity: null, loading: true};
-  },
+class TimeframeList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {timeframes: [], medianProductivity: null, loading: true};
+    autobind(this);
+  }
 
   componentDidMount() {
     TimeframeStore.getAll().then((data) => {
       this.updateTimeframes(data);
       this.unsubscribeTimeframes = TimeframeStore.subscribe(this.loadTasks);
     });
-  },
+  }
 
   componentWillUnmount() {
     this.unsubscribeTimeframes();
-  },
+  }
 
   loadTasks() {
     TimeframeStore.getAll().then(this.updateTimeframes);
-  },
+  }
 
   updateTimeframes(data) {
     this.setState({
@@ -46,11 +44,11 @@ const TimeframeList = React.createClass({
       medianProductivity: data.meta.medianProductivity,
       loading: false,
     });
-  },
+  }
 
   productivityString() {
     return ToEnglish.seconds(this.state.medianProductivity);
-  },
+  }
 
   timeframeSpace() {
     const counts = {};
@@ -62,7 +60,7 @@ const TimeframeList = React.createClass({
     });
 
     return counts;
-  },
+  }
 
   renderTimeframe(timeframe) {
     return (
@@ -76,20 +74,20 @@ const TimeframeList = React.createClass({
         deleteTask={this.props.deleteTask}
       />
     );
-  },
+  }
 
   renderedTimeframes() {
     return this.timeframesWithTasks().map(this.renderTimeframe);
-  },
+  }
 
   timeframesWithTasks() {
     return this.state.timeframes.filter(timeframeHasTasks);
-  },
+  }
 
   refresh(event) {
     event.preventDefault();
     TaskStore.unload();
-  },
+  }
 
   render() {
     if (this.state.loading) { return <h1>{'Loading Timeframes...'}</h1>; }
@@ -102,7 +100,12 @@ const TimeframeList = React.createClass({
         {this.renderedTimeframes()}
       </div>
     );
-  },
-});
+  }
+}
+
+TimeframeList.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
+};
 
 export default dragDropContext(HTML5Backend)(TimeframeList);

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import createReactClass from 'create-react-class';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
 import {map, flow} from 'lodash';
@@ -39,7 +40,9 @@ function targetCollect(connect) {
   return {connectDropTarget: connect.dropTarget()};
 }
 
-const TaskRow = React.createClass({
+const TaskRow = createReactClass({
+  displayName: 'TaskRow',
+
   propTypes: {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,

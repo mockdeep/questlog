@@ -1,3 +1,4 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'react/lib/update';
@@ -19,24 +20,21 @@ function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
 }
 
-const TaskList = React.createClass({
-  propTypes: {
-    deleteTask: PropTypes.func.isRequired,
-    updateTask: PropTypes.func.isRequired,
-  },
-
-  getInitialState() {
-    return {currentTasks: [], pendingTasks: []};
-  },
+class TaskList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {currentTasks: [], pendingTasks: []};
+    autobind(this);
+  }
 
   componentDidMount() {
     this.unsubscribeTasks = TaskStore.subscribe(this.loadTasks);
     this.loadTasks();
-  },
+  }
 
   componentWillUnmount() {
     this.unsubscribeTasks();
-  },
+  }
 
   loadTasks() {
     if (!TaskStore.getState().loaded) {
@@ -44,7 +42,7 @@ const TaskList = React.createClass({
     }
 
     this.setTasks(TaskStore.getState());
-  },
+  }
 
   setTasks(data) {
     const partitionedTasks = partition(data.tasks, isPending);
@@ -53,7 +51,7 @@ const TaskList = React.createClass({
       pendingTasks: partitionedTasks[0],
       currentTasks: partitionedTasks[1],
     });
-  },
+  }
 
   moveTask(id, afterId) {
     const tasks = this.state.currentTasks;
@@ -71,7 +69,7 @@ const TaskList = React.createClass({
     });
 
     this.setState({currentTasks: newTasks});
-  },
+  }
 
   saveTaskPositions(component) {
     const taskId = component.props.task.id;
@@ -95,21 +93,21 @@ const TaskList = React.createClass({
 
     BulkTaskStore.update({positions: this.currentTaskPositions()});
     component.updatePriority({target: {value: newPriority}});
-  },
+  }
 
   currentTaskPositions() {
     return this.state.currentTasks.map(function taskId(task) {
       return task.id;
     });
-  },
+  }
 
   currentTaskRows() {
     return this.state.currentTasks.map(this.taskRow);
-  },
+  }
 
   pendingTaskRows() {
     return this.state.pendingTasks.map(this.taskRow);
-  },
+  }
 
   taskRow(task) {
     return (
@@ -122,7 +120,7 @@ const TaskList = React.createClass({
         deleteTask={this.props.deleteTask}
       />
     );
-  },
+  }
 
   render() {
     return (
@@ -144,7 +142,12 @@ const TaskList = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
+
+TaskList.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
+};
 
 export default dragDropContext(HTML5Backend)(TaskList);

@@ -1,19 +1,22 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router';
 
-const TagButton = React.createClass({
-  propTypes: {
-    current: PropTypes.bool.isRequired,
-    tag: PropTypes.object.isRequired,
-  },
+class TagButton extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   path() {
     return `/${this.props.tag.slug}`;
-  },
+  }
+
   activeButton() {
     return this.path() === window.location.pathname;
-  },
+  }
+
   className() {
     let classString = 'button btn btn-default';
 
@@ -28,10 +31,12 @@ const TagButton = React.createClass({
     }
 
     return classString;
-  },
+  }
+
   unfinishedTasksCount() {
     return this.props.tag.unfinishedTasksCount;
-  },
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +45,12 @@ const TagButton = React.createClass({
         </Link>
       </div>
     );
-  },
-});
+  }
+}
+
+TagButton.propTypes = {
+  current: PropTypes.bool.isRequired,
+  tag: PropTypes.object.isRequired,
+};
 
 export default TagButton;

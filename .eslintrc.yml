@@ -24,6 +24,7 @@ settings:
       moduleDirectory: [app/javascript, node_modules]
 rules:
   ### to enable/improve
+  class-methods-use-this: off
   init-declarations: off
   jsx-a11y/click-events-have-key-events: off
   jsx-a11y/href-no-hash: off
@@ -45,6 +46,7 @@ rules:
   react/no-unused-prop-types: off
   react/prefer-es6-class: off
   react/require-default-props: off
+  react/require-optimization: off
   sort-imports: off # https://github.com/eslint/eslint/issues/7766
   sort-keys: off
 

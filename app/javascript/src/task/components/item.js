@@ -1,3 +1,4 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,46 +10,40 @@ import NotificationCheckbox from 'src/notification/containers/checkbox';
 import TagStore from 'src/tag/store';
 import TaskStore from 'src/task/store';
 
-const TaskItem = React.createClass({
-  propTypes: {
-    deleteTask: PropTypes.func.isRequired,
-    fetchTasks: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
-    tags: PropTypes.array.isRequired,
-    url: PropTypes.string,
-  },
-
-  getInitialState() {
-    return {
+class TaskItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
       postponeSeconds: 300,
     };
-  },
+    autobind(this);
+  }
 
   componentDidMount() {
     this.loadTask().then(() => {
       this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
       this.setTitle();
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     this.loadTask(nextProps.url);
     this.setTitle();
-  },
+  }
 
   componentWillUnmount() {
     this.unsubscribeTasks();
-  },
+  }
 
   storePostponeSeconds(postponeSeconds) {
     this.setState({postponeSeconds});
-  },
+  }
 
   setTitle() {
     document.title = `Task: ${this.state.task.title}`;
-  },
+  }
 
   storeTask(taskId, attrs, opts) {
     const loadingState = (opts && opts.loadingState) || 'updating';
@@ -57,13 +52,13 @@ const TaskItem = React.createClass({
     this.setState({task: newTask});
 
     return TaskStore.update(taskId, attrs).then(this.props.fetchTasks);
-  },
+  }
 
   loadTask() {
     const tagName = this.props.params.slug || '';
 
     return TagStore.get(tagName).then(this.updateTask);
-  },
+  }
 
   updateTask({data}) {
     if (data) {
@@ -74,7 +69,7 @@ const TaskItem = React.createClass({
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
     }
     this.setTitle();
-  },
+  }
 
   postponeTask(taskId) {
     this.setState({disabled: true});
@@ -83,11 +78,11 @@ const TaskItem = React.createClass({
     const taskStatus = 'postponing';
 
     this.storeTask(taskId, attrs, {taskStatus}).then(this.loadTask);
-  },
+  }
 
   completeTask(taskId) {
     this.storeTask(taskId, {done: true}, {taskStatus: 'marking_done'});
-  },
+  }
 
   render() {
     return (
@@ -112,7 +107,15 @@ const TaskItem = React.createClass({
         <TaskFooter />
       </div>
     );
-  },
-});
+  }
+}
+
+TaskItem.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
+  url: PropTypes.string,
+};
 
 export default TaskItem;

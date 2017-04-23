@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import createReactClass from 'create-react-class';
+
 import stopPropagation from 'src/_helpers/stop_propagation';
 
 function isPostponing(task) {
@@ -16,7 +18,9 @@ SelectOption.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-const PostponeButton = React.createClass({
+const PostponeButton = createReactClass({
+  displayName: 'PostponeButton',
+
   propTypes: {
     disabled: PropTypes.bool.isRequired,
     postponeTask: PropTypes.func.isRequired,

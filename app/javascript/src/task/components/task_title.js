@@ -1,14 +1,15 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
 import timeframeNameMap from 'src/timeframe/name_map';
 
-const TaskTitle = React.createClass({
-  propTypes: {
-    deleteTask: PropTypes.func.isRequired,
-    task: PropTypes.object.isRequired,
-  },
+class TaskTitle extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   className() {
     let classString = 'col-md-12 task-display';
@@ -21,15 +22,17 @@ const TaskTitle = React.createClass({
     }
 
     return classString;
-  },
+  }
+
   title() {
     return `skip count: ${this.props.task.skip_count}`;
-  },
+  }
+
   emblems() {
     if (!this.props.task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
-  },
+  }
 
   timeframeName() {
     if (!this.props.task.timeframe) { return false; }
@@ -37,7 +40,7 @@ const TaskTitle = React.createClass({
     const timeframeName = timeframeNameMap[this.props.task.timeframe];
 
     return <div className='timeframe'>{timeframeName}</div>;
-  },
+  }
 
   render() {
     return (
@@ -71,7 +74,12 @@ const TaskTitle = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
+
+TaskTitle.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+};
 
 export default TaskTitle;
