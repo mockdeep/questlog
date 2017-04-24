@@ -39,8 +39,8 @@ module Serializable
   module InstanceMethods
 
     KEY_TRANSFORMS = {
-      camelcase: -> (key) { key.to_s.camelize(:lower) },
-      snakecase: -> (key) { key },
+      camelcase: ->(key) { key.to_s.camelize(:lower) },
+      snakecase: ->(key) { key },
     }.freeze
 
     def call(object)
