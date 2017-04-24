@@ -1,8 +1,8 @@
-RSpec.describe TaskUpdate, '#call' do
+RSpec.describe Task::Update, '#call' do
 
   let(:user) { create(:user) }
   let(:task) { create(:task, estimate_seconds: 301, user: user) }
-  let(:task_update) { TaskUpdate.new }
+  let(:task_update) { described_class.new }
   let(:task_update_params) do
     {
       title: 'foo',

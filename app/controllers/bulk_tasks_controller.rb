@@ -1,14 +1,14 @@
 class BulkTasksController < ApplicationController
 
   def create
-    BulkTaskCreate.(create_params.symbolize_keys)
+    Task::BulkCreate.(create_params.symbolize_keys)
     respond_to do |format|
       format.json { render json: {}, status: :ok }
     end
   end
 
   def update
-    BulkTaskUpdate.(update_params.symbolize_keys)
+    Task::BulkUpdate.(update_params.symbolize_keys)
     respond_to do |format|
       format.html { redirect_to(tasks_path) }
       format.json { render json: {}, status: :ok }

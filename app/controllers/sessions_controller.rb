@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
-    result = SessionCreate.(session_params.merge(current_user: current_user))
+    result = Session::Create.(session_params.merge(current_user: current_user))
     if result.success?
       self.current_user = result.object
       return_or_redirect_to root_path, notice: 'Logged in!'
