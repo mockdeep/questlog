@@ -39,6 +39,7 @@ Documentation:
 Metrics/BlockLength:
   Exclude:
     - config/environments/production.rb
+    - config/routes.rb
     - spec/**/*.rb
 
 Metrics/LineLength:

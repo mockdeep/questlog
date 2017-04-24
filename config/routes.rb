@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   end
 
   scope constraints: JsonConstraint.new do
+    namespace :api do
+      namespace :v1 do
+        resources :tasks, only: :index
+      end
+    end
+
     resources :tags, only: [:index]
     resources :tasks, only: %i[index create update destroy]
     resources :timeframes, only: [:index]
