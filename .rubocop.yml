@@ -45,6 +45,9 @@ Metrics/LineLength:
   Exclude:
     - bin/*
 
+Style/GuardClause:
+  MinBodyLength: 2
+
 Style/TrivialAccessors:
   AllowPredicates: true
 
@@ -53,6 +56,7 @@ Style/EmptyLinesAroundClassBody:
 
 Style/EmptyMethod:
   EnforcedStyle: expanded
+
 ClassLength:
   Max: 115
 
