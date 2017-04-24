@@ -1,7 +1,7 @@
-RSpec.describe StatCreate, '#call' do
+RSpec.describe Stat::Create, '#call' do
 
   let(:user) { create(:user) }
-  let(:stat_create) { StatCreate.new }
+  let(:stat_create) { described_class.new }
   let(:date) { Time.zone.now.beginning_of_day }
 
   it 'creates a Stat if one does not exist for the current timestamp' do

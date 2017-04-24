@@ -1,9 +1,9 @@
-RSpec.describe TaskDestroy, '#call' do
+RSpec.describe Task::Destroy, '#call' do
 
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:tag) { create(:tag) }
-  let(:action) { TaskDestroy.new }
+  let(:action) { described_class.new }
 
   it 'destroys the task' do
     action.(task)

@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def create
     persist_current_user
 
-    task = TaskCreate.(task_params.merge(user: current_user))
+    task = Task::Create.(task_params.merge(user: current_user))
     respond_to do |format|
       format.json { render json: serialize(task), status: :created }
     end
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
 
   def update
     task = current_user.tasks.find(params[:id])
-    TaskUpdate.(task, task_params)
+    Task::Update.(task, task_params)
     respond_to do |format|
       format.json { render json: serialize(task), status: :ok }
     end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
   def destroy
     task = current_user.tasks.find(params[:id])
-    TaskDestroy.(task)
+    Task::Destroy.(task)
     respond_to do |format|
       format.json { render json: {}, status: :ok }
     end

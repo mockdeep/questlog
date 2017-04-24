@@ -5,7 +5,7 @@ class FreeAccountsController < ApplicationController
   end
 
   def create
-    result = FreeAccountCreate.(account_params)
+    result = FreeAccount::Create.(account_params)
     if result.success?
       persist_current_user
       current_user.update!(account: result.object)
