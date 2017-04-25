@@ -22,6 +22,8 @@ module Questlog
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('app', 'poros', 'parsers')
 
+    config.eager_load_paths << Rails.root.join('lib')
+
     config.time_zone = 'Pacific Time (US & Canada)'
 
   end
