@@ -1,7 +1,7 @@
 import flash from 'src/_helpers/flash';
 import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
-import {fetchTags} from 'src/tag/action_creators';
+import {setTags} from 'src/tag/action_creators';
 
 function setNewTask(payload) {
   return {type: 'task/SET_NEW', payload};
@@ -19,10 +19,10 @@ function fetchTasks() {
   return (dispatch) => {
     request({
       method: 'get',
-      url: '/tasks',
-      success: ({data}) => {
-        dispatch(fetchTags());
+      url: '/api/v1/tasks',
+      success: ({data, included}) => {
         dispatch(setTasks(data));
+        dispatch(setTags(included));
       },
     });
   };
