@@ -4,10 +4,14 @@ function getTagsFromState(state) {
   return state.tag;
 }
 
-function orderTags(tags) {
-  return tags.orderedIds.map((tagId) => tags.byId[tagId]);
+function isActive(tag) {
+  return tag.unfinishedTasksCount > 0;
 }
 
-const getOrderedTags = createSelector([getTagsFromState], orderTags);
+function activeTags(tags) {
+  return tags.orderedIds.map((tagId) => tags.byId[tagId]).filter(isActive);
+}
 
-export {getOrderedTags};
+const getActiveTags = createSelector([getTagsFromState], activeTags);
+
+export {getActiveTags};

@@ -29,8 +29,9 @@ RSpec.describe API::V1::TasksController, '#index' do
     get(:index)
 
     tags = JSON.parse(response.body).fetch('included')
-    expect(tags.length).to eq 2
-    expect(tags.first.fetch('name')).to eq tag_1.name
+    expect(tags.length).to eq 3
+    expect(tags.first.fetch('name')).to eq 'All'
+    expect(tags.second.fetch('name')).to eq tag_1.name
     expect(tags.last.fetch('name')).to eq tag_2.name
   end
 
