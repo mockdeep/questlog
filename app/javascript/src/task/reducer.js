@@ -10,7 +10,7 @@ function estimateMinutes(task) {
 }
 
 function initStore() {
-  return {newTask: {title: ''}};
+  return {orderedIds: [], byId: {}, newTask: {title: ''}};
 }
 
 function setAjaxState(previousState, ajaxState) {
@@ -23,8 +23,9 @@ function setNewTask(previousState, newTask) {
 
 function setTasks(previousState, taskData) {
   const newTasks = taskData.map((task) => ({...task, estimateMinutes: estimateMinutes(task)}));
+  const {entities, result} = normalize(newTasks, taskListSchema);
 
-  return {...previousState, ...normalize(newTasks, taskListSchema)};
+  return {...previousState, byId: entities.tasks, orderedIds: result};
 }
 
 const operations = {
