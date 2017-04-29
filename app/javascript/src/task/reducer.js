@@ -2,12 +2,16 @@ import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/basic_reducer';
 
-const taskSchema = new schema.Entity('tasks');
-const taskListSchema = new schema.Array(taskSchema);
-
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
+
+function processTask(task) {
+  return {...task, estimateMinutes: estimateMinutes(task)};
+}
+
+const taskSchema = new schema.Entity('tasks', {}, {processStrategy: processTask});
+const taskListSchema = new schema.Array(taskSchema);
 
 function initStore() {
   return {orderedIds: [], byId: {}, newTask: {title: ''}};
@@ -22,8 +26,7 @@ function setNewTask(previousState, newTask) {
 }
 
 function setTasks(previousState, taskData) {
-  const newTasks = taskData.map((task) => ({...task, estimateMinutes: estimateMinutes(task)}));
-  const {entities, result} = normalize(newTasks, taskListSchema);
+  const {entities, result} = normalize(taskData, taskListSchema);
 
   return {...previousState, byId: entities.tasks, orderedIds: result};
 }
