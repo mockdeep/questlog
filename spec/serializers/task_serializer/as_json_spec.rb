@@ -15,7 +15,11 @@ RSpec.describe TaskSerializer, '#as_json' do
     task = create(:task, task_attrs)
     serializer = described_class.new
 
-    expected_attrs = camelize_keys(task_attrs).merge(id: task.id, pending: true)
+    expected_attrs = camelize_keys(task_attrs).merge(
+      id: task.id,
+      pending: true,
+      tagIds: task.tag_ids,
+    )
 
     expect(serializer.(task)).to eq(expected_attrs)
   end

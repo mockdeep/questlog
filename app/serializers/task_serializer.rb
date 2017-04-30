@@ -11,6 +11,7 @@ class TaskSerializer
     :release_at,
     :skip_count,
     :tag_names,
+    :tag_ids,
     :title,
     :timeframe,
   )
