@@ -11,6 +11,7 @@ require 'capybara/poltergeist'
 
 driver = ENV.fetch('DRIVER', :poltergeist).to_sym
 Capybara.javascript_driver = driver
+Capybara.server_port = 8080
 
 ActiveRecord::Migration.maintain_test_schema!
 
