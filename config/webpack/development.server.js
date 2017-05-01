@@ -1,3 +1,5 @@
+// Note: You must restart bin/webpack-dev-server for changes to take effect
+
 const {resolve} = require('path');
 const merge = require('webpack-merge');
 const devConfig = require('./development.js');
