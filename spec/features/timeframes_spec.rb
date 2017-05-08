@@ -66,7 +66,7 @@ RSpec.describe 'timeframes', js: true do
 
     click_link('Timeframes')
 
-    expect(page).not_to have_css('.timeframe')
+    expect(page).to have_content('Median Productivity')
 
     task_1 = create(:task, user: user)
     task_2 = create(:task, user: user, estimate_seconds: 365)

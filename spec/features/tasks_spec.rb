@@ -63,10 +63,11 @@ RSpec.describe 'Tasks page', js: true do
 
   it 'allows a free user to manage tasks' do
     feature_login_as(user)
-    fill_in 'new-title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry #home'
     click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
+    expect(page).to have_text('home (1)')
     expect(task_title).to have_content('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil
