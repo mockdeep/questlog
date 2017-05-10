@@ -21,6 +21,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     visit '/'
+    expect(task_title).to have_content('do laundry')
     click_button 'Done'
     expect(task_title).to have_content('feed dog')
     tomorrow do
@@ -29,6 +30,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     visit '/'
+    expect(task_title).to have_content('feed dog')
     click_button 'Done'
     expect(task_title).to have_content('read feeds')
     tomorrow do
@@ -37,6 +39,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     visit '/'
+    expect(task_title).to have_content('read feeds')
     postpone_button.click
     expect(task_title).to have_content('clean dishes')
     tomorrow do
@@ -57,6 +60,8 @@ RSpec.describe 'timeframes', js: true do
   it 'displays the timeframes for the user' do
     feature_login_as(user)
 
+    expect(task_title).to have_content('(no tasks!)')
+
     Timecop.travel(Time.zone.parse('2014/04/16'))
     milliseconds = Time.zone.now.to_i * 1000
     page.execute_script("window.balanceTime = #{milliseconds}")
@@ -75,12 +80,12 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
-      expect(find('h2')).to have_text(/\AInbox 36\/∞\z/)
+      expect(find('h2', text: /\AInbox 36\/∞\z/)).to be
       within('li', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text(/\AInbox 6\/∞\z/)
+      expect(find('h2', text: /\AInbox 6\/∞\z/)).to be
       within('li', text: task_2.title) do
         select('Today', from: 'timeframe-select')
       end
@@ -89,12 +94,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe#today') do
-      expect(find('h2')).to have_text(/\AToday 6\/63\z/)
+      expect(find('h2', text: /\AToday 6\/63\z/)).to be
       expect(find('li')).to have_text(task_2.title)
     end
 
     within('.timeframe#week') do
-      expect(find('h2')).to have_text(/\AThis Week 30\/95\z/)
+      expect(find('h2', text: /\AThis Week 30\/95\z/)).to be
       within('li', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
@@ -103,12 +108,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe#week')
 
     within('.timeframe#today') do
-      expect(find('h2')).to have_text(/\AToday 36\/63\z/)
+      expect(find('h2', text: /\AToday 36\/63\z/)).to be
       within('li', text: task_1.title) do
         select('-', from: 'timeframe-select')
       end
 
-      expect(find('h2')).to have_text(/\AToday 6\/63\z/)
+      expect(find('h2', text: /\AToday 6\/63\z/)).to be
       within('li', text: task_2.title) do
         select('-', from: 'timeframe-select')
       end
@@ -120,6 +125,10 @@ RSpec.describe 'timeframes', js: true do
       expect(page).to have_content(task_1.title)
       expect(page).to have_content(task_2.title)
     end
+
+    visit '/'
+
+    expect(page).to have_content('Needs Estimate (1)')
   end
 
 end
