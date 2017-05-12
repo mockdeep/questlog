@@ -390,6 +390,7 @@ DEPENDENCIES
   normalize-rails
   pg
   poltergeist
+  pry
   puma
   puma_worker_killer
   rack-cache
