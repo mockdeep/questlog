@@ -9,6 +9,10 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 require 'rspec/rails'
 require 'capybara/poltergeist'
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 driver = ENV.fetch('DRIVER', :poltergeist).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8080
