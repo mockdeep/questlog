@@ -13,6 +13,10 @@ dependencies:
   cache_directories:
     - ~/.cache/yarn
 
+compile:
+  pre:
+    - RAILS_ENV=test rake webpacker:compile
+
 test:
   override:
     - yarn test
