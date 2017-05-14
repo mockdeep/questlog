@@ -39,7 +39,7 @@ class Task < ActiveRecord::Base
   def self.reposition(ids)
     return unless ids.any?
     raise ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
-    where(id: ids).update_all(['position = idx(array[?], id)', ids])
+    where(id: ids).update_all(['position = idx(array[?], id::int)', ids])
   end
 
   def self.next
