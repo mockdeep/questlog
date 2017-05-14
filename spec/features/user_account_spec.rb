@@ -21,6 +21,8 @@ RSpec.describe 'user accounts', js: true do
     fill_in 'password', with: user.account.password
     click_button('Login')
     expect(page).to have_content("Logged in as #{user.email}")
+    expect(page).to have_content("Logged in!")
+    expect(page).to have_no_content("Logged in!")
   end
 
 end
