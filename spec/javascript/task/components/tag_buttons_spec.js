@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
 import {mount} from 'enzyme';
 
 import TagButtons from 'src/task/components/tag_buttons';
@@ -11,7 +12,11 @@ const task = {};
 
 describe('TagButtons', () => {
   it('renders some stuff', () => {
-    const wrapper = mount(<TagButtons task={task} tags={tags} />);
+    const wrapper = mount(
+      <BrowserRouter>
+        <TagButtons task={task} tags={tags} />
+      </BrowserRouter>
+    );
 
     expect(wrapper.text()).toContain('home (8)');
     expect(wrapper.text()).toContain('work (13)');
