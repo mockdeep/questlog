@@ -39,7 +39,7 @@ RSpec.describe 'Tasks page', js: true do
     visit '/'
     expect(page).to_not have_button('Done')
     expect(task_title).to have_content('(no tasks!)')
-    fill_in 'new-title', with: 'do laundry'
+    fill_in 'new-title', with: 'do laundry #home'
     click_button 'Add Task'
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
@@ -57,6 +57,7 @@ RSpec.describe 'Tasks page', js: true do
 
     visit '/'
     expect(task_title).to have_content('do laundry')
+    expect(page).to have_content('home (1)')
     click_button 'Done'
     expect(task_title).to have_content('(no tasks!)')
   end
