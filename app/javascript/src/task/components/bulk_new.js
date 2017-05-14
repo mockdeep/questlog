@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
+import PropTypes from 'prop-types';
 import React from 'react';
-import {browserHistory} from 'react-router';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
@@ -16,7 +16,7 @@ class BulkTasksNew extends React.Component {
   }
 
   redirectToTaskList() {
-    browserHistory.push('/tasks');
+    this.props.history.push('/tasks');
   }
 
   saveTasks(event) {
@@ -64,5 +64,7 @@ class BulkTasksNew extends React.Component {
     );
   }
 }
+
+BulkTasksNew.propTypes = {history: PropTypes.object.isRequired};
 
 export default BulkTasksNew;

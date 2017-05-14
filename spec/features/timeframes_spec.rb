@@ -55,6 +55,10 @@ RSpec.describe 'timeframes', js: true do
       expected_text = 'Median Productivity: 1 hour, 5 minutes per day'
       expect(page).to have_text(expected_text)
     end
+
+    visit '/'
+
+    expect(page).to have_content('Untagged (1)')
   end
 
   it 'displays the timeframes for the user' do

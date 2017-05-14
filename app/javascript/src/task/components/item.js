@@ -55,7 +55,7 @@ class TaskItem extends React.Component {
   }
 
   loadTask() {
-    const tagName = this.props.params.slug || '';
+    const tagName = this.props.match.params.slug || '';
 
     return TagStore.get(tagName).then(this.updateTask);
   }
@@ -113,7 +113,7 @@ class TaskItem extends React.Component {
 TaskItem.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   fetchTasks: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   tags: PropTypes.array.isRequired,
   url: PropTypes.string,
 };

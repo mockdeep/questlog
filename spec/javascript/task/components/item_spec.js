@@ -11,6 +11,7 @@ let itemContainer;
 beforeEach(() => {
   itemContainer = shallow(
     <ItemContainer
+      match={{}}
       params={{}}
       notificationsEnabled={false}
       notificationsPermitted={true}
