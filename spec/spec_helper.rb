@@ -113,6 +113,8 @@ def feature_login_as(user)
   fill_in 'email', with: user.account.email
   fill_in 'password', with: user.account.password
   click_button 'Login'
+  expect(page).to have_content('Logged in!')
+  expect(page).to have_no_content('Logged in!')
 end
 
 def add_task(task_title)
