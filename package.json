@@ -43,16 +43,19 @@
     "webpack-manifest-plugin": "^1.1.0",
     "webpack-merge": "^4.1.0"
   },
+  "//": [
+    "jest locked at 19 because of https://github.com/facebook/jest/issues/3499"
+  ],
   "devDependencies": {
-    "babel-jest": "^19.0.0",
+    "babel-jest": "^20.0.1",
     "enzyme": "^2.8.0",
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jest": "^19.0.1",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-jest": "^20.0.1",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
     "jest": "^19.0.2",
-    "jsdom": "^9.12.0",
+    "jsdom": "^10.1.0",
     "react-test-renderer": "^15.5.4",
     "stylelint": "^7.10.1"
   },
