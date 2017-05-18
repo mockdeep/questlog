@@ -29,11 +29,7 @@ function timeframePosition(task) {
 function nextUndoneTask(partitionedTasks, selectedTags) {
   const selectedTagIds = selectedTags.map((tag) => tag.id);
 
-  return partitionedTasks.undone.find((task) => {
-    const intersectingIds = _.intersection(task.tagIds, selectedTagIds);
-
-    return intersectingIds.length === selectedTagIds.length;
-  });
+  return partitionedTasks.undone.find((task) => _.difference(selectedTagIds, task.tagIds).length === 0);
 }
 
 function orderTasks(state) {
