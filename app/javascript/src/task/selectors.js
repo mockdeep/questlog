@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import {createSelector} from 'reselect';
 
+import {getSelectedTags} from 'src/tag/selectors';
+
 const timeframePositions = {
   today: 1,
   week: 2,
@@ -24,8 +26,14 @@ function timeframePosition(task) {
   return position;
 }
 
-function nextUndoneTask(partitionedTasks) {
-  return partitionedTasks.undone[0];
+function nextUndoneTask(partitionedTasks, selectedTags) {
+  const selectedTagIds = selectedTags.map((tag) => tag.id);
+
+  return partitionedTasks.undone.find((task) => {
+    const intersectingIds = _.intersection(task.tagIds, selectedTagIds);
+
+    return intersectingIds.length === selectedTagIds.length;
+  });
 }
 
 function orderTasks(state) {
@@ -41,6 +49,9 @@ function partitionTasks(orderedTasks) {
 }
 
 const getPartitionedTasks = createSelector([orderTasks], partitionTasks);
-const getNextUndoneTask = createSelector([getPartitionedTasks], nextUndoneTask);
+const getNextUndoneTask = createSelector(
+  [getPartitionedTasks, getSelectedTags],
+  nextUndoneTask
+);
 
 export {getNextUndoneTask};

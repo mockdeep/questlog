@@ -8,10 +8,20 @@ function isActive(tag) {
   return tag.unfinishedTasksCount > 0;
 }
 
-function activeTags(tags) {
-  return tags.orderedIds.map((tagId) => tags.byId[tagId]).filter(isActive);
+function orderTags(tags) {
+  return tags.orderedIds.map((tagId) => tags.byId[tagId]);
 }
 
-const getActiveTags = createSelector([getTagsFromState], activeTags);
+function filterActiveTags(orderedTags) {
+  return orderedTags.filter(isActive);
+}
 
-export {getActiveTags};
+function filterSelectedTags(getOrderedTags) {
+  return getOrderedTags.filter((tag) => tag.isSelected);
+}
+
+const getOrderedTags = createSelector([getTagsFromState], orderTags);
+const getActiveTags = createSelector([getOrderedTags], filterActiveTags);
+const getSelectedTags = createSelector([getOrderedTags], filterSelectedTags);
+
+export {getActiveTags, getSelectedTags};
