@@ -26,28 +26,31 @@ function timeframePosition(task) {
   return position;
 }
 
-function nextUndoneTask(partitionedTasks, selectedTags) {
-  const selectedTagIds = selectedTags.map((tag) => tag.id);
-
-  return partitionedTasks.undone.find((task) => _.difference(selectedTagIds, task.tagIds).length === 0);
+function hasTags(task, tagIds) {
+  return _.difference(tagIds, task.tagIds).length === 0;
 }
 
-function orderTasks(state) {
-  const allTasks = Object.values(state.task.byId);
+const getOrderedTasks = createSelector(
+  (state) => state.task.byId,
+  (tasksById) => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
+);
 
-  return _.sortBy(allTasks, [timeframePosition, 'priority', 'position']);
-}
+const getPartitionedTasks = createSelector(
+  getOrderedTasks,
+  (orderedTasks) => {
+    // note to self, I think we may need to cast `task.releaseAt` to boolean
+    const [pending, undone] = _.partition(orderedTasks, (task) => task.releaseAt);
 
-function partitionTasks(orderedTasks) {
-  const [pending, undone] = _.partition(orderedTasks, (task) => task.releaseAt);
-
-  return {pending, undone};
-}
-
-const getPartitionedTasks = createSelector([orderTasks], partitionTasks);
+    return {pending, undone};
+  }
+);
 const getNextUndoneTask = createSelector(
   [getPartitionedTasks, getSelectedTags],
-  nextUndoneTask
+  (partitionedTasks, selectedTags) => {
+    const tagIds = selectedTags.map((tag) => tag.id);
+
+    return partitionedTasks.undone.find((task) => hasTags(task, tagIds));
+  }
 );
 
 export {getNextUndoneTask};
