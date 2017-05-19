@@ -33,7 +33,7 @@ function nextUndoneTask(partitionedTasks, selectedTags) {
 }
 
 function orderTasks(state) {
-  const allTasks = Object.values(state.tasks.byId);
+  const allTasks = Object.values(state.task.byId);
 
   return _.sortBy(allTasks, [timeframePosition, 'priority', 'position']);
 }
