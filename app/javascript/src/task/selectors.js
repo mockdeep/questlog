@@ -38,7 +38,6 @@ const getOrderedTasks = createSelector(
 const getPartitionedTasks = createSelector(
   getOrderedTasks,
   (orderedTasks) => {
-    // note to self, I think we may need to cast `task.releaseAt` to boolean
     const [pending, undone] = _.partition(orderedTasks, (task) => task.releaseAt);
 
     return {pending, undone};
