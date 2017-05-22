@@ -33,6 +33,12 @@ class TagButton extends React.Component {
     return classString;
   }
 
+  toggleTagSelection() {
+    const {id, isSelected} = this.props.tag;
+
+    this.props.updateTag({id, isSelected: !isSelected});
+  }
+
   unfinishedTasksCount() {
     return this.props.tag.unfinishedTasksCount;
   }
@@ -40,7 +46,11 @@ class TagButton extends React.Component {
   render() {
     return (
       <div>
-        <Link to={this.path()} className={this.className()}>
+        <Link
+          to={this.path()}
+          className={this.className()}
+          onClick={this.toggleTagSelection}
+        >
           {`${this.props.tag.name} (${this.unfinishedTasksCount()})`}
         </Link>
       </div>
@@ -51,6 +61,7 @@ class TagButton extends React.Component {
 TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   tag: PropTypes.object.isRequired,
+  updateTag: PropTypes.func.isRequired,
 };
 
 export default TagButton;

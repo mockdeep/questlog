@@ -1,7 +1,7 @@
 import {getNextUndoneTask} from 'src/task/selectors';
 
 describe('getNextUndoneTask', () => {
-  const tagState = {orderedIds: [], byId: {}};
+  let tagState = {orderedIds: [], byId: {}};
 
   it('returns the next undone task', () => {
     const task1 = {id: 5, title: 'foo', releaseAt: 'blah', timeframe: null};
@@ -115,7 +115,8 @@ describe('getNextUndoneTask', () => {
     let tag2 = {id: 2};
     const task1 = {id: 3, tagIds: [1, 2], position: 5, timeframe: null};
     let task2 = {id: 4, tagIds: [], position: 3, timeframe: null};
-    let tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2]};
+
+    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2]};
     let state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task2);

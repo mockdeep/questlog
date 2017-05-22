@@ -2,4 +2,8 @@ function setTags(payload) {
   return {type: 'tag/SET', payload};
 }
 
-export {setTags};
+function updateTag(payload) {
+  return {type: 'tag/UPDATE', payload};
+}
+
+export {setTags, updateTag};
