@@ -27,3 +27,29 @@ describe('tag/SET', () => {
     expect(tagReducer(previousState, action)).toEqual(expected);
   });
 });
+
+describe('tag/UPDATE', () => {
+  it('throws an error when tag is missing from state', () => {
+    const previousState = {byId: {}};
+    const payload = {id: 1, bloo: 'blargh'};
+    const action = {type: 'tag/UPDATE', payload};
+    const expectedError = 'no tag found for id 1';
+
+    expect(() => { tagReducer(previousState, action); }).toThrow(expectedError);
+  });
+
+  it('merges into the existing state', () => {
+    const previousState = {
+      byId: {1: {id: 1, goo: 'ber', bloo: 'blah'}, 2: {id: 2, bar: 'butz'}},
+      orderedIds: [1, 2],
+    };
+    const payload = {id: 1, bloo: 'blargh'};
+    const action = {type: 'tag/UPDATE', payload};
+    const expectedState = {
+      byId: {1: {id: 1, goo: 'ber', bloo: 'blargh'}, 2: {id: 2, bar: 'butz'}},
+      orderedIds: [1, 2],
+    };
+
+    expect(tagReducer(previousState, action)).toEqual(expectedState);
+  });
+});

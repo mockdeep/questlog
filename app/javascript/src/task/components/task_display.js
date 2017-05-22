@@ -9,7 +9,11 @@ import EditTaskForm from 'src/task/components/edit_task_form';
 function TaskDisplay(props) {
   return (
     <div>
-      <TagButtons task={props.task} tags={props.tags} />
+      <TagButtons
+        task={props.task}
+        tags={props.tags}
+        updateTag={props.updateTag}
+      />
       <TaskTitle
         task={props.task}
         deleteTask={props.deleteTask}
@@ -39,6 +43,7 @@ TaskDisplay.propTypes = {
   storeTask: PropTypes.func.isRequired,
   tags: PropTypes.array.isRequired,
   task: PropTypes.object.isRequired,
+  updateTag: PropTypes.func.isRequired,
 };
 
 export default TaskDisplay;

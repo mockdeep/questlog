@@ -14,7 +14,7 @@ describe('TagButtons', () => {
   it('renders some stuff', () => {
     const wrapper = mount(
       <BrowserRouter>
-        <TagButtons task={task} tags={tags} />
+        <TagButtons task={task} tags={tags} updateTag={jest.fn()} />
       </BrowserRouter>
     );
 

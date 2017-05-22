@@ -20,6 +20,7 @@ beforeEach(() => {
       deleteTask={jest.fn()}
       fetchTasks={jest.fn()}
       tags={[]}
+      updateTag={jest.fn()}
     />
   );
 });
