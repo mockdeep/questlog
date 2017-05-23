@@ -24,13 +24,11 @@ class TaskItem extends React.Component {
   componentDidMount() {
     this.loadTask().then(() => {
       this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
-      this.setTitle();
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.loadTask(nextProps.url);
-    this.setTitle();
   }
 
   componentWillUnmount() {
@@ -68,7 +66,6 @@ class TaskItem extends React.Component {
     } else {
       this.setState({task: {title: '(no tasks!)'}, disabled: true});
     }
-    this.setTitle();
   }
 
   postponeTask(taskId) {
@@ -85,6 +82,8 @@ class TaskItem extends React.Component {
   }
 
   render() {
+    this.setTitle();
+
     return (
       <div>
         <TaskDisplay
