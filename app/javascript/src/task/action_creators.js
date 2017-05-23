@@ -73,4 +73,15 @@ function updateTask(taskId, payload) {
   };
 }
 
-export {createTask, deleteTask, fetchTasks, setNewTask, updateTask};
+function updateTaskMeta(payload) {
+  return {type: 'task/UPDATE_META', payload};
+}
+
+export {
+  createTask,
+  deleteTask,
+  fetchTasks,
+  setNewTask,
+  updateTask,
+  updateTaskMeta,
+};

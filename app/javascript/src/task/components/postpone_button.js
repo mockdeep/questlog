@@ -66,7 +66,7 @@ const PostponeButton = createReactClass({
   className: 'btn btn-info btn-lg btn-block postpone-button',
 
   storePostponeSeconds(event) {
-    this.props.storePostponeSeconds(event.target.value);
+    this.props.storePostponeSeconds(parseInt(event.target.value, 10));
   },
 
   buttonMessage() {

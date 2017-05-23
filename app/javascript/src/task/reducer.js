@@ -1,3 +1,4 @@
+import update from 'immutability-helper';
 import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/basic_reducer';
@@ -14,7 +15,12 @@ const taskSchema = new schema.Entity('tasks', {}, {processStrategy: processTask}
 const taskListSchema = new schema.Array(taskSchema);
 
 function initStore() {
-  return {orderedIds: [], byId: {}, newTask: {title: ''}};
+  return {
+    orderedIds: [],
+    byId: {},
+    meta: {postponeSeconds: 300},
+    newTask: {title: ''},
+  };
 }
 
 function setAjaxState(previousState, ajaxState) {
@@ -31,11 +37,16 @@ function setTasks(previousState, taskData) {
   return {...previousState, byId: entities.tasks, orderedIds: result};
 }
 
+function updateTaskMeta(previousState, meta) {
+  return update(previousState, {meta: {$merge: meta}});
+}
+
 const operations = {
   'task/INIT': initStore,
   'task/SET': setTasks,
   'task/SET_NEW': setNewTask,
   'task/SET_AJAX_STATE': setAjaxState,
+  'task/UPDATE_META': updateTaskMeta,
 };
 
 export default createBasicReducer(operations);

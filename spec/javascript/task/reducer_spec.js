@@ -2,7 +2,12 @@ import taskReducer from 'src/task/reducer';
 
 describe('task/INIT', () => {
   it('sets up the basic structure for the store', () => {
-    const expected = {orderedIds: [], byId: {}, newTask: {title: ''}};
+    const expected = {
+      byId: {},
+      orderedIds: [],
+      meta: {postponeSeconds: 300},
+      newTask: {title: ''},
+    };
 
     expect(taskReducer(null, {type: 'task/INIT'})).toEqual(expected);
   });

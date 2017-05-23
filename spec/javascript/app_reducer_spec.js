@@ -8,7 +8,12 @@ describe('appReducer', () => {
         user: {},
         notification: {task: null},
         tag: {byId: {}, orderedIds: []},
-        task: {orderedIds: [], byId: {}, newTask: {title: ''}},
+        task: {
+          byId: {},
+          orderedIds: [],
+          meta: {postponeSeconds: 300},
+          newTask: {title: ''},
+        },
       };
 
       expect(reducer(null, action)).toEqual(expectedState);
