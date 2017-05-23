@@ -16,7 +16,6 @@ class TaskItem extends React.Component {
     this.state = {
       task: {title: 'Loading...', loadingState: 'loading'},
       disabled: true,
-      postponeSeconds: 300,
     };
     autobind(this);
   }
@@ -36,7 +35,7 @@ class TaskItem extends React.Component {
   }
 
   storePostponeSeconds(postponeSeconds) {
-    this.setState({postponeSeconds});
+    this.props.updateTaskMeta({postponeSeconds});
   }
 
   setTitle() {
@@ -71,7 +70,7 @@ class TaskItem extends React.Component {
   postponeTask(taskId) {
     this.setState({disabled: true});
 
-    const attrs = {postpone: this.state.postponeSeconds};
+    const attrs = {postpone: this.props.postponeSeconds};
     const taskStatus = 'postponing';
 
     this.storeTask(taskId, attrs, {taskStatus}).then(this.loadTask);
@@ -114,8 +113,10 @@ TaskItem.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   fetchTasks: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  postponeSeconds: PropTypes.number.isRequired,
   tags: PropTypes.array.isRequired,
   updateTag: PropTypes.func.isRequired,
+  updateTaskMeta: PropTypes.func.isRequired,
   url: PropTypes.string,
 };
 

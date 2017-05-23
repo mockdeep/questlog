@@ -6,7 +6,12 @@ describe('appStore', () => {
       user: {},
       notification: {task: null},
       tag: {byId: {}, orderedIds: []},
-      task: {orderedIds: [], byId: {}, newTask: {title: ''}},
+      task: {
+        byId: {},
+        orderedIds: [],
+        meta: {postponeSeconds: 300},
+        newTask: {title: ''},
+      },
     };
     const subSpy = jest.fn();
 

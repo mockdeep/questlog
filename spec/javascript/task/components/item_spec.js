@@ -19,8 +19,10 @@ beforeEach(() => {
       disableNotifications={disableNotifications}
       deleteTask={jest.fn()}
       fetchTasks={jest.fn()}
+      postponeSeconds={250}
       tags={[]}
       updateTag={jest.fn()}
+      updateTaskMeta={jest.fn()}
     />
   );
 });
