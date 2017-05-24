@@ -41,9 +41,8 @@ class TaskItem extends React.Component {
 
   storeTask(taskId, attrs, opts) {
     const loadingState = (opts && opts.loadingState) || 'updating';
-    const newTask = {...this.state.task, loadingState};
 
-    this.setState({task: newTask});
+    this.setState({task: {...this.state.task, loadingState}});
 
     return TaskStore.update(taskId, attrs).then(this.props.fetchTasks);
   }
