@@ -8,7 +8,11 @@ function estimateMinutes(task) {
 }
 
 function processTask(task) {
-  return {...task, estimateMinutes: estimateMinutes(task)};
+  return {
+    ...task,
+    estimateMinutes: estimateMinutes(task),
+    loadingState: 'ready',
+  };
 }
 
 const taskSchema = new schema.Entity('tasks', {}, {processStrategy: processTask});

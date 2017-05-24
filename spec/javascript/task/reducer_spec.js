@@ -25,8 +25,8 @@ describe('task/SET', () => {
     const expected = {
       meta: 'foo',
       byId: {
-        1: {...task1, estimateMinutes: 30},
-        5: {...task2, estimateMinutes: 30},
+        1: {...task1, estimateMinutes: 30, loadingState: 'ready'},
+        5: {...task2, estimateMinutes: 30, loadingState: 'ready'},
       },
       orderedIds: [5, 1],
     };
