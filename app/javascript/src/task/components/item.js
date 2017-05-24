@@ -67,13 +67,13 @@ class TaskItem extends React.Component {
 
   postponeTask(taskId) {
     const attrs = {postpone: this.props.postponeSeconds};
-    const taskStatus = 'postponing';
+    const loadingState = 'postponing';
 
-    this.storeTask(taskId, attrs, {taskStatus}).then(this.loadTask);
+    this.storeTask(taskId, attrs, {loadingState}).then(this.loadTask);
   }
 
   completeTask(taskId) {
-    this.storeTask(taskId, {done: true}, {taskStatus: 'marking_done'});
+    this.storeTask(taskId, {done: true}, {loadingState: 'marking_done'});
   }
 
   render() {
