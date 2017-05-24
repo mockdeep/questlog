@@ -13,10 +13,7 @@ import TaskStore from 'src/task/store';
 class TaskItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      task: {title: 'Loading...', loadingState: 'loading'},
-      disabled: true,
-    };
+    this.state = {task: {title: 'Loading...', loadingState: 'loading'}};
     autobind(this);
   }
 
@@ -57,19 +54,19 @@ class TaskItem extends React.Component {
     return TagStore.get(tagName).then(this.updateTask);
   }
 
+  isDisabled() {
+    return this.state.task.loadingState !== 'ready';
+  }
+
   updateTask({data}) {
     if (data) {
-      const task = {...data, loadingState: 'ready'};
-
-      this.setState({task, disabled: false});
+      this.setState({task: {...data, loadingState: 'ready'}});
     } else {
-      this.setState({task: {title: '(no tasks!)'}, disabled: true});
+      this.setState({task: {title: '(no tasks!)'}});
     }
   }
 
   postponeTask(taskId) {
-    this.setState({disabled: true});
-
     const attrs = {postpone: this.props.postponeSeconds};
     const taskStatus = 'postponing';
 
@@ -88,7 +85,7 @@ class TaskItem extends React.Component {
         <TaskDisplay
           task={this.state.task}
           tags={this.props.tags}
-          disabled={this.state.disabled}
+          disabled={this.isDisabled()}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}
           postponeTask={this.postponeTask}
