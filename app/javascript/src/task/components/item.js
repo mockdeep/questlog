@@ -53,8 +53,8 @@ class TaskItem extends React.Component {
     return TagStore.get(tagName).then(this.updateTask);
   }
 
-  isDisabled() {
-    return this.state.task.loadingState !== 'ready';
+  isReady() {
+    return Boolean(this.state.task && this.state.task.loadingState === 'ready');
   }
 
   updateTask({data}) {
@@ -84,7 +84,7 @@ class TaskItem extends React.Component {
         <TaskDisplay
           task={this.state.task}
           tags={this.props.tags}
-          disabled={this.isDisabled()}
+          disabled={!this.isReady()}
           storeTask={this.storeTask}
           storePostponeSeconds={this.storePostponeSeconds}
           postponeTask={this.postponeTask}
