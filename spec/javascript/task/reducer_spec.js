@@ -5,8 +5,7 @@ describe('task/INIT', () => {
     const expected = {
       byId: {},
       orderedIds: [],
-      meta: {postponeSeconds: 300},
-      newTask: {title: ''},
+      meta: {postponeSeconds: 300, newTask: {title: ''}},
     };
 
     expect(taskReducer(null, {type: 'task/INIT'})).toEqual(expected);
@@ -36,21 +35,17 @@ describe('task/SET', () => {
   });
 });
 
-describe('task/SET_NEW', () => {
-  it('replaces the stored new task', () => {
-    const previousState = {newTask: {title: 'turds'}};
-    const action = {type: 'task/SET_NEW', payload: {title: 'birds'}};
-    const expected = {newTask: {title: 'birds'}};
-
-    expect(taskReducer(previousState, action)).toEqual(expected);
-  });
-});
-
 describe('task/SET_AJAX_STATE', () => {
   it('sets the ajax state in the store', () => {
-    const previousState = {newTask: {title: 'turds'}, ajaxState: 'futzing'};
+    const previousState = {
+      meta: {newTask: {title: 'turds'}},
+      ajaxState: 'futzing',
+    };
     const action = {type: 'task/SET_AJAX_STATE', payload: 'flurbing'};
-    const expected = {newTask: {title: 'turds'}, ajaxState: 'flurbing'};
+    const expected = {
+      meta: {newTask: {title: 'turds'}},
+      ajaxState: 'flurbing',
+    };
 
     expect(taskReducer(previousState, action)).toEqual(expected);
   });

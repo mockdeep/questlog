@@ -11,7 +11,7 @@ class NewTaskForm extends React.Component {
   setTitle(event) {
     const taskAttrs = {title: event.target.value};
 
-    this.props.setNewTask({...this.props.task, ...taskAttrs});
+    this.props.updateTaskMeta({newTask: {...this.props.task, ...taskAttrs}});
   }
 
   saveTask(event) {
@@ -62,9 +62,9 @@ class NewTaskForm extends React.Component {
 
 NewTaskForm.propTypes = {
   createTask: PropTypes.func.isRequired,
-  setNewTask: PropTypes.func.isRequired,
   task: PropTypes.object.isRequired,
   taskSaving: PropTypes.bool.isRequired,
+  updateTaskMeta: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;
