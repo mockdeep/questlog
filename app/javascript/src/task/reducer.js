@@ -18,17 +18,12 @@ function initStore() {
   return {
     orderedIds: [],
     byId: {},
-    meta: {postponeSeconds: 300},
-    newTask: {title: ''},
+    meta: {postponeSeconds: 300, newTask: {title: ''}},
   };
 }
 
 function setAjaxState(previousState, ajaxState) {
   return {...previousState, ajaxState};
-}
-
-function setNewTask(previousState, newTask) {
-  return {...previousState, newTask};
 }
 
 function setTasks(previousState, taskData) {
@@ -44,7 +39,6 @@ function updateTaskMeta(previousState, meta) {
 const operations = {
   'task/INIT': initStore,
   'task/SET': setTasks,
-  'task/SET_NEW': setNewTask,
   'task/SET_AJAX_STATE': setAjaxState,
   'task/UPDATE_META': updateTaskMeta,
 };

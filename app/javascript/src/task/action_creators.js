@@ -3,10 +3,6 @@ import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
 import {setTags} from 'src/tag/action_creators';
 
-function setNewTask(payload) {
-  return {type: 'task/SET_NEW', payload};
-}
-
 function setTaskAjaxState(payload) {
   return {type: 'task/SET_AJAX_STATE', payload};
 }
@@ -28,6 +24,10 @@ function fetchTasks() {
   };
 }
 
+function updateTaskMeta(payload) {
+  return {type: 'task/UPDATE_META', payload};
+}
+
 function createTask(payload) {
   return (dispatch) => {
     dispatch(setTaskAjaxState('taskSaving'));
@@ -38,7 +38,7 @@ function createTask(payload) {
       method: 'post',
       success: () => {
         dispatch(setTaskAjaxState(null));
-        dispatch(setNewTask({title: ''}));
+        dispatch(updateTaskMeta({newTask: {title: ''}}));
         dispatch(fetchTasks());
         TaskStore.unload();
         flash('success', 'Task added');
@@ -73,15 +73,10 @@ function updateTask(taskId, payload) {
   };
 }
 
-function updateTaskMeta(payload) {
-  return {type: 'task/UPDATE_META', payload};
-}
-
 export {
   createTask,
   deleteTask,
   fetchTasks,
-  setNewTask,
   updateTask,
   updateTaskMeta,
 };

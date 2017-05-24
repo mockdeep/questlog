@@ -9,8 +9,7 @@ describe('appStore', () => {
       task: {
         byId: {},
         orderedIds: [],
-        meta: {postponeSeconds: 300},
-        newTask: {title: ''},
+        meta: {postponeSeconds: 300, newTask: {title: ''}},
       },
     };
     const subSpy = jest.fn();
