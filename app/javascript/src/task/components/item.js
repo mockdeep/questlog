@@ -39,8 +39,16 @@ class TaskItem extends React.Component {
     document.title = `Task: ${this.state.task.title}`;
   }
 
-  storeTask(taskId, attrs, opts) {
-    const loadingState = (opts && opts.loadingState) || 'updating';
+  storeTask(taskId, attrs) {
+    let loadingState;
+
+    if (attrs.done) {
+      loadingState = 'marking_done';
+    } else if (attrs.postpone) {
+      loadingState = 'postponing';
+    } else {
+      loadingState = 'updating';
+    }
 
     this.setState({task: {...this.state.task, loadingState}});
 
@@ -67,13 +75,12 @@ class TaskItem extends React.Component {
 
   postponeTask(taskId) {
     const attrs = {postpone: this.props.postponeSeconds};
-    const loadingState = 'postponing';
 
-    this.storeTask(taskId, attrs, {loadingState}).then(this.loadTask);
+    this.storeTask(taskId, attrs).then(this.loadTask);
   }
 
   completeTask(taskId) {
-    this.storeTask(taskId, {done: true}, {loadingState: 'marking_done'});
+    this.storeTask(taskId, {done: true});
   }
 
   render() {
