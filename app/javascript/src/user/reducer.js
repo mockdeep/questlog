@@ -1,7 +1,6 @@
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-const INIT = 'user/INIT';
-const UPDATE = 'user/UPDATE';
+import {INIT, UPDATE} from 'src/user/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
