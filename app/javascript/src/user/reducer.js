@@ -1,16 +1,14 @@
 import createBasicReducer from 'src/_common/basic_reducer';
 
-function initUser() {
-  return {};
-}
+const INIT = 'user/INIT';
+const UPDATE = 'user/UPDATE';
 
-function updateUser(previousState, payload) {
-  return {...previousState, ...payload};
-}
+export default createBasicReducer({
+  [INIT]() {
+    return {};
+  },
 
-const operations = {
-  'user/INIT': initUser,
-  'user/UPDATE': updateUser,
-};
-
-export default createBasicReducer(operations);
+  [UPDATE](previousState, payload) {
+    return {...previousState, ...payload};
+  },
+});
