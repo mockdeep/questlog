@@ -3,7 +3,7 @@ import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-import {INIT, SET, SET_AJAX_STATE, UPDATE_META} from 'src/task/action_creators';
+import {INIT, SET, UPDATE_META} from 'src/task/action_creators';
 
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
@@ -33,10 +33,6 @@ export default createBasicReducer({
     const {entities, result} = normalize(taskData, taskListSchema);
 
     return {...previousState, byId: entities.tasks, orderedIds: result};
-  },
-
-  [SET_AJAX_STATE](previousState, ajaxState) {
-    return {...previousState, ajaxState};
   },
 
   [UPDATE_META](previousState, meta) {
