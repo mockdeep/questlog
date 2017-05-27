@@ -1,29 +1,19 @@
 import reducer from 'src/user/reducer';
-import * as actionCreators from 'src/user/action_creators';
+import {INIT, UPDATE} from 'src/user/action_creators';
 
-describe('user/reducer', () => {
-  describe('INIT', () => {
-    it('returns a new empty object', () => {
-      const action = {type: 'user/INIT'};
+describe(INIT, () => {
+  it('returns a new empty object', () => {
+    const action = {type: INIT};
 
-      expect(reducer(null, action)).toEqual({});
-    });
+    expect(reducer(null, action)).toEqual({});
   });
-  describe('UPDATE', () => {
-    it('returns a new object with updated config', () => {
-      const action = actionCreators.updateUser({booger: 'flick'});
-      const result = reducer({foo: 'bar'}, action);
+});
+describe(UPDATE, () => {
+  it('returns a new object with updated config', () => {
+    const previousState = {foo: 'bar'};
+    const action = {type: UPDATE, payload: {booger: 'flick'}};
+    const expectedState = {foo: 'bar', booger: 'flick'};
 
-      expect(result).toEqual({foo: 'bar', booger: 'flick'});
-    });
-  });
-
-  describe('invalid action type', () => {
-    it('throws an error', () => {
-      const action = {type: 'user/FLICK', payload: {booger: 'flick'}};
-      const message = 'invalid action type: "user/FLICK"';
-
-      expect(() => { reducer({foo: 'bar'}, action); }).toThrow(message);
-    });
+    expect(reducer(previousState, action)).toEqual(expectedState);
   });
 });

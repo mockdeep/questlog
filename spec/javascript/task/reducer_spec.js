@@ -1,6 +1,7 @@
+import {INIT, SET, UPDATE_META} from 'src/task/action_creators';
 import taskReducer from 'src/task/reducer';
 
-describe('task/INIT', () => {
+describe(INIT, () => {
   it('sets up the basic structure for the store', () => {
     const expectedState = {
       byId: {},
@@ -8,11 +9,11 @@ describe('task/INIT', () => {
       meta: {postponeSeconds: 300, newTask: {title: ''}},
     };
 
-    expect(taskReducer(null, {type: 'task/INIT'})).toEqual(expectedState);
+    expect(taskReducer(null, {type: INIT})).toEqual(expectedState);
   });
 });
 
-describe('task/SET', () => {
+describe(SET, () => {
   it('replaces the existing tasks', () => {
     const previousState = {
       meta: 'foo',
@@ -21,7 +22,7 @@ describe('task/SET', () => {
     };
     const task1 = {id: 1, title: 'a task'};
     const task2 = {id: 5, title: 'wat task'};
-    const action = {type: 'task/SET', payload: [task2, task1]};
+    const action = {type: SET, payload: [task2, task1]};
     const expectedState = {
       meta: 'foo',
       byId: {
@@ -35,10 +36,10 @@ describe('task/SET', () => {
   });
 });
 
-describe('task/UPDATE_META', () => {
+describe(UPDATE_META, () => {
   it('updates meta information in the state', () => {
     const previousState = {meta: {foo: 'bar', baz: 'butz'}};
-    const action = {type: 'task/UPDATE_META', payload: {baz: 'bootz'}};
+    const action = {type: UPDATE_META, payload: {baz: 'bootz'}};
     const expectedState = {meta: {foo: 'bar', baz: 'bootz'}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
