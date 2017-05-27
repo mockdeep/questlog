@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 import {normalize, schema} from 'normalizr';
 
-import createBasicReducer from 'src/_common/basic_reducer';
+import createBasicReducer from 'src/_common/create_basic_reducer';
 
 const INIT = 'task/INIT';
 const SET = 'task/SET';
