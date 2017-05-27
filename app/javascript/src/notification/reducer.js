@@ -1,4 +1,4 @@
-import createBasicReducer from 'src/_common/basic_reducer';
+import createBasicReducer from 'src/_common/create_basic_reducer';
 
 const INIT = 'notification/INIT';
 const ADD = 'notification/ADD';
