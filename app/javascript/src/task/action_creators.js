@@ -5,12 +5,7 @@ import {setTags} from 'src/tag/action_creators';
 
 const INIT = 'task/INIT';
 const SET = 'task/SET';
-const SET_AJAX_STATE = 'task/SET_AJAX_STATE';
 const UPDATE_META = 'task/UPDATE_META';
-
-function setTaskAjaxState(payload) {
-  return {type: SET_AJAX_STATE, payload};
-}
 
 function setTasks(payload) {
   return {type: SET, payload};
@@ -35,14 +30,14 @@ function updateTaskMeta(payload) {
 
 function createTask(payload) {
   return (dispatch) => {
-    dispatch(setTaskAjaxState('taskSaving'));
+    dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
     request({
       data: {task: payload},
       url: '/tasks',
       method: 'post',
       success: () => {
-        dispatch(setTaskAjaxState(null));
+        dispatch(updateTaskMeta({ajaxState: null}));
         dispatch(updateTaskMeta({newTask: {title: ''}}));
         dispatch(fetchTasks());
         TaskStore.unload();
@@ -78,5 +73,5 @@ function updateTask(taskId, payload) {
   };
 }
 
-export {INIT, SET, SET_AJAX_STATE, UPDATE_META};
+export {INIT, SET, UPDATE_META};
 export {createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta};

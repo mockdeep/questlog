@@ -6,7 +6,7 @@ import NewTaskForm from 'src/task/components/new_task_form';
 function mapStateToProps(state) {
   return {
     task: state.task.meta.newTask,
-    taskSaving: state.task.ajaxState === 'taskSaving',
+    taskSaving: state.task.meta.ajaxState === 'taskSaving',
   };
 }
 

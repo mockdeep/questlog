@@ -34,19 +34,3 @@ describe('task/SET', () => {
     expect(taskReducer(previousState, action)).toEqual(expected);
   });
 });
-
-describe('task/SET_AJAX_STATE', () => {
-  it('sets the ajax state in the store', () => {
-    const previousState = {
-      meta: {newTask: {title: 'turds'}},
-      ajaxState: 'futzing',
-    };
-    const action = {type: 'task/SET_AJAX_STATE', payload: 'flurbing'};
-    const expected = {
-      meta: {newTask: {title: 'turds'}},
-      ajaxState: 'flurbing',
-    };
-
-    expect(taskReducer(previousState, action)).toEqual(expected);
-  });
-});
