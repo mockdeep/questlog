@@ -1,25 +1,23 @@
 import createBasicReducer from 'src/_common/basic_reducer';
 
-function initState() {
-  return {task: null};
-}
+const INIT = 'notification/INIT';
+const ADD = 'notification/ADD';
+const REMOVE = 'notification/REMOVE';
 
-function addNotification(previousState, payload) {
-  return {...previousState, [payload.type]: payload.notification};
-}
+export default createBasicReducer({
+  [INIT]() {
+    return {task: null};
+  },
 
-function removeNotification(previousState, payload) {
-  const notification = previousState[payload.type];
+  [ADD](previousState, payload) {
+    return {...previousState, [payload.type]: payload.notification};
+  },
 
-  if (notification) { notification.close(); }
+  [REMOVE](previousState, payload) {
+    const notification = previousState[payload.type];
 
-  return {...previousState, [payload.type]: null};
-}
+    if (notification) { notification.close(); }
 
-const operations = {
-  'notification/INIT': initState,
-  'notification/ADD': addNotification,
-  'notification/REMOVE': removeNotification,
-};
-
-export default createBasicReducer(operations);
+    return {...previousState, [payload.type]: null};
+  },
+});

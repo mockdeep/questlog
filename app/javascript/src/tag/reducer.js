@@ -6,28 +6,26 @@ import createBasicReducer from 'src/_common/basic_reducer';
 const tagSchema = new schema.Entity('tags');
 const tagListSchema = new schema.Array(tagSchema);
 
-function initStore() {
-  return {orderedIds: [], byId: {}};
-}
+const INIT = 'tag/INIT';
+const SET = 'tag/SET';
+const UPDATE = 'tag/UPDATE';
 
-function setTags(previousState, tags) {
-  const {entities, result} = normalize(tags, tagListSchema);
+export default createBasicReducer({
+  [INIT]() {
+    return {orderedIds: [], byId: {}};
+  },
 
-  return {...previousState, byId: entities.tags, orderedIds: result};
-}
+  [SET](previousState, tags) {
+    const {entities, result} = normalize(tags, tagListSchema);
 
-function updateTag(previousState, tagAttrs) {
-  if (!previousState.byId[tagAttrs.id]) {
-    throw new Error(`no tag found for id ${tagAttrs.id}`);
-  }
+    return {...previousState, byId: entities.tags, orderedIds: result};
+  },
 
-  return update(previousState, {byId: {[tagAttrs.id]: {$merge: tagAttrs}}});
-}
+  [UPDATE](previousState, tagAttrs) {
+    if (!previousState.byId[tagAttrs.id]) {
+      throw new Error(`no tag found for id ${tagAttrs.id}`);
+    }
 
-const operations = {
-  'tag/INIT': initStore,
-  'tag/SET': setTags,
-  'tag/UPDATE': updateTag,
-};
-
-export default createBasicReducer(operations);
+    return update(previousState, {byId: {[tagAttrs.id]: {$merge: tagAttrs}}});
+  },
+});

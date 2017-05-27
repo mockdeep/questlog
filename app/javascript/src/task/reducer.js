@@ -3,6 +3,11 @@ import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/basic_reducer';
 
+const INIT = 'task/INIT';
+const SET = 'task/SET';
+const SET_AJAX_STATE = 'task/SET_AJAX_STATE';
+const UPDATE_META = 'task/UPDATE_META';
+
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
@@ -18,33 +23,26 @@ function processTask(task) {
 const taskSchema = new schema.Entity('tasks', {}, {processStrategy: processTask});
 const taskListSchema = new schema.Array(taskSchema);
 
-function initStore() {
-  return {
-    orderedIds: [],
-    byId: {},
-    meta: {postponeSeconds: 300, newTask: {title: ''}},
-  };
-}
+export default createBasicReducer({
+  [INIT]() {
+    return {
+      orderedIds: [],
+      byId: {},
+      meta: {postponeSeconds: 300, newTask: {title: ''}},
+    };
+  },
 
-function setAjaxState(previousState, ajaxState) {
-  return {...previousState, ajaxState};
-}
+  [SET](previousState, taskData) {
+    const {entities, result} = normalize(taskData, taskListSchema);
 
-function setTasks(previousState, taskData) {
-  const {entities, result} = normalize(taskData, taskListSchema);
+    return {...previousState, byId: entities.tasks, orderedIds: result};
+  },
 
-  return {...previousState, byId: entities.tasks, orderedIds: result};
-}
+  [SET_AJAX_STATE](previousState, ajaxState) {
+    return {...previousState, ajaxState};
+  },
 
-function updateTaskMeta(previousState, meta) {
-  return update(previousState, {meta: {$merge: meta}});
-}
-
-const operations = {
-  'task/INIT': initStore,
-  'task/SET': setTasks,
-  'task/SET_AJAX_STATE': setAjaxState,
-  'task/UPDATE_META': updateTaskMeta,
-};
-
-export default createBasicReducer(operations);
+  [UPDATE_META](previousState, meta) {
+    return update(previousState, {meta: {$merge: meta}});
+  },
+});
