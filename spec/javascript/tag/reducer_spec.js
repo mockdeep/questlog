@@ -53,3 +53,13 @@ describe('tag/UPDATE', () => {
     expect(tagReducer(previousState, action)).toEqual(expectedState);
   });
 });
+
+describe('tag/UPDATE_META', () => {
+  it('updates meta information in the state', () => {
+    const previousState = {meta: {foo: 'bar', baz: 'butz'}};
+    const action = {type: 'tag/UPDATE_META', payload: {baz: 'bootz'}};
+    const expectedState = {meta: {foo: 'bar', baz: 'bootz'}};
+
+    expect(tagReducer(previousState, action)).toEqual(expectedState);
+  });
+});

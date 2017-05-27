@@ -6,7 +6,7 @@ import createBasicReducer from 'src/_common/create_basic_reducer';
 const tagSchema = new schema.Entity('tags');
 const tagListSchema = new schema.Array(tagSchema);
 
-import {INIT, SET, UPDATE} from 'src/tag/action_creators';
+import {INIT, SET, UPDATE, UPDATE_META} from 'src/tag/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
@@ -25,5 +25,9 @@ export default createBasicReducer({
     }
 
     return update(previousState, {byId: {[tagAttrs.id]: {$merge: tagAttrs}}});
+  },
+
+  [UPDATE_META](previousState, meta) {
+    return update(previousState, {meta: {$merge: meta}});
   },
 });
