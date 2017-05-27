@@ -1,8 +1,6 @@
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-const INIT = 'notification/INIT';
-const ADD = 'notification/ADD';
-const REMOVE = 'notification/REMOVE';
+import {INIT, ADD, REMOVE} from 'src/notification/action_creators';
 
 export default createBasicReducer({
   [INIT]() {

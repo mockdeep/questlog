@@ -3,12 +3,17 @@ import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
 import {setTags} from 'src/tag/action_creators';
 
+const INIT = 'task/INIT';
+const SET = 'task/SET';
+const SET_AJAX_STATE = 'task/SET_AJAX_STATE';
+const UPDATE_META = 'task/UPDATE_META';
+
 function setTaskAjaxState(payload) {
-  return {type: 'task/SET_AJAX_STATE', payload};
+  return {type: SET_AJAX_STATE, payload};
 }
 
 function setTasks(payload) {
-  return {type: 'task/SET', payload};
+  return {type: SET, payload};
 }
 
 function fetchTasks() {
@@ -25,7 +30,7 @@ function fetchTasks() {
 }
 
 function updateTaskMeta(payload) {
-  return {type: 'task/UPDATE_META', payload};
+  return {type: UPDATE_META, payload};
 }
 
 function createTask(payload) {
@@ -73,10 +78,5 @@ function updateTask(taskId, payload) {
   };
 }
 
-export {
-  createTask,
-  deleteTask,
-  fetchTasks,
-  updateTask,
-  updateTaskMeta,
-};
+export {INIT, SET, SET_AJAX_STATE, UPDATE_META};
+export {createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta};

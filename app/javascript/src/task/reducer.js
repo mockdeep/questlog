@@ -3,10 +3,7 @@ import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-const INIT = 'task/INIT';
-const SET = 'task/SET';
-const SET_AJAX_STATE = 'task/SET_AJAX_STATE';
-const UPDATE_META = 'task/UPDATE_META';
+import {INIT, SET, SET_AJAX_STATE, UPDATE_META} from 'src/task/action_creators';
 
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
