@@ -13,7 +13,10 @@ const props = {
 };
 
 it('wraps the Item component', () => {
-  const container = shallow(<ItemContainer {...props} />);
+  const container = shallow(
+    <ItemContainer {...props} />,
+    {lifecycleExperimental: true}
+  );
 
   expect(container.find(ItemComponent)).toHaveLength(1);
 });

@@ -9,7 +9,10 @@ const props = {current: false, updateTagMeta: jest.fn(), tag};
 
 describe('onClick', () => {
   it('marks the tag as selected when not', () => {
-    const component = shallow(<TagButton {...props} />);
+    const component = shallow(
+      <TagButton {...props} />,
+      {lifecycleExperimental: true}
+    );
 
     component.find(Link).simulate('click');
 
@@ -17,7 +20,10 @@ describe('onClick', () => {
   });
 
   it('sets selectedTagId to null when tag is selected', () => {
-    const component = shallow(<TagButton {...props} selectedTagId={tag.id} />);
+    const component = shallow(
+      <TagButton {...props} selectedTagId={tag.id} />,
+      {lifecycleExperimental: true}
+    );
 
     component.find(Link).simulate('click');
 
