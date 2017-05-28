@@ -21,7 +21,7 @@ beforeEach(() => {
       fetchTasks={jest.fn()}
       postponeSeconds={250}
       tags={[]}
-      updateTag={jest.fn()}
+      updateTagMeta={jest.fn()}
       updateTaskMeta={jest.fn()}
     />
   );

@@ -12,7 +12,7 @@ function TaskDisplay(props) {
       <TagButtons
         task={props.task}
         tags={props.tags}
-        updateTag={props.updateTag}
+        updateTagMeta={props.updateTagMeta}
       />
       <TaskTitle
         task={props.task}
@@ -43,7 +43,7 @@ TaskDisplay.propTypes = {
   storeTask: PropTypes.func.isRequired,
   tags: PropTypes.array.isRequired,
   task: PropTypes.object.isRequired,
-  updateTag: PropTypes.func.isRequired,
+  updateTagMeta: PropTypes.func.isRequired,
 };
 
 export default TaskDisplay;

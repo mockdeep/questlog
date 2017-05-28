@@ -26,7 +26,7 @@ class TagButtons extends React.Component {
         tag={tag}
         key={tag.id}
         current={this.isCurrent(tag)}
-        updateTag={this.props.updateTag}
+        updateTagMeta={this.props.updateTagMeta}
       />
     );
   }
@@ -49,7 +49,7 @@ class TagButtons extends React.Component {
 TagButtons.propTypes = {
   tags: PropTypes.array.isRequired,
   task: PropTypes.object.isRequired,
-  updateTag: PropTypes.func.isRequired,
+  updateTagMeta: PropTypes.func.isRequired,
 };
 
 export default TagButtons;
