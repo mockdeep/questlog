@@ -6,7 +6,7 @@ import router from 'src/router';
 
 describe('router', () => {
   it('renders routes', () => {
-    const wrapper = shallow(router);
+    const wrapper = shallow(router, {lifecycleExperimental: true});
 
     expect(wrapper.find('Router')).toBeTruthy();
   });

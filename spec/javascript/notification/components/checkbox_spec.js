@@ -31,7 +31,8 @@ beforeEach(() => {
       disableNotifications={disableNotifications}
       requestNotificationPermission={requestNotificationPermission}
       updateUser={jest.fn()}
-    />
+    />,
+    {lifecycleExperimental: true}
   );
 });
 

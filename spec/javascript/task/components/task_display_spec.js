@@ -17,7 +17,10 @@ const props = {
 };
 
 it('renders TagButtons', () => {
-  const component = shallow(<TaskDisplay {...props} />);
+  const component = shallow(
+    <TaskDisplay {...props} />,
+    {lifecycleExperimental: true}
+  );
   const tagButtons = component.find(TagButtons);
 
   expect(tagButtons.prop('updateTagMeta')).toBe(props.updateTagMeta);

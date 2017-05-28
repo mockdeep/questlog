@@ -8,7 +8,8 @@ let wrapper;
 
 beforeEach(() => {
   const connector = shallow(
-    <TimeframeList deleteTask={jest.fn()} updateTask={jest.fn()} />
+    <TimeframeList deleteTask={jest.fn()} updateTask={jest.fn()} />,
+    {lifecycleExperimental: true}
   );
 
   wrapper = connector.first().shallow();
