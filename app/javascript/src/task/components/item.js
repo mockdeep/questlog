@@ -97,7 +97,7 @@ class TaskItem extends React.Component {
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
           deleteTask={this.props.deleteTask}
-          updateTag={this.props.updateTag}
+          updateTagMeta={this.props.updateTagMeta}
         />
         <NewTaskForm />
 
@@ -118,7 +118,7 @@ TaskItem.propTypes = {
   match: PropTypes.object.isRequired,
   postponeSeconds: PropTypes.number.isRequired,
   tags: PropTypes.array.isRequired,
-  updateTag: PropTypes.func.isRequired,
+  updateTagMeta: PropTypes.func.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,
   url: PropTypes.string,
 };

@@ -17,6 +17,10 @@ class TagButton extends React.Component {
     return this.path() === window.location.pathname;
   }
 
+  isTagSelected() {
+    return this.props.selectedTagId === this.props.tag.id;
+  }
+
   className() {
     let classString = 'button btn btn-default';
 
@@ -34,9 +38,9 @@ class TagButton extends React.Component {
   }
 
   toggleTagSelection() {
-    const {id, isSelected} = this.props.tag;
+    const selectedTagId = this.isTagSelected() ? null : this.props.tag.id;
 
-    this.props.updateTag({id, isSelected: !isSelected});
+    this.props.updateTagMeta({selectedTagId});
   }
 
   unfinishedTasksCount() {
@@ -60,8 +64,9 @@ class TagButton extends React.Component {
 
 TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
+  selectedTagId: PropTypes.number,
   tag: PropTypes.object.isRequired,
-  updateTag: PropTypes.func.isRequired,
+  updateTagMeta: PropTypes.func.isRequired,
 };
 
 export default TagButton;

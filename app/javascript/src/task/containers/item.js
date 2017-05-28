@@ -7,7 +7,7 @@ import {
   updateTaskMeta,
 } from 'src/task/action_creators';
 import {getActiveTags} from 'src/tag/selectors';
-import {updateTag} from 'src/tag/action_creators';
+import {updateTagMeta} from 'src/tag/action_creators';
 import TaskItem from 'src/task/components/item';
 
 function mapStateToProps(state) {
@@ -20,7 +20,7 @@ function mapStateToProps(state) {
 const actionCreators = {
   deleteTask,
   fetchTasks,
-  updateTag,
+  updateTagMeta,
   updateTask,
   updateTaskMeta,
 };
