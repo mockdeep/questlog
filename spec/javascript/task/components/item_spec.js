@@ -1,34 +1,28 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import ItemContainer from 'src/task/components/item';
+import Item from 'src/task/components/item';
 import NotificationCheckbox from 'src/notification/containers/checkbox';
 
-const enableNotifications = jest.fn();
-const disableNotifications = jest.fn();
-let itemContainer;
-
-beforeEach(() => {
-  itemContainer = shallow(
-    <ItemContainer
-      match={{}}
-      params={{}}
-      notificationsEnabled={false}
-      notificationsPermitted={true}
-      enableNotifications={enableNotifications}
-      disableNotifications={disableNotifications}
-      deleteTask={jest.fn()}
-      fetchTasks={jest.fn()}
-      postponeSeconds={250}
-      tags={[]}
-      updateTagMeta={jest.fn()}
-      updateTaskMeta={jest.fn()}
-    />
-  );
-});
+const props = {
+  match: {},
+  params: {},
+  notificationsEnabled: false,
+  notificationsPermitted: true,
+  enableNotifications: jest.fn(),
+  disableNotifications: jest.fn(),
+  deleteTask: jest.fn(),
+  fetchTasks: jest.fn(),
+  postponeSeconds: 250,
+  tags: [],
+  updateTagMeta: jest.fn(),
+  updateTaskMeta: jest.fn(),
+};
 
 describe('ItemContainer', () => {
   it('renders the notification checkbox', () => {
-    expect(itemContainer.find(NotificationCheckbox)).toHaveLength(1);
+    const component = shallow(<Item {...props} />);
+
+    expect(component.find(NotificationCheckbox)).toHaveLength(1);
   });
 });
