@@ -60,11 +60,11 @@ function deleteTask(taskId) {
   };
 }
 
-function updateTask(taskId, payload) {
+function updateTask(payload) {
   return (dispatch) => {
     request({
       data: {task: payload},
-      url: `tasks/${taskId}`,
+      url: `tasks/${payload.id}`,
       success: () => {
         dispatch(fetchTasks());
         TaskStore.unload();
