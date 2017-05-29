@@ -1,4 +1,5 @@
 {
+  "clearMocks": true,
   "collectCoverageFrom": ["app/javascript/**/*.{js,jsx}"],
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {

@@ -3,7 +3,3 @@ console.error = function error(message) { // eslint-disable-line no-console
 };
 
 window.Notification = {};
-
-afterEach(() => {
-  jest.resetAllMocks();
-});
