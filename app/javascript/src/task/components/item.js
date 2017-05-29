@@ -23,8 +23,8 @@ class TaskItem extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.loadTask(nextProps.url);
+  componentWillReceiveProps() {
+    this.loadTask();
   }
 
   componentWillUnmount() {
