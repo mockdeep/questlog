@@ -3,7 +3,7 @@ import {normalize, schema} from 'normalizr';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-import {INIT, SET, UPDATE_META} from 'src/task/action_creators';
+import {INIT, SET, UPDATE, UPDATE_META} from 'src/task/action_creators';
 
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
@@ -11,9 +11,9 @@ function estimateMinutes(task) {
 
 function processTask(task) {
   return {
-    ...task,
     estimateMinutes: estimateMinutes(task),
     loadingState: 'ready',
+    ...task,
   };
 }
 
@@ -33,6 +33,12 @@ export default createBasicReducer({
     const {entities, result} = normalize(taskData, taskListSchema);
 
     return {...previousState, byId: entities.tasks, orderedIds: result};
+  },
+
+  [UPDATE](previousState, taskAttrs) {
+    const task = normalize(taskAttrs, taskSchema).entities.tasks[taskAttrs.id];
+
+    return update(previousState, {byId: {[task.id]: {$merge: task}}});
   },
 
   [UPDATE_META](previousState, meta) {

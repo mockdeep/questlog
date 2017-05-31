@@ -1,33 +1,67 @@
 jest.mock('src/_helpers/request');
 jest.mock('src/task/store');
 
+import store from 'src/app_store';
 import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
-import {fetchTasks, updateTask} from 'src/task/action_creators';
+import {SET, UPDATE, updateTask} from 'src/task/action_creators';
+
+afterEach(() => {
+  store.dispatch({type: '@@redux/INIT'});
+});
 
 describe('updateTask', () => {
-  let updateThunk;
-  const dispatch = jest.fn();
   const taskAttrs = {id: 5, title: 'foo'};
+  const dispatch = jest.spyOn(store, 'dispatch');
 
   beforeEach(() => {
-    updateThunk = updateTask(taskAttrs);
+    store.dispatch({type: SET, payload: [taskAttrs]});
+  });
+
+  it('updates the client task with "marking_done" when marking done', () => {
+    const updateThunk = updateTask({...taskAttrs, done: true});
+    const payload = {id: 5, loadingState: 'marking_done'};
+
+    updateThunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
+  });
+
+  it('updates the client task with "postponing" when postponing', () => {
+    const updateThunk = updateTask({...taskAttrs, postpone: true});
+    const payload = {id: 5, loadingState: 'postponing'};
+
+    updateThunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
+  });
+
+  it('updates the client task with "updating" otherwise', () => {
+    const updateThunk = updateTask({...taskAttrs, title: 'foo blah #bar'});
+    const payload = {id: 5, loadingState: 'updating'};
+
+    updateThunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
   });
 
   it('sends a request to the server', () => {
+    const updateThunk = updateTask(taskAttrs);
     const expected = {
       data: {task: taskAttrs},
       url: 'tasks/5',
       success: expect.any(Function),
     };
 
-    updateThunk();
+    updateThunk(dispatch);
 
     expect(request).toHaveBeenCalledWith(expected);
   });
 
   describe('on success', () => {
     beforeEach(() => {
+      const updateThunk = updateTask(taskAttrs);
+
       updateThunk(dispatch);
 
       expect(request).toHaveBeenCalled();
