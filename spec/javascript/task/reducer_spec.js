@@ -34,6 +34,18 @@ describe(SET, () => {
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
   });
+
+  it('sets empty state when no tasks', () => {
+    const previousState = {
+      meta: 'foo',
+      byId: {dont: 'care'},
+      orderedIds: [1, 2, 3],
+    };
+    const action = {type: SET, payload: []};
+    const expectedState = {meta: 'foo', byId: {}, orderedIds: []};
+
+    expect(taskReducer(previousState, action)).toEqual(expectedState);
+  });
 });
 
 describe(UPDATE, () => {

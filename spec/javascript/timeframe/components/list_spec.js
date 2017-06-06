@@ -6,9 +6,15 @@ import TimeframeSection from 'src/timeframe/components/section';
 
 let wrapper;
 
+const props = {
+  deleteTask: jest.fn(),
+  fetchTasks: jest.fn(),
+  updateTask: jest.fn(),
+};
+
 beforeEach(() => {
   const connector = shallow(
-    <TimeframeList deleteTask={jest.fn()} updateTask={jest.fn()} />,
+    <TimeframeList {...props} />,
     {lifecycleExperimental: true}
   );
 

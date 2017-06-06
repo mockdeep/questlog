@@ -87,6 +87,7 @@ class TimeframeList extends React.Component {
   refresh(event) {
     event.preventDefault();
     TaskStore.unload();
+    this.props.fetchTasks();
   }
 
   render() {
@@ -105,6 +106,7 @@ class TimeframeList extends React.Component {
 
 TimeframeList.propTypes = {
   deleteTask: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 

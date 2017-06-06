@@ -19,7 +19,7 @@ describe('updateTask', () => {
   });
 
   it('updates the client task with "marking_done" when marking done', () => {
-    const updateThunk = updateTask({...taskAttrs, done: true});
+    const updateThunk = updateTask(taskAttrs.id, {done: true});
     const payload = {id: 5, loadingState: 'marking_done'};
 
     updateThunk(dispatch);
@@ -28,7 +28,7 @@ describe('updateTask', () => {
   });
 
   it('updates the client task with "postponing" when postponing', () => {
-    const updateThunk = updateTask({...taskAttrs, postpone: true});
+    const updateThunk = updateTask(taskAttrs.id, {postpone: true});
     const payload = {id: 5, loadingState: 'postponing'};
 
     updateThunk(dispatch);
@@ -37,7 +37,7 @@ describe('updateTask', () => {
   });
 
   it('updates the client task with "updating" otherwise', () => {
-    const updateThunk = updateTask({...taskAttrs, title: 'foo blah #bar'});
+    const updateThunk = updateTask(taskAttrs.id, {title: 'foo blah #bar'});
     const payload = {id: 5, loadingState: 'updating'};
 
     updateThunk(dispatch);
@@ -46,9 +46,9 @@ describe('updateTask', () => {
   });
 
   it('sends a request to the server', () => {
-    const updateThunk = updateTask(taskAttrs);
+    const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
     const expected = {
-      data: {task: taskAttrs},
+      data: {task: {title: 'bar'}},
       url: 'tasks/5',
       success: expect.any(Function),
     };
@@ -60,7 +60,7 @@ describe('updateTask', () => {
 
   describe('on success', () => {
     beforeEach(() => {
-      const updateThunk = updateTask(taskAttrs);
+      const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
       updateThunk(dispatch);
 
