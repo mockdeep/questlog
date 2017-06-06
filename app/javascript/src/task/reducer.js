@@ -32,7 +32,7 @@ export default createBasicReducer({
   [SET](previousState, taskData) {
     const {entities, result} = normalize(taskData, taskListSchema);
 
-    return {...previousState, byId: entities.tasks, orderedIds: result};
+    return {...previousState, byId: entities.tasks || {}, orderedIds: result};
   },
 
   [UPDATE](previousState, taskAttrs) {
