@@ -138,4 +138,10 @@ describe('getNextUndoneTask', () => {
 
     expect(getNextUndoneTask(state)).toBe(task1);
   });
+
+  it('returns undefined when there are no tasks', () => {
+    const state = {task: {byId: {}}, tag: {byId: {}, orderedIds: []}};
+
+    expect(getNextUndoneTask(state)).toBeUndefined();
+  });
 });

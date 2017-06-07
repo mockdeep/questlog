@@ -30,10 +30,6 @@ function hasTags(task, tagIds) {
   return _.difference(tagIds, task.tagIds).length === 0;
 }
 
-function taskStatus(task) {
-  return task.releaseAt ? 'pending' : 'undone';
-}
-
 const getOrderedTasks = createSelector(
   (state) => state.task.byId,
   (tasksById) => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
@@ -41,7 +37,11 @@ const getOrderedTasks = createSelector(
 
 const getPartitionedTasks = createSelector(
   getOrderedTasks,
-  (orderedTasks) => _.groupBy(orderedTasks, taskStatus)
+  (orderedTasks) => {
+    const [pending, undone] = _.partition(orderedTasks, (task) => task.releaseAt);
+
+    return {pending, undone};
+  }
 );
 
 const getUndoneTasks = createSelector(
