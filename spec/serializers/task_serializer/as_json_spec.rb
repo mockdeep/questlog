@@ -3,6 +3,7 @@ RSpec.describe TaskSerializer, '#as_json' do
   it 'serializes a subset of the task attributes' do
     task_attrs = {
       estimate_seconds: 52,
+      position: 23,
       priority: 3,
       repeat_seconds: 25,
       release_at: 1.week.from_now,

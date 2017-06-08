@@ -16,6 +16,7 @@ RSpec.describe TasksController, '#show' do
           'estimateSeconds' => nil,
           'id' => task.id,
           'pending' => false,
+          'position' => 1,
           'priority' => nil,
           'repeatSeconds' => nil,
           'releaseAt' => nil,
