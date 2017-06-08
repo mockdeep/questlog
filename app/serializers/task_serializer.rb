@@ -6,6 +6,7 @@ class TaskSerializer
     :estimate_seconds,
     :id,
     :pending,
+    :position,
     :priority,
     :repeat_seconds,
     :release_at,
