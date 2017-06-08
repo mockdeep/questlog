@@ -48,6 +48,7 @@ RSpec.describe 'timeframes', js: true do
     end
 
     visit '/'
+    expect(task_title).to have_content('clean dishes')
     click_button 'Done'
     expect(task_title).to have_content('read feeds')
     tomorrow do
