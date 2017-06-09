@@ -25,7 +25,7 @@ export default createBasicReducer({
     return {
       orderedIds: [],
       byId: {},
-      meta: {postponeSeconds: 300, newTask: {title: ''}},
+      meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
     };
   },
 

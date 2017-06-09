@@ -1,18 +1,77 @@
+jest.mock('src/_helpers/flash');
 jest.mock('src/_helpers/request');
 jest.mock('src/task/store');
 
 import store from 'src/app_store';
 import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
-import {SET, UPDATE, updateTask} from 'src/task/action_creators';
+import {
+  SET, UPDATE, UPDATE_META,
+  createTask, fetchTasks, updateTask, updateTaskMeta,
+} from 'src/task/action_creators';
+
+const dispatch = jest.spyOn(store, 'dispatch');
 
 afterEach(() => {
   store.dispatch({type: '@@redux/INIT'});
 });
 
+describe('fetchTasks', () => {
+  it('sets ajax state to "fetching"', () => {
+    const thunk = fetchTasks();
+    const expectedAction = updateTaskMeta({ajaxState: 'fetching'});
+
+    thunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  describe('on success', () => {
+    beforeEach(() => {
+      const thunk = fetchTasks();
+
+      thunk(dispatch);
+
+      request.mock.calls[0][0].success({data: [], included: []});
+    });
+
+    it('sets ajax state to "ready"', () => {
+      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+});
+
+describe('createTask', () => {
+  it('sets ajax state to "taskSaving"', () => {
+    const thunk = createTask();
+    const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
+
+    thunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  describe('on success', () => {
+    beforeEach(() => {
+      const thunk = createTask();
+
+      thunk(dispatch);
+
+      request.mock.calls[0][0].success({data: [], included: []});
+    });
+
+    it('sets ajax state to "ready"', () => {
+      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+});
+
 describe('updateTask', () => {
   const taskAttrs = {id: 5, title: 'foo'};
-  const dispatch = jest.spyOn(store, 'dispatch');
 
   beforeEach(() => {
     store.dispatch({type: SET, payload: [taskAttrs]});
@@ -76,5 +135,11 @@ describe('updateTask', () => {
     it('marks TaskStore unloaded', () => {
       expect(TaskStore.unload).toHaveBeenCalled();
     });
+  });
+});
+
+describe('updateTaskMeta', () => {
+  it('returns an UPDATE_META action', () => {
+    expect(updateTaskMeta('foo')).toEqual({type: UPDATE_META, payload: 'foo'});
   });
 });

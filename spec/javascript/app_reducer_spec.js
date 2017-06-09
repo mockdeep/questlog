@@ -11,7 +11,11 @@ describe('appReducer', () => {
         task: {
           byId: {},
           orderedIds: [],
-          meta: {postponeSeconds: 300, newTask: {title: ''}},
+          meta: {
+            postponeSeconds: 300,
+            newTask: {title: ''},
+            ajaxState: 'loading',
+          },
         },
       };
 

@@ -7,28 +7,10 @@ import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
 import NotificationCheckbox from 'src/notification/containers/checkbox';
 
-import TagStore from 'src/tag/store';
-import TaskStore from 'src/task/store';
-
 class TaskItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {task: {title: 'Loading...', loadingState: 'loading'}};
     autobind(this);
-  }
-
-  componentDidMount() {
-    this.loadTask().then(() => {
-      this.unsubscribeTasks = TaskStore.subscribe(this.loadTask);
-    });
-  }
-
-  componentWillReceiveProps() {
-    this.loadTask();
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeTasks();
   }
 
   storePostponeSeconds(postponeSeconds) {
@@ -36,51 +18,35 @@ class TaskItem extends React.Component {
   }
 
   setTitle() {
-    document.title = `Task: ${this.state.task.title}`;
+    document.title = `Task: ${this.task().title}`;
   }
 
-  storeTask(taskId, attrs) {
-    let loadingState;
+  task() {
+    const {ajaxState, task} = this.props;
 
-    if (attrs.done) {
-      loadingState = 'marking_done';
-    } else if (attrs.postpone) {
-      loadingState = 'postponing';
-    } else {
-      loadingState = 'updating';
+    if (task) {
+      return task;
+    } else if (ajaxState === 'fetching' || ajaxState === 'taskSaving') {
+      return {title: 'Loading...', loadingState: 'loading'};
+    } else if (ajaxState === 'ready') {
+      return {title: '(no tasks!)', loadingState: 'loading'};
     }
 
-    this.setState({task: {...this.state.task, loadingState}});
-
-    return TaskStore.update(taskId, attrs).then(this.props.fetchTasks);
-  }
-
-  loadTask() {
-    const tagName = this.props.match.params.slug || '';
-
-    return TagStore.get(tagName).then(this.updateTask);
+    throw new Error(`don't know how to deal with ajaxState "${ajaxState}"`);
   }
 
   isReady() {
-    return Boolean(this.state.task && this.state.task.loadingState === 'ready');
-  }
-
-  updateTask({data}) {
-    if (data) {
-      this.setState({task: {...data, loadingState: 'ready'}});
-    } else {
-      this.setState({task: {title: '(no tasks!)'}});
-    }
+    return this.task().loadingState === 'ready';
   }
 
   postponeTask(taskId) {
     const attrs = {postpone: this.props.postponeSeconds};
 
-    this.storeTask(taskId, attrs).then(this.loadTask);
+    this.props.updateTask(taskId, attrs);
   }
 
   completeTask(taskId) {
-    this.storeTask(taskId, {done: true});
+    this.props.updateTask(taskId, {done: true});
   }
 
   render() {
@@ -89,10 +55,10 @@ class TaskItem extends React.Component {
     return (
       <div>
         <TaskDisplay
-          task={this.state.task}
+          task={this.task()}
           tags={this.props.tags}
           disabled={!this.isReady()}
-          storeTask={this.storeTask}
+          storeTask={this.props.updateTask}
           storePostponeSeconds={this.storePostponeSeconds}
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
@@ -103,7 +69,7 @@ class TaskItem extends React.Component {
 
         <hr />
         <NotificationCheckbox
-          task={this.state.task}
+          task={this.task()}
           completeTask={this.completeTask}
         />
         <TaskFooter />
@@ -113,12 +79,13 @@ class TaskItem extends React.Component {
 }
 
 TaskItem.propTypes = {
+  ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  fetchTasks: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
   postponeSeconds: PropTypes.number.isRequired,
   tags: PropTypes.array.isRequired,
+  task: PropTypes.object,
   updateTagMeta: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,
   url: PropTypes.string,
 };

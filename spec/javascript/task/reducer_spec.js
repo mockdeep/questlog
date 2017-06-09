@@ -6,7 +6,7 @@ describe(INIT, () => {
     const expectedState = {
       byId: {},
       orderedIds: [],
-      meta: {postponeSeconds: 300, newTask: {title: ''}},
+      meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
     };
 
     expect(taskReducer(null, {type: INIT})).toEqual(expectedState);

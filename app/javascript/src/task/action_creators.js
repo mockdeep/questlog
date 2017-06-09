@@ -35,21 +35,23 @@ function setTasks(payload) {
   return {type: SET, payload};
 }
 
+function updateTaskMeta(payload) {
+  return {type: UPDATE_META, payload};
+}
+
 function fetchTasks() {
   return (dispatch) => {
+    dispatch(updateTaskMeta({ajaxState: 'fetching'}));
     request({
       method: 'get',
       url: '/api/v1/tasks',
       success: ({data, included}) => {
+        dispatch(updateTaskMeta({ajaxState: 'ready'}));
         dispatch(setTasks(data));
         dispatch(setTags(included));
       },
     });
   };
-}
-
-function updateTaskMeta(payload) {
-  return {type: UPDATE_META, payload};
 }
 
 function createTask(payload) {
@@ -61,7 +63,7 @@ function createTask(payload) {
       url: '/tasks',
       method: 'post',
       success: () => {
-        dispatch(updateTaskMeta({ajaxState: null}));
+        dispatch(updateTaskMeta({ajaxState: 'ready'}));
         dispatch(updateTaskMeta({newTask: {title: ''}}));
         dispatch(fetchTasks());
         TaskStore.unload();
