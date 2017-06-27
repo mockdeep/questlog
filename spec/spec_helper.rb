@@ -130,6 +130,12 @@ def edit_task(new_title)
   click_button 'Update Task'
 end
 
+def select_tag(tag_name)
+  within('.tag-buttons') do
+    click_link(text: /#{tag_name}/)
+  end
+end
+
 def repeat_selector
   'i.fa.fa-repeat'
 end

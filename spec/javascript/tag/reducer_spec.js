@@ -3,7 +3,7 @@ import tagReducer from 'src/tag/reducer';
 
 describe(INIT, () => {
   it('sets up the basic structure for the store', () => {
-    const expected = {orderedIds: [], byId: {}};
+    const expected = {orderedIds: [], byId: {}, meta: {}};
 
     expect(tagReducer(null, {type: INIT})).toEqual(expected);
   });

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {createSelector} from 'reselect';
 
-import {getSelectedTags} from 'src/tag/selectors';
+import {getSelectedTagId} from 'src/tag/selectors';
 
 const timeframePositions = {
   today: 1,
@@ -26,10 +26,6 @@ function timeframePosition(task) {
   return position;
 }
 
-function hasTags(task, tagIds) {
-  return _.difference(tagIds, task.tagIds).length === 0;
-}
-
 const getOrderedTasks = createSelector(
   (state) => state.task.byId,
   (tasksById) => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
@@ -50,11 +46,13 @@ const getUndoneTasks = createSelector(
 );
 
 const getNextUndoneTask = createSelector(
-  [getUndoneTasks, getSelectedTags],
-  (undoneTasks, selectedTags) => {
-    const tagIds = selectedTags.map((tag) => tag.id);
+  [getUndoneTasks, getSelectedTagId],
+  (undoneTasks, selectedTagId) => {
+    if (selectedTagId) {
+      return undoneTasks.find((task) => task.tagIds.includes(selectedTagId));
+    }
 
-    return undoneTasks.find((task) => hasTags(task, tagIds));
+    return undoneTasks[0];
   }
 );
 

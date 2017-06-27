@@ -10,7 +10,7 @@ import {INIT, SET, UPDATE, UPDATE_META} from 'src/tag/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
-    return {orderedIds: [], byId: {}};
+    return {orderedIds: [], byId: {}, meta: {}};
   },
 
   [SET](previousState, tags) {

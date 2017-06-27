@@ -1,7 +1,7 @@
 import {getNextUndoneTask} from 'src/task/selectors';
 
 describe('getNextUndoneTask', () => {
-  let tagState = {orderedIds: [], byId: {}};
+  let tagState = {orderedIds: [], byId: {}, meta: {}};
 
   it('returns the next undone task', () => {
     const task1 = {id: 5, title: 'foo', releaseAt: 'blah', timeframe: null};
@@ -111,18 +111,17 @@ describe('getNextUndoneTask', () => {
   });
 
   it('returns next task for tag when selected', () => {
-    let tag1 = {id: 1};
-    let tag2 = {id: 2};
+    const tag1 = {id: 1};
+    const tag2 = {id: 2};
     const task1 = {id: 3, tagIds: [1, 2], position: 5, timeframe: null};
     let task2 = {id: 4, tagIds: [], position: 3, timeframe: null};
 
-    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2]};
+    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2], meta: {}};
     let state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task2);
 
-    tag1 = {...tag1, isSelected: true};
-    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2]};
+    tagState = {...tagState, meta: {selectedTagId: tag1.id}};
     state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
@@ -132,15 +131,14 @@ describe('getNextUndoneTask', () => {
 
     expect(getNextUndoneTask(state)).toBe(task2);
 
-    tag2 = {...tag2, isSelected: true};
-    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2]};
+    tagState = {...tagState, meta: {selectedTagId: tag2.id}};
     state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
   });
 
   it('returns undefined when there are no tasks', () => {
-    const state = {task: {byId: {}}, tag: {byId: {}, orderedIds: []}};
+    const state = {task: {byId: {}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBeUndefined();
   });
