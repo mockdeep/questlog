@@ -10,9 +10,9 @@ const getActiveTags = createSelector(
   (orderedTags) => orderedTags.filter((tag) => tag.unfinishedTasksCount > 0)
 );
 
-const getSelectedTags = createSelector(
-  getOrderedTags,
-  (orderedTags) => orderedTags.filter((tag) => tag.isSelected)
+const getSelectedTagId = createSelector(
+  (state) => state.tag.meta.selectedTagId,
+  (selectedTagId) => selectedTagId
 );
 
-export {getActiveTags, getSelectedTags};
+export {getActiveTags, getSelectedTagId};
