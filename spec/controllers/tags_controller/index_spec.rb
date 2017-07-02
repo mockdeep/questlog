@@ -8,7 +8,7 @@ RSpec.describe TagsController, '#index' do
       id: -2,
       name: 'Needs Estimate',
       unfinishedTasksCount: 1,
-      slug: 'needs_estimate',
+      slug: 'needs-estimate',
       priority: nil,
     }.stringify_keys
   end

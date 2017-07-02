@@ -19,7 +19,7 @@ private
       id: -2,
       name: 'Needs Estimate',
       unfinished_tasks_count: current_user.tasks.without_estimate.count,
-      slug: 'needs_estimate',
+      slug: 'needs-estimate',
       tasks: current_user.tasks.without_estimate,
     )
   end

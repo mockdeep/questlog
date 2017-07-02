@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
     get '', to: 'tasks#show'
     get '/untagged', to: 'untagged_tasks#show', as: :untagged
-    get '/needs_estimate', to: 'needs_estimate#show'
+    get '/needs-estimate', to: 'needs_estimate#show'
     get '/:slug', to: 'tasks#show'
   end
 
