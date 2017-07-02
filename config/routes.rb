@@ -21,15 +21,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tags, only: [:index]
     resources :tasks, only: %i[index create update destroy]
     resources :timeframes, only: [:index]
     resources :bulk_tasks, only: [:create]
     put(:bulk_tasks, to: 'bulk_tasks#update')
 
     get '', to: 'tasks#show'
-    get '/untagged', to: 'untagged_tasks#show', as: :untagged
-    get '/needs-estimate', to: 'needs_estimate#show'
     get '/:slug', to: 'tasks#show'
   end
 
