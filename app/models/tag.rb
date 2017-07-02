@@ -20,6 +20,10 @@ class Tag < ActiveRecord::Base
   scope :ordered, -> { order(:name) }
   scope :active, -> { where('tags.unfinished_tasks_count > 0') }
 
+  def should_generate_new_friendly_id?
+    true
+  end
+
   def normalize_friendly_id(value)
     value.to_s.parameterize(preserve_case: true)
   end
