@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Honeybadger from 'honeybadger-js';
 import ReactDOM from 'react-dom';
 
-import router from 'src/router';
+import appBase from 'src/app_base';
 import 'src/tasks';
 
 window.$ = $;
@@ -13,7 +13,7 @@ window.jQuery = $;
 require('bootstrap-sass');
 require('jquery-ujs');
 
-ReactDOM.render(router, $('#app-base')[0]);
+ReactDOM.render(appBase, $('#app-base')[0]);
 
 Honeybadger.configure({
   api_key: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
