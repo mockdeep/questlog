@@ -14,7 +14,7 @@ module API
       def tags
         current_user.ordered_tags.to_a.tap do |tags|
           tags.unshift(estimate_tag) if current_user.tasks.without_estimate.any?
-          tags.unshift(untagged_tag) if current_user.untagged_tasks.any?
+          tags.unshift(untagged_tag)
           tags.unshift(all_tag)
         end
       end
@@ -33,6 +33,7 @@ module API
         Tag.new(
           id: -1,
           name: 'Untagged',
+          rules: [{ check: 'isEmpty', field: 'tagIds' }],
           unfinished_tasks_count: current_user.untagged_tasks.count,
           slug: 'untagged',
           tasks: current_user.untagged_tasks,

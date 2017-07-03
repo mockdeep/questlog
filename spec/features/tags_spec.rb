@@ -34,4 +34,19 @@ RSpec.describe 'selecting tags on task display', js: true do
     expect(page).to have_selector('a.current', text: /chore/)
   end
 
+  it 'shows a smart tag for tasks without tags' do
+    visit '/'
+
+    expect(page).to have_no_selector('a', text: /Untagged/)
+    add_task('#at-home do laundry #chore *1w ~1h')
+    add_task('get paid')
+    expect(page).to have_selector('a', text: 'Untagged (1)')
+    expect(task_title).to have_content('do laundry')
+    select_tag('Untagged')
+    expect(task_title).to have_content('get paid')
+    edit_task('get paid #work')
+    expect(page).to have_no_selector('a', text: /Untagged/)
+    expect(task_title).to have_content('(no tasks!)')
+  end
+
 end

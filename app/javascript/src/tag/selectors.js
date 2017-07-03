@@ -3,8 +3,9 @@ import {createSelector} from 'reselect';
 import {getUndoneTasks} from 'src/task/selectors';
 
 const RULES = {
-  isAssociated(task, tag) { return task.tagIds.includes(tag.id); },
   isActive() { return true; },
+  isAssociated(task, tag) { return task.tagIds.includes(tag.id); },
+  isEmpty(task, tag, {field}) { return task[field].length === 0; },
 };
 
 function matchesSmartRules(task, tag) {
