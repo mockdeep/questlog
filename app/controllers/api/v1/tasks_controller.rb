@@ -13,7 +13,7 @@ module API
 
       def tags
         current_user.ordered_tags.to_a.tap do |tags|
-          tags.unshift(estimate_tag) if current_user.tasks.without_estimate.any?
+          tags.unshift(estimate_tag)
           tags.unshift(untagged_tag)
           tags.unshift(all_tag)
         end
@@ -23,6 +23,7 @@ module API
         Tag.new(
           id: -2,
           name: 'Needs Estimate',
+          rules: [{ check: 'isBlank', field: 'estimateSeconds' }],
           unfinished_tasks_count: current_user.tasks.without_estimate.count,
           slug: 'needs-estimate',
           tasks: current_user.tasks.without_estimate,
