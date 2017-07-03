@@ -2,9 +2,10 @@ RSpec.describe 'Tasks page', js: true do
 
   let(:user) { create(:free_user) }
 
+  before { visit '/' }
+
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
-      visit '/'
       add_task('do laundry')
       expect(task_title).to have_content('do laundry')
       click_link 'Sign up'
@@ -19,7 +20,6 @@ RSpec.describe 'Tasks page', js: true do
     end
 
     it 'associates tasks with an existing user' do
-      visit '/'
       add_task('do laundry')
       expect(task_title).to have_content('do laundry')
       click_link 'Log in'
@@ -34,7 +34,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a guest user to manage tasks' do
-    visit '/'
     expect(page).to_not have_button('Done')
     expect(task_title).to have_content('(no tasks!)')
     add_task('do laundry #home')
@@ -60,7 +59,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a free user to manage tasks' do
-    feature_login_as(user)
     add_task('do laundry #home')
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
@@ -71,7 +69,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a user to manage repeat tasks' do
-    feature_login_as(user)
     add_task('check email #online *5mi')
     expect(page).to have_content('online (1)')
     expect(task_title).to have_content('check email')
@@ -86,7 +83,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a user to edit a task' do
-    feature_login_as(user)
     add_task('#at-home do laundry #chore !2 ~1h')
     expect(task_title).to have_content('do laundry')
     expect(page).not_to have_selector(repeat_selector)
@@ -98,7 +94,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a user to delete a task' do
-    feature_login_as(user)
     add_task('do laundry #home')
     expect(task_title).to have_content('do laundry')
     expect(page).to have_content('home (1)')
@@ -112,7 +107,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'parses and adds attributes on tasks' do
-    feature_login_as(user)
     add_task('#at-home do laundry #chore !2 *1w ~1h')
     expect(page).to have_content('at-home (1)')
     expect(page).to have_content('chore (1)')
@@ -131,7 +125,6 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'shows a help modal' do
-    visit '/'
     first(:link, 'Help').click
     expect(page).to have_content('You can type different markers to you tasks')
   end
