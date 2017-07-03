@@ -5,6 +5,7 @@ import {getUndoneTasks} from 'src/task/selectors';
 const RULES = {
   isActive() { return true; },
   isAssociated(task, tag) { return task.tagIds.includes(tag.id); },
+  isBlank(task, tag, {field}) { return task[field] === null; },
   isEmpty(task, tag, {field}) { return task[field].length === 0; },
 };
 
