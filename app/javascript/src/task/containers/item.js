@@ -1,8 +1,7 @@
 import {connect} from 'react-redux';
 
 import {deleteTask, updateTask, updateTaskMeta} from 'src/task/action_creators';
-import {getActiveTags} from 'src/tag/selectors';
-import {getNextUndoneTask} from 'src/task/selectors';
+import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
 import {updateTagMeta} from 'src/tag/action_creators';
 import TaskItem from 'src/task/components/item';
 

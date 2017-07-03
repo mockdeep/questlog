@@ -1,5 +1,7 @@
 import {createSelector} from 'reselect';
 
+import {getUndoneTasks} from 'src/task/selectors';
+
 const getOrderedTags = createSelector(
   (state) => state.tag,
   (tagState) => tagState.orderedIds.map((tagId) => tagState.byId[tagId])
@@ -15,4 +17,15 @@ const getSelectedTagId = createSelector(
   (selectedTagId) => selectedTagId
 );
 
-export {getActiveTags, getSelectedTagId};
+const getNextUndoneTask = createSelector(
+  [getUndoneTasks, getSelectedTagId],
+  (undoneTasks, selectedTagId) => {
+    if (selectedTagId) {
+      return undoneTasks.find((task) => task.tagIds.includes(selectedTagId));
+    }
+
+    return undoneTasks[0];
+  }
+);
+
+export {getActiveTags, getNextUndoneTask};

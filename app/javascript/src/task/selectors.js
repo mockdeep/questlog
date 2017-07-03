@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import {createSelector} from 'reselect';
 
-import {getSelectedTagId} from 'src/tag/selectors';
-
 const timeframePositions = {
   today: 1,
   week: 2,
@@ -45,15 +43,4 @@ const getUndoneTasks = createSelector(
   (partitionedTasks) => partitionedTasks.undone
 );
 
-const getNextUndoneTask = createSelector(
-  [getUndoneTasks, getSelectedTagId],
-  (undoneTasks, selectedTagId) => {
-    if (selectedTagId) {
-      return undoneTasks.find((task) => task.tagIds.includes(selectedTagId));
-    }
-
-    return undoneTasks[0];
-  }
-);
-
-export {getNextUndoneTask};
+export {getUndoneTasks};
