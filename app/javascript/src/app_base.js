@@ -8,11 +8,11 @@ import {fetchTasks} from 'src/task/action_creators';
 
 appStore.dispatch(fetchTasks());
 
-const QRouter =
+const appBase =
   <Provider store={appStore}>
     <BrowserRouter>{routes}</BrowserRouter>
   </Provider>
 
 ;
 
-export default QRouter;
+export default appBase;
