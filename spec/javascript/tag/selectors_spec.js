@@ -26,8 +26,9 @@ describe('getActiveTags', () => {
 });
 
 describe('getNextUndoneTask', () => {
-  const baseTask = {priority: null, timeframe: null};
-  let tagState = {orderedIds: [], byId: {}, meta: {}};
+  const allTag = {rules: [{id: 0, check: 'isActive'}]};
+  const baseTask = {priority: null, tagIds: [], timeframe: null};
+  let tagState = {orderedIds: [0], byId: {0: allTag}, meta: {}};
 
   it('returns the next undone task', () => {
     const task1 = {...baseTask, id: 5, title: 'foo', releaseAt: 'blah'};
@@ -38,7 +39,7 @@ describe('getNextUndoneTask', () => {
   });
 
   it('returns next task according to timeframe', () => {
-    const task1 = {id: 5, title: 'foo', timeframe: 'week'};
+    const task1 = {...baseTask, id: 5, title: 'foo', timeframe: 'week'};
     let task2 = {...baseTask, id: 10, title: 'blah'};
     let state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
@@ -137,12 +138,16 @@ describe('getNextUndoneTask', () => {
   });
 
   it('returns next task for tag when selected', () => {
-    const tag1 = {id: 1};
-    const tag2 = {id: 2};
+    const tag1 = {id: 1, rules: []};
+    const tag2 = {id: 2, rules: []};
     const task1 = {...baseTask, id: 3, tagIds: [1, 2], position: 5};
     let task2 = {...baseTask, id: 4, tagIds: [], position: 3};
 
-    tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2], meta: {}};
+    tagState = {
+      byId: {0: allTag, 1: tag1, 2: tag2},
+      orderedIds: [0, 1, 2],
+      meta: {},
+    };
     let state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task2);
