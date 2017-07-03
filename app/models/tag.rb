@@ -20,6 +20,8 @@ class Tag < ActiveRecord::Base
   scope :ordered, -> { order(:name) }
   scope :active, -> { where('tags.unfinished_tasks_count > 0') }
 
+  attr_writer :rules
+
   def should_generate_new_friendly_id?
     true
   end
@@ -30,6 +32,10 @@ class Tag < ActiveRecord::Base
 
   def any?
     unfinished_tasks_count.positive?
+  end
+
+  def rules
+    @rules ||= []
   end
 
   def next_task

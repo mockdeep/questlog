@@ -46,9 +46,9 @@ function fetchTasks() {
       method: 'get',
       url: '/api/v1/tasks',
       success: ({data, included}) => {
-        dispatch(updateTaskMeta({ajaxState: 'ready'}));
         dispatch(setTasks(data));
         dispatch(setTags(included));
+        dispatch(updateTaskMeta({ajaxState: 'ready'}));
       },
     });
   };

@@ -2,7 +2,9 @@ module Serializable
 
   class Locator
 
-    BASE_CLASSES = Set.new(%w[NilClass String Fixnum FalseClass TrueClass Time])
+    BASE_CLASSES = Set.new(
+      %w[Hash NilClass String Fixnum FalseClass TrueClass Time],
+    )
 
     def self.call(object)
       new.(object)

@@ -43,6 +43,7 @@ module API
         Tag.new(
           id: 0,
           name: 'All',
+          rules: [{ check: 'isActive' }],
           unfinished_tasks_count: current_user.unfinished_tasks_count,
           slug: '',
           tasks: current_user.unfinished_tasks,
