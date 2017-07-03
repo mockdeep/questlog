@@ -1,12 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+
+import Link from 'src/_common/containers/link';
 
 function WhatPage() {
   return (
     <div>
       <h1>{'What\'s a Questlog?'}</h1>
       <p>{'Wouldn\'t you like to know...'}</p>
-      <Link to='/privacy'>{'Privacy'}</Link>
+      <Link to='privacy'>{'Privacy'}</Link>
     </div>
   );
 }

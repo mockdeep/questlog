@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
+import Link from 'src/_common/containers/link';
 import HelpLink from 'src/_common/components/help_link';
 
 function TaskFooter() {
   return (
     <p>
-      <Link to='/tasks'>{'All my tasks'}</Link>
+      <Link to='tasks'>{'All my tasks'}</Link>
       {' | '}
-      <Link to='/timeframes'>{'Timeframes'}</Link>
+      <Link to='timeframes'>{'Timeframes'}</Link>
       {' | '}
       <a href='/bulk_tasks/new'>{'Add multiple tasks'}</a>
       {' | '}

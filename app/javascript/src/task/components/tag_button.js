@@ -1,7 +1,8 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Link} from 'react-router-dom';
+
+import Link from 'src/_common/containers/link';
 
 class TagButton extends React.Component {
   constructor(props) {
@@ -51,7 +52,8 @@ class TagButton extends React.Component {
     return (
       <div>
         <Link
-          to={this.path()}
+          to='tag'
+          params={{slug: this.props.tag.slug}}
           className={this.className()}
           onClick={this.toggleTagSelection}
         >
