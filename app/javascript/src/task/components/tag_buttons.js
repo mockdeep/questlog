@@ -20,12 +20,17 @@ class TagButtons extends React.Component {
     return this.props.tags.map(this.tagButton);
   }
 
+  isActive(tag) {
+    return window.location.pathname === `/${tag.slug}`;
+  }
+
   tagButton(tag) {
     return (
       <TagButton
         tag={tag}
         key={tag.id}
         current={this.isCurrent(tag)}
+        isActive={this.isActive(tag)}
         updateTagMeta={this.props.updateTagMeta}
       />
     );

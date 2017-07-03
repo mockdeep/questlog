@@ -10,14 +10,6 @@ class TagButton extends React.Component {
     autobind(this);
   }
 
-  path() {
-    return `/${this.props.tag.slug}`;
-  }
-
-  activeButton() {
-    return this.path() === window.location.pathname;
-  }
-
   isTagSelected() {
     return this.props.selectedTagId === this.props.tag.id;
   }
@@ -25,7 +17,7 @@ class TagButton extends React.Component {
   className() {
     let classString = 'button btn btn-default';
 
-    if (this.activeButton()) {
+    if (this.props.isActive) {
       classString = `${classString} active`;
     }
     if (this.props.current) {
@@ -66,6 +58,7 @@ class TagButton extends React.Component {
 
 TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
+  isActive: PropTypes.bool.isRequired,
   selectedTagId: PropTypes.number,
   tag: PropTypes.object.isRequired,
   updateTagMeta: PropTypes.func.isRequired,
