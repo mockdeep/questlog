@@ -10,6 +10,7 @@ function TaskDisplay(props) {
   return (
     <div>
       <TagButtons
+        activeTagSlug={props.activeTagSlug}
         task={props.task}
         tags={props.tags}
         updateTagMeta={props.updateTagMeta}
@@ -35,6 +36,7 @@ function TaskDisplay(props) {
 }
 
 TaskDisplay.propTypes = {
+  activeTagSlug: PropTypes.string,
   completeTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
