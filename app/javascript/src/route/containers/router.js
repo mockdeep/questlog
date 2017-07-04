@@ -1,10 +1,9 @@
-import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import router from 'src/route/components/router';
+import Router from 'src/route/components/router';
 
-function RouterContainer() {
-  return <BrowserRouter>{router}</BrowserRouter>;
+function mapStateToProps(state) {
+  return {route: state.route};
 }
 
-export default RouterContainer;
+export default connect(mapStateToProps)(Router);
