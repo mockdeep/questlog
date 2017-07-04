@@ -15,9 +15,9 @@ function matchesSmartRules(task, tag) {
   return rules.some(({check, ...params}) => RULES[check](task, tag, params));
 }
 
-const getTagsById = createSelector(
-  (state) => state.tag.byId,
-  (tagsById) => tagsById
+const getSelectedTagSlug = createSelector(
+  (state) => state.route.params.slug,
+  (slug) => slug || ''
 );
 
 const getOrderedTags = createSelector(
@@ -30,14 +30,9 @@ const getActiveTags = createSelector(
   (orderedTags) => orderedTags.filter((tag) => tag.unfinishedTasksCount > 0)
 );
 
-const getSelectedTagId = createSelector(
-  (state) => state.tag.meta.selectedTagId,
-  (selectedTagId) => selectedTagId || 0
-);
-
 const getSelectedTag = createSelector(
-  [getTagsById, getSelectedTagId],
-  (tagsById, selectedTagId) => tagsById[selectedTagId]
+  [getOrderedTags, getSelectedTagSlug],
+  (orderedTags, slug) => orderedTags.find((tag) => tag.slug === slug)
 );
 
 const getNextUndoneTask = createSelector(

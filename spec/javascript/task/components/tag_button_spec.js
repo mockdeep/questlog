@@ -7,26 +7,23 @@ import TagButton from 'src/task/components/tag_button';
 const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
 const props = {current: false, updateTagMeta: jest.fn(), tag, isActive: false};
 
-describe('onClick', () => {
-  it('marks the tag as selected when not', () => {
-    const component = shallow(
-      <TagButton {...props} />,
-      {lifecycleExperimental: true}
-    );
+it('adds an active class when tag is selected', () => {
+  const component = shallow(
+    <TagButton {...props} isActive />,
+    {lifecycleExperimental: true}
+  );
 
-    component.find(Link).simulate('click');
+  expect(component.find(Link).hasClass('active')).toBe(true);
+});
 
-    expect(props.updateTagMeta).toHaveBeenCalledWith({selectedTagId: tag.id});
-  });
+it('passes routing params to Link sub-component', () => {
+  const component = shallow(
+    <TagButton {...props} />,
+    {lifecycleExperimental: true}
+  );
 
-  it('sets selectedTagId to null when tag is selected', () => {
-    const component = shallow(
-      <TagButton {...props} selectedTagId={tag.id} />,
-      {lifecycleExperimental: true}
-    );
+  const {to, params} = component.find(Link).props();
 
-    component.find(Link).simulate('click');
-
-    expect(props.updateTagMeta).toHaveBeenCalledWith({selectedTagId: null});
-  });
+  expect(to).toBe('tag');
+  expect(params).toEqual({slug: 'home'});
 });
