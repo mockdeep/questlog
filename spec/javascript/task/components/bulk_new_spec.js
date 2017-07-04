@@ -1,5 +1,4 @@
 jest.mock('src/task/bulk_store');
-jest.mock('react-router');
 
 import React from 'react';
 import {mount} from 'enzyme';

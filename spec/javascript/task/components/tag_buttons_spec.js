@@ -1,5 +1,4 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
 import {mount} from 'enzyme';
 import {Provider} from 'react-redux';
 
@@ -16,7 +15,7 @@ describe('TagButtons', () => {
   it('renders some stuff', () => {
     const wrapper = mount(
       <Provider store={store}>
-        <BrowserRouter><TagButtons {...props} /></BrowserRouter>
+        <TagButtons {...props} />
       </Provider>
     );
 
