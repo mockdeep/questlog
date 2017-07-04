@@ -10,10 +10,6 @@ class TagButton extends React.Component {
     autobind(this);
   }
 
-  isTagSelected() {
-    return this.props.selectedTagId === this.props.tag.id;
-  }
-
   className() {
     let classString = 'button btn btn-default';
 
@@ -30,24 +26,13 @@ class TagButton extends React.Component {
     return classString;
   }
 
-  toggleTagSelection() {
-    const selectedTagId = this.isTagSelected() ? null : this.props.tag.id;
-
-    this.props.updateTagMeta({selectedTagId});
-  }
-
   render() {
     const {slug, name, unfinishedTasksCount} = this.props.tag;
     const to = name === 'All' ? 'root' : 'tag';
 
     return (
       <div>
-        <Link
-          to={to}
-          params={{slug}}
-          className={this.className()}
-          onClick={this.toggleTagSelection}
-        >
+        <Link to={to} params={{slug}} className={this.className()}>
           {`${name} (${unfinishedTasksCount})`}
         </Link>
       </div>
@@ -58,9 +43,7 @@ class TagButton extends React.Component {
 TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
-  selectedTagId: PropTypes.number,
   tag: PropTypes.object.isRequired,
-  updateTagMeta: PropTypes.func.isRequired,
 };
 
 export default TagButton;

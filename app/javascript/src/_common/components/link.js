@@ -12,8 +12,6 @@ class Link extends React.Component {
   }
 
   navigate() {
-    if (this.props.onClick) { this.props.onClick(); }
-
     this.props.setRoute({name: this.props.to, ...this.props.params});
   }
 
@@ -35,7 +33,6 @@ class Link extends React.Component {
 Link.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
-  onClick: PropTypes.func,
   params: PropTypes.object,
   setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
