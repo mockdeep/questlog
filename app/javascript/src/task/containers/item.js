@@ -5,11 +5,17 @@ import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
 import {updateTagMeta} from 'src/tag/action_creators';
 import TaskItem from 'src/task/components/item';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   const {ajaxState, postponeSeconds} = state.task.meta;
   const task = ajaxState === 'ready' ? getNextUndoneTask(state) : null;
 
-  return {tags: getActiveTags(state), task, postponeSeconds, ajaxState};
+  return {
+    activeTagSlug: ownProps.match.params.slug,
+    tags: getActiveTags(state),
+    task,
+    postponeSeconds,
+    ajaxState,
+  };
 }
 
 const actionCreators = {deleteTask, updateTagMeta, updateTask, updateTaskMeta};

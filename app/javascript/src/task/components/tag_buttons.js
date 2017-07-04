@@ -11,17 +11,21 @@ class TagButtons extends React.Component {
   }
 
   isCurrent(tag) {
-    return this.currentNames().some(function tagNameMatches(name) {
-      return tag.name === name;
-    });
+    const tagIds = this.props.task.tagIds || [];
+
+    return tagIds.some((tagId) => tagId === tag.id);
+  }
+
+  isActive(tag) {
+    if (this.props.activeTagSlug) {
+      return tag.slug === this.props.activeTagSlug;
+    }
+
+    return tag.name === 'All';
   }
 
   tagButtons() {
     return this.props.tags.map(this.tagButton);
-  }
-
-  isActive(tag) {
-    return window.location.pathname === `/${tag.slug}`;
   }
 
   tagButton(tag) {
@@ -36,10 +40,6 @@ class TagButtons extends React.Component {
     );
   }
 
-  currentNames() {
-    return this.props.task.tagNames || [];
-  }
-
   render() {
     return (
       <div className='row'>
@@ -52,6 +52,7 @@ class TagButtons extends React.Component {
 }
 
 TagButtons.propTypes = {
+  activeTagSlug: PropTypes.string,
   tags: PropTypes.array.isRequired,
   task: PropTypes.object.isRequired,
   updateTagMeta: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ import ItemContainer from 'src/task/containers/item';
 import store from 'src/app_store';
 
 const renderOpts = {lifecycleExperimental: true};
-const props = {store};
+const props = {store, match: {params: {}}};
 
 it('wraps the Item component', () => {
   const container = shallow(<ItemContainer {...props} />, renderOpts);

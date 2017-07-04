@@ -55,6 +55,7 @@ class TaskItem extends React.Component {
     return (
       <div>
         <TaskDisplay
+          activeTagSlug={this.props.activeTagSlug}
           task={this.task()}
           tags={this.props.tags}
           disabled={!this.isReady()}
@@ -79,6 +80,7 @@ class TaskItem extends React.Component {
 }
 
 TaskItem.propTypes = {
+  activeTagSlug: PropTypes.string,
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
   postponeSeconds: PropTypes.number.isRequired,
