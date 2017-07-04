@@ -48,7 +48,7 @@ class TagButton extends React.Component {
           className={this.className()}
           onClick={this.toggleTagSelection}
         >
-          {`${this.props.tag.name} (${unfinishedTasksCount})`}
+          {`${name} (${unfinishedTasksCount})`}
         </Link>
       </div>
     );
