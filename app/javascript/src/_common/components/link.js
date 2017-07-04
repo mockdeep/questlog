@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Link as RRLink} from 'react-router-dom';
 
+import {findRoute} from 'src/route/routes';
+
 class Link extends React.Component {
   constructor(props) {
     super(props);
@@ -11,14 +13,12 @@ class Link extends React.Component {
 
   navigate() {
     if (this.props.onClick) { this.props.onClick(); }
+
+    this.props.setRoute({name: this.props.to, ...this.props.params});
   }
 
   path() {
-    if (this.props.to === 'tag') {
-      return `/${this.props.params.slug}`;
-    }
-
-    return `/${this.props.to}`;
+    return findRoute(this.props.to).toPath(this.props.params);
   }
 
   render() {
@@ -37,6 +37,7 @@ Link.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   params: PropTypes.object,
+  setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
 };
 
