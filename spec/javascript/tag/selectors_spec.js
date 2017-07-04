@@ -58,7 +58,7 @@ describe('getNextUndoneTask', () => {
 
   it('returns next task according to priority', () => {
     const task1 = {...baseTask, id: 5, title: 'foo', priority: 3};
-    let task2 = {...baseTask, id: 5, title: 'blah'};
+    let task2 = {...baseTask, id: 10, title: 'blah'};
     let state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
@@ -76,7 +76,7 @@ describe('getNextUndoneTask', () => {
 
   it('returns next task according to position', () => {
     const task1 = {...baseTask, id: 5, title: 'foo', position: 32};
-    let task2 = {...baseTask, id: 5, title: 'blah', position: 35};
+    let task2 = {...baseTask, id: 10, title: 'blah', position: 35};
     let state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
@@ -102,7 +102,7 @@ describe('getNextUndoneTask', () => {
     };
     let task2 = {
       ...baseTask,
-      id: 5,
+      id: 10,
       title: 'blah',
       position: 35,
       timeframe: 'week',
@@ -140,30 +140,30 @@ describe('getNextUndoneTask', () => {
   it('returns next task for tag when selected', () => {
     const tag1 = {id: 1, rules: []};
     const tag2 = {id: 2, rules: []};
-    const task1 = {...baseTask, id: 3, tagIds: [1, 2], position: 5};
-    let task2 = {...baseTask, id: 4, tagIds: [], position: 3};
+    const task1 = {...baseTask, id: 5, tagIds: [1, 2], position: 5};
+    let task2 = {...baseTask, id: 10, tagIds: [], position: 3};
 
     tagState = {
       byId: {0: allTag, 1: tag1, 2: tag2},
       orderedIds: [0, 1, 2],
       meta: {},
     };
-    let state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
+    let state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task2);
 
     tagState = {...tagState, meta: {selectedTagId: tag1.id}};
-    state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
+    state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
 
     task2 = {...task2, tagIds: [1]};
-    state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
+    state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task2);
 
     tagState = {...tagState, meta: {selectedTagId: tag2.id}};
-    state = {task: {byId: {3: task1, 4: task2}}, tag: tagState};
+    state = {task: {byId: {5: task1, 10: task2}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBe(task1);
   });
