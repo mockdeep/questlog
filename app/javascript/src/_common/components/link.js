@@ -1,9 +1,19 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Link as ReactRouterLink} from 'react-router-dom';
+import {Link as RRLink} from 'react-router-dom';
 
 class Link extends React.Component {
-  to() {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
+
+  navigate() {
+    if (this.props.onClick) { this.props.onClick(); }
+  }
+
+  path() {
     if (this.props.to === 'tag') {
       return `/${this.props.params.slug}`;
     }
@@ -12,12 +22,12 @@ class Link extends React.Component {
   }
 
   render() {
+    const {className, children} = this.props;
+
     return (
-      <ReactRouterLink
-        to={this.to()}
-        className={this.props.className}
-        onClick={this.props.onClick}
-      >{this.props.children}</ReactRouterLink>
+      <RRLink to={this.path()} className={className} onClick={this.navigate}>
+        {children}
+      </RRLink>
     );
   }
 }
