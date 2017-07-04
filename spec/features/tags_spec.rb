@@ -12,6 +12,11 @@ RSpec.describe 'selecting tags on task display', js: true do
     expect(task_title).to have_content('eat a banana')
     select_tag('at-home')
     expect(task_title).to have_content('do laundry')
+
+    visit('/at-work')
+    expect(task_title).to have_content('eat a banana')
+    visit('/at-home')
+    expect(task_title).to have_content('do laundry')
   end
 
   it 'sets tags to active when selected' do

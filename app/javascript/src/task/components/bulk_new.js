@@ -16,7 +16,7 @@ class BulkTasksNew extends React.Component {
   }
 
   redirectToTaskList() {
-    this.props.history.push('/tasks');
+    this.props.setRoute({name: 'tasks'});
   }
 
   saveTasks(event) {
@@ -65,6 +65,6 @@ class BulkTasksNew extends React.Component {
   }
 }
 
-BulkTasksNew.propTypes = {history: PropTypes.object.isRequired};
+BulkTasksNew.propTypes = {setRoute: PropTypes.func.isRequired};
 
 export default BulkTasksNew;

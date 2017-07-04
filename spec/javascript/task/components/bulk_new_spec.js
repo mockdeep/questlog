@@ -9,8 +9,8 @@ import BulkTaskStore from 'src/task/bulk_store';
 
 describe('BulkTasksNew', () => {
   it('redirects to TaskList on successful save', () => {
-    const history = {push: jest.fn()};
-    const wrapper = mount(<BulkTasksNew history={history} />);
+    const setRoute = jest.fn();
+    const wrapper = mount(<BulkTasksNew setRoute={setRoute} />);
     const fakeThen = jest.fn();
 
     BulkTaskStore.create.mockReturnValueOnce({then: fakeThen});
@@ -20,8 +20,8 @@ describe('BulkTasksNew', () => {
     wrapper.find('form').simulate('submit');
     expect(BulkTaskStore.create).toHaveBeenCalledWith({titles: 'foobutts'});
 
-    expect(history.push).not.toHaveBeenCalled();
+    expect(setRoute).not.toHaveBeenCalled();
     fakeThen.mock.calls[0][0]();
-    expect(history.push).toHaveBeenCalledWith('/tasks');
+    expect(setRoute).toHaveBeenCalledWith({name: 'tasks'});
   });
 });
