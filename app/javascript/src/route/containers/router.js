@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 
-import routes from 'src/_config/routes';
+import router from 'src/route/components/router';
 
 function RouterContainer() {
-  return <BrowserRouter>{routes}</BrowserRouter>;
+  return <BrowserRouter>{router}</BrowserRouter>;
 }
 
 export default RouterContainer;
