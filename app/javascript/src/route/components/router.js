@@ -1,14 +1,13 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
-import TaskContainer from 'src/task/containers/item';
-
 import BulkTasksNew from 'src/task/components/bulk_new';
 import PrivacyPage from 'src/static/components/privacy_page';
-import WhatPage from 'src/static/components/what_page';
 import SessionsNew from 'src/session/components/new';
+import TaskContainer from 'src/task/containers/item';
 import TaskList from 'src/task/containers/list';
 import TimeframeList from 'src/timeframe/containers/list';
+import WhatPage from 'src/static/components/what_page';
 
 function Nothing() { return false; }
 
