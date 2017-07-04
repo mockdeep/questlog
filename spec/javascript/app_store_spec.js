@@ -5,6 +5,7 @@ describe('appStore', () => {
     const expectedState = {
       user: {},
       notification: {task: null},
+      route: {name: 'root', params: {}},
       tag: {byId: {}, orderedIds: [], meta: {}},
       task: {
         byId: {},
