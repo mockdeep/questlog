@@ -36,20 +36,19 @@ class TagButton extends React.Component {
     this.props.updateTagMeta({selectedTagId});
   }
 
-  unfinishedTasksCount() {
-    return this.props.tag.unfinishedTasksCount;
-  }
-
   render() {
+    const {slug, name, unfinishedTasksCount} = this.props.tag;
+    const to = name === 'All' ? 'root' : 'tag';
+
     return (
       <div>
         <Link
-          to='tag'
-          params={{slug: this.props.tag.slug}}
+          to={to}
+          params={{slug}}
           className={this.className()}
           onClick={this.toggleTagSelection}
         >
-          {`${this.props.tag.name} (${this.unfinishedTasksCount()})`}
+          {`${this.props.tag.name} (${unfinishedTasksCount})`}
         </Link>
       </div>
     );

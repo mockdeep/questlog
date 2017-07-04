@@ -7,8 +7,8 @@ import store from 'src/app_store';
 import TagButtons from 'src/task/components/tag_buttons';
 
 const tags = [
-  {id: 5, name: 'home', unfinishedTasksCount: 8},
-  {id: 23, name: 'work', unfinishedTasksCount: 13},
+  {id: 5, name: 'home', unfinishedTasksCount: 8, slug: 'home'},
+  {id: 23, name: 'work', unfinishedTasksCount: 13, slug: 'work'},
 ];
 const props = {task: {}, tags, updateTagMeta: jest.fn()};
 
