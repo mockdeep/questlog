@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import BulkTasksNew from 'src/task/components/bulk_new';
 import PrivacyPage from 'src/static/components/privacy_page';
@@ -11,17 +11,23 @@ import WhatPage from 'src/static/components/what_page';
 
 function Nothing() { return false; }
 
-export default ( // eslint-disable-line no-extra-parens
-  <Switch>
-    <Route exact path='/' component={TaskContainer} />
-    <Route path='/bulk_tasks/new' component={BulkTasksNew} />
-    <Route path='/free_accounts/new' component={Nothing} />
-    <Route path='/sessions/new' component={SessionsNew} />
-    <Route path='/sessions' component={Nothing} />
-    <Route path='/tasks' component={TaskList} />
-    <Route path='/privacy' component={PrivacyPage} />
-    <Route path='/what' component={WhatPage} />
-    <Route path='/timeframes' component={TimeframeList} />
-    <Route path='/:slug' component={TaskContainer} />
-  </Switch>
-);
+function Router() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={TaskContainer} />
+        <Route path='/bulk_tasks/new' component={BulkTasksNew} />
+        <Route path='/free_accounts/new' component={Nothing} />
+        <Route path='/sessions/new' component={SessionsNew} />
+        <Route path='/sessions' component={Nothing} />
+        <Route path='/tasks' component={TaskList} />
+        <Route path='/privacy' component={PrivacyPage} />
+        <Route path='/what' component={WhatPage} />
+        <Route path='/timeframes' component={TimeframeList} />
+        <Route path='/:slug' component={TaskContainer} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default Router;
