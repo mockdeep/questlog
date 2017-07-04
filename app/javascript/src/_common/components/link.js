@@ -1,7 +1,6 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Link as RRLink} from 'react-router-dom';
 
 import {findRoute} from 'src/route/routes';
 
@@ -11,7 +10,9 @@ class Link extends React.Component {
     autobind(this);
   }
 
-  navigate() {
+  navigate(event) {
+    event.preventDefault();
+
     this.props.setRoute({name: this.props.to, ...this.props.params});
   }
 
@@ -23,9 +24,9 @@ class Link extends React.Component {
     const {className, children} = this.props;
 
     return (
-      <RRLink to={this.path()} className={className} onClick={this.navigate}>
+      <a href={this.path()} className={className} onClick={this.navigate}>
         {children}
-      </RRLink>
+      </a>
     );
   }
 }
