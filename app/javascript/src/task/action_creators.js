@@ -3,6 +3,8 @@ import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
 import {setTags} from 'src/tag/action_creators';
 
+const BASE_PATH = '/api/v1/tasks';
+
 const INIT = 'task/INIT';
 const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
@@ -44,7 +46,7 @@ function fetchTasks() {
     dispatch(updateTaskMeta({ajaxState: 'fetching'}));
     request({
       method: 'get',
-      url: '/api/v1/tasks',
+      url: BASE_PATH,
       success: ({data, included}) => {
         dispatch(setTasks(data));
         dispatch(setTags(included));
@@ -60,7 +62,7 @@ function createTask(payload) {
 
     request({
       data: {task: payload},
-      url: '/api/v1/tasks',
+      url: BASE_PATH,
       method: 'post',
       success: () => {
         dispatch(updateTaskMeta({ajaxState: 'ready'}));
@@ -76,7 +78,7 @@ function createTask(payload) {
 function deleteTask(taskId) {
   return (dispatch) => {
     request({
-      url: `api/v1/tasks/${taskId}`,
+      url: `${BASE_PATH}/${taskId}`,
       method: 'delete',
       success: () => {
         dispatch(fetchTasks());
@@ -115,7 +117,7 @@ function updateTask(id, payload) {
     dispatch(updateTaskClient(id, clientPayload));
     request({
       data: {task: payload},
-      url: `api/v1/tasks/${id}`,
+      url: `${BASE_PATH}/${id}`,
       success: () => {
         dispatch(fetchTasks());
         TaskStore.unload();
