@@ -1,14 +1,15 @@
 import ROUTES, {findRoute} from 'src/route/routes';
+import {INIT, SET} from 'src/route/action_creators';
 
 function routeReducer(previousState, action) {
-  if (action.type === 'route/SET') {
+  if (action.type === SET) {
     const {name, ...params} = action.payload;
     const matchingRoute = findRoute(name);
 
     window.history.pushState(null, null, matchingRoute.toPath(params));
 
     return {name: matchingRoute.name, params};
-  } else if (action.type === 'route/INIT') {
+  } else if (action.type === INIT) {
     let params;
 
     const matchingRoute = ROUTES.find((route) => {
