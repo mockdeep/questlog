@@ -76,7 +76,7 @@ function createTask(payload) {
 function deleteTask(taskId) {
   return (dispatch) => {
     request({
-      url: `tasks/${taskId}`,
+      url: `api/v1/tasks/${taskId}`,
       method: 'delete',
       success: () => {
         dispatch(fetchTasks());

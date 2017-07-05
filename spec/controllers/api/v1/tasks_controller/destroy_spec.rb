@@ -1,4 +1,4 @@
-RSpec.describe TasksController, '#destroy' do
+RSpec.describe API::V1::TasksController, '#destroy' do
 
   let(:task) { create(:task) }
   let(:user) { task.user }
@@ -7,7 +7,6 @@ RSpec.describe TasksController, '#destroy' do
 
   before(:each) do
     login_as(user)
-    request.env['HTTP_REFERER'] = '/whatevs'
   end
 
   it 'destroys the task for the given user' do
