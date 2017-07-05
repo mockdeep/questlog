@@ -1,15 +1,9 @@
+import createBasicReducer from 'src/_common/create_basic_reducer';
 import ROUTES, {findRoute} from 'src/route/routes';
 import {INIT, SET} from 'src/route/action_creators';
 
-function routeReducer(previousState, action) {
-  if (action.type === SET) {
-    const {name, ...params} = action.payload;
-    const matchingRoute = findRoute(name);
-
-    window.history.pushState(null, null, matchingRoute.toPath(params));
-
-    return {name: matchingRoute.name, params};
-  } else if (action.type === INIT) {
+export default createBasicReducer({
+  [INIT]() {
     let params;
 
     const matchingRoute = ROUTES.find((route) => {
@@ -19,9 +13,14 @@ function routeReducer(previousState, action) {
     });
 
     return {name: matchingRoute.name, params};
-  }
+  },
 
-  throw new Error(`unhandled action type: ${action.type}`);
-}
+  [SET](previousState, payload) {
+    const {name, ...params} = payload;
+    const matchingRoute = findRoute(name);
 
-export default routeReducer;
+    window.history.pushState(null, null, matchingRoute.toPath(params));
+
+    return {name: matchingRoute.name, params};
+  },
+});
