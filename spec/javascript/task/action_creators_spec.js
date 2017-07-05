@@ -108,7 +108,7 @@ describe('updateTask', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
     const expected = {
       data: {task: {title: 'bar'}},
-      url: 'tasks/5',
+      url: 'api/v1/tasks/5',
       success: expect.any(Function),
     };
 

@@ -115,7 +115,7 @@ function updateTask(id, payload) {
     dispatch(updateTaskClient(id, clientPayload));
     request({
       data: {task: payload},
-      url: `tasks/${id}`,
+      url: `api/v1/tasks/${id}`,
       success: () => {
         dispatch(fetchTasks());
         TaskStore.unload();

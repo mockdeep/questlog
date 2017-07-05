@@ -16,6 +16,12 @@ module API
         render json: serialize(task), status: :created
       end
 
+      def update
+        task = current_user.tasks.find(params[:id])
+        Task::Update.(task, task_params)
+        render json: serialize(task), status: :ok
+      end
+
     private
 
       def tags
