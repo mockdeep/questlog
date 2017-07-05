@@ -15,15 +15,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def create
-    persist_current_user
-
-    task = Task::Create.(task_params.merge(user: current_user))
-    respond_to do |format|
-      format.json { render json: serialize(task), status: :created }
-    end
-  end
-
   def update
     task = current_user.tasks.find(params[:id])
     Task::Update.(task, task_params)
@@ -56,16 +47,6 @@ private
 
   def parsed_title
     TitleParser.(params[:task][:title])
-  end
-
-  def task_update_message
-    if task_params[:done]
-      'Task marked done'
-    elsif task_params[:postpone]
-      'Task postponed'
-    else
-      'Task updated'
-    end
   end
 
 end
