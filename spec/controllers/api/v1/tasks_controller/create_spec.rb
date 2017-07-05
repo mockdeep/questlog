@@ -1,10 +1,6 @@
-RSpec.describe TasksController, '#create' do
+RSpec.describe API::V1::TasksController, '#create' do
 
   let(:valid_params) { { format: :json, task: attributes_for(:task) } }
-
-  before(:each) do
-    request.env['HTTP_REFERER'] = root_url
-  end
 
   context 'when the user does not exist' do
     it 'creates a new user' do

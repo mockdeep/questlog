@@ -9,6 +9,13 @@ module API
         render json: serialize(tasks, included: tags)
       end
 
+      def create
+        persist_current_user
+
+        task = Task::Create.(task_params.merge(user: current_user))
+        render json: serialize(task), status: :created
+      end
+
     private
 
       def tags
@@ -50,6 +57,22 @@ module API
           slug: '',
           tasks: current_user.unfinished_tasks,
         )
+      end
+
+      def task_params
+        params.require(:task)
+              .permit(*permitted_params)
+              .to_h
+              .symbolize_keys
+              .merge(parsed_title)
+      end
+
+      def permitted_params
+        %i[done postpone title priority timeframe]
+      end
+
+      def parsed_title
+        TitleParser.(params[:task][:title])
       end
 
     end

@@ -60,7 +60,7 @@ function createTask(payload) {
 
     request({
       data: {task: payload},
-      url: '/tasks',
+      url: '/api/v1/tasks',
       method: 'post',
       success: () => {
         dispatch(updateTaskMeta({ajaxState: 'ready'}));
