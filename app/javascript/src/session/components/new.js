@@ -7,7 +7,7 @@ function SessionsNew() {
     <div>
       <h1>{'Log in'}</h1>
 
-      <form action='/sessions' acceptCharset='UTF-8' method='post'>
+      <form action='/session' acceptCharset='UTF-8' method='post'>
         <input
           type='hidden'
           name='authenticity_token'
