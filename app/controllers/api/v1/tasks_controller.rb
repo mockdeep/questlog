@@ -22,6 +22,12 @@ module API
         render json: serialize(task), status: :ok
       end
 
+      def destroy
+        task = current_user.tasks.find(params[:id])
+        Task::Destroy.(task)
+        render json: {}, status: :ok
+      end
+
     private
 
       def tags

@@ -23,14 +23,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def destroy
-    task = current_user.tasks.find(params[:id])
-    Task::Destroy.(task)
-    respond_to do |format|
-      format.json { render json: {}, status: :ok }
-    end
-  end
-
 private
 
   def task_params
