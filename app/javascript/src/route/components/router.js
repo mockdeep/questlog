@@ -13,7 +13,7 @@ function Nothing() { return false; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskContainer,
-  bulkTasksNew: BulkTasksNewContainer,
+  bulkTaskNew: BulkTasksNewContainer,
   freeAccountsNew: Nothing,
   sessionsNew: SessionsNew,
   sessions: Nothing,

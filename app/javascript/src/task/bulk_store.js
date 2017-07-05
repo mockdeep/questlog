@@ -7,7 +7,7 @@ const BulkTaskStore = {
   loaded: false,
   models: [],
   name: 'bulk_task',
-  url: '/bulk_tasks',
+  url: '/bulk_task',
 
   subscribe(listener) {
     this.listeners.push(listener);

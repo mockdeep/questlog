@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   scope constraints: HtmlConstraint.new do
     root 'pages#index'
 
-    resources :sessions, only: [:create]
-    delete '/sessions' => 'sessions#destroy', as: 'session'
+    resource :session, only: %i[create destroy]
 
     resources :free_accounts, only: %i[new create]
     resources :charges, only: %i[new create]
@@ -23,11 +22,9 @@ Rails.application.routes.draw do
 
     resources :tasks, only: %i[index create update destroy]
     resources :timeframes, only: [:index]
-    resources :bulk_tasks, only: [:create]
-    put(:bulk_tasks, to: 'bulk_tasks#update')
+    resource :bulk_task, only: %i[create update]
 
-    get '', to: 'tasks#show'
-    get '/:slug', to: 'tasks#show'
+    get '(/:slug)', to: 'tasks#show'
   end
 
 end

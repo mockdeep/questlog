@@ -10,7 +10,7 @@ function TaskFooter() {
       {' | '}
       <Link to='timeframes'>{'Timeframes'}</Link>
       {' | '}
-      <a href='/bulk_tasks/new'>{'Add multiple tasks'}</a>
+      <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}
       <HelpLink />
       <br />

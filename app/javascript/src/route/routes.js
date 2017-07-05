@@ -28,7 +28,7 @@ function compileRoutes(routes) {
 
 const ROUTES = compileRoutes([
   {name: 'root', path: '/'},
-  {name: 'bulkTasksNew', path: '/bulk_tasks/new'},
+  {name: 'bulkTaskNew', path: '/bulk_task/new'},
   {name: 'freeAccountsNew', path: '/free_accounts/new'},
   {name: 'sessionsNew', path: '/sessions/new'},
   {name: 'sessions', path: '/sessions'},
