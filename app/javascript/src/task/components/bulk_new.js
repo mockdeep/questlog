@@ -7,22 +7,22 @@ import BulkTaskStore from 'src/task/bulk_store';
 class BulkTasksNew extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {taskTitles: ''};
     autobind(this);
   }
 
   setTitles(event) {
-    this.setState({taskTitles: event.target.value});
+    this.props.updateTaskMeta({newTask: {title: event.target.value}});
   }
 
   redirectToTaskList() {
+    this.props.updateTaskMeta({newTask: {title: ''}});
     this.props.setRoute({name: 'tasks'});
   }
 
   saveTasks(event) {
     event.preventDefault();
-    if (this.state.taskTitles.trim() === '') { return; }
-    const tasksParams = {titles: this.state.taskTitles.trim()};
+    if (this.props.taskTitles.trim() === '') { return; }
+    const tasksParams = {titles: this.props.taskTitles.trim()};
 
     BulkTaskStore.create(tasksParams).then(this.redirectToTaskList);
   }
@@ -45,7 +45,7 @@ class BulkTasksNew extends React.Component {
               className='task-input'
               rows='15'
               onChange={this.setTitles}
-              value={this.state.taskTitles}
+              value={this.props.taskTitles}
               name='bulk_task[titles]'
             />
           </div>
@@ -65,6 +65,10 @@ class BulkTasksNew extends React.Component {
   }
 }
 
-BulkTasksNew.propTypes = {setRoute: PropTypes.func.isRequired};
+BulkTasksNew.propTypes = {
+  setRoute: PropTypes.func.isRequired,
+  taskTitles: PropTypes.string.isRequired,
+  updateTaskMeta: PropTypes.func.isRequired,
+};
 
 export default BulkTasksNew;
