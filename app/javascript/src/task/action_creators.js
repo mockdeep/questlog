@@ -10,29 +10,6 @@ const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
 const UPDATE_META = 'task/UPDATE_META';
 
-// const CLIENT_ATTRS = new Set(['id', 'loadingState']);
-// const SERVER_ATTRS = new Set([]);
-// const ALL_ATTRS = new Set([...CLIENT_ATTRS, ...SERVER_ATTRS]);
-
-// function partitionObj(sourceObj, evaluator) {
-//   const yesObj = {};
-//   const noObj = {};
-
-//   for (const [key, value] of sourceObj) {
-//     if evaluator(value) {
-//       yesObj[key] = value;
-//     } else {
-//       noObj[key] = value;
-//     }
-//   }
-
-//   return [yesObj, noObj];
-// }
-
-// function isClientAttr(key) {
-//   return CLIENT_ATTRS.has(key);
-// }
-
 function setTasks(payload) {
   return {type: SET, payload};
 }
@@ -88,14 +65,6 @@ function deleteTask(taskId) {
   };
 }
 
-// function updateTask(taskId, payload) {
-//   return (dispatch) => {
-//     const [clientPayload, serverPayload] = partitionObj(payload, CLIENT_ATTRS);
-//     if (_.some(clientPayload)) { dispatch(updateClientTask(clientPayload)); }
-//     if (_.some(serverPayload)) { dispatch(updateServerTask(serverPayload)); }
-//   };
-// }
-//
 function getLoadingState(payload) {
   if (payload.done) {
     return 'marking_done';
