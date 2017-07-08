@@ -1,14 +1,20 @@
 jest.mock('src/_helpers/flash');
-jest.mock('src/_helpers/request');
+jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
 import store from 'src/app_store';
-import request from 'src/_helpers/request';
+import {ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
   SET, UPDATE, UPDATE_META,
   createTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
+
+const fakePromise = {then: jest.fn()};
+
+ajaxGet.mockReturnValue(fakePromise);
+ajaxPost.mockReturnValue(fakePromise);
+ajaxPut.mockReturnValue(fakePromise);
 
 const dispatch = jest.spyOn(store, 'dispatch');
 
@@ -32,7 +38,7 @@ describe('fetchTasks', () => {
 
       thunk(dispatch);
 
-      request.mock.calls[0][0].success({data: [], included: []});
+      fakePromise.then.mock.calls[0][0]({data: [], included: []});
     });
 
     it('sets ajax state to "ready"', () => {
@@ -59,7 +65,7 @@ describe('createTask', () => {
 
       thunk(dispatch);
 
-      request.mock.calls[0][0].success({data: [], included: []});
+      fakePromise.then.mock.calls[0][0]({data: [], included: []});
     });
 
     it('sets ajax state to "ready"', () => {
@@ -106,15 +112,11 @@ describe('updateTask', () => {
 
   it('sends a request to the server', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
-    const expected = {
-      data: {task: {title: 'bar'}},
-      url: '/api/v1/tasks/5',
-      success: expect.any(Function),
-    };
+    const expected = ['/api/v1/tasks/5', {task: {title: 'bar'}}];
 
     updateThunk(dispatch);
 
-    expect(request).toHaveBeenCalledWith(expected);
+    expect(ajaxPut).toHaveBeenCalledWith(...expected);
   });
 
   describe('on success', () => {
@@ -123,9 +125,9 @@ describe('updateTask', () => {
 
       updateThunk(dispatch);
 
-      expect(request).toHaveBeenCalled();
+      expect(ajaxPut).toHaveBeenCalled();
 
-      request.mock.calls[0][0].success();
+      fakePromise.then.mock.calls[0][0]({data: [], included: []});
     });
 
     it('dispatches fetchTasks', () => {

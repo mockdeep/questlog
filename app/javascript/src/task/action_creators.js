@@ -1,5 +1,5 @@
+import {ajaxGet, ajaxPut, ajaxPost, ajaxDelete} from 'src/_helpers/ajax';
 import flash from 'src/_helpers/flash';
-import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
 import {setTags} from 'src/tag/action_creators';
 
@@ -21,15 +21,12 @@ function updateTaskMeta(payload) {
 function fetchTasks() {
   return (dispatch) => {
     dispatch(updateTaskMeta({ajaxState: 'fetching'}));
-    request({
-      method: 'get',
-      url: BASE_PATH,
-      success: ({data, included}) => {
+    ajaxGet(BASE_PATH).
+      then(({data, included}) => {
         dispatch(setTasks(data));
         dispatch(setTags(included));
         dispatch(updateTaskMeta({ajaxState: 'ready'}));
-      },
-    });
+      });
   };
 }
 
@@ -37,31 +34,24 @@ function createTask(payload) {
   return (dispatch) => {
     dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
-    request({
-      data: {task: payload},
-      url: BASE_PATH,
-      method: 'post',
-      success: () => {
+    ajaxPost(BASE_PATH, {task: payload}).
+      then(() => {
         dispatch(updateTaskMeta({ajaxState: 'ready'}));
         dispatch(updateTaskMeta({newTask: {title: ''}}));
         dispatch(fetchTasks());
         TaskStore.unload();
         flash('success', 'Task added');
-      },
-    });
+      });
   };
 }
 
 function deleteTask(taskId) {
   return (dispatch) => {
-    request({
-      url: `${BASE_PATH}/${taskId}`,
-      method: 'delete',
-      success: () => {
+    ajaxDelete(`${BASE_PATH}/${taskId}`).
+      then(() => {
         dispatch(fetchTasks());
         TaskStore.unload();
-      },
-    });
+      });
   };
 }
 
@@ -84,14 +74,11 @@ function updateTask(id, payload) {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
     dispatch(updateTaskClient(id, clientPayload));
-    request({
-      data: {task: payload},
-      url: `${BASE_PATH}/${id}`,
-      success: () => {
+    ajaxPut(`${BASE_PATH}/${id}`, {task: payload}).
+      then(() => {
         dispatch(fetchTasks());
         TaskStore.unload();
-      },
-    });
+      });
   };
 }
 
