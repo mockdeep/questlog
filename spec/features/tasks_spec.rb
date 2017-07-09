@@ -100,8 +100,7 @@ RSpec.describe 'Tasks page', js: true do
     add_task('feed dog #home')
     expect(page).to have_content('home (2)')
     expect(task_title).to have_content('do laundry')
-    find('.delete-button').click
-    accept_confirm
+    accept_confirm { find('.delete-button').click }
     expect(task_title).to have_content('feed dog')
     expect(page).to have_content('home (1)')
   end
