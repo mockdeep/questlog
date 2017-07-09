@@ -13,7 +13,19 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-driver = ENV.fetch('DRIVER', :poltergeist).to_sym
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chrome_options: { args: %w[headless] },
+  )
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    desired_capabilities: capabilities,
+  )
+end
+
+driver = ENV.fetch('DRIVER', :headless_chrome).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 

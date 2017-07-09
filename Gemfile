@@ -61,7 +61,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-webkit'
   gem 'coderay'
   gem 'database_cleaner'
   gem 'guard-rspec'
