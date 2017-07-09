@@ -22,7 +22,7 @@ RSpec.describe 'tasks index page', js: true do
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
     click_button 'Delete'
-    confirm_alert
+    accept_confirm
     expect(current_tasks).not_to have_content('do laundry')
     expect(current_tasks).to have_content('feed dog')
   end

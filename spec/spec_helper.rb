@@ -159,7 +159,3 @@ end
 def browser
   page.driver.browser
 end
-
-def confirm_alert
-  browser.switch_to.alert.accept if browser.respond_to?(:switch_to)
-end
