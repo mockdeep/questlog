@@ -3,17 +3,13 @@ import React from 'react';
 
 import MainButtons from 'src/task/components/main_buttons';
 import TaskTitle from 'src/task/components/task_title';
-import TagButtons from 'src/tag/components/tag_buttons';
+import TagButtonsContainer from 'src/tag/containers/tag_buttons';
 import EditTaskForm from 'src/task/components/edit_task_form';
 
 function TaskDisplay(props) {
   return (
     <div>
-      <TagButtons
-        activeTagSlug={props.activeTagSlug}
-        task={props.task}
-        tags={props.tags}
-      />
+      <TagButtonsContainer task={props.task} />
       <TaskTitle
         task={props.task}
         deleteTask={props.deleteTask}
@@ -35,14 +31,12 @@ function TaskDisplay(props) {
 }
 
 TaskDisplay.propTypes = {
-  activeTagSlug: PropTypes.string,
   completeTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   postponeTask: PropTypes.func.isRequired,
   storePostponeSeconds: PropTypes.func.isRequired,
   storeTask: PropTypes.func.isRequired,
-  tags: PropTypes.array.isRequired,
   task: PropTypes.object.isRequired,
 };
 
