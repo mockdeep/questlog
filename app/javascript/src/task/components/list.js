@@ -45,12 +45,9 @@ class TaskList extends React.Component {
   }
 
   setTasks(data) {
-    const partitionedTasks = partition(data.tasks, isPending);
+    const [pendingTasks, currentTasks] = partition(data.tasks, isPending);
 
-    this.setState({
-      pendingTasks: partitionedTasks[0],
-      currentTasks: partitionedTasks[1],
-    });
+    this.setState({pendingTasks, currentTasks});
   }
 
   moveTask(id, afterId) {
