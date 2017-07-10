@@ -11,9 +11,7 @@ class TagButtons extends React.Component {
   }
 
   isCurrent(tag) {
-    const tagIds = this.props.task.tagIds || [];
-
-    return tagIds.some((tagId) => tagId === tag.id);
+    return this.props.currentTagIds.includes(tag.id);
   }
 
   isActive(tag) {
@@ -52,8 +50,8 @@ class TagButtons extends React.Component {
 
 TagButtons.propTypes = {
   activeTagSlug: PropTypes.string,
+  currentTagIds: PropTypes.array.isRequired,
   tags: PropTypes.array.isRequired,
-  task: PropTypes.object.isRequired,
 };
 
 export default TagButtons;
