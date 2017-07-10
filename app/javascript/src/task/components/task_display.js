@@ -9,7 +9,7 @@ import EditTaskForm from 'src/task/components/edit_task_form';
 function TaskDisplay(props) {
   return (
     <div>
-      <TagButtonsContainer task={props.task} />
+      <TagButtonsContainer currentTagIds={props.task && props.task.tagIds} />
       <TaskTitle
         task={props.task}
         deleteTask={props.deleteTask}

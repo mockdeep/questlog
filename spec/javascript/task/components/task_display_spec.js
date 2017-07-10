@@ -12,7 +12,7 @@ const props = {
   storePostponeSeconds: jest.fn(),
   storeTask: jest.fn(),
   tags: [],
-  task: {},
+  task: {tagIds: [1]},
 };
 
 it('renders TagButtons', () => {
@@ -22,5 +22,5 @@ it('renders TagButtons', () => {
   );
   const tagButtonsContainer = component.find(TagButtonsContainer);
 
-  expect(tagButtonsContainer.prop('task')).toBe(props.task);
+  expect(tagButtonsContainer.prop('currentTagIds')).toBe(props.task.tagIds);
 });
