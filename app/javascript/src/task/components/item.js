@@ -55,9 +55,7 @@ class TaskItem extends React.Component {
     return (
       <div>
         <TaskDisplay
-          activeTagSlug={this.props.activeTagSlug}
           task={this.task()}
-          tags={this.props.tags}
           disabled={!this.isReady()}
           storeTask={this.props.updateTask}
           storePostponeSeconds={this.storePostponeSeconds}
@@ -79,11 +77,9 @@ class TaskItem extends React.Component {
 }
 
 TaskItem.propTypes = {
-  activeTagSlug: PropTypes.string,
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
   postponeSeconds: PropTypes.number.isRequired,
-  tags: PropTypes.array.isRequired,
   task: PropTypes.object,
   updateTask: PropTypes.func.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,

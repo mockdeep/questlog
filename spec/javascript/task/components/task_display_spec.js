@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagButtons from 'src/tag/components/tag_buttons';
+import TagButtonsContainer from 'src/tag/containers/tag_buttons';
 import TaskDisplay from 'src/task/components/task_display';
 
 const props = {
@@ -20,7 +20,7 @@ it('renders TagButtons', () => {
     <TaskDisplay {...props} />,
     {lifecycleExperimental: true}
   );
-  const tagButtons = component.find(TagButtons);
+  const tagButtonsContainer = component.find(TagButtonsContainer);
 
-  expect(tagButtons.prop('task')).toBe(props.task);
+  expect(tagButtonsContainer.prop('task')).toBe(props.task);
 });
