@@ -15,8 +15,8 @@ class TagButtons extends React.Component {
   }
 
   isActive(tag) {
-    if (this.props.activeTagSlug) {
-      return tag.slug === this.props.activeTagSlug;
+    if (this.props.selectedTagSlug) {
+      return tag.slug === this.props.selectedTagSlug;
     }
 
     return tag.name === 'All';
@@ -49,8 +49,8 @@ class TagButtons extends React.Component {
 }
 
 TagButtons.propTypes = {
-  activeTagSlug: PropTypes.string,
   currentTagIds: PropTypes.array.isRequired,
+  selectedTagSlug: PropTypes.string,
   tags: PropTypes.array.isRequired,
 };
 

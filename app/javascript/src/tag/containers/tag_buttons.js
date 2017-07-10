@@ -5,8 +5,8 @@ import TagButtons from 'src/tag/components/tag_buttons';
 
 function mapStateToProps(state, ownProps) {
   return {
-    activeTagSlug: state.route.params.slug,
     currentTagIds: ownProps.currentTagIds || [],
+    selectedTagSlug: state.route.params.slug,
     tags: getActiveTags(state),
   };
 }
