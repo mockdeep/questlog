@@ -3,7 +3,7 @@ import React from 'react';
 
 import MainButtons from 'src/task/components/main_buttons';
 import TaskTitle from 'src/task/components/task_title';
-import TagButtons from 'src/task/components/tag_buttons';
+import TagButtons from 'src/tag/components/tag_buttons';
 import EditTaskForm from 'src/task/components/edit_task_form';
 
 function TaskDisplay(props) {
