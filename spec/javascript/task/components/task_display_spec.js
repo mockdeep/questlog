@@ -13,7 +13,6 @@ const props = {
   storeTask: jest.fn(),
   tags: [],
   task: {},
-  updateTagMeta: jest.fn(),
 };
 
 it('renders TagButtons', () => {
@@ -23,5 +22,5 @@ it('renders TagButtons', () => {
   );
   const tagButtons = component.find(TagButtons);
 
-  expect(tagButtons.prop('updateTagMeta')).toBe(props.updateTagMeta);
+  expect(tagButtons.prop('task')).toBe(props.task);
 });

@@ -2,7 +2,6 @@ import {connect} from 'react-redux';
 
 import {deleteTask, updateTask, updateTaskMeta} from 'src/task/action_creators';
 import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
-import {updateTagMeta} from 'src/tag/action_creators';
 import TaskItem from 'src/task/components/item';
 
 function mapStateToProps(state) {
@@ -18,6 +17,6 @@ function mapStateToProps(state) {
   };
 }
 
-const actionCreators = {deleteTask, updateTagMeta, updateTask, updateTaskMeta};
+const actionCreators = {deleteTask, updateTask, updateTaskMeta};
 
 export default connect(mapStateToProps, actionCreators)(TaskItem);
