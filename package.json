@@ -62,7 +62,7 @@
     "stylelint": "^7.10.1"
   },
   "engines": {
-    "node": "6.8.0"
+    "node": "8.1.4"
   },
   "scripts": {
     "lints": "yarn stylelint && yarn eslint && rake rubocop && rake haml_lint",
