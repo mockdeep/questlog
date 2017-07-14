@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import {getActiveTags} from 'src/tag/selectors';
-import TagButtons from 'src/tag/components/tag_buttons';
+import TagButtons from 'src/tag/components/buttons';
 
 function mapStateToProps(state, ownProps) {
   return {

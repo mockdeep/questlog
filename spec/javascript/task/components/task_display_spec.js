@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagButtonsContainer from 'src/tag/containers/tag_buttons';
+import TagButtonsContainer from 'src/tag/containers/buttons';
 import TaskDisplay from 'src/task/components/task_display';
 
 const props = {

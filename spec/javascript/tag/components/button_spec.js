@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import Link from 'src/route/containers/link';
-import TagButton from 'src/tag/components/tag_button';
+import TagButton from 'src/tag/components/button';
 
 const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
 const props = {current: false, updateTagMeta: jest.fn(), tag, isActive: false};
