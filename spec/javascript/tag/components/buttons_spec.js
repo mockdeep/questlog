@@ -3,7 +3,7 @@ import {mount} from 'enzyme';
 import {Provider} from 'react-redux';
 
 import store from 'src/app_store';
-import TagButtons from 'src/tag/components/tag_buttons';
+import TagButtons from 'src/tag/components/buttons';
 
 const tags = [
   {id: 5, name: 'home', unfinishedTasksCount: 8, slug: 'home'},

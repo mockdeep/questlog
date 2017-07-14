@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import TagButton from 'src/tag/components/tag_button';
+import TagButton from 'src/tag/components/button';
 
 class TagButtons extends React.Component {
   constructor(props) {
