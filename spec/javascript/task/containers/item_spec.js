@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import ItemComponent from 'src/task/components/item';
 import ItemContainer from 'src/task/containers/item';
 import store from 'src/app_store';
 
@@ -11,5 +10,5 @@ const props = {store, match: {params: {}}};
 it('wraps the Item component', () => {
   const container = shallow(<ItemContainer {...props} />, renderOpts);
 
-  expect(container.find(ItemComponent)).toHaveLength(1);
+  expect(container.find('TaskItem')).toHaveLength(1);
 });

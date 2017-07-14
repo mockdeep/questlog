@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Link from 'src/route/containers/link';
 import TagButton from 'src/tag/components/button';
 
 const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
@@ -13,7 +12,7 @@ it('adds an active class when tag is selected', () => {
     {lifecycleExperimental: true}
   );
 
-  expect(component.find(Link).hasClass('active')).toBe(true);
+  expect(component.find('Connect(Link)').hasClass('active')).toBe(true);
 });
 
 it('passes routing params to Link sub-component', () => {
@@ -22,7 +21,7 @@ it('passes routing params to Link sub-component', () => {
     {lifecycleExperimental: true}
   );
 
-  const {to, params} = component.find(Link).props();
+  const {to, params} = component.find('Connect(Link)').props();
 
   expect(to).toBe('tag');
   expect(params).toEqual({slug: 'home'});

@@ -2,7 +2,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TimeframeList from 'src/timeframe/components/list';
-import TimeframeSection from 'src/timeframe/components/section';
 
 let wrapper;
 
@@ -47,7 +46,7 @@ describe('TimeframeList', () => {
 
     wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.find(TimeframeSection).prop('timeframe')).toBe(timeframe);
+    expect(wrapper.find('TimeframeSection').prop('timeframe')).toBe(timeframe);
   });
 
   it('does not render empty timeframes', () => {
@@ -56,6 +55,6 @@ describe('TimeframeList', () => {
 
     wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.find(TimeframeSection).length).toBe(0);
+    expect(wrapper.find('TimeframeSection').length).toBe(0);
   });
 });
