@@ -1,7 +1,6 @@
-//= require normalize-rails
-//= require_self
-//= require_tree .
-
+@import 'normalize-rails';
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import './common';
+@import './tag';
