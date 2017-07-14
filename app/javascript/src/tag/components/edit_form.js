@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Link from 'src/_common/containers/link';
+import Link from 'src/route/containers/link';
 
 class EditTagForm extends React.Component {
   ruleRow(rule) {

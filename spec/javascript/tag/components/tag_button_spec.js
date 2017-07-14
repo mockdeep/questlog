@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Link from 'src/_common/containers/link';
+import Link from 'src/route/containers/link';
 import TagButton from 'src/tag/components/tag_button';
 
 const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
