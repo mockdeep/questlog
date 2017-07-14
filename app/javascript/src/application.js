@@ -4,10 +4,15 @@ import Honeybadger from 'honeybadger-js';
 import ReactDOM from 'react-dom';
 
 import appBase from 'src/app_base';
+import appStore from 'src/app_store';
 import 'src/tasks';
 
 window.$ = $;
 window.jQuery = $;
+
+window.addEventListener('popstate', () => {
+  appStore.dispatch({type: 'route/INIT'});
+});
 
 // depends on global jQuery, so can't be imported, as that gets hoisted
 require('bootstrap-sass');
