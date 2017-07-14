@@ -8,8 +8,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import Item from 'src/task/components/item';
-import TaskDisplay from 'src/task/components/task_display';
-import NotificationCheckbox from 'src/notification/containers/checkbox';
 
 const renderOpts = {lifecycleExperimental: true};
 const props = {
@@ -25,12 +23,12 @@ const props = {
 it('renders the notification checkbox', () => {
   const component = shallow(<Item {...props} />, renderOpts);
 
-  expect(component.find(NotificationCheckbox)).toHaveLength(1);
+  expect(component.find('Connect(NotificationCheckbox)')).toHaveLength(1);
 });
 
 it('updates the task on postpone', () => {
   const component = shallow(<Item {...props} />, renderOpts);
-  const taskDisplay = component.find(TaskDisplay);
+  const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('postponeTask')(52);
 
@@ -39,7 +37,7 @@ it('updates the task on postpone', () => {
 
 it('updates the task on completion', () => {
   const component = shallow(<Item {...props} />, renderOpts);
-  const taskDisplay = component.find(TaskDisplay);
+  const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('completeTask')(512);
 
@@ -71,7 +69,7 @@ describe('when no task is given', () => {
 
   it('disables the task display', () => {
     const component = shallow(<Item {...props} />, renderOpts);
-    const taskDisplay = component.find(TaskDisplay);
+    const taskDisplay = component.find('TaskDisplay');
 
     expect(taskDisplay.prop('disabled')).toBe(true);
   });

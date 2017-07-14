@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Link from 'src/route/containers/link';
 import TagList from 'src/tag/components/list';
 
 const renderOpts = {lifecycleExperimental: true};
@@ -18,9 +17,9 @@ it('renders tag rows', () => {
   const tagRow2 = tagRows.at(1);
 
   expect(tagRow1.text()).toMatch(/At Home/);
-  expect(tagRow1.find(Link).prop('params')).toEqual({slug: 'at-home'});
+  expect(tagRow1.find('Connect(Link)').prop('params')).toEqual({slug: 'at-home'});
   expect(tagRow2.text()).toMatch(/At Work/);
-  expect(tagRow2.find(Link).prop('params')).toEqual({slug: 'at-work'});
+  expect(tagRow2.find('Connect(Link)').prop('params')).toEqual({slug: 'at-work'});
 });
 
 it('does not render the "All" tag', () => {
