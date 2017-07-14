@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from 'src/_common/containers/link';
+import Link from 'src/route/containers/link';
 
 function WhatPage() {
   return (

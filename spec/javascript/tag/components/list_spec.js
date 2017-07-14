@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Link from 'src/_common/containers/link';
+import Link from 'src/route/containers/link';
 import TagList from 'src/tag/components/list';
 
 const renderOpts = {lifecycleExperimental: true};
