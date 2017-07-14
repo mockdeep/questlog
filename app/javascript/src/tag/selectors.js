@@ -40,4 +40,4 @@ const getNextUndoneTask = createSelector(
   (undoneTasks, selectedTag) => undoneTasks.find((task) => matchesSmartRules(task, selectedTag))
 );
 
-export {getActiveTags, getNextUndoneTask};
+export {getActiveTags, getNextUndoneTask, getOrderedTags, getSelectedTag};

@@ -36,6 +36,8 @@ const ROUTES = compileRoutes([
   {name: 'privacy', path: '/privacy'},
   {name: 'what', path: '/what'},
   {name: 'timeframes', path: '/timeframes'},
+  {name: 'tags', path: '/tags'},
+  {name: 'editTag', path: '/tags/:slug/edit'},
   {name: 'tag', path: '/:slug'},
 ]);
 
