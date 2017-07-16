@@ -1,4 +1,4 @@
-RSpec.describe Stat::Create, '#call' do
+RSpec.describe Stat::Create do
 
   let(:user) { create(:user) }
   let(:stat_create) { described_class.new }

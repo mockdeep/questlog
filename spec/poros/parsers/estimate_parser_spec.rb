@@ -1,6 +1,6 @@
-RSpec.describe EstimateParser, '#call' do
+RSpec.describe EstimateParser do
 
-  let(:parser) { EstimateParser.new }
+  let(:parser) { described_class.new }
 
   it 'parses ~ estimates with "d" abbreviation for days' do
     result = parser.('eat ~1d breakfast')

@@ -1,6 +1,6 @@
-RSpec.describe ReleaseAtParser, '#call' do
+RSpec.describe ReleaseAtParser do
 
-  let(:parser) { ReleaseAtParser.new }
+  let(:parser) { described_class.new }
 
   context 'when time is in the past' do
     it 'returns nil if the string includes a date' do

@@ -1,6 +1,6 @@
-RSpec.describe TitleParser, '#call' do
+RSpec.describe TitleParser do
 
-  let(:parser) { TitleParser.new }
+  let(:parser) { described_class.new }
 
   it 'returns an empty hash when the title is nil' do
     expect(parser.(nil)).to eq({})

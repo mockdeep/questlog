@@ -1,6 +1,6 @@
-RSpec.describe RepeatParser, '#call' do
+RSpec.describe RepeatParser do
 
-  let(:parser) { RepeatParser.new }
+  let(:parser) { described_class.new }
 
   it 'parses * repeats with "d" abbreviation for days' do
     result = parser.('eat *1d breakfast')

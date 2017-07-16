@@ -1,4 +1,4 @@
-RSpec.describe Task::Destroy, '#call' do
+RSpec.describe Task::Destroy do
 
   let(:task) { create(:task) }
   let(:user) { task.user }
