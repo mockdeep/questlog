@@ -3,7 +3,7 @@ import React from 'react';
 
 import BulkTasksNewContainer from 'src/task/containers/bulk_new';
 import PrivacyPage from 'src/static/components/privacy_page';
-import SessionsNew from 'src/session/components/new';
+import NewSessionForm from 'src/session/components/new_form';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TagListContainer from 'src/tag/containers/list';
 import TaskContainer from 'src/task/containers/item';
@@ -17,7 +17,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskContainer,
   bulkTaskNew: BulkTasksNewContainer,
   freeAccountsNew: Nothing,
-  sessionsNew: SessionsNew,
+  sessionsNew: NewSessionForm,
   sessions: Nothing,
   tasks: TaskList,
   privacy: PrivacyPage,

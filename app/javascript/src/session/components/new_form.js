@@ -2,7 +2,7 @@ import React from 'react';
 
 import authenticityToken from 'src/_helpers/authenticity_token';
 
-function SessionsNew() {
+function NewSessionForm() {
   return (
     <div>
       <h1>{'Log in'}</h1>
@@ -31,4 +31,4 @@ function SessionsNew() {
   );
 }
 
-export default SessionsNew;
+export default NewSessionForm;
