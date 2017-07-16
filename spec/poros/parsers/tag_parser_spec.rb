@@ -1,6 +1,6 @@
-RSpec.describe TagParser, '#call' do
+RSpec.describe TagParser do
 
-  let(:parser) { TagParser.new }
+  let(:parser) { described_class.new }
 
   it 'returns an empty array for tag_names when no tags are in the string' do
     expected = { title: 'do something', tag_names: [] }

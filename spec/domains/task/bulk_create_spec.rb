@@ -1,4 +1,4 @@
-RSpec.describe Task::BulkCreate, '#call' do
+RSpec.describe Task::BulkCreate do
 
   let(:user) { create(:free_user) }
   let(:bulk_task_create) { described_class.new }

@@ -1,6 +1,6 @@
-RSpec.describe PriorityParser, '#call' do
+RSpec.describe PriorityParser do
 
-  let(:parser) { PriorityParser.new }
+  let(:parser) { described_class.new }
 
   it 'returns nil when there is no priority mark in the string' do
     expect(parser.('whatevs')).to eq(title: 'whatevs', priority: nil)
