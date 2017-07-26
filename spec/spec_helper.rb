@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'simplecov'
 SimpleCov.start 'rails'
-SimpleCov.minimum_coverage 92.32
+SimpleCov.minimum_coverage 93.84
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
