@@ -2,7 +2,8 @@ RSpec.describe API::V1::TagsController, '#update' do
 
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user: user) }
-  let(:valid_params) { { id: tag.id, tag: { name: 'foo tag' } } }
+  let(:rules) { [{ field: 'estimateSeconds', check: 'isBlank' }] }
+  let(:valid_params) { { id: tag.id, tag: { name: 'foo tag', rules: rules } } }
 
   before { login_as(user) }
 
@@ -10,6 +11,7 @@ RSpec.describe API::V1::TagsController, '#update' do
     expect do
       put(:update, params: valid_params)
     end.to change { tag.reload.name }.to('foo tag')
+      .and change { tag.rules }.to(rules.map(&:stringify_keys))
   end
 
   it 'throws an error when tag is not associated with user' do

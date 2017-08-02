@@ -58,7 +58,7 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
             {...this.props.wrappedComponentProps}
             {...this.props.wrappedComponentActionCreators}
             updateScratch={this.updateScratch}
-            scratch={this.props.scratch}
+            scratch={this.props.scratch || {}}
           />
         );
       }
