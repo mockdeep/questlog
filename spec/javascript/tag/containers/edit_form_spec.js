@@ -10,5 +10,5 @@ const props = {store: createAppStore()};
 it('wraps the EditForm component', () => {
   const container = shallow(<TagEditFormContainer {...props} />, renderOpts);
 
-  expect(container.find('EditTagForm')).toHaveLength(1);
+  expect(container.find('Scratch(EditTagForm)')).toHaveLength(1);
 });

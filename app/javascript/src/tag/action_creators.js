@@ -1,3 +1,7 @@
+import {ajaxPut} from 'src/_helpers/ajax';
+
+const BASE_PATH = '/api/v1/tags';
+
 const INIT = 'tag/INIT';
 const SET = 'tag/SET';
 const UPDATE = 'tag/UPDATE';
@@ -7,8 +11,13 @@ function setTags(payload) {
   return {type: SET, payload};
 }
 
-function updateTag(payload) {
-  return {type: UPDATE, payload};
+function updateTagClient(id, payload) {
+  return {type: UPDATE, payload: {id, ...payload}};
+}
+
+function updateTag(id, payload) {
+  return (dispatch) => ajaxPut(`${BASE_PATH}/${id}`, {tag: payload}).
+      then(() => dispatch(updateTagClient(id, payload)));
 }
 
 function updateTagMeta(payload) {

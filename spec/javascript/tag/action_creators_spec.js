@@ -1,3 +1,6 @@
+jest.mock('src/_helpers/ajax');
+
+import {ajaxPut} from 'src/_helpers/ajax';
 import {
   SET, UPDATE, UPDATE_META,
   setTags, updateTag, updateTagMeta,
@@ -12,10 +15,19 @@ describe('setTags', () => {
 });
 
 describe('updateTag', () => {
-  it('returns an UPDATE action', () => {
+  it('returns an update thunk', () => {
     const payload = {some: 'payload'};
+    const thunk = updateTag(5, payload);
+    const dispatch = jest.fn();
+    const then = jest.fn();
 
-    expect(updateTag(payload)).toEqual({type: UPDATE, payload});
+    ajaxPut.mockImplementation(() => ({then}));
+
+    thunk(dispatch);
+
+    expect(ajaxPut).toHaveBeenCalledWith('/api/v1/tags/5', {tag: payload});
+    then.mock.calls[0][0]();
+    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload: {id: 5, ...payload}});
   });
 });
 
