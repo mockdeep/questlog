@@ -65,11 +65,12 @@
     "node": "8.1.4"
   },
   "scripts": {
+    "jslints": "yarn eslint",
     "lints": "yarn stylelint && yarn eslint && rake rubocop && rake haml_lint",
     "stylelint": "./node_modules/stylelint/bin/stylelint.js 'app/assets/stylesheets/**/*.scss'",
     "eslint": "./node_modules/eslint/bin/eslint.js ./ --ext .js,.jsx --cache --fix",
     "jest": "./node_modules/jest/bin/jest.js --config config/jest.json --coverage",
-    "pretest": "yarn lints",
+    "pretest": "yarn jslints",
     "test": "yarn jest"
   }
 }
