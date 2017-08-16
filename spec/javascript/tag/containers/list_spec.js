@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import store from 'src/app_store';
+import createAppStore from 'src/create_app_store';
 import TagListContainer from 'src/tag/containers/list';
 
 const renderOpts = {lifecycleExperimental: true};
-const props = {store};
+const props = {store: createAppStore()};
 
 it('wraps the TagList component', () => {
   const container = shallow(<TagListContainer {...props} />, renderOpts);

@@ -2,7 +2,7 @@ jest.mock('src/_helpers/flash');
 jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
-import store from 'src/app_store';
+import createAppStore from 'src/create_app_store';
 import {ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
@@ -16,10 +16,12 @@ ajaxGet.mockReturnValue(fakePromise);
 ajaxPost.mockReturnValue(fakePromise);
 ajaxPut.mockReturnValue(fakePromise);
 
-const dispatch = jest.spyOn(store, 'dispatch');
+let store;
+let dispatch;
 
-afterEach(() => {
-  store.dispatch({type: '@@redux/INIT'});
+beforeEach(() => {
+  store = createAppStore();
+  dispatch = jest.spyOn(store, 'dispatch');
 });
 
 describe('fetchTasks', () => {
