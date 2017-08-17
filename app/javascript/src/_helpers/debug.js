@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 function isNode() {
   return typeof process !== 'undefined' && !process.browser;
 }
@@ -37,7 +39,6 @@ function debugNode({result, userLabel}) {
 
   const arrow = `${arrowStyle}==>${reset}`;
 
-  // eslint-disable-next-line no-console
   console.log(`${label} ${arrow} `, result);
 
   return result;
@@ -60,7 +61,6 @@ function debugBrowser({result, userLabel}) {
 
   consoleArgs.push(arrowStyle, reset);
 
-  // eslint-disable-next-line no-console
   console.log(`${label} ${arrow}`, ...consoleArgs, result);
 }
 

@@ -11,7 +11,7 @@ function ErrorDisplay(props) {
   return (
     <div className='row'>
       <div className='col-md-12'>
-        <div className='.error-messages'>
+        <div className='error-messages'>
           <ul>{errorItems(props.errors)}</ul>
         </div>
       </div>
