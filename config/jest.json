@@ -4,10 +4,10 @@
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {
     "global": {
-      "branches": 31.28,
-      "functions": 45.75,
-      "lines": 46.25,
-      "statements": 40.58
+      "branches": 34.18,
+      "functions": 48.81,
+      "lines": 49.24,
+      "statements": 43.26
     }
   },
   "moduleFileExtensions": ["js", "jsx"],
