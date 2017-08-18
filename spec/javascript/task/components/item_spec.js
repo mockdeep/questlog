@@ -13,11 +13,10 @@ const renderOpts = {lifecycleExperimental: true};
 const props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
-  postponeSeconds: 250,
+  scratch: {postponeSeconds: 250},
   tags: [],
-  updateTagMeta: jest.fn(),
+  updateScratch: jest.fn(),
   updateTask: jest.fn(),
-  updateTaskMeta: jest.fn(),
 };
 
 it('renders the notification checkbox', () => {

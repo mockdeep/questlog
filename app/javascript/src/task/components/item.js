@@ -11,10 +11,11 @@ class TaskItem extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
+    this.props.updateScratch({postponeSeconds: 300});
   }
 
   storePostponeSeconds(postponeSeconds) {
-    this.props.updateTaskMeta({postponeSeconds});
+    this.props.updateScratch({postponeSeconds});
   }
 
   setTitle() {
@@ -40,7 +41,7 @@ class TaskItem extends React.Component {
   }
 
   postponeTask(taskId) {
-    const attrs = {postpone: this.props.postponeSeconds};
+    const attrs = {postpone: this.props.scratch.postponeSeconds};
 
     this.props.updateTask(taskId, attrs);
   }
@@ -79,10 +80,10 @@ class TaskItem extends React.Component {
 TaskItem.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  postponeSeconds: PropTypes.number.isRequired,
+  scratch: PropTypes.object,
   task: PropTypes.object,
+  updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
-  updateTaskMeta: PropTypes.func.isRequired,
   url: PropTypes.string,
 };
 
