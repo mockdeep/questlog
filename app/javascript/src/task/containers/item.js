@@ -1,16 +1,26 @@
-import {connect} from 'react-redux';
-
+import connectWithScratch from 'src/scratch/connect_with_scratch';
 import {deleteTask, updateTask, updateTaskMeta} from 'src/task/action_creators';
 import {getNextUndoneTask} from 'src/tag/selectors';
 import TaskItem from 'src/task/components/item';
 
-function mapStateToProps(state) {
-  const {ajaxState, postponeSeconds} = state.task.meta;
+function computeScratchKey(state) {
+  const {ajaxState} = state.task.meta;
   const task = ajaxState === 'ready' ? getNextUndoneTask(state) : null;
 
-  return {task, postponeSeconds, ajaxState};
+  return task ? `taskItem-${task.id}` : 'taskItem-nada';
+}
+
+function mapStateToProps(state) {
+  const {ajaxState} = state.task.meta;
+  const task = ajaxState === 'ready' ? getNextUndoneTask(state) : null;
+
+  return {task, ajaxState};
 }
 
 const actionCreators = {deleteTask, updateTask, updateTaskMeta};
 
-export default connect(mapStateToProps, actionCreators)(TaskItem);
+export default connectWithScratch(
+  computeScratchKey,
+  mapStateToProps,
+  actionCreators
+)(TaskItem);

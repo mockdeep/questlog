@@ -7,8 +7,8 @@ import createAppStore from 'src/create_app_store';
 const renderOpts = {lifecycleExperimental: true};
 const props = {store: createAppStore(), match: {params: {}}};
 
-it('wraps the Item component', () => {
+it('wraps the Item component with Scratch', () => {
   const container = shallow(<ItemContainer {...props} />, renderOpts);
 
-  expect(container.find('TaskItem')).toHaveLength(1);
+  expect(container.find('Scratch(TaskItem)')).toHaveLength(1);
 });
