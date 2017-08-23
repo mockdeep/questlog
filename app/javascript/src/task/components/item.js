@@ -80,7 +80,7 @@ class TaskItem extends React.Component {
 TaskItem.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  scratch: PropTypes.object,
+  scratch: PropTypes.object.isRequired,
   task: PropTypes.object,
   updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
