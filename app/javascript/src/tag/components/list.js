@@ -5,7 +5,6 @@ import React from 'react';
 import Link from 'src/route/containers/link';
 
 class TagList extends React.Component {
-
   constructor(props) {
     super(props);
     autobind(this);

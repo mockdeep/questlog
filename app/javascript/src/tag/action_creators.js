@@ -17,7 +17,7 @@ function updateTagClient(id, payload) {
 
 function updateTag(id, payload) {
   return (dispatch) => ajaxPut(`${BASE_PATH}/${id}`, {tag: payload}).
-      then(() => dispatch(updateTagClient(id, payload)));
+    then(() => dispatch(updateTagClient(id, payload)));
 }
 
 function updateTagMeta(payload) {

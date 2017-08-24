@@ -26,6 +26,7 @@ rules:
   ### to enable/improve
   class-methods-use-this: off
   init-declarations: off
+  jsx-a11y/anchor-is-valid: off
   jsx-a11y/click-events-have-key-events: off
   jsx-a11y/href-no-hash: off
   jsx-a11y/label-has-for: off
@@ -77,6 +78,7 @@ rules:
   spaced-comment: [error, always, { markers: [=] }]
 
   ### dumb rules
+  array-element-newline: off
   capitalized-comments: off
   line-comment-position: off
   no-inline-comments: off
