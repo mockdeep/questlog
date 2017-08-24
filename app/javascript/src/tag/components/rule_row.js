@@ -20,7 +20,6 @@ const CHECK_DISPLAY_NAMES = {
 };
 
 class RuleRow extends React.Component {
-
   constructor(props) {
     super(props);
     autobind(this);
