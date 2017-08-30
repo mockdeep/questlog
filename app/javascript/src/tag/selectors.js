@@ -15,6 +15,10 @@ function matchesSmartRules(task, tag) {
   return rules.some(({check, ...params}) => RULES[check](task, tag, params));
 }
 
+function hasMatchingTasks(tag, tasks) {
+  return tasks.some((task) => matchesSmartRules(task, tag));
+}
+
 const getSelectedTagSlug = createSelector(
   (state) => state.route.params.slug,
   (slug) => slug || ''
@@ -26,8 +30,8 @@ const getOrderedTags = createSelector(
 );
 
 const getActiveTags = createSelector(
-  getOrderedTags,
-  (orderedTags) => orderedTags.filter((tag) => tag.unfinishedTasksCount > 0)
+  [getUndoneTasks, getOrderedTags],
+  (undoneTasks, orderedTags) => orderedTags.filter((tag) => hasMatchingTasks(tag, undoneTasks))
 );
 
 const getSelectedTag = createSelector(

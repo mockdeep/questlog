@@ -1,27 +1,92 @@
-import update from 'immutability-helper';
-
 import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
 
 describe('getActiveTags', () => {
-  it('returns tags that have one or more unfinished tasks', () => {
-    let tag1 = {id: 1, unfinishedTasksCount: 0};
-    let tag2 = {id: 2, unfinishedTasksCount: 1};
-    let tagState = {byId: {1: tag1, 2: tag2}, orderedIds: [1, 2], meta: {}};
-    let state = {tag: tagState};
+  it('returns tags that have one or more unfinished associated tasks', () => {
+    const tag1 = {id: 1, rules: []};
+    const tag2 = {id: 2, rules: []};
+    const tag3 = {id: 3, rules: []};
 
-    expect(getActiveTags(state)).toEqual([tag2]);
+    const task1 = {timeframe: null, tagIds: [2]};
+    const task2 = {timeframe: null, tagIds: [1], releaseAt: 'foo'};
+    const task3 = {timeframe: null, tagIds: [2, 3]};
 
-    tag1 = {...tag1, unfinishedTasksCount: 5};
-    tagState = update(tagState, {byId: {$merge: {1: tag1}}});
-    state = {tag: tagState};
+    const state = {
+      tag: {byId: {1: tag1, 2: tag2, 3: tag3}, orderedIds: [3, 2, 1]},
+      task: {byId: {5: task1, 6: task2, 7: task3}},
+    };
 
-    expect(getActiveTags(state)).toEqual([tag1, tag2]);
+    expect(getActiveTags(state)).toEqual([tag3, tag2]);
+  });
 
-    tag2 = {...tag2, unfinishedTasksCount: 0};
-    tagState = update(tagState, {byId: {$merge: {2: tag2}}});
-    state = {tag: tagState};
+  it('returns tags with isActive rule when any tasks are unfinished', () => {
+    const tag = {rules: [{check: 'isActive'}]};
+    const task = {timeframe: null, tagIds: []};
+    const state = {
+      tag: {orderedIds: [71], byId: {71: tag}},
+      task: {byId: {1: task}},
+    };
 
-    expect(getActiveTags(state)).toEqual([tag1]);
+    expect(getActiveTags(state)).toEqual([tag]);
+  });
+
+  describe('when tag has isBlank smart rule', () => {
+    it('does not return tag when field is not defined', () => {
+      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const task = {timeframe: null, tagIds: []};
+      const state = {
+        tag: {orderedIds: [71], byId: {71: tag}},
+        task: {byId: {1: task}},
+      };
+
+      expect(getActiveTags(state)).toEqual([]);
+    });
+
+    it('does not return tag when field is set to a value', () => {
+      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const task = {timeframe: null, tagIds: [], myField: 'not blank'};
+      const state = {
+        tag: {orderedIds: [71], byId: {71: tag}},
+        task: {byId: {1: task}},
+      };
+
+      expect(getActiveTags(state)).toEqual([]);
+    });
+
+    it('returns tag when field is set to null', () => {
+      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const task = {timeframe: null, tagIds: [], myField: null};
+      const state = {
+        tag: {orderedIds: [71], byId: {71: tag}},
+        task: {byId: {1: task}},
+      };
+
+      expect(getActiveTags(state)).toEqual([tag]);
+    });
+  });
+
+  describe('when tag has isEmpty smart rule', () => {
+    it('does not return tag when field is not empty', () => {
+      const tag = {rules: [{check: 'isEmpty', field: 'myField'}]};
+      const task = {timeframe: null, tagIds: [], myField: [1]};
+      const state = {
+        tag: {orderedIds: [71], byId: {71: tag}},
+        task: {byId: {1: task}},
+      };
+
+      expect(getActiveTags(state)).toEqual([]);
+    });
+
+    it('returns tag when field is empty on one or more tasks', () => {
+      const tag = {rules: [{check: 'isEmpty', field: 'myField'}]};
+      const task1 = {timeframe: null, tagIds: [], myField: []};
+      const task2 = {timeframe: null, tagIds: [], myField: [1]};
+      const state = {
+        tag: {orderedIds: [71], byId: {71: tag}},
+        task: {byId: {1: task1, 2: task2}},
+      };
+
+      expect(getActiveTags(state)).toEqual([tag]);
+    });
   });
 });
 
