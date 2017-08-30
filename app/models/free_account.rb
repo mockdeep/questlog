@@ -1,4 +1,4 @@
-class FreeAccount < ActiveRecord::Base
+class FreeAccount < ApplicationRecord
 
   has_secure_password
 

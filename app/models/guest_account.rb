@@ -1,4 +1,4 @@
-class GuestAccount < ActiveRecord::Base
+class GuestAccount < ApplicationRecord
 
   has_one :user, as: :account
 

@@ -73,10 +73,10 @@ module API
 
       def task_params
         params.require(:task)
-              .permit(*permitted_params)
-              .to_h
-              .symbolize_keys
-              .merge(parsed_title)
+          .permit(*permitted_params)
+          .to_h
+          .symbolize_keys
+          .merge(parsed_title)
       end
 
       def permitted_params
