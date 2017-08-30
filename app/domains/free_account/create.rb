@@ -1,4 +1,4 @@
-class FreeAccount < ActiveRecord::Base
+class FreeAccount < ApplicationRecord
 
   class Create
 

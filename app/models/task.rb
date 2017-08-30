@@ -1,4 +1,4 @@
-class Task < ActiveRecord::Base
+class Task < ApplicationRecord
 
   before_create :assign_position
 

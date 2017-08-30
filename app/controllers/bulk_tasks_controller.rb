@@ -23,9 +23,9 @@ private
 
   def update_params
     params.require(:bulk_task)
-          .permit(positions: [])
-          .to_h
-          .merge(user: current_user)
+      .permit(positions: [])
+      .to_h
+      .merge(user: current_user)
   end
 
 end

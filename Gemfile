@@ -26,8 +26,8 @@ gem 'rack-cache'
 gem 'rack-mini-profiler'
 gem 'sidekiq'
 gem 'skylight'
-gem 'stripe'
-gem 'webpacker'
+gem 'stripe', '~> 2.8'
+gem 'webpacker', '~> 1.2'
 
 group :production do
   gem 'rails_12factor'

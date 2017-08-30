@@ -36,6 +36,18 @@ CollectionMethods:
 Documentation:
   Enabled: false
 
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Metrics/BlockLength:
   Exclude:
     - config/environments/production.rb
@@ -52,20 +64,11 @@ Style/GuardClause:
 Style/TrivialAccessors:
   AllowPredicates: true
 
-Style/EmptyLinesAroundClassBody:
-  EnforcedStyle: empty_lines
-
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
 ClassLength:
   Max: 115
-
-Style/EmptyLinesAroundModuleBody:
-  EnforcedStyle: empty_lines
-
-Style/IndentArray:
-  EnforcedStyle: consistent
 
 Style/LambdaCall:
   EnforcedStyle: braces
