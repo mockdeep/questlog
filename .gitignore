@@ -20,4 +20,5 @@
 /public/packs
 npm-debug.log
 /public/packs
+/public/packs-test
 /node_modules
