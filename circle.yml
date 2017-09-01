@@ -1,9 +1,8 @@
 machine:
   environment:
-    POLTERGEIST_TIMEOUT: 180
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
-    version: 6.8.0
+    version: 8.1.4
 
 dependencies:
   override:
@@ -12,10 +11,6 @@ dependencies:
 
   cache_directories:
     - ~/.cache/yarn
-
-compile:
-  pre:
-    - RAILS_ENV=test rake webpacker:compile
 
 test:
   override:
