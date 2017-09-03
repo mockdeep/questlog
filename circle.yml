@@ -16,4 +16,4 @@ test:
   override:
     - yarn test
     - rake
-    - DRIVER=chrome bundle exec rspec spec/features/
+    - DRIVER=chrome rake
