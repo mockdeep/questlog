@@ -8,14 +8,14 @@ export default createBasicReducer({
   },
 
   [ADD](previousState, payload) {
-    return {...previousState, [payload.type]: payload.notification};
+    return {...previousState, [payload.key]: payload.notification};
   },
 
   [REMOVE](previousState, payload) {
-    const notification = previousState[payload.type];
+    const notification = previousState[payload.key];
 
     if (notification) { notification.close(); }
 
-    return {...previousState, [payload.type]: null};
+    return {...previousState, [payload.key]: null};
   },
 });
