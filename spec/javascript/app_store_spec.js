@@ -4,7 +4,7 @@ describe('appStore', () => {
   it('behaves like a store', () => {
     const expectedState = {
       user: {},
-      notification: {task: null},
+      notification: {},
       route: {name: 'root', params: {}},
       scratch: {},
       tag: {byId: {}, orderedIds: [], meta: {}},
