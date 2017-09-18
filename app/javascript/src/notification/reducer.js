@@ -1,10 +1,12 @@
+import update from 'immutability-helper';
+
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
 import {INIT, ADD, REMOVE} from 'src/notification/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
-    return {task: null};
+    return {};
   },
 
   [ADD](previousState, payload) {
@@ -12,10 +14,6 @@ export default createBasicReducer({
   },
 
   [REMOVE](previousState, payload) {
-    const notification = previousState[payload.key];
-
-    if (notification) { notification.close(); }
-
-    return {...previousState, [payload.key]: null};
+    return update(previousState, {$unset: [payload.key]});
   },
 });
