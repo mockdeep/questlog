@@ -169,35 +169,37 @@ class TaskRow extends React.PureComponent {
     );
   }
 
-  render() {
+  element() {
     const style = {opacity: this.props.isDragging ? 0 : 1};
 
     return (
-      this.props.connectDropTarget(this.props.connectDragSource(
-        <li className={this.className()} style={style}>
-          {this.taskEstimate()}{this.props.task.title} {this.emblems()}
-          {' | Pri: '}
-          <select onChange={this.updatePriority} value={this.priority()}>
-            <option value=''>{'-'}</option>
-            <option value='1'>{'1'}</option>
-            <option value='2'>{'2'}</option>
-            <option value='3'>{'3'}</option>
-          </select>
-          {this.props.timeframesEnabled ? ' | When: ' : ''}
-          {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
-          {' | '}
-          {this.props.task.pending ? this.undoButton() : ''}
-          {this.props.task.pending ? ' | ' : ''}
-          <button className='btn btn-link' onClick={this.markDone}>
-            {'Done!'}
-          </button>
-          {' | '}
-          <button className='btn btn-link' onClick={this.deleteTask}>
-            {'Delete'}
-          </button>
-        </li>
-      ))
+      <li className={this.className()} style={style}>
+        {this.taskEstimate()}{this.props.task.title} {this.emblems()}
+        {' | Pri: '}
+        <select onChange={this.updatePriority} value={this.priority()}>
+          <option value=''>{'-'}</option>
+          <option value='1'>{'1'}</option>
+          <option value='2'>{'2'}</option>
+          <option value='3'>{'3'}</option>
+        </select>
+        {this.props.timeframesEnabled ? ' | When: ' : ''}
+        {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
+        {' | '}
+        {this.props.task.pending ? this.undoButton() : ''}
+        {this.props.task.pending ? ' | ' : ''}
+        <button className='btn btn-link' onClick={this.markDone}>
+          {'Done!'}
+        </button>
+        {' | '}
+        <button className='btn btn-link' onClick={this.deleteTask}>
+          {'Delete'}
+        </button>
+      </li>
     );
+  }
+
+  render() {
+    return this.props.connectDropTarget(this.props.connectDragSource(this.element()));
   }
 }
 
