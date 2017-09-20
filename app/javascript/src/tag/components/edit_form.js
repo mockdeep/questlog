@@ -21,15 +21,11 @@ class EditTagForm extends React.Component {
   }
 
   updateFieldValue(index, value) {
-    this.props.updateScratch(
-      {rules: update(this.props.scratch.rules, {[index]: {$merge: {field: value}}})}
-    );
+    this.props.updateScratch({rules: update(this.props.scratch.rules, {[index]: {$merge: {field: value}}})});
   }
 
   deleteRule(index) {
-    this.props.updateScratch(
-      {rules: update(this.props.scratch.rules, {$splice: [[index, 1]]})}
-    );
+    this.props.updateScratch({rules: update(this.props.scratch.rules, {$splice: [[index, 1]]})});
   }
 
   ruleRow(rule, index) {
