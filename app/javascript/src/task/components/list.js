@@ -58,12 +58,10 @@ class TaskList extends React.Component {
     const taskIndex = tasks.indexOf(task);
     const afterIndex = tasks.indexOf(afterTask);
 
-    const newTasks = update(tasks, {
-      $splice: [
-        [taskIndex, 1],
-        [afterIndex, 0, task],
-      ],
-    });
+    const newTasks = update(
+      tasks,
+      {$splice: [[taskIndex, 1], [afterIndex, 0, task]]}
+    );
 
     this.setState({currentTasks: newTasks});
   }
