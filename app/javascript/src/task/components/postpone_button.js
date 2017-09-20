@@ -1,4 +1,4 @@
-import createReactClass from 'create-react-class';
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -27,24 +27,20 @@ const selectOptionsOptions = [
 
 const className = 'btn btn-info btn-lg btn-block postpone-button';
 
-const PostponeButton = createReactClass({
-  displayName: 'PostponeButton',
-
-  propTypes: {
-    disabled: PropTypes.bool.isRequired,
-    postponeTask: PropTypes.func.isRequired,
-    storePostponeSeconds: PropTypes.func.isRequired,
-    task: PropTypes.object.isRequired,
-  },
+class PostponeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    autobind(this);
+  }
 
   postponeTask() {
     if (this.props.disabled) { return; }
     this.props.postponeTask(this.props.task.id);
-  },
+  }
 
   selectOptions() {
     return selectOptionsOptions.map(this.selectOption);
-  },
+  }
 
   selectOption(optionOptions) {
     return (
@@ -54,15 +50,15 @@ const PostponeButton = createReactClass({
         content={optionOptions.content}
       />
     );
-  },
+  }
 
   storePostponeSeconds(event) {
     this.props.storePostponeSeconds(parseInt(event.target.value, 10));
-  },
+  }
 
   buttonMessage() {
     return isPostponing(this.props.task) ? 'Postponing...' : 'Postpone for:';
-  },
+  }
 
   render() {
     return (
@@ -82,7 +78,14 @@ const PostponeButton = createReactClass({
         </select>
       </div>
     );
-  },
-});
+  }
+}
+
+PostponeButton.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  postponeTask: PropTypes.func.isRequired,
+  storePostponeSeconds: PropTypes.func.isRequired,
+  task: PropTypes.object.isRequired,
+};
 
 export default PostponeButton;
