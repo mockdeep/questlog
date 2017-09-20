@@ -177,7 +177,7 @@ const TaskRow = createReactClass({
     if (!this.props.task.pending) { return false; }
 
     return (
-      <button className='btn btn-link' role='Link' onClick={this.undoTask}>
+      <button className='btn btn-link' onClick={this.undoTask}>
         {'Undo'}
       </button>
     );
@@ -202,15 +202,11 @@ const TaskRow = createReactClass({
           {' | '}
           {this.props.task.pending ? this.undoButton() : ''}
           {this.props.task.pending ? ' | ' : ''}
-          <button className='btn btn-link' role='Link' onClick={this.markDone}>
+          <button className='btn btn-link' onClick={this.markDone}>
             {'Done!'}
           </button>
           {' | '}
-          <button
-            className='btn btn-link'
-            role='Link'
-            onClick={this.deleteTask}
-          >
+          <button className='btn btn-link' onClick={this.deleteTask}>
             {'Delete'}
           </button>
         </li>
