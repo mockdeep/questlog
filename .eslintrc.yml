@@ -3,9 +3,10 @@ root: true
 extends:
   - eslint:all
   - plugin:eslint-plugin-jsx-a11y/recommended
+  - plugin:fp/recommended
   - plugin:import/errors
   - plugin:react/all
-plugins: [eslint-plugin-jsx-a11y, import, react]
+plugins: [eslint-plugin-jsx-a11y, fp, import, react]
 parserOptions:
   sourceType: module
   ecmaVersion: 7
@@ -25,6 +26,17 @@ settings:
 rules:
   ### to enable/improve
   class-methods-use-this: off
+  fp/no-class: off
+  fp/no-delete: off
+  fp/no-let: off
+  fp/no-loops: off
+  fp/no-mutating-methods: off
+  fp/no-mutation: off
+  fp/no-nil: off
+  fp/no-rest-parameters: off
+  fp/no-this: off
+  fp/no-throw: off
+  fp/no-unused-expression: off
   init-declarations: off
   jsx-a11y/anchor-is-valid: off
   jsx-a11y/click-events-have-key-events: off
