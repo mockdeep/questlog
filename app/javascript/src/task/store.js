@@ -64,16 +64,4 @@ export default {
       success: this.updateModels.bind(this),
     });
   },
-
-  update(id, attrs) {
-    const data = {};
-
-    data[this.name] = attrs;
-
-    return request({
-      data,
-      url: `${this.url}/${id}`,
-      success: this.unload.bind(this),
-    });
-  },
 };
