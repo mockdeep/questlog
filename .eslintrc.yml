@@ -50,9 +50,7 @@ rules:
   no-magic-numbers: off
   react/forbid-component-props: off
   react/forbid-prop-types: off
-  react/jsx-filename-extension: off
   react/jsx-sort-props: off
-  react/no-multi-comp: off
   react/no-set-state: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/811
   react/no-unused-prop-types: off
@@ -94,6 +92,7 @@ rules:
   line-comment-position: off
   no-inline-comments: off
   no-ternary: off
+  react/jsx-filename-extension: off
   react/jsx-handler-names: off
   react/jsx-max-props-per-line: off
   require-jsdoc: off

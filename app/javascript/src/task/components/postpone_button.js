@@ -1,22 +1,13 @@
+import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import createReactClass from 'create-react-class';
-
+import SelectOption from 'src/_common/components/select_option';
 import stopPropagation from 'src/_helpers/stop_propagation';
 
 function isPostponing(task) {
   return task.loadingState === 'postponing';
 }
-
-function SelectOption(props) {
-  return <option value={props.value}>{props.content}</option>;
-}
-
-SelectOption.propTypes = {
-  content: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
 
 const PostponeButton = createReactClass({
   displayName: 'PostponeButton',
