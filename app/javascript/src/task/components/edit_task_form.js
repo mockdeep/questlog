@@ -1,29 +1,23 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import createReactClass from 'create-react-class';
-
 import ErrorDisplay from 'src/_common/components/error_display';
 
-const EditTaskForm = createReactClass({
-  displayName: 'EditTaskForm',
-
-  propTypes: {
-    task: PropTypes.object.isRequired,
-    updateTask: PropTypes.func.isRequired,
-  },
-
-  getInitialState() {
-    return {taskTitle: this.props.task.title, errors: []};
-  },
+class EditTaskForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {taskTitle: this.props.task.title, errors: []};
+    autobind(this);
+  }
 
   componentWillReceiveProps(newProps) {
     this.setState({taskTitle: newProps.task.title});
-  },
+  }
 
   setTitle(event) {
     this.setState({taskTitle: event.target.value});
-  },
+  }
 
   saveTask(event) {
     event.preventDefault();
@@ -38,22 +32,22 @@ const EditTaskForm = createReactClass({
       this.props.updateTask(this.props.task.id, attrs);
       this.toggleDisplay();
     }
-  },
+  }
 
   isTaskReady() {
     return this.props.task.loadingState === 'ready';
-  },
+  }
 
   toggleDisplay() {
     $('#edit-task').click();
     this.replaceState(this.getInitialState());
-  },
+  }
 
   buttonMessage() {
     const isUpdating = this.props.task.loadingState === 'updating';
 
     return isUpdating ? 'Updating Task' : 'Update Task';
-  },
+  }
 
   render() {
     return (
@@ -85,7 +79,12 @@ const EditTaskForm = createReactClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
+
+EditTaskForm.propTypes = {
+  task: PropTypes.object.isRequired,
+  updateTask: PropTypes.func.isRequired,
+};
 
 export default EditTaskForm;
