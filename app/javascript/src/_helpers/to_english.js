@@ -14,16 +14,12 @@ function pluralize(input, string) {
 function divideSeconds(seconds) {
   const hours = Math.floor(seconds / oneHour);
   const minutes = Math.floor(seconds % oneHour / oneMinute);
-  const outputs = [];
+  const outputs = [
+    hours && pluralize(hours, 'hour'),
+    minutes && pluralize(minutes, 'minute'),
+  ];
 
-  if (hours > 0) {
-    outputs.push(pluralize(hours, 'hour'));
-  }
-  if (minutes > 0) {
-    outputs.push(pluralize(minutes, 'minute'));
-  }
-
-  return outputs.join(', ');
+  return outputs.filter((value) => value).join(', ');
 }
 
 const ToEnglish = {

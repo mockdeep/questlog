@@ -12,7 +12,7 @@ export default {
   url: '/tasks',
 
   subscribe(listener) {
-    this.listeners.push(listener);
+    this.listeners = [...this.listeners, listener];
 
     return function unsubscribe() {
       const index = this.listeners.indexOf(listener);
