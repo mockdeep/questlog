@@ -1,7 +1,6 @@
+import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import createReactClass from 'create-react-class';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
 import {map, flow} from 'lodash';
 
@@ -40,38 +39,25 @@ function targetCollect(connect) {
   return {connectDropTarget: connect.dropTarget()};
 }
 
-const TaskRow = createReactClass({
-  displayName: 'TaskRow',
-
-  propTypes: {
-    connectDragSource: PropTypes.func.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
-    task: PropTypes.object.isRequired,
-    timeframeSpace: PropTypes.object,
-    timeframesEnabled: PropTypes.bool,
-    updateTask: PropTypes.func.isRequired,
-  },
-
-  mixins: [PureRenderMixin],
-
-  getInitialState() {
-    return {timeframeClicked: false};
-  },
+class TaskRow extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    autobind(this);
+    this.state = {timeframeClicked: false};
+  }
 
   markDone(event) {
     event.preventDefault();
     this.props.updateTask(this.props.task.id, {done: true});
-  },
+  }
 
   updatePriority(event) {
     this.props.updateTask(this.props.task.id, {priority: event.target.value});
-  },
+  }
 
   updateTimeframe(event) {
     this.props.updateTask(this.props.task.id, {timeframe: event.target.value});
-  },
+  }
 
   deleteTask(event) {
     event.preventDefault();
@@ -79,13 +65,13 @@ const TaskRow = createReactClass({
     if (confirm('Delete this task?')) {
       this.props.deleteTask(this.props.task.id);
     }
-  },
+  }
 
   emblems() {
     if (!this.props.task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
-  },
+  }
 
   className() {
     let classString = '';
@@ -95,19 +81,19 @@ const TaskRow = createReactClass({
     }
 
     return classString;
-  },
+  }
 
   priority() {
     return this.props.task.priority || '';
-  },
+  }
 
   timeframe() {
     return this.props.task.timeframe;
-  },
+  }
 
   timeframeHasSpace(name) {
     return this.props.timeframeSpace[name] >= this.props.task.estimateMinutes;
-  },
+  }
 
   optionText(title, name) {
     const space = this.props.timeframeSpace[name];
@@ -118,7 +104,7 @@ const TaskRow = createReactClass({
     }
 
     return text;
-  },
+  }
 
   timeframeOptions() {
     if (!this.state.timeframeClicked) {
@@ -143,7 +129,7 @@ const TaskRow = createReactClass({
         </option>
       );
     });
-  },
+  }
 
   timeframeSelector() {
     return (
@@ -157,21 +143,21 @@ const TaskRow = createReactClass({
         {this.timeframeOptions()}
       </select>
     );
-  },
+  }
 
   timeframeClicked() {
     this.setState({timeframeClicked: true});
-  },
+  }
 
   taskEstimate() {
     if (!this.props.timeframesEnabled) { return false; }
 
     return `(${this.props.task.estimateMinutes}) `;
-  },
+  }
 
   undoTask() {
     this.props.updateTask(this.props.task.id, {done: false});
-  },
+  }
 
   undoButton() {
     if (!this.props.task.pending) { return false; }
@@ -181,7 +167,7 @@ const TaskRow = createReactClass({
         {'Undo'}
       </button>
     );
-  },
+  }
 
   render() {
     const style = {opacity: this.props.isDragging ? 0 : 1};
@@ -212,8 +198,19 @@ const TaskRow = createReactClass({
         </li>
       ))
     );
-  },
-});
+  }
+}
+
+TaskRow.propTypes = {
+  connectDragSource: PropTypes.func.isRequired,
+  connectDropTarget: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
+  task: PropTypes.object.isRequired,
+  timeframeSpace: PropTypes.object,
+  timeframesEnabled: PropTypes.bool,
+  updateTask: PropTypes.func.isRequired,
+};
 
 export default flow(
   dragSource('task', taskSource, sourceCollect),
