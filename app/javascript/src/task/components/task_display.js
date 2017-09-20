@@ -24,7 +24,7 @@ function TaskDisplay(props) {
       <hr />
       <EditTaskForm
         task={props.task}
-        storeTask={props.storeTask}
+        updateTask={props.updateTask}
       />
     </div>
   );
@@ -36,8 +36,8 @@ TaskDisplay.propTypes = {
   disabled: PropTypes.bool.isRequired,
   postponeTask: PropTypes.func.isRequired,
   storePostponeSeconds: PropTypes.func.isRequired,
-  storeTask: PropTypes.func.isRequired,
   task: PropTypes.object.isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TaskDisplay;

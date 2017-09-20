@@ -9,8 +9,8 @@ const EditTaskForm = createReactClass({
   displayName: 'EditTaskForm',
 
   propTypes: {
-    storeTask: PropTypes.func.isRequired,
     task: PropTypes.object.isRequired,
+    updateTask: PropTypes.func.isRequired,
   },
 
   getInitialState() {
@@ -35,7 +35,7 @@ const EditTaskForm = createReactClass({
     } else {
       const attrs = {title: this.state.taskTitle.trim()};
 
-      this.props.storeTask(this.props.task.id, attrs);
+      this.props.updateTask(this.props.task.id, attrs);
       this.toggleDisplay();
     }
   },
