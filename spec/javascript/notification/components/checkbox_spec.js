@@ -25,7 +25,7 @@ beforeEach(() => {
       addNotification={addNotification}
       removeNotification={removeNotification}
       notificationsEnabled={false}
-      notificationsPermitted={true}
+      notificationsPermitted
       completeTask={completeTask}
       enableNotifications={enableNotifications}
       disableNotifications={disableNotifications}
