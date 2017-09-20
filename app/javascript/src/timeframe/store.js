@@ -16,7 +16,7 @@ const TimeframeStore = {
   url: '/timeframes',
 
   subscribe(listener) {
-    this.listeners.push(listener);
+    this.listeners = [...this.listeners, listener];
 
     return function unsubscribe() {
       const index = this.listeners.indexOf(listener);
@@ -28,7 +28,7 @@ const TimeframeStore = {
   notifyListeners() {
     if (!this.listeners) { return; }
 
-    this.listeners.forEach((listener) => { listener(); });
+    this.listeners.forEach((listener) => listener());
   },
 
   unload() {
@@ -47,6 +47,7 @@ const TimeframeStore = {
         pendingTasks: [],
       };
     });
+
     tasks.forEach(function addTaskToTimeframe(task) {
       const timeframeName = timeframeNameForTask(task);
 
@@ -56,6 +57,7 @@ const TimeframeStore = {
         timeframes[timeframeName].currentTasks.push(task);
       }
     });
+
     this.models = timeframeList.map(function buildTimeframe(timeframeName) {
       const timeframe = timeframes[timeframeName];
 
