@@ -50,7 +50,6 @@ rules:
   no-magic-numbers: off
   react/forbid-component-props: off
   react/forbid-prop-types: off
-  react/jsx-boolean-value: off
   react/jsx-filename-extension: off
   react/jsx-sort-props: off
   react/no-multi-comp: off
