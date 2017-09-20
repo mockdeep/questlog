@@ -111,7 +111,7 @@ class TaskList extends React.Component {
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
-        storeTask={this.props.updateTask}
+        updateTask={this.props.updateTask}
         deleteTask={this.props.deleteTask}
       />
     );

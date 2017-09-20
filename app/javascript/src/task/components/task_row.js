@@ -48,10 +48,10 @@ const TaskRow = createReactClass({
     connectDropTarget: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
-    storeTask: PropTypes.func.isRequired,
     task: PropTypes.object.isRequired,
     timeframeSpace: PropTypes.object,
     timeframesEnabled: PropTypes.bool,
+    updateTask: PropTypes.func.isRequired,
   },
 
   mixins: [PureRenderMixin],
@@ -62,15 +62,15 @@ const TaskRow = createReactClass({
 
   markDone(event) {
     event.preventDefault();
-    this.props.storeTask(this.props.task.id, {done: true});
+    this.props.updateTask(this.props.task.id, {done: true});
   },
 
   updatePriority(event) {
-    this.props.storeTask(this.props.task.id, {priority: event.target.value});
+    this.props.updateTask(this.props.task.id, {priority: event.target.value});
   },
 
   updateTimeframe(event) {
-    this.props.storeTask(this.props.task.id, {timeframe: event.target.value});
+    this.props.updateTask(this.props.task.id, {timeframe: event.target.value});
   },
 
   deleteTask(event) {
@@ -170,7 +170,7 @@ const TaskRow = createReactClass({
   },
 
   undoTask() {
-    this.props.storeTask(this.props.task.id, {done: false});
+    this.props.updateTask(this.props.task.id, {done: false});
   },
 
   undoButton() {

@@ -69,7 +69,7 @@ class TimeframeList extends React.Component {
         timeframe={timeframe}
         timeframeSpace={this.timeframeSpace()}
         medianProductivity={this.state.medianProductivity}
-        storeTask={this.props.updateTask}
+        updateTask={this.props.updateTask}
         deleteTask={this.props.deleteTask}
       />
     );

@@ -9,9 +9,9 @@ const props = {
   disabled: false,
   postponeTask: jest.fn(),
   storePostponeSeconds: jest.fn(),
-  storeTask: jest.fn(),
   tags: [],
   task: {tagIds: [1]},
+  updateTask: jest.fn(),
 };
 
 it('renders TagButtons', () => {

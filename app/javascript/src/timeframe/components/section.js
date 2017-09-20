@@ -19,7 +19,7 @@ class TimeframeSection extends React.Component {
         timeframeSpace={this.props.timeframeSpace}
         task={task}
         key={task.id}
-        storeTask={this.props.storeTask}
+        updateTask={this.props.updateTask}
         deleteTask={this.props.deleteTask}
       />
     );
@@ -96,9 +96,9 @@ class TimeframeSection extends React.Component {
 
 TimeframeSection.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  storeTask: PropTypes.func.isRequired,
   timeframe: PropTypes.object.isRequired,
   timeframeSpace: PropTypes.object.isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TimeframeSection;

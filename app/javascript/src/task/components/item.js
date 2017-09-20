@@ -58,7 +58,7 @@ class TaskItem extends React.Component {
         <TaskDisplay
           task={this.task()}
           disabled={!this.isReady()}
-          storeTask={this.props.updateTask}
+          updateTask={this.props.updateTask}
           storePostponeSeconds={this.storePostponeSeconds}
           postponeTask={this.postponeTask}
           completeTask={this.completeTask}
