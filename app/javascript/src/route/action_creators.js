@@ -1,4 +1,4 @@
-import {findRoute, matchPath} from 'src/route/routes';
+import {findRoute, matchPath} from 'src/route/helpers';
 
 const INIT = 'route/INIT';
 const SET = 'route/SET';
