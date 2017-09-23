@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import appBase from 'src/app_base';
 import appStore from 'src/app_store';
 import {fetchRoute} from 'src/route/action_creators';
+import {removeNotification} from 'src/notification/action_creators';
 import 'src/tasks';
 
 window.$ = $;
@@ -13,6 +14,10 @@ window.jQuery = $;
 
 window.addEventListener('popstate', () => {
   appStore.dispatch(fetchRoute());
+});
+
+window.addEventListener('beforeunload', () => {
+  appStore.dispatch(removeNotification({key: 'task'}));
 });
 
 // depends on global jQuery, so can't be imported, as that gets hoisted

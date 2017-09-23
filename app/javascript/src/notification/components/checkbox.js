@@ -11,7 +11,6 @@ class NotificationCheckbox extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.closeNotification);
     this.notifyOnInterval();
   }
 
