@@ -11,7 +11,7 @@ import TaskList from 'src/task/containers/list';
 import TimeframeList from 'src/timeframe/containers/list';
 import WhatPage from 'src/static/components/what_page';
 
-function Nothing() { return false; }
+function Nothing() { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskContainer,
