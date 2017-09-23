@@ -1,4 +1,4 @@
-import {findRoute, matchPath} from 'src/route/routes';
+import {findRoute, matchPath} from 'src/route/helpers';
 
 describe('findRoute', () => {
   it('returns a root route', () => {

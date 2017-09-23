@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {findRoute} from 'src/route/routes';
+import {findRoute} from 'src/route/helpers';
 
 class Link extends React.Component {
   constructor(props) {
