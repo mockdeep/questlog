@@ -7,7 +7,7 @@ describe('appReducer', () => {
       const expectedState = {
         user: {},
         notification: {},
-        route: {name: 'root', params: {}},
+        route: {params: {}},
         scratch: {},
         tag: {byId: {}, orderedIds: [], meta: {}},
         task: {
