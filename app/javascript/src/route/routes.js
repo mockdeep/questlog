@@ -42,8 +42,26 @@ const ROUTES = compileRoutes([
 ]);
 
 function findRoute(name) {
-  return ROUTES.find((route) => route.name === name);
+  const matchingRoute = ROUTES.find((route) => route.name === name);
+
+  if (!matchingRoute) { throw new Error(`No route found for name: ${name}`); }
+
+  return matchingRoute;
 }
 
-export {findRoute};
+function matchPath(path) {
+  let params;
+
+  const matchingRoute = ROUTES.find((route) => {
+    params = route.match(path);
+
+    return Boolean(params);
+  });
+
+  if (!matchingRoute) { throw new Error(`No route found for path: ${path}`); }
+
+  return {name: matchingRoute.name, params};
+}
+
+export {findRoute, matchPath};
 export default ROUTES;
