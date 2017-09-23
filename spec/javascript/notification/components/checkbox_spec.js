@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 import NotificationCheckbox from 'src/notification/components/checkbox';
 
 const requestPermission = jest.fn();
-const Notification = {requestPermission};
+const Notification = {requestPermission, permission: 'default'};
 
 window.Notification = Notification;
 
@@ -21,17 +21,42 @@ const props = {
   updateUser: jest.fn(),
 };
 
+const renderOpts = {lifecycleExperimental: true};
+
+afterEach(() => {
+  Notification.permission = 'default';
+});
+
 describe('NotificationCheckbox', () => {
   it('enables notifications', () => {
     requestPermission.mockReturnValue({then: jest.fn()});
     const notificationCheckbox = shallow(
       <NotificationCheckbox {...props} />,
-      {lifecycleExperimental: true}
+      renderOpts
     );
     const fakeEvent = {target: {checked: true}};
 
-    notificationCheckbox.find('input[type="checkbox"]').simulate('click', fakeEvent);
+    notificationCheckbox.find('input[type="checkbox"]').simulate('change', fakeEvent);
 
     expect(requestPermission).toHaveBeenCalled();
+  });
+
+  it('is not checked by default', () => {
+    const notificationCheckbox = shallow(
+      <NotificationCheckbox {...props} />,
+      renderOpts
+    );
+
+    expect(notificationCheckbox.find('input[type="checkbox"]').prop('checked')).toBe(false);
+  });
+
+  it('is checked when notifications are enabled and task is present', () => {
+    Notification.permission = 'granted';
+    const notificationCheckbox = shallow(
+      <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />,
+      renderOpts
+    );
+
+    expect(notificationCheckbox.find('input[type="checkbox"]').prop('checked')).toBe(true);
   });
 });

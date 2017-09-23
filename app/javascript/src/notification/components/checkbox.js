@@ -101,8 +101,8 @@ class NotificationCheckbox extends React.Component {
         {'Nag me about next task: '}
         <input
           type='checkbox'
-          onClick={this.toggleNotifications}
-          value={this.shouldShowNotifications}
+          onChange={this.toggleNotifications}
+          checked={this.shouldShowNotifications()}
         />
       </label>
     );
