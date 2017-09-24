@@ -6,34 +6,56 @@ import {
 } from 'src/notification/action_creators';
 
 describe('addNotification', () => {
-  it('returns a ADD action object', () => {
-    const payload = {key: 'myKey'};
+  it('returns a removeNotification thunk', () => {
+    const payload = {my: 'payload'};
+    const thunk = addNotification(payload);
 
-    const action = addNotification(payload);
-
-    expect(action.type).toBe(ADD);
-    expect(action.payload.key).toBe('myKey');
+    expect(thunk.length).toBe(1);
+    expect(thunk.name).toBe('addNotificationThunk');
   });
 
-  it('creates a new notification', () => {
-    const payload = {key: 'myKey', message: 'my cool message'};
+  describe('thunk', () => {
+    it('dispatches an ADD action object', () => {
+      const payload = {key: 'myKey'};
+      const thunk = addNotification(payload);
+      const dispatch = jest.fn();
 
-    const action = addNotification(payload);
-    const {notification} = action.payload;
+      thunk(dispatch);
 
-    expect(notification).toBeInstanceOf(FakeNotification);
-    expect(notification.message).toBe('my cool message');
-  });
+      const [action] = dispatch.mock.calls[0];
 
-  it('adds a custom onClick handler to the notification', () => {
-    const payload = {key: 'myKey', onClick: jest.fn()};
+      expect(action.type).toBe(ADD);
+      expect(action.payload.key).toBe('myKey');
+    });
 
-    const action = addNotification(payload);
-    const {notification} = action.payload;
+    it('creates a new notification', () => {
+      const payload = {key: 'myKey', message: 'my cool message'};
+      const thunk = addNotification(payload);
+      const dispatch = jest.fn();
 
-    expect(payload.onClick).not.toHaveBeenCalled();
-    notification.onclick();
-    expect(payload.onClick).toHaveBeenCalled();
+      thunk(dispatch);
+
+      const [action] = dispatch.mock.calls[0];
+      const {notification} = action.payload;
+
+      expect(notification).toBeInstanceOf(FakeNotification);
+      expect(notification.message).toBe('my cool message');
+    });
+
+    it('adds a custom onClick handler to the notification', () => {
+      const payload = {key: 'myKey', onClick: jest.fn()};
+      const thunk = addNotification(payload);
+      const dispatch = jest.fn();
+
+      thunk(dispatch);
+
+      const [action] = dispatch.mock.calls[0];
+      const {notification} = action.payload;
+
+      expect(payload.onClick).not.toHaveBeenCalled();
+      notification.onclick();
+      expect(payload.onClick).toHaveBeenCalled();
+    });
   });
 });
 
