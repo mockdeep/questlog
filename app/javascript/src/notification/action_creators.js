@@ -3,11 +3,13 @@ const ADD = 'notification/ADD';
 const REMOVE = 'notification/REMOVE';
 
 function addNotification({key, message, onClick}) {
-  const notification = new Notification(message);
+  return function addNotificationThunk(dispatch) {
+    const notification = new Notification(message);
 
-  notification.onclick = onClick;
+    notification.onclick = onClick;
 
-  return {type: ADD, payload: {key, notification}};
+    dispatch({type: ADD, payload: {key, notification}});
+  };
 }
 
 function removeNotification(payload) {
