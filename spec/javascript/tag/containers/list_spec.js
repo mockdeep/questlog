@@ -10,5 +10,5 @@ const props = {store: createAppStore()};
 it('wraps the TagList component', () => {
   const container = shallow(<TagListContainer {...props} />, renderOpts);
 
-  expect(container.find('TagList')).toHaveLength(1);
+  expect(container.find('TagList')).toBePresent();
 });

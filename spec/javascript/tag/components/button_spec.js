@@ -12,7 +12,7 @@ it('adds an active class when tag is selected', () => {
     {lifecycleExperimental: true}
   );
 
-  expect(component.find('Connect(Link)').hasClass('active')).toBe(true);
+  expect(component.find('Connect(Link)')).toHaveClassName('active');
 });
 
 it('passes routing params to Link sub-component', () => {
@@ -21,8 +21,8 @@ it('passes routing params to Link sub-component', () => {
     {lifecycleExperimental: true}
   );
 
-  const {to, params} = component.find('Connect(Link)').props();
+  const link = component.find('Connect(Link)');
 
-  expect(to).toBe('tag');
-  expect(params).toEqual({slug: 'home'});
+  expect(link).toHaveProp('to', 'tag');
+  expect(link).toHaveProp('params', {slug: 'home'});
 });

@@ -12,6 +12,6 @@ it('renders the given errors', () => {
   const errorMessages = component.find('.error-messages li');
 
   expect(errorMessages).toHaveLength(2);
-  expect(errorMessages.at(0).text()).toBe('one error');
-  expect(errorMessages.at(1).text()).toBe('two error');
+  expect(errorMessages.at(0)).toHaveText('one error');
+  expect(errorMessages.at(1)).toHaveText('two error');
 });

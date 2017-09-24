@@ -22,7 +22,7 @@ const props = {
 it('renders the notification checkbox', () => {
   const component = shallow(<Item {...props} />, renderOpts);
 
-  expect(component.find('Connect(NotificationCheckbox)')).toHaveLength(1);
+  expect(component.find('Connect(NotificationCheckbox)')).toBePresent();
 });
 
 it('updates the task on postpone', () => {
@@ -70,7 +70,7 @@ describe('when no task is given', () => {
     const component = shallow(<Item {...props} />, renderOpts);
     const taskDisplay = component.find('TaskDisplay');
 
-    expect(taskDisplay.prop('disabled')).toBe(true);
+    expect(taskDisplay).toHaveProp('disabled', true);
   });
 
   it('throws an error when state is not accounted for', () => {

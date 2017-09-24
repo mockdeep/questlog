@@ -14,10 +14,10 @@ it('renders a footer with useful links', () => {
   const link1 = links.at(0);
   const link2 = links.at(1);
 
-  expect(link1.prop('to')).toBe('tasks');
-  expect(link1.children().text()).toBe('All my tasks');
-  expect(link2.prop('to')).toBe('timeframes');
-  expect(link2.children().text()).toBe('Timeframes');
+  expect(link1).toHaveProp('to', 'tasks');
+  expect(link1.children()).toHaveText('All my tasks');
+  expect(link2).toHaveProp('to', 'timeframes');
+  expect(link2.children()).toHaveText('Timeframes');
 
   expect(component.find('HelpLink')).toHaveLength(2);
 });
