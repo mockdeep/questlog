@@ -2,8 +2,6 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import QNotification from 'src/q_notification';
-
 class NotificationCheckbox extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +24,7 @@ class NotificationCheckbox extends React.Component {
   }
 
   notificationsPermitted() {
-    return QNotification.isPermissionGranted();
+    return window.Notification.permission === 'granted';
   }
 
   requestNotificationPermission() {
