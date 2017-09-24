@@ -18,16 +18,16 @@ it('renders rule rows', () => {
   const overrideProps = {...props, scratch: {rules: tempRules}};
   const component = shallow(<TagEditForm {...overrideProps} />, renderOpts);
 
-  expect(component.find('RuleRow')).toHaveLength(1);
+  expect(component.find('RuleRow')).toBePresent();
 });
 
 it('adds rules when "Add Rule" button is clicked', () => {
   const component = shallow(<TagEditForm {...props} />, renderOpts);
 
-  expect(component.find('RuleRow')).toHaveLength(0);
+  expect(component.find('RuleRow')).toBeEmpty();
   const addRuleButton = component.find({value: 'Add Rule'});
 
-  expect(addRuleButton).toHaveLength(1);
+  expect(addRuleButton).toBePresent();
   addRuleButton.simulate('click');
   expect(props.updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
 });

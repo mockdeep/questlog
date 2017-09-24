@@ -21,5 +21,5 @@ it('renders TagButtons', () => {
   );
   const tagButtonsContainer = component.find('Connect(TagButtons)');
 
-  expect(tagButtonsContainer.prop('currentTagIds')).toBe(props.task.tagIds);
+  expect(tagButtonsContainer).toHaveProp('currentTagIds', props.task.tagIds);
 });

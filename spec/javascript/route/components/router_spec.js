@@ -6,6 +6,6 @@ import ROUTES from 'src/route/routes';
 
 it('can render all of the routes', () => {
   ROUTES.forEach((route) => {
-    shallow(<Router route={route} />);
+    expect(shallow(<Router route={route} />)).toBePresent();
   });
 });

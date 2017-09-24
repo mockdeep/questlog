@@ -5,4 +5,5 @@ console.error = function error(message) { // eslint-disable-line no-console
 };
 
 import 'whatwg-fetch';
+import 'jest-enzyme';
 window.Notification = FakeNotification;

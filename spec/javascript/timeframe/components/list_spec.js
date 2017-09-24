@@ -22,7 +22,7 @@ beforeEach(() => {
 
 describe('TimeframeList', () => {
   it('renders a loading message before content has been loaded', () => {
-    expect(wrapper.text()).toBe('Loading Timeframes...');
+    expect(wrapper).toHaveText('Loading Timeframes...');
   });
 
   it('renders the current median productivity when loaded', () => {
@@ -32,7 +32,7 @@ describe('TimeframeList', () => {
 
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
-    expect(wrapper.text()).toContain(expectedMessage);
+    expect(wrapper).toIncludeText(expectedMessage);
   });
 
   it('renders the given timeframes for the user', () => {
@@ -46,7 +46,7 @@ describe('TimeframeList', () => {
 
     wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.find('TimeframeSection').prop('timeframe')).toBe(timeframe);
+    expect(wrapper.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
   });
 
   it('does not render empty timeframes', () => {
@@ -55,6 +55,6 @@ describe('TimeframeList', () => {
 
     wrapper.instance().updateTimeframes(input);
 
-    expect(wrapper.find('TimeframeSection').length).toBe(0);
+    expect(wrapper.find('TimeframeSection')).toBeEmpty();
   });
 });

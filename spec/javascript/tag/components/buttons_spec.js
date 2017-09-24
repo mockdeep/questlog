@@ -17,7 +17,7 @@ describe('TagButtons', () => {
       <Provider store={createAppStore()}><TagButtons {...props} /></Provider>;
     const wrapper = mount(provider);
 
-    expect(wrapper.text()).toContain('home (8)');
-    expect(wrapper.text()).toContain('work (13)');
+    expect(wrapper).toIncludeText('home (8)');
+    expect(wrapper).toIncludeText('work (13)');
   });
 });

@@ -16,15 +16,15 @@ it('renders tag rows', () => {
   const tagRow1 = tagRows.at(0);
   const tagRow2 = tagRows.at(1);
 
-  expect(tagRow1.text()).toMatch(/At Home/);
-  expect(tagRow1.find('Connect(Link)').prop('params')).toEqual({slug: 'at-home'});
-  expect(tagRow2.text()).toMatch(/At Work/);
-  expect(tagRow2.find('Connect(Link)').prop('params')).toEqual({slug: 'at-work'});
+  expect(tagRow1).toIncludeText('At Home');
+  expect(tagRow1.find('Connect(Link)')).toHaveProp('params', {slug: 'at-home'});
+  expect(tagRow2).toIncludeText('At Work');
+  expect(tagRow2.find('Connect(Link)')).toHaveProp('params', {slug: 'at-work'});
 });
 
 it('does not render the "All" tag', () => {
   const tags = [{name: 'All', slug: ''}];
   const component = shallow(<TagList {...props} tags={tags} />, renderOpts);
 
-  expect(component.find('.tag-row')).toHaveLength(0);
+  expect(component.find('.tag-row')).toBeEmpty();
 });

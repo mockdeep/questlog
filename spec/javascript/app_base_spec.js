@@ -6,5 +6,5 @@ import appBase from 'src/app_base';
 it('renders routes', () => {
   const wrapper = shallow(appBase, {lifecycleExperimental: true});
 
-  expect(wrapper.find('Router')).toBeTruthy();
+  expect(wrapper.find('Connect(Router)')).toBePresent();
 });

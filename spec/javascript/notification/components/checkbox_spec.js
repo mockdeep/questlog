@@ -47,7 +47,7 @@ describe('NotificationCheckbox', () => {
       renderOpts
     );
 
-    expect(notificationCheckbox.find('input[type="checkbox"]').prop('checked')).toBe(false);
+    expect(notificationCheckbox.find('input[type="checkbox"]')).not.toBeChecked();
   });
 
   it('is checked when notifications are enabled and task is present', () => {
@@ -57,6 +57,6 @@ describe('NotificationCheckbox', () => {
       renderOpts
     );
 
-    expect(notificationCheckbox.find('input[type="checkbox"]').prop('checked')).toBe(true);
+    expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();
   });
 });

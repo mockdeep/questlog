@@ -45,8 +45,8 @@ it('passes state mapped from props down to the wrapped component', () => {
 
   const testComponent = wrapComponent(computeScratchKey, mapStateToProps, {});
 
-  expect(testComponent.prop('dooble')).toBe('dobble');
-  expect(testComponent.prop('propFromState')).toBe('something');
+  expect(testComponent).toHaveProp('dooble', 'dobble');
+  expect(testComponent).toHaveProp('propFromState', 'something');
 });
 
 it('creates a new scratch space based on the given key', () => {
@@ -73,11 +73,11 @@ it('passes a bound updateScratch down to the wrapped component', () => {
 it('passes the appropriate scratch state down to the wrapped component', () => {
   const testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
 
-  expect(testComponent.prop('scratch')).toEqual({});
+  expect(testComponent).toHaveProp('scratch', {});
 
   store.dispatch(updateScratch('testScratchKey', {value: 'something'}));
 
-  expect(testComponent.prop('scratch')).toEqual({value: 'something'});
+  expect(testComponent).toHaveProp('scratch', {value: 'something'});
 });
 
 it('removes the scratch key when the component is unmounted', () => {
