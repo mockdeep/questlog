@@ -11,7 +11,11 @@ function removeNotificationPlain(payload) {
 }
 
 function addNotification({key, message, onClick}) {
-  return function addNotificationThunk(dispatch) {
+  return async function addNotificationThunk(dispatch) {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== 'granted') { return; }
+
     const notification = new Notification(message);
 
     notification.onclick = onClick;

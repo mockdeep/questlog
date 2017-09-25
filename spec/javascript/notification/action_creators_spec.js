@@ -15,12 +15,12 @@ describe('addNotification', () => {
   });
 
   describe('thunk', () => {
-    it('dispatches an ADD action object', () => {
+    it('dispatches an ADD action object', async () => {
       const payload = {key: 'myKey'};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
-      thunk(dispatch);
+      await thunk(dispatch);
 
       const [action] = dispatch.mock.calls[0];
 
@@ -28,12 +28,12 @@ describe('addNotification', () => {
       expect(action.payload.key).toBe('myKey');
     });
 
-    it('creates a new notification', () => {
+    it('creates a new notification', async () => {
       const payload = {key: 'myKey', message: 'my cool message'};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
-      thunk(dispatch);
+      await thunk(dispatch);
 
       const [action] = dispatch.mock.calls[0];
       const {notification} = action.payload;
@@ -42,12 +42,12 @@ describe('addNotification', () => {
       expect(notification.message).toBe('my cool message');
     });
 
-    it('adds a custom onClick handler to the notification', () => {
+    it('adds a custom onClick handler to the notification', async () => {
       const payload = {key: 'myKey', onClick: jest.fn()};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
-      thunk(dispatch);
+      await thunk(dispatch);
 
       const [action] = dispatch.mock.calls[0];
       const {notification} = action.payload;
