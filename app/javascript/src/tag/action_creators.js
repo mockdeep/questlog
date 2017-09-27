@@ -16,8 +16,10 @@ function updateTagPlain(id, payload) {
 }
 
 function updateTag(id, payload) {
-  return (dispatch) => ajaxPut(`${BASE_PATH}/${id}`, {tag: payload}).
-    then(() => dispatch(updateTagPlain(id, payload)));
+  return function updateTagThunk(dispatch) {
+    return ajaxPut(`${BASE_PATH}/${id}`, {tag: payload}).
+      then(() => dispatch(updateTagPlain(id, payload)));
+  };
 }
 
 function updateTagMeta(payload) {
