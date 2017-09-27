@@ -19,7 +19,7 @@ function updateTaskMeta(payload) {
 }
 
 function fetchTasks() {
-  return (dispatch) => {
+  return function fetchTasksThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'fetching'}));
     ajaxGet(BASE_PATH).
       then(({data, included}) => {
@@ -31,7 +31,7 @@ function fetchTasks() {
 }
 
 function createTask(payload) {
-  return (dispatch) => {
+  return function createTaskThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
     ajaxPost(BASE_PATH, {task: payload}).
@@ -46,7 +46,7 @@ function createTask(payload) {
 }
 
 function deleteTask(taskId) {
-  return (dispatch) => {
+  return function deleteTaskThunk(dispatch) {
     ajaxDelete(`${BASE_PATH}/${taskId}`).
       then(() => {
         dispatch(fetchTasks());
@@ -70,7 +70,7 @@ function updateTaskPlain(id, payload) {
 }
 
 function updateTask(id, payload) {
-  return (dispatch) => {
+  return function updateTaskThunk(dispatch) {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
     dispatch(updateTaskPlain(id, clientPayload));
