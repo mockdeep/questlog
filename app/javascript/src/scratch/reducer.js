@@ -10,26 +10,14 @@ export default createBasicReducer({
   },
 
   [CREATE](previousState, key) {
-    if (Object.prototype.hasOwnProperty.call(previousState, key)) {
-      throw new Error(`Scratch state already has key: "${key}"`);
-    }
-
     return {...previousState, [key]: {}};
   },
 
   [DELETE](previousState, key) {
-    if (!Object.prototype.hasOwnProperty.call(previousState, key)) {
-      throw new Error(`Scratch has no such key to delete: "${key}"`);
-    }
-
     return update(previousState, {$unset: [key]});
   },
 
   [UPDATE](previousState, {key, ...scratch}) {
-    if (!Object.prototype.hasOwnProperty.call(previousState, key)) {
-      throw new Error(`Scratch has no such key to update: "${key}"`);
-    }
-
     return update(previousState, {[key]: {$merge: scratch}});
   },
 });
