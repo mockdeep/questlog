@@ -2,13 +2,21 @@ const INIT = 'notification/INIT';
 const ADD = 'notification/ADD';
 const REMOVE = 'notification/REMOVE';
 
+function addNotificationPlain(payload) {
+  return {type: ADD, payload};
+}
+
+function removeNotificationPlain(payload) {
+  return {type: REMOVE, payload};
+}
+
 function addNotification({key, message, onClick}) {
   return function addNotificationThunk(dispatch) {
     const notification = new Notification(message);
 
     notification.onclick = onClick;
 
-    dispatch({type: ADD, payload: {key, notification}});
+    dispatch(addNotificationPlain({key, notification}));
   };
 }
 
@@ -18,7 +26,7 @@ function removeNotification(payload) {
 
     if (notification) { notification.close(); }
 
-    dispatch({type: REMOVE, payload});
+    dispatch(removeNotificationPlain(payload));
   };
 }
 
