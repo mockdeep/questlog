@@ -65,7 +65,7 @@ function getLoadingState(payload) {
   return 'updating';
 }
 
-function updateTaskClient(id, payload) {
+function updateTaskPlain(id, payload) {
   return {type: UPDATE, payload: {id, ...payload}};
 }
 
@@ -73,7 +73,7 @@ function updateTask(id, payload) {
   return (dispatch) => {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
-    dispatch(updateTaskClient(id, clientPayload));
+    dispatch(updateTaskPlain(id, clientPayload));
     ajaxPut(`${BASE_PATH}/${id}`, {task: payload}).
       then(() => {
         dispatch(fetchTasks());
