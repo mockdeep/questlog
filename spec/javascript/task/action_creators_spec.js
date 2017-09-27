@@ -28,20 +28,16 @@ describe('fetchTasks', () => {
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  describe('on success', () => {
-    beforeEach(async () => {
-      ajaxGet.mockReturnValue(Promise.resolve({data: [], included: []}));
+  it('sets ajax state to "ready" on success', async () => {
+    ajaxGet.mockReturnValue(Promise.resolve({data: [], included: []}));
 
-      const thunk = fetchTasks();
+    const thunk = fetchTasks();
 
-      await thunk(dispatch);
-    });
+    await thunk(dispatch);
 
-    it('sets ajax state to "ready"', () => {
-      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+    const expectedAction = updateTaskMeta({ajaxState: 'ready'});
 
-      expect(dispatch).toHaveBeenCalledWith(expectedAction);
-    });
+    expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 });
 
@@ -55,19 +51,16 @@ describe('createTask', () => {
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  describe('on success', () => {
-    beforeEach(async () => {
-      const thunk = createTask();
-      ajaxPost.mockReturnValue(Promise.resolve());
+  it('sets ajax state to "ready" on success', async () => {
+    const thunk = createTask();
 
-      await thunk(dispatch);
-    });
+    ajaxPost.mockReturnValue(Promise.resolve());
 
-    it('sets ajax state to "ready"', () => {
-      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+    await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(expectedAction);
-    });
+    const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+
+    expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 });
 
