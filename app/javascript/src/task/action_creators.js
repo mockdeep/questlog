@@ -19,39 +19,36 @@ function updateTaskMeta(payload) {
 }
 
 function fetchTasks() {
-  return function fetchTasksThunk(dispatch) {
+  return async function fetchTasksThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'fetching'}));
-    ajaxGet(BASE_PATH).
-      then(({data, included}) => {
-        dispatch(setTasks(data));
-        dispatch(setTags(included));
-        dispatch(updateTaskMeta({ajaxState: 'ready'}));
-      });
+    const {data, included} = await ajaxGet(BASE_PATH);
+
+    dispatch(setTasks(data));
+    dispatch(setTags(included));
+    dispatch(updateTaskMeta({ajaxState: 'ready'}));
   };
 }
 
 function createTask(payload) {
-  return function createTaskThunk(dispatch) {
+  return async function createTaskThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
-    ajaxPost(BASE_PATH, {task: payload}).
-      then(() => {
-        dispatch(updateTaskMeta({ajaxState: 'ready'}));
-        dispatch(updateTaskMeta({newTask: {title: ''}}));
-        dispatch(fetchTasks());
-        TaskStore.unload();
-        flash('success', 'Task added');
-      });
+    await ajaxPost(BASE_PATH, {task: payload});
+
+    dispatch(updateTaskMeta({ajaxState: 'ready'}));
+    dispatch(updateTaskMeta({newTask: {title: ''}}));
+    dispatch(fetchTasks());
+    TaskStore.unload();
+    flash('success', 'Task added');
   };
 }
 
 function deleteTask(taskId) {
-  return function deleteTaskThunk(dispatch) {
-    ajaxDelete(`${BASE_PATH}/${taskId}`).
-      then(() => {
-        dispatch(fetchTasks());
-        TaskStore.unload();
-      });
+  return async function deleteTaskThunk(dispatch) {
+    await ajaxDelete(`${BASE_PATH}/${taskId}`);
+
+    dispatch(fetchTasks());
+    TaskStore.unload();
   };
 }
 
@@ -70,15 +67,15 @@ function updateTaskPlain(id, payload) {
 }
 
 function updateTask(id, payload) {
-  return function updateTaskThunk(dispatch) {
+  return async function updateTaskThunk(dispatch) {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
     dispatch(updateTaskPlain(id, clientPayload));
-    ajaxPut(`${BASE_PATH}/${id}`, {task: payload}).
-      then(() => {
-        dispatch(fetchTasks());
-        TaskStore.unload();
-      });
+
+    await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
+
+    dispatch(fetchTasks());
+    TaskStore.unload();
   };
 }
 

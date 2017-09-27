@@ -16,9 +16,10 @@ function updateTagPlain(id, payload) {
 }
 
 function updateTag(id, payload) {
-  return function updateTagThunk(dispatch) {
-    return ajaxPut(`${BASE_PATH}/${id}`, {tag: payload}).
-      then(() => dispatch(updateTagPlain(id, payload)));
+  return async function updateTagThunk(dispatch) {
+    await ajaxPut(`${BASE_PATH}/${id}`, {tag: payload});
+
+    dispatch(updateTagPlain(id, payload));
   };
 }
 
