@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_headers
-  before_action :authorize_profiler
   before_action :check_repeats
   before_action :set_gon_variables
 
@@ -33,12 +32,6 @@ private
 
     current_user.save!
     self.current_user = current_user
-  end
-
-  def authorize_profiler
-    return unless Rails.env.development? || current_user.admin?
-
-    Rack::MiniProfiler.authorize_request
   end
 
   def check_repeats
