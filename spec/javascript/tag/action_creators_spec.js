@@ -15,18 +15,14 @@ describe('setTags', () => {
 });
 
 describe('updateTag', () => {
-  it('returns an update thunk', () => {
+  it('returns an update thunk', async () => {
     const payload = {some: 'payload'};
     const thunk = updateTag(5, payload);
     const dispatch = jest.fn();
-    const then = jest.fn();
 
-    ajaxPut.mockImplementation(() => ({then}));
-
-    thunk(dispatch);
+    await thunk(dispatch);
 
     expect(ajaxPut).toHaveBeenCalledWith('/api/v1/tags/5', {tag: payload});
-    then.mock.calls[0][0]();
     expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload: {id: 5, ...payload}});
   });
 });

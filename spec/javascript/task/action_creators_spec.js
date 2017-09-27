@@ -10,12 +10,6 @@ import {
   createTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
 
-const fakePromise = {then: jest.fn()};
-
-ajaxGet.mockReturnValue(fakePromise);
-ajaxPost.mockReturnValue(fakePromise);
-ajaxPut.mockReturnValue(fakePromise);
-
 let store;
 let dispatch;
 
@@ -35,12 +29,12 @@ describe('fetchTasks', () => {
   });
 
   describe('on success', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
+      ajaxGet.mockReturnValue(Promise.resolve({data: [], included: []}));
+
       const thunk = fetchTasks();
 
-      thunk(dispatch);
-
-      fakePromise.then.mock.calls[0][0]({data: [], included: []});
+      await thunk(dispatch);
     });
 
     it('sets ajax state to "ready"', () => {
@@ -62,12 +56,11 @@ describe('createTask', () => {
   });
 
   describe('on success', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const thunk = createTask();
+      ajaxPost.mockReturnValue(Promise.resolve());
 
-      thunk(dispatch);
-
-      fakePromise.then.mock.calls[0][0]({data: [], included: []});
+      await thunk(dispatch);
     });
 
     it('sets ajax state to "ready"', () => {
@@ -122,14 +115,14 @@ describe('updateTask', () => {
   });
 
   describe('on success', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
+      ajaxPut.mockReturnValue(Promise.resolve());
+
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
-      updateThunk(dispatch);
+      await updateThunk(dispatch);
 
       expect(ajaxPut).toHaveBeenCalled();
-
-      fakePromise.then.mock.calls[0][0]({data: [], included: []});
     });
 
     it('dispatches fetchTasks', () => {
