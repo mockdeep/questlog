@@ -59,7 +59,7 @@ class NotificationCheckbox extends React.Component {
     if (!this.shouldShowNotifications()) { return; }
 
     this.props.addNotification({
-      key: 'task',
+      key: 'currentTask',
       message: this.props.task.title,
       onClick: this.completeTask,
     });
@@ -90,7 +90,7 @@ class NotificationCheckbox extends React.Component {
   }
 
   closeNotification() {
-    this.props.removeNotification({key: 'task'});
+    this.props.removeNotification({key: 'currentTask'});
   }
 
   render() {
