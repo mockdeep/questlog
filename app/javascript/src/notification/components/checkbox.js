@@ -23,28 +23,8 @@ class NotificationCheckbox extends React.Component {
     this.closeNotification();
   }
 
-  notificationsPermitted() {
-    return window.Notification.permission === 'granted';
-  }
-
-  requestNotificationPermission() {
-    Notification.requestPermission().then((result) => {
-      if (result === 'granted') {
-        this.enableNotifications();
-
-        return;
-      }
-
-      this.disableNotifications();
-    });
-  }
-
   enableNotifications() {
-    if (this.notificationsPermitted()) {
-      this.props.updateUser({notificationsEnabled: true});
-    } else {
-      this.requestNotificationPermission();
-    }
+    this.props.updateUser({notificationsEnabled: true});
   }
 
   notifyOnInterval() {
@@ -71,9 +51,7 @@ class NotificationCheckbox extends React.Component {
   }
 
   shouldShowNotifications() {
-    return Boolean(this.props.task.id) &&
-           this.props.notificationsEnabled &&
-           this.notificationsPermitted();
+    return Boolean(this.props.task.id) && this.props.notificationsEnabled;
   }
 
   toggleNotifications(event) {
