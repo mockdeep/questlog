@@ -19,6 +19,12 @@ RSpec.describe ReleaseAtParser do
     end
   end
 
+  it 'does not parse out invalid dates' do
+    time_string = '50/09/2017'
+    result = parser.("do it @#{time_string}")
+    expect(result).to eq(title: "do it @#{time_string}", release_at: nil)
+  end
+
   it 'returns a time in the future' do
     time = 1.hour.from_now.round
     time -= time.sec
