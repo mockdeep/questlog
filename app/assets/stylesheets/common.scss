@@ -2,6 +2,34 @@
 
 $bg-task-display: #e9eeee;
 
+.task-list {
+  width: 100%;
+}
+
+.task-list__header {
+  text-align: center;
+}
+
+.task-list__row--pending {
+  opacity: 0.5;
+}
+
+.task-list__row--dragging {
+  opacity: 0;
+}
+
+.task-list__row--priority-1 {
+  background-color: $bg-priority-1;
+}
+
+.task-list__row--priority-2 {
+  background-color: $bg-priority-2;
+}
+
+.task-list__row--priority-3 {
+  background-color: $bg-priority-3;
+}
+
 .tag-buttons {
   div {
     display: inline-block;
@@ -15,10 +43,6 @@ $bg-task-display: #e9eeee;
 
 .danger {
   color: $color-critical;
-}
-
-.pending {
-  opacity: 0.5;
 }
 
 .main-button {
@@ -92,20 +116,6 @@ $bg-task-display: #e9eeee;
 
 ul {
   list-style: none;
-}
-
-li {
-  &.priority-1 {
-    background-color: $bg-priority-1;
-  }
-
-  &.priority-2 {
-    background-color: $bg-priority-2;
-  }
-
-  &.priority-3 {
-    background-color: $bg-priority-3;
-  }
 }
 
 .task-input {

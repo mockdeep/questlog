@@ -20,6 +20,18 @@ function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
 }
 
+const TABLE_HEADERS = (
+  <tr>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Title'}</th>
+    <th className='task-list__header'>{'Estimate'}</th>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Priority'}</th>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Actions'}</th>
+  </tr>
+);
+
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
@@ -124,16 +136,18 @@ class TaskList extends React.Component {
         <br />
         <div id='current-tasks'>
           <h2>{'Current Tasks'}</h2>
-          <ul>
-            {this.currentTaskRows()}
-          </ul>
+          <table className='task-list'>
+            <thead>{TABLE_HEADERS}</thead>
+            <tbody>{this.currentTaskRows()}</tbody>
+          </table>
         </div>
 
         <div id='pending-tasks'>
           <h2>{'Pending Tasks'}</h2>
-          <ul>
-            {this.pendingTaskRows()}
-          </ul>
+          <table className='task-list'>
+            <thead>{TABLE_HEADERS}</thead>
+            <tbody>{this.pendingTaskRows()}</tbody>
+          </table>
         </div>
       </div>
     );
