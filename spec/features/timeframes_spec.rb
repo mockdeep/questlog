@@ -86,12 +86,12 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
       expect(find('h2', text: /\AInbox 36\/∞\z/)).to be
-      within('li', text: task_1.title) do
+      within('tr', text: task_1.title) do
         select('This Week', from: 'timeframe-select')
       end
 
       expect(find('h2', text: /\AInbox 6\/∞\z/)).to be
-      within('li', text: task_2.title) do
+      within('tr', text: task_2.title) do
         select('Today', from: 'timeframe-select')
       end
     end
@@ -100,12 +100,12 @@ RSpec.describe 'timeframes', js: true do
 
     within('.timeframe#today') do
       expect(find('h2', text: /\AToday 6\/63\z/)).to be
-      expect(find('li')).to have_text(task_2.title)
+      expect(find('tbody > tr')).to have_text(task_2.title)
     end
 
     within('.timeframe#week') do
       expect(find('h2', text: /\AThis Week 30\/95\z/)).to be
-      within('li', text: task_1.title) do
+      within('tbody > tr', text: task_1.title) do
         select('Today', from: 'timeframe-select')
       end
     end
@@ -114,12 +114,12 @@ RSpec.describe 'timeframes', js: true do
 
     within('.timeframe#today') do
       expect(find('h2', text: /\AToday 36\/63\z/)).to be
-      within('li', text: task_1.title) do
+      within('tbody > tr', text: task_1.title) do
         select('-', from: 'timeframe-select')
       end
 
       expect(find('h2', text: /\AToday 6\/63\z/)).to be
-      within('li', text: task_2.title) do
+      within('tbody > tr', text: task_2.title) do
         select('-', from: 'timeframe-select')
       end
     end

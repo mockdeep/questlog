@@ -6,6 +6,18 @@ import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 
+const TABLE_HEADERS = (
+  <tr>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Title'}</th>
+    <th className='task-list__header'>{'Estimate'}</th>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Priority'}</th>
+    <th className='task-list__header'>{'Timeframe'}</th>
+    <th className='task-list__header'>{'Actions'}</th>
+  </tr>
+);
+
 class TimeframeSection extends React.Component {
   constructor(props) {
     super(props);
@@ -25,12 +37,18 @@ class TimeframeSection extends React.Component {
     );
   }
 
-  currentTasks() {
-    return this.props.timeframe.currentTasks;
-  }
-
-  pendingTasks() {
-    return this.props.timeframe.pendingTasks;
+  renderPendingTask(task) {
+    return (
+      <TaskRow
+        status='pending'
+        timeframesEnabled
+        timeframeSpace={this.props.timeframeSpace}
+        task={task}
+        key={task.id}
+        updateTask={this.props.updateTask}
+        deleteTask={this.props.deleteTask}
+      />
+    );
   }
 
   minuteTotal() {
@@ -43,24 +61,16 @@ class TimeframeSection extends React.Component {
     return isFinite(minuteMax) ? minuteMax : '∞';
   }
 
-  currentTasksDiv() {
+  currentTaskRows() {
     if (this.props.timeframe.currentTasks.length === 0) { return false; }
 
-    return (
-      <div>
-        {this.props.timeframe.currentTasks.map(this.renderTask)}
-      </div>
-    );
+    return this.props.timeframe.currentTasks.map(this.renderTask);
   }
 
-  pendingTasksDiv() {
+  pendingTaskRows() {
     if (this.props.timeframe.pendingTasks.length === 0) { return false; }
 
-    return (
-      <div className='pending'>
-        {this.props.timeframe.pendingTasks.map(this.renderTask)}
-      </div>
-    );
+    return this.props.timeframe.pendingTasks.map(this.renderPendingTask);
   }
 
   ratioSpan() {
@@ -87,8 +97,13 @@ class TimeframeSection extends React.Component {
         <h2>
           {timeframeNameMap[this.props.timeframe.name]} {this.ratioSpan()}
         </h2>
-        {this.currentTasksDiv()}
-        {this.pendingTasksDiv()}
+        <table className='task-list'>
+          <thead>{TABLE_HEADERS}</thead>
+          <tbody>
+            {this.currentTaskRows()}
+            {this.pendingTaskRows()}
+          </tbody>
+        </table>
       </div>
     );
   }

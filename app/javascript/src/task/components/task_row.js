@@ -77,7 +77,15 @@ class TaskRow extends React.PureComponent {
     let classString = '';
 
     if (this.priority()) {
-      classString += ` priority-${this.priority()}`;
+      classString += ` task-list__row--priority-${this.priority()}`;
+    }
+
+    if (this.props.status) {
+      classString += ` task-list__row--${this.props.status}`;
+    }
+
+    if (this.props.isDragging) {
+      classString += ' task-list__row--dragging';
     }
 
     return classString;
@@ -150,8 +158,6 @@ class TaskRow extends React.PureComponent {
   }
 
   taskEstimate() {
-    if (!this.props.timeframesEnabled) { return false; }
-
     return `(${this.props.task.estimateMinutes}) `;
   }
 
@@ -170,31 +176,32 @@ class TaskRow extends React.PureComponent {
   }
 
   element() {
-    const style = {opacity: this.props.isDragging ? 0 : 1};
-
     return (
-      <li className={this.className()} style={style}>
-        {this.taskEstimate()}{this.props.task.title} {this.emblems()}
-        {' | Pri: '}
-        <select onChange={this.updatePriority} value={this.priority()}>
-          <option value=''>{'-'}</option>
-          <option value='1'>{'1'}</option>
-          <option value='2'>{'2'}</option>
-          <option value='3'>{'3'}</option>
-        </select>
-        {this.props.timeframesEnabled ? ' | When: ' : ''}
-        {this.props.timeframesEnabled ? this.timeframeSelector() : ''}
-        {' | '}
-        {this.props.task.pending ? this.undoButton() : ''}
-        {this.props.task.pending ? ' | ' : ''}
-        <button className='btn btn-link' onClick={this.markDone}>
-          {'Done!'}
-        </button>
-        {' | '}
-        <button className='btn btn-link' onClick={this.deleteTask}>
-          {'Delete'}
-        </button>
-      </li>
+      <tr className={this.className()}>
+        <td>
+          <button className='btn btn-link' onClick={this.markDone}>
+            {'Done!'}
+          </button>
+        </td>
+        <td>{this.props.task.title}</td>
+        <td>{this.taskEstimate()}</td>
+        <td>{this.emblems()}</td>
+        <td>
+          <select onChange={this.updatePriority} value={this.priority()}>
+            <option value=''>{'-'}</option>
+            <option value='1'>{'1'}</option>
+            <option value='2'>{'2'}</option>
+            <option value='3'>{'3'}</option>
+          </select>
+        </td>
+        <td>{this.props.timeframesEnabled ? this.timeframeSelector() : ''}</td>
+        <td>
+          {this.props.task.pending ? this.undoButton() : ''}
+          <button className='btn btn-link' onClick={this.deleteTask}>
+            {'Delete'}
+          </button>
+        </td>
+      </tr>
     );
   }
 
@@ -208,6 +215,7 @@ TaskRow.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  status: PropTypes.string,
   task: PropTypes.object.isRequired,
   timeframeSpace: PropTypes.object,
   timeframesEnabled: PropTypes.bool,
