@@ -29,6 +29,7 @@ describe('TimeframeList', () => {
     const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
     wrapper.instance().updateTimeframes(input);
+    wrapper.update();
 
     const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
@@ -45,6 +46,7 @@ describe('TimeframeList', () => {
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
     wrapper.instance().updateTimeframes(input);
+    wrapper.update();
 
     expect(wrapper.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
   });
@@ -54,6 +56,7 @@ describe('TimeframeList', () => {
     const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
     wrapper.instance().updateTimeframes(input);
+    wrapper.update();
 
     expect(wrapper.find('TimeframeSection')).toBeEmpty();
   });
