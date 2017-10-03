@@ -71,12 +71,14 @@ it('passes a bound updateScratch down to the wrapped component', () => {
 });
 
 it('passes the appropriate scratch state down to the wrapped component', () => {
-  const testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  let testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
 
   expect(testComponent).toHaveProp('scratch', {});
 
   store.dispatch(updateScratch('testScratchKey', {value: 'something'}));
+  container.update();
 
+  testComponent = container.find(TestComponent);
   expect(testComponent).toHaveProp('scratch', {value: 'something'});
 });
 
