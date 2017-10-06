@@ -29,10 +29,10 @@
     "path-to-regexp": "1.7.0",
     "promise-polyfill": "^6.0.2",
     "prop-types": "^15.5.8",
-    "react": "^15.6.1",
+    "react": "^16.0.0",
     "react-dnd": "^2.3.0",
     "react-dnd-html5-backend": "^2.3.0",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
@@ -51,7 +51,7 @@
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "enzyme": "^3.0.0",
-    "enzyme-adapter-react-15": "^1.0.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "eslint": "^4.5.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^21.2.0",
@@ -60,7 +60,7 @@
     "jest": "^19.0.2",
     "jest-enzyme": "^4.0.0",
     "jsdom": "^11.2.0",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "stylelint": "^7.10.1"
   },
   "engines": {
