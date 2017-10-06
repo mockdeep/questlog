@@ -1,7 +1,7 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import update from 'react/lib/update';
+import update from 'immutability-helper';
 import {partition} from 'lodash';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext as dragDropContext} from 'react-dnd';
