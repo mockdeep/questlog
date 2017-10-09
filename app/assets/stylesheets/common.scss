@@ -196,16 +196,25 @@ h3 {
   }
 }
 
-.modal {
-  table td {
-    border: 1px solid $color-table-border;
-  }
+.ReactModal__Body--open {
+  overflow: hidden; // prevent scrolling on body when modal is open
+}
 
-  .modal-body {
-    max-height: 800px;
-  }
+.ReactModal__Content--after-open {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .marker {
-    background-color: $bg-table-marker;
-  }
+.modal__close-button {
+  @extend .btn-link;
+  float: right;
+}
+
+.modal__cell {
+  border: 1px solid $color-table-border;
+}
+
+.modal__marker {
+  background-color: $bg-table-marker;
 }

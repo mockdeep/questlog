@@ -19,5 +19,5 @@ it('renders a footer with useful links', () => {
   expect(link2).toHaveProp('to', 'timeframes');
   expect(link2.children()).toHaveText('Timeframes');
 
-  expect(component.find('HelpLink')).toHaveLength(2);
+  expect(component.find('Connect(HelpLink)')).toHaveLength(2);
 });
