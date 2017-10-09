@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    account && !account.guest? && account.email == 'lobatifricha@gmail.com'
+    account.present? && !guest? && email == 'lobatifricha@gmail.com'
   end
 
   def ordered_tags
