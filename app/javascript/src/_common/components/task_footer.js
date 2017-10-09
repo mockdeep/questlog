@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Link from 'src/route/containers/link';
-import HelpLink from 'src/_common/components/help_link';
+import HelpLink from 'src/_common/containers/help_link';
 
 function TaskFooter() {
   return (

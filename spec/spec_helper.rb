@@ -29,6 +29,7 @@ end
 driver = ENV.fetch('DRIVER', :headless_chrome).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
+Capybara.wait_on_first_by_default = true
 
 ActiveRecord::Migration.maintain_test_schema!
 
