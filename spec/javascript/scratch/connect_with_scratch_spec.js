@@ -5,7 +5,6 @@ import connectWithScratch from 'src/scratch/connect_with_scratch';
 import createAppStore from 'src/create_app_store';
 import {createScratch, updateScratch} from 'src/scratch/action_creators';
 
-const renderOpts = {lifecycleExperimental: true};
 let container;
 let store;
 
@@ -25,7 +24,7 @@ function wrapComponent(...args) {
   const connector = connectWithScratch(...args);
   const WrappedComponent = connector(TestComponent);
 
-  container = mount(<WrappedComponent store={store} />, renderOpts);
+  container = mount(<WrappedComponent store={store} />);
 
   return container.find(TestComponent);
 }

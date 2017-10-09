@@ -11,18 +11,17 @@ const props = {
   scratch: {rules: []},
 };
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
-const renderOpts = {lifecycleExperimental: true};
 
 it('renders rule rows', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
   const overrideProps = {...props, scratch: {rules: tempRules}};
-  const component = shallow(<TagEditForm {...overrideProps} />, renderOpts);
+  const component = shallow(<TagEditForm {...overrideProps} />);
 
   expect(component.find('RuleRow')).toBePresent();
 });
 
 it('adds rules when "Add Rule" button is clicked', () => {
-  const component = shallow(<TagEditForm {...props} />, renderOpts);
+  const component = shallow(<TagEditForm {...props} />);
 
   expect(component.find('RuleRow')).toBeEmpty();
   const addRuleButton = component.find({value: 'Add Rule'});

@@ -3,10 +3,8 @@ import {shallow} from 'enzyme';
 
 import TaskFooter from 'src/_common/components/task_footer';
 
-const renderOpts = {lifecycleExperimental: true};
-
 it('renders a footer with useful links', () => {
-  const component = shallow(<TaskFooter />, renderOpts);
+  const component = shallow(<TaskFooter />);
   const links = component.find('Connect(Link)');
 
   expect(links).toHaveLength(2);

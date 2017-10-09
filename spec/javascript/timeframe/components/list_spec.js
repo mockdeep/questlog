@@ -12,10 +12,7 @@ const props = {
 };
 
 beforeEach(() => {
-  const connector = shallow(
-    <TimeframeList {...props} />,
-    {lifecycleExperimental: true}
-  );
+  const connector = shallow(<TimeframeList {...props} />);
 
   wrapper = connector.first().shallow();
 });

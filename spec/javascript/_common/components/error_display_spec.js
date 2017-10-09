@@ -3,11 +3,9 @@ import {shallow} from 'enzyme';
 
 import ErrorDisplay from 'src/_common/components/error_display';
 
-const renderOpts = {lifecycleExperimental: true};
-
 it('renders the given errors', () => {
   const errors = ['one error', 'two error'];
-  const component = shallow(<ErrorDisplay errors={errors} />, renderOpts);
+  const component = shallow(<ErrorDisplay errors={errors} />);
 
   const errorMessages = component.find('.error-messages li');
 
