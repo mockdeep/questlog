@@ -6,6 +6,11 @@ class FreeAccount < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  def email=(email)
+    email = email.downcase if email
+    super(email)
+  end
+
   def guest?
     false
   end
