@@ -14,7 +14,7 @@ const TABLE_HEADERS = (
     <th className='task-list__header' />
     <th className='task-list__header'>{'Priority'}</th>
     <th className='task-list__header'>{'Timeframe'}</th>
-    <th className='task-list__header'>{'Actions'}</th>
+    <th className='task-list__header' />
   </tr>
 );
 
