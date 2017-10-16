@@ -42,6 +42,14 @@
   background-color: #E9E9E9;
 }
 
+.task-list__header {
+  padding: 2px;
+}
+
+.task-list__cell {
+  padding: 1px;
+}
+
 .task-list__row--pending {
   opacity: 0.5;
 }

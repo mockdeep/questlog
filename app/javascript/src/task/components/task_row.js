@@ -74,7 +74,7 @@ class TaskRow extends React.PureComponent {
   }
 
   className() {
-    let classString = '';
+    let classString = 'task-list__row';
 
     if (this.priority()) {
       classString += ` task-list__row--priority-${this.priority()}`;
@@ -178,7 +178,7 @@ class TaskRow extends React.PureComponent {
   element() {
     return (
       <tr className={this.className()}>
-        <td>
+        <td className='task-list__cell'>
           <button className='btn btn-link task-list__action' onClick={this.markDone}>
             {'DONE'}
           </button>

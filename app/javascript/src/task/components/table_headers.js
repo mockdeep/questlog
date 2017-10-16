@@ -4,13 +4,13 @@ import React from 'react';
 function TableHeaders({label}) {
   return (
     <tr className='task-list__header-row'>
-      <th />
-      <th>{`${label} tasks`}</th>
-      <th>{'Estimate'}</th>
-      <th />
-      <th>{'Priority'}</th>
-      <th />
-      <th />
+      <th className='task-list__header' />
+      <th className='task-list__header'>{`${label} tasks`}</th>
+      <th className='task-list__header'>{'Estimate'}</th>
+      <th className='task-list__header' />
+      <th className='task-list__header'>{'Priority'}</th>
+      <th className='task-list__header' />
+      <th className='task-list__header' />
     </tr>
   );
 }
