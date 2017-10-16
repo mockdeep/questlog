@@ -43,6 +43,7 @@ class NewTaskForm extends React.Component {
               id='new-title'
               className='task-input'
               onChange={this.setTitle}
+              placeholder={'e.g: do laundry #home @10am ~1h'}
               value={this.props.task.title}
             />
           </div>
