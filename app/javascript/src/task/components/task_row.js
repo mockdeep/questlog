@@ -180,7 +180,7 @@ class TaskRow extends React.PureComponent {
       <tr className={this.className()}>
         <td>
           <button className='btn btn-link' onClick={this.markDone}>
-            {'Done!'}
+            {'Done'}
           </button>
         </td>
         <td>{this.props.task.title}</td>
