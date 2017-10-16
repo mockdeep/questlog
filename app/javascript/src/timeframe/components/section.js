@@ -8,13 +8,13 @@ import {calculateTotalMinutes} from 'src/timeframe/utils';
 
 const TABLE_HEADERS = (
   <tr className='task-list__header-row'>
-    <th />
-    <th>{'Title'}</th>
-    <th>{'Estimate'}</th>
-    <th />
-    <th>{'Priority'}</th>
-    <th>{'Timeframe'}</th>
-    <th />
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Title'}</th>
+    <th className='task-list__header'>{'Estimate'}</th>
+    <th className='task-list__header' />
+    <th className='task-list__header'>{'Priority'}</th>
+    <th className='task-list__header'>{'Timeframe'}</th>
+    <th className='task-list__header' />
   </tr>
 );
 
