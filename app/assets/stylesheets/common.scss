@@ -50,6 +50,10 @@
   opacity: 0;
 }
 
+.task-list__action {
+  font-family: 'RobotoCondensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .task-list__row--priority-1 {
   background-color: $bg-priority-1;
 }
