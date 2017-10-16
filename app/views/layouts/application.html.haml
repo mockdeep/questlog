@@ -14,7 +14,7 @@
     .container
       .row
         .col-md-12.navbar
-          #user-nav
+          .user-nav
             - if current_user.guest?
               You're not logged in! In order to save your tasks you'll
               need to
@@ -25,7 +25,7 @@
               Logged in as #{current_user.email}
               = link_to 'Log out', session_path, method: :delete
 
-          %h1#tasks= link_to('QUESTLOG', root_path)
+          %h1.brand= link_to('QUESTLOG', root_path)
 
       .row
         .col-md-12.flashes#flashes
@@ -37,7 +37,7 @@
           #app-base
 
           = yield
-
-    = mail_to('robert@boon.gl', 'Feedback')
+    .footer
+      = mail_to('robert@boon.gl', 'Feedback')
 
     = javascript_pack_tag 'application'
