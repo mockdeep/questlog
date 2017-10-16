@@ -158,7 +158,7 @@ class TaskRow extends React.PureComponent {
   }
 
   taskEstimate() {
-    return `(${this.props.task.estimateMinutes}) `;
+    return `${this.props.task.estimateMinutes} min`;
   }
 
   undoTask() {
