@@ -11,7 +11,7 @@
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
 
   %body
-    .container
+    .container.content
       .row
         .col-md-12.navbar
           .user-nav
@@ -37,7 +37,7 @@
           #app-base
 
           = yield
-    .footer
-      = mail_to('robert@boon.gl', 'Feedback')
+      .footer
+        = mail_to('robert@boon.gl', 'Feedback')
 
     = javascript_pack_tag 'application'
