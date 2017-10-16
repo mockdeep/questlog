@@ -10,6 +10,7 @@ import TaskStore from 'src/task/store';
 import BulkTaskStore from 'src/task/bulk_store';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
+import TableHeaders from 'src/task/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
 
 function isPending(task) {
@@ -19,18 +20,6 @@ function isPending(task) {
 function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
 }
-
-const TABLE_HEADERS = (
-  <tr>
-    <th className='task-list__header' />
-    <th className='task-list__header'>{'Title'}</th>
-    <th className='task-list__header'>{'Estimate'}</th>
-    <th className='task-list__header' />
-    <th className='task-list__header'>{'Priority'}</th>
-    <th className='task-list__header' />
-    <th className='task-list__header' />
-  </tr>
-);
 
 class TaskList extends React.Component {
   constructor(props) {
@@ -135,17 +124,15 @@ class TaskList extends React.Component {
         <NewTaskForm />
         <br />
         <div id='current-tasks'>
-          <h2>{'Current Tasks'}</h2>
           <table className='task-list'>
-            <thead>{TABLE_HEADERS}</thead>
+            <thead><TableHeaders label={'Current'} /></thead>
             <tbody>{this.currentTaskRows()}</tbody>
           </table>
         </div>
 
         <div id='pending-tasks'>
-          <h2>{'Pending Tasks'}</h2>
           <table className='task-list'>
-            <thead>{TABLE_HEADERS}</thead>
+            <thead><TableHeaders label={'Pending'} /></thead>
             <tbody>{this.pendingTaskRows()}</tbody>
           </table>
         </div>
