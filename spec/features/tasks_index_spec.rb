@@ -9,7 +9,7 @@ RSpec.describe 'tasks index page', js: true do
     add_task('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
-    click_button 'Done'
+    click_button 'DONE'
     expect(page).not_to have_content('do laundry')
   end
 
@@ -21,7 +21,7 @@ RSpec.describe 'tasks index page', js: true do
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
-    accept_confirm { click_button 'Delete' }
+    accept_confirm { click_button 'DELETE' }
     expect(current_tasks).not_to have_content('do laundry')
     expect(current_tasks).to have_content('feed dog')
   end
