@@ -9,7 +9,7 @@ RSpec.describe 'tasks index page', js: true do
     add_task('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
-    click_button 'Done!'
+    click_button 'Done'
     expect(page).not_to have_content('do laundry')
   end
 
