@@ -18,12 +18,6 @@ const props = {
   updateTask: jest.fn(),
 };
 
-it('renders the notification checkbox', () => {
-  const component = shallow(<Item {...props} />);
-
-  expect(component.find('Connect(NotificationCheckbox)')).toBePresent();
-});
-
 it('updates the task on postpone', () => {
   const component = shallow(<Item {...props} />);
   const taskDisplay = component.find('TaskDisplay');

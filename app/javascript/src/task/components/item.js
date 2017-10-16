@@ -5,7 +5,6 @@ import React from 'react';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
-import NotificationCheckbox from 'src/notification/containers/checkbox';
 
 class TaskItem extends React.Component {
   constructor(props) {
@@ -66,12 +65,7 @@ class TaskItem extends React.Component {
         />
         <NewTaskForm />
 
-        <hr />
-        <NotificationCheckbox
-          task={this.task()}
-          completeTask={this.completeTask}
-        />
-        <TaskFooter />
+        <TaskFooter task={this.task()} completeTask={this.completeTask} />
       </div>
     );
   }
