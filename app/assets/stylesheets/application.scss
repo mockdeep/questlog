@@ -1,6 +1,10 @@
 @import 'normalize-rails';
+
+@import './variables/colors';
+
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
 @import './common';
 @import './tag';
