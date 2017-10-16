@@ -179,8 +179,8 @@ class TaskRow extends React.PureComponent {
     return (
       <tr className={this.className()}>
         <td>
-          <button className='btn btn-link' onClick={this.markDone}>
-            {'Done'}
+          <button className='btn btn-link task-list__action' onClick={this.markDone}>
+            {'DONE'}
           </button>
         </td>
         <td>{this.props.task.title}</td>
@@ -197,8 +197,8 @@ class TaskRow extends React.PureComponent {
         <td>{this.props.timeframesEnabled ? this.timeframeSelector() : ''}</td>
         <td>
           {this.props.task.pending ? this.undoButton() : ''}
-          <button className='btn btn-link' onClick={this.deleteTask}>
-            {'Delete'}
+          <button className='btn btn-link task-list__action' onClick={this.deleteTask}>
+            {'DELETE'}
           </button>
         </td>
       </tr>
