@@ -90,13 +90,21 @@ class TimeframeList extends React.Component {
   }
 
   render() {
-    if (this.state.loading) { return <h1>{'Loading Timeframes...'}</h1>; }
+    if (this.state.loading) {
+      return (
+        <header className='timeframes-header'>
+          <h2>{'Loading Timeframes...'}</h2>
+        </header>
+      );
+    }
 
     return (
       <div>
         <NewTaskForm />
-        <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
-        <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
+        <header className='timeframes-header'>
+          <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
+          <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
+        </header>
         {this.renderedTimeframes()}
       </div>
     );

@@ -36,24 +36,23 @@ class NewTaskForm extends React.Component {
     return (
       <form onSubmit={this.saveTask} id='new-form'>
         <div className='row'>
-          <div className='col-md-6'>
-            <input
-              type='text'
-              autoComplete='off'
-              id='new-title'
-              className='task-input'
-              onChange={this.setTitle}
-              value={this.props.task.title}
-            />
-          </div>
-          <div className='col-md-6'>
-            <input
-              type='submit'
-              disabled={this.disabled()}
-              className='btn btn-success btn-block'
-              value={this.buttonMessage()}
-            />
-          </div>
+          <input
+            type='text'
+            autoComplete='off'
+            id='new-title'
+            className='task-input'
+            onChange={this.setTitle}
+            placeholder={'e.g: do laundry #home @10am ~1h'}
+            value={this.props.task.title}
+          />
+        </div>
+        <div className='row'>
+          <input
+            type='submit'
+            disabled={this.disabled()}
+            className='btn btn-success btn-block'
+            value={this.buttonMessage()}
+          />
         </div>
       </form>
     );

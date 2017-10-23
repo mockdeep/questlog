@@ -3,10 +3,16 @@ import {shallow} from 'enzyme';
 
 import TaskFooter from 'src/_common/components/task_footer';
 
-const renderOpts = {lifecycleExperimental: true};
+const props = {task: {}, completeTask: jest.fn()};
+
+it('renders the notification checkbox', () => {
+  const component = shallow(<TaskFooter {...props} />);
+
+  expect(component.find('Connect(NotificationCheckbox)')).toBePresent();
+});
 
 it('renders a footer with useful links', () => {
-  const component = shallow(<TaskFooter />, renderOpts);
+  const component = shallow(<TaskFooter {...props} />);
   const links = component.find('Connect(Link)');
 
   expect(links).toHaveLength(2);
@@ -19,5 +25,5 @@ it('renders a footer with useful links', () => {
   expect(link2).toHaveProp('to', 'timeframes');
   expect(link2.children()).toHaveText('Timeframes');
 
-  expect(component.find('HelpLink')).toHaveLength(2);
+  expect(component.find('Connect(HelpLink)')).toHaveLength(2);
 });

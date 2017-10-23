@@ -11,12 +11,10 @@
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
 
   %body
-    .container
+    .container.content
       .row
         .col-md-12.navbar
-          %h1#tasks= link_to('QUESTLOG', root_path)
-
-          #user-nav
+          .user-nav
             - if current_user.guest?
               You're not logged in! In order to save your tasks you'll
               need to
@@ -26,6 +24,9 @@
             - else
               Logged in as #{current_user.email}
               = link_to 'Log out', session_path, method: :delete
+
+          %h1.brand= link_to('QUESTLOG', root_path)
+
       .row
         .col-md-12.flashes#flashes
           - flash.each do |name, msg|
@@ -36,7 +37,7 @@
           #app-base
 
           = yield
-
-    = mail_to('robert@boon.gl', 'Feedback')
+      .footer
+        = mail_to('robert@boon.gl', 'Feedback')
 
     = javascript_pack_tag 'application'

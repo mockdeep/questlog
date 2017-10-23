@@ -74,7 +74,7 @@ class TaskRow extends React.PureComponent {
   }
 
   className() {
-    let classString = '';
+    let classString = 'task-list__row';
 
     if (this.priority()) {
       classString += ` task-list__row--priority-${this.priority()}`;
@@ -158,7 +158,7 @@ class TaskRow extends React.PureComponent {
   }
 
   taskEstimate() {
-    return `(${this.props.task.estimateMinutes}) `;
+    return `${this.props.task.estimateMinutes} min`;
   }
 
   undoTask() {
@@ -178,9 +178,9 @@ class TaskRow extends React.PureComponent {
   element() {
     return (
       <tr className={this.className()}>
-        <td>
-          <button className='btn btn-link' onClick={this.markDone}>
-            {'Done!'}
+        <td className='task-list__cell'>
+          <button className='btn btn-link task-list__action' onClick={this.markDone}>
+            {'DONE'}
           </button>
         </td>
         <td>{this.props.task.title}</td>
@@ -197,8 +197,8 @@ class TaskRow extends React.PureComponent {
         <td>{this.props.timeframesEnabled ? this.timeframeSelector() : ''}</td>
         <td>
           {this.props.task.pending ? this.undoButton() : ''}
-          <button className='btn btn-link' onClick={this.deleteTask}>
-            {'Delete'}
+          <button className='btn btn-link task-list__action' onClick={this.deleteTask}>
+            {'DELETE'}
           </button>
         </td>
       </tr>

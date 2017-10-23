@@ -1,13 +1,53 @@
-@import 'variables/colors';
+.navbar {
+  text-align: center;
+}
 
-$bg-task-display: #e9eeee;
+.flashes {
+  text-align: center;
+}
+
+.sign-up-form {
+  text-align: center;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+}
+
+.timeframes-header {
+  text-align: center;
+}
+
+.task-display {
+  text-align: center;
+}
+
+.task-footer {
+  text-align: center;
+}
+
+.tag-buttons {
+  text-align: center;
+}
 
 .task-list {
   width: 100%;
 }
 
+.task-list__header-row {
+  background-color: #E9E9E9;
+}
+
 .task-list__header {
-  text-align: center;
+  padding: 2px;
+}
+
+.task-list__cell {
+  padding: 1px;
 }
 
 .task-list__row--pending {
@@ -16,6 +56,10 @@ $bg-task-display: #e9eeee;
 
 .task-list__row--dragging {
   opacity: 0;
+}
+
+.task-list__action {
+  font-family: 'RobotoCondensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .task-list__row--priority-1 {
@@ -53,12 +97,6 @@ $bg-task-display: #e9eeee;
 
 .btn-link {
   padding: 0;
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
 }
 
 .flashes {
@@ -146,7 +184,16 @@ ul {
 html,
 body {
   height: 100%;
-  text-align: center;
+  background-color: #E0E0E0;
+}
+
+.content {
+  background-color: white;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  min-height: 100%;
 }
 
 h1 {
@@ -196,16 +243,25 @@ h3 {
   }
 }
 
-.modal {
-  table td {
-    border: 1px solid $color-table-border;
-  }
+.ReactModal__Body--open {
+  overflow: hidden; // prevent scrolling on body when modal is open
+}
 
-  .modal-body {
-    max-height: 800px;
-  }
+.ReactModal__Content--after-open {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .marker {
-    background-color: $bg-table-marker;
-  }
+.modal__close-button {
+  @extend .btn-link;
+  float: right;
+}
+
+.modal__cell {
+  border: 1px solid $color-table-border;
+}
+
+.modal__marker {
+  background-color: $bg-table-marker;
 }

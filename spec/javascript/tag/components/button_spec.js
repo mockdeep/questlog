@@ -7,19 +7,13 @@ const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
 const props = {current: false, updateTagMeta: jest.fn(), tag, isActive: false};
 
 it('adds an active class when tag is selected', () => {
-  const component = shallow(
-    <TagButton {...props} isActive />,
-    {lifecycleExperimental: true}
-  );
+  const component = shallow(<TagButton {...props} isActive />);
 
   expect(component.find('Connect(Link)')).toHaveClassName('active');
 });
 
 it('passes routing params to Link sub-component', () => {
-  const component = shallow(
-    <TagButton {...props} />,
-    {lifecycleExperimental: true}
-  );
+  const component = shallow(<TagButton {...props} />);
 
   const link = component.find('Connect(Link)');
 

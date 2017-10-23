@@ -9,7 +9,6 @@ import {shallow} from 'enzyme';
 
 import Item from 'src/task/components/item';
 
-const renderOpts = {lifecycleExperimental: true};
 const props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
@@ -19,14 +18,8 @@ const props = {
   updateTask: jest.fn(),
 };
 
-it('renders the notification checkbox', () => {
-  const component = shallow(<Item {...props} />, renderOpts);
-
-  expect(component.find('Connect(NotificationCheckbox)')).toBePresent();
-});
-
 it('updates the task on postpone', () => {
-  const component = shallow(<Item {...props} />, renderOpts);
+  const component = shallow(<Item {...props} />);
   const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('postponeTask')(52);
@@ -35,7 +28,7 @@ it('updates the task on postpone', () => {
 });
 
 it('updates the task on completion', () => {
-  const component = shallow(<Item {...props} />, renderOpts);
+  const component = shallow(<Item {...props} />);
   const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('completeTask')(512);
@@ -47,7 +40,7 @@ describe('when a task is given', () => {
   it('sets the document title to the task title', () => {
     const task = {title: 'some task title'};
 
-    shallow(<Item {...props} task={task} />, renderOpts);
+    shallow(<Item {...props} task={task} />);
 
     expect(document.title).toBe('Task: some task title');
   });
@@ -55,19 +48,19 @@ describe('when a task is given', () => {
 
 describe('when no task is given', () => {
   it('sets the document title to "(no tasks!)" when state is "ready"', () => {
-    shallow(<Item {...props} />, renderOpts);
+    shallow(<Item {...props} />);
 
     expect(document.title).toBe('Task: (no tasks!)');
   });
 
   it('sets the document title to "Loading..." when state is "fetching"', () => {
-    shallow(<Item {...props} ajaxState='fetching' />, renderOpts);
+    shallow(<Item {...props} ajaxState='fetching' />);
 
     expect(document.title).toBe('Task: Loading...');
   });
 
   it('disables the task display', () => {
-    const component = shallow(<Item {...props} />, renderOpts);
+    const component = shallow(<Item {...props} />);
     const taskDisplay = component.find('TaskDisplay');
 
     expect(taskDisplay).toHaveProp('disabled', true);
@@ -75,7 +68,7 @@ describe('when no task is given', () => {
 
   it('throws an error when state is not accounted for', () => {
     expect(() => {
-      shallow(<Item {...props} ajaxState='froggling' />, renderOpts);
+      shallow(<Item {...props} ajaxState='froggling' />);
     }).toThrow(/don't know how to deal with ajaxState "froggling"/);
   });
 });

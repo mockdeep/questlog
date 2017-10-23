@@ -16,22 +16,16 @@ const props = {
   updateUser: jest.fn(),
 };
 
-const renderOpts = {lifecycleExperimental: true};
-
 describe('NotificationCheckbox', () => {
   it('is not checked by default', () => {
-    const notificationCheckbox = shallow(
-      <NotificationCheckbox {...props} />,
-      renderOpts
-    );
+    const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
 
     expect(notificationCheckbox.find('input[type="checkbox"]')).not.toBeChecked();
   });
 
   it('is checked when notifications are enabled and task is present', () => {
     const notificationCheckbox = shallow(
-      <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />,
-      renderOpts
+      <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />
     );
 
     expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();

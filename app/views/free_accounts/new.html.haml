@@ -1,6 +1,5 @@
-%h1 Sign Up
-
-= form_for @account do |form|
+= form_for @account, html: { class: 'sign-up-form' } do |form|
+  %h1 Sign Up
   - if @account.errors.any?
     = render 'common/errors', record: @account
 
