@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724160143) do
+ActiveRecord::Schema.define(version: 20171030150819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,9 @@ ActiveRecord::Schema.define(version: 20170724160143) do
     t.integer "estimate_seconds"
     t.integer "position", null: false
     t.string "timeframe"
+    t.integer "parent_id"
     t.index ["done_at"], name: "index_tasks_on_done_at"
+    t.index ["parent_id"], name: "index_tasks_on_parent_id"
     t.index ["position"], name: "index_tasks_on_position"
     t.index ["priority", "position"], name: "index_tasks_on_priority_and_position"
     t.index ["priority"], name: "index_tasks_on_priority"
@@ -111,5 +113,6 @@ ActiveRecord::Schema.define(version: 20170724160143) do
   add_foreign_key "taggings", "tags", name: "taggings_tag_id_fk"
   add_foreign_key "taggings", "tasks", name: "taggings_task_id_fk"
   add_foreign_key "tags", "users", name: "tags_user_id_fk"
+  add_foreign_key "tasks", "tasks", column: "parent_id"
   add_foreign_key "tasks", "users", name: "tasks_user_id_fk"
 end
