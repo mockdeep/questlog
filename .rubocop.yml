@@ -68,7 +68,7 @@ Style/EmptyMethod:
   EnforcedStyle: expanded
 
 ClassLength:
-  Max: 115
+  Max: 120
 
 Style/LambdaCall:
   EnforcedStyle: braces
