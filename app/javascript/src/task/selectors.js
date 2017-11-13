@@ -43,4 +43,9 @@ const getUndoneTasks = createSelector(
   (partitionedTasks) => partitionedTasks.undone
 );
 
-export {getUndoneTasks};
+const getCurrentTask = createSelector(
+  (state) => state.task.byId[state.route.params.taskId],
+  (task) => task
+);
+
+export {getCurrentTask, getUndoneTasks};
