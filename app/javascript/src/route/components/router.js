@@ -7,7 +7,7 @@ import SessionNewView from 'src/session/components/new_view';
 import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListViewContainer from 'src/tag/containers/list_view';
-import FocusViewContainer from 'src/task/containers/focus_view';
+import TaskFocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 import WhatView from 'src/static/components/what_view';
@@ -15,7 +15,7 @@ import WhatView from 'src/static/components/what_view';
 function Nothing() { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
-  root: FocusViewContainer,
+  root: TaskFocusViewContainer,
   bulkTaskNew: TaskBulkAddViewContainer,
   freeAccountsNew: Nothing,
   sessionsNew: SessionNewView,
@@ -27,7 +27,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   timeframes: TimeframeListViewContainer,
   tags: TagListViewContainer,
   editTag: TagEditViewContainer,
-  tag: FocusViewContainer,
+  tag: TaskFocusViewContainer,
 };
 
 function Router(props) {
