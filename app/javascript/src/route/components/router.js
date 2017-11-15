@@ -3,7 +3,7 @@ import React from 'react';
 
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
 import PrivacyPage from 'src/static/components/privacy_page';
-import NewSessionForm from 'src/session/components/new_form';
+import SessionNewView from 'src/session/components/new_view';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListContainer from 'src/tag/containers/list';
@@ -18,7 +18,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: FocusViewContainer,
   bulkTaskNew: TaskBulkAddViewContainer,
   freeAccountsNew: Nothing,
-  sessionsNew: NewSessionForm,
+  sessionsNew: SessionNewView,
   sessions: Nothing,
   showTask: TaskShowViewContainer,
   tasks: TaskList,
