@@ -5,14 +5,14 @@ class Task < ApplicationRecord
   # counter-acts the automatic decrement from counter_cache
   before_destroy :increment_counters, if: :done?
 
-  belongs_to :parent, class_name: 'Task', inverse_of: :children
+  belongs_to :parent_task, class_name: 'Task', inverse_of: :sub_tasks
   belongs_to :user, counter_cache: :unfinished_tasks_count
 
   has_many(
-    :children,
-    foreign_key: 'parent_id',
+    :sub_tasks,
+    foreign_key: 'parent_task_id',
     class_name: 'Task',
-    inverse_of: :parent,
+    inverse_of: :parent_task,
   )
   has_many :taggings, dependent: :destroy, inverse_of: :task
   has_many :tags, through: :taggings
