@@ -1,43 +1,9 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
-import {map, flow} from 'lodash';
+import {map} from 'lodash';
 
 import timeframeNameMap from 'src/timeframe/name_map';
-
-const taskSource = {
-  canDrag(props) {
-    return !props.timeframesEnabled;
-  },
-
-  beginDrag(props) {
-    return {item: {id: props.task.id}};
-  },
-
-  endDrag(props, _monitor, component) {
-    props.saveTaskPositions(component);
-  },
-};
-
-const taskTarget = {
-  hover(props, monitor) {
-    const draggedId = monitor.getItem().item.id;
-
-    props.moveTask(draggedId, props.task.id);
-  },
-};
-
-function sourceCollect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  };
-}
-
-function targetCollect(connect) {
-  return {connectDropTarget: connect.dropTarget()};
-}
 
 class TaskRow extends React.PureComponent {
   constructor(props) {
@@ -175,9 +141,13 @@ class TaskRow extends React.PureComponent {
     );
   }
 
-  element() {
+  storeDOMNode(domNode) {
+    this.domNode = domNode;
+  }
+
+  render() {
     return (
-      <tr className={this.className()}>
+      <tr className={this.className()} ref={this.storeDOMNode}>
         <td className='task-list__cell'>
           <button className='btn btn-link task-list__action' onClick={this.markDone}>
             {'DONE'}
@@ -204,17 +174,11 @@ class TaskRow extends React.PureComponent {
       </tr>
     );
   }
-
-  render() {
-    return this.props.connectDropTarget(this.props.connectDragSource(this.element()));
-  }
 }
 
 TaskRow.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
-  connectDropTarget: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired,
+  isDragging: PropTypes.bool,
   status: PropTypes.string,
   task: PropTypes.object.isRequired,
   timeframeSpace: PropTypes.object,
@@ -222,7 +186,4 @@ TaskRow.propTypes = {
   updateTask: PropTypes.func.isRequired,
 };
 
-export default flow(
-  dragSource('task', taskSource, sourceCollect),
-  dropTarget('task', taskTarget, targetCollect)
-)(TaskRow);
+export default TaskRow;

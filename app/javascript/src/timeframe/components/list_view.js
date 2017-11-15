@@ -1,8 +1,6 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
-import HTML5Backend from 'react-dnd-html5-backend';
-import {DragDropContext as dragDropContext} from 'react-dnd';
 
 import ToEnglish from 'src/_helpers/to_english';
 import TaskStore from 'src/task/store';
@@ -117,4 +115,4 @@ TimeframeListView.propTypes = {
   updateTask: PropTypes.func.isRequired,
 };
 
-export default dragDropContext(HTML5Backend)(TimeframeListView);
+export default TimeframeListView;
