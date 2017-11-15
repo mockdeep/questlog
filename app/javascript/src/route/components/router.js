@@ -4,7 +4,7 @@ import React from 'react';
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
 import PrivacyView from 'src/static/components/privacy_view';
 import SessionNewView from 'src/session/components/new_view';
-import EditTagFormContainer from 'src/tag/containers/edit_form';
+import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListViewContainer from 'src/tag/containers/list_view';
 import FocusViewContainer from 'src/task/containers/focus_view';
@@ -26,7 +26,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   what: WhatView,
   timeframes: TimeframeListViewContainer,
   tags: TagListViewContainer,
-  editTag: EditTagFormContainer,
+  editTag: TagEditViewContainer,
   tag: FocusViewContainer,
 };
 
