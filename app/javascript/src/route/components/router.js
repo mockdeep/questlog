@@ -6,7 +6,7 @@ import PrivacyView from 'src/static/components/privacy_view';
 import SessionNewView from 'src/session/components/new_view';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TaskShowViewContainer from 'src/task/containers/show_view';
-import TagListContainer from 'src/tag/containers/list';
+import TagListViewContainer from 'src/tag/containers/list_view';
 import FocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
@@ -25,7 +25,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   privacy: PrivacyView,
   what: WhatView,
   timeframes: TimeframeListViewContainer,
-  tags: TagListContainer,
+  tags: TagListViewContainer,
   editTag: EditTagFormContainer,
   tag: FocusViewContainer,
 };
