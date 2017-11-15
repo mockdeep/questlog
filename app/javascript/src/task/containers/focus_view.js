@@ -1,7 +1,7 @@
 import connectWithScratch from 'src/scratch/connect_with_scratch';
 import {deleteTask, updateTask, updateTaskMeta} from 'src/task/action_creators';
 import {getNextUndoneTask} from 'src/tag/selectors';
-import FocusView from 'src/task/components/focus_view';
+import TaskFocusView from 'src/task/components/focus_view';
 
 function computeScratchKey(state) {
   const {ajaxState} = state.task.meta;
@@ -23,4 +23,4 @@ export default connectWithScratch(
   computeScratchKey,
   mapStateToProps,
   actionCreators
-)(FocusView);
+)(TaskFocusView);

@@ -6,7 +6,7 @@ import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
 
-class FocusView extends React.Component {
+class TaskFocusView extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
@@ -71,7 +71,7 @@ class FocusView extends React.Component {
   }
 }
 
-FocusView.propTypes = {
+TaskFocusView.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
   scratch: PropTypes.object.isRequired,
@@ -81,4 +81,4 @@ FocusView.propTypes = {
   url: PropTypes.string,
 };
 
-export default FocusView;
+export default TaskFocusView;
