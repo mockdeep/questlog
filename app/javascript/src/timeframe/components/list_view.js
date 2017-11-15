@@ -16,7 +16,7 @@ function timeframeHasTasks(timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
-class TimeframeList extends React.Component {
+class TimeframeListView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {timeframes: [], medianProductivity: null, loading: true};
@@ -111,10 +111,10 @@ class TimeframeList extends React.Component {
   }
 }
 
-TimeframeList.propTypes = {
+TimeframeListView.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   fetchTasks: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 
-export default dragDropContext(HTML5Backend)(TimeframeList);
+export default dragDropContext(HTML5Backend)(TimeframeListView);

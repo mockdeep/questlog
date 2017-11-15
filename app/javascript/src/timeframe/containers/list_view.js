@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import TimeframeList from 'src/timeframe/components/list';
+import TimeframeListView from 'src/timeframe/components/list_view';
 import {deleteTask, fetchTasks, updateTask} from 'src/task/action_creators';
 
 function mapStateToProps() {
@@ -9,4 +9,4 @@ function mapStateToProps() {
 
 const actionCreators = {deleteTask, fetchTasks, updateTask};
 
-export default connect(mapStateToProps, actionCreators)(TimeframeList);
+export default connect(mapStateToProps, actionCreators)(TimeframeListView);
