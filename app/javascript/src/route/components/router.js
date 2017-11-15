@@ -7,7 +7,7 @@ import NewSessionForm from 'src/session/components/new_form';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListContainer from 'src/tag/containers/list';
-import TaskContainer from 'src/task/containers/item';
+import FocusViewContainer from 'src/task/containers/focus_view';
 import TaskList from 'src/task/containers/list';
 import TimeframeList from 'src/timeframe/containers/list';
 import WhatPage from 'src/static/components/what_page';
@@ -15,7 +15,7 @@ import WhatPage from 'src/static/components/what_page';
 function Nothing() { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
-  root: TaskContainer,
+  root: FocusViewContainer,
   bulkTaskNew: BulkTasksNewContainer,
   freeAccountsNew: Nothing,
   sessionsNew: NewSessionForm,
@@ -27,7 +27,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   timeframes: TimeframeList,
   tags: TagListContainer,
   editTag: EditTagFormContainer,
-  tag: TaskContainer,
+  tag: FocusViewContainer,
 };
 
 function Router(props) {
