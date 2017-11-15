@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import BulkTasksNewContainer from 'src/task/containers/bulk_new';
+import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
 import PrivacyPage from 'src/static/components/privacy_page';
 import NewSessionForm from 'src/session/components/new_form';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
@@ -16,7 +16,7 @@ function Nothing() { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: FocusViewContainer,
-  bulkTaskNew: BulkTasksNewContainer,
+  bulkTaskNew: TaskBulkAddViewContainer,
   freeAccountsNew: Nothing,
   sessionsNew: NewSessionForm,
   sessions: Nothing,

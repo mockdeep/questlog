@@ -4,7 +4,7 @@ import React from 'react';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
-class BulkTasksNew extends React.Component {
+class TaskBulkAddView extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
@@ -65,10 +65,10 @@ class BulkTasksNew extends React.Component {
   }
 }
 
-BulkTasksNew.propTypes = {
+TaskBulkAddView.propTypes = {
   setRoute: PropTypes.func.isRequired,
   taskTitles: PropTypes.string.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,
 };
 
-export default BulkTasksNew;
+export default TaskBulkAddView;
