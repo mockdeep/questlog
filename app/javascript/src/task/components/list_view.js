@@ -21,7 +21,7 @@ function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
 }
 
-class TaskList extends React.Component {
+class TaskListView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {currentTasks: [], pendingTasks: []};
@@ -141,9 +141,9 @@ class TaskList extends React.Component {
   }
 }
 
-TaskList.propTypes = {
+TaskListView.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 
-export default dragDropContext(HTML5Backend)(TaskList);
+export default dragDropContext(HTML5Backend)(TaskListView);
