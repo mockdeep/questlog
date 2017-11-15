@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
-import PrivacyPage from 'src/static/components/privacy_page';
+import PrivacyView from 'src/static/components/privacy_view';
 import SessionNewView from 'src/session/components/new_view';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TaskShowViewContainer from 'src/task/containers/show_view';
@@ -10,7 +10,7 @@ import TagListContainer from 'src/tag/containers/list';
 import FocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TimeframeList from 'src/timeframe/containers/list';
-import WhatPage from 'src/static/components/what_page';
+import WhatView from 'src/static/components/what_view';
 
 function Nothing() { return null; }
 
@@ -22,8 +22,8 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   sessions: Nothing,
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
-  privacy: PrivacyPage,
-  what: WhatPage,
+  privacy: PrivacyView,
+  what: WhatView,
   timeframes: TimeframeList,
   tags: TagListContainer,
   editTag: EditTagFormContainer,
