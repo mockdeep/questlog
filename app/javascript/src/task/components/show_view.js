@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
 
 function repeatString(task) {
@@ -27,7 +28,7 @@ function tagString(task) {
   return `Tags: ${task.tagNames.join(', ')}`;
 }
 
-function TaskShowView({task}) {
+function TaskShowView({task, updateTask, deleteTask}) {
   if (!task) { return null; }
 
   return (
@@ -37,10 +38,20 @@ function TaskShowView({task}) {
       <div>{estimateString(task)}</div>
       <div>{priorityString(task)}</div>
       <div>{tagString(task)}</div>
+
+      <SubTasksTable
+        task={task}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
+      />
     </section>
   );
 }
 
-TaskShowView.propTypes = {task: PropTypes.object};
+TaskShowView.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  task: PropTypes.object,
+  updateTask: PropTypes.func.isRequired,
+};
 
 export default TaskShowView;

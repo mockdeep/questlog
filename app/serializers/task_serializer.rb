@@ -11,6 +11,7 @@ class TaskSerializer
     :repeat_seconds,
     :release_at,
     :skip_count,
+    :sub_tasks,
     :tag_names,
     :tag_ids,
     :title,
