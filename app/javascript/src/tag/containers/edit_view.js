@@ -1,5 +1,5 @@
 import connectWithScratch from 'src/scratch/connect_with_scratch';
-import EditTagForm from 'src/tag/components/edit_form';
+import TagEditView from 'src/tag/components/edit_view';
 import {getSelectedTag} from 'src/tag/selectors';
 import {setRoute} from 'src/route/action_creators';
 import {updateTag} from 'src/tag/action_creators';
@@ -23,4 +23,4 @@ export default connectWithScratch(
   computeScratchKey,
   mapStateToProps,
   actionCreators
-)(EditTagForm);
+)(TagEditView);

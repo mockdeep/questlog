@@ -7,7 +7,7 @@ import {uniqWith, isEqual} from 'lodash';
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
 
-class EditTagForm extends React.Component {
+class TagEditView extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
@@ -101,7 +101,7 @@ class EditTagForm extends React.Component {
   }
 }
 
-EditTagForm.propTypes = {
+TagEditView.propTypes = {
   scratch: PropTypes.object.isRequired,
   setRoute: PropTypes.func.isRequired,
   tag: PropTypes.object,
@@ -109,4 +109,4 @@ EditTagForm.propTypes = {
   updateTag: PropTypes.func.isRequired,
 };
 
-export default EditTagForm;
+export default TagEditView;
