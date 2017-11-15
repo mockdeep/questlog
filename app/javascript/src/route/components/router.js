@@ -9,7 +9,7 @@ import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListContainer from 'src/tag/containers/list';
 import FocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
-import TimeframeList from 'src/timeframe/containers/list';
+import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 import WhatView from 'src/static/components/what_view';
 
 function Nothing() { return null; }
@@ -24,7 +24,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   tasks: TaskListViewContainer,
   privacy: PrivacyView,
   what: WhatView,
-  timeframes: TimeframeList,
+  timeframes: TimeframeListViewContainer,
   tags: TagListContainer,
   editTag: EditTagFormContainer,
   tag: FocusViewContainer,
