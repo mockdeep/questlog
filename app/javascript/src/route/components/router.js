@@ -5,7 +5,7 @@ import BulkTasksNewContainer from 'src/task/containers/bulk_new';
 import PrivacyPage from 'src/static/components/privacy_page';
 import NewSessionForm from 'src/session/components/new_form';
 import EditTagFormContainer from 'src/tag/containers/edit_form';
-import TaskShowScreenContainer from 'src/task/containers/show_screen';
+import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListContainer from 'src/tag/containers/list';
 import TaskContainer from 'src/task/containers/item';
 import TaskList from 'src/task/containers/list';
@@ -20,7 +20,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   freeAccountsNew: Nothing,
   sessionsNew: NewSessionForm,
   sessions: Nothing,
-  showTask: TaskShowScreenContainer,
+  showTask: TaskShowViewContainer,
   tasks: TaskList,
   privacy: PrivacyPage,
   what: WhatPage,

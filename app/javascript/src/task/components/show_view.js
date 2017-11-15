@@ -27,7 +27,7 @@ function tagString(task) {
   return `Tags: ${task.tagNames.join(', ')}`;
 }
 
-function TaskShowScreen({task}) {
+function TaskShowView({task}) {
   if (!task) { return null; }
 
   return (
@@ -41,6 +41,6 @@ function TaskShowScreen({task}) {
   );
 }
 
-TaskShowScreen.propTypes = {task: PropTypes.object};
+TaskShowView.propTypes = {task: PropTypes.object};
 
-export default TaskShowScreen;
+export default TaskShowView;
