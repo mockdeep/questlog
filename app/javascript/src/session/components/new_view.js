@@ -2,7 +2,7 @@ import React from 'react';
 
 import authenticityToken from 'src/_helpers/authenticity_token';
 
-function NewSessionForm() {
+function SessionNewView() {
   return (
     <form
       action='/session'
@@ -33,4 +33,4 @@ function NewSessionForm() {
   );
 }
 
-export default NewSessionForm;
+export default SessionNewView;
