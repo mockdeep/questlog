@@ -11,7 +11,7 @@ import BulkTaskStore from 'src/task/bulk_store';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
-import TaskRow from 'src/task/components/task_row';
+import DraggableTaskRow from 'src/task/components/draggable_task_row';
 
 function isPending(task) {
   return task.pending;
@@ -107,7 +107,7 @@ class TaskListView extends React.Component {
 
   taskRow(task) {
     return (
-      <TaskRow
+      <DraggableTaskRow
         key={task.id}
         task={task}
         moveTask={this.moveTask}

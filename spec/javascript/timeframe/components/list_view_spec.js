@@ -3,33 +3,28 @@ import {shallow} from 'enzyme';
 
 import TimeframeListView from 'src/timeframe/components/list_view';
 
-let wrapper;
-
 const props = {
   deleteTask: jest.fn(),
   fetchTasks: jest.fn(),
   updateTask: jest.fn(),
 };
 
-beforeEach(() => {
-  const connector = shallow(<TimeframeListView {...props} />);
-
-  wrapper = connector.first().shallow();
-});
-
 it('renders a loading message before content has been loaded', () => {
-  expect(wrapper).toHaveText('Loading Timeframes...');
+  const component = shallow(<TimeframeListView {...props} />);
+
+  expect(component).toHaveText('Loading Timeframes...');
 });
 
 it('renders the current median productivity when loaded', () => {
   const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
-  wrapper.instance().updateTimeframes(input);
-  wrapper.update();
+  const component = shallow(<TimeframeListView {...props} />);
+  component.instance().updateTimeframes(input);
+  component.update();
 
   const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
 
-  expect(wrapper).toIncludeText(expectedMessage);
+  expect(component).toIncludeText(expectedMessage);
 });
 
 it('renders the given timeframes for the user', () => {
@@ -41,18 +36,20 @@ it('renders the given timeframes for the user', () => {
   };
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-  wrapper.instance().updateTimeframes(input);
-  wrapper.update();
+  const component = shallow(<TimeframeListView {...props} />);
+  component.instance().updateTimeframes(input);
+  component.update();
 
-  expect(wrapper.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
+  expect(component.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
 });
 
 it('does not render empty timeframes', () => {
   const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-  wrapper.instance().updateTimeframes(input);
-  wrapper.update();
+  const component = shallow(<TimeframeListView {...props} />);
+  component.instance().updateTimeframes(input);
+  component.update();
 
-  expect(wrapper.find('TimeframeSection')).toBeEmpty();
+  expect(component.find('TimeframeSection')).toBeEmpty();
 });
