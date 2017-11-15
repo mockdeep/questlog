@@ -8,7 +8,7 @@ import EditTagFormContainer from 'src/tag/containers/edit_form';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListContainer from 'src/tag/containers/list';
 import FocusViewContainer from 'src/task/containers/focus_view';
-import TaskList from 'src/task/containers/list';
+import TaskListViewContainer from 'src/task/containers/list_view';
 import TimeframeList from 'src/timeframe/containers/list';
 import WhatPage from 'src/static/components/what_page';
 
@@ -21,7 +21,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   sessionsNew: SessionNewView,
   sessions: Nothing,
   showTask: TaskShowViewContainer,
-  tasks: TaskList,
+  tasks: TaskListViewContainer,
   privacy: PrivacyPage,
   what: WhatPage,
   timeframes: TimeframeList,
