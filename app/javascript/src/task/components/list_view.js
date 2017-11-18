@@ -97,6 +97,32 @@ class TaskListView extends React.Component {
     });
   }
 
+  currentTasksTable() {
+    if (this.state.currentTasks.length === 0) { return null; }
+
+    return (
+      <div id='current-tasks'>
+        <table className='task-list'>
+          <thead><TableHeaders label={'Current tasks'} /></thead>
+          <tbody>{this.currentTaskRows()}</tbody>
+        </table>
+      </div>
+    );
+  }
+
+  pendingTasksTable() {
+    if (this.state.pendingTasks.length === 0) { return null; }
+
+    return (
+      <div id='pending-tasks'>
+        <table className='task-list'>
+          <thead><TableHeaders label={'Pending tasks'} /></thead>
+          <tbody>{this.pendingTaskRows()}</tbody>
+        </table>
+      </div>
+    );
+  }
+
   currentTaskRows() {
     return this.state.currentTasks.map(this.taskRow);
   }
@@ -123,19 +149,9 @@ class TaskListView extends React.Component {
       <div>
         <NewTaskForm />
         <br />
-        <div id='current-tasks'>
-          <table className='task-list'>
-            <thead><TableHeaders label={'Current tasks'} /></thead>
-            <tbody>{this.currentTaskRows()}</tbody>
-          </table>
-        </div>
+        {this.currentTasksTable()}
+        {this.pendingTasksTable()}
 
-        <div id='pending-tasks'>
-          <table className='task-list'>
-            <thead><TableHeaders label={'Pending tasks'} /></thead>
-            <tbody>{this.pendingTaskRows()}</tbody>
-          </table>
-        </div>
       </div>
     );
   }
