@@ -73,14 +73,23 @@ module API
 
       def task_params
         params.require(:task)
-          .permit(*permitted_params)
+          .permit(*permitted_params, tag_names: [])
           .to_h
           .symbolize_keys
           .merge(parsed_title)
       end
 
       def permitted_params
-        %i[done parent_task_id postpone title priority timeframe]
+        %i[
+          done
+          parent_task_id
+          postpone
+          priority
+          release_at
+          repeat_seconds
+          timeframe
+          title
+        ]
       end
 
       def parsed_title
