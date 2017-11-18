@@ -80,7 +80,7 @@ module API
       end
 
       def permitted_params
-        %i[done postpone title priority timeframe]
+        %i[done parent_task_id postpone title priority timeframe]
       end
 
       def parsed_title

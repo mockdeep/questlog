@@ -17,7 +17,7 @@ class NewTaskForm extends React.Component {
   saveTask(event) {
     event.preventDefault();
 
-    this.props.createTask({title: this.props.task.title.trim()});
+    this.props.createTask(this.props.task);
   }
 
   buttonMessage() {

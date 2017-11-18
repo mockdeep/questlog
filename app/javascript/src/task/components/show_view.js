@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import NewTaskForm from 'src/task/containers/new_task_form';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
 
@@ -28,30 +29,52 @@ function tagString(task) {
   return `Tags: ${task.tagNames.join(', ')}`;
 }
 
-function TaskShowView({task, updateTask, deleteTask}) {
-  if (!task) { return null; }
+class TaskShowView extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <section>
-      <h2>{task.title}</h2>
-      <div>{repeatString(task)}</div>
-      <div>{estimateString(task)}</div>
-      <div>{priorityString(task)}</div>
-      <div>{tagString(task)}</div>
+    this.setScratchTask(props.task);
+  }
 
-      <SubTasksTable
-        task={task}
-        updateTask={updateTask}
-        deleteTask={deleteTask}
-      />
-    </section>
-  );
+  componentWillReceiveProps({task}) {
+    this.setScratchTask(task);
+  }
+
+  setScratchTask(task) {
+    if (!task) { return; }
+
+    this.props.updateTaskMeta({newTask: {parentTaskId: task.id, title: ''}});
+  }
+
+  render() {
+    const {task, updateTask, deleteTask} = this.props;
+
+    if (!task) { return null; }
+
+    return (
+      <section>
+        <h2>{task.title}</h2>
+        <div>{repeatString(task)}</div>
+        <div>{estimateString(task)}</div>
+        <div>{priorityString(task)}</div>
+        <div>{tagString(task)}</div>
+
+        <SubTasksTable
+          task={task}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
+        />
+        <NewTaskForm />
+      </section>
+    );
+  }
 }
 
 TaskShowView.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   task: PropTypes.object,
   updateTask: PropTypes.func.isRequired,
+  updateTaskMeta: PropTypes.func.isRequired,
 };
 
 export default TaskShowView;
