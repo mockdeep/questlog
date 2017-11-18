@@ -10,11 +10,17 @@ function estimateMinutes(task) {
 }
 
 function processTask(task) {
-  return {
-    estimateMinutes: estimateMinutes(task),
+  const processedTask = {
     loadingState: 'ready',
     ...task,
+    estimateMinutes: estimateMinutes(task),
   };
+
+  if (task.subTasks) {
+    processedTask.subTasks = task.subTasks.map(processTask);
+  }
+
+  return processedTask;
 }
 
 const taskSchema = new schema.Entity('tasks', {}, {processStrategy: processTask});
