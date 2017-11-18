@@ -12,6 +12,10 @@ const timeframePositions = {
   century: 8,
 };
 
+function isChildTask(task) {
+  return task.subTasks.length === 0;
+}
+
 function timeframePosition(task) {
   const {timeframe} = task;
 
@@ -40,7 +44,7 @@ const getPartitionedTasks = createSelector(
 
 const getUndoneTasks = createSelector(
   getPartitionedTasks,
-  (partitionedTasks) => partitionedTasks.undone
+  (partitionedTasks) => partitionedTasks.undone.filter(isChildTask)
 );
 
 const getCurrentTask = createSelector(
