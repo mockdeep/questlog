@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
+import Link from 'src/route/containers/link';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 class TaskTitle extends React.Component {
@@ -42,7 +43,27 @@ class TaskTitle extends React.Component {
     return <div className='timeframe'>{timeframeName}</div>;
   }
 
+  taskTitle() {
+    const {task} = this.props;
+
+    if (task.id) {
+      return (
+        <Link
+          to='showTask'
+          className='task-display__title'
+          params={{taskId: task.id}}
+        >
+          {task.title}
+        </Link>
+      );
+    }
+
+    return task.title;
+  }
+
   render() {
+    const {deleteTask, task} = this.props;
+
     return (
       <div className='row'>
         <div id='task' className={this.className()}>
@@ -52,12 +73,12 @@ class TaskTitle extends React.Component {
                 <td className='col-md-1'>
                   {this.timeframeName()}
                   <DeleteButton
-                    task={this.props.task}
-                    deleteTask={this.props.deleteTask}
+                    task={task}
+                    deleteTask={deleteTask}
                   />
                 </td>
                 <td className='col-md-10 title'>
-                  {this.props.task.title}
+                  {this.taskTitle()}
                   <span className='emblems'>{this.emblems()}</span>
                 </td>
 

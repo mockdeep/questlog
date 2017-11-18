@@ -26,6 +26,15 @@
   text-align: center;
 }
 
+.task-display__title {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .task-footer {
   text-align: center;
 }
