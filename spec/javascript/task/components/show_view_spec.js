@@ -3,12 +3,36 @@ import {shallow} from 'enzyme';
 
 import TaskShowView from 'src/task/components/show_view';
 
-const props = {deleteTask: jest.fn(), updateTask: jest.fn()};
+const props = {
+  deleteTask: jest.fn(),
+  updateTask: jest.fn(),
+  updateTaskMeta: jest.fn(),
+};
 
 it('renders nothing when the task is not present', () => {
   const component = shallow(<TaskShowView {...props} />);
 
   expect(component.type()).toBeNull();
+});
+
+it('sets the parent task id in scratch space', () => {
+  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+
+  shallow(<TaskShowView {...props} task={task} />);
+
+  const expected = {newTask: {parentTaskId: 52, title: ''}};
+  expect(props.updateTaskMeta).toHaveBeenCalledWith(expected);
+});
+
+it('updates the parent task id in scratch space when component updates', () => {
+  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+
+  const component = shallow(<TaskShowView {...props} task={task} />);
+
+  component.setProps({task: {...task, id: 501}});
+
+  const expected = {newTask: {parentTaskId: 501, title: ''}};
+  expect(props.updateTaskMeta).toHaveBeenCalledWith(expected);
 });
 
 it('renders something when the task is present', () => {
