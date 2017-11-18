@@ -22,4 +22,8 @@ class TaskSerializer
     task.release_at.present?
   end
 
+  def sub_tasks(task)
+    task.sub_tasks.undone
+  end
+
 end
