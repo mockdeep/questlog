@@ -43,7 +43,17 @@ class TaskShowView extends React.Component {
   setScratchTask(task) {
     if (!task) { return; }
 
-    this.props.updateTaskMeta({newTask: {parentTaskId: task.id, title: ''}});
+    const newTask = {
+      priority: task.priority,
+      repeatSeconds: task.repeatSeconds,
+      releaseAt: task.releaseAt,
+      tagNames: task.tagNames,
+      timeframe: task.timeframe,
+      parentTaskId: task.id,
+      title: '',
+    };
+
+    this.props.updateTaskMeta({newTask});
   }
 
   render() {

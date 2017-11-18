@@ -15,24 +15,31 @@ it('renders nothing when the task is not present', () => {
   expect(component.type()).toBeNull();
 });
 
-it('sets the parent task id in scratch space', () => {
+it('sets the task in scratch space', () => {
   const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
 
   shallow(<TaskShowView {...props} task={task} />);
 
-  const expected = {newTask: {parentTaskId: 52, title: ''}};
-  expect(props.updateTaskMeta).toHaveBeenCalledWith(expected);
+  const [[payload]] = props.updateTaskMeta.mock.calls;
+  const {newTask} = payload;
+
+  expect(newTask.priority).toBeUndefined();
+  expect(newTask.repeatSeconds).toBeUndefined();
+  expect(newTask.releaseAt).toBeUndefined();
+  expect(newTask.tagNames).toEqual([]);
+  expect(newTask.timeframe).toBeUndefined();
+  expect(newTask.parentTaskId).toBe(52);
+  expect(newTask.title).toBe('');
 });
 
-it('updates the parent task id in scratch space when component updates', () => {
+it('updates the task in scratch space when component updates', () => {
   const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
   component.setProps({task: {...task, id: 501}});
 
-  const expected = {newTask: {parentTaskId: 501, title: ''}};
-  expect(props.updateTaskMeta).toHaveBeenCalledWith(expected);
+  expect(props.updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
 });
 
 it('renders something when the task is present', () => {
