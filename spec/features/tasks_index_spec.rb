@@ -70,8 +70,8 @@ RSpec.describe 'tasks index page', js: true do
     )
     visit('/tasks')
     expect(pending_tasks).to have_content(task.title)
-    within('tr', text: task.title) { click_button('Undo') }
-    expect(pending_tasks).not_to have_content(task.title)
+    within('tr', text: task.title) { click_button('UNDO') }
+    expect(page).to have_no_selector('#pending-tasks')
     expect(current_tasks).to have_content(task.title)
   end
 

@@ -136,8 +136,8 @@ class TaskRow extends React.PureComponent {
     if (!this.props.task.pending) { return false; }
 
     return (
-      <button className='btn btn-link' onClick={this.undoTask}>
-        {'Undo'}
+      <button className='btn btn-link task-list__action' onClick={this.undoTask}>
+        {'UNDO'}
       </button>
     );
   }
