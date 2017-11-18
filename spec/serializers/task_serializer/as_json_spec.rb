@@ -20,6 +20,7 @@ RSpec.describe TaskSerializer, '#as_json' do
       id: task.id,
       pending: true,
       tagIds: task.tag_ids,
+      subTasks: [],
     )
 
     expect(serializer.(task)).to eq(expected_attrs)

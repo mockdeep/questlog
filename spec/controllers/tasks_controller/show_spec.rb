@@ -21,6 +21,7 @@ RSpec.describe TasksController, '#show' do
           'repeatSeconds' => nil,
           'releaseAt' => nil,
           'skipCount' => 0,
+          'subTasks' => [],
           'tagNames' => [],
           'tagIds' => [],
           'title' => task.title,
