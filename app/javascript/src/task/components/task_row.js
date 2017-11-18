@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {map} from 'lodash';
 
+import Link from 'src/route/containers/link';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 class TaskRow extends React.PureComponent {
@@ -141,6 +142,20 @@ class TaskRow extends React.PureComponent {
     );
   }
 
+  taskTitle() {
+    const {task} = this.props;
+
+    return (
+      <Link
+        to='showTask'
+        className='task-display__title'
+        params={{taskId: task.id}}
+      >
+        {task.title}
+      </Link>
+    );
+  }
+
   storeDOMNode(domNode) {
     this.domNode = domNode;
   }
@@ -153,7 +168,7 @@ class TaskRow extends React.PureComponent {
             {'DONE'}
           </button>
         </td>
-        <td>{this.props.task.title}</td>
+        <td>{this.taskTitle()}</td>
         <td>{this.taskEstimate()}</td>
         <td>{this.emblems()}</td>
         <td>

@@ -1,6 +1,7 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {mapValues} from 'lodash';
 
 import {findRoute} from 'src/route/helpers';
 
@@ -17,7 +18,9 @@ class Link extends React.Component {
   }
 
   path() {
-    return findRoute(this.props.to).toPath(this.props.params);
+    const params = mapValues(this.props.params, (value) => value.toString());
+
+    return findRoute(this.props.to).toPath(params);
   }
 
   render() {
