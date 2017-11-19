@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115035720) do
+ActiveRecord::Schema.define(version: 20171119052925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,10 @@ ActiveRecord::Schema.define(version: 20171115035720) do
     t.integer "position", null: false
     t.string "timeframe"
     t.integer "parent_task_id"
+    t.integer "energy"
+    t.integer "fun"
+    t.integer "importance"
+    t.integer "urgency"
     t.index ["done_at"], name: "index_tasks_on_done_at"
     t.index ["parent_task_id"], name: "index_tasks_on_parent_task_id"
     t.index ["position"], name: "index_tasks_on_position"
