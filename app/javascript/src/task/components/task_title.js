@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
-import Link from 'src/route/containers/link';
+import TaskLink from 'src/task/components/link';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 class TaskTitle extends React.Component {
@@ -43,24 +43,6 @@ class TaskTitle extends React.Component {
     return <div className='timeframe'>{timeframeName}</div>;
   }
 
-  taskTitle() {
-    const {task} = this.props;
-
-    if (task.id) {
-      return (
-        <Link
-          to='showTask'
-          className='task-display__title'
-          params={{taskId: task.id}}
-        >
-          {task.title}
-        </Link>
-      );
-    }
-
-    return task.title;
-  }
-
   render() {
     const {deleteTask, task} = this.props;
 
@@ -78,7 +60,7 @@ class TaskTitle extends React.Component {
                   />
                 </td>
                 <td className='col-md-10 title'>
-                  {this.taskTitle()}
+                  {task.id ? <TaskLink task={task} /> : task.title}
                   <span className='emblems'>{this.emblems()}</span>
                 </td>
 

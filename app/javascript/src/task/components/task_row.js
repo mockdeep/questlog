@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {map} from 'lodash';
 
-import Link from 'src/route/containers/link';
+import TaskLink from 'src/task/components/link';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 class TaskRow extends React.PureComponent {
@@ -142,25 +142,13 @@ class TaskRow extends React.PureComponent {
     );
   }
 
-  taskTitle() {
-    const {task} = this.props;
-
-    return (
-      <Link
-        to='showTask'
-        className='task-display__title'
-        params={{taskId: task.id}}
-      >
-        {task.title}
-      </Link>
-    );
-  }
-
   storeDOMNode(domNode) {
     this.domNode = domNode;
   }
 
   render() {
+    const {task, timeframesEnabled} = this.props;
+
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
         <td className='task-list__cell'>
@@ -168,7 +156,7 @@ class TaskRow extends React.PureComponent {
             {'DONE'}
           </button>
         </td>
-        <td>{this.taskTitle()}</td>
+        <td><TaskLink task={task} /></td>
         <td>{this.taskEstimate()}</td>
         <td>{this.emblems()}</td>
         <td>
@@ -179,9 +167,9 @@ class TaskRow extends React.PureComponent {
             <option value='3'>{'3'}</option>
           </select>
         </td>
-        <td>{this.props.timeframesEnabled ? this.timeframeSelector() : ''}</td>
+        <td>{timeframesEnabled ? this.timeframeSelector() : ''}</td>
         <td>
-          {this.props.task.pending ? this.undoButton() : ''}
+          {task.pending ? this.undoButton() : ''}
           <button className='btn btn-link task-list__action' onClick={this.deleteTask}>
             {'DELETE'}
           </button>
