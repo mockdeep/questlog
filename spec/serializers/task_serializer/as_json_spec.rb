@@ -18,9 +18,9 @@ RSpec.describe TaskSerializer, '#as_json' do
 
     expected_attrs = camelize_keys(task_attrs).merge(
       id: task.id,
+      parentTaskId: nil,
       pending: true,
       tagIds: task.tag_ids,
-      subTasks: [],
     )
 
     expect(serializer.(task)).to eq(expected_attrs)
