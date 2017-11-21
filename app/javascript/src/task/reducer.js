@@ -1,4 +1,4 @@
-import {keyBy} from 'lodash';
+import {groupBy, keyBy} from 'lodash';
 import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
@@ -15,10 +15,6 @@ function processTask(task) {
     estimateMinutes: estimateMinutes(task),
   };
 
-  if (task.subTasks) {
-    processedTask.subTasks = task.subTasks.map(processTask);
-  }
-
   return processedTask;
 }
 
@@ -31,7 +27,11 @@ export default createBasicReducer({
   },
 
   [SET](previousState, taskData) {
-    return {...previousState, byId: keyBy(taskData.map(processTask), 'id')};
+    const tasks = taskData.map(processTask);
+    const tasksByParentId = groupBy(tasks, 'parentTaskId');
+    tasks.forEach((task) => { task.subTasks = tasksByParentId[task.id] || []; });
+
+    return {...previousState, byId: keyBy(tasks, 'id')};
   },
 
   [UPDATE](previousState, taskAttrs) {

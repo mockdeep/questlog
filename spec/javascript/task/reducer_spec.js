@@ -24,8 +24,8 @@ describe(SET, () => {
     const expectedState = {
       meta: 'foo',
       byId: {
-        1: {...task1, estimateMinutes: 30, loadingState: 'ready'},
-        5: {...task2, estimateMinutes: 30, loadingState: 'ready'},
+        1: {...task1, estimateMinutes: 30, loadingState: 'ready', subTasks: []},
+        5: {...task2, estimateMinutes: 30, loadingState: 'ready', subTasks: []},
       },
     };
 
@@ -45,19 +45,23 @@ describe(SET, () => {
 
   it('sets estimateMinutes for subTasks', () => {
     const previousState = {byId: {}};
-    const task1 = {id: 1, title: 'a task'};
-    const task2 = {id: 5, title: 'wat task', subTasks: [task1]};
-    const action = {type: SET, payload: [task2]};
-    const expectedState = {
-      byId: {
-        5: {
-          ...task2,
-          estimateMinutes: 30,
-          loadingState: 'ready',
-          subTasks: [{...task1, estimateMinutes: 30, loadingState: 'ready'}],
-        },
-      },
+    const task1 = {id: 1, title: 'a task', parentTaskId: 5};
+    const task2 = {id: 5, title: 'wat task'};
+    const action = {type: SET, payload: [task1, task2]};
+
+    const expectedTask1 = {
+      ...task1,
+      estimateMinutes: 30,
+      loadingState: 'ready',
+      subTasks: [],
     };
+    const expectedTask2 = {
+      ...task2,
+      estimateMinutes: 30,
+      loadingState: 'ready',
+      subTasks: [expectedTask1],
+    };
+    const expectedState = {byId: {1: expectedTask1, 5: expectedTask2}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
   });
