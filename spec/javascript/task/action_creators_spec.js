@@ -3,11 +3,11 @@ jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
 import createAppStore from 'src/create_app_store';
-import {ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
+import {ajaxDelete, ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
   SET, UPDATE, UPDATE_META,
-  createTask, fetchTasks, updateTask, updateTaskMeta,
+  createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
 
 let store;
@@ -61,6 +61,40 @@ describe('createTask', () => {
     const expectedAction = updateTaskMeta({ajaxState: 'ready'});
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+});
+
+describe('deleteTask', () => {
+  it('sends a delete request to the server', async () => {
+    const thunk = deleteTask(5);
+
+    ajaxDelete.mockReturnValue(Promise.resolve());
+
+    await thunk(dispatch);
+
+    expect(ajaxDelete).toHaveBeenCalledWith('/api/v1/tasks/5');
+  });
+
+  it('re-fetches tasks', async () => {
+    const thunk = deleteTask(5);
+
+    ajaxDelete.mockReturnValue(Promise.resolve());
+
+    await thunk(dispatch);
+
+    expect(dispatch).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenLastCalledWith(expect.any(Function));
+    expect(dispatch.mock.calls[0][0].name).toBe('fetchTasksThunk');
+  });
+
+  it('unloads the task store', async () => {
+    const thunk = deleteTask(5);
+
+    ajaxDelete.mockReturnValue(Promise.resolve());
+
+    await thunk(dispatch);
+
+    expect(TaskStore.unload).toHaveBeenCalled();
   });
 });
 

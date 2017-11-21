@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {sortBy} from 'lodash';
 
 import {getUndoneTasks} from 'src/task/selectors';
 
@@ -26,7 +27,7 @@ const getSelectedTagSlug = createSelector(
 
 const getOrderedTags = createSelector(
   (state) => state.tag,
-  (tagState) => tagState.orderedIds.map((tagId) => tagState.byId[tagId])
+  (tagState) => sortBy(Object.values(tagState.byId), 'name')
 );
 
 const getActiveTags = createSelector(

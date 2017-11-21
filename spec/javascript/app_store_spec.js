@@ -8,10 +8,9 @@ describe('appStore', () => {
       notification: {},
       route: {params: {}},
       scratch: {},
-      tag: {byId: {}, orderedIds: [], meta: {}},
+      tag: {byId: {}, meta: {}},
       task: {
         byId: {},
-        orderedIds: [],
         meta: {
           postponeSeconds: 300,
           newTask: {title: ''},

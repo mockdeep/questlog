@@ -1,22 +1,17 @@
 import update from 'immutability-helper';
-import {normalize, schema} from 'normalizr';
+import {keyBy} from 'lodash';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
-
-const tagSchema = new schema.Entity('tags');
-const tagListSchema = new schema.Array(tagSchema);
 
 import {INIT, SET, UPDATE, UPDATE_META} from 'src/tag/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
-    return {orderedIds: [], byId: {}, meta: {}};
+    return {byId: {}, meta: {}};
   },
 
   [SET](previousState, tags) {
-    const {entities, result} = normalize(tags, tagListSchema);
-
-    return {...previousState, byId: entities.tags, orderedIds: result};
+    return {...previousState, byId: keyBy(tags, 'id')};
   },
 
   [UPDATE](previousState, tagAttrs) {

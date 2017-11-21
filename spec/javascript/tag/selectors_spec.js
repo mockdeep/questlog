@@ -3,8 +3,8 @@ import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
 describe('getActiveTags', () => {
   it('returns tags that have one or more unfinished associated tasks', () => {
     const tag1 = {id: 1, rules: []};
-    const tag2 = {id: 2, rules: []};
-    const tag3 = {id: 3, rules: []};
+    const tag2 = {id: 2, name: 'b tag', rules: []};
+    const tag3 = {id: 3, name: 'a tag', rules: []};
 
     const task1 = {timeframe: null, tagIds: [2], subTasks: []};
     const task2 = {timeframe: null, tagIds: [1], releaseAt: 'foo', subTasks: []};
