@@ -60,4 +60,12 @@ describe('getUndoneTasks', () => {
 
     expect(getUndoneTasks(state)).toEqual([task1]);
   });
+
+  it('raises an error when task has invalid timeframe', () => {
+    const task = {id: 3, title: 'a task', timeframe: 'yesterday', subTasks: []};
+
+    const state = {task: {byId: {3: task}}};
+
+    expect(() => getUndoneTasks(state)).toThrow(/invalid timeframe/);
+  });
 });

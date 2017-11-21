@@ -5,7 +5,6 @@ describe(INIT, () => {
   it('sets up the basic structure for the store', () => {
     const expectedState = {
       byId: {},
-      orderedIds: [],
       meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
     };
 
@@ -18,7 +17,6 @@ describe(SET, () => {
     const previousState = {
       meta: 'foo',
       byId: {dont: 'care'},
-      orderedIds: [1, 2, 3],
     };
     const task1 = {id: 1, title: 'a task'};
     const task2 = {id: 5, title: 'wat task'};
@@ -29,7 +27,6 @@ describe(SET, () => {
         1: {...task1, estimateMinutes: 30, loadingState: 'ready'},
         5: {...task2, estimateMinutes: 30, loadingState: 'ready'},
       },
-      orderedIds: [5, 1],
     };
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
@@ -39,16 +36,15 @@ describe(SET, () => {
     const previousState = {
       meta: 'foo',
       byId: {dont: 'care'},
-      orderedIds: [1, 2, 3],
     };
     const action = {type: SET, payload: []};
-    const expectedState = {meta: 'foo', byId: {}, orderedIds: []};
+    const expectedState = {meta: 'foo', byId: {}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
   });
 
   it('sets estimateMinutes for subTasks', () => {
-    const previousState = {byId: {}, orderedIds: []};
+    const previousState = {byId: {}};
     const task1 = {id: 1, title: 'a task'};
     const task2 = {id: 5, title: 'wat task', subTasks: [task1]};
     const action = {type: SET, payload: [task2]};
@@ -61,7 +57,6 @@ describe(SET, () => {
           subTasks: [{...task1, estimateMinutes: 30, loadingState: 'ready'}],
         },
       },
-      orderedIds: [5],
     };
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
@@ -71,10 +66,7 @@ describe(SET, () => {
 describe(UPDATE, () => {
   it('updates the task in the store', () => {
     const task = {id: 6, title: 'foo'};
-    const previousState = {
-      byId: {6: task},
-      orderedIds: [6],
-    };
+    const previousState = {byId: {6: task}};
     const payload = {id: 6, title: 'bar', estimateSeconds: 60};
     const action = {type: UPDATE, payload};
     const expectedTask = {
@@ -83,17 +75,14 @@ describe(UPDATE, () => {
       estimateMinutes: 1,
       loadingState: 'ready',
     };
-    const expectedState = {byId: {6: expectedTask}, orderedIds: [6]};
+    const expectedState = {byId: {6: expectedTask}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
   });
 
   it('preserves the loading state passed through the task attributes', () => {
     const task = {id: 6, title: 'foo'};
-    const previousState = {
-      byId: {6: task},
-      orderedIds: [6],
-    };
+    const previousState = {byId: {6: task}};
     const payload = {id: 6, loadingState: 'updating'};
     const action = {type: UPDATE, payload};
     const expectedTask = {
@@ -101,7 +90,7 @@ describe(UPDATE, () => {
       estimateMinutes: 30,
       loadingState: 'updating',
     };
-    const expectedState = {byId: {6: expectedTask}, orderedIds: [6]};
+    const expectedState = {byId: {6: expectedTask}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
   });
