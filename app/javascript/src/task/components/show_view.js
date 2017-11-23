@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
+import ParentTaskBreadCrumbs from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
 
@@ -63,6 +64,7 @@ class TaskShowView extends React.Component {
 
     return (
       <section>
+        <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
         <h2>{task.title}</h2>
         <div>{repeatString(task)}</div>
         <div>{estimateString(task)}</div>
