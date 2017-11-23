@@ -41,6 +41,10 @@ class TaskShowView extends React.Component {
     this.setScratchTask(task);
   }
 
+  componentWillUnmount() {
+    this.props.updateTaskMeta({newTask: {title: ''}});
+  }
+
   setScratchTask(task) {
     if (!task) { return; }
 

@@ -34,12 +34,20 @@ it('sets the task in scratch space', () => {
 
 it('updates the task in scratch space when component updates', () => {
   const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
-
   const component = shallow(<TaskShowView {...props} task={task} />);
 
   component.setProps({task: {...task, id: 501}});
 
   expect(props.updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
+});
+
+it('clears the scratch space when component unmounts', () => {
+  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+  const component = shallow(<TaskShowView {...props} task={task} />);
+
+  component.unmount();
+
+  expect(props.updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: ''}});
 });
 
 it('renders something when the task is present', () => {

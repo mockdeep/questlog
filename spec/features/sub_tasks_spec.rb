@@ -31,4 +31,17 @@ RSpec.describe 'adding sub tasks', js: true do
     expect(task_title).to have_content('(no tasks!)')
   end
 
+  it 'does not have side effects on adding tasks on other pages' do
+    visit '/'
+    add_task('the parent task')
+    click_link('the parent task')
+    expect(page).to have_selector('h2', text: 'the parent task')
+    add_task('the sub task')
+    expect(page).to have_selector('td', text: 'the sub task')
+    page.go_back
+    add_task('!1 the not sub task')
+    click_link('the not sub task')
+    expect(page).to have_no_link('the parent task')
+  end
+
 end
