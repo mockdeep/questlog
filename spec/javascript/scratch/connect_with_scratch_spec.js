@@ -24,14 +24,14 @@ function wrapComponent(...args) {
   const connector = connectWithScratch(...args);
   const WrappedComponent = connector(TestComponent);
 
-  container = mount(<WrappedComponent store={store} />);
+  container = mount(<WrappedComponent store={store} someProp={'fooProp'} />);
 
   return container.find(TestComponent);
 }
 
 beforeEach(() => { store = createAppStore(); });
 
-it('passes state mapped from props down to the wrapped component', () => {
+it('passes props mapped from state down to the wrapped component', () => {
   function mapStateToProps(state) {
     return {
       dooble: 'dobble',
@@ -46,6 +46,19 @@ it('passes state mapped from props down to the wrapped component', () => {
 
   expect(testComponent).toHaveProp('dooble', 'dobble');
   expect(testComponent).toHaveProp('propFromState', 'something');
+});
+
+it('passes ownProps through', () => {
+  function mapStateToProps(state, ownProps) {
+    return {
+      dooble: 'dobble',
+      propsFromProps: ownProps.someProp,
+    };
+  }
+
+  const testComponent = wrapComponent(computeScratchKey, mapStateToProps, {});
+
+  expect(testComponent).toHaveProp('propsFromProps', 'fooProp');
 });
 
 it('creates a new scratch space based on the given key', () => {
