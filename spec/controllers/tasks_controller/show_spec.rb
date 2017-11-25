@@ -26,6 +26,7 @@ RSpec.describe TasksController, '#show' do
           'tagIds' => [],
           'title' => task.title,
           'timeframe' => nil,
+          'updatedAt' => task.updated_at.as_json,
         },
       }
       expect(JSON.parse(response.body)).to eq serial_task
