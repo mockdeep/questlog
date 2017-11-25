@@ -11,13 +11,13 @@ import {
 } from 'src/scratch/action_creators';
 
 function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) {
-  function scratchMapStateToProps(state) {
-    const scratchKey = computeScratchKey(state);
+  function scratchMapStateToProps(state, ownProps) {
+    const scratchKey = computeScratchKey(state, ownProps);
 
     return {
       scratchKey,
       scratch: state.scratch[scratchKey],
-      wrappedComponentProps: mapStateToProps(state),
+      wrappedComponentProps: mapStateToProps(state, ownProps),
     };
   }
 
