@@ -16,6 +16,7 @@ class TaskSerializer
     :tag_ids,
     :title,
     :timeframe,
+    :updated_at,
   )
 
   def pending(task)
