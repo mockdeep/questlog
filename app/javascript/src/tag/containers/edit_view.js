@@ -11,10 +11,7 @@ function computeScratchKey(state) {
 }
 
 function mapStateToProps(state) {
-  return {
-    tag: getSelectedTag(state),
-    tempRules: state.tag.meta.tempRules,
-  };
+  return {tag: getSelectedTag(state)};
 }
 
 const actionCreators = {setRoute, updateTag};
