@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import TaskEditableTitle from 'src/task/containers/editable_title';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import ParentTaskBreadCrumbs from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
@@ -69,7 +70,7 @@ class TaskShowView extends React.Component {
     return (
       <section>
         <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
-        <h2>{task.title}</h2>
+        <h2><TaskEditableTitle task={task} /></h2>
         <div>{repeatString(task)}</div>
         <div>{estimateString(task)}</div>
         <div>{priorityString(task)}</div>

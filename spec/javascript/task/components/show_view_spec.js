@@ -63,7 +63,7 @@ it('renders the task title', () => {
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
-  expect(component.find('h2')).toHaveText('foo title');
+  expect(component.find('Connect(Scratch(TaskEditableTitle))')).toBePresent();
 });
 
 it('renders a message about the repeat time when present', () => {
