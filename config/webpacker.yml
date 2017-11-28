@@ -14,8 +14,8 @@ default: &default
   cache_manifest: false
 
   extensions:
+    - .elm
     - .js
-    - .jsx # https://github.com/rails/webpacker/issues/689
 
 development:
   <<: *default
