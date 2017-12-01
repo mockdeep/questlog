@@ -44,7 +44,7 @@ class EditTaskForm extends React.Component {
 
   toggleDisplay() {
     $('#edit-task').click();
-    this.replaceState(this.getInitialState());
+    this.setState(this.getInitialState());
   }
 
   buttonMessage() {
