@@ -7,8 +7,12 @@ import ErrorDisplay from 'src/_common/components/error_display';
 class EditTaskForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {taskTitle: this.props.task.title, errors: []};
+    this.state = this.getInitialState();
     autobind(this);
+  }
+
+  getInitialState() {
+    return {taskTitle: this.props.task.title, errors: []};
   }
 
   componentWillReceiveProps(newProps) {
