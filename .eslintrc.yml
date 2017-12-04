@@ -94,7 +94,6 @@ rules:
   ### dumb rules
   array-element-newline: off
   capitalized-comments: off
-  jsx-a11y/no-autofocus: off
   line-comment-position: off
   no-inline-comments: off
   no-ternary: off
