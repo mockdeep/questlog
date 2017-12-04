@@ -6,7 +6,13 @@ class TaskEditTitleForm extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
-    props.updateScratch({taskTitle: props.taskTitle});
+    props.updateScratch({focused: false, taskTitle: props.task.title});
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.task.id !== this.props.task.id) {
+      this.props.updateScratch({focused: false, taskTitle: newProps.task.title});
+    }
   }
 
   updateTitleInput(event) {
@@ -15,32 +21,39 @@ class TaskEditTitleForm extends React.Component {
 
   saveTask(event) {
     event.preventDefault();
+    const {task, updateTask} = this.props;
 
-    this.props.saveTask({title: this.props.scratch.taskTitle});
+    this.input.blur();
+    updateTask(task.id, {title: this.props.scratch.taskTitle});
+    this.props.updateScratch({focused: false});
+  }
+
+  storeInput(input) {
+    this.input = input;
   }
 
   render() {
+    const {scratch, task} = this.props;
+
     return (
       <form onSubmit={this.saveTask}>
         <input
-          autoFocus
-          value={this.props.scratch.taskTitle || this.props.taskTitle}
+          ref={this.storeInput}
+          className={`task-input${scratch.focused ? '' : ' hidden-border'}`}
+          value={scratch.taskTitle || task.title}
           onChange={this.updateTitleInput}
           onBlur={this.saveTask}
         />
-        <button type='submit' className='btn btn-primary btn-sm'>
-          {'Save'}
-        </button>
       </form>
     );
   }
 }
 
 TaskEditTitleForm.propTypes = {
-  saveTask: PropTypes.func.isRequired,
   scratch: PropTypes.object.isRequired,
-  taskTitle: PropTypes.string.isRequired,
+  task: PropTypes.object.isRequired,
   updateScratch: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TaskEditTitleForm;
