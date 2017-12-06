@@ -5,7 +5,6 @@ import MainButtons from 'src/task/components/main_buttons';
 import ParentTaskBreadCrumbs from 'src/task/containers/parent_task_bread_crumbs';
 import TaskTitle from 'src/task/components/task_title';
 import TagButtonsContainer from 'src/tag/containers/buttons';
-import EditTaskForm from 'src/task/components/edit_task_form';
 
 function TaskDisplay(props) {
   return (
@@ -24,11 +23,6 @@ function TaskDisplay(props) {
         storePostponeSeconds={props.storePostponeSeconds}
         postponeTask={props.postponeTask}
         completeTask={props.completeTask}
-      />
-      <hr />
-      <EditTaskForm
-        task={props.task}
-        updateTask={props.updateTask}
       />
     </div>
   );

@@ -63,6 +63,7 @@ class TaskFocusView extends React.Component {
           completeTask={this.completeTask}
           deleteTask={this.props.deleteTask}
         />
+        <hr />
         <NewTaskForm />
 
         <TaskFooter task={this.task()} completeTask={this.completeTask} />
