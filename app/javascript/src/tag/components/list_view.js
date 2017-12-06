@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
+import {tagShape} from 'src/shapes';
 
 class TagListView extends React.Component {
   constructor(props) {
@@ -32,6 +33,6 @@ class TagListView extends React.Component {
   }
 }
 
-TagListView.propTypes = {tags: PropTypes.array.isRequired};
+TagListView.propTypes = {tags: PropTypes.arrayOf(tagShape).isRequired};
 
 export default TagListView;

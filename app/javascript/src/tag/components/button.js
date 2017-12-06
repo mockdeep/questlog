@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
+import {tagShape} from 'src/shapes';
 
 class TagButton extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class TagButton extends React.Component {
 TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
-  tag: PropTypes.object.isRequired,
+  tag: tagShape.isRequired,
 };
 
 export default TagButton;

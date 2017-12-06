@@ -5,6 +5,7 @@ import React from 'react';
 import DeleteButton from 'src/task/components/delete_button';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import timeframeNameMap from 'src/timeframe/name_map';
+import {taskShape} from 'src/shapes';
 
 class TaskTitle extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class TaskTitle extends React.Component {
 
 TaskTitle.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default TaskTitle;

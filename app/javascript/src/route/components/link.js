@@ -37,7 +37,7 @@ class Link extends React.Component {
 Link.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   className: PropTypes.string,
-  params: PropTypes.object,
+  params: PropTypes.objectOf(PropTypes.string),
   setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
 };

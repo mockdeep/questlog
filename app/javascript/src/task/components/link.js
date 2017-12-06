@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
+import {taskShape} from 'src/shapes';
 
 function TaskLink({task}) {
   return (
@@ -11,6 +11,6 @@ function TaskLink({task}) {
   );
 }
 
-TaskLink.propTypes = {task: PropTypes.object.isRequired};
+TaskLink.propTypes = {task: taskShape.isRequired};
 
 export default TaskLink;

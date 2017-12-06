@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {taskShape} from 'src/shapes';
+
 class DoneButton extends React.Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,7 @@ class DoneButton extends React.Component {
 
 DoneButton.propTypes = {
   completeTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default DoneButton;

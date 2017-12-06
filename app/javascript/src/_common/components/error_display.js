@@ -19,6 +19,6 @@ function ErrorDisplay(props) {
   );
 }
 
-ErrorDisplay.propTypes = {errors: PropTypes.array.isRequired};
+ErrorDisplay.propTypes = {errors: PropTypes.arrayOf(PropTypes.string).isRequired};
 
 export default ErrorDisplay;

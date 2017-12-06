@@ -3,6 +3,7 @@ import React from 'react';
 
 import DoneButton from 'src/task/components/done_button';
 import PostponeButton from 'src/task/components/postpone_button';
+import {taskShape} from 'src/shapes';
 
 function MainButtons(props) {
   return (
@@ -31,7 +32,7 @@ MainButtons.propTypes = {
   disabled: PropTypes.bool.isRequired,
   postponeTask: PropTypes.func.isRequired,
   storePostponeSeconds: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default MainButtons;

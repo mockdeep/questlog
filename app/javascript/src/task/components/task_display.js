@@ -5,6 +5,7 @@ import MainButtons from 'src/task/components/main_buttons';
 import ParentTaskBreadCrumbs from 'src/task/containers/parent_task_bread_crumbs';
 import TaskTitle from 'src/task/components/task_title';
 import TagButtonsContainer from 'src/tag/containers/buttons';
+import {taskShape} from 'src/shapes';
 
 function TaskDisplay(props) {
   return (
@@ -34,7 +35,7 @@ TaskDisplay.propTypes = {
   disabled: PropTypes.bool.isRequired,
   postponeTask: PropTypes.func.isRequired,
   storePostponeSeconds: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 

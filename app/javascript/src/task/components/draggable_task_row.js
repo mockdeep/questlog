@@ -5,6 +5,7 @@ import {DragSource as dragSource, DropTarget as dropTarget} from 'react-dnd';
 import {flow} from 'lodash';
 
 import TaskRow from 'src/task/components/task_row';
+import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 const taskSource = {
   canDrag(props) {
@@ -80,8 +81,8 @@ DraggableTaskRow.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   status: PropTypes.string,
-  task: PropTypes.object.isRequired,
-  timeframeSpace: PropTypes.object,
+  task: taskShape.isRequired,
+  timeframeSpace: timeframeSpaceShape,
   timeframesEnabled: PropTypes.bool,
   updateTask: PropTypes.func.isRequired,
 };

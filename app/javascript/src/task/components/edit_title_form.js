@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {scratchShape, taskShape} from 'src/shapes';
+
 class TaskEditTitleForm extends React.Component {
   constructor(props) {
     super(props);
@@ -50,8 +52,8 @@ class TaskEditTitleForm extends React.Component {
 }
 
 TaskEditTitleForm.propTypes = {
-  scratch: PropTypes.object.isRequired,
-  task: PropTypes.object.isRequired,
+  scratch: scratchShape.isRequired,
+  task: taskShape.isRequired,
   updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
