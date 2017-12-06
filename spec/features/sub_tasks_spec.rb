@@ -7,7 +7,7 @@ RSpec.describe 'adding sub tasks', js: true do
   it 'allows adding sub tasks to another task' do
     visit '/'
     add_task('the parent task')
-    click_link('the parent task')
+    find('.task-link').click
     expect(page).to have_current_path(task_path(Task.last))
     expect(page).to have_selector("input[value='the parent task']")
     expect(page).to have_no_selector('td')
@@ -34,13 +34,13 @@ RSpec.describe 'adding sub tasks', js: true do
   it 'does not have side effects on adding tasks on other pages' do
     visit '/'
     add_task('the parent task')
-    click_link('the parent task')
+    find('.task-link').click
     expect(page).to have_selector("input[value='the parent task']")
     add_task('the sub task')
     expect(page).to have_selector('td', text: 'the sub task')
     page.go_back
     add_task('!1 the not sub task')
-    click_link('the not sub task')
+    find('.task-link').click
     expect(page).to have_no_link('the parent task')
   end
 

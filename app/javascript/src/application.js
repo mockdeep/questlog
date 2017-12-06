@@ -7,10 +7,11 @@ import appBase from 'src/app_base';
 import appStore from 'src/app_store';
 import {fetchRoute} from 'src/route/action_creators';
 import {removeNotification} from 'src/notification/action_creators';
-import 'src/tasks';
 
 window.$ = $;
 window.jQuery = $;
+
+$(() => $('[class^=flash-]').fadeOut(1500));
 
 window.addEventListener('popstate', () => {
   appStore.dispatch(fetchRoute());

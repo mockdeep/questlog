@@ -141,9 +141,10 @@ def add_task(task_title)
 end
 
 def edit_task(new_title)
-  find('.edit-button').click
-  fill_in 'edit-title', with: new_title
-  click_button 'Update Task'
+  find('.task-link').click
+  first('.task-input').set(new_title)
+  blur
+  page.go_back
 end
 
 def select_tag(tag_name)
@@ -174,4 +175,8 @@ end
 
 def browser
   page.driver.browser
+end
+
+def blur
+  page.find('body').click
 end

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
-import TaskLink from 'src/task/components/link';
+import TaskEditIcon from 'src/task/components/edit_icon';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 class TaskTitle extends React.Component {
@@ -60,16 +60,12 @@ class TaskTitle extends React.Component {
                   />
                 </td>
                 <td className='col-md-10 title'>
-                  {task.id ? <TaskLink task={task} /> : task.title}
+                  {task.title}
                   <span className='emblems'>{this.emblems()}</span>
                 </td>
 
                 <td className='col-md-1'>
-                  <i
-                    className='fa fa-arrow-down edit-button'
-                    id='edit-task'
-                    title='edit task'
-                  />
+                  <TaskEditIcon task={task} />
                 </td>
               </tr>
             </tbody>

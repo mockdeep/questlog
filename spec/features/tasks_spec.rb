@@ -86,9 +86,10 @@ RSpec.describe 'Tasks page', js: true do
     add_task('#at-home do laundry #chore !2 ~1h')
     expect(task_title).to have_content('do laundry')
     expect(page).not_to have_selector(repeat_selector)
-    find('.edit-button').click
-    fill_in 'edit-title', with: 'do lots of laundry *1w'
-    click_button 'Update Task'
+    find('.task-link').click
+    first('.task-input').set('do lots of laundry *1w')
+    blur
+    page.go_back
     expect(task_title).to have_content('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
   end
