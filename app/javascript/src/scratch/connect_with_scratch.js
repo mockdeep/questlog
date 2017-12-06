@@ -9,6 +9,7 @@ import {
   deleteScratch,
   updateScratch,
 } from 'src/scratch/action_creators';
+import {scratchShape} from 'src/shapes';
 
 function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) {
   function scratchMapStateToProps(state, ownProps) {
@@ -68,11 +69,11 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
     ConnectWithScratch.propTypes = {
       createScratch: PropTypes.func.isRequired,
       deleteScratch: PropTypes.func.isRequired,
-      scratch: PropTypes.object,
+      scratch: scratchShape,
       scratchKey: PropTypes.string.isRequired,
       updateScratch: PropTypes.func.isRequired,
-      wrappedComponentActionCreators: PropTypes.object.isRequired,
-      wrappedComponentProps: PropTypes.object.isRequired,
+      wrappedComponentActionCreators: PropTypes.objectOf(PropTypes.func).isRequired,
+      wrappedComponentProps: PropTypes.objectOf(PropTypes.any).isRequired,
     };
 
     return connect(

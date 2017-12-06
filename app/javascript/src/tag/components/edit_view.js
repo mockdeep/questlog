@@ -6,6 +6,7 @@ import {uniqWith, isEqual} from 'lodash';
 
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
+import {scratchShape, tagShape} from 'src/shapes';
 
 class TagEditView extends React.Component {
   constructor(props) {
@@ -102,9 +103,9 @@ class TagEditView extends React.Component {
 }
 
 TagEditView.propTypes = {
-  scratch: PropTypes.object.isRequired,
+  scratch: scratchShape.isRequired,
   setRoute: PropTypes.func.isRequired,
-  tag: PropTypes.object,
+  tag: tagShape,
   updateScratch: PropTypes.func,
   updateTag: PropTypes.func.isRequired,
 };

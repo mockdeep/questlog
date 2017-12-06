@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
+import {taskShape} from 'src/shapes';
 
 function TaskEditIcon({task}) {
   if (!task.id) { return null; }
@@ -13,6 +13,6 @@ function TaskEditIcon({task}) {
   );
 }
 
-TaskEditIcon.propTypes = {task: PropTypes.object.isRequired};
+TaskEditIcon.propTypes = {task: taskShape.isRequired};
 
 export default TaskEditIcon;

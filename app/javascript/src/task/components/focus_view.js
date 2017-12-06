@@ -5,6 +5,7 @@ import React from 'react';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
+import {taskShape, scratchShape} from 'src/shapes';
 
 class TaskFocusView extends React.Component {
   constructor(props) {
@@ -75,8 +76,8 @@ class TaskFocusView extends React.Component {
 TaskFocusView.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  scratch: PropTypes.object.isRequired,
-  task: PropTypes.object,
+  scratch: scratchShape.isRequired,
+  task: taskShape,
   updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   url: PropTypes.string,

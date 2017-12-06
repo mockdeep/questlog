@@ -5,6 +5,7 @@ import React from 'react';
 import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
+import {timeframeShape, timeframeSpaceShape} from 'src/shapes';
 
 const TABLE_HEADERS = (
   <tr className='task-list__header-row'>
@@ -111,8 +112,8 @@ class TimeframeSection extends React.Component {
 
 TimeframeSection.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  timeframe: PropTypes.object.isRequired,
-  timeframeSpace: PropTypes.object.isRequired,
+  timeframe: timeframeShape.isRequired,
+  timeframeSpace: timeframeSpaceShape.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 

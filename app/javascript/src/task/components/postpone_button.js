@@ -4,6 +4,7 @@ import React from 'react';
 
 import SelectOption from 'src/_common/components/select_option';
 import stopPropagation from 'src/_helpers/stop_propagation';
+import {taskShape} from 'src/shapes';
 
 function isPostponing(task) {
   return task.loadingState === 'postponing';
@@ -85,7 +86,7 @@ PostponeButton.propTypes = {
   disabled: PropTypes.bool.isRequired,
   postponeTask: PropTypes.func.isRequired,
   storePostponeSeconds: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default PostponeButton;

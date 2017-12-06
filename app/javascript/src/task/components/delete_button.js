@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {taskShape} from 'src/shapes';
+
 class DeleteButton extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class DeleteButton extends React.Component {
 
 DeleteButton.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default DeleteButton;

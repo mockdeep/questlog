@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {taskShape} from 'src/shapes';
+
 class NotificationCheckbox extends React.Component {
   constructor(props) {
     super(props);
@@ -90,7 +92,7 @@ NotificationCheckbox.propTypes = {
   completeTask: PropTypes.func.isRequired,
   notificationsEnabled: PropTypes.bool.isRequired,
   removeNotification: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
   updateUser: PropTypes.func.isRequired,
 };
 

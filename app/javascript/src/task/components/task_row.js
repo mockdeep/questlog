@@ -5,6 +5,7 @@ import {map} from 'lodash';
 
 import TaskLink from 'src/task/components/link';
 import timeframeNameMap from 'src/timeframe/name_map';
+import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 class TaskRow extends React.PureComponent {
   constructor(props) {
@@ -183,8 +184,8 @@ TaskRow.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool,
   status: PropTypes.string,
-  task: PropTypes.object.isRequired,
-  timeframeSpace: PropTypes.object,
+  task: taskShape.isRequired,
+  timeframeSpace: timeframeSpaceShape,
   timeframesEnabled: PropTypes.bool,
   updateTask: PropTypes.func.isRequired,
 };

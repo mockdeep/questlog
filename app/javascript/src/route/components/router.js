@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
@@ -11,6 +10,7 @@ import TaskFocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 import WhatView from 'src/static/components/what_view';
+import {routeShape} from 'src/shapes';
 
 function Nothing() { return null; }
 
@@ -36,6 +36,6 @@ function Router(props) {
   return <Component />;
 }
 
-Router.propTypes = {route: PropTypes.object.isRequired};
+Router.propTypes = {route: routeShape.isRequired};
 
 export default Router;

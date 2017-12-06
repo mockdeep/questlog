@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 
 import TaskLink from 'src/task/components/link';
+import {taskShape} from 'src/shapes';
 
 // The component is in the same file as the container due to circular references
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
@@ -21,7 +21,7 @@ function ParentTaskBreadCrumbs({task}) {
   );
 }
 
-ParentTaskBreadCrumbs.propTypes = {task: PropTypes.object};
+ParentTaskBreadCrumbs.propTypes = {task: taskShape};
 
 function mapStateToProps(state, ownProps) {
   return {task: state.task.byId[ownProps.taskId]};

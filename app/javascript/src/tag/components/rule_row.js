@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {ruleShape} from 'src/shapes';
+
 const FIELD_NAMES = ['estimateSeconds', 'tagIds'];
 
 const FIELD_DISPLAY_NAMES = {
@@ -77,7 +79,7 @@ class RuleRow extends React.Component {
 RuleRow.propTypes = {
   deleteRule: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-  rule: PropTypes.object.isRequired,
+  rule: ruleShape.isRequired,
   updateFieldValue: PropTypes.func.isRequired,
 };
 

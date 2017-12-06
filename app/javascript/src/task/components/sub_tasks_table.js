@@ -3,6 +3,7 @@ import React from 'react';
 
 import TaskRow from 'src/task/components/task_row';
 import TableHeaders from 'src/task/components/table_headers';
+import {taskShape} from 'src/shapes';
 
 function taskRows(tasks, {updateTask, deleteTask}) {
   return tasks.map((task) => (
@@ -30,7 +31,7 @@ function SubTasksTable({task, updateTask, deleteTask}) {
 
 SubTasksTable.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape,
   updateTask: PropTypes.func.isRequired,
 };
 

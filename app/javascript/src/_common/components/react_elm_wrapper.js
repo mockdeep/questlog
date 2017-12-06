@@ -2,6 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import {elmSourceShape} from 'src/shapes';
+
 class ReactElmWrapper extends React.Component {
   constructor(props) {
     super(props);
@@ -28,9 +30,9 @@ class ReactElmWrapper extends React.Component {
 }
 
 ReactElmWrapper.propTypes = {
-  flags: PropTypes.object,
+  flags: PropTypes.objectOf(PropTypes.any),
   ports: PropTypes.func,
-  src: PropTypes.object.isRequired,
+  src: elmSourceShape.isRequired,
 };
 
 export default ReactElmWrapper;

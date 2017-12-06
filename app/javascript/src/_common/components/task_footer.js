@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'src/route/containers/link';
 import HelpLink from 'src/_common/containers/help_link';
 import NotificationCheckbox from 'src/notification/containers/checkbox';
+import {taskShape} from 'src/shapes';
 
 function TaskFooter({task, completeTask}) {
   return (
@@ -27,7 +28,7 @@ function TaskFooter({task, completeTask}) {
 
 TaskFooter.propTypes = {
   completeTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+  task: taskShape.isRequired,
 };
 
 export default TaskFooter;

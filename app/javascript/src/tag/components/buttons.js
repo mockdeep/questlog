@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TagButton from 'src/tag/components/button';
+import {tagShape} from 'src/shapes';
 
 class TagButtons extends React.Component {
   constructor(props) {
@@ -49,9 +50,9 @@ class TagButtons extends React.Component {
 }
 
 TagButtons.propTypes = {
-  currentTagIds: PropTypes.array.isRequired,
+  currentTagIds: PropTypes.arrayOf(PropTypes.number).isRequired,
   selectedTagSlug: PropTypes.string,
-  tags: PropTypes.array.isRequired,
+  tags: PropTypes.arrayOf(tagShape).isRequired,
 };
 
 export default TagButtons;
