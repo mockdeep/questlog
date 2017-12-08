@@ -30,6 +30,10 @@ class TaskEditTitleForm extends React.Component {
     this.props.updateScratch({focused: false});
   }
 
+  setFocused() {
+    this.props.updateScratch({focused: true});
+  }
+
   storeInput(input) {
     this.input = input;
   }
@@ -45,6 +49,7 @@ class TaskEditTitleForm extends React.Component {
           value={scratch.taskTitle || task.title}
           onChange={this.updateTitleInput}
           onBlur={this.saveTask}
+          onFocus={this.setFocused}
         />
       </form>
     );
