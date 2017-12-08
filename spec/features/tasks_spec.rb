@@ -14,7 +14,7 @@ RSpec.describe 'Tasks page', js: true do
       fill_in 'Password confirmation', with: 'my_password'
       click_button 'Create free account!'
       expect(page).to have_content('Log out')
-      expect(page).to have_content('do laundry')
+      expect(page).to have_task('do laundry')
       click_link 'Log out'
       expect(page).to have_no_task
     end
@@ -87,7 +87,8 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_task('do laundry')
     expect(page).not_to have_selector(repeat_selector)
     find('.task-link').click
-    first('.task-input').set('do lots of laundry *1w')
+    first('.task-input').native.clear
+    fill_in('task-title', with: 'do lots of laundry *1w')
     blur
     page.go_back
     expect(page).to have_task('do lots of laundry')

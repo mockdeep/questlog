@@ -8,7 +8,7 @@ RSpec.describe 'needs estimate', js: true do
     add_task('feed dog')
     expect(page).to have_content('Needs Estimate (1)')
     postpone_button.click
-    expect(page).to have_content('feed dog')
+    expect(page).to have_task('feed dog')
     edit_task('feed dog ~5m')
     expect(page).not_to have_content('Needs Estimate')
   end

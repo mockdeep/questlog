@@ -1,5 +1,5 @@
 module Matchers
 
-  TITLE_SELECTOR = '#task .title'.freeze
+  TITLE_SELECTOR = '#task .task-input'.freeze
 
 end

@@ -8,8 +8,9 @@ const props = {
   task: {},
 };
 
-it('renders the task title', () => {
-  const component = shallow(<TaskTitle {...props} task={{title: 'some task'}} />);
+it('renders an editable title form', () => {
+  const component = shallow(<TaskTitle {...props} />);
+  const editTitleForm = component.find('Connect(Scratch(TaskEditTitleForm))');
 
-  expect(component).toIncludeText('some task');
+  expect(editTitleForm).toHaveProp('task', props.task);
 });

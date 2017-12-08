@@ -10,7 +10,7 @@ module Matchers
 
     def matches?(actual)
       self.actual = actual
-      actual.has_selector?(TITLE_SELECTOR, text: expected)
+      actual.has_selector?("#{TITLE_SELECTOR}[value='#{expected}']")
     end
 
     def failure_message
@@ -28,7 +28,7 @@ module Matchers
   private
 
     def actual_title
-      actual.find(TITLE_SELECTOR).text
+      actual.find(TITLE_SELECTOR).value
     end
 
   end

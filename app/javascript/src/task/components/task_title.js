@@ -4,6 +4,7 @@ import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
 import TaskEditIcon from 'src/task/components/edit_icon';
+import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {taskShape} from 'src/shapes';
 
@@ -53,19 +54,24 @@ class TaskTitle extends React.Component {
           <table>
             <tbody>
               <tr>
-                <td className='col-md-1'>
+                <td className='col-xs-1'>
                   {this.timeframeName()}
                   <DeleteButton
                     task={task}
                     deleteTask={deleteTask}
                   />
                 </td>
-                <td className='col-md-10 title'>
-                  {task.title}
-                  <span className='emblems'>{this.emblems()}</span>
+                <td className='col-xs-10 title'>
+                  <div className='col-xs-10 col-xs-offset-1'>
+                    <TaskEditTitleForm keyPrefix={'focusView'} task={task} />
+                  </div>
+
+                  <div className='col-xs-1'>
+                    <span className='emblems'>{this.emblems()}</span>
+                  </div>
                 </td>
 
-                <td className='col-md-1'>
+                <td className='col-xs-1'>
                   <TaskEditIcon task={task} />
                 </td>
               </tr>

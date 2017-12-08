@@ -71,7 +71,7 @@ class TaskShowView extends React.Component {
     return (
       <section>
         <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
-        <h2><TaskEditTitleForm task={task} /></h2>
+        <h2><TaskEditTitleForm keyPrefix={'showView'} task={task} /></h2>
         <div>{repeatString(task)}</div>
         <div>{estimateString(task)}</div>
         <div>{priorityString(task)}</div>
