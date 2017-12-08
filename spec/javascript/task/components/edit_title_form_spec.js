@@ -54,3 +54,13 @@ it('updates the scratch title when a new task is given', () => {
   const expected = {focused: false, taskTitle: 'next task'};
   expect(props.updateScratch).toHaveBeenCalledWith(expected);
 });
+
+it('sets scratch.focused when the field focuses', () => {
+  const component = mount(<TaskEditTitleForm {...props} />);
+
+  expect(props.updateScratch).not.toHaveBeenCalledWith({focused: true});
+
+  component.find('input').simulate('focus');
+
+  expect(props.updateScratch).toHaveBeenCalledWith({focused: true});
+});
