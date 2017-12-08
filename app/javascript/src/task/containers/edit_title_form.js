@@ -3,7 +3,7 @@ import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import {updateTask} from 'src/task/action_creators';
 
 function computeScratchKey(state, ownProps) {
-  return `editTaskTitle-${ownProps.task.id}`;
+  return `${ownProps.keyPrefix}-editTaskTitle-${ownProps.task.id}`;
 }
 
 function mapStateToProps(state, ownProps) {

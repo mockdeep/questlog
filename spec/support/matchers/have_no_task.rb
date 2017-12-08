@@ -20,7 +20,7 @@ module Matchers
   private
 
     def actual_title
-      actual.find(TITLE_SELECTOR).text
+      actual.find(TITLE_SELECTOR).value
     end
 
   end

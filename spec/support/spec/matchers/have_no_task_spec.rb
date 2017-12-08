@@ -11,7 +11,7 @@ RSpec.describe Matchers::HaveNoTask do
 
     it 'returns false when there is a title node' do
       node = Capybara.string(<<~HTML)
-        <div id="task">No tasks!<span class="title">foo title</span></div>
+        <div id="task"><input class="task-input" value="foo title" /></div>
       HTML
 
       expect(matcher.matches?(node)).to be false
@@ -27,7 +27,7 @@ RSpec.describe Matchers::HaveNoTask do
   describe '#failure_message' do
     it 'returns a message when there is a task present' do
       node = Capybara.string(<<~HTML)
-        <div id="task"><span class="title">bar title</span></div>
+        <div id="task"><input class="task-input" value="bar title" /></div>
       HTML
       expected = "expected not to find any task title, but found 'bar title'"
 

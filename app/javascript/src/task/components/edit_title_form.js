@@ -45,6 +45,7 @@ class TaskEditTitleForm extends React.Component {
       <form onSubmit={this.saveTask}>
         <input
           ref={this.storeInput}
+          name={'task-title'}
           className={`task-input${scratch.focused ? '' : ' hidden-border'}`}
           value={scratch.taskTitle || task.title}
           onChange={this.updateTitleInput}
