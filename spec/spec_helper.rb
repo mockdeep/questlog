@@ -169,10 +169,6 @@ def postpone_button
   find('#postpone', text: 'Postpone for:').find('label')
 end
 
-def task_title
-  find('#task').find('.title')
-end
-
 def browser
   page.driver.browser
 end
