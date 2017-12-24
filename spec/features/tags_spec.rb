@@ -9,14 +9,14 @@ RSpec.describe 'selecting tags on task display', js: true do
     expect(page).to have_content('at-work (1)')
 
     select_tag('at-work')
-    expect(task_title).to have_content('eat a banana')
+    expect(page).to have_task_title('eat a banana')
     select_tag('at-home')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
 
     visit('/at-work')
-    expect(task_title).to have_content('eat a banana')
+    expect(page).to have_task_title('eat a banana')
     visit('/at-home')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
   end
 
   it 'sets tags to active when selected' do
@@ -46,12 +46,12 @@ RSpec.describe 'selecting tags on task display', js: true do
     add_task('#at-home do laundry #chore *1w ~1h')
     add_task('get paid')
     expect(page).to have_selector('a', text: 'Untagged (1)')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     select_tag('Untagged')
-    expect(task_title).to have_content('get paid')
+    expect(page).to have_task_title('get paid')
     edit_task('get paid #work')
     expect(page).to have_no_selector('a', text: /Untagged/)
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
   end
 
   it 'shows a smart tag for tasks missing an estimate' do
@@ -61,12 +61,12 @@ RSpec.describe 'selecting tags on task display', js: true do
     add_task('#at-home do laundry #chore *1w ~1h')
     add_task('get paid')
     expect(page).to have_selector('a', text: 'Needs Estimate (1)')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     select_tag('Needs Estimate')
-    expect(task_title).to have_content('get paid')
+    expect(page).to have_task_title('get paid')
     edit_task('get paid ~100h')
     expect(page).to have_no_selector('a', text: /Needs Estimate/)
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
   end
 
 end

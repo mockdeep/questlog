@@ -21,36 +21,36 @@ RSpec.describe 'timeframes', js: true do
     end
 
     visit '/'
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     click_button 'Done'
-    expect(task_title).to have_content('feed dog')
+    expect(page).to have_task_title('feed dog')
     tomorrow do
       click_link('Timeframes')
       expect(page).to have_text('Median Productivity: 30 minutes per day')
     end
 
     visit '/'
-    expect(task_title).to have_content('feed dog')
+    expect(page).to have_task_title('feed dog')
     click_button 'Done'
-    expect(task_title).to have_content('read feeds')
+    expect(page).to have_task_title('read feeds')
     tomorrow do
       click_link('Timeframes')
       expect(page).to have_text('Median Productivity: 35 minutes per day')
     end
 
     visit '/'
-    expect(task_title).to have_content('read feeds')
+    expect(page).to have_task_title('read feeds')
     postpone_button.click
-    expect(task_title).to have_content('clean dishes')
+    expect(page).to have_task_title('clean dishes')
     tomorrow do
       click_link('Timeframes')
       expect(page).to have_text('Median Productivity: 35 minutes per day')
     end
 
     visit '/'
-    expect(task_title).to have_content('clean dishes')
+    expect(page).to have_task_title('clean dishes')
     click_button 'Done'
-    expect(task_title).to have_content('read feeds')
+    expect(page).to have_task_title('read feeds')
     tomorrow do
       click_link('Timeframes')
       expected_text = 'Median Productivity: 1 hour, 5 minutes per day'
@@ -65,7 +65,7 @@ RSpec.describe 'timeframes', js: true do
   it 'displays the timeframes for the user' do
     feature_login_as(user)
 
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
 
     Timecop.travel(Time.zone.parse('2014/04/16'))
     milliseconds = Time.zone.now.to_i * 1000

@@ -7,7 +7,7 @@ RSpec.describe 'Tasks page', js: true do
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       add_task('do laundry')
-      expect(task_title).to have_content('do laundry')
+      expect(page).to have_task_title('do laundry')
       click_link 'Sign up'
       fill_in 'Email', with: 'some@email.com'
       fill_in 'Password', with: 'my_password'
@@ -16,46 +16,46 @@ RSpec.describe 'Tasks page', js: true do
       expect(page).to have_content('Log out')
       expect(page).to have_content('do laundry')
       click_link 'Log out'
-      expect(task_title).to have_content('(no tasks!)')
+      expect(page).to have_task_title('(no tasks!)')
     end
 
     it 'associates tasks with an existing user' do
       add_task('do laundry')
-      expect(task_title).to have_content('do laundry')
+      expect(page).to have_task_title('do laundry')
       click_link 'Log in'
       fill_in 'email', with: user.account.email
       fill_in 'password', with: user.account.password
       click_button 'Login'
       expect(page).to have_content('Log out')
-      expect(task_title).to have_content('do laundry')
+      expect(page).to have_task_title('do laundry')
       click_link 'Log out'
-      expect(task_title).to have_content('(no tasks!)')
+      expect(page).to have_task_title('(no tasks!)')
     end
   end
 
   it 'allows a guest user to manage tasks' do
     expect(page).to_not have_button('Done')
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
     add_task('do laundry #home')
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     add_task('feed dog')
-    expect(task_title).to have_content('do laundry')
-    expect(task_title).to_not have_content('feed dog')
+    expect(page).to have_task_title('do laundry')
+    expect(page).not_to have_task_title('feed dog')
     postpone_button.click
-    expect(task_title).to have_content('feed dog')
-    expect(task_title).to_not have_content('do laundry')
+    expect(page).to have_task_title('feed dog')
+    expect(page).not_to have_task_title('do laundry')
     click_button 'Done'
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
 
     Timecop.travel(1.hour.from_now)
 
     visit '/'
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     expect(page).to have_content('home (1)')
     click_button 'Done'
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
   end
 
   it 'allows a free user to manage tasks' do
@@ -63,7 +63,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
     expect(page).to have_text('home (1)')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil
   end
@@ -71,38 +71,38 @@ RSpec.describe 'Tasks page', js: true do
   it 'allows a user to manage repeat tasks' do
     add_task('check email #online *5mi')
     expect(page).to have_content('online (1)')
-    expect(task_title).to have_content('check email')
+    expect(page).to have_task_title('check email')
     click_button 'Done'
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
 
     Timecop.travel(10.minutes.from_now)
 
     visit '/'
     expect(page).to have_selector('#task')
-    expect(task_title).to have_content('check email')
+    expect(page).to have_task_title('check email')
   end
 
   it 'allows a user to edit a task' do
     add_task('#at-home do laundry #chore !2 ~1h')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     expect(page).not_to have_selector(repeat_selector)
     find('.task-link').click
     first('.task-input').set('do lots of laundry *1w')
     blur
     page.go_back
-    expect(task_title).to have_content('do lots of laundry')
+    expect(page).to have_task_title('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
   end
 
   it 'allows a user to delete a task' do
     add_task('do laundry #home')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     expect(page).to have_content('home (1)')
     add_task('feed dog #home')
     expect(page).to have_content('home (2)')
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     accept_confirm { find('.delete-button').click }
-    expect(task_title).to have_content('feed dog')
+    expect(page).to have_task_title('feed dog')
     expect(page).to have_content('home (1)')
   end
 

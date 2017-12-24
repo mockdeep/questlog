@@ -22,13 +22,13 @@ RSpec.describe 'adding sub tasks', js: true do
     click_link('the parent task')
     expect(page).to have_selector("input[value='the parent task']")
     visit '/'
-    expect(task_title).to have_content('the sub sub task')
+    expect(page).to have_task_title('the sub sub task')
     click_button 'Done'
-    expect(task_title).to have_content('the sub task')
+    expect(page).to have_task_title('the sub task')
     click_button 'Done'
-    expect(task_title).to have_content('the parent task')
+    expect(page).to have_task_title('the parent task')
     click_button 'Done'
-    expect(task_title).to have_content('(no tasks!)')
+    expect(page).to have_task_title('(no tasks!)')
   end
 
   it 'does not have side effects on adding tasks on other pages' do

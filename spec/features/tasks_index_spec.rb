@@ -17,7 +17,7 @@ RSpec.describe 'tasks index page', js: true do
     visit '/'
     fill_in 'new-title', with: 'do laundry'
     click_button 'Add Task'
-    expect(task_title).to have_content('do laundry')
+    expect(page).to have_task_title('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_content('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
@@ -47,17 +47,17 @@ RSpec.describe 'tasks index page', js: true do
     end
     expect(page.find('#task')['class']).to include('priority-1')
     click_button('Done')
-    expect(task_title).to have_content('eat breakfast')
+    expect(page).to have_task_title('eat breakfast')
     within('.tag-buttons') do
       button = find('.button', text: 'home')
       expect(button['class']).to include('priority-2')
       expect(button['class']).not_to include('priority-1')
     end
-    expect(task_title).to have_content('eat breakfast')
+    expect(page).to have_task_title('eat breakfast')
     expect(page.find('#task')['class']).not_to include('priority-1')
     expect(page.find('#task')['class']).to include('priority-2')
     click_button('Done')
-    expect(task_title).to have_content('go to work')
+    expect(page).to have_task_title('go to work')
     expect(page.find('#task')['class']).to include('priority-3')
   end
 
