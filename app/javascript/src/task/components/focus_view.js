@@ -18,26 +18,8 @@ class TaskFocusView extends React.Component {
     this.props.updateScratch({postponeSeconds});
   }
 
-  setTitle() {
-    document.title = `Task: ${this.task().title}`;
-  }
-
-  task() {
-    const {ajaxState, task} = this.props;
-
-    if (task) {
-      return task;
-    } else if (ajaxState === 'fetching' || ajaxState === 'taskSaving') {
-      return {title: 'Loading...', loadingState: 'loading'};
-    } else if (ajaxState === 'ready') {
-      return {title: '(no tasks!)', loadingState: 'loading'};
-    }
-
-    throw new Error(`don't know how to deal with ajaxState "${ajaxState}"`);
-  }
-
-  isReady() {
-    return this.task().loadingState === 'ready';
+  setTitle(title) {
+    document.title = title;
   }
 
   postponeTask(taskId) {
@@ -50,26 +32,59 @@ class TaskFocusView extends React.Component {
     this.props.updateTask(taskId, {done: true});
   }
 
-  render() {
-    const {deleteTask, updateTask} = this.props;
+  mainDisplay() {
+    const {ajaxState, task} = this.props;
+
+    if (task) {
+      return this.nextTaskDisplay();
+    } else if (['fetching', 'taskSaving'].includes(ajaxState)) {
+      return this.loadingDisplay();
+    } else if (ajaxState === 'ready') {
+      return this.noTaskDisplay();
+    }
+
+    throw new Error(`don't know how to deal with ajaxState "${ajaxState}"`);
+  }
+
+  nextTaskDisplay() {
+    const {deleteTask, task, updateTask} = this.props;
     const {completeTask, postponeTask, storePostponeSeconds} = this;
-    this.setTitle();
+
+    this.setTitle(task.title);
 
     return (
+      <TaskDisplay
+        task={task}
+        disabled={!task.loadingState === 'ready'}
+        updateTask={updateTask}
+        storePostponeSeconds={storePostponeSeconds}
+        postponeTask={postponeTask}
+        completeTask={completeTask}
+        deleteTask={deleteTask}
+      />
+    );
+  }
+
+  loadingDisplay() {
+    this.setTitle('Loading...');
+
+    return <div><h1>{'Loading...'}</h1></div>;
+  }
+
+  noTaskDisplay() {
+    this.setTitle('(no tasks!)');
+
+    return <div><h2>{'No tasks! Try adding one below:'}</h2></div>;
+  }
+
+  render() {
+    return (
       <div>
-        <TaskDisplay
-          task={this.task()}
-          disabled={!this.isReady()}
-          updateTask={updateTask}
-          storePostponeSeconds={storePostponeSeconds}
-          postponeTask={postponeTask}
-          completeTask={completeTask}
-          deleteTask={deleteTask}
-        />
+        {this.mainDisplay()}
         <hr />
         <NewTaskForm />
 
-        <TaskFooter task={this.task()} completeTask={this.completeTask} />
+        <TaskFooter task={this.props.task} completeTask={this.completeTask} />
       </div>
     );
   }

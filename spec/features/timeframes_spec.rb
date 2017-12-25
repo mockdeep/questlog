@@ -65,7 +65,7 @@ RSpec.describe 'timeframes', js: true do
   it 'displays the timeframes for the user' do
     feature_login_as(user)
 
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
 
     Timecop.travel(Time.zone.parse('2014/04/16'))
     milliseconds = Time.zone.now.to_i * 1000

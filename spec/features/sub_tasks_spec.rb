@@ -28,7 +28,7 @@ RSpec.describe 'adding sub tasks', js: true do
     click_button 'Done'
     expect(page).to have_task_title('the parent task')
     click_button 'Done'
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
   end
 
   it 'does not have side effects on adding tasks on other pages' do

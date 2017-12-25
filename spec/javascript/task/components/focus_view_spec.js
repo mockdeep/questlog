@@ -19,7 +19,7 @@ const props = {
 };
 
 it('updates the task on postpone', () => {
-  const component = shallow(<TaskFocusView {...props} />);
+  const component = shallow(<TaskFocusView {...props} task={{}} />);
   const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('postponeTask')(52);
@@ -27,8 +27,17 @@ it('updates the task on postpone', () => {
   expect(props.updateTask).toHaveBeenCalledWith(52, {postpone: 250});
 });
 
+it('updates the postponeSeconds in scratch', () => {
+  const component = shallow(<TaskFocusView {...props} task={{}} />);
+  const taskDisplay = component.find('TaskDisplay');
+
+  taskDisplay.prop('storePostponeSeconds')(52);
+
+  expect(props.updateScratch).toHaveBeenCalledWith({postponeSeconds: 52});
+});
+
 it('updates the task on completion', () => {
-  const component = shallow(<TaskFocusView {...props} />);
+  const component = shallow(<TaskFocusView {...props} task={{}} />);
   const taskDisplay = component.find('TaskDisplay');
 
   taskDisplay.prop('completeTask')(512);
@@ -42,33 +51,40 @@ describe('when a task is given', () => {
 
     shallow(<TaskFocusView {...props} task={task} />);
 
-    expect(document.title).toBe('Task: some task title');
+    expect(document.title).toBe('some task title');
   });
 });
 
-describe('when no task is given', () => {
-  it('sets the document title to "(no tasks!)" when state is "ready"', () => {
-    shallow(<TaskFocusView {...props} />);
-
-    expect(document.title).toBe('Task: (no tasks!)');
-  });
-
-  it('sets the document title to "Loading..." when state is "fetching"', () => {
+describe('when no task is given and ajaxState is pending', () => {
+  it('sets the document title to "Loading..."', () => {
     shallow(<TaskFocusView {...props} ajaxState='fetching' />);
 
-    expect(document.title).toBe('Task: Loading...');
+    expect(document.title).toBe('Loading...');
   });
 
-  it('disables the task display', () => {
+  it('renders a loading message', () => {
+    const component = shallow(<TaskFocusView {...props} ajaxState='fetching' />);
+
+    expect(component).toIncludeText('Loading...');
+  });
+});
+
+describe('when no task is given and ajaxState is ready', () => {
+  it('sets the document title to "(no tasks!)"', () => {
+    shallow(<TaskFocusView {...props} />);
+
+    expect(document.title).toBe('(no tasks!)');
+  });
+
+  it('renders a no tasks message', () => {
     const component = shallow(<TaskFocusView {...props} />);
-    const taskDisplay = component.find('TaskDisplay');
 
-    expect(taskDisplay).toHaveProp('disabled', true);
+    expect(component).toIncludeText('No tasks!');
   });
+});
 
-  it('throws an error when state is not accounted for', () => {
-    expect(() => {
-      shallow(<TaskFocusView {...props} ajaxState='froggling' />);
-    }).toThrow(/don't know how to deal with ajaxState "froggling"/);
-  });
+it('throws an error when ajaxState is not accounted for', () => {
+  expect(() => {
+    shallow(<TaskFocusView {...props} ajaxState='froggling' />);
+  }).toThrow(/don't know how to deal with ajaxState "froggling"/);
 });

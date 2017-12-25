@@ -9,7 +9,7 @@ import {taskShape} from 'src/shapes';
 function TaskFooter({task, completeTask}) {
   return (
     <footer className='task-footer'>
-      <NotificationCheckbox task={task} completeTask={completeTask} />
+      {task ? <NotificationCheckbox task={task} completeTask={completeTask} /> : null}
       <br />
       <Link to='tasks'>{'All my tasks'}</Link>
       {' | '}
@@ -28,7 +28,7 @@ function TaskFooter({task, completeTask}) {
 
 TaskFooter.propTypes = {
   completeTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
+  task: taskShape,
 };
 
 export default TaskFooter;

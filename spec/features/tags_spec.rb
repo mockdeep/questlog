@@ -51,7 +51,7 @@ RSpec.describe 'selecting tags on task display', js: true do
     expect(page).to have_task_title('get paid')
     edit_task('get paid #work')
     expect(page).to have_no_selector('a', text: /Untagged/)
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
   end
 
   it 'shows a smart tag for tasks missing an estimate' do
@@ -66,7 +66,7 @@ RSpec.describe 'selecting tags on task display', js: true do
     expect(page).to have_task_title('get paid')
     edit_task('get paid ~100h')
     expect(page).to have_no_selector('a', text: /Needs Estimate/)
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
   end
 
 end
