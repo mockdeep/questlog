@@ -16,7 +16,7 @@ RSpec.describe 'Tasks page', js: true do
       expect(page).to have_content('Log out')
       expect(page).to have_content('do laundry')
       click_link 'Log out'
-      expect(page).to have_task_title('(no tasks!)')
+      expect(page).to have_text('No tasks!')
     end
 
     it 'associates tasks with an existing user' do
@@ -29,13 +29,13 @@ RSpec.describe 'Tasks page', js: true do
       expect(page).to have_content('Log out')
       expect(page).to have_task_title('do laundry')
       click_link 'Log out'
-      expect(page).to have_task_title('(no tasks!)')
+      expect(page).to have_text('No tasks!')
     end
   end
 
   it 'allows a guest user to manage tasks' do
     expect(page).to_not have_button('Done')
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
     add_task('do laundry #home')
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
@@ -47,7 +47,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_task_title('feed dog')
     expect(page).not_to have_task_title('do laundry')
     click_button 'Done'
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
 
     Timecop.travel(1.hour.from_now)
 
@@ -55,7 +55,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_task_title('do laundry')
     expect(page).to have_content('home (1)')
     click_button 'Done'
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
   end
 
   it 'allows a free user to manage tasks' do
@@ -73,7 +73,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_content('online (1)')
     expect(page).to have_task_title('check email')
     click_button 'Done'
-    expect(page).to have_task_title('(no tasks!)')
+    expect(page).to have_text('No tasks!')
 
     Timecop.travel(10.minutes.from_now)
 
