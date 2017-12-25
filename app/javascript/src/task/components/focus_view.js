@@ -51,6 +51,8 @@ class TaskFocusView extends React.Component {
   }
 
   render() {
+    const {deleteTask, updateTask} = this.props;
+    const {completeTask, postponeTask, storePostponeSeconds} = this;
     this.setTitle();
 
     return (
@@ -58,11 +60,11 @@ class TaskFocusView extends React.Component {
         <TaskDisplay
           task={this.task()}
           disabled={!this.isReady()}
-          updateTask={this.props.updateTask}
-          storePostponeSeconds={this.storePostponeSeconds}
-          postponeTask={this.postponeTask}
-          completeTask={this.completeTask}
-          deleteTask={this.props.deleteTask}
+          updateTask={updateTask}
+          storePostponeSeconds={storePostponeSeconds}
+          postponeTask={postponeTask}
+          completeTask={completeTask}
+          deleteTask={deleteTask}
         />
         <hr />
         <NewTaskForm />
