@@ -8,7 +8,7 @@ RSpec.describe 'front end routing', js: true do
 
     page.go_back
 
-    expect(page).to have_task_title('do laundry')
+    expect(page).to have_task('do laundry')
   end
 
 end
