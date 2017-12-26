@@ -48,7 +48,7 @@
 }
 
 .task-list__header-row {
-  background-color: #E9E9E9;
+  background-color: $color-table-header;
 }
 
 .task-list__header {
@@ -57,6 +57,12 @@
 
 .task-list__cell {
   padding: 1px;
+}
+
+.task-list__row {
+  &:nth-child(3n+3) {
+    border-bottom: 1px solid $color-table-header;
+  }
 }
 
 .task-list__row--pending {
