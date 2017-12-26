@@ -4,9 +4,9 @@ RSpec.describe 'selecting tags on task display', js: true do
     visit '/'
 
     add_task('#at-home do laundry #chore !2 *1w ~1h')
-    expect(page).to have_content('at-home (1)')
+    expect(page).to have_tag('at-home (1)')
     add_task('#at-work eat a banana')
-    expect(page).to have_content('at-work (1)')
+    expect(page).to have_tag('at-work (1)')
 
     select_tag('at-work')
     expect(page).to have_task('eat a banana')

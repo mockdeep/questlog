@@ -53,7 +53,7 @@ RSpec.describe 'Tasks page', js: true do
 
     visit '/'
     expect(page).to have_task('do laundry')
-    expect(page).to have_content('home (1)')
+    expect(page).to have_tag('home (1)')
     click_button 'Done'
     expect(page).to have_no_task
   end
@@ -70,7 +70,7 @@ RSpec.describe 'Tasks page', js: true do
 
   it 'allows a user to manage repeat tasks' do
     add_task('check email #online *5mi')
-    expect(page).to have_content('online (1)')
+    expect(page).to have_tag('online (1)')
     expect(page).to have_task('check email')
     click_button 'Done'
     expect(page).to have_no_task
@@ -98,19 +98,19 @@ RSpec.describe 'Tasks page', js: true do
   it 'allows a user to delete a task' do
     add_task('do laundry #home')
     expect(page).to have_task('do laundry')
-    expect(page).to have_content('home (1)')
+    expect(page).to have_tag('home (1)')
     add_task('feed dog #home')
-    expect(page).to have_content('home (2)')
+    expect(page).to have_tag('home (2)')
     expect(page).to have_task('do laundry')
     accept_confirm { find('.delete-button').click }
     expect(page).to have_task('feed dog')
-    expect(page).to have_content('home (1)')
+    expect(page).to have_tag('home (1)')
   end
 
   it 'parses and adds attributes on tasks' do
     add_task('#at-home do laundry #chore !2 *1w ~1h')
-    expect(page).to have_content('at-home (1)')
-    expect(page).to have_content('chore (1)')
+    expect(page).to have_tag('at-home (1)')
+    expect(page).to have_tag('chore (1)')
     expect(page).to have_selector(repeat_selector)
     visit '/tasks'
     expect(page).to have_selector(repeat_selector)
