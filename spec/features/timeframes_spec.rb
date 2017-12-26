@@ -59,7 +59,7 @@ RSpec.describe 'timeframes', js: true do
 
     visit '/'
 
-    expect(page).to have_content('Untagged (1)')
+    expect(page).to have_tag('Untagged (1)')
   end
 
   it 'displays the timeframes for the user' do
@@ -133,7 +133,7 @@ RSpec.describe 'timeframes', js: true do
 
     visit '/'
 
-    expect(page).to have_content('Needs Estimate (1)')
+    expect(page).to have_tag('Needs Estimate (1)')
   end
 
 end
