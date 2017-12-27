@@ -21,10 +21,6 @@ module Matchers
       end
     end
 
-    def failure_message_when_negated
-      "expected not to find task title '#{title}', but it is present"
-    end
-
   private
 
     def actual_title
