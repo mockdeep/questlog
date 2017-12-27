@@ -12,13 +12,12 @@ RSpec.describe 'adding sub tasks', js: true do
     expect(page).to have_selector("input[value='the parent task']")
     expect(page).to have_no_selector('td')
     add_task('the sub task')
-    expect(page).to have_selector('td', text: 'the sub task')
-    click_link('the sub task')
+    task_row('the sub task').find('.task-link').click
     expect(page).to have_selector("input[value='the sub task']")
     expect(page).to have_link('the parent task')
     expect(page).to have_no_selector('td')
     add_task('the sub sub task')
-    expect(page).to have_selector('td', text: 'the sub sub task')
+    expect(task_row('the sub sub task')).to be
     click_link('the parent task')
     expect(page).to have_selector("input[value='the parent task']")
     visit '/'
@@ -37,7 +36,7 @@ RSpec.describe 'adding sub tasks', js: true do
     find('.task-link').click
     expect(page).to have_selector("input[value='the parent task']")
     add_task('the sub task')
-    expect(page).to have_selector('td', text: 'the sub task')
+    expect(task_row('the sub task')).to be
     page.go_back
     add_task('!1 the not sub task')
     find('.task-link').click

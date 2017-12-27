@@ -140,21 +140,22 @@ class TaskListView extends React.Component {
   currentTaskRows() {
     const {currentTasks} = this.state;
 
-    return currentTasks.map(this.taskRow);
+    return currentTasks.map((task) => this.taskRow(task, {status: 'current'}));
   }
 
   pendingTaskRows() {
     const {pendingTasks} = this.state;
 
-    return pendingTasks.map(this.taskRow);
+    return pendingTasks.map((task) => this.taskRow(task, {status: 'pending'}));
   }
 
-  taskRow(task) {
+  taskRow(task, {status}) {
     const {deleteTask, updateTask} = this.props;
 
     return (
       <DraggableTaskRow
         key={task.id}
+        keyPrefix={`${status}TimeframeSection`}
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}

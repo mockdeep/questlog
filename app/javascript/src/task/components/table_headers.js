@@ -8,6 +8,7 @@ function TableHeaders({label}) {
       <th className='task-list__header'>
         {label}
       </th>
+      <th className='task-list__header' />
       <th className='task-list__header'>
         {'Estimate'}
       </th>
