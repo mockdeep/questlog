@@ -100,9 +100,9 @@ class TaskShowView extends React.Component {
 
 TaskShowView.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  task: taskShape,
   updateTask: PropTypes.func.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,
+  task: taskShape,
 };
 
 export default TaskShowView;

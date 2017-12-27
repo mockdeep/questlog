@@ -200,12 +200,12 @@ class TaskRow extends React.PureComponent {
 
 TaskRow.propTypes = {
   deleteTask: PropTypes.func.isRequired,
+  task: taskShape.isRequired,
+  updateTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool,
   status: PropTypes.string,
-  task: taskShape.isRequired,
-  timeframeSpace: timeframeSpaceShape,
   timeframesEnabled: PropTypes.bool,
-  updateTask: PropTypes.func.isRequired,
+  timeframeSpace: timeframeSpaceShape,
 };
 
 export default TaskRow;

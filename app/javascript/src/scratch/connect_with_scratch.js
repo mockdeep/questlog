@@ -69,11 +69,11 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
     ConnectWithScratch.propTypes = {
       createScratch: PropTypes.func.isRequired,
       deleteScratch: PropTypes.func.isRequired,
-      scratch: scratchShape,
       scratchKey: PropTypes.string.isRequired,
       updateScratch: PropTypes.func.isRequired,
       wrappedComponentActionCreators: PropTypes.objectOf(PropTypes.func).isRequired,
       wrappedComponentProps: PropTypes.objectOf(PropTypes.any).isRequired,
+      scratch: scratchShape,
     };
 
     return connect(

@@ -111,9 +111,9 @@ class TagEditView extends React.Component {
 TagEditView.propTypes = {
   scratch: scratchShape.isRequired,
   setRoute: PropTypes.func.isRequired,
+  updateTag: PropTypes.func.isRequired,
   tag: tagShape,
   updateScratch: PropTypes.func,
-  updateTag: PropTypes.func.isRequired,
 };
 
 export default TagEditView;

@@ -35,8 +35,8 @@ function SubTasksTable({task, updateTask, deleteTask}) {
 
 SubTasksTable.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  task: taskShape,
   updateTask: PropTypes.func.isRequired,
+  task: taskShape,
 };
 
 export default SubTasksTable;

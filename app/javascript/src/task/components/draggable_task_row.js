@@ -80,11 +80,11 @@ DraggableTaskRow.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  status: PropTypes.string,
   task: taskShape.isRequired,
-  timeframeSpace: timeframeSpaceShape,
-  timeframesEnabled: PropTypes.bool,
   updateTask: PropTypes.func.isRequired,
+  status: PropTypes.string,
+  timeframesEnabled: PropTypes.bool,
+  timeframeSpace: timeframeSpaceShape,
 };
 
 export default flow(
