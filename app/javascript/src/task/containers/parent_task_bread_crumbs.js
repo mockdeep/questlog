@@ -16,7 +16,10 @@ function ParentTaskBreadCrumbs({task}) {
   return (
     <span>
       <ParentTaskBreadCrumbsContainer taskId={task.parentTaskId} />
-      <span>{' > '}<TaskLink task={task} /></span>
+      <span>
+        {' > '}
+        <TaskLink task={task} />
+      </span>
     </span>
   );
 }

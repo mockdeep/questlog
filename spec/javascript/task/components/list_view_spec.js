@@ -13,7 +13,9 @@ const props = {deleteTask: jest.fn(), updateTask: jest.fn()};
 it('fetches from TaskStore', () => {
   TaskStore.getState.mockImplementation(() => ({}));
   const provider =
-    <Provider store={createAppStore()}><TaskListView {...props} /></Provider>;
+    <Provider store={createAppStore()}>
+      <TaskListView {...props} />
+    </Provider>;
   mount(provider);
 
   expect(TaskStore.dispatch).toHaveBeenCalledWith({type: 'tasks/FETCH'});

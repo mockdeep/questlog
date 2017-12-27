@@ -9,6 +9,10 @@ import {fetchRoute} from 'src/route/action_creators';
 appStore.dispatch(fetchTasks());
 appStore.dispatch(fetchRoute());
 
-const AppBase = <Provider store={appStore}><RouterContainer /></Provider>;
+const AppBase = (
+  <Provider store={appStore}>
+    <RouterContainer />
+  </Provider>
+);
 
 export default AppBase;

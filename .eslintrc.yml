@@ -50,10 +50,13 @@ rules:
   max-statements: [error, { max: 14 }]
   multiline-comment-style: off
   no-magic-numbers: off
+  react/button-has-type: off
+  react/destructuring-assignment: off
   react/forbid-component-props: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/1449
   react/jsx-curly-brace-presence: off
   react/jsx-sort-props: off
+  react/no-access-state-in-setstate: off
   react/no-set-state: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/1389
   react/no-typos: off

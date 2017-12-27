@@ -17,7 +17,11 @@ function computeScratchKey(state) {
 }
 
 function TestComponent() {
-  return <div>{'Hello'}</div>;
+  return (
+    <div>
+      {'Hello'}
+    </div>
+  );
 }
 
 function wrapComponent(...args) {
