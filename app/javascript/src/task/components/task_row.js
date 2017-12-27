@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {map} from 'lodash';
 
-import TaskLink from 'src/task/components/link';
+import TaskEditIcon from 'src/task/components/edit_icon';
+import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
@@ -177,7 +178,7 @@ class TaskRow extends React.PureComponent {
   }
 
   render() {
-    const {task, timeframesEnabled} = this.props;
+    const {keyPrefix, task, timeframesEnabled} = this.props;
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
@@ -187,7 +188,10 @@ class TaskRow extends React.PureComponent {
           </button>
         </td>
         <td>
-          <TaskLink task={task} />
+          <TaskEditTitleForm keyPrefix={keyPrefix} task={task} />
+        </td>
+        <td>
+          <TaskEditIcon task={task} />
         </td>
         <td>
           {this.taskEstimate()}
@@ -227,6 +231,7 @@ class TaskRow extends React.PureComponent {
 
 TaskRow.propTypes = {
   deleteTask: PropTypes.func.isRequired,
+  keyPrefix: PropTypes.string.isRequired,
   task: taskShape.isRequired,
   updateTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool,

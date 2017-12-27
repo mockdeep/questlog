@@ -4,7 +4,7 @@ RSpec.describe 'front end routing', js: true do
     visit '/'
     add_task('do laundry')
     click_link 'All my tasks'
-    expect(current_tasks).to have_content('do laundry')
+    expect(current_tasks).to have_task('do laundry')
 
     page.go_back
 

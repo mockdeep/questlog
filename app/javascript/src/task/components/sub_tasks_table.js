@@ -9,6 +9,7 @@ function taskRows(tasks, {updateTask, deleteTask}) {
   return tasks.map((task) => (
     <TaskRow
       key={task.id}
+      keyPrefix={'subTasksTable'}
       task={task}
       updateTask={updateTask}
       deleteTask={deleteTask}

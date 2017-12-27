@@ -8,9 +8,9 @@ RSpec.describe 'tasks index page', js: true do
     visit '/'
     add_task('do laundry')
     click_link 'All my tasks'
-    expect(current_tasks).to have_content('do laundry')
+    expect(current_tasks).to have_task('do laundry')
     click_button 'DONE'
-    expect(page).not_to have_content('do laundry')
+    expect(page).to have_no_task('do laundry')
   end
 
   it 'allows the user to delete tasks' do
@@ -19,11 +19,11 @@ RSpec.describe 'tasks index page', js: true do
     click_button 'Add Task'
     expect(page).to have_task('do laundry')
     click_link 'All my tasks'
-    expect(current_tasks).to have_content('do laundry')
+    expect(current_tasks).to have_task('do laundry')
     create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
     accept_confirm { click_button 'DELETE' }
-    expect(current_tasks).not_to have_content('do laundry')
-    expect(current_tasks).to have_content('feed dog')
+    expect(current_tasks).to have_no_task('do laundry')
+    expect(current_tasks).to have_task('feed dog')
   end
 
   it 'highlights priority tasks as red' do
@@ -69,10 +69,10 @@ RSpec.describe 'tasks index page', js: true do
       release_at: 1.week.from_now,
     )
     visit('/tasks')
-    expect(pending_tasks).to have_content(task.title)
-    within('tr', text: task.title) { click_button('UNDO') }
+    expect(pending_tasks).to have_task(task.title)
+    task_row(task.title).click_button('UNDO')
     expect(page).to have_no_selector('#pending-tasks')
-    expect(current_tasks).to have_content(task.title)
+    expect(current_tasks).to have_task(task.title)
   end
 
 end

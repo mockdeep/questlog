@@ -13,6 +13,7 @@ const TABLE_HEADERS = (
     <th className='task-list__header'>
       {'Title'}
     </th>
+    <th className='task-list__header' />
     <th className='task-list__header'>
       {'Estimate'}
     </th>
@@ -34,13 +35,15 @@ class TimeframeSection extends React.Component {
   }
 
   renderTask(task) {
-    const {timeframeSpace, updateTask, deleteTask} = this.props;
+    const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
+
     return (
       <TaskRow
         timeframesEnabled
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
+        keyPrefix={`${timeframe.name}TimeframeSection`}
         updateTask={updateTask}
         deleteTask={deleteTask}
       />
@@ -48,7 +51,8 @@ class TimeframeSection extends React.Component {
   }
 
   renderPendingTask(task) {
-    const {timeframeSpace, updateTask, deleteTask} = this.props;
+    const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
+
     return (
       <TaskRow
         status='pending'
@@ -56,6 +60,7 @@ class TimeframeSection extends React.Component {
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
+        keyPrefix={`${timeframe.name}PendingTimeframeSection`}
         updateTask={updateTask}
         deleteTask={deleteTask}
       />

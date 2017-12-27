@@ -12,11 +12,11 @@ RSpec.describe 'bulk task creation', js: true do
     titles = "#home *1w do laundry\n#online @10am check mail"
     fill_in 'new-titles', with: titles
     click_button 'Add Tasks'
-    expect(current_tasks).to have_content('do laundry')
-    expect(current_tasks).not_to have_content('check mail')
+    expect(current_tasks).to have_task('do laundry')
+    expect(current_tasks).to have_no_task('check mail')
     expect(current_tasks).to have_selector(repeat_selector)
-    expect(pending_tasks).to have_content('check mail')
-    expect(pending_tasks).not_to have_content('do laundry')
+    expect(pending_tasks).to have_task('check mail')
+    expect(pending_tasks).to have_no_task('do laundry')
     expect(pending_tasks).not_to have_selector(repeat_selector)
   end
 

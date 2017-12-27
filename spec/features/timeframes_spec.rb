@@ -86,49 +86,38 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
       expect(find('h2', text: /\AInbox 36\/∞\z/)).to be
-      within('tr', text: task_1.title) do
-        select('This Week', from: 'timeframe-select')
-      end
+      task_row(task_1.title).select('This Week', from: 'timeframe-select')
 
       expect(find('h2', text: /\AInbox 6\/∞\z/)).to be
-      within('tr', text: task_2.title) do
-        select('Today', from: 'timeframe-select')
-      end
+      task_row(task_2.title).select('Today', from: 'timeframe-select')
     end
 
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe#today') do
       expect(find('h2', text: /\AToday 6\/63\z/)).to be
-      expect(find('tbody > tr')).to have_text(task_2.title)
+      expect(find('tbody > tr .task-input').value).to eq(task_2.title)
     end
 
     within('.timeframe#week') do
       expect(find('h2', text: /\AThis Week 30\/95\z/)).to be
-      within('tbody > tr', text: task_1.title) do
-        select('Today', from: 'timeframe-select')
-      end
+      task_row(task_1.title).select('Today', from: 'timeframe-select')
     end
 
     expect(page).to have_no_css('.timeframe#week')
 
     within('.timeframe#today') do
       expect(find('h2', text: /\AToday 36\/63\z/)).to be
-      within('tbody > tr', text: task_1.title) do
-        select('-', from: 'timeframe-select')
-      end
+      task_row(task_1.title).select('-', from: 'timeframe-select')
 
       expect(find('h2', text: /\AToday 6\/63\z/)).to be
-      within('tbody > tr', text: task_2.title) do
-        select('-', from: 'timeframe-select')
-      end
+      task_row(task_2.title).select('-', from: 'timeframe-select')
     end
 
     expect(page).to have_no_css('.timeframe')
 
     within('.inbox#inbox') do
-      expect(page).to have_content(task_1.title)
-      expect(page).to have_content(task_2.title)
+      expect(all('.task-input').map(&:value)).to eq [task_1.title, task_2.title]
     end
 
     visit '/'
