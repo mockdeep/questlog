@@ -51,8 +51,8 @@ class TagButtons extends React.Component {
 
 TagButtons.propTypes = {
   currentTagIds: PropTypes.arrayOf(PropTypes.number).isRequired,
-  selectedTagSlug: PropTypes.string,
   tags: PropTypes.arrayOf(tagShape).isRequired,
+  selectedTagSlug: PropTypes.string,
 };
 
 export default TagButtons;

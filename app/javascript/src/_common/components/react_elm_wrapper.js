@@ -30,9 +30,9 @@ class ReactElmWrapper extends React.Component {
 }
 
 ReactElmWrapper.propTypes = {
+  src: elmSourceShape.isRequired,
   flags: PropTypes.objectOf(PropTypes.any),
   ports: PropTypes.func,
-  src: elmSourceShape.isRequired,
 };
 
 export default ReactElmWrapper;

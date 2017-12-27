@@ -106,9 +106,9 @@ TaskFocusView.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
   scratch: scratchShape.isRequired,
-  task: taskShape,
   updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
+  task: taskShape,
   url: PropTypes.string,
 };
 
