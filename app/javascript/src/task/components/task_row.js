@@ -89,7 +89,9 @@ class TaskRow extends React.PureComponent {
         const optionTitle = name === 'inbox' ? '-' : title;
 
         return (
-          <option value={name} key={name}>{optionTitle}</option>
+          <option value={name} key={name}>
+            {optionTitle}
+          </option>
         );
       });
     }
@@ -157,18 +159,34 @@ class TaskRow extends React.PureComponent {
             {'DONE'}
           </button>
         </td>
-        <td><TaskLink task={task} /></td>
-        <td>{this.taskEstimate()}</td>
-        <td>{this.emblems()}</td>
+        <td>
+          <TaskLink task={task} />
+        </td>
+        <td>
+          {this.taskEstimate()}
+        </td>
+        <td>
+          {this.emblems()}
+        </td>
         <td>
           <select onChange={this.updatePriority} value={this.priority()}>
-            <option value=''>{'-'}</option>
-            <option value='1'>{'1'}</option>
-            <option value='2'>{'2'}</option>
-            <option value='3'>{'3'}</option>
+            <option value=''>
+              {'-'}
+            </option>
+            <option value='1'>
+              {'1'}
+            </option>
+            <option value='2'>
+              {'2'}
+            </option>
+            <option value='3'>
+              {'3'}
+            </option>
           </select>
         </td>
-        <td>{timeframesEnabled ? this.timeframeSelector() : ''}</td>
+        <td>
+          {timeframesEnabled ? this.timeframeSelector() : ''}
+        </td>
         <td>
           {task.pending ? this.undoButton() : ''}
           <button className='btn btn-link task-list__action' onClick={this.deleteTask}>

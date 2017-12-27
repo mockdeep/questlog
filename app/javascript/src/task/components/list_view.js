@@ -103,8 +103,12 @@ class TaskListView extends React.Component {
     return (
       <div id='current-tasks'>
         <table className='task-list'>
-          <thead><TableHeaders label={'Current tasks'} /></thead>
-          <tbody>{this.currentTaskRows()}</tbody>
+          <thead>
+            <TableHeaders label={'Current tasks'} />
+          </thead>
+          <tbody>
+            {this.currentTaskRows()}
+          </tbody>
         </table>
       </div>
     );
@@ -116,8 +120,12 @@ class TaskListView extends React.Component {
     return (
       <div id='pending-tasks'>
         <table className='task-list'>
-          <thead><TableHeaders label={'Pending tasks'} /></thead>
-          <tbody>{this.pendingTaskRows()}</tbody>
+          <thead>
+            <TableHeaders label={'Pending tasks'} />
+          </thead>
+          <tbody>
+            {this.pendingTaskRows()}
+          </tbody>
         </table>
       </div>
     );

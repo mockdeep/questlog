@@ -14,7 +14,9 @@ const props = {task: {}, tags, currentTagIds: []};
 describe('TagButtons', () => {
   it('renders some stuff', () => {
     const provider =
-      <Provider store={createAppStore()}><TagButtons {...props} /></Provider>;
+      <Provider store={createAppStore()}>
+        <TagButtons {...props} />
+      </Provider>;
     const wrapper = mount(provider);
 
     expect(wrapper).toIncludeText('home (8)');

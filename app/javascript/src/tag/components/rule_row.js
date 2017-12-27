@@ -33,7 +33,11 @@ class RuleRow extends React.Component {
 
   fieldOptions() {
     return FIELD_NAMES.map((fieldName) =>
-      <option value={fieldName} key={fieldName}>{FIELD_DISPLAY_NAMES[fieldName]}</option>);
+      (
+        <option value={fieldName} key={fieldName}>
+          {FIELD_DISPLAY_NAMES[fieldName]}
+        </option>
+      ));
   }
 
   checksDropdown() {
@@ -46,7 +50,14 @@ class RuleRow extends React.Component {
 
     return (
       <select defaultValue={defaultValue}>
-        {checks.map((check) => <option value={check} key={check}>{CHECK_DISPLAY_NAMES[check]}</option>)}
+        {
+          checks.map((check) =>
+            (
+              <option value={check} key={check}>
+                {CHECK_DISPLAY_NAMES[check]}
+              </option>
+            ))
+        }
       </select>
     );
   }

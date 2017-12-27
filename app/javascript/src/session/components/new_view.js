@@ -10,19 +10,25 @@ function SessionNewView() {
       method='post'
       className='login-form'
     >
-      <h1>{'Log in'}</h1>
+      <h1>
+        {'Log in'}
+      </h1>
       <input
         type='hidden'
         name='authenticity_token'
         value={authenticityToken()}
       />
       <p>
-        <label htmlFor='email'>{'Email'}</label>
+        <label htmlFor='email'>
+          {'Email'}
+        </label>
         <br />
         <input type='text' name='session[email]' id='email' />
       </p>
       <p>
-        <label htmlFor='password'>{'Password'}</label>
+        <label htmlFor='password'>
+          {'Password'}
+        </label>
         <br />
         <input type='password' name='session[password]' id='password' />
       </p>

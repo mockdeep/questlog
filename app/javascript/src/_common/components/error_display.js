@@ -3,7 +3,11 @@ import React from 'react';
 
 function errorItems(errors) {
   return errors.map(function errorItem(errorMessage) {
-    return <li key={errorMessage}>{errorMessage}</li>;
+    return (
+      <li key={errorMessage}>
+        {errorMessage}
+      </li>
+    );
   });
 }
 
@@ -12,7 +16,9 @@ function ErrorDisplay(props) {
     <div className='row'>
       <div className='col-md-12'>
         <div className='error-messages'>
-          <ul>{errorItems(props.errors)}</ul>
+          <ul>
+            {errorItems(props.errors)}
+          </ul>
         </div>
       </div>
     </div>

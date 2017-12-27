@@ -42,7 +42,11 @@ class TaskTitle extends React.Component {
 
     const timeframeName = timeframeNameMap[this.props.task.timeframe];
 
-    return <div className='timeframe'>{timeframeName}</div>;
+    return (
+      <div className='timeframe'>
+        {timeframeName}
+      </div>
+    );
   }
 
   render() {
@@ -67,7 +71,9 @@ class TaskTitle extends React.Component {
                   </div>
 
                   <div className='col-xs-1'>
-                    <span className='emblems'>{this.emblems()}</span>
+                    <span className='emblems'>
+                      {this.emblems()}
+                    </span>
                   </div>
                 </td>
 
