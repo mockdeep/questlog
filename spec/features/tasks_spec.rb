@@ -34,7 +34,7 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a guest user to manage tasks' do
-    expect(page).to_not have_button('Done')
+    expect(page).not_to have_button('Done')
     expect(page).to have_no_task
     add_task('do laundry #home')
     expect(page).to have_button('Done')
@@ -42,10 +42,10 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_task('do laundry')
     add_task('feed dog')
     expect(page).to have_task('do laundry')
-    expect(page).not_to have_task('feed dog')
+    expect(page).to have_no_task('feed dog')
     postpone_button.click
     expect(page).to have_task('feed dog')
-    expect(page).not_to have_task('do laundry')
+    expect(page).to have_no_task('do laundry')
     click_button 'Done'
     expect(page).to have_no_task
 
