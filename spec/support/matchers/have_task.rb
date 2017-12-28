@@ -30,7 +30,3 @@ module Matchers
   end
 
 end
-
-def have_task(expected)
-  Matchers::HaveTask.new(expected)
-end

@@ -45,11 +45,3 @@ module Matchers
   end
 
 end
-
-def have_no_task(expected = :__no_title__)
-  if expected == :__no_title__
-    Matchers::HaveNoTask.new
-  else
-    Matchers::HaveNoTaskWithTitle.new(expected)
-  end
-end

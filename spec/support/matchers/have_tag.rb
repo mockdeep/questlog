@@ -31,7 +31,3 @@ module Matchers
   end
 
 end
-
-def have_tag(expected)
-  Matchers::HaveTag.new(expected)
-end
