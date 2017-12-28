@@ -1,26 +1,30 @@
-module Matchers
+module Questlog
 
-  class HaveNoTask
+  module Matchers
 
-    attr_accessor :actual
+    class HaveNoTask
 
-    def matches?(actual)
-      self.actual = actual
-      actual.has_text?('No tasks!') && actual.has_no_selector?(TITLE_SELECTOR)
-    end
+      attr_accessor :actual
 
-    def failure_message
-      if actual.has_selector?(TITLE_SELECTOR)
-        %(expected not to find any task title, but found "#{actual_title}")
-      else
-        'expected to find text "No tasks!", but did not'
+      def matches?(actual)
+        self.actual = actual
+        actual.has_text?('No tasks!') && actual.has_no_selector?(TITLE_SELECTOR)
       end
-    end
 
-  private
+      def failure_message
+        if actual.has_selector?(TITLE_SELECTOR)
+          %(expected not to find any task title, but found "#{actual_title}")
+        else
+          'expected to find text "No tasks!", but did not'
+        end
+      end
 
-    def actual_title
-      actual.find(TITLE_SELECTOR).value
+    private
+
+      def actual_title
+        actual.find(TITLE_SELECTOR).value
+      end
+
     end
 
   end

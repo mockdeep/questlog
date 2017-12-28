@@ -1,20 +1,24 @@
-module Matchers
+module Questlog
 
-  class HaveNoTaskWithTitle
+  module Matchers
 
-    attr_accessor :expected, :actual
+    class HaveNoTaskWithTitle
 
-    def initialize(expected)
-      self.expected = expected
-    end
+      attr_accessor :expected, :actual
 
-    def matches?(actual)
-      self.actual = actual
-      actual.has_no_selector?("#{TITLE_SELECTOR}[value='#{expected}']")
-    end
+      def initialize(expected)
+        self.expected = expected
+      end
 
-    def failure_message
-      %(expected not to find task "#{expected}", but it is present)
+      def matches?(actual)
+        self.actual = actual
+        actual.has_no_selector?("#{TITLE_SELECTOR}[value='#{expected}']")
+      end
+
+      def failure_message
+        %(expected not to find task "#{expected}", but it is present)
+      end
+
     end
 
   end

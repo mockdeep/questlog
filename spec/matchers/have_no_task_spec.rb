@@ -1,4 +1,4 @@
-RSpec.describe Matchers::HaveNoTask do
+RSpec.describe Questlog::Matchers::HaveNoTask do
 
   let(:matcher) { described_class.new }
 

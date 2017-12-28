@@ -39,7 +39,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
   config.render_views
   config.include(FactoryGirl::Syntax::Methods)
-  config.include(Matchers)
+  config.include(Questlog::Matchers)
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
