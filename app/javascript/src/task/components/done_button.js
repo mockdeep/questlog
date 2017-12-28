@@ -12,15 +12,21 @@ class DoneButton extends React.Component {
 
   markDone() {
     if (!this.isTaskReady()) { return; }
-    this.props.completeTask(this.props.task.id);
+
+    const {completeTask, task} = this.props;
+
+    completeTask(task.id);
   }
 
   isTaskReady() {
-    return this.props.task.loadingState === 'ready';
+    const {task} = this.props;
+
+    return task.loadingState === 'ready';
   }
 
   buttonMessage() {
-    const isMarkingDone = this.props.task.loadingState === 'marking_done';
+    const {task} = this.props;
+    const isMarkingDone = task.loadingState === 'marking_done';
 
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   }

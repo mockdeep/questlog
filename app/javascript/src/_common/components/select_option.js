@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function SelectOption(props) {
+function SelectOption({content, value}) {
   return (
-    <option value={props.value}>
-      {props.content}
+    <option value={value}>
+      {content}
     </option>
   );
 }

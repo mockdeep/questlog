@@ -12,19 +12,23 @@ class TagButtons extends React.Component {
   }
 
   isCurrent(tag) {
-    return this.props.currentTagIds.includes(tag.id);
+    const {currentTagIds} = this.props;
+
+    return currentTagIds.includes(tag.id);
   }
 
   isActive(tag) {
-    if (this.props.selectedTagSlug) {
-      return tag.slug === this.props.selectedTagSlug;
-    }
+    const {selectedTagSlug} = this.props;
+
+    if (selectedTagSlug) { return tag.slug === selectedTagSlug; }
 
     return tag.name === 'All';
   }
 
   tagButtons() {
-    return this.props.tags.map(this.tagButton);
+    const {tags} = this.props;
+
+    return tags.map(this.tagButton);
   }
 
   tagButton(tag) {

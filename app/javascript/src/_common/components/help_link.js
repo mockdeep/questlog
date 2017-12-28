@@ -11,20 +11,27 @@ class HelpLink extends React.Component {
   }
 
   openHelpModal() {
-    this.props.updateCommon({helpModalOpen: true});
+    const {updateCommon} = this.props;
+
+    updateCommon({helpModalOpen: true});
   }
 
   closeHelpModal(event) {
     event.stopPropagation();
-    this.props.updateCommon({helpModalOpen: false});
+
+    const {updateCommon} = this.props;
+
+    updateCommon({helpModalOpen: false});
   }
 
   render() {
+    const {helpModalOpen} = this.props;
+
     return (
       <button className='btn btn-link' onClick={this.openHelpModal}>
         {'Help'}
         <HelpModal
-          isOpen={this.props.helpModalOpen}
+          isOpen={helpModalOpen}
           closeModal={this.closeHelpModal}
         />
       </button>

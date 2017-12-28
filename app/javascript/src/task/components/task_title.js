@@ -15,12 +15,14 @@ class TaskTitle extends React.Component {
   }
 
   className() {
+    const {task} = this.props;
+
     let classString = 'col-md-12 task-display';
 
-    if (this.props.task.priority) {
-      classString = `${classString} priority-${this.props.task.priority}`;
+    if (task.priority) {
+      classString = `${classString} priority-${task.priority}`;
     }
-    if (this.props.task.skip_count >= 15) {
+    if (task.skip_count >= 15) {
       classString = `${classString} over-skipped`;
     }
 
@@ -28,19 +30,25 @@ class TaskTitle extends React.Component {
   }
 
   title() {
-    return `skip count: ${this.props.task.skip_count}`;
+    const {task} = this.props;
+
+    return `skip count: ${task.skip_count}`;
   }
 
   emblems() {
-    if (!this.props.task.repeatSeconds) { return false; }
+    const {task} = this.props;
+
+    if (!task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
   }
 
   timeframeName() {
-    if (!this.props.task.timeframe) { return false; }
+    const {task} = this.props;
 
-    const timeframeName = timeframeNameMap[this.props.task.timeframe];
+    if (!task.timeframe) { return false; }
+
+    const timeframeName = timeframeNameMap[task.timeframe];
 
     return (
       <div className='timeframe'>

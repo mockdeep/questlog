@@ -11,9 +11,10 @@ class ReactElmWrapper extends React.Component {
   }
 
   componentDidMount() {
-    const app = this.props.src.embed(this.node, this.props.flags);
+    const {flags, ports, src} = this.props;
+    const app = src.embed(this.node, flags);
 
-    if (this.props.ports) { this.props.ports(app.ports); }
+    if (ports) { ports(app.ports); }
   }
 
   shouldComponentUpdate() {

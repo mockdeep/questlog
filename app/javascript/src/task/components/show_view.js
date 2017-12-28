@@ -36,7 +36,9 @@ class TaskShowView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.setScratchTask(props.task);
+    const {task} = this.props;
+
+    this.setScratchTask(task);
   }
 
   componentWillReceiveProps({task}) {
@@ -44,12 +46,15 @@ class TaskShowView extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.updateTaskMeta({newTask: {title: ''}});
+    const {updateTaskMeta} = this.props;
+
+    updateTaskMeta({newTask: {title: ''}});
   }
 
   setScratchTask(task) {
     if (!task) { return; }
 
+    const {updateTaskMeta} = this.props;
     const newTask = {
       priority: task.priority,
       repeatSeconds: task.repeatSeconds,
@@ -60,7 +65,7 @@ class TaskShowView extends React.Component {
       title: '',
     };
 
-    this.props.updateTaskMeta({newTask});
+    updateTaskMeta({newTask});
   }
 
   render() {

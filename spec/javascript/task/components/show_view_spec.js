@@ -3,10 +3,11 @@ import {shallow} from 'enzyme';
 
 import TaskShowView from 'src/task/components/show_view';
 
+const updateTaskMeta = jest.fn();
 const props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
-  updateTaskMeta: jest.fn(),
+  updateTaskMeta,
 };
 
 it('renders nothing when the task is not present', () => {
@@ -20,7 +21,7 @@ it('sets the task in scratch space', () => {
 
   shallow(<TaskShowView {...props} task={task} />);
 
-  const [[payload]] = props.updateTaskMeta.mock.calls;
+  const [[payload]] = updateTaskMeta.mock.calls;
   const {newTask} = payload;
 
   expect(newTask.priority).toBeUndefined();
@@ -38,7 +39,7 @@ it('updates the task in scratch space when component updates', () => {
 
   component.setProps({task: {...task, id: 501}});
 
-  expect(props.updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
+  expect(updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
 });
 
 it('clears the scratch space when component unmounts', () => {
@@ -47,7 +48,7 @@ it('clears the scratch space when component unmounts', () => {
 
   component.unmount();
 
-  expect(props.updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: ''}});
+  expect(updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: ''}});
 });
 
 it('renders something when the task is present', () => {

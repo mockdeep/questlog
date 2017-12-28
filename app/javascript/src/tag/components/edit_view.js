@@ -16,17 +16,23 @@ class TagEditView extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.tag !== this.props.tag) {
-      this.props.updateScratch({rules: newProps.tag.rules});
+    const {tag, updateScratch} = this.props;
+
+    if (newProps.tag !== tag) {
+      updateScratch({rules: newProps.tag.rules});
     }
   }
 
   updateFieldValue(index, value) {
-    this.props.updateScratch({rules: update(this.props.scratch.rules, {[index]: {$merge: {field: value}}})});
+    const {scratch, updateScratch} = this.props;
+
+    updateScratch({rules: update(scratch.rules, {[index]: {$merge: {field: value}}})});
   }
 
   deleteRule(index) {
-    this.props.updateScratch({rules: update(this.props.scratch.rules, {$splice: [[index, 1]]})});
+    const {scratch, updateScratch} = this.props;
+
+    updateScratch({rules: update(scratch.rules, {$splice: [[index, 1]]})});
   }
 
   ruleRow(rule, index) {
@@ -44,19 +50,27 @@ class TagEditView extends React.Component {
   }
 
   ruleRows() {
-    return this.props.scratch.rules.map((rule, index) => this.ruleRow(rule, index));
+    const {scratch} = this.props;
+
+    return scratch.rules.map((rule, index) => this.ruleRow(rule, index));
   }
 
   uniqRules() {
-    return uniqWith(this.props.scratch.rules, isEqual);
+    const {scratch} = this.props;
+
+    return uniqWith(scratch.rules, isEqual);
   }
 
   hasDuplicateRules() {
-    return this.uniqRules().length !== this.props.scratch.rules.length;
+    const {scratch} = this.props;
+
+    return this.uniqRules().length !== scratch.rules.length;
   }
 
   validateAndSave(event) {
     event.preventDefault();
+
+    const {scratch, updateScratch} = this.props;
 
     if (this.hasDuplicateRules()) {
       // eslint-disable-next-line no-alert
@@ -64,30 +78,35 @@ class TagEditView extends React.Component {
 
       const uniqRules = this.uniqRules();
 
-      this.props.updateScratch({rules: uniqRules});
+      updateScratch({rules: uniqRules});
       this.saveTag(uniqRules);
     } else {
-      this.saveTag(this.props.scratch.rules);
+      this.saveTag(scratch.rules);
     }
   }
 
   saveTag(rules) {
-    this.props.updateTag(this.props.tag.id, {rules}).
-      then(() => this.props.setRoute({name: 'tags'}));
+    const {setRoute, tag, updateTag} = this.props;
+
+    updateTag(tag.id, {rules}).
+      then(() => setRoute({name: 'tags'}));
   }
 
   addRule() {
-    const newRules = this.props.scratch.rules.concat({field: 'estimateSeconds', check: 'isBlank'});
+    const {scratch, updateScratch} = this.props;
+    const newRules = scratch.rules.concat({field: 'estimateSeconds', check: 'isBlank'});
 
-    this.props.updateScratch({rules: newRules});
+    updateScratch({rules: newRules});
   }
 
   render() {
-    if (!this.props.tag || !this.props.scratch.rules) { return null; }
+    const {scratch, tag} = this.props;
+
+    if (!tag || !scratch.rules) { return null; }
 
     return (
       <div>
-        {`Editing tag ${this.props.tag.name}`}
+        {`Editing tag ${tag.name}`}
         <br />
         <Link to='tags'>
           {'Back to tags list'}

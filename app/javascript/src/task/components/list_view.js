@@ -52,15 +52,15 @@ class TaskListView extends React.Component {
   }
 
   moveTask(id, afterId) {
-    const tasks = this.state.currentTasks;
+    const {currentTasks} = this.state;
 
-    const task = findTask(tasks, id);
-    const afterTask = findTask(tasks, afterId);
-    const taskIndex = tasks.indexOf(task);
-    const afterIndex = tasks.indexOf(afterTask);
+    const task = findTask(currentTasks, id);
+    const afterTask = findTask(currentTasks, afterId);
+    const taskIndex = currentTasks.indexOf(task);
+    const afterIndex = currentTasks.indexOf(afterTask);
 
     const newTasks = update(
-      tasks,
+      currentTasks,
       {$splice: [[taskIndex, 1], [afterIndex, 0, task]]}
     );
 
@@ -69,12 +69,12 @@ class TaskListView extends React.Component {
 
   saveTaskPositions(component) {
     const taskId = component.props.task.id;
-    const tasks = this.state.currentTasks;
+    const {currentTasks} = this.state;
 
-    const task = findTask(tasks, taskId);
-    const taskIndex = tasks.indexOf(task);
-    const afterTask = tasks[taskIndex + 1];
-    const beforeTask = tasks[taskIndex - 1];
+    const task = findTask(currentTasks, taskId);
+    const taskIndex = currentTasks.indexOf(task);
+    const afterTask = currentTasks[taskIndex + 1];
+    const beforeTask = currentTasks[taskIndex - 1];
     let newPriority = task.priority;
 
     if (beforeTask && afterTask) {
@@ -92,13 +92,17 @@ class TaskListView extends React.Component {
   }
 
   currentTaskPositions() {
-    return this.state.currentTasks.map(function taskId(task) {
+    const {currentTasks} = this.state;
+
+    return currentTasks.map(function taskId(task) {
       return task.id;
     });
   }
 
   currentTasksTable() {
-    if (this.state.currentTasks.length === 0) { return null; }
+    const {currentTasks} = this.state;
+
+    if (currentTasks.length === 0) { return null; }
 
     return (
       <div id='current-tasks'>
@@ -115,7 +119,9 @@ class TaskListView extends React.Component {
   }
 
   pendingTasksTable() {
-    if (this.state.pendingTasks.length === 0) { return null; }
+    const {pendingTasks} = this.state;
+
+    if (pendingTasks.length === 0) { return null; }
 
     return (
       <div id='pending-tasks'>
@@ -132,22 +138,28 @@ class TaskListView extends React.Component {
   }
 
   currentTaskRows() {
-    return this.state.currentTasks.map(this.taskRow);
+    const {currentTasks} = this.state;
+
+    return currentTasks.map(this.taskRow);
   }
 
   pendingTaskRows() {
-    return this.state.pendingTasks.map(this.taskRow);
+    const {pendingTasks} = this.state;
+
+    return pendingTasks.map(this.taskRow);
   }
 
   taskRow(task) {
+    const {deleteTask, updateTask} = this.props;
+
     return (
       <DraggableTaskRow
         key={task.id}
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}
-        updateTask={this.props.updateTask}
-        deleteTask={this.props.deleteTask}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
       />
     );
   }

@@ -12,23 +12,25 @@ class TagButton extends React.Component {
   }
 
   className() {
+    const {current, isActive, tag} = this.props;
     let classString = 'button btn btn-default';
 
-    if (this.props.isActive) {
+    if (isActive) {
       classString = `${classString} active`;
     }
-    if (this.props.current) {
+    if (current) {
       classString = `${classString} current`;
     }
-    if (this.props.tag.priority) {
-      classString = `${classString} priority-${this.props.tag.priority}-btn`;
+    if (tag.priority) {
+      classString = `${classString} priority-${tag.priority}-btn`;
     }
 
     return classString;
   }
 
   render() {
-    const {slug, name, unfinishedTasksCount} = this.props.tag;
+    const {tag} = this.props;
+    const {slug, name, unfinishedTasksCount} = tag;
     const to = name === 'All' ? 'root' : 'tag';
 
     return (

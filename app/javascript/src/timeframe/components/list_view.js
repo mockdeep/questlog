@@ -45,13 +45,16 @@ class TimeframeListView extends React.Component {
   }
 
   productivityString() {
-    return ToEnglish.seconds(this.state.medianProductivity);
+    const {medianProductivity} = this.state;
+
+    return ToEnglish.seconds(medianProductivity);
   }
 
   timeframeSpace() {
+    const {timeframes} = this.state;
     const counts = {};
 
-    this.state.timeframes.forEach(function setTimeframeCount(timeframe) {
+    timeframes.forEach(function setTimeframeCount(timeframe) {
       const minuteTotal = calculateTotalMinutes(timeframe);
 
       counts[timeframe.name] = timeframe.minuteMax - minuteTotal;
@@ -61,14 +64,17 @@ class TimeframeListView extends React.Component {
   }
 
   renderTimeframe(timeframe) {
+    const {medianProductivity} = this.state;
+    const {deleteTask, updateTask} = this.props;
+
     return (
       <TimeframeSection
         key={timeframe.name}
         timeframe={timeframe}
         timeframeSpace={this.timeframeSpace()}
-        medianProductivity={this.state.medianProductivity}
-        updateTask={this.props.updateTask}
-        deleteTask={this.props.deleteTask}
+        medianProductivity={medianProductivity}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
       />
     );
   }
@@ -78,17 +84,23 @@ class TimeframeListView extends React.Component {
   }
 
   timeframesWithTasks() {
-    return this.state.timeframes.filter(timeframeHasTasks);
+    const {timeframes} = this.state;
+
+    return timeframes.filter(timeframeHasTasks);
   }
 
   refresh(event) {
+    const {fetchTasks} = this.props;
+
     event.preventDefault();
     TaskStore.unload();
-    this.props.fetchTasks();
+    fetchTasks();
   }
 
   render() {
-    if (this.state.loading) {
+    const {loading} = this.state;
+
+    if (loading) {
       return (
         <header className='timeframes-header'>
           <h2>

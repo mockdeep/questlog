@@ -12,26 +12,32 @@ class TaskEditTitleForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.task.id !== this.props.task.id) {
-      this.props.updateScratch({focused: false, taskTitle: newProps.task.title});
+    const {task, updateScratch} = this.props;
+
+    if (newProps.task.id !== task.id) {
+      updateScratch({focused: false, taskTitle: newProps.task.title});
     }
   }
 
   updateTitleInput(event) {
-    this.props.updateScratch({taskTitle: event.target.value});
+    const {updateScratch} = this.props;
+
+    updateScratch({taskTitle: event.target.value});
   }
 
   saveTask(event) {
     event.preventDefault();
-    const {task, updateTask} = this.props;
+    const {scratch, task, updateScratch, updateTask} = this.props;
 
     this.input.blur();
-    updateTask(task.id, {title: this.props.scratch.taskTitle});
-    this.props.updateScratch({focused: false});
+    updateTask(task.id, {title: scratch.taskTitle});
+    updateScratch({focused: false});
   }
 
   setFocused() {
-    this.props.updateScratch({focused: true});
+    const {updateScratch} = this.props;
+
+    updateScratch({focused: true});
   }
 
   storeInput(input) {

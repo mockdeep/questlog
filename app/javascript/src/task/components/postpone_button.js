@@ -35,8 +35,11 @@ class PostponeButton extends React.Component {
   }
 
   postponeTask() {
-    if (this.props.disabled) { return; }
-    this.props.postponeTask(this.props.task.id);
+    const {disabled, postponeTask, task} = this.props;
+
+    if (disabled) { return; }
+
+    postponeTask(task.id);
   }
 
   selectOptions() {
@@ -54,18 +57,24 @@ class PostponeButton extends React.Component {
   }
 
   storePostponeSeconds(event) {
-    this.props.storePostponeSeconds(parseInt(event.target.value, 10));
+    const {storePostponeSeconds} = this.props;
+
+    storePostponeSeconds(parseInt(event.target.value, 10));
   }
 
   buttonMessage() {
-    return isPostponing(this.props.task) ? 'Postponing...' : 'Postpone for:';
+    const {task} = this.props;
+
+    return isPostponing(task) ? 'Postponing...' : 'Postpone for:';
   }
 
   render() {
+    const {disabled} = this.props;
+
     return (
       <div
         id='postpone'
-        disabled={this.props.disabled}
+        disabled={disabled}
         className={className}
         onClick={this.postponeTask}
       >
@@ -75,7 +84,7 @@ class PostponeButton extends React.Component {
         <select
           onChange={this.storePostponeSeconds}
           onClick={stopPropagation}
-          disabled={this.props.disabled}
+          disabled={disabled}
         >
           {this.selectOptions()}
         </select>

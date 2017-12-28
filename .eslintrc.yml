@@ -51,7 +51,6 @@ rules:
   multiline-comment-style: off
   no-magic-numbers: off
   react/button-has-type: off
-  react/destructuring-assignment: off
   react/forbid-component-props: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/1449
   react/jsx-curly-brace-presence: off
@@ -89,7 +88,7 @@ rules:
   prefer-arrow-callback: [error, { allowNamedFunctions: true }]
   prefer-destructuring: [error, { array: false }]
   quote-props: [error, as-needed, { keywords: true }]
-  quotes: [error, single]
+  quotes: [error, single, {avoidEscape: true}]
   react/jsx-indent-props: [error, 2]
   react/jsx-indent: [error, 2]
   react/jsx-wrap-multilines: [error, { declaration: false }]

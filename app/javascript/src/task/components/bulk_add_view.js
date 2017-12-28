@@ -11,18 +11,26 @@ class TaskBulkAddView extends React.Component {
   }
 
   setTitles(event) {
-    this.props.updateTaskMeta({newTask: {title: event.target.value}});
+    const {updateTaskMeta} = this.props;
+
+    updateTaskMeta({newTask: {title: event.target.value}});
   }
 
   redirectToTaskList() {
-    this.props.updateTaskMeta({newTask: {title: ''}});
-    this.props.setRoute({name: 'tasks'});
+    const {setRoute, updateTaskMeta} = this.props;
+
+    updateTaskMeta({newTask: {title: ''}});
+    setRoute({name: 'tasks'});
   }
 
   saveTasks(event) {
     event.preventDefault();
-    if (this.props.taskTitles.trim() === '') { return; }
-    const tasksParams = {titles: this.props.taskTitles.trim()};
+
+    const {taskTitles} = this.props;
+
+    if (taskTitles.trim() === '') { return; }
+
+    const tasksParams = {titles: taskTitles.trim()};
 
     BulkTaskStore.create(tasksParams).then(this.redirectToTaskList);
   }
@@ -36,6 +44,8 @@ class TaskBulkAddView extends React.Component {
   }
 
   render() {
+    const {taskTitles} = this.props;
+
     return (
       <form {...this.rootAttrs()}>
         <div className='row'>
@@ -45,7 +55,7 @@ class TaskBulkAddView extends React.Component {
               className='task-input'
               rows='15'
               onChange={this.setTitles}
-              value={this.props.taskTitles}
+              value={taskTitles}
               name='bulk_task[titles]'
             />
           </div>

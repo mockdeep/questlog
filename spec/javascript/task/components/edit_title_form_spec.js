@@ -3,11 +3,13 @@ import {mount} from 'enzyme';
 
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 
+const updateScratch = jest.fn();
+const updateTask = jest.fn();
 const props = {
   scratch: {},
   task: {id: 52, title: 'a title'},
-  updateScratch: jest.fn(),
-  updateTask: jest.fn(),
+  updateScratch,
+  updateTask,
 };
 
 it('renders the task title in the input', () => {
@@ -21,7 +23,7 @@ it('updates the value of the task title when input is changed', () => {
 
   component.find('input').simulate('change', {target: {value: 'new title'}});
 
-  expect(props.updateScratch).toHaveBeenCalledWith({taskTitle: 'new title'});
+  expect(updateScratch).toHaveBeenCalledWith({taskTitle: 'new title'});
 });
 
 it('updates the task when form is submitted', () => {
@@ -32,7 +34,7 @@ it('updates the task when form is submitted', () => {
   component.find('form').simulate('submit', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
-  expect(props.updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
+  expect(updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
 });
 
 it('updates the task when the input blurs', () => {
@@ -43,7 +45,7 @@ it('updates the task when the input blurs', () => {
   component.find('input').simulate('blur', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
-  expect(props.updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
+  expect(updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
 });
 
 it('updates the scratch title when a new task is given', () => {
@@ -52,15 +54,15 @@ it('updates the scratch title when a new task is given', () => {
   component.setProps({task: {id: 501, title: 'next task'}});
 
   const expected = {focused: false, taskTitle: 'next task'};
-  expect(props.updateScratch).toHaveBeenCalledWith(expected);
+  expect(updateScratch).toHaveBeenCalledWith(expected);
 });
 
 it('sets scratch.focused when the field focuses', () => {
   const component = mount(<TaskEditTitleForm {...props} />);
 
-  expect(props.updateScratch).not.toHaveBeenCalledWith({focused: true});
+  expect(updateScratch).not.toHaveBeenCalledWith({focused: true});
 
   component.find('input').simulate('focus');
 
-  expect(props.updateScratch).toHaveBeenCalledWith({focused: true});
+  expect(updateScratch).toHaveBeenCalledWith({focused: true});
 });

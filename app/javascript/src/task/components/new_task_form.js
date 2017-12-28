@@ -11,30 +11,41 @@ class NewTaskForm extends React.Component {
   }
 
   setTitle(event) {
+    const {task, updateTaskMeta} = this.props;
     const taskAttrs = {title: event.target.value};
 
-    this.props.updateTaskMeta({newTask: {...this.props.task, ...taskAttrs}});
+    updateTaskMeta({newTask: {...task, ...taskAttrs}});
   }
 
   saveTask(event) {
     event.preventDefault();
 
-    this.props.createTask(this.props.task);
+    const {createTask, task} = this.props;
+
+    createTask(task);
   }
 
   buttonMessage() {
-    return this.props.taskSaving ? 'Adding Task' : 'Add Task';
+    const {taskSaving} = this.props;
+
+    return taskSaving ? 'Adding Task' : 'Add Task';
   }
 
   validTask() {
-    return this.props.task.title.trim().length > 0;
+    const {task} = this.props;
+
+    return task.title.trim().length > 0;
   }
 
   disabled() {
-    return this.props.taskSaving || !this.validTask();
+    const {taskSaving} = this.props;
+
+    return taskSaving || !this.validTask();
   }
 
   render() {
+    const {task} = this.props;
+
     return (
       <form onSubmit={this.saveTask} id='new-form'>
         <div className='row'>
@@ -45,7 +56,7 @@ class NewTaskForm extends React.Component {
             className='task-input'
             onChange={this.setTitle}
             placeholder={'e.g: do laundry #home @10am ~1h'}
-            value={this.props.task.title}
+            value={task.title}
           />
         </div>
         <div className='row'>

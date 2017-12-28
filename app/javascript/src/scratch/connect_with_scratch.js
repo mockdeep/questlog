@@ -4,11 +4,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import {
-  createScratch,
-  deleteScratch,
-  updateScratch,
-} from 'src/scratch/action_creators';
+import * as scratchActionCreators from 'src/scratch/action_creators';
 import {scratchShape} from 'src/shapes';
 
 function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) {
@@ -25,7 +21,7 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
   function scratchMapDispatchToProps(dispatch) {
     return {
       wrappedComponentActionCreators: bindActionCreators(actionCreators, dispatch),
-      ...bindActionCreators({createScratch, deleteScratch, updateScratch}, dispatch),
+      ...bindActionCreators(scratchActionCreators, dispatch),
     };
   }
 
@@ -34,32 +30,53 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
       constructor(props) {
         super(props);
         autobind(this);
-        this.props.createScratch(props.scratchKey);
+
+        const {createScratch} = this.props;
+
+        createScratch(props.scratchKey);
       }
 
       componentWillReceiveProps(nextProps) {
-        if (nextProps.scratchKey === this.props.scratchKey) { return; }
+        const {
+          createScratch,
+          deleteScratch,
+          scratch,
+          scratchKey,
+          updateScratch,
+        } = this.props;
 
-        this.props.createScratch(nextProps.scratchKey);
-        this.props.updateScratch(nextProps.scratchKey, this.props.scratch);
-        this.props.deleteScratch(this.props.scratchKey);
+        if (nextProps.scratchKey === scratchKey) { return; }
+
+        createScratch(nextProps.scratchKey);
+        updateScratch(nextProps.scratchKey, scratch);
+        deleteScratch(scratchKey);
       }
 
       componentWillUnmount() {
-        this.props.deleteScratch(this.props.scratchKey);
+        const {deleteScratch, scratchKey} = this.props;
+
+        deleteScratch(scratchKey);
       }
 
       updateScratch(payload) {
-        this.props.updateScratch(this.props.scratchKey, payload);
+        const {scratchKey, updateScratch} = this.props;
+
+        updateScratch(scratchKey, payload);
       }
 
       render() {
+        const {
+          scratch,
+          wrappedComponentActionCreators,
+          wrappedComponentProps,
+        } = this.props;
+
         return (
           <WrappedComponent
-            {...this.props.wrappedComponentProps}
-            {...this.props.wrappedComponentActionCreators}
+            {...wrappedComponentProps}
+            {...wrappedComponentActionCreators}
             updateScratch={this.updateScratch}
-            scratch={this.props.scratch || {}}
+            scratch={scratch || {}}
           />
         );
       }
