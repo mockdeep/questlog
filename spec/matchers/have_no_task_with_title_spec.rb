@@ -31,7 +31,7 @@ RSpec.describe Matchers::HaveNoTaskWithTitle do
       node = Capybara.string(<<-HTML)
         <div id="task"><input class="task-input" value="some task" /></div>
       HTML
-      expected = "expected not to find task 'some task', but it is present"
+      expected = 'expected not to find task "some task", but it is present'
 
       matcher.matches?(node)
 

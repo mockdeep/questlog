@@ -15,9 +15,9 @@ module Matchers
 
     def failure_message
       if actual.has_selector?(TITLE_SELECTOR)
-        "expected to find task title '#{expected}', but had '#{actual_title}'"
+        %(expected to find task title "#{expected}", but had "#{actual_title}")
       else
-        "expected to find task title '#{expected}', but no task found"
+        %(expected to find task title "#{expected}", but no task found)
       end
     end
 

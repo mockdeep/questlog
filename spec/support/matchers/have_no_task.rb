@@ -11,9 +11,9 @@ module Matchers
 
     def failure_message
       if actual.has_selector?(TITLE_SELECTOR)
-        "expected not to find any task title, but found '#{actual_title}'"
+        %(expected not to find any task title, but found "#{actual_title}")
       else
-        "expected to find text 'No tasks!', but did not"
+        'expected to find text "No tasks!", but did not'
       end
     end
 
@@ -39,7 +39,7 @@ module Matchers
     end
 
     def failure_message
-      "expected not to find task '#{expected}', but it is present"
+      %(expected not to find task "#{expected}", but it is present)
     end
 
   end
