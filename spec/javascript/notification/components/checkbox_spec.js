@@ -3,31 +3,66 @@ import {shallow} from 'enzyme';
 
 import NotificationCheckbox from 'src/notification/components/checkbox';
 
+const removeNotification = jest.fn();
+const updateUser = jest.fn();
 const props = {
   task: {},
   addNotification: jest.fn(),
   completeTask: jest.fn(),
   disableNotifications: jest.fn(),
   enableNotifications: jest.fn(),
-  removeNotification: jest.fn(),
+  removeNotification,
   requestNotificationPermission: jest.fn(),
   notificationsEnabled: false,
   notificationsPermitted: false,
-  updateUser: jest.fn(),
+  updateUser,
 };
 
-describe('NotificationCheckbox', () => {
-  it('is not checked by default', () => {
-    const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
+it('is not checked by default', () => {
+  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
 
-    expect(notificationCheckbox.find('input[type="checkbox"]')).not.toBeChecked();
-  });
+  expect(notificationCheckbox.find('input[type="checkbox"]')).not.toBeChecked();
+});
 
-  it('is checked when notifications are enabled and task is present', () => {
-    const notificationCheckbox = shallow(
-      <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />
-    );
+it('is checked when notifications are enabled and task is present', () => {
+  const notificationCheckbox = shallow(
+    <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />
+  );
 
-    expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();
-  });
+  expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();
+});
+
+it('enables notifications when the checkbox get checked', () => {
+  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
+  const checkboxInput = notificationCheckbox.find("input[type='checkbox']");
+
+  checkboxInput.simulate('change', {target: {checked: true}});
+
+  expect(updateUser).toHaveBeenCalledWith({notificationsEnabled: true});
+});
+
+it('notifies again when updated with new task', () => {
+  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
+  const notifySpy = jest.spyOn(notificationCheckbox.instance(), 'notifyTask');
+
+  notificationCheckbox.setProps({...props, task: {id: 52}});
+
+  expect(notifySpy).toHaveBeenCalled();
+});
+
+it('notifies on interval when notificationsEnabled changes to true', () => {
+  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
+  const notifySpy = jest.spyOn(notificationCheckbox.instance(), 'notifyOnInterval');
+
+  notificationCheckbox.setProps({...props, notificationsEnabled: true});
+
+  expect(notifySpy).toHaveBeenCalled();
+});
+
+it('closes notifications when the component unmounts', () => {
+  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
+
+  notificationCheckbox.unmount();
+
+  expect(removeNotification).toHaveBeenCalledWith({key: 'currentTask'});
 });

@@ -11,13 +11,13 @@ function errorItems(errors) {
   });
 }
 
-function ErrorDisplay(props) {
+function ErrorDisplay({errors}) {
   return (
     <div className='row'>
       <div className='col-md-12'>
         <div className='error-messages'>
           <ul>
-            {errorItems(props.errors)}
+            {errorItems(errors)}
           </ul>
         </div>
       </div>

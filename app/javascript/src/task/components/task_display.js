@@ -7,23 +7,30 @@ import TaskTitle from 'src/task/components/task_title';
 import TagButtonsContainer from 'src/tag/containers/buttons';
 import {taskShape} from 'src/shapes';
 
-function TaskDisplay(props) {
+function TaskDisplay({
+  deleteTask,
+  disabled,
+  storePostponeSeconds,
+  postponeTask,
+  completeTask,
+  task,
+}) {
   return (
     <div>
-      <TagButtonsContainer currentTagIds={props.task && props.task.tagIds} />
+      <TagButtonsContainer currentTagIds={task && task.tagIds} />
       <div className='row'>
-        <ParentTaskBreadCrumbs taskId={props.task.parentTaskId} />
+        <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
       </div>
       <TaskTitle
-        task={props.task}
-        deleteTask={props.deleteTask}
+        task={task}
+        deleteTask={deleteTask}
       />
       <MainButtons
-        task={props.task}
-        disabled={props.disabled}
-        storePostponeSeconds={props.storePostponeSeconds}
-        postponeTask={props.postponeTask}
-        completeTask={props.completeTask}
+        task={task}
+        disabled={disabled}
+        storePostponeSeconds={storePostponeSeconds}
+        postponeTask={postponeTask}
+        completeTask={completeTask}
       />
     </div>
   );

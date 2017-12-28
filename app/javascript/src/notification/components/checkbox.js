@@ -15,8 +15,10 @@ class NotificationCheckbox extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.task.id !== this.props.task.id) { this.notifyTask(); }
-    if (this.props.notificationsEnabled && !prevProps.notificationsEnabled) {
+    const {notificationsEnabled, task} = this.props;
+
+    if (prevProps.task.id !== task.id) { this.notifyTask(); }
+    if (notificationsEnabled && !prevProps.notificationsEnabled) {
       this.notifyOnInterval();
     }
   }
@@ -26,7 +28,9 @@ class NotificationCheckbox extends React.Component {
   }
 
   enableNotifications() {
-    this.props.updateUser({notificationsEnabled: true});
+    const {updateUser} = this.props;
+
+    updateUser({notificationsEnabled: true});
   }
 
   notifyOnInterval() {
@@ -40,20 +44,26 @@ class NotificationCheckbox extends React.Component {
     this.closeNotification();
     if (!this.shouldShowNotifications()) { return; }
 
-    this.props.addNotification({
+    const {addNotification, task} = this.props;
+
+    addNotification({
       key: 'currentTask',
-      message: this.props.task.title,
+      message: task.title,
       onClick: this.completeTask,
     });
   }
 
   completeTask() {
+    const {completeTask, task} = this.props;
+
     this.closeNotification();
-    this.props.completeTask(this.props.task.id);
+    completeTask(task.id);
   }
 
   shouldShowNotifications() {
-    return Boolean(this.props.task.id) && this.props.notificationsEnabled;
+    const {notificationsEnabled, task} = this.props;
+
+    return Boolean(task.id) && notificationsEnabled;
   }
 
   toggleNotifications(event) {
@@ -65,12 +75,16 @@ class NotificationCheckbox extends React.Component {
   }
 
   disableNotifications() {
+    const {updateUser} = this.props;
+
     this.closeNotification();
-    this.props.updateUser({notificationsEnabled: false});
+    updateUser({notificationsEnabled: false});
   }
 
   closeNotification() {
-    this.props.removeNotification({key: 'currentTask'});
+    const {removeNotification} = this.props;
+
+    removeNotification({key: 'currentTask'});
   }
 
   render() {

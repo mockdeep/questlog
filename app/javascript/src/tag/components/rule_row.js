@@ -28,7 +28,9 @@ class RuleRow extends React.Component {
   }
 
   updateFieldValue(event) {
-    this.props.updateFieldValue(this.props.index, event.target.value);
+    const {index, updateFieldValue} = this.props;
+
+    updateFieldValue(index, event.target.value);
   }
 
   fieldOptions() {
@@ -65,7 +67,9 @@ class RuleRow extends React.Component {
   deleteRule(event) {
     event.preventDefault();
 
-    this.props.deleteRule(this.props.index);
+    const {deleteRule, index} = this.props;
+
+    deleteRule(index);
   }
 
   render() {

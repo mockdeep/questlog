@@ -8,24 +8,24 @@ import TaskRow from 'src/task/components/task_row';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 const taskSource = {
-  canDrag(props) {
-    return !props.timeframesEnabled;
+  canDrag({timeframesEnabled}) {
+    return !timeframesEnabled;
   },
 
-  beginDrag(props) {
-    return {item: {id: props.task.id}};
+  beginDrag({task}) {
+    return {item: {id: task.id}};
   },
 
-  endDrag(props, _monitor, component) {
-    props.saveTaskPositions(component);
+  endDrag({saveTaskPositions}, _monitor, component) {
+    saveTaskPositions(component);
   },
 };
 
 const taskTarget = {
-  hover(props, monitor) {
+  hover({moveTask, task}, monitor) {
     const draggedId = monitor.getItem().item.id;
 
-    props.moveTask(draggedId, props.task.id);
+    moveTask(draggedId, task.id);
   },
 };
 
@@ -47,28 +47,41 @@ class DraggableTaskRow extends React.PureComponent {
   }
 
   updatePriority(event) {
-    this.props.updateTask(this.props.task.id, {priority: event.target.value});
+    const {task, updateTask} = this.props;
+
+    updateTask(task.id, {priority: event.target.value});
   }
 
   bindDragAndDrop(component) {
     if (!component) { return; }
 
     const {domNode} = component;
+    const {connectDragSource, connectDropTarget} = this.props;
 
-    this.props.connectDropTarget(domNode);
-    this.props.connectDragSource(domNode);
+    connectDropTarget(domNode);
+    connectDragSource(domNode);
   }
 
   render() {
+    const {
+      deleteTask,
+      isDragging,
+      status,
+      task,
+      timeframeSpace,
+      timeframesEnabled,
+      updateTask,
+    } = this.props;
+
     return (
       <TaskRow
-        deleteTask={this.props.deleteTask}
-        isDragging={this.props.isDragging}
-        status={this.props.status}
-        task={this.props.task}
-        timeframeSpace={this.props.timeframeSpace}
-        timeframesEnabled={this.props.timeframesEnabled}
-        updateTask={this.props.updateTask}
+        deleteTask={deleteTask}
+        isDragging={isDragging}
+        status={status}
+        task={task}
+        timeframeSpace={timeframeSpace}
+        timeframesEnabled={timeframesEnabled}
+        updateTask={updateTask}
         ref={this.bindDragAndDrop}
       />
     );

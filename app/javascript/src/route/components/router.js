@@ -30,8 +30,8 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   tag: TaskFocusViewContainer,
 };
 
-function Router(props) {
-  const Component = ROUTE_NAME_TO_COMPONENT_MAP[props.route.name];
+function Router({route}) {
+  const Component = ROUTE_NAME_TO_COMPONENT_MAP[route.name];
 
   return <Component />;
 }

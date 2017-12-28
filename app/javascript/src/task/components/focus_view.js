@@ -11,11 +11,16 @@ class TaskFocusView extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
-    this.props.updateScratch({postponeSeconds: 300});
+
+    const {updateScratch} = this.props;
+
+    updateScratch({postponeSeconds: 300});
   }
 
   storePostponeSeconds(postponeSeconds) {
-    this.props.updateScratch({postponeSeconds});
+    const {updateScratch} = this.props;
+
+    updateScratch({postponeSeconds});
   }
 
   setTitle(title) {
@@ -23,13 +28,17 @@ class TaskFocusView extends React.Component {
   }
 
   postponeTask(taskId) {
-    const attrs = {postpone: this.props.scratch.postponeSeconds};
+    const {scratch, updateTask} = this.props;
 
-    this.props.updateTask(taskId, attrs);
+    const attrs = {postpone: scratch.postponeSeconds};
+
+    updateTask(taskId, attrs);
   }
 
   completeTask(taskId) {
-    this.props.updateTask(taskId, {done: true});
+    const {updateTask} = this.props;
+
+    updateTask(taskId, {done: true});
   }
 
   mainDisplay() {
@@ -90,13 +99,15 @@ class TaskFocusView extends React.Component {
   }
 
   render() {
+    const {task} = this.props;
+
     return (
       <div>
         {this.mainDisplay()}
         <hr />
         <NewTaskForm />
 
-        <TaskFooter task={this.props.task} completeTask={this.completeTask} />
+        <TaskFooter task={task} completeTask={this.completeTask} />
       </div>
     );
   }

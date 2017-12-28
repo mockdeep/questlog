@@ -12,10 +12,11 @@ class DeleteButton extends React.Component {
 
   deleteTask(event) {
     event.stopPropagation();
+
+    const {deleteTask, task} = this.props;
+
     // eslint-disable-next-line no-alert
-    if (confirm('Delete this task?')) {
-      this.props.deleteTask(this.props.task.id);
-    }
+    if (confirm('Delete this task?')) { deleteTask(task.id); }
   }
 
   rootOpts() {

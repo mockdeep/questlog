@@ -34,52 +34,60 @@ class TimeframeSection extends React.Component {
   }
 
   renderTask(task) {
+    const {timeframeSpace, updateTask, deleteTask} = this.props;
     return (
       <TaskRow
         timeframesEnabled
-        timeframeSpace={this.props.timeframeSpace}
+        timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
-        updateTask={this.props.updateTask}
-        deleteTask={this.props.deleteTask}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
       />
     );
   }
 
   renderPendingTask(task) {
+    const {timeframeSpace, updateTask, deleteTask} = this.props;
     return (
       <TaskRow
         status='pending'
         timeframesEnabled
-        timeframeSpace={this.props.timeframeSpace}
+        timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
-        updateTask={this.props.updateTask}
-        deleteTask={this.props.deleteTask}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
       />
     );
   }
 
   minuteTotal() {
-    return calculateTotalMinutes(this.props.timeframe);
+    const {timeframe} = this.props;
+
+    return calculateTotalMinutes(timeframe);
   }
 
   maxTime() {
-    const {minuteMax} = this.props.timeframe;
+    const {timeframe} = this.props;
 
-    return isFinite(minuteMax) ? minuteMax : '∞';
+    return isFinite(timeframe.minuteMax) ? timeframe.minuteMax : '∞';
   }
 
   currentTaskRows() {
-    if (this.props.timeframe.currentTasks.length === 0) { return false; }
+    const {timeframe} = this.props;
 
-    return this.props.timeframe.currentTasks.map(this.renderTask);
+    if (timeframe.currentTasks.length === 0) { return false; }
+
+    return timeframe.currentTasks.map(this.renderTask);
   }
 
   pendingTaskRows() {
-    if (this.props.timeframe.pendingTasks.length === 0) { return false; }
+    const {timeframe} = this.props;
 
-    return this.props.timeframe.pendingTasks.map(this.renderPendingTask);
+    if (timeframe.pendingTasks.length === 0) { return false; }
+
+    return timeframe.pendingTasks.map(this.renderPendingTask);
   }
 
   ratioSpan() {
@@ -97,14 +105,14 @@ class TimeframeSection extends React.Component {
   }
 
   render() {
-    const timeframeName = this.props.timeframe.name;
-    const className = timeframeName === 'inbox' ? 'inbox' : 'timeframe';
+    const {timeframe} = this.props;
+    const className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
 
     return (
-      <div key={timeframeName} id={timeframeName} className={className}>
+      <div key={timeframe.name} id={timeframe.name} className={className}>
         <hr />
         <h2>
-          {timeframeNameMap[this.props.timeframe.name]}
+          {timeframeNameMap[timeframe.name]}
           {' '}
           {this.ratioSpan()}
         </h2>

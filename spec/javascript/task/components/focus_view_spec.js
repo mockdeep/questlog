@@ -9,13 +9,15 @@ import {shallow} from 'enzyme';
 
 import TaskFocusView from 'src/task/components/focus_view';
 
+const updateScratch = jest.fn();
+const updateTask = jest.fn();
 const props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
   scratch: {postponeSeconds: 250},
   tags: [],
-  updateScratch: jest.fn(),
-  updateTask: jest.fn(),
+  updateScratch,
+  updateTask,
 };
 
 it('updates the task on postpone', () => {
@@ -24,7 +26,7 @@ it('updates the task on postpone', () => {
 
   taskDisplay.prop('postponeTask')(52);
 
-  expect(props.updateTask).toHaveBeenCalledWith(52, {postpone: 250});
+  expect(updateTask).toHaveBeenCalledWith(52, {postpone: 250});
 });
 
 it('updates the postponeSeconds in scratch', () => {
@@ -33,7 +35,7 @@ it('updates the postponeSeconds in scratch', () => {
 
   taskDisplay.prop('storePostponeSeconds')(52);
 
-  expect(props.updateScratch).toHaveBeenCalledWith({postponeSeconds: 52});
+  expect(updateScratch).toHaveBeenCalledWith({postponeSeconds: 52});
 });
 
 it('updates the task on completion', () => {
@@ -42,7 +44,7 @@ it('updates the task on completion', () => {
 
   taskDisplay.prop('completeTask')(512);
 
-  expect(props.updateTask).toHaveBeenCalledWith(512, {done: true});
+  expect(updateTask).toHaveBeenCalledWith(512, {done: true});
 });
 
 describe('when a task is given', () => {

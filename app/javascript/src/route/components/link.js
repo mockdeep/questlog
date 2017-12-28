@@ -14,13 +14,16 @@ class Link extends React.Component {
   navigate(event) {
     event.preventDefault();
 
-    this.props.setRoute({name: this.props.to, ...this.props.params});
+    const {params, setRoute, to} = this.props;
+
+    setRoute({name: to, ...params});
   }
 
   path() {
-    const params = mapValues(this.props.params, (value) => value.toString());
+    const {params, to} = this.props;
+    const pathParams = mapValues(params, (value) => value.toString());
 
-    return findRoute(this.props.to).toPath(params);
+    return findRoute(to).toPath(pathParams);
   }
 
   render() {

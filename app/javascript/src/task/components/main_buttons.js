@@ -5,22 +5,28 @@ import DoneButton from 'src/task/components/done_button';
 import PostponeButton from 'src/task/components/postpone_button';
 import {taskShape} from 'src/shapes';
 
-function MainButtons(props) {
+function MainButtons({
+  completeTask,
+  disabled,
+  postponeTask,
+  storePostponeSeconds,
+  task,
+}) {
   return (
     <div id='buttons' className='row main-button'>
       <div className='col-md-6'>
         <DoneButton
-          task={props.task}
-          disabled={props.disabled}
-          completeTask={props.completeTask}
+          task={task}
+          disabled={disabled}
+          completeTask={completeTask}
         />
       </div>
       <div className='col-md-6'>
         <PostponeButton
-          task={props.task}
-          disabled={props.disabled}
-          storePostponeSeconds={props.storePostponeSeconds}
-          postponeTask={props.postponeTask}
+          task={task}
+          disabled={disabled}
+          storePostponeSeconds={storePostponeSeconds}
+          postponeTask={postponeTask}
         />
       </div>
     </div>

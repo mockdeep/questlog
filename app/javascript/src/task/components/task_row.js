@@ -15,44 +15,56 @@ class TaskRow extends React.PureComponent {
   }
 
   markDone(event) {
+    const {task, updateTask} = this.props;
+
     event.preventDefault();
-    this.props.updateTask(this.props.task.id, {done: true});
+    updateTask(task.id, {done: true});
   }
 
   updatePriority(event) {
-    this.props.updateTask(this.props.task.id, {priority: event.target.value});
+    const {task, updateTask} = this.props;
+
+    updateTask(task.id, {priority: event.target.value});
   }
 
   updateTimeframe(event) {
-    this.props.updateTask(this.props.task.id, {timeframe: event.target.value});
+    const {task, updateTask} = this.props;
+
+    updateTask(task.id, {timeframe: event.target.value});
   }
 
   deleteTask(event) {
+    const {deleteTask, task} = this.props;
+
     event.preventDefault();
     // eslint-disable-next-line no-alert
     if (confirm('Delete this task?')) {
-      this.props.deleteTask(this.props.task.id);
+      deleteTask(task.id);
     }
   }
 
   emblems() {
-    if (!this.props.task.repeatSeconds) { return false; }
+    const {task} = this.props;
+
+    if (!task.repeatSeconds) { return false; }
 
     return <i className='fa fa-repeat' title='task repeats' />;
   }
 
   className() {
+    const {isDragging, status} = this.props;
+
     let classString = 'task-list__row';
 
     if (this.priority()) {
       classString += ` task-list__row--priority-${this.priority()}`;
     }
 
-    if (this.props.status) {
-      classString += ` task-list__row--${this.props.status}`;
+    if (status) {
+      classString += ` task-list__row--${status}`;
     }
 
-    if (this.props.isDragging) {
+    if (isDragging) {
       classString += ' task-list__row--dragging';
     }
 
@@ -60,19 +72,26 @@ class TaskRow extends React.PureComponent {
   }
 
   priority() {
-    return this.props.task.priority || '';
+    const {task} = this.props;
+
+    return task.priority || '';
   }
 
   timeframe() {
-    return this.props.task.timeframe;
+    const {task} = this.props;
+
+    return task.timeframe;
   }
 
   timeframeHasSpace(name) {
-    return this.props.timeframeSpace[name] >= this.props.task.estimateMinutes;
+    const {task, timeframeSpace} = this.props;
+
+    return timeframeSpace[name] >= task.estimateMinutes;
   }
 
   optionText(title, name) {
-    const space = this.props.timeframeSpace[name];
+    const {timeframeSpace} = this.props;
+    const space = timeframeSpace[name];
     let text = title;
 
     if (this.timeframe() !== name && isFinite(space)) {
@@ -83,7 +102,9 @@ class TaskRow extends React.PureComponent {
   }
 
   timeframeOptions() {
-    if (!this.state.timeframeClicked) {
+    const {timeframeClicked} = this.state;
+
+    if (!timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
       return map(timeframeNameMap, function timeframeOption(title, name) {
         const optionTitle = name === 'inbox' ? '-' : title;
@@ -128,15 +149,21 @@ class TaskRow extends React.PureComponent {
   }
 
   taskEstimate() {
-    return `${this.props.task.estimateMinutes} min`;
+    const {task} = this.props;
+
+    return `${task.estimateMinutes} min`;
   }
 
   undoTask() {
-    this.props.updateTask(this.props.task.id, {done: false});
+    const {task, updateTask} = this.props;
+
+    updateTask(task.id, {done: false});
   }
 
   undoButton() {
-    if (!this.props.task.pending) { return false; }
+    const {task} = this.props;
+
+    if (!task.pending) { return false; }
 
     return (
       <button className='btn btn-link task-list__action' onClick={this.undoTask}>

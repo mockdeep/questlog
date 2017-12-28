@@ -3,11 +3,12 @@ import {shallow} from 'enzyme';
 
 import TagEditView from 'src/tag/components/edit_view';
 
+const updateScratch = jest.fn();
 const props = {
   tag: {},
   setRoute: jest.fn(),
   updateTag: jest.fn(),
-  updateScratch: jest.fn(),
+  updateScratch,
   scratch: {rules: []},
 };
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
@@ -28,5 +29,5 @@ it('adds rules when "Add Rule" button is clicked', () => {
 
   expect(addRuleButton).toBePresent();
   addRuleButton.simulate('click');
-  expect(props.updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
+  expect(updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
 });
