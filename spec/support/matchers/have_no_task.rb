@@ -25,23 +25,4 @@ module Matchers
 
   end
 
-  class HaveNoTaskWithTitle
-
-    attr_accessor :expected, :actual
-
-    def initialize(expected)
-      self.expected = expected
-    end
-
-    def matches?(actual)
-      self.actual = actual
-      actual.has_no_selector?("#{TITLE_SELECTOR}[value='#{expected}']")
-    end
-
-    def failure_message
-      %(expected not to find task "#{expected}", but it is present)
-    end
-
-  end
-
 end
