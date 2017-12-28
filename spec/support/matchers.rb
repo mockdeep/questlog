@@ -1,22 +1,22 @@
-module Matchers
+module Questlog
 
-  TITLE_SELECTOR = '.task-input:not(#new-title)'.freeze
-  TAGS_SELECTOR = '.tag-buttons a.button'.freeze
+  module Matchers
 
-  def have_task(expected)
-    Matchers::HaveTask.new(expected)
-  end
+    TITLE_SELECTOR = '.task-input:not(#new-title)'.freeze
+    TAGS_SELECTOR = '.tag-buttons a.button'.freeze
 
-  def have_no_task(expected = :__no_title__)
-    if expected == :__no_title__
-      Matchers::HaveNoTask.new
-    else
-      Matchers::HaveNoTaskWithTitle.new(expected)
+    def have_task(expected)
+      HaveTask.new(expected)
     end
-  end
 
-  def have_tag(expected)
-    Matchers::HaveTag.new(expected)
+    def have_no_task(expected = nil)
+      expected ? HaveNoTaskWithTitle.new(expected) : HaveNoTask.new
+    end
+
+    def have_tag(expected)
+      HaveTag.new(expected)
+    end
+
   end
 
 end

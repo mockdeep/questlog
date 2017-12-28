@@ -70,6 +70,9 @@ Style/EmptyMethod:
 ClassLength:
   Max: 120
 
+RSpec/FilePath:
+  Exclude: [spec/matchers/**/*]
+
 Style/LambdaCall:
   EnforcedStyle: braces
 
