@@ -2,20 +2,15 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'immutability-helper';
-import {partition} from 'lodash';
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext as dragDropContext} from 'react-dnd';
 
-import TaskStore from 'src/task/store';
 import BulkTaskStore from 'src/task/bulk_store';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
-
-function isPending(task) {
-  return task.pending;
-}
+import {taskShape} from 'src/shapes';
 
 function findTask(tasks, taskId) {
   return tasks.find(function taskMatches(task) { return task.id === taskId; });
@@ -24,31 +19,15 @@ function findTask(tasks, taskId) {
 class TaskListView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentTasks: [], pendingTasks: []};
+
+    const {currentTasks, pendingTasks} = this.props;
+    this.state = {currentTasks, pendingTasks};
     autobind(this);
   }
 
-  componentDidMount() {
-    this.unsubscribeTasks = TaskStore.subscribe(this.loadTasks);
-    this.loadTasks();
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeTasks();
-  }
-
-  loadTasks() {
-    if (!TaskStore.getState().loaded) {
-      TaskStore.dispatch({type: 'tasks/FETCH'});
-    }
-
-    this.setTasks(TaskStore.getState());
-  }
-
-  setTasks(data) {
-    const [pendingTasks, currentTasks] = partition(data.tasks, isPending);
-
-    this.setState({pendingTasks, currentTasks});
+  componentWillReceiveProps(nextProps) {
+    const {currentTasks, pendingTasks} = nextProps;
+    this.setState({currentTasks, pendingTasks});
   }
 
   moveTask(id, afterId) {
@@ -179,7 +158,9 @@ class TaskListView extends React.Component {
 }
 
 TaskListView.propTypes = {
+  currentTasks: PropTypes.arrayOf(taskShape).isRequired,
   deleteTask: PropTypes.func.isRequired,
+  pendingTasks: PropTypes.arrayOf(taskShape).isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 
