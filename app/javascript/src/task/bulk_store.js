@@ -1,6 +1,8 @@
 import request from 'src/_helpers/request';
 
+import appStore from 'src/app_store';
 import TaskStore from 'src/task/store';
+import {fetchTasks} from 'src/task/action_creators';
 
 const BulkTaskStore = {
   listeners: [],
@@ -52,5 +54,8 @@ const BulkTaskStore = {
   },
 };
 
-BulkTaskStore.subscribe(function unloadTaskStore() { TaskStore.unload(); });
+BulkTaskStore.subscribe(() => {
+  TaskStore.unload();
+  appStore.dispatch(fetchTasks());
+});
 export default BulkTaskStore;

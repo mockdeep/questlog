@@ -52,4 +52,4 @@ const getCurrentTask = createSelector(
   (task) => task
 );
 
-export {getCurrentTask, getUndoneTasks};
+export {getCurrentTask, getPartitionedTasks, getUndoneTasks};
