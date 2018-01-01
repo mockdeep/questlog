@@ -31,9 +31,13 @@ class TaskListView extends React.Component {
   }
 
   moveTask(id, afterId) {
+    if (id === afterId) { return; }
     const {currentTasks} = this.state;
 
     const task = findTask(currentTasks, id);
+    // afterTask is the task that comes **before** the task we're moving
+    // unless task is moved to the top, in which it is the task **after**
+    // somehow this works for both cases...
     const afterTask = findTask(currentTasks, afterId);
     const taskIndex = currentTasks.indexOf(task);
     const afterIndex = currentTasks.indexOf(afterTask);
@@ -52,6 +56,7 @@ class TaskListView extends React.Component {
 
     const task = findTask(currentTasks, taskId);
     const taskIndex = currentTasks.indexOf(task);
+    // afterTask is the task that comes **after** the task we're moving
     const afterTask = currentTasks[taskIndex + 1];
     const beforeTask = currentTasks[taskIndex - 1];
     let newPriority = task.priority;
