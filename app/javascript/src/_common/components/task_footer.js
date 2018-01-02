@@ -11,32 +11,17 @@ function TaskFooter({task, completeTask}) {
     <footer className='task-footer'>
       {task ? <NotificationCheckbox task={task} completeTask={completeTask} /> : null}
       <br />
-      <Link to='tasks'>
-        {'All my tasks'}
-      </Link>
+      <Link to='tasks'>{'All my tasks'}</Link>
       {' | '}
-      <Link to='timeframes'>
-        {'Timeframes'}
-      </Link>
+      <Link to='timeframes'>{'Timeframes'}</Link>
       {' | '}
-      <a href='/bulk_task/new'>
-        {'Add multiple tasks'}
-      </a>
+      <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}
       <HelpLink />
       <br />
       {'Try adding a tag using "#", for example: '}
-      <strong>
-        {'#home'}
-      </strong>
-      {' or '}
-      <strong>
-        {'#5-min'}
-      </strong>
-      {'. '}
-      {'Click '}
-      <HelpLink />
-      {' for more.'}
+      <strong>{'#home'}</strong>{' or '}<strong>{'#5-min'}</strong>{'. '}
+      {'Click '}<HelpLink />{' for more.'}
     </footer>
   );
 }

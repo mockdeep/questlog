@@ -77,25 +77,13 @@ class TaskFocusView extends React.Component {
   loadingDisplay() {
     this.setTitle('Loading...');
 
-    return (
-      <div>
-        <h1>
-          {'Loading...'}
-        </h1>
-      </div>
-    );
+    return <div><h1>{'Loading...'}</h1></div>;
   }
 
   noTaskDisplay() {
     this.setTitle('(no tasks!)');
 
-    return (
-      <div>
-        <h2>
-          {'No tasks! Try adding one below:'}
-        </h2>
-      </div>
-    );
+    return <div><h2>{'No tasks! Try adding one below:'}</h2></div>;
   }
 
   render() {

@@ -12,9 +12,7 @@ function HelpModal({isOpen, closeModal}) {
       <button className='modal__close-button' onClick={closeModal}>
         <i className='fa fa-times fa-2x' />
       </button>
-      <h3>
-        {'Help'}
-      </h3>
+      <h3>{'Help'}</h3>
       <p>
         {
           `You can type different markers when adding your tasks in order to
@@ -25,29 +23,17 @@ function HelpModal({isOpen, closeModal}) {
       <table>
         <thead>
           <tr>
-            <th>
-              {'marker'}
-            </th>
-            <th>
-              {'examples'}
-            </th>
-            <th>
-              {'description'}
-            </th>
+            <th>{'marker'}</th>
+            <th>{'examples'}</th>
+            <th>{'description'}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td className='modal__cell modal__marker'>
-              {'!'}
-              <strong>
-                {' or '}
-              </strong>
-              {'\''}
+              {'!'}<strong>{' or '}</strong>{"'"}
             </td>
-            <td className='modal__cell'>
-              {'!1 !2 \'3'}
-            </td>
+            <td className='modal__cell'>{'!1 !2 \'3'}</td>
             <td className='modal__cell'>
               {
                 `Set the priority of the task. Priority 1 tasks will appear
@@ -58,9 +44,7 @@ function HelpModal({isOpen, closeModal}) {
             </td>
           </tr>
           <tr>
-            <td className='modal__cell modal__marker'>
-              {'#'}
-            </td>
+            <td className='modal__cell modal__marker'>{'#'}</td>
             <td className='modal__cell'>
               {'#at-home #errand #standing-in-line'}
             </td>
@@ -73,9 +57,7 @@ function HelpModal({isOpen, closeModal}) {
             </td>
           </tr>
           <tr>
-            <td className='modal__cell modal__marker'>
-              {'@'}
-            </td>
+            <td className='modal__cell modal__marker'>{'@'}</td>
             <td className='modal__cell'>
               {'@10:30am @10/05/2015 @10/05/2015-10:30am'}
             </td>
@@ -88,45 +70,20 @@ function HelpModal({isOpen, closeModal}) {
             </td>
           </tr>
           <tr>
-            <td className='modal__cell modal__marker'>
-              {'*'}
-            </td>
-            <td className='modal__cell'>
-              {'*1d *3h *5m *1y'}
-            </td>
+            <td className='modal__cell modal__marker'>{'*'}</td>
+            <td className='modal__cell'>{'*1d *3h *5m *1y'}</td>
             <td className='modal__cell'>
               {
                 `Repeat the task every day, 3 hours, 5 minutes, or 1 year. A
                   full list of repeat abbreviations are: `
               }
-              <strong>
-                {'s'}
-              </strong>
-              {' -- seconds, '}
-              <strong>
-                {'m'}
-              </strong>
-              {' or '}
-              <strong>
-                {'mi'}
-              </strong>
-              {' -- minutes, '}
-              <strong>
-                {'h'}
-              </strong>
-              {' -- hours, '}
-              <strong>
-                {'d'}
-              </strong>
-              {' -- days, '}
-              <strong>
-                {'mo'}
-              </strong>
-              {' -- months, and '}
-              <strong>
-                {'y'}
-              </strong>
-              {' -- years.  '}
+              <strong>{'s'}</strong>{' -- seconds, '}
+              <strong>{'m'}</strong>{' or '}
+              <strong>{'mi'}</strong>{' -- minutes, '}
+              <strong>{'h'}</strong>{' -- hours, '}
+              <strong>{'d'}</strong>{' -- days, '}
+              <strong>{'mo'}</strong>{' -- months, and '}
+              <strong>{'y'}</strong>{' -- years.  '}
               {
                 `As of yet we don't have a way to repeat at a particular time
                   of day or day of the week/month. The repeat will start
@@ -137,12 +94,8 @@ function HelpModal({isOpen, closeModal}) {
             </td>
           </tr>
           <tr>
-            <td className='modal__cell modal__marker'>
-              {'~'}
-            </td>
-            <td className='modal__cell'>
-              {'~1d ~3h ~5m'}
-            </td>
+            <td className='modal__cell modal__marker'>{'~'}</td>
+            <td className='modal__cell'>{'~1d ~3h ~5m'}</td>
             <td className='modal__cell'>
               {
                 `Sets a time estimate on the task. This impacts how much you

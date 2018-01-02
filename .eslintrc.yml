@@ -106,4 +106,5 @@ rules:
   react/jsx-handler-names: off
   react/jsx-max-props-per-line: off
   react/jsx-no-bind: off
+  react/jsx-one-expression-per-line: off
   require-jsdoc: off

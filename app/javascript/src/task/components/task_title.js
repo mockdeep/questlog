@@ -52,9 +52,7 @@ class TaskTitle extends React.Component {
     const timeframeName = grab(timeframeNameMap, task.timeframe);
 
     return (
-      <div className='timeframe'>
-        {timeframeName}
-      </div>
+      <div className='timeframe'>{timeframeName}</div>
     );
   }
 
@@ -69,10 +67,7 @@ class TaskTitle extends React.Component {
               <tr>
                 <td className='col-xs-1'>
                   {this.timeframeName()}
-                  <DeleteButton
-                    task={task}
-                    deleteTask={deleteTask}
-                  />
+                  <DeleteButton task={task} deleteTask={deleteTask} />
                 </td>
                 <td className='col-xs-10 title'>
                   <div className='col-xs-10 col-xs-offset-1'>
@@ -80,15 +75,10 @@ class TaskTitle extends React.Component {
                   </div>
 
                   <div className='col-xs-1'>
-                    <span className='emblems'>
-                      {this.emblems()}
-                    </span>
+                    <span className='emblems'>{this.emblems()}</span>
                   </div>
                 </td>
-
-                <td className='col-xs-1'>
-                  <TaskEditIcon task={task} />
-                </td>
+                <td className='col-xs-1'><TaskEditIcon task={task} /></td>
               </tr>
             </tbody>
           </table>
