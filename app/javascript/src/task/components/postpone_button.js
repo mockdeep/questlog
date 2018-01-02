@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import SelectOption from 'src/_common/components/select_option';
-import stopPropagation from 'src/_helpers/stop_propagation';
 import {taskShape} from 'src/shapes';
 
 function isPostponing(task) {
@@ -83,7 +82,7 @@ class PostponeButton extends React.Component {
         </label>
         <select
           onChange={this.storePostponeSeconds}
-          onClick={stopPropagation}
+          onClick={(event) => event.stopPropagation()}
           disabled={disabled}
         >
           {this.selectOptions()}
