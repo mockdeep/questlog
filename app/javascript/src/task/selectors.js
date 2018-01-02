@@ -1,6 +1,14 @@
 import _ from 'lodash';
 import {createSelector} from 'reselect';
 
+import {getRouteName} from 'src/route/selectors';
+
+const TASK_FILTERS = {
+  tasks() { return true; },
+  leafTasks(task) { return task.subTasks.length === 0; },
+  rootTasks(task) { return !task.parentTaskId; },
+};
+
 const timeframePositions = {
   today: 1,
   week: 2,
@@ -28,19 +36,18 @@ function timeframePosition(task) {
   return position;
 }
 
+function partitionTasks(tasks) {
+  const [pending, undone] = _.partition(tasks, (task) => task.releaseAt);
+
+  return {pending, undone};
+}
+
 const getOrderedTasks = createSelector(
   (state) => state.task.byId,
   (tasksById) => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
 );
 
-const getPartitionedTasks = createSelector(
-  getOrderedTasks,
-  (orderedTasks) => {
-    const [pending, undone] = _.partition(orderedTasks, (task) => task.releaseAt);
-
-    return {pending, undone};
-  }
-);
+const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getUndoneTasks = createSelector(
   getPartitionedTasks,
@@ -52,4 +59,18 @@ const getCurrentTask = createSelector(
   (task) => task
 );
 
-export {getCurrentTask, getPartitionedTasks, getUndoneTasks};
+const getOrderedTasksForRoute = createSelector(
+  [getOrderedTasks, getRouteName],
+  (orderedTasks, routeName) => orderedTasks.filter(TASK_FILTERS[routeName])
+);
+
+const getPartitionedTasksForRoute = createSelector(
+  getOrderedTasksForRoute,
+  partitionTasks
+);
+
+export {
+  getCurrentTask,
+  getPartitionedTasksForRoute,
+  getUndoneTasks,
+};

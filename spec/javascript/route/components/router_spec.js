@@ -9,3 +9,9 @@ it('can render all of the routes', () => {
     expect(shallow(<Router route={route} />)).toBePresent();
   });
 });
+
+it('renders nothing for server rendered routes', () => {
+  const component = shallow(<Router route={{name: 'sessions'}} />);
+
+  expect(component.find('Nothing').dive().type()).toBeNull();
+});
