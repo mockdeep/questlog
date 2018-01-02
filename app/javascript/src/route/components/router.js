@@ -23,6 +23,8 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
   privacy: PrivacyView,
+  leafTasks: TaskListViewContainer,
+  rootTasks: TaskListViewContainer,
   what: WhatView,
   timeframes: TimeframeListViewContainer,
   tags: TagListViewContainer,

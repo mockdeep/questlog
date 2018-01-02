@@ -12,6 +12,7 @@ const props = {
   currentTasks: [],
   deleteTask: jest.fn(),
   pendingTasks: [],
+  route: {name: 'tasks'},
   updateTask: jest.fn(),
 };
 
@@ -81,21 +82,40 @@ it('updates task rows based on updated props', () => {
   expect(tableHeaders).toHaveProp('label', 'Pending tasks');
 });
 
-it('moves a task after another task', () => {
-  const overrides = {currentTasks: [{id: 1}, {id: 52}]};
-  const component = shallowProvider(<TaskListView {...props} {...overrides} />);
-  let taskRows = component.find(DraggableTaskRow);
-  expect(taskRows).toHaveLength(2);
-  expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
-  expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[1]);
+describe('moving a task when dragging', () => {
+  it('moves a task after another task', () => {
+    const overrides = {currentTasks: [{id: 1}, {id: 52}]};
+    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    let taskRows = component.find(DraggableTaskRow);
+    expect(taskRows).toHaveLength(2);
+    expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
+    expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[1]);
 
-  taskRows.at(0).prop('moveTask')(1, 52);
-  component.update();
+    taskRows.at(0).prop('moveTask')(1, 52);
+    component.update();
 
-  taskRows = component.find(DraggableTaskRow);
-  expect(taskRows).toHaveLength(2);
-  expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[1]);
-  expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[0]);
+    taskRows = component.find(DraggableTaskRow);
+    expect(taskRows).toHaveLength(2);
+    expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[1]);
+    expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[0]);
+  });
+
+  it('does nothing when moving task id is the same as after task id', () => {
+    const overrides = {currentTasks: [{id: 1}, {id: 52}]};
+    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    let taskRows = component.find(DraggableTaskRow);
+    expect(taskRows).toHaveLength(2);
+    expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
+    expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[1]);
+
+    taskRows.at(0).prop('moveTask')(1, 1);
+    component.update();
+
+    taskRows = component.find(DraggableTaskRow);
+    expect(taskRows).toHaveLength(2);
+    expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
+    expect(taskRows.at(1)).toHaveProp('task', overrides.currentTasks[1]);
+  });
 });
 
 describe('saving task after drop', () => {
@@ -125,6 +145,34 @@ describe('saving task after drop', () => {
     component.instance().saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
+  });
+
+  it('sets task priority to null when above task has null priority', () => {
+    const task1 = {id: 1, priority: 2};
+    const task2 = {id: 2, priority: 3};
+    const task3 = {id: 3, priority: null};
+    const overrides = {currentTasks: [task2, task3, task1]};
+    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const updatePriority = jest.fn();
+    const fakeComponent = {props: {task: task1}, updatePriority};
+
+    component.instance().saveTaskPositions(fakeComponent);
+
+    expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
+  });
+
+  it('keeps task priority at null when moved to bottom', () => {
+    const task1 = {id: 1, priority: 2};
+    const task2 = {id: 2, priority: null};
+    const task3 = {id: 3, priority: 3};
+    const overrides = {currentTasks: [task1, task3, task2]};
+    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const updatePriority = jest.fn();
+    const fakeComponent = {props: {task: task2}, updatePriority};
+
+    component.instance().saveTaskPositions(fakeComponent);
+
+    expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
   });
 
   it('keeps task priority when below task matches but not above', () => {

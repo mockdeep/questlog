@@ -1,4 +1,8 @@
-import {getCurrentTask, getUndoneTasks} from 'src/task/selectors';
+import {
+  getCurrentTask,
+  getPartitionedTasksForRoute,
+  getUndoneTasks,
+} from 'src/task/selectors';
 
 describe('getCurrentTask', () => {
   it('returns the current task represented in the route', () => {
@@ -67,5 +71,36 @@ describe('getUndoneTasks', () => {
     const state = {task: {byId: {3: task}}};
 
     expect(() => getUndoneTasks(state)).toThrow(/invalid timeframe/);
+  });
+});
+
+describe('getPartitionedTasksForRoute', () => {
+  const subSubTask = {id: 10, timeframe: null, parentTaskId: 5, subTasks: []};
+  const subTask = {id: 5, timeframe: null, parentTaskId: 2, subTasks: [subSubTask]};
+  const parentTask = {id: 2, timeframe: null, subTasks: [subTask]};
+  const byId = {2: parentTask, 5: subTask, 10: subSubTask};
+
+  it('returns all tasks when route is "/tasks"', () => {
+    const state = {route: {name: 'tasks'}, task: {byId}};
+    const expected = {
+      pending: [],
+      undone: [parentTask, subTask, subSubTask],
+    };
+
+    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
+  });
+
+  it('returns root tasks when route is "/tasks/root"', () => {
+    const state = {route: {name: 'rootTasks'}, task: {byId}};
+    const expected = {pending: [], undone: [parentTask]};
+
+    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
+  });
+
+  it('returns leaf tasks when route is "/tasks/leaf"', () => {
+    const state = {route: {name: 'leafTasks'}, task: {byId}};
+    const expected = {pending: [], undone: [subSubTask]};
+
+    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
   });
 });
