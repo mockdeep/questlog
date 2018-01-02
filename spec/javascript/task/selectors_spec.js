@@ -70,7 +70,7 @@ describe('getUndoneTasks', () => {
 
     const state = {task: {byId: {3: task}}};
 
-    expect(() => getUndoneTasks(state)).toThrow(/invalid timeframe/);
+    expect(() => getUndoneTasks(state)).toThrow(/object has no key "yesterday"/);
   });
 });
 

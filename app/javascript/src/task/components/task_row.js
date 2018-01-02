@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {map} from 'lodash';
 
+import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
@@ -87,12 +88,12 @@ class TaskRow extends React.PureComponent {
   timeframeHasSpace(name) {
     const {task, timeframeSpace} = this.props;
 
-    return timeframeSpace[name] >= task.estimateMinutes;
+    return grab(timeframeSpace, name) >= task.estimateMinutes;
   }
 
   optionText(title, name) {
     const {timeframeSpace} = this.props;
-    const space = timeframeSpace[name];
+    const space = grab(timeframeSpace, name);
     let text = title;
 
     if (this.timeframe() !== name && isFinite(space)) {

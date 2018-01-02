@@ -1,5 +1,6 @@
 import React from 'react';
 
+import grab from 'src/_helpers/grab';
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
 import PrivacyView from 'src/static/components/privacy_view';
 import SessionNewView from 'src/session/components/new_view';
@@ -33,7 +34,7 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
 };
 
 function Router({route}) {
-  const Component = ROUTE_NAME_TO_COMPONENT_MAP[route.name];
+  const Component = grab(ROUTE_NAME_TO_COMPONENT_MAP, route.name);
 
   return <Component />;
 }
