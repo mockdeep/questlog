@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import {sortBy} from 'lodash';
 
+import grab from 'src/_helpers/grab';
 import {getUndoneTasks} from 'src/task/selectors';
 
 const RULES = {
@@ -13,7 +14,7 @@ const RULES = {
 function matchesSmartRules(task, tag) {
   const rules = [{check: 'isAssociated'}, ...tag.rules];
 
-  return rules.some(({check, ...params}) => RULES[check](task, tag, params));
+  return rules.some(({check, ...params}) => grab(RULES, check)(task, tag, params));
 }
 
 function hasMatchingTasks(tag, tasks) {

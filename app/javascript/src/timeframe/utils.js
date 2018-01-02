@@ -1,6 +1,7 @@
 import moment from 'moment';
 import {sumBy} from 'lodash';
 
+import grab from 'src/_helpers/grab';
 import TimeBalancer from 'src/_helpers/time_balancer';
 
 const timeframeEnds = {
@@ -53,7 +54,7 @@ function timeframeNameForPendingTask(task) {
   do {
     index += 1;
     timeframeName = timeframeList[index];
-    timeframeEnd = timeframeEnds[timeframeName];
+    timeframeEnd = grab(timeframeEnds, timeframeName);
     if (!timeframeEnd) { return timeframeName; }
   } while (releaseAt.diff(timeframeEnd) > 0);
 

@@ -2,6 +2,7 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import grab from 'src/_helpers/grab';
 import {ruleShape} from 'src/shapes';
 
 const FIELD_NAMES = ['estimateSeconds', 'tagIds'];
@@ -37,7 +38,7 @@ class RuleRow extends React.Component {
     return FIELD_NAMES.map((fieldName) =>
       (
         <option value={fieldName} key={fieldName}>
-          {FIELD_DISPLAY_NAMES[fieldName]}
+          {grab(FIELD_DISPLAY_NAMES, fieldName)}
         </option>
       ));
   }
@@ -56,7 +57,7 @@ class RuleRow extends React.Component {
           checks.map((check) =>
             (
               <option value={check} key={check}>
-                {CHECK_DISPLAY_NAMES[check]}
+                {grab(CHECK_DISPLAY_NAMES, check)}
               </option>
             ))
         }

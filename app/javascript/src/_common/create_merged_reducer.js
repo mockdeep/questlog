@@ -1,13 +1,7 @@
+import grab from 'src/_helpers/grab';
+
 function getReducerKey(action) {
   return action.type.split('/')[0];
-}
-
-function fetchReducer(reducerMap, reducerKey) {
-  const reducer = reducerMap[reducerKey];
-
-  if (!reducer) { throw new Error(`no reducer found for: "${reducerKey}"`); }
-
-  return reducer;
 }
 
 function initState(reducerMap) {
@@ -15,7 +9,7 @@ function initState(reducerMap) {
 
   Object.keys(reducerMap).forEach((key) => {
     const action = {type: `${key}/INIT`};
-    const reducer = reducerMap[key];
+    const reducer = grab(reducerMap, key);
 
     newState[key] = reducer(null, action);
   });
@@ -28,7 +22,7 @@ function createMergedReducer(reducerMap) {
     if (action.type === '@@redux/INIT') { return initState(reducerMap); }
 
     const reducerKey = getReducerKey(action);
-    const reducer = fetchReducer(reducerMap, reducerKey);
+    const reducer = grab(reducerMap, reducerKey);
     const newState = {...previousState};
 
     newState[reducerKey] = reducer(previousState[reducerKey], action);

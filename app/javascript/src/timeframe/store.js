@@ -1,3 +1,4 @@
+import grab from 'src/_helpers/grab';
 import request from 'src/_helpers/request';
 import TaskStore from 'src/task/store';
 import {
@@ -52,14 +53,14 @@ const TimeframeStore = {
       const timeframeName = timeframeNameForTask(task);
 
       if (task.pending) {
-        timeframes[timeframeName].pendingTasks.push(task);
+        grab(timeframes, timeframeName).pendingTasks.push(task);
       } else {
-        timeframes[timeframeName].currentTasks.push(task);
+        grab(timeframes, timeframeName).currentTasks.push(task);
       }
     });
 
     this.models = timeframeList.map(function buildTimeframe(timeframeName) {
-      const timeframe = timeframes[timeframeName];
+      const timeframe = grab(timeframes, timeframeName);
 
       timeframe.medianProductivity = medianProductivity;
       timeframe.minuteMax = calculateMaxMinutes(

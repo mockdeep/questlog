@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {createSelector} from 'reselect';
 
+import grab from 'src/_helpers/grab';
 import {getRouteName} from 'src/route/selectors';
 
 const TASK_FILTERS = {
@@ -29,7 +30,7 @@ function timeframePosition(task) {
 
   if (timeframe === null) { return 9; }
 
-  const position = timeframePositions[timeframe];
+  const position = grab(timeframePositions, timeframe);
 
   if (!position) { throw new Error(`invalid timeframe: ${timeframe}`); }
 
@@ -61,7 +62,7 @@ const getCurrentTask = createSelector(
 
 const getOrderedTasksForRoute = createSelector(
   [getOrderedTasks, getRouteName],
-  (orderedTasks, routeName) => orderedTasks.filter(TASK_FILTERS[routeName])
+  (orderedTasks, routeName) => orderedTasks.filter(grab(TASK_FILTERS, routeName))
 );
 
 const getPartitionedTasksForRoute = createSelector(
