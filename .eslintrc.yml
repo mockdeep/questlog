@@ -105,4 +105,5 @@ rules:
   react/jsx-filename-extension: off
   react/jsx-handler-names: off
   react/jsx-max-props-per-line: off
+  react/jsx-no-bind: off
   require-jsdoc: off
