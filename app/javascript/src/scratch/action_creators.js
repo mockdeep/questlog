@@ -17,7 +17,7 @@ function updateScratchPlain(payload) {
 
 function createScratch(scratchKey) {
   return function createScratchThunk(dispatch, getState) {
-    if (Object.prototype.hasOwnProperty.call(getState().scratch, scratchKey)) {
+    if (getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch state already has key: "${scratchKey}"`);
     }
 
@@ -27,7 +27,7 @@ function createScratch(scratchKey) {
 
 function deleteScratch(scratchKey) {
   return function deleteScratchThunk(dispatch, getState) {
-    if (!Object.prototype.hasOwnProperty.call(getState().scratch, scratchKey)) {
+    if (!getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch has no such key to delete: "${scratchKey}"`);
     }
 
@@ -37,7 +37,7 @@ function deleteScratch(scratchKey) {
 
 function updateScratch(scratchKey, payload) {
   return function updateScratchThunk(dispatch, getState) {
-    if (!Object.prototype.hasOwnProperty.call(getState().scratch, scratchKey)) {
+    if (!getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch has no such key to update: "${scratchKey}"`);
     }
 
