@@ -28,9 +28,7 @@ class TagListView extends React.Component {
     const {tags} = this.props;
 
     return (
-      <div>
-        {tags.map(this.tagRow)}
-      </div>
+      <div>{tags.map(this.tagRow)}</div>
     );
   }
 }

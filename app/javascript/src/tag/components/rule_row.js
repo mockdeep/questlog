@@ -54,12 +54,11 @@ class RuleRow extends React.Component {
     return (
       <select defaultValue={defaultValue}>
         {
-          checks.map((check) =>
-            (
-              <option value={check} key={check}>
-                {grab(CHECK_DISPLAY_NAMES, check)}
-              </option>
-            ))
+          checks.map((check) => (
+            <option value={check} key={check}>
+              {grab(CHECK_DISPLAY_NAMES, check)}
+            </option>
+          ))
         }
       </select>
     );

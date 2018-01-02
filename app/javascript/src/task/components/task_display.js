@@ -21,10 +21,7 @@ function TaskDisplay({
       <div className='row'>
         <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
       </div>
-      <TaskTitle
-        task={task}
-        deleteTask={deleteTask}
-      />
+      <TaskTitle task={task} deleteTask={deleteTask} />
       <MainButtons
         task={task}
         disabled={disabled}

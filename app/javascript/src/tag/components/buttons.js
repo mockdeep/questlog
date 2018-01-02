@@ -45,9 +45,7 @@ class TagButtons extends React.Component {
   render() {
     return (
       <div className='row'>
-        <div className='col-md-12 tag-buttons'>
-          {this.tagButtons()}
-        </div>
+        <div className='col-md-12 tag-buttons'>{this.tagButtons()}</div>
       </div>
     );
   }

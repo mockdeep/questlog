@@ -108,19 +108,22 @@ class TagEditView extends React.Component {
       <div>
         {`Editing tag ${tag.name}`}
         <br />
-        <Link to='tags'>
-          {'Back to tags list'}
-        </Link>
-        <h2>
-          {'Rules'}
-        </h2>
+        <Link to='tags'>{'Back to tags list'}</Link>
+        <h2>{'Rules'}</h2>
         {'Tag will include all tasks that match one or more of the following rules:'}
         <form onSubmit={this.validateAndSave}>
-          <ol>
-            {this.ruleRows()}
-          </ol>
-          <input type='button' className='btn btn-primary btn-small' value='Add Rule' onClick={this.addRule} />
-          <input type='submit' className='btn btn-success btn-block' value='Save Tag' />
+          <ol>{this.ruleRows()}</ol>
+          <input
+            type='button'
+            className='btn btn-primary btn-small'
+            value='Add Rule'
+            onClick={this.addRule}
+          />
+          <input
+            type='submit'
+            className='btn btn-success btn-block'
+            value='Save Tag'
+          />
         </form>
       </div>
     );

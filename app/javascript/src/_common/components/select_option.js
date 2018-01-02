@@ -2,11 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function SelectOption({content, value}) {
-  return (
-    <option value={value}>
-      {content}
-    </option>
-  );
+  return <option value={value}>{content}</option>;
 }
 
 SelectOption.propTypes = {

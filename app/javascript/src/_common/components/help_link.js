@@ -30,10 +30,7 @@ class HelpLink extends React.Component {
     return (
       <button className='btn btn-link' onClick={this.openHelpModal}>
         {'Help'}
-        <HelpModal
-          isOpen={helpModalOpen}
-          closeModal={this.closeHelpModal}
-        />
+        <HelpModal isOpen={helpModalOpen} closeModal={this.closeHelpModal} />
       </button>
     );
   }

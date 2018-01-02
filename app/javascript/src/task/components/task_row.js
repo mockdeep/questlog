@@ -111,11 +111,7 @@ class TaskRow extends React.PureComponent {
       return map(timeframeNameMap, function timeframeOption(title, name) {
         const optionTitle = name === 'inbox' ? '-' : title;
 
-        return (
-          <option value={name} key={name}>
-            {optionTitle}
-          </option>
-        );
+        return <option value={name} key={name}>{optionTitle}</option>;
       });
     }
     const that = this;
@@ -188,32 +184,16 @@ class TaskRow extends React.PureComponent {
             {'DONE'}
           </button>
         </td>
-        <td>
-          <TaskEditTitleForm keyPrefix={keyPrefix} task={task} />
-        </td>
-        <td>
-          <TaskEditIcon task={task} />
-        </td>
-        <td>
-          {this.taskEstimate()}
-        </td>
-        <td>
-          {this.emblems()}
-        </td>
+        <td><TaskEditTitleForm keyPrefix={keyPrefix} task={task} /></td>
+        <td><TaskEditIcon task={task} /></td>
+        <td>{this.taskEstimate()}</td>
+        <td>{this.emblems()}</td>
         <td>
           <select onChange={this.updatePriority} value={this.priority()}>
-            <option value=''>
-              {'-'}
-            </option>
-            <option value='1'>
-              {'1'}
-            </option>
-            <option value='2'>
-              {'2'}
-            </option>
-            <option value='3'>
-              {'3'}
-            </option>
+            <option value=''>{'-'}</option>
+            <option value='1'>{'1'}</option>
+            <option value='2'>{'2'}</option>
+            <option value='3'>{'3'}</option>
           </select>
         </td>
         <td>
