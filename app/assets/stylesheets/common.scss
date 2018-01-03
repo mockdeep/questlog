@@ -180,6 +180,9 @@ ul {
 .task-input {
   text-align: center;
   width: 100%;
+  resize: none;
+  overflow: hidden;
+  vertical-align: middle;
 }
 
 .postpone-button {

@@ -12,7 +12,7 @@ module Questlog
 
       def matches?(actual)
         self.actual = actual
-        actual.has_selector?("#{TITLE_SELECTOR}[value='#{expected}']")
+        actual.has_selector?(TITLE_SELECTOR, text: expected)
       end
 
       def failure_message
