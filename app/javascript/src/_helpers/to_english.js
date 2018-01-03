@@ -19,7 +19,7 @@ function divideSeconds(seconds) {
     minutes && pluralize(minutes, 'minute'),
   ];
 
-  return outputs.filter((value) => value).join(', ');
+  return outputs.filter(value => value).join(', ');
 }
 
 const ToEnglish = {

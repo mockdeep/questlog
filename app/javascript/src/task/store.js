@@ -26,7 +26,7 @@ export default {
   notifyListeners() {
     if (!this.listeners) { return; }
 
-    this.listeners.forEach((listener) => { listener(); });
+    this.listeners.forEach(listener => { listener(); });
   },
 
   unload() {
@@ -35,7 +35,7 @@ export default {
   },
 
   updateModels({data}) {
-    this.models = data.map((taskData) => ({
+    this.models = data.map(taskData => ({
       ...taskData,
       estimateMinutes: estimateMinutes(taskData),
     }));

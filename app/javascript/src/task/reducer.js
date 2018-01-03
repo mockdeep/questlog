@@ -29,7 +29,7 @@ export default createBasicReducer({
   [SET](previousState, taskData) {
     const tasks = taskData.map(processTask);
     const tasksByParentId = groupBy(tasks, 'parentTaskId');
-    tasks.forEach((task) => { task.subTasks = tasksByParentId[task.id] || []; });
+    tasks.forEach(task => { task.subTasks = tasksByParentId[task.id] || []; });
 
     return {...previousState, byId: keyBy(tasks, 'id')};
   },

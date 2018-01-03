@@ -7,7 +7,7 @@ function ErrorDisplay({errors}) {
       <div className='col-md-12'>
         <div className='error-messages'>
           <ul>
-            {errors.map((error) => <li key={error}>{error}</li>)}
+            {errors.map(error => <li key={error}>{error}</li>)}
           </ul>
         </div>
       </div>

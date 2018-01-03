@@ -6,7 +6,7 @@ import TableHeaders from 'src/task/components/table_headers';
 import {taskShape} from 'src/shapes';
 
 function taskRows(tasks, {updateTask, deleteTask}) {
-  return tasks.map((task) => (
+  return tasks.map(task => (
     <TaskRow
       key={task.id}
       keyPrefix={'subTasksTable'}

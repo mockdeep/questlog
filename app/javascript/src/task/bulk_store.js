@@ -26,7 +26,7 @@ const BulkTaskStore = {
   notifyListeners() {
     if (!this.listeners) { return; }
 
-    this.listeners.forEach((listener) => { listener(); });
+    this.listeners.forEach(listener => { listener(); });
   },
 
   unload() {

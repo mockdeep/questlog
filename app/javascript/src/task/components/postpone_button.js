@@ -80,7 +80,7 @@ class PostponeButton extends React.Component {
         <label>{this.buttonMessage()}</label>
         <select
           onChange={this.storePostponeSeconds}
-          onClick={(event) => event.stopPropagation()}
+          onClick={event => event.stopPropagation()}
           disabled={disabled}
         >
           {this.selectOptions()}

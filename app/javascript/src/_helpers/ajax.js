@@ -12,7 +12,7 @@ const FETCH_OPTIONS = {
 function request(url, params) {
   const fetchResponse = window.fetch(url, {...params, ...FETCH_OPTIONS});
 
-  return fetchResponse.then((response) => response.json());
+  return fetchResponse.then(response => response.json());
 }
 
 function ajaxGet(url) {

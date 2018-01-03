@@ -18,32 +18,32 @@ function matchesSmartRules(task, tag) {
 }
 
 function hasMatchingTasks(tag, tasks) {
-  return tasks.some((task) => matchesSmartRules(task, tag));
+  return tasks.some(task => matchesSmartRules(task, tag));
 }
 
 const getSelectedTagSlug = createSelector(
-  (state) => state.route.params.slug,
-  (slug) => slug || ''
+  state => state.route.params.slug,
+  slug => slug || ''
 );
 
 const getOrderedTags = createSelector(
-  (state) => state.tag,
-  (tagState) => sortBy(Object.values(tagState.byId), 'name')
+  state => state.tag,
+  tagState => sortBy(Object.values(tagState.byId), 'name')
 );
 
 const getActiveTags = createSelector(
   [getUndoneTasks, getOrderedTags],
-  (undoneTasks, orderedTags) => orderedTags.filter((tag) => hasMatchingTasks(tag, undoneTasks))
+  (undoneTasks, orderedTags) => orderedTags.filter(tag => hasMatchingTasks(tag, undoneTasks))
 );
 
 const getSelectedTag = createSelector(
   [getOrderedTags, getSelectedTagSlug],
-  (orderedTags, slug) => orderedTags.find((tag) => tag.slug === slug)
+  (orderedTags, slug) => orderedTags.find(tag => tag.slug === slug)
 );
 
 const getNextUndoneTask = createSelector(
   [getUndoneTasks, getSelectedTag],
-  (undoneTasks, selectedTag) => undoneTasks.find((task) => matchesSmartRules(task, selectedTag))
+  (undoneTasks, selectedTag) => undoneTasks.find(task => matchesSmartRules(task, selectedTag))
 );
 
 export {getActiveTags, getNextUndoneTask, getOrderedTags, getSelectedTag};

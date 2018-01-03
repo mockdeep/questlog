@@ -7,7 +7,7 @@ function getReducerKey(action) {
 function initState(reducerMap) {
   const newState = {};
 
-  Object.keys(reducerMap).forEach((key) => {
+  Object.keys(reducerMap).forEach(key => {
     const action = {type: `${key}/INIT`};
     const reducer = grab(reducerMap, key);
 
