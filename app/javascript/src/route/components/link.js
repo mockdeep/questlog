@@ -21,7 +21,7 @@ class Link extends React.Component {
 
   path() {
     const {params, to} = this.props;
-    const pathParams = mapValues(params, (value) => value.toString());
+    const pathParams = mapValues(params, value => value.toString());
 
     return findRoute(to).toPath(pathParams);
   }

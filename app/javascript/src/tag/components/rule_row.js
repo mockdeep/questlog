@@ -35,7 +35,7 @@ class RuleRow extends React.Component {
   }
 
   fieldOptions() {
-    return FIELD_NAMES.map((fieldName) =>
+    return FIELD_NAMES.map(fieldName =>
       (
         <option value={fieldName} key={fieldName}>
           {grab(FIELD_DISPLAY_NAMES, fieldName)}
@@ -54,7 +54,7 @@ class RuleRow extends React.Component {
     return (
       <select defaultValue={defaultValue}>
         {
-          checks.map((check) => (
+          checks.map(check => (
             <option value={check} key={check}>
               {grab(CHECK_DISPLAY_NAMES, check)}
             </option>

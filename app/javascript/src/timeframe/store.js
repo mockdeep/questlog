@@ -31,7 +31,7 @@ const TimeframeStore = {
   notifyListeners() {
     if (!this.listeners) { return; }
 
-    this.listeners.forEach((listener) => listener());
+    this.listeners.forEach(listener => listener());
   },
 
   unload() {
@@ -43,7 +43,7 @@ const TimeframeStore = {
     const {tasks} = data;
     const timeframes = {};
 
-    timeframeList.forEach((timeframeName) => {
+    timeframeList.forEach(timeframeName => {
       timeframes[timeframeName] = {
         name: timeframeName,
         currentTasks: [],
@@ -51,7 +51,7 @@ const TimeframeStore = {
       };
     });
 
-    tasks.forEach((task) => {
+    tasks.forEach(task => {
       const timeframeName = timeframeNameForTask(task);
 
       if (task.pending) {
@@ -61,7 +61,7 @@ const TimeframeStore = {
       }
     });
 
-    this.models = timeframeList.map((timeframeName) => {
+    this.models = timeframeList.map(timeframeName => {
       const timeframe = grab(timeframes, timeframeName);
 
       timeframe.medianProductivity = medianProductivity;
@@ -82,7 +82,7 @@ const TimeframeStore = {
   },
 
   getAll() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (!TaskStore.getState().loaded) {
         TaskStore.dispatch({type: 'tasks/FETCH'});
       }
@@ -90,7 +90,7 @@ const TimeframeStore = {
       request({
         method: 'get',
         url: this.url,
-        success: (timeframeData) => {
+        success: timeframeData => {
           ({medianProductivity} = timeframeData.meta);
 
           this.updateModels(TaskStore.getState());

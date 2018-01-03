@@ -1,7 +1,7 @@
 import pathToRegexp from 'path-to-regexp';
 
 function compileRoutes(routes) {
-  return routes.map((route) => {
+  return routes.map(route => {
     const keys = [];
     const regexp = pathToRegexp(route.path, keys);
 

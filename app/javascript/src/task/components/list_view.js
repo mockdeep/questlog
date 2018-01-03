@@ -20,7 +20,7 @@ const TASK_FILTER_LINKS = [
 ];
 
 function findTask(tasks, taskId) {
-  return tasks.find((task) => task.id === taskId);
+  return tasks.find(task => task.id === taskId);
 }
 
 class TaskListView extends React.Component {
@@ -85,7 +85,7 @@ class TaskListView extends React.Component {
   currentTaskPositions() {
     const {currentTasks} = this.state;
 
-    return currentTasks.map((task) => task.id);
+    return currentTasks.map(task => task.id);
   }
 
   currentTasksTable() {
@@ -121,13 +121,13 @@ class TaskListView extends React.Component {
   currentTaskRows() {
     const {currentTasks} = this.state;
 
-    return currentTasks.map((task) => this.taskRow(task, {status: 'current'}));
+    return currentTasks.map(task => this.taskRow(task, {status: 'current'}));
   }
 
   pendingTaskRows() {
     const {pendingTasks} = this.state;
 
-    return pendingTasks.map((task) => this.taskRow(task, {status: 'pending'}));
+    return pendingTasks.map(task => this.taskRow(task, {status: 'pending'}));
   }
 
   taskRow(task, {status}) {

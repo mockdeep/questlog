@@ -25,7 +25,7 @@ describe('TimeBalancer.baseBalances', () => {
       [moment([2014, 11, 31, 10]), {today: 1, week: 3, month: 0, quarter: 0, year: 0}],
     ];
 
-    expectedPairs.forEach((pair) => {
+    expectedPairs.forEach(pair => {
       expect(TimeBalancer.baseBalances(pair[0])).toEqual(pair[1]);
     });
   });

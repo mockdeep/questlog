@@ -38,26 +38,26 @@ function timeframePosition(task) {
 }
 
 function partitionTasks(tasks) {
-  const [pending, undone] = _.partition(tasks, (task) => task.releaseAt);
+  const [pending, undone] = _.partition(tasks, task => task.releaseAt);
 
   return {pending, undone};
 }
 
 const getOrderedTasks = createSelector(
-  (state) => state.task.byId,
-  (tasksById) => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
+  state => state.task.byId,
+  tasksById => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getUndoneTasks = createSelector(
   getPartitionedTasks,
-  (partitionedTasks) => partitionedTasks.undone.filter(isChildTask)
+  partitionedTasks => partitionedTasks.undone.filter(isChildTask)
 );
 
 const getCurrentTask = createSelector(
-  (state) => state.task.byId[state.route.params.taskId],
-  (task) => task
+  state => state.task.byId[state.route.params.taskId],
+  task => task
 );
 
 const getOrderedTasksForRoute = createSelector(

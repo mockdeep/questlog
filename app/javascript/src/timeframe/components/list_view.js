@@ -22,7 +22,7 @@ class TimeframeListView extends React.Component {
   }
 
   componentDidMount() {
-    TimeframeStore.getAll().then((data) => {
+    TimeframeStore.getAll().then(data => {
       this.updateTimeframes(data);
       this.unsubscribeTimeframes = TimeframeStore.subscribe(this.loadTasks);
     });
@@ -54,7 +54,7 @@ class TimeframeListView extends React.Component {
     const {timeframes} = this.state;
     const counts = {};
 
-    timeframes.forEach((timeframe) => {
+    timeframes.forEach(timeframe => {
       const minuteTotal = calculateTotalMinutes(timeframe);
 
       counts[timeframe.name] = timeframe.minuteMax - minuteTotal;
