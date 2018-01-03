@@ -20,7 +20,7 @@ const TASK_FILTER_LINKS = [
 ];
 
 function findTask(tasks, taskId) {
-  return tasks.find(function taskMatches(task) { return task.id === taskId; });
+  return tasks.find((task) => task.id === taskId);
 }
 
 class TaskListView extends React.Component {
@@ -85,9 +85,7 @@ class TaskListView extends React.Component {
   currentTaskPositions() {
     const {currentTasks} = this.state;
 
-    return currentTasks.map(function taskId(task) {
-      return task.id;
-    });
+    return currentTasks.map((task) => task.id);
   }
 
   currentTasksTable() {

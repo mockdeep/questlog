@@ -19,11 +19,13 @@ const TimeframeStore = {
   subscribe(listener) {
     this.listeners = [...this.listeners, listener];
 
-    return function unsubscribe() {
-      const index = this.listeners.indexOf(listener);
+    return this.unsubscribe.bind(this, listener);
+  },
 
-      this.listeners.splice(index, 1);
-    }.bind(this);
+  unsubscribe(listener) {
+    const index = this.listeners.indexOf(listener);
+
+    this.listeners.splice(index, 1);
   },
 
   notifyListeners() {
@@ -41,7 +43,7 @@ const TimeframeStore = {
     const {tasks} = data;
     const timeframes = {};
 
-    timeframeList.forEach(function addTimeframe(timeframeName) {
+    timeframeList.forEach((timeframeName) => {
       timeframes[timeframeName] = {
         name: timeframeName,
         currentTasks: [],
@@ -49,7 +51,7 @@ const TimeframeStore = {
       };
     });
 
-    tasks.forEach(function addTaskToTimeframe(task) {
+    tasks.forEach((task) => {
       const timeframeName = timeframeNameForTask(task);
 
       if (task.pending) {
@@ -59,7 +61,7 @@ const TimeframeStore = {
       }
     });
 
-    this.models = timeframeList.map(function buildTimeframe(timeframeName) {
+    this.models = timeframeList.map((timeframeName) => {
       const timeframe = grab(timeframes, timeframeName);
 
       timeframe.medianProductivity = medianProductivity;
@@ -99,8 +101,6 @@ const TimeframeStore = {
   },
 };
 
-TaskStore.subscribe(function unloadTimeframeStore() {
-  TimeframeStore.unload();
-});
+TaskStore.subscribe(() => { TimeframeStore.unload(); });
 
 export default TimeframeStore;
