@@ -1,6 +1,7 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Textarea from 'react-textarea-autosize';
 
 import {scratchShape, taskShape} from 'src/shapes';
 
@@ -34,6 +35,10 @@ class TaskEditTitleForm extends React.Component {
     updateScratch({focused: false});
   }
 
+  submitIfEnter(event) {
+    if (event.key === 'Enter') { this.saveTask(event); }
+  }
+
   setFocused() {
     const {updateScratch} = this.props;
 
@@ -49,11 +54,12 @@ class TaskEditTitleForm extends React.Component {
 
     return (
       <form onSubmit={this.saveTask}>
-        <input
-          ref={this.storeInput}
+        <Textarea
+          inputRef={this.storeInput}
           name={'task-title'}
           className={`task-input${scratch.focused ? '' : ' hidden-border'}`}
           value={scratch.taskTitle || task.title}
+          onKeyPress={this.submitIfEnter}
           onChange={this.updateTitleInput}
           onBlur={this.saveTask}
           onFocus={this.setFocused}

@@ -3,17 +3,17 @@ RSpec.describe Questlog::Matchers::HaveTask do
   let(:matcher) { described_class.new('foo title') }
 
   describe '#matches?' do
-    it 'returns true when there is a title node with the given text' do
+    it 'returns true when there is a textarea node with the given text' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="foo title" /></div>
+        <div id="task"><textarea class="task-input">foo title</textarea></div>
       HTML
 
       expect(matcher.matches?(node)).to be true
     end
 
-    it 'returns false when there is a title node with different text' do
+    it 'returns false when there is a textarea node with different text' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="bar title" /></div>
+        <div id="task"><textarea class="task-input">bar title</textarea></div>
       HTML
 
       expect(matcher.matches?(node)).to be false
@@ -29,7 +29,7 @@ RSpec.describe Questlog::Matchers::HaveTask do
   describe '#failure_message' do
     it 'returns a message with the actual task when present' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="bar title" /></div>
+        <div id="task"><textarea class="task-input">bar title</textarea></div>
       HTML
       expected = 'expected to find task title "foo title", but had "bar title"'
 

@@ -11,7 +11,7 @@ RSpec.describe Questlog::Matchers::HaveNoTaskWithTitle do
 
     it 'returns true when there is a title node with a different task' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="foo title" /></div>
+        <div id="task"><textarea class="task-input">foo title</textarea></div>
       HTML
 
       expect(matcher.matches?(node)).to be true
@@ -19,7 +19,7 @@ RSpec.describe Questlog::Matchers::HaveNoTaskWithTitle do
 
     it 'returns false when there is a title node with that task' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="some task" /></div>
+        <div id="task"><textarea class="task-input">some task</textarea></div>
       HTML
 
       expect(matcher.matches?(node)).to be false
@@ -29,7 +29,7 @@ RSpec.describe Questlog::Matchers::HaveNoTaskWithTitle do
   describe '#failure_message' do
     it 'returns a message when the given task is present' do
       node = Capybara.string(<<-HTML)
-        <div id="task"><input class="task-input" value="some task" /></div>
+        <div id="task"><textarea class="task-input">some task</textarea></div>
       HTML
       expected = 'expected not to find task "some task", but it is present'
 
