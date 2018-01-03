@@ -54,7 +54,7 @@ class TimeframeListView extends React.Component {
     const {timeframes} = this.state;
     const counts = {};
 
-    timeframes.forEach(function setTimeframeCount(timeframe) {
+    timeframes.forEach((timeframe) => {
       const minuteTotal = calculateTotalMinutes(timeframe);
 
       counts[timeframe.name] = timeframe.minuteMax - minuteTotal;

@@ -14,11 +14,13 @@ const BulkTaskStore = {
   subscribe(listener) {
     this.listeners.push(listener);
 
-    return function unsubscribe() {
-      const index = this.listeners.indexOf(listener);
+    return this.unsubscribe.bind(this, listener);
+  },
 
-      this.listeners.splice(index, 1);
-    }.bind(this);
+  unsubscribe(listener) {
+    const index = this.listeners.indexOf(listener);
+
+    this.listeners.splice(index, 1);
   },
 
   notifyListeners() {

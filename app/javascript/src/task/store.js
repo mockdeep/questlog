@@ -14,11 +14,13 @@ export default {
   subscribe(listener) {
     this.listeners = [...this.listeners, listener];
 
-    return function unsubscribe() {
-      const index = this.listeners.indexOf(listener);
+    return this.unsubscribe.bind(this, listener);
+  },
 
-      this.listeners.splice(index, 1);
-    }.bind(this);
+  unsubscribe(listener) {
+    const index = this.listeners.indexOf(listener);
+
+    this.listeners.splice(index, 1);
   },
 
   notifyListeners() {
@@ -33,9 +35,10 @@ export default {
   },
 
   updateModels({data}) {
-    this.models = data.map(function buildTask(taskData) {
-      return {...taskData, estimateMinutes: estimateMinutes(taskData)};
-    });
+    this.models = data.map((taskData) => ({
+      ...taskData,
+      estimateMinutes: estimateMinutes(taskData),
+    }));
     this.loaded = true;
     this.notifyListeners();
   },
