@@ -21,6 +21,17 @@ function matchingTasks(tag, tasks) {
   return tasks.filter(task => matchesSmartRules(task, tag));
 }
 
+function minPriority(tasks) {
+  const priorities = tasks.map(task => task.priority).
+    filter(priority => priority !== null);
+
+  return priorities.length > 0 ? Math.min(...priorities) : null;
+}
+
+function generateMetaInfo(tasks) {
+  return {priority: minPriority(tasks)};
+}
+
 const getSelectedTagSlug = createSelector(
   state => state.route.params.slug,
   slug => slug || ''
@@ -51,4 +62,21 @@ const getNextUndoneTask = createSelector(
   (undoneTasks, selectedTag) => undoneTasks.find(task => matchesSmartRules(task, selectedTag))
 );
 
-export {getActiveTags, getNextUndoneTask, getOrderedTags, getSelectedTag};
+const getTagMetaInfo = createSelector(
+  [getTasksByTagId],
+  tasksByTagId => {
+    const tagMetaInfo = {};
+    Object.keys(tasksByTagId).forEach(tagId => {
+      tagMetaInfo[tagId] = generateMetaInfo(tasksByTagId[tagId]);
+    });
+    return tagMetaInfo;
+  }
+);
+
+export {
+  getActiveTags,
+  getNextUndoneTask,
+  getOrderedTags,
+  getSelectedTag,
+  getTagMetaInfo,
+};

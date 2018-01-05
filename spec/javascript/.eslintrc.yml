@@ -7,3 +7,4 @@ rules:
   jest/no-focused-tests: error
   jest/no-identical-title: error
   max-statements: [error, {max: 20}]
+  max-lines: off

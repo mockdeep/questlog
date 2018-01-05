@@ -12,7 +12,7 @@ class TagButton extends React.Component {
   }
 
   className() {
-    const {current, isActive, tag} = this.props;
+    const {current, isActive, priority} = this.props;
     let classString = 'button btn btn-default';
 
     if (isActive) {
@@ -21,8 +21,8 @@ class TagButton extends React.Component {
     if (current) {
       classString = `${classString} current`;
     }
-    if (tag.priority) {
-      classString = `${classString} priority-${tag.priority}-btn`;
+    if (priority) {
+      classString = `${classString} priority-${priority}-btn`;
     }
 
     return classString;
@@ -47,6 +47,7 @@ TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
   tag: tagShape.isRequired,
+  priority: PropTypes.number,
 };
 
 export default TagButton;

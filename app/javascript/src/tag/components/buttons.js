@@ -32,12 +32,15 @@ class TagButtons extends React.Component {
   }
 
   tagButton(tag) {
+    const {tagMetaInfo} = this.props;
+
     return (
       <TagButton
         tag={tag}
         key={tag.id}
         current={this.isCurrent(tag)}
         isActive={this.isActive(tag)}
+        priority={tagMetaInfo[tag.id].priority}
       />
     );
   }
@@ -53,6 +56,7 @@ class TagButtons extends React.Component {
 
 TagButtons.propTypes = {
   currentTagIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  tagMetaInfo: PropTypes.objectOf(PropTypes.any).isRequired,
   tags: PropTypes.arrayOf(tagShape).isRequired,
   selectedTagSlug: PropTypes.string,
 };
