@@ -19,7 +19,7 @@ describe('getActiveTags', () => {
   });
 
   it('returns tags with isActive rule when any tasks are unfinished', () => {
-    const tag = {rules: [{check: 'isActive'}]};
+    const tag = {id: 71, rules: [{check: 'isActive'}]};
     const task = {timeframe: null, tagIds: [], subTasks: []};
     const state = {
       tag: {orderedIds: [71], byId: {71: tag}},
@@ -31,7 +31,7 @@ describe('getActiveTags', () => {
 
   describe('when tag has isBlank smart rule', () => {
     it('does not return tag when field is not defined', () => {
-      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = {timeframe: null, tagIds: [], subTasks: []};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
@@ -42,7 +42,7 @@ describe('getActiveTags', () => {
     });
 
     it('does not return tag when field is set to a value', () => {
-      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = {
         timeframe: null,
         tagIds: [],
@@ -58,7 +58,7 @@ describe('getActiveTags', () => {
     });
 
     it('returns tag when field is set to null', () => {
-      const tag = {rules: [{check: 'isBlank', field: 'myField'}]};
+      const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = {timeframe: null, tagIds: [], myField: null, subTasks: []};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
@@ -71,7 +71,7 @@ describe('getActiveTags', () => {
 
   describe('when tag has isEmpty smart rule', () => {
     it('does not return tag when field is not empty', () => {
-      const tag = {rules: [{check: 'isEmpty', field: 'myField'}]};
+      const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
       const task = {timeframe: null, tagIds: [], myField: [1], subTasks: []};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
@@ -82,7 +82,7 @@ describe('getActiveTags', () => {
     });
 
     it('returns tag when field is empty on one or more tasks', () => {
-      const tag = {rules: [{check: 'isEmpty', field: 'myField'}]};
+      const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
       const task1 = {timeframe: null, tagIds: [], myField: [], subTasks: []};
       const task2 = {timeframe: null, tagIds: [], myField: [1], subTasks: []};
       const state = {
