@@ -1,4 +1,8 @@
-import {getActiveTags, getNextUndoneTask} from 'src/tag/selectors';
+import {
+  getActiveTags,
+  getNextUndoneTask,
+  getTagMetaInfo,
+} from 'src/tag/selectors';
 
 describe('getActiveTags', () => {
   it('returns tags that have one or more unfinished associated tasks', () => {
@@ -264,5 +268,74 @@ describe('getNextUndoneTask', () => {
     const state = {route: {params: {}}, task: {byId: {}}, tag: tagState};
 
     expect(getNextUndoneTask(state)).toBeUndefined();
+  });
+});
+
+describe('getTagMetaInfo', () => {
+  describe('priority', () => {
+    it('returns null priority for tags with no priority tasks', () => {
+      const tag1 = {id: 1, rules: []};
+      const tag2 = {id: 2, rules: []};
+      const task1 = {
+        id: 5,
+        timeframe: null,
+        tagIds: [2],
+        subTasks: [],
+        priority: null,
+      };
+      const state = {
+        task: {byId: {5: task1}},
+        tag: {byId: {1: tag1, 2: tag2}},
+      };
+      const expected = {1: {priority: null}, 2: {priority: null}};
+
+      expect(getTagMetaInfo(state)).toEqual(expected);
+    });
+
+    it('returns the min priority for tasks with priority tasks', () => {
+      const tag1 = {id: 1, rules: []};
+      const task1 = {
+        id: 5,
+        timeframe: null,
+        tagIds: [1],
+        subTasks: [],
+        priority: 3,
+      };
+      const task2 = {
+        id: 6,
+        timeframe: null,
+        tagIds: [1],
+        subTasks: [],
+        priority: 1,
+      };
+      const state = {
+        task: {byId: {5: task1, 6: task2}},
+        tag: {byId: {1: tag1}},
+      };
+      expect(getTagMetaInfo(state)).toEqual({1: {priority: 1}});
+    });
+
+    it('returns the numeric priority when some tasks have priority', () => {
+      const tag1 = {id: 1, rules: []};
+      const task1 = {
+        id: 5,
+        timeframe: null,
+        tagIds: [1],
+        subTasks: [],
+        priority: null,
+      };
+      const task2 = {
+        id: 6,
+        timeframe: null,
+        tagIds: [1],
+        subTasks: [],
+        priority: 2,
+      };
+      const state = {
+        task: {byId: {5: task1, 6: task2}},
+        tag: {byId: {1: tag1}},
+      };
+      expect(getTagMetaInfo(state)).toEqual({1: {priority: 2}});
+    });
   });
 });
