@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {sortBy} from 'lodash';
+import {mapValues, sortBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
 import {getUndoneTasks} from 'src/task/selectors';
@@ -17,8 +17,8 @@ function matchesSmartRules(task, tag) {
   return rules.some(({check, ...params}) => grab(RULES, check)(task, tag, params));
 }
 
-function hasMatchingTasks(tag, tasks) {
-  return tasks.some(task => matchesSmartRules(task, tag));
+function matchingTasks(tag, tasks) {
+  return tasks.filter(task => matchesSmartRules(task, tag));
 }
 
 const getSelectedTagSlug = createSelector(
@@ -31,9 +31,14 @@ const getOrderedTags = createSelector(
   tagState => sortBy(Object.values(tagState.byId), 'name')
 );
 
+const getTasksByTagId = createSelector(
+  [state => state.tag.byId, getUndoneTasks],
+  (tagsById, undoneTasks) => mapValues(tagsById, tag => matchingTasks(tag, undoneTasks))
+);
+
 const getActiveTags = createSelector(
-  [getUndoneTasks, getOrderedTags],
-  (undoneTasks, orderedTags) => orderedTags.filter(tag => hasMatchingTasks(tag, undoneTasks))
+  [getTasksByTagId, getOrderedTags],
+  (tasksByTagId, orderedTags) => orderedTags.filter(tag => tasksByTagId[tag.id].length > 0)
 );
 
 const getSelectedTag = createSelector(
