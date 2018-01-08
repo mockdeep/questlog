@@ -42,7 +42,7 @@ RSpec.describe 'selecting tags on task display', js: true do
   it 'shows a smart tag for tasks without tags' do
     visit '/'
 
-    expect(page).not_to have_tag('Untagged')
+    expect(page).to have_no_tag('Untagged')
     add_task('#at-home do laundry #chore *1w ~1h')
     add_task('get paid')
     expect(page).to have_tag('Untagged (1)')
@@ -50,14 +50,14 @@ RSpec.describe 'selecting tags on task display', js: true do
     select_tag('Untagged')
     expect(page).to have_task('get paid')
     edit_task('get paid #work')
-    expect(page).not_to have_tag('Untagged')
+    expect(page).to have_no_tag('Untagged')
     expect(page).to have_no_task
   end
 
   it 'shows a smart tag for tasks missing an estimate' do
     visit '/'
 
-    expect(page).not_to have_tag('Needs Estimate')
+    expect(page).to have_no_tag('Needs Estimate')
     add_task('#at-home do laundry #chore *1w ~1h')
     add_task('get paid')
     expect(page).to have_tag('Needs Estimate (1)')
@@ -65,7 +65,7 @@ RSpec.describe 'selecting tags on task display', js: true do
     select_tag('Needs Estimate')
     expect(page).to have_task('get paid')
     edit_task('get paid ~100h')
-    expect(page).not_to have_tag('Needs Estimate')
+    expect(page).to have_no_tag('Untagged')
     expect(page).to have_no_task
   end
 

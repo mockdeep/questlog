@@ -17,6 +17,10 @@ module Questlog
       HaveTag.new(expected)
     end
 
+    def have_no_tag(expected)
+      HaveNoTag.new(expected)
+    end
+
   end
 
 end
