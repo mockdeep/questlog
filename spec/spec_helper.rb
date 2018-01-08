@@ -141,10 +141,10 @@ def add_task(task_title)
 end
 
 def edit_task(new_title)
-  find('.task-link').click
-  first('.task-input').set(new_title)
+  task_input = first('.task-input')
+  task_input.native.clear
+  task_input.set(new_title)
   blur
-  page.go_back
 end
 
 def select_tag(tag_name)
@@ -174,5 +174,5 @@ def browser
 end
 
 def blur
-  page.find('body').click
+  page.find('.flashes').click
 end

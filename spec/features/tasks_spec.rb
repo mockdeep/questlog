@@ -86,11 +86,7 @@ RSpec.describe 'Tasks page', js: true do
     add_task('#at-home do laundry #chore !2 ~1h')
     expect(page).to have_task('do laundry')
     expect(page).not_to have_selector(repeat_selector)
-    find('.task-link').click
-    first('.task-input').native.clear
-    fill_in('task-title', with: 'do lots of laundry *1w')
-    blur
-    page.go_back
+    edit_task('do lots of laundry *1w')
     expect(page).to have_task('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
   end
