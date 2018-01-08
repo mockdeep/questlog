@@ -9,7 +9,11 @@ class TaskEditTitleForm extends React.Component {
   constructor(props) {
     super(props);
     autobind(this);
-    props.updateScratch({focused: false, taskTitle: props.task.title});
+    props.updateScratch({
+      focused: false,
+      submitting: false,
+      taskTitle: props.task.title,
+    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -26,13 +30,19 @@ class TaskEditTitleForm extends React.Component {
     updateScratch({taskTitle: event.target.value});
   }
 
-  saveTask(event) {
+  async saveTask(event) {
     event.preventDefault();
+
+    if (this.submitting) { return; }
+    this.submitting = true;
+
     const {scratch, task, updateScratch, updateTask} = this.props;
 
     this.input.blur();
-    updateTask(task.id, {title: scratch.taskTitle});
     updateScratch({focused: false});
+
+    await updateTask(task.id, {title: scratch.taskTitle});
+    this.submitting = false;
   }
 
   submitIfEnter(event) {

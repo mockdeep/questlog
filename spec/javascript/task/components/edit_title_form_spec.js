@@ -40,6 +40,22 @@ it('updates the task when form is submitted', () => {
   expect(updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
 });
 
+it('only updates once on submit', () => {
+  const overrides = {scratch: {taskTitle: 'scratch title'}};
+  const component = shallow(<TaskEditTitleForm {...props} {...overrides} />);
+  const preventDefault = jest.fn();
+  const fakeEvent = {preventDefault};
+
+  const textarea = component.find(Textarea);
+  const blur = jest.fn(() => textarea.prop('onBlur')(fakeEvent));
+  textarea.prop('inputRef')({blur});
+  component.find('form').simulate('submit', fakeEvent);
+
+  expect(preventDefault).toHaveBeenCalledTimes(2);
+  expect(updateTask).toHaveBeenCalledTimes(1);
+  expect(updateTask).toHaveBeenCalledWith(52, {title: 'scratch title'});
+});
+
 it('updates the task when the input blurs', () => {
   const scratch = {taskTitle: 'scratch title'};
   const component = shallow(<TaskEditTitleForm {...props} scratch={scratch} />);
