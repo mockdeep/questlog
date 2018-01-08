@@ -143,8 +143,7 @@ end
 def edit_task(new_title)
   task_input = first('.task-input')
   task_input.native.clear
-  task_input.set(new_title)
-  blur
+  task_input.set("#{new_title}\n")
 end
 
 def select_tag(tag_name)
@@ -171,8 +170,4 @@ end
 
 def browser
   page.driver.browser
-end
-
-def blur
-  page.find('.flashes').click
 end
