@@ -83,10 +83,10 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'allows a user to edit a task' do
-    add_task('#at-home do laundry #chore !2 ~1h')
+    add_task('#at-home do laundry !2 ~1h')
     expect(page).to have_task('do laundry')
     expect(page).not_to have_selector(repeat_selector)
-    edit_task('do lots of laundry *1w')
+    edit_task('do lots of laundry *1w #chore')
     expect(page).to have_task('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
   end
