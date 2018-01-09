@@ -64,13 +64,7 @@ const getNextUndoneTask = createSelector(
 
 const getTagMetaInfo = createSelector(
   [getTasksByTagId],
-  tasksByTagId => {
-    const tagMetaInfo = {};
-    Object.keys(tasksByTagId).forEach(tagId => {
-      tagMetaInfo[tagId] = generateMetaInfo(tasksByTagId[tagId]);
-    });
-    return tagMetaInfo;
-  }
+  tasksByTagId => mapValues(tasksByTagId, tasks => generateMetaInfo(tasks))
 );
 
 export {
