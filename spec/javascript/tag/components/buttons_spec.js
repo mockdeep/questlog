@@ -6,10 +6,14 @@ import createAppStore from 'src/create_app_store';
 import TagButtons from 'src/tag/components/buttons';
 
 const tags = [
-  {id: 5, name: 'home', unfinishedTasksCount: 8, slug: 'home'},
-  {id: 23, name: 'work', unfinishedTasksCount: 13, slug: 'work'},
+  {id: 5, name: 'home', slug: 'home'},
+  {id: 23, name: 'work', slug: 'work'},
 ];
-const props = {task: {}, tags, currentTagIds: [], tagMetaInfo: {5: {}, 23: {}}};
+const tagMetaInfo = {
+  5: {unfinishedTasksCount: 8},
+  23: {unfinishedTasksCount: 13},
+};
+const props = {task: {}, tags, currentTagIds: [], tagMetaInfo};
 
 describe('TagButtons', () => {
   it('renders some stuff', () => {

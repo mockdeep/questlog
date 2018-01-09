@@ -29,7 +29,7 @@ function minPriority(tasks) {
 }
 
 function generateMetaInfo(tasks) {
-  return {priority: minPriority(tasks)};
+  return {priority: minPriority(tasks), unfinishedTasksCount: tasks.length};
 }
 
 const getSelectedTagSlug = createSelector(
