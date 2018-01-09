@@ -3,8 +3,14 @@ import {shallow} from 'enzyme';
 
 import TagButton from 'src/tag/components/button';
 
-const tag = {slug: 'home', unfinishedTasksCount: 5, id: 2, name: 'Home'};
-const props = {current: false, updateTagMeta: jest.fn(), tag, isActive: false};
+const tag = {slug: 'home', id: 2, name: 'Home'};
+const props = {
+  current: false,
+  updateTagMeta: jest.fn(),
+  tag,
+  isActive: false,
+  unfinishedTasksCount: 5,
+};
 
 it('adds an active class when tag is selected', () => {
   const component = shallow(<TagButton {...props} isActive />);

@@ -287,9 +287,8 @@ describe('getTagMetaInfo', () => {
         task: {byId: {5: task1}},
         tag: {byId: {1: tag1, 2: tag2}},
       };
-      const expected = {1: {priority: null}, 2: {priority: null}};
-
-      expect(getTagMetaInfo(state)).toEqual(expected);
+      expect(getTagMetaInfo(state)[1].priority).toBeNull();
+      expect(getTagMetaInfo(state)[2].priority).toBeNull();
     });
 
     it('returns the min priority for tasks with priority tasks', () => {
@@ -312,7 +311,7 @@ describe('getTagMetaInfo', () => {
         task: {byId: {5: task1, 6: task2}},
         tag: {byId: {1: tag1}},
       };
-      expect(getTagMetaInfo(state)).toEqual({1: {priority: 1}});
+      expect(getTagMetaInfo(state)[1].priority).toBe(1);
     });
 
     it('returns the numeric priority when some tasks have priority', () => {
@@ -335,7 +334,27 @@ describe('getTagMetaInfo', () => {
         task: {byId: {5: task1, 6: task2}},
         tag: {byId: {1: tag1}},
       };
-      expect(getTagMetaInfo(state)).toEqual({1: {priority: 2}});
+      expect(getTagMetaInfo(state)[1].priority).toBe(2);
+    });
+  });
+
+  describe('unfinishedTasksCount', () => {
+    it('returns the counts of associated tasks', () => {
+      const tag1 = {id: 1, rules: []};
+      const tag2 = {id: 2, rules: []};
+      const task1 = {
+        id: 5,
+        timeframe: null,
+        tagIds: [2],
+        subTasks: [],
+        priority: null,
+      };
+      const state = {
+        task: {byId: {5: task1}},
+        tag: {byId: {1: tag1, 2: tag2}},
+      };
+      expect(getTagMetaInfo(state)[1].unfinishedTasksCount).toBe(0);
+      expect(getTagMetaInfo(state)[2].unfinishedTasksCount).toBe(1);
     });
   });
 });

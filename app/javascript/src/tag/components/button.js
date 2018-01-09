@@ -29,8 +29,8 @@ class TagButton extends React.Component {
   }
 
   render() {
-    const {tag} = this.props;
-    const {slug, name, unfinishedTasksCount} = tag;
+    const {tag, unfinishedTasksCount} = this.props;
+    const {slug, name} = tag;
     const to = name === 'All' ? 'root' : 'tag';
 
     return (
@@ -47,6 +47,7 @@ TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
   tag: tagShape.isRequired,
+  unfinishedTasksCount: PropTypes.number.isRequired,
   priority: PropTypes.number,
 };
 
