@@ -28,8 +28,8 @@ describe('getCurrentTask', () => {
 
 describe('getUndoneTasks', () => {
   it('returns tasks', () => {
-    const task1 = {id: 53, title: 'some task', timeframe: null, subTasks: []};
-    const task2 = {id: 54, title: 'some other task', timeframe: null, subTasks: []};
+    const task1 = {id: 53, title: 'some task', timeframe: null, subTaskIds: []};
+    const task2 = {id: 54, title: 'some other task', timeframe: null, subTaskIds: []};
 
     const state = {task: {byId: {53: task1, 54: task2}}};
 
@@ -41,10 +41,10 @@ describe('getUndoneTasks', () => {
       id: 53,
       title: 'some task',
       timeframe: null,
-      subTasks: [],
+      subTaskIds: [],
       releaseAt: new Date(),
     };
-    const task2 = {id: 54, title: 'some other task', timeframe: null, subTasks: []};
+    const task2 = {id: 54, title: 'some other task', timeframe: null, subTaskIds: []};
 
     const state = {task: {byId: {53: task1, 54: task2}}};
 
@@ -52,12 +52,12 @@ describe('getUndoneTasks', () => {
   });
 
   it('does not return tasks with sub tasks', () => {
-    const task1 = {id: 53, title: 'some task', timeframe: null, subTasks: []};
+    const task1 = {id: 53, title: 'some task', timeframe: null, subTaskIds: []};
     const task2 = {
       id: 54,
       title: 'some other task',
       timeframe: null,
-      subTasks: [{id: 55, title: 'who cares'}],
+      subTaskIds: [55],
     };
 
     const state = {task: {byId: {53: task1, 54: task2}}};
@@ -66,7 +66,7 @@ describe('getUndoneTasks', () => {
   });
 
   it('raises an error when task has invalid timeframe', () => {
-    const task = {id: 3, title: 'a task', timeframe: 'yesterday', subTasks: []};
+    const task = {id: 3, title: 'a task', timeframe: 'yesterday', subTaskIds: []};
 
     const state = {task: {byId: {3: task}}};
 
@@ -75,9 +75,9 @@ describe('getUndoneTasks', () => {
 });
 
 describe('getPartitionedTasksForRoute', () => {
-  const subSubTask = {id: 10, timeframe: null, parentTaskId: 5, subTasks: []};
-  const subTask = {id: 5, timeframe: null, parentTaskId: 2, subTasks: [subSubTask]};
-  const parentTask = {id: 2, timeframe: null, subTasks: [subTask]};
+  const subSubTask = {id: 10, timeframe: null, parentTaskId: 5, subTaskIds: []};
+  const subTask = {id: 5, timeframe: null, parentTaskId: 2, subTaskIds: [10]};
+  const parentTask = {id: 2, timeframe: null, subTaskIds: [5]};
   const byId = {2: parentTask, 5: subTask, 10: subSubTask};
 
   it('returns all tasks when route is "/tasks"', () => {

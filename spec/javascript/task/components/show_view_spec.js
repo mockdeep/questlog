@@ -8,6 +8,7 @@ const props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   updateTaskMeta,
+  subTasks: [],
 };
 
 it('renders nothing when the task is not present', () => {
@@ -17,7 +18,7 @@ it('renders nothing when the task is not present', () => {
 });
 
 it('sets the task in scratch space', () => {
-  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+  const task = {id: 52, title: 'foo title', tagNames: []};
 
   shallow(<TaskShowView {...props} task={task} />);
 
@@ -34,7 +35,7 @@ it('sets the task in scratch space', () => {
 });
 
 it('updates the task in scratch space when component updates', () => {
-  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+  const task = {id: 52, title: 'foo title', tagNames: []};
   const component = shallow(<TaskShowView {...props} task={task} />);
 
   component.setProps({task: {...task, id: 501}});
@@ -43,7 +44,7 @@ it('updates the task in scratch space when component updates', () => {
 });
 
 it('clears the scratch space when component unmounts', () => {
-  const task = {id: 52, title: 'foo title', tagNames: [], subTasks: []};
+  const task = {id: 52, title: 'foo title', tagNames: []};
   const component = shallow(<TaskShowView {...props} task={task} />);
 
   component.unmount();
@@ -52,7 +53,7 @@ it('clears the scratch space when component unmounts', () => {
 });
 
 it('renders something when the task is present', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -60,7 +61,7 @@ it('renders something when the task is present', () => {
 });
 
 it('renders the task title', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -68,7 +69,7 @@ it('renders the task title', () => {
 });
 
 it('renders a message about the repeat time when present', () => {
-  const task = {title: 'foo title', repeatSeconds: 3600, tagNames: [], subTasks: []};
+  const task = {title: 'foo title', repeatSeconds: 3600, tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -76,7 +77,7 @@ it('renders a message about the repeat time when present', () => {
 });
 
 it('renders a message about no repeat time when not present', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -84,7 +85,7 @@ it('renders a message about no repeat time when not present', () => {
 });
 
 it('renders a message about the estimate when present', () => {
-  const task = {title: 'foo title', estimateSeconds: 5200, tagNames: [], subTasks: []};
+  const task = {title: 'foo title', estimateSeconds: 5200, tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -92,7 +93,7 @@ it('renders a message about the estimate when present', () => {
 });
 
 it('renders a message about no estimate when not present', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -100,7 +101,7 @@ it('renders a message about no estimate when not present', () => {
 });
 
 it('renders a message about the priority when present', () => {
-  const task = {title: 'foo title', priority: 3, tagNames: [], subTasks: []};
+  const task = {title: 'foo title', priority: 3, tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -108,7 +109,7 @@ it('renders a message about the priority when present', () => {
 });
 
 it('renders a message about no priority when not present', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -116,7 +117,7 @@ it('renders a message about no priority when not present', () => {
 });
 
 it('renders a message about associated tags when present', () => {
-  const task = {title: 'foo title', tagNames: ['foo', 'bar', 'butz'], subTasks: []};
+  const task = {title: 'foo title', tagNames: ['foo', 'bar', 'butz']};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -124,7 +125,7 @@ it('renders a message about associated tags when present', () => {
 });
 
 it('renders a message about no tags when not present', () => {
-  const task = {title: 'foo title', tagNames: [], subTasks: []};
+  const task = {title: 'foo title', tagNames: []};
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 

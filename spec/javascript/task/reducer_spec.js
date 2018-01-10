@@ -24,8 +24,8 @@ describe(SET, () => {
     const expectedState = {
       meta: 'foo',
       byId: {
-        1: {...task1, estimateMinutes: 30, loadingState: 'ready', subTasks: []},
-        5: {...task2, estimateMinutes: 30, loadingState: 'ready', subTasks: []},
+        1: {...task1, estimateMinutes: 30, loadingState: 'ready', subTaskIds: []},
+        5: {...task2, estimateMinutes: 30, loadingState: 'ready', subTaskIds: []},
       },
     };
 
@@ -53,13 +53,13 @@ describe(SET, () => {
       ...task1,
       estimateMinutes: 30,
       loadingState: 'ready',
-      subTasks: [],
+      subTaskIds: [],
     };
     const expectedTask2 = {
       ...task2,
       estimateMinutes: 30,
       loadingState: 'ready',
-      subTasks: [expectedTask1],
+      subTaskIds: [1],
     };
     const expectedState = {byId: {1: expectedTask1, 5: expectedTask2}};
 

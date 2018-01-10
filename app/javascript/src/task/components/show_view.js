@@ -69,7 +69,7 @@ class TaskShowView extends React.Component {
   }
 
   render() {
-    const {task, updateTask, deleteTask} = this.props;
+    const {task, subTasks, updateTask, deleteTask} = this.props;
 
     if (!task) { return null; }
 
@@ -83,7 +83,7 @@ class TaskShowView extends React.Component {
         <div>{tagString(task)}</div>
 
         <SubTasksTable
-          task={task}
+          subTasks={subTasks}
           updateTask={updateTask}
           deleteTask={deleteTask}
         />
@@ -97,6 +97,7 @@ TaskShowView.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   updateTaskMeta: PropTypes.func.isRequired,
+  subTasks: PropTypes.arrayOf(taskShape),
   task: taskShape,
 };
 

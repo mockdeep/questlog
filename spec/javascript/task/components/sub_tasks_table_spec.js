@@ -8,15 +8,15 @@ const props = {
   updateTask: jest.fn(),
 };
 
-it('renders sub-task rows for a task', () => {
-  const task = {subTasks: [{id: 5}, {id: 10}]};
-  const component = shallow(<SubTasksTable {...props} task={task} />);
+it('renders sub-task rows', () => {
+  const subTasks = [{id: 5}, {id: 10}];
+  const component = shallow(<SubTasksTable {...props} subTasks={subTasks} />);
 
   expect(component.find('TaskRow')).toHaveLength(2);
 });
 
 it('returns null when there are no sub tasks', () => {
-  const component = shallow(<SubTasksTable {...props} task={{subTasks: []}} />);
+  const component = shallow(<SubTasksTable {...props} subTasks={[]} />);
 
   expect(component.type()).toBeNull();
 });
