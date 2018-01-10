@@ -6,7 +6,7 @@ import {getRouteName} from 'src/route/selectors';
 
 const TASK_FILTERS = {
   tasks() { return true; },
-  leafTasks(task) { return task.subTasks.length === 0; },
+  leafTasks(task) { return task.subTaskIds.length === 0; },
   rootTasks(task) { return !task.parentTaskId; },
 };
 
@@ -22,7 +22,7 @@ const timeframePositions = {
 };
 
 function isChildTask(task) {
-  return task.subTasks.length === 0;
+  return task.subTaskIds.length === 0;
 }
 
 function timeframePosition(task) {
@@ -43,6 +43,10 @@ function partitionTasks(tasks) {
   return {pending, undone};
 }
 
+function getSubTasks(task, tasksById) {
+  return _.at(tasksById, task.subTaskIds);
+}
+
 const getOrderedTasks = createSelector(
   state => state.task.byId,
   tasksById => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
@@ -60,6 +64,11 @@ const getCurrentTask = createSelector(
   task => task
 );
 
+const getCurrentSubTasks = createSelector(
+  [getCurrentTask, state => state.task.byId],
+  (currentTask, tasksById) => getSubTasks(currentTask, tasksById)
+);
+
 const getOrderedTasksForRoute = createSelector(
   [getOrderedTasks, getRouteName],
   (orderedTasks, routeName) => orderedTasks.filter(grab(TASK_FILTERS, routeName))
@@ -71,6 +80,7 @@ const getPartitionedTasksForRoute = createSelector(
 );
 
 export {
+  getCurrentSubTasks,
   getCurrentTask,
   getPartitionedTasksForRoute,
   getUndoneTasks,

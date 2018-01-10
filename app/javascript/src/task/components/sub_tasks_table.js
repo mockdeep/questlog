@@ -17,14 +17,14 @@ function taskRows(tasks, {updateTask, deleteTask}) {
   ));
 }
 
-function SubTasksTable({task, updateTask, deleteTask}) {
-  if (task.subTasks.length === 0) { return null; }
+function SubTasksTable({subTasks, updateTask, deleteTask}) {
+  if (subTasks.length === 0) { return null; }
 
   return (
     <div>
       <table className='task-list'>
         <thead><TableHeaders label={'Sub-tasks'} /></thead>
-        <tbody>{taskRows(task.subTasks, {updateTask, deleteTask})}</tbody>
+        <tbody>{taskRows(subTasks, {updateTask, deleteTask})}</tbody>
       </table>
     </div>
   );
@@ -32,8 +32,8 @@ function SubTasksTable({task, updateTask, deleteTask}) {
 
 SubTasksTable.propTypes = {
   deleteTask: PropTypes.func.isRequired,
+  subTasks: PropTypes.arrayOf(taskShape).isRequired,
   updateTask: PropTypes.func.isRequired,
-  task: taskShape,
 };
 
 export default SubTasksTable;
