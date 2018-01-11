@@ -4,7 +4,7 @@ import {
   getOrderedTags,
 } from 'src/tag/selectors';
 
-import {makeTask} from '_test_helpers/factories';
+import {makeState, makeTask} from '_test_helpers/factories';
 
 describe('getActiveTags', () => {
   it('returns tags that have one or more unfinished associated tasks', () => {
@@ -16,10 +16,7 @@ describe('getActiveTags', () => {
     const task2 = makeTask({id: 6, tagIds: [1], releaseAt: 'foo'});
     const task3 = makeTask({id: 7, tagIds: [2, 3]});
 
-    const state = {
-      tag: {byId: {1: tag1, 2: tag2, 3: tag3}, orderedIds: [3, 2, 1]},
-      task: {byId: {5: task1, 6: task2, 7: task3}},
-    };
+    const state = makeState({tag: [tag1, tag2, tag3], task: [task1, task2, task3]});
     const expected = [
       {...tag3, priority: null, tasks: [task3]},
       {...tag2, priority: null, tasks: [task1, task3]},
@@ -31,10 +28,7 @@ describe('getActiveTags', () => {
   it('returns tags with isActive rule when any tasks are unfinished', () => {
     const tag = {id: 71, rules: [{check: 'isActive'}]};
     const task = makeTask({id: 1});
-    const state = {
-      tag: {orderedIds: [71], byId: {71: tag}},
-      task: {byId: {1: task}},
-    };
+    const state = makeState({tag: [tag], task: [task]});
 
     expect(getActiveTags(state)).toEqual([{...tag, priority: null, tasks: [task]}]);
   });
@@ -43,10 +37,7 @@ describe('getActiveTags', () => {
     it('does not return tag when field is not defined', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = makeTask();
-      const state = {
-        tag: {orderedIds: [71], byId: {71: tag}},
-        task: {byId: {1: task}},
-      };
+      const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
@@ -54,10 +45,7 @@ describe('getActiveTags', () => {
     it('does not return tag when field is set to a value', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = makeTask({myField: 'not blank'});
-      const state = {
-        tag: {orderedIds: [71], byId: {71: tag}},
-        task: {byId: {1: task}},
-      };
+      const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
@@ -65,10 +53,7 @@ describe('getActiveTags', () => {
     it('returns tag when field is set to null', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
       const task = makeTask({id: 1, myField: null});
-      const state = {
-        tag: {orderedIds: [71], byId: {71: tag}},
-        task: {byId: {1: task}},
-      };
+      const state = makeState({tag: [tag], task: [task]});
       const expected = [{...tag, priority: null, tasks: [task]}];
 
       expect(getActiveTags(state)).toEqual(expected);
@@ -79,10 +64,7 @@ describe('getActiveTags', () => {
     it('does not return tag when field is not empty', () => {
       const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
       const task = makeTask({myField: [1]});
-      const state = {
-        tag: {orderedIds: [71], byId: {71: tag}},
-        task: {byId: {1: task}},
-      };
+      const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
@@ -91,10 +73,7 @@ describe('getActiveTags', () => {
       const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
       const task1 = makeTask({id: 5, myField: []});
       const task2 = makeTask({id: 6, myField: [1]});
-      const state = {
-        tag: {orderedIds: [71], byId: {71: tag}},
-        task: {byId: {1: task1, 2: task2}},
-      };
+      const state = makeState({tag: [tag], task: [task1, task2]});
       const expected = [{...tag, priority: null, tasks: [task1]}];
 
       expect(getActiveTags(state)).toEqual(expected);
@@ -104,16 +83,15 @@ describe('getActiveTags', () => {
 
 describe('getNextUndoneTask', () => {
   const allTag = {slug: '', rules: [{id: 0, check: 'isActive'}]};
-  let tagState = {orderedIds: [0], byId: {0: allTag}, meta: {}};
 
   it('returns the next undone task', () => {
     const task1 = makeTask({id: 5, title: 'foo', releaseAt: 'blah'});
     const task2 = makeTask({id: 10, title: 'blah'});
-    const state = {
+    const state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task2);
   });
@@ -121,21 +99,21 @@ describe('getNextUndoneTask', () => {
   it('returns next task according to timeframe', () => {
     const task1 = makeTask({id: 5, title: 'foo', timeframe: 'week'});
     let task2 = makeTask({id: 10, title: 'blah'});
-    let state = {
+    let state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'blah'};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
   });
@@ -143,21 +121,21 @@ describe('getNextUndoneTask', () => {
   it('returns next task according to priority', () => {
     const task1 = makeTask({id: 5, title: 'foo', priority: 3});
     let task2 = makeTask({id: 10, title: 'blah'});
-    let state = {
+    let state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 2};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'someday'};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
   });
@@ -165,21 +143,21 @@ describe('getNextUndoneTask', () => {
   it('returns next task according to position', () => {
     const task1 = makeTask({id: 5, title: 'foo', position: 32});
     let task2 = makeTask({id: 10, title: 'blah', position: 35});
-    let state = {
+    let state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'someday'};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
   });
@@ -187,36 +165,36 @@ describe('getNextUndoneTask', () => {
   it('returns next task sorted based on various attributes', () => {
     const task1 = makeTask({id: 5, title: 'foo', position: 32, timeframe: 'today'});
     let task2 = makeTask({id: 10, title: 'blah', position: 35, timeframe: 'week'});
-    let state = {
+    let state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 1};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, priority: null};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, position: 35};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task1);
   });
@@ -227,16 +205,11 @@ describe('getNextUndoneTask', () => {
     const task1 = makeTask({id: 5, tagIds: [1, 2], position: 5});
     let task2 = makeTask({id: 10, tagIds: [], position: 3});
 
-    tagState = {
-      byId: {0: allTag, 1: tag1, 2: tag2},
-      orderedIds: [0, 1, 2],
-      meta: {},
-    };
-    let state = {
+    let state = makeState({
       route: {params: {}},
-      task: {byId: {5: task1, 10: task2}},
-      tag: tagState,
-    };
+      task: [task1, task2],
+      tag: [allTag, tag1, tag2],
+    });
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
@@ -245,7 +218,7 @@ describe('getNextUndoneTask', () => {
     expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, tagIds: [1]};
-    state = {...state, task: {byId: {5: task1, 10: task2}}};
+    state = {...state, ...makeState({task: [task1, task2]})};
 
     expect(getNextUndoneTask(state)).toEqual(task2);
 
@@ -255,7 +228,7 @@ describe('getNextUndoneTask', () => {
   });
 
   it('returns undefined when there are no tasks', () => {
-    const state = {route: {params: {}}, task: {byId: {}}, tag: tagState};
+    const state = makeState({route: {params: {}}, task: [], tag: [allTag]});
 
     expect(getNextUndoneTask(state)).toBeUndefined();
   });
@@ -267,10 +240,8 @@ describe('getOrderedTags', () => {
       const tag1 = {id: 1, rules: []};
       const tag2 = {id: 2, rules: []};
       const task1 = makeTask({id: 5, tagIds: [2]});
-      const state = {
-        task: {byId: {5: task1}},
-        tag: {byId: {1: tag1, 2: tag2}},
-      };
+      const state = makeState({task: [task1], tag: [tag1, tag2]});
+
       expect(getOrderedTags(state)[0].priority).toBeNull();
       expect(getOrderedTags(state)[1].priority).toBeNull();
     });
@@ -279,10 +250,8 @@ describe('getOrderedTags', () => {
       const tag1 = {id: 1, rules: []};
       const task1 = makeTask({id: 5, tagIds: [1], priority: 3});
       const task2 = makeTask({id: 6, tagIds: [1], priority: 1});
-      const state = {
-        task: {byId: {5: task1, 6: task2}},
-        tag: {byId: {1: tag1}},
-      };
+      const state = makeState({task: [task1, task2], tag: [tag1]});
+
       expect(getOrderedTags(state)[0].priority).toBe(1);
     });
 
@@ -290,10 +259,8 @@ describe('getOrderedTags', () => {
       const tag1 = {id: 1, rules: []};
       const task1 = makeTask({id: 5, tagIds: [1], priority: null});
       const task2 = makeTask({id: 6, tagIds: [1], priority: 2});
-      const state = {
-        task: {byId: {5: task1, 6: task2}},
-        tag: {byId: {1: tag1}},
-      };
+      const state = makeState({task: [task1, task2], tag: [tag1]});
+
       expect(getOrderedTags(state)[0].priority).toBe(2);
     });
   });
