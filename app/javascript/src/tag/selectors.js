@@ -37,13 +37,18 @@ const getSelectedTagSlug = createSelector(
   slug => slug || ''
 );
 
+const getTagsById = createSelector(
+  state => state.tag.byId,
+  tagsById => tagsById
+);
+
 const getOrderedTags = createSelector(
-  state => state.tag,
-  tagState => sortBy(Object.values(tagState.byId), 'name')
+  getTagsById,
+  tagsById => sortBy(Object.values(tagsById), 'name')
 );
 
 const getTasksByTagId = createSelector(
-  [state => state.tag.byId, getUndoneTasks],
+  [getTagsById, getUndoneTasks],
   (tagsById, undoneTasks) => mapValues(tagsById, tag => matchingTasks(tag, undoneTasks))
 );
 
