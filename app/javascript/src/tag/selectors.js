@@ -28,8 +28,13 @@ function minPriority(tasks) {
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
 
-function generateMetaInfo(tasks) {
+function generateMetaInfo(tag) {
+  const {tasks} = tag;
   return {priority: minPriority(tasks), unfinishedTasksCount: tasks.length};
+}
+
+function processTag(tag, undoneTasks) {
+  return {...tag, tasks: matchingTasks(tag, undoneTasks)};
 }
 
 const getSelectedTagSlug = createSelector(
@@ -38,8 +43,8 @@ const getSelectedTagSlug = createSelector(
 );
 
 const getTagsById = createSelector(
-  state => state.tag.byId,
-  tagsById => tagsById
+  [state => state.tag.byId, getUndoneTasks],
+  (tagsById, undoneTasks) => mapValues(tagsById, tag => processTag(tag, undoneTasks))
 );
 
 const getOrderedTags = createSelector(
@@ -47,14 +52,9 @@ const getOrderedTags = createSelector(
   tagsById => sortBy(Object.values(tagsById), 'name')
 );
 
-const getTasksByTagId = createSelector(
-  [getTagsById, getUndoneTasks],
-  (tagsById, undoneTasks) => mapValues(tagsById, tag => matchingTasks(tag, undoneTasks))
-);
-
 const getActiveTags = createSelector(
-  [getTasksByTagId, getOrderedTags],
-  (tasksByTagId, orderedTags) => orderedTags.filter(tag => tasksByTagId[tag.id].length > 0)
+  [getOrderedTags],
+  orderedTags => orderedTags.filter(tag => tag.tasks.length > 0)
 );
 
 const getSelectedTag = createSelector(
@@ -68,8 +68,8 @@ const getNextUndoneTask = createSelector(
 );
 
 const getTagMetaInfo = createSelector(
-  [getTasksByTagId],
-  tasksByTagId => mapValues(tasksByTagId, tasks => generateMetaInfo(tasks))
+  [getTagsById],
+  tagsById => mapValues(tagsById, tag => generateMetaInfo(tag))
 );
 
 export {

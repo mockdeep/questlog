@@ -18,8 +18,12 @@ describe('getActiveTags', () => {
       tag: {byId: {1: tag1, 2: tag2, 3: tag3}, orderedIds: [3, 2, 1]},
       task: {byId: {5: task1, 6: task2, 7: task3}},
     };
+    const expected = [
+      {...tag3, tasks: [task3]},
+      {...tag2, tasks: [task1, task3]},
+    ];
 
-    expect(getActiveTags(state)).toEqual([tag3, tag2]);
+    expect(getActiveTags(state)).toEqual(expected);
   });
 
   it('returns tags with isActive rule when any tasks are unfinished', () => {
@@ -30,7 +34,7 @@ describe('getActiveTags', () => {
       task: {byId: {1: task}},
     };
 
-    expect(getActiveTags(state)).toEqual([tag]);
+    expect(getActiveTags(state)).toEqual([{...tag, tasks: [task]}]);
   });
 
   describe('when tag has isBlank smart rule', () => {
@@ -69,7 +73,7 @@ describe('getActiveTags', () => {
         task: {byId: {1: task}},
       };
 
-      expect(getActiveTags(state)).toEqual([tag]);
+      expect(getActiveTags(state)).toEqual([{...tag, tasks: [task]}]);
     });
   });
 
@@ -94,7 +98,7 @@ describe('getActiveTags', () => {
         task: {byId: {1: task1, 2: task2}},
       };
 
-      expect(getActiveTags(state)).toEqual([tag]);
+      expect(getActiveTags(state)).toEqual([{...tag, tasks: [task1]}]);
     });
   });
 });
