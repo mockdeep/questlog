@@ -15,8 +15,8 @@ const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
 
 it('renders rule rows', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
-  const overrideProps = {...props, scratch: {rules: tempRules}};
-  const component = shallow(<TagEditView {...overrideProps} />);
+  const overrides = {...props, scratch: {rules: tempRules}};
+  const component = shallow(<TagEditView {...overrides} />);
 
   expect(component.find('RuleRow')).toBePresent();
 });
@@ -30,4 +30,13 @@ it('adds rules when "Add Rule" button is clicked', () => {
   expect(addRuleButton).toBePresent();
   addRuleButton.simulate('click');
   expect(updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
+});
+
+it('updates rules when component receives a new tag', () => {
+  const component = shallow(<TagEditView {...props} />);
+  const tag = {rules: [{field: 'title', check: 'isWobbly'}]};
+
+  component.setProps({tag});
+
+  expect(updateScratch).toHaveBeenCalledWith({rules: tag.rules});
 });
