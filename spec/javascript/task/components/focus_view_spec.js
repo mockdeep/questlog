@@ -9,6 +9,8 @@ import {shallow} from 'enzyme';
 
 import TaskFocusView from 'src/task/components/focus_view';
 
+import {makeTask} from '_test_helpers/factories';
+
 const updateScratch = jest.fn();
 const updateTask = jest.fn();
 const props = {
@@ -49,7 +51,7 @@ it('updates the task on completion', () => {
 
 describe('when a task is given', () => {
   it('sets the document title to the task title', () => {
-    const task = {title: 'some task title'};
+    const task = makeTask({title: 'some task title'});
 
     shallow(<TaskFocusView {...props} task={task} />);
 

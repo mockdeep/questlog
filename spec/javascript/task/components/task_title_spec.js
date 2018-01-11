@@ -3,7 +3,9 @@ import {shallow} from 'enzyme';
 
 import TaskTitle from 'src/task/components/task_title';
 
-const task = {};
+import {makeTask} from '_test_helpers/factories';
+
+const task = makeTask();
 const props = {deleteTask: jest.fn(), task};
 
 it('renders an editable title form', () => {
