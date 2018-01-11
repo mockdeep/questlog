@@ -12,7 +12,7 @@ describe('getCurrentTask', () => {
       route: {params: {taskId: 53}},
     };
 
-    expect(getCurrentTask(state)).toBe(task);
+    expect(getCurrentTask(state)).toEqual({...task, subTaskIds: []});
   });
 
   it('returns no task when task in route is not present', () => {
@@ -52,17 +52,13 @@ describe('getUndoneTasks', () => {
   });
 
   it('does not return tasks with sub tasks', () => {
-    const task1 = {id: 53, title: 'some task', timeframe: null, subTaskIds: []};
-    const task2 = {
-      id: 54,
-      title: 'some other task',
-      timeframe: null,
-      subTaskIds: [55],
-    };
+    const task1 = {id: 53, title: 'some task', timeframe: null};
+    const task2 = {id: 54, title: 'some other task', timeframe: null};
+    const task3 = {id: 55, title: 'some child task', timeframe: null, parentTaskId: 54};
+    const state = {task: {byId: {53: task1, 54: task2, 55: task3}}};
+    const expected = [{...task1, subTaskIds: []}, {...task3, subTaskIds: []}];
 
-    const state = {task: {byId: {53: task1, 54: task2}}};
-
-    expect(getUndoneTasks(state)).toEqual([task1]);
+    expect(getUndoneTasks(state)).toEqual(expected);
   });
 
   it('raises an error when task has invalid timeframe', () => {

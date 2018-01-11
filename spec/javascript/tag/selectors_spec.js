@@ -12,9 +12,9 @@ describe('getActiveTags', () => {
     const tag2 = {id: 2, name: 'b tag', rules: []};
     const tag3 = {id: 3, name: 'a tag', rules: []};
 
-    const task1 = {...baseTask, tagIds: [2]};
-    const task2 = {...baseTask, tagIds: [1], releaseAt: 'foo'};
-    const task3 = {...baseTask, tagIds: [2, 3]};
+    const task1 = {...baseTask, id: 5, tagIds: [2]};
+    const task2 = {...baseTask, id: 6, tagIds: [1], releaseAt: 'foo'};
+    const task3 = {...baseTask, id: 7, tagIds: [2, 3]};
 
     const state = {
       tag: {byId: {1: tag1, 2: tag2, 3: tag3}, orderedIds: [3, 2, 1]},
@@ -30,7 +30,7 @@ describe('getActiveTags', () => {
 
   it('returns tags with isActive rule when any tasks are unfinished', () => {
     const tag = {id: 71, rules: [{check: 'isActive'}]};
-    const task = baseTask;
+    const task = {...baseTask, id: 1};
     const state = {
       tag: {orderedIds: [71], byId: {71: tag}},
       task: {byId: {1: task}},
@@ -64,7 +64,7 @@ describe('getActiveTags', () => {
 
     it('returns tag when field is set to null', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
-      const task = {...baseTask, myField: null};
+      const task = {...baseTask, id: 1, myField: null};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task}},
@@ -89,8 +89,8 @@ describe('getActiveTags', () => {
 
     it('returns tag when field is empty on one or more tasks', () => {
       const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
-      const task1 = {...baseTask, myField: []};
-      const task2 = {...baseTask, myField: [1]};
+      const task1 = {...baseTask, id: 5, myField: []};
+      const task2 = {...baseTask, id: 6, myField: [1]};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task1, 2: task2}},
@@ -115,7 +115,7 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
   });
 
   it('returns next task according to timeframe', () => {
@@ -127,17 +127,17 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'blah'};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
   });
 
   it('returns next task according to priority', () => {
@@ -149,17 +149,17 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 2};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'someday'};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
   });
 
   it('returns next task according to position', () => {
@@ -171,17 +171,17 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, releaseAt: 'someday'};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
   });
 
   it('returns next task sorted based on various attributes', () => {
@@ -205,32 +205,32 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 1};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, priority: null};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     task2 = {...task2, position: 35};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
   });
 
   it('returns next task for tag when selected', () => {
@@ -250,20 +250,20 @@ describe('getNextUndoneTask', () => {
       tag: tagState,
     };
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     state = {...state, route: {params: {slug: 'tag-1-slug'}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
 
     task2 = {...task2, tagIds: [1]};
     state = {...state, task: {byId: {5: task1, 10: task2}}};
 
-    expect(getNextUndoneTask(state)).toBe(task2);
+    expect(getNextUndoneTask(state)).toEqual(task2);
 
     state = {...state, route: {params: {slug: 'tag-2-slug'}}};
 
-    expect(getNextUndoneTask(state)).toBe(task1);
+    expect(getNextUndoneTask(state)).toEqual(task1);
   });
 
   it('returns undefined when there are no tasks', () => {

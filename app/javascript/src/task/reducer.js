@@ -1,4 +1,4 @@
-import {groupBy, keyBy} from 'lodash';
+import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
@@ -28,11 +28,6 @@ export default createBasicReducer({
 
   [SET](previousState, taskData) {
     const tasks = taskData.map(processTask);
-    const tasksByParentId = groupBy(tasks, 'parentTaskId');
-    tasks.forEach(task => {
-      const subTaskIds = (tasksByParentId[task.id] || []).map(subTask => subTask.id);
-      task.subTaskIds = subTaskIds;
-    });
 
     return {...previousState, byId: keyBy(tasks, 'id')};
   },

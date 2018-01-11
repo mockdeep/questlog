@@ -1,3 +1,7 @@
+import debug from 'src/_helpers/debug';
+
+global.debug = debug;
+
 global.requestAnimationFrame = function requestAnimationFrame(callback) {
   setTimeout(callback, 0);
 };

@@ -1,4 +1,4 @@
-import {at, partition, sortBy} from 'lodash';
+import {at, groupBy, mapValues, partition, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
@@ -47,9 +47,19 @@ function getSubTasks(task, tasksById) {
   return at(tasksById, task.subTaskIds);
 }
 
+function processTasks(tasksById) {
+  const tasksByParentId = groupBy(Object.values(tasksById), 'parentTaskId');
+
+  return mapValues(tasksById, task => {
+    const subTaskIds = (tasksByParentId[task.id] || []).map(subTask => subTask.id);
+
+    return {...task, subTaskIds};
+  });
+}
+
 const getTasksById = createSelector(
   state => state.task.byId,
-  tasksById => tasksById
+  tasksById => processTasks(tasksById)
 );
 
 const getOrderedTasks = createSelector(
