@@ -3,13 +3,12 @@ import {shallow} from 'enzyme';
 
 import TagButton from 'src/tag/components/button';
 
-const tag = {slug: 'home', id: 2, name: 'Home'};
+const tag = {slug: 'home', id: 2, name: 'Home', tasks: []};
 const props = {
   current: false,
   updateTagMeta: jest.fn(),
   tag,
   isActive: false,
-  unfinishedTasksCount: 5,
 };
 
 it('adds an active class when tag is selected', () => {
@@ -25,7 +24,8 @@ it('adds a current class when tag current', () => {
 });
 
 it('adds a priority class when tag has a priority', () => {
-  const component = shallow(<TagButton {...props} priority={2} />);
+  const overrides = {tag: {...tag, priority: 2}};
+  const component = shallow(<TagButton {...props} {...overrides} />);
 
   expect(component.find('Connect(Link)')).toHaveClassName('priority-2-btn');
 });

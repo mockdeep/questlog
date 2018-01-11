@@ -12,7 +12,7 @@ class TagButton extends React.Component {
   }
 
   className() {
-    const {current, isActive, priority} = this.props;
+    const {current, isActive, tag} = this.props;
     let classString = 'button btn btn-default';
 
     if (isActive) {
@@ -21,22 +21,22 @@ class TagButton extends React.Component {
     if (current) {
       classString = `${classString} current`;
     }
-    if (priority) {
-      classString = `${classString} priority-${priority}-btn`;
+    if (tag.priority) {
+      classString = `${classString} priority-${tag.priority}-btn`;
     }
 
     return classString;
   }
 
   render() {
-    const {tag, unfinishedTasksCount} = this.props;
+    const {tag} = this.props;
     const {slug, name} = tag;
     const to = name === 'All' ? 'root' : 'tag';
 
     return (
       <div>
         <Link to={to} params={{slug}} className={this.className()}>
-          {`${name} (${unfinishedTasksCount})`}
+          {`${name} (${tag.tasks.length})`}
         </Link>
       </div>
     );
@@ -47,8 +47,6 @@ TagButton.propTypes = {
   current: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
   tag: tagShape.isRequired,
-  unfinishedTasksCount: PropTypes.number.isRequired,
-  priority: PropTypes.number,
 };
 
 export default TagButton;

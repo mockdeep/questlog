@@ -6,24 +6,29 @@ import createAppStore from 'src/create_app_store';
 import TagButtons from 'src/tag/components/buttons';
 
 const tags = [
-  {id: 5, name: 'home', slug: 'home'},
-  {id: 23, name: 'work', slug: 'work'},
+  {id: 5, name: 'home', slug: 'home', tasks: [{}]},
+  {id: 23, name: 'work', slug: 'work', tasks: [{}, {}]},
 ];
-const tagMetaInfo = {
-  5: {unfinishedTasksCount: 8},
-  23: {unfinishedTasksCount: 13},
-};
-const props = {task: {}, tags, currentTagIds: [], tagMetaInfo};
+const props = {task: {}, tags, currentTagIds: []};
 
-describe('TagButtons', () => {
-  it('renders some stuff', () => {
-    const provider =
-      <Provider store={createAppStore()}>
-        <TagButtons {...props} />
-      </Provider>;
-    const wrapper = mount(provider);
+it('renders tag buttons', () => {
+  const provider =
+    <Provider store={createAppStore()}>
+      <TagButtons {...props} />
+    </Provider>;
+  const wrapper = mount(provider);
 
-    expect(wrapper).toIncludeText('home (8)');
-    expect(wrapper).toIncludeText('work (13)');
-  });
+  expect(wrapper).toIncludeText('home (1)');
+  expect(wrapper).toIncludeText('work (2)');
+});
+
+it('passes down active when tag slug matches the selected tag slug', () => {
+  const provider =
+    <Provider store={createAppStore()}>
+      <TagButtons {...props} selectedTagSlug={'work'} />
+    </Provider>;
+  const wrapper = mount(provider);
+
+  expect(wrapper.find('TagButton').at(0)).toHaveProp('isActive', false);
+  expect(wrapper.find('TagButton').at(1)).toHaveProp('isActive', true);
 });
