@@ -8,6 +8,8 @@ import BulkTaskStore from 'src/task/bulk_store';
 import createAppStore from 'src/create_app_store';
 import TaskListView from 'src/task/components/list_view';
 
+import {makeTask} from '_test_helpers/factories';
+
 const props = {
   currentTasks: [],
   deleteTask: jest.fn(),
@@ -120,9 +122,9 @@ describe('moving a task when dragging', () => {
 
 describe('saving task after drop', () => {
   it('sets null task priority to match below task when moved to top', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 3};
-    const task3 = {id: 3, priority: null};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 3});
+    const task3 = makeTask({priority: null});
     const overrides = {currentTasks: [task3, task1, task2]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -134,9 +136,9 @@ describe('saving task after drop', () => {
   });
 
   it('sets task priority to match below task when moved to top', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 3};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 3});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task3, task1, task2]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -148,9 +150,9 @@ describe('saving task after drop', () => {
   });
 
   it('sets task priority to match above task when moved to bottom', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 3};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 3});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task2, task3, task1]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -162,9 +164,9 @@ describe('saving task after drop', () => {
   });
 
   it('sets task priority to null when above task has null priority', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 3};
-    const task3 = {id: 3, priority: null};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 3});
+    const task3 = makeTask({priority: null});
     const overrides = {currentTasks: [task2, task3, task1]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -176,9 +178,9 @@ describe('saving task after drop', () => {
   });
 
   it('keeps task priority at null when moved to bottom', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: null};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: null});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task1, task3, task2]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -190,9 +192,9 @@ describe('saving task after drop', () => {
   });
 
   it('keeps task priority when below task matches but not above', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 3};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 3});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task1, task3, task2]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -204,9 +206,9 @@ describe('saving task after drop', () => {
   });
 
   it('keeps task priority when above task matches but not below', () => {
-    const task1 = {id: 1, priority: 2};
-    const task2 = {id: 2, priority: 2};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 2});
+    const task2 = makeTask({priority: 2});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task2, task1, task3]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -218,9 +220,9 @@ describe('saving task after drop', () => {
   });
 
   it('sets task priority to below task priority when neither match', () => {
-    const task1 = {id: 1, priority: 1};
-    const task2 = {id: 2, priority: 2};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 1});
+    const task2 = makeTask({priority: 2});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task2, task1, task3]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
@@ -232,15 +234,16 @@ describe('saving task after drop', () => {
   });
 
   it('updates the tasks on the server', () => {
-    const task1 = {id: 1, priority: 1};
-    const task2 = {id: 2, priority: 2};
-    const task3 = {id: 3, priority: 3};
+    const task1 = makeTask({priority: 1});
+    const task2 = makeTask({priority: 2});
+    const task3 = makeTask({priority: 3});
     const overrides = {currentTasks: [task2, task1, task3]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const fakeComponent = {props: {task: task1}, updatePriority: jest.fn()};
 
     component.instance().saveTaskPositions(fakeComponent);
 
-    expect(BulkTaskStore.update).toHaveBeenCalledWith({positions: [2, 1, 3]});
+    const expected = {positions: [task2.id, task1.id, task3.id]};
+    expect(BulkTaskStore.update).toHaveBeenCalledWith(expected);
   });
 });

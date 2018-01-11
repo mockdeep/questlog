@@ -31,6 +31,7 @@ function makeTask(attrs) {
     loadingState: 'ready',
     priority: null,
     tagIds: [],
+    tagNames: [],
     timeframe: null,
     subTaskIds: [],
     ...attrs,
