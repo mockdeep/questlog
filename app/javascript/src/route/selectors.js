@@ -5,4 +5,9 @@ const getRouteName = createSelector(
   routeName => routeName
 );
 
-export {getRouteName};
+const getRouteParams = createSelector(
+  state => state.route.params,
+  routeParams => routeParams
+);
+
+export {getRouteName, getRouteParams};
