@@ -119,10 +119,24 @@ describe('moving a task when dragging', () => {
 });
 
 describe('saving task after drop', () => {
-  it('sets task priority to match below task when moved to top', () => {
+  it('sets null task priority to match below task when moved to top', () => {
     const task1 = {id: 1, priority: 2};
     const task2 = {id: 2, priority: 3};
     const task3 = {id: 3, priority: null};
+    const overrides = {currentTasks: [task3, task1, task2]};
+    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const updatePriority = jest.fn();
+    const fakeComponent = {props: {task: task3}, updatePriority};
+
+    component.instance().saveTaskPositions(fakeComponent);
+
+    expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
+  });
+
+  it('sets task priority to match below task when moved to top', () => {
+    const task1 = {id: 1, priority: 2};
+    const task2 = {id: 2, priority: 3};
+    const task3 = {id: 3, priority: 3};
     const overrides = {currentTasks: [task3, task1, task2]};
     const component = shallowProvider(<TaskListView {...props} {...overrides} />);
     const updatePriority = jest.fn();
