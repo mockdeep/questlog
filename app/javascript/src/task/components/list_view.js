@@ -23,6 +23,16 @@ function findTask(tasks, taskId) {
   return tasks.find(task => task.id === taskId);
 }
 
+function afterTaskHasHigherPriority(task, afterTask) {
+  if (!task.priority) { return true; }
+  return Boolean(afterTask.priority && afterTask.priority < task.priority);
+}
+
+function beforeTaskHasLowerPriority(task, beforeTask) {
+  if (!beforeTask.priority) { return true; }
+  return Boolean(task.priority && beforeTask.priority > task.priority);
+}
+
 class TaskListView extends React.Component {
   constructor(props) {
     super(props);
@@ -72,9 +82,9 @@ class TaskListView extends React.Component {
       if (task.priority !== beforeTask.priority && task.priority !== afterTask.priority) {
         newPriority = afterTask.priority;
       }
-    } else if (afterTask && ((afterTask.priority && afterTask.priority < task.priority) || !task.priority)) {
+    } else if (afterTask && afterTaskHasHigherPriority(task, afterTask)) {
       newPriority = afterTask.priority;
-    } else if (beforeTask && ((task.priority && beforeTask.priority > task.priority) || !beforeTask.priority)) {
+    } else if (beforeTask && beforeTaskHasLowerPriority(task, beforeTask)) {
       newPriority = beforeTask.priority;
     }
 
