@@ -8,8 +8,13 @@ function makeState(attrs) {
   }, {});
 }
 
+let nextTaskId = 0;
+
 function makeTask(attrs) {
+  nextTaskId += 1;
+
   return {
+    id: nextTaskId,
     estimateMinutes: 30,
     loadingState: 'ready',
     priority: null,
