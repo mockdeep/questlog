@@ -1,5 +1,8 @@
 import appReducer from 'src/app_reducer';
 
+let nextTagId = 0;
+let nextTaskId = 0;
+
 function makeState(attrs) {
   return Object.keys(attrs).reduce((state, key) => {
     const action = {type: `${key}/SET`, payload: attrs[key]};
@@ -8,7 +11,16 @@ function makeState(attrs) {
   }, {});
 }
 
-let nextTaskId = 0;
+function makeTag(attrs) {
+  nextTagId += 1;
+
+  return {
+    id: nextTagId,
+    priority: null,
+    rules: [],
+    ...attrs,
+  };
+}
 
 function makeTask(attrs) {
   nextTaskId += 1;
@@ -25,4 +37,4 @@ function makeTask(attrs) {
   };
 }
 
-export {makeState, makeTask};
+export {makeState, makeTag, makeTask};
