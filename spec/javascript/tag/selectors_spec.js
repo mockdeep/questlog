@@ -4,15 +4,17 @@ import {
   getTagMetaInfo,
 } from 'src/tag/selectors';
 
+const baseTask = {priority: null, tagIds: [], timeframe: null, subTaskIds: []};
+
 describe('getActiveTags', () => {
   it('returns tags that have one or more unfinished associated tasks', () => {
     const tag1 = {id: 1, rules: []};
     const tag2 = {id: 2, name: 'b tag', rules: []};
     const tag3 = {id: 3, name: 'a tag', rules: []};
 
-    const task1 = {timeframe: null, tagIds: [2], subTaskIds: []};
-    const task2 = {timeframe: null, tagIds: [1], releaseAt: 'foo', subTaskIds: []};
-    const task3 = {timeframe: null, tagIds: [2, 3], subTaskIds: []};
+    const task1 = {...baseTask, tagIds: [2]};
+    const task2 = {...baseTask, tagIds: [1], releaseAt: 'foo'};
+    const task3 = {...baseTask, tagIds: [2, 3]};
 
     const state = {
       tag: {byId: {1: tag1, 2: tag2, 3: tag3}, orderedIds: [3, 2, 1]},
@@ -28,7 +30,7 @@ describe('getActiveTags', () => {
 
   it('returns tags with isActive rule when any tasks are unfinished', () => {
     const tag = {id: 71, rules: [{check: 'isActive'}]};
-    const task = {timeframe: null, tagIds: [], subTaskIds: []};
+    const task = baseTask;
     const state = {
       tag: {orderedIds: [71], byId: {71: tag}},
       task: {byId: {1: task}},
@@ -40,7 +42,7 @@ describe('getActiveTags', () => {
   describe('when tag has isBlank smart rule', () => {
     it('does not return tag when field is not defined', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
-      const task = {timeframe: null, tagIds: [], subTaskIds: []};
+      const task = baseTask;
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task}},
@@ -51,12 +53,7 @@ describe('getActiveTags', () => {
 
     it('does not return tag when field is set to a value', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
-      const task = {
-        timeframe: null,
-        tagIds: [],
-        myField: 'not blank',
-        subTaskIds: [],
-      };
+      const task = {...baseTask, myField: 'not blank'};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task}},
@@ -67,7 +64,7 @@ describe('getActiveTags', () => {
 
     it('returns tag when field is set to null', () => {
       const tag = {id: 71, rules: [{check: 'isBlank', field: 'myField'}]};
-      const task = {timeframe: null, tagIds: [], myField: null, subTaskIds: []};
+      const task = {...baseTask, myField: null};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task}},
@@ -80,7 +77,7 @@ describe('getActiveTags', () => {
   describe('when tag has isEmpty smart rule', () => {
     it('does not return tag when field is not empty', () => {
       const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
-      const task = {timeframe: null, tagIds: [], myField: [1], subTaskIds: []};
+      const task = {...baseTask, myField: [1]};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task}},
@@ -91,8 +88,8 @@ describe('getActiveTags', () => {
 
     it('returns tag when field is empty on one or more tasks', () => {
       const tag = {id: 71, rules: [{check: 'isEmpty', field: 'myField'}]};
-      const task1 = {timeframe: null, tagIds: [], myField: [], subTaskIds: []};
-      const task2 = {timeframe: null, tagIds: [], myField: [1], subTaskIds: []};
+      const task1 = {...baseTask, myField: []};
+      const task2 = {...baseTask, myField: [1]};
       const state = {
         tag: {orderedIds: [71], byId: {71: tag}},
         task: {byId: {1: task1, 2: task2}},
@@ -105,7 +102,6 @@ describe('getActiveTags', () => {
 
 describe('getNextUndoneTask', () => {
   const allTag = {slug: '', rules: [{id: 0, check: 'isActive'}]};
-  const baseTask = {priority: null, tagIds: [], timeframe: null, subTaskIds: []};
   let tagState = {orderedIds: [0], byId: {0: allTag}, meta: {}};
 
   it('returns the next undone task', () => {
@@ -280,13 +276,7 @@ describe('getTagMetaInfo', () => {
     it('returns null priority for tags with no priority tasks', () => {
       const tag1 = {id: 1, rules: []};
       const tag2 = {id: 2, rules: []};
-      const task1 = {
-        id: 5,
-        timeframe: null,
-        tagIds: [2],
-        subTaskIds: [],
-        priority: null,
-      };
+      const task1 = {...baseTask, id: 5, tagIds: [2]};
       const state = {
         task: {byId: {5: task1}},
         tag: {byId: {1: tag1, 2: tag2}},
@@ -297,20 +287,8 @@ describe('getTagMetaInfo', () => {
 
     it('returns the min priority for tasks with priority tasks', () => {
       const tag1 = {id: 1, rules: []};
-      const task1 = {
-        id: 5,
-        timeframe: null,
-        tagIds: [1],
-        subTaskIds: [],
-        priority: 3,
-      };
-      const task2 = {
-        id: 6,
-        timeframe: null,
-        tagIds: [1],
-        subTaskIds: [],
-        priority: 1,
-      };
+      const task1 = {...baseTask, id: 5, tagIds: [1], priority: 3};
+      const task2 = {...baseTask, id: 6, tagIds: [1], priority: 1};
       const state = {
         task: {byId: {5: task1, 6: task2}},
         tag: {byId: {1: tag1}},
@@ -320,20 +298,8 @@ describe('getTagMetaInfo', () => {
 
     it('returns the numeric priority when some tasks have priority', () => {
       const tag1 = {id: 1, rules: []};
-      const task1 = {
-        id: 5,
-        timeframe: null,
-        tagIds: [1],
-        subTaskIds: [],
-        priority: null,
-      };
-      const task2 = {
-        id: 6,
-        timeframe: null,
-        tagIds: [1],
-        subTaskIds: [],
-        priority: 2,
-      };
+      const task1 = {...baseTask, id: 5, tagIds: [1], priority: null};
+      const task2 = {...baseTask, id: 6, tagIds: [1], priority: 2};
       const state = {
         task: {byId: {5: task1, 6: task2}},
         tag: {byId: {1: tag1}},
@@ -346,13 +312,7 @@ describe('getTagMetaInfo', () => {
     it('returns the counts of associated tasks', () => {
       const tag1 = {id: 1, rules: []};
       const tag2 = {id: 2, rules: []};
-      const task1 = {
-        id: 5,
-        timeframe: null,
-        tagIds: [2],
-        subTaskIds: [],
-        priority: null,
-      };
+      const task1 = {...baseTask, id: 5, tagIds: [2]};
       const state = {
         task: {byId: {5: task1}},
         tag: {byId: {1: tag1, 2: tag2}},
