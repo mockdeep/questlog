@@ -5,9 +5,11 @@ import {Provider} from 'react-redux';
 import createAppStore from 'src/create_app_store';
 import TagButtons from 'src/tag/components/buttons';
 
+import {makeTag, makeTask} from '_test_helpers/factories';
+
 const tags = [
-  {id: 5, name: 'home', slug: 'home', tasks: [{}]},
-  {id: 23, name: 'work', slug: 'work', tasks: [{}, {}]},
+  makeTag({name: 'home', slug: 'home', tasks: [makeTask()]}),
+  makeTag({name: 'work', slug: 'work', tasks: [makeTask(), makeTask()]}),
 ];
 const props = {task: {}, tags, currentTagIds: []};
 

@@ -18,6 +18,7 @@ function makeTag(attrs) {
     id: nextTagId,
     priority: null,
     rules: [],
+    tasks: [],
     ...attrs,
   };
 }

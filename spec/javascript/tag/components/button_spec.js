@@ -3,7 +3,9 @@ import {shallow} from 'enzyme';
 
 import TagButton from 'src/tag/components/button';
 
-const tag = {slug: 'home', id: 2, name: 'Home', tasks: []};
+import {makeTag} from '_test_helpers/factories';
+
+const tag = makeTag({slug: 'home', name: 'Home'});
 const props = {
   current: false,
   updateTagMeta: jest.fn(),

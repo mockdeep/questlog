@@ -3,6 +3,8 @@ import {shallow} from 'enzyme';
 
 import TagEditView from 'src/tag/components/edit_view';
 
+import {makeTag} from '_test_helpers/factories';
+
 const updateScratch = jest.fn();
 const props = {
   tag: {},
@@ -34,7 +36,7 @@ it('adds rules when "Add Rule" button is clicked', () => {
 
 it('updates rules when component receives a new tag', () => {
   const component = shallow(<TagEditView {...props} />);
-  const tag = {rules: [{field: 'title', check: 'isWobbly'}]};
+  const tag = makeTag({rules: [{field: 'title', check: 'isWobbly'}]});
 
   component.setProps({tag});
 

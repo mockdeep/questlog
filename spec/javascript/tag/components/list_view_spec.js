@@ -3,6 +3,8 @@ import {shallow} from 'enzyme';
 
 import TagListView from 'src/tag/components/list_view';
 
+import {makeTag} from '_test_helpers/factories';
+
 const props = {tags: [{name: 'At Home', slug: 'at-home'}, {name: 'At Work', slug: 'at-work'}]};
 
 it('renders tag rows', () => {
@@ -21,7 +23,7 @@ it('renders tag rows', () => {
 });
 
 it('does not render the "All" tag', () => {
-  const tags = [{name: 'All', slug: ''}];
+  const tags = [makeTag({name: 'All', slug: ''})];
   const component = shallow(<TagListView {...props} tags={tags} />);
 
   expect(component.find('.tag-row')).toBeEmpty();
