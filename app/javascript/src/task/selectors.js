@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
-import {getRouteName} from 'src/route/selectors';
+import {getRouteName, getRouteParams} from 'src/route/selectors';
 
 const TASK_FILTERS = {
   tasks() { return true; },
@@ -47,8 +47,13 @@ function getSubTasks(task, tasksById) {
   return _.at(tasksById, task.subTaskIds);
 }
 
-const getOrderedTasks = createSelector(
+const getTasksById = createSelector(
   state => state.task.byId,
+  tasksById => tasksById
+);
+
+const getOrderedTasks = createSelector(
+  getTasksById,
   tasksById => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
 );
 
@@ -60,12 +65,12 @@ const getUndoneTasks = createSelector(
 );
 
 const getCurrentTask = createSelector(
-  state => state.task.byId[state.route.params.taskId],
-  task => task
+  [getTasksById, getRouteParams],
+  (tasksById, routeParams) => tasksById[routeParams.taskId]
 );
 
 const getCurrentSubTasks = createSelector(
-  [getCurrentTask, state => state.task.byId],
+  [getCurrentTask, getTasksById],
   (currentTask, tasksById) => getSubTasks(currentTask, tasksById)
 );
 
