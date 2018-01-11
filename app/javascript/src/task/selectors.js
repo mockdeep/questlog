@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import {at, partition, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
@@ -38,13 +38,13 @@ function timeframePosition(task) {
 }
 
 function partitionTasks(tasks) {
-  const [pending, undone] = _.partition(tasks, task => task.releaseAt);
+  const [pending, undone] = partition(tasks, task => task.releaseAt);
 
   return {pending, undone};
 }
 
 function getSubTasks(task, tasksById) {
-  return _.at(tasksById, task.subTaskIds);
+  return at(tasksById, task.subTaskIds);
 }
 
 const getTasksById = createSelector(
@@ -54,7 +54,7 @@ const getTasksById = createSelector(
 
 const getOrderedTasks = createSelector(
   getTasksById,
-  tasksById => _.sortBy(tasksById, [timeframePosition, 'priority', 'position'])
+  tasksById => sortBy(tasksById, [timeframePosition, 'priority', 'position'])
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
