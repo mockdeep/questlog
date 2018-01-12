@@ -124,7 +124,11 @@ it('passes bound action creators to the wrapped component', () => {
   jest.spyOn(store, 'dispatch').mockImplementation(jest.fn());
 
   const updateFoo = jest.fn(someArg => `blah${someArg}`);
-  const testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {updateFoo});
+  const testComponent = wrapComponent(
+    computeScratchKey,
+    jest.fn(() => ({})),
+    {updateFoo}
+  );
 
   testComponent.prop('updateFoo')('boo');
 

@@ -32,10 +32,12 @@ describe(UPDATE, () => {
   });
 
   it('merges into the existing state', () => {
-    const previousState = {byId: {1: {id: 1, goo: 'ber', bloo: 'blah'}, 2: {id: 2, bar: 'butz'}}};
+    const tag1 = {id: 1, goo: 'ber', bloo: 'blah'};
+    const tag2 = {id: 2, bar: 'butz'};
+    const previousState = {byId: {1: tag1, 2: tag2}};
     const payload = {id: 1, bloo: 'blargh'};
     const action = {type: UPDATE, payload};
-    const expectedState = {byId: {1: {id: 1, goo: 'ber', bloo: 'blargh'}, 2: {id: 2, bar: 'butz'}}};
+    const expectedState = {byId: {1: {...tag1, bloo: 'blargh'}, 2: tag2}};
 
     expect(tagReducer(previousState, action)).toEqual(expectedState);
   });

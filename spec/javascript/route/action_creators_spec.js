@@ -23,7 +23,8 @@ describe('fetchRoute', () => {
   });
 
   it('returns a SET action with slug for tag route', () => {
-    const expectedAction = {type: SET, payload: {name: 'tag', params: {slug: 'my-house'}}};
+    const payload = {name: 'tag', params: {slug: 'my-house'}};
+    const expectedAction = {type: SET, payload};
 
     window.history.replaceState(null, null, '/my-house');
 
