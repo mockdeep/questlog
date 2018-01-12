@@ -7,7 +7,11 @@ import {connect} from 'react-redux';
 import * as scratchActionCreators from 'src/scratch/action_creators';
 import {scratchShape} from 'src/shapes';
 
-function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) {
+function connectWithScratch(
+  computeScratchKey,
+  mapStateToProps,
+  actionCreators
+) {
   function scratchMapStateToProps(state, ownProps) {
     const scratchKey = computeScratchKey(state, ownProps);
 

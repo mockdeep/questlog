@@ -14,11 +14,11 @@ const props = {
 
 it('sets the temporary task title on change', () => {
   const component = shallow(<NewTaskForm {...props} />);
-  const fakeEvent = {target: {value: 'my text'}};
+  const fakeEvent = {target: {value: 'mytext'}};
 
   component.find("input[type='text']").simulate('change', fakeEvent);
 
-  expect(updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: 'my text'}});
+  expect(updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: 'mytext'}});
 });
 
 it('saves the task on submit', () => {
