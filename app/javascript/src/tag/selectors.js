@@ -60,8 +60,7 @@ const getSelectedTag = createSelector(
 );
 
 const getNextUndoneTask = createSelector(
-  [getUndoneTasks, getSelectedTag],
-  (undoneTasks, selectedTag) => undoneTasks.find(task => matchesSmartRules(task, selectedTag))
+  [getSelectedTag], selectedTag => selectedTag.tasks[0]
 );
 
 export {

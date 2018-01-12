@@ -5,7 +5,12 @@ import TagListView from 'src/tag/components/list_view';
 
 import {makeTag} from '_test_helpers/factories';
 
-const props = {tags: [{name: 'At Home', slug: 'at-home'}, {name: 'At Work', slug: 'at-work'}]};
+const props = {
+  tags: [
+    {name: 'At Home', slug: 'at-home'},
+    {name: 'At Work', slug: 'at-work'},
+  ],
+};
 
 it('renders tag rows', () => {
   const component = shallow(<TagListView {...props} />);
