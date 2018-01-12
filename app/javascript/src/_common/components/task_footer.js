@@ -7,9 +7,11 @@ import NotificationCheckbox from 'src/notification/containers/checkbox';
 import {taskShape} from 'src/shapes';
 
 function TaskFooter({task, completeTask}) {
+  const notificationProps = {task, completeTask};
+
   return (
     <footer className='task-footer'>
-      {task ? <NotificationCheckbox task={task} completeTask={completeTask} /> : null}
+      {task ? <NotificationCheckbox {...notificationProps} /> : null}
       <br />
       <Link to='tasks'>{'All my tasks'}</Link>
       {' | '}

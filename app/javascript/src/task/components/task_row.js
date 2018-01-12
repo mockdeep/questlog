@@ -174,11 +174,12 @@ class TaskRow extends React.PureComponent {
 
   render() {
     const {keyPrefix, task, timeframesEnabled} = this.props;
+    const buttonClass = 'btn btn-link task-list__action';
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
         <td className='task-list__cell'>
-          <button className='btn btn-link task-list__action' onClick={this.markDone}>
+          <button className={buttonClass} onClick={this.markDone}>
             {'DONE'}
           </button>
         </td>
@@ -199,7 +200,7 @@ class TaskRow extends React.PureComponent {
         </td>
         <td>
           {task.pending ? this.undoButton() : ''}
-          <button className='btn btn-link task-list__action' onClick={this.deleteTask}>
+          <button className={buttonClass} onClick={this.deleteTask}>
             {'DELETE'}
           </button>
         </td>

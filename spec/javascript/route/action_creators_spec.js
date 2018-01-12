@@ -49,7 +49,8 @@ describe('fetchRoute', () => {
 describe('setRoute', () => {
   it('returns a SET action corresponding to the given route', () => {
     const payload = {name: 'what', foo: 'bar'};
-    const expectedAction = {type: SET, payload: {name: 'what', params: {foo: 'bar'}}};
+    const expectedPayload = {name: 'what', params: {foo: 'bar'}};
+    const expectedAction = {type: SET, payload: expectedPayload};
 
     setRoute(payload);
 

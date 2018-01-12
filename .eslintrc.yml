@@ -46,7 +46,7 @@ rules:
   jsx-a11y/no-onchange: off
   jsx-a11y/no-static-element-interactions: off
   jsx-a11y/onclick-has-role: off
-  max-len: [error, 90]
+  max-len: [error, 85]
   max-statements: [error, { max: 14 }]
   multiline-comment-style: off
   no-magic-numbers: off

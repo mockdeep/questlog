@@ -42,7 +42,10 @@ Link.propTypes = {
   setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
   className: PropTypes.string,
-  params: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  params: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])),
 };
 
 export default Link;
