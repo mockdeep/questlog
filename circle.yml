@@ -16,4 +16,4 @@ test:
   override:
     - yarn test
     - rake
-    - DRIVER=chrome rake
+    - COVERAGE=false DRIVER=chrome rspec spec/features
