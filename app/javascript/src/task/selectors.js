@@ -34,11 +34,7 @@ function timeframePosition(task) {
 
   if (timeframe === null) { return 9; }
 
-  const position = grab(timeframePositions, timeframe);
-
-  if (!position) { throw new Error(`invalid timeframe: ${timeframe}`); }
-
-  return position;
+  return grab(timeframePositions, timeframe);
 }
 
 function partitionTasks(tasks) {
