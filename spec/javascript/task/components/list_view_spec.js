@@ -86,8 +86,8 @@ it('updates task rows based on updated props', () => {
 
 describe('moving a task when dragging', () => {
   it('moves a task after another task', () => {
-    const overrides = {currentTasks: [{id: 1}, {id: 52}]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [{id: 1}, {id: 52}]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
     expect(taskRows).toHaveLength(2);
     expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
@@ -103,8 +103,8 @@ describe('moving a task when dragging', () => {
   });
 
   it('does nothing when moving task id is the same as after task id', () => {
-    const overrides = {currentTasks: [{id: 1}, {id: 52}]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [{id: 1}, {id: 52}]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
     expect(taskRows).toHaveLength(2);
     expect(taskRows.at(0)).toHaveProp('task', overrides.currentTasks[0]);
@@ -125,8 +125,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: null});
-    const overrides = {currentTasks: [task3, task1, task2]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task3, task1, task2]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
@@ -139,8 +139,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task3, task1, task2]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task3, task1, task2]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
@@ -153,8 +153,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task2, task3, task1]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task2, task3, task1]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
@@ -167,8 +167,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: null});
-    const overrides = {currentTasks: [task2, task3, task1]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task2, task3, task1]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
@@ -181,8 +181,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: null});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task1, task3, task2]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task1, task3, task2]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task2}, updatePriority};
 
@@ -195,8 +195,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task1, task3, task2]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task1, task3, task2]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
@@ -209,8 +209,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task2, task1, task3]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
@@ -223,8 +223,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 1});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task2, task1, task3]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
@@ -237,8 +237,8 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 1});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {currentTasks: [task2, task1, task3]};
-    const component = shallowProvider(<TaskListView {...props} {...overrides} />);
+    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const component = shallowProvider(<TaskListView {...overrides} />);
     const fakeComponent = {props: {task: task1}, updatePriority: jest.fn()};
 
     component.instance().saveTaskPositions(fakeComponent);

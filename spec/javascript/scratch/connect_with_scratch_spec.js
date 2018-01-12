@@ -75,7 +75,11 @@ it('creates a new scratch space based on the given key', () => {
 });
 
 it('passes a bound updateScratch down to the wrapped component', () => {
-  const testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  const testComponent = wrapComponent(
+    computeScratchKey,
+    jest.fn(() => ({})),
+    {}
+  );
 
   expect(store.getState().scratch.testScratchKey).toEqual({});
 
