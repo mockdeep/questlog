@@ -3,19 +3,20 @@ class TaskSerializer
   include Serializable
 
   serialize(
+    :done_at,
     :estimate_seconds,
     :id,
     :parent_task_id,
     :pending,
     :position,
     :priority,
-    :repeat_seconds,
     :release_at,
+    :repeat_seconds,
     :skip_count,
-    :tag_names,
     :tag_ids,
-    :title,
+    :tag_names,
     :timeframe,
+    :title,
     :updated_at,
   )
 

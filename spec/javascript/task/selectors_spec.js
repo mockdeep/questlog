@@ -39,6 +39,14 @@ describe('getUndoneTasks', () => {
     expect(getUndoneTasks(state)).toEqual([task2]);
   });
 
+  it('does not return tasks with a done date', () => {
+    const task1 = makeTask({title: 'some task', doneAt: new Date()});
+    const task2 = makeTask({title: 'some other task'});
+    const state = makeState({task: [task1, task2]});
+
+    expect(getUndoneTasks(state)).toEqual([task2]);
+  });
+
   it('does not return tasks with sub tasks', () => {
     const task1 = makeTask({title: 'some task'});
     const task2 = makeTask({title: 'some other task'});

@@ -143,7 +143,7 @@ describe('updateTask', () => {
 
   describe('on success', () => {
     beforeEach(async () => {
-      ajaxPut.mockReturnValue(Promise.resolve());
+      ajaxPut.mockReturnValue(Promise.resolve({data: {title: 'fooble doo'}}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
@@ -152,8 +152,9 @@ describe('updateTask', () => {
       expect(ajaxPut).toHaveBeenCalled();
     });
 
-    it('dispatches fetchTasks', () => {
-      expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
+    it('dispatches an UPDATE action', () => {
+      const payload = {id: taskAttrs.id, title: 'fooble doo'};
+      expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
     });
 
     it('marks TaskStore unloaded', () => {

@@ -72,9 +72,9 @@ function updateTask(id, payload) {
 
     dispatch(updateTaskPlain(id, clientPayload));
 
-    await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
+    const {data} = await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
 
-    dispatch(fetchTasks());
+    dispatch(updateTaskPlain(id, data));
     TaskStore.unload();
   };
 }

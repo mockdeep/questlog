@@ -12,24 +12,23 @@ RSpec.describe TasksController, '#show' do
     it 'renders the task as json' do
       get(:show, format: :json)
       serial_task = {
-        'data' => {
-          'estimateSeconds' => nil,
-          'id' => task.id,
-          'parentTaskId' => nil,
-          'pending' => false,
-          'position' => 1,
-          'priority' => nil,
-          'repeatSeconds' => nil,
-          'releaseAt' => nil,
-          'skipCount' => 0,
-          'tagNames' => [],
-          'tagIds' => [],
-          'title' => task.title,
-          'timeframe' => nil,
-          'updatedAt' => task.updated_at.as_json,
-        },
+        'doneAt' => nil,
+        'estimateSeconds' => nil,
+        'id' => task.id,
+        'parentTaskId' => nil,
+        'pending' => false,
+        'position' => 1,
+        'priority' => nil,
+        'repeatSeconds' => nil,
+        'releaseAt' => nil,
+        'skipCount' => 0,
+        'tagNames' => [],
+        'tagIds' => [],
+        'title' => task.title,
+        'timeframe' => nil,
+        'updatedAt' => task.updated_at.as_json,
       }
-      expect(JSON.parse(response.body)).to eq serial_task
+      expect(JSON.parse(response.body)['data']).to eq serial_task
     end
 
     it 'renders "null" when there are no tasks' do
