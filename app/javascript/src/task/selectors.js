@@ -52,7 +52,8 @@ function processTasks(tasksById) {
   const tasksByParentId = groupBy(activeTasks, 'parentTaskId');
 
   return activeTasks.reduce((result, task) => {
-    const subTaskIds = (tasksByParentId[task.id] || []).map(subTask => subTask.id);
+    const subTasks = tasksByParentId[task.id] || [];
+    const subTaskIds = subTasks.map(subTask => subTask.id);
 
     return {...result, [task.id]: {...task, subTaskIds}};
   }, {});

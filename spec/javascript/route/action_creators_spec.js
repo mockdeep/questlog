@@ -32,7 +32,8 @@ describe('fetchRoute', () => {
   });
 
   it('returns a SET action for a nested url', () => {
-    const expectedAction = {type: SET, payload: {name: 'sessionsNew', params: {}}};
+    const payload = {name: 'sessionsNew', params: {}};
+    const expectedAction = {type: SET, payload};
 
     window.history.replaceState(null, null, '/sessions/new');
 
