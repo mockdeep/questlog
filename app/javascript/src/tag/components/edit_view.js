@@ -25,8 +25,9 @@ class TagEditView extends React.Component {
 
   updateFieldValue(index, value) {
     const {scratch, updateScratch} = this.props;
+    const rules = update(scratch.rules, {[index]: {$merge: {field: value}}});
 
-    updateScratch({rules: update(scratch.rules, {[index]: {$merge: {field: value}}})});
+    updateScratch({rules});
   }
 
   deleteRule(index) {
@@ -94,9 +95,9 @@ class TagEditView extends React.Component {
 
   addRule() {
     const {scratch, updateScratch} = this.props;
-    const newRules = scratch.rules.concat({field: 'estimateSeconds', check: 'isBlank'});
+    const newRule = {field: 'estimateSeconds', check: 'isBlank'};
 
-    updateScratch({rules: newRules});
+    updateScratch({rules: scratch.rules.concat(newRule)});
   }
 
   render() {

@@ -79,7 +79,7 @@ class TaskListView extends React.Component {
     let newPriority = task.priority;
 
     if (beforeTask && afterTask) {
-      if (task.priority !== beforeTask.priority && task.priority !== afterTask.priority) {
+      if (![beforeTask.priority, afterTask.priority].includes(task.priority)) {
         newPriority = afterTask.priority;
       }
     } else if (afterTask && afterTaskHasHigherPriority(task, afterTask)) {

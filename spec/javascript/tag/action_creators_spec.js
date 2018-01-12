@@ -19,11 +19,12 @@ describe('updateTag', () => {
     const payload = {some: 'payload'};
     const thunk = updateTag(5, payload);
     const dispatch = jest.fn();
+    const expectedAction = {type: UPDATE, payload: {id: 5, ...payload}};
 
     await thunk(dispatch);
 
     expect(ajaxPut).toHaveBeenCalledWith('/api/v1/tags/5', {tag: payload});
-    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload: {id: 5, ...payload}});
+    expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 });
 

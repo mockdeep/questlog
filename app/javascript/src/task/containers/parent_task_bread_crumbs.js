@@ -30,7 +30,8 @@ function mapStateToProps(state, ownProps) {
   return {task: state.task.byId[ownProps.taskId]};
 }
 
-const ParentTaskBreadCrumbsContainer = connect(mapStateToProps)(ParentTaskBreadCrumbs);
+const ParentTaskBreadCrumbsContainer =
+  connect(mapStateToProps)(ParentTaskBreadCrumbs);
 
 export {ParentTaskBreadCrumbs};
 export default ParentTaskBreadCrumbsContainer;
