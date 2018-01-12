@@ -4,9 +4,13 @@ import {createSelector} from 'reselect';
 import grab from 'src/_helpers/grab';
 import {getRouteName, getRouteParams} from 'src/route/selectors';
 
+function isChildTask(task) {
+  return task.subTaskIds.length === 0;
+}
+
 const TASK_FILTERS = {
   tasks() { return true; },
-  leafTasks(task) { return task.subTaskIds.length === 0; },
+  leafTasks(task) { return isChildTask(task); },
   rootTasks(task) { return !task.parentTaskId; },
 };
 
@@ -20,10 +24,6 @@ const timeframePositions = {
   decade: 7,
   century: 8,
 };
-
-function isChildTask(task) {
-  return task.subTaskIds.length === 0;
-}
 
 function timeframePosition(task) {
   const {timeframe} = task;
