@@ -9,8 +9,9 @@ let container;
 let store;
 
 function computeScratchKey(state) {
-  if (state.scratch.scratchKeySpecial && state.scratch.scratchKeySpecial.keyName) {
-    return state.scratch.scratchKeySpecial.keyName;
+  const {scratchKeySpecial} = state.scratch;
+  if (scratchKeySpecial && scratchKeySpecial.keyName) {
+    return scratchKeySpecial.keyName;
   }
 
   return 'testScratchKey';

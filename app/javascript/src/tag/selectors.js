@@ -14,7 +14,11 @@ const RULES = {
 function matchesSmartRules(task, tag) {
   const rules = [{check: 'isAssociated'}, ...tag.rules];
 
-  return rules.some(({check, ...params}) => grab(RULES, check)(task, tag, params));
+  return rules.some(({check, ...params}) => {
+    const rule = grab(RULES, check);
+
+    return rule(task, tag, params);
+  });
 }
 
 function matchingTasks(tag, tasks) {

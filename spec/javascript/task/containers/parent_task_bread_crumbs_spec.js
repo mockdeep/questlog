@@ -1,7 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {ParentTaskBreadCrumbs} from 'src/task/containers/parent_task_bread_crumbs';
+import {
+  ParentTaskBreadCrumbs,
+} from 'src/task/containers/parent_task_bread_crumbs';
 
 import {makeTask} from '_test_helpers/factories';
 
