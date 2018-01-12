@@ -2,7 +2,7 @@ require 'rubygems'
 require 'simplecov'
 if ENV['COVERAGE'] != 'false'
   SimpleCov.start 'rails'
-  SimpleCov.minimum_coverage 93.84
+  SimpleCov.minimum_coverage 98.25
 end
 
 ENV['RAILS_ENV'] ||= 'test'
