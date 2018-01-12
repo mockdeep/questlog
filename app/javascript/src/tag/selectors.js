@@ -28,10 +28,12 @@ function minPriority(tasks) {
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
 
-function processTag(tag, undoneTasks) {
-  const tasks = matchingTasks(tag, undoneTasks);
+function processTags(tagsById, undoneTasks) {
+  return mapValues(tagsById, tag => {
+    const tasks = matchingTasks(tag, undoneTasks);
 
-  return {...tag, tasks, priority: minPriority(tasks)};
+    return {...tag, tasks, priority: minPriority(tasks)};
+  });
 }
 
 const getSelectedTagSlug = createSelector(
@@ -41,7 +43,7 @@ const getSelectedTagSlug = createSelector(
 
 const getTagsById = createSelector(
   [state => state.tag.byId, getUndoneTasks],
-  (tagsById, undoneTasks) => mapValues(tagsById, tag => processTag(tag, undoneTasks))
+  processTags
 );
 
 const getOrderedTags = createSelector(

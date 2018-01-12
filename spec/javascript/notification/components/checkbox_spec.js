@@ -52,7 +52,8 @@ it('notifies again when updated with new task', () => {
 
 it('notifies on interval when notificationsEnabled changes to true', () => {
   const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
-  const notifySpy = jest.spyOn(notificationCheckbox.instance(), 'notifyOnInterval');
+  const instance = notificationCheckbox.instance();
+  const notifySpy = jest.spyOn(instance, 'notifyOnInterval');
 
   notificationCheckbox.setProps({...props, notificationsEnabled: true});
 

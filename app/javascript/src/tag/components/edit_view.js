@@ -111,7 +111,10 @@ class TagEditView extends React.Component {
         <br />
         <Link to='tags'>{'Back to tags list'}</Link>
         <h2>{'Rules'}</h2>
-        {'Tag will include all tasks that match one or more of the following rules:'}
+        {
+          `Tag will include all tasks that match one or more of the following
+            rules:`
+        }
         <form onSubmit={this.validateAndSave}>
           <ol>{this.ruleRows()}</ol>
           <input
