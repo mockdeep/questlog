@@ -14,13 +14,13 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
     return {
       scratchKey,
       scratch: state.scratch[scratchKey],
-      wrappedComponentProps: mapStateToProps(state, ownProps),
+      wrappedProps: mapStateToProps(state, ownProps),
     };
   }
 
   function scratchMapDispatchToProps(dispatch) {
     return {
-      wrappedComponentActionCreators: bindActionCreators(actionCreators, dispatch),
+      wrappedActionCreators: bindActionCreators(actionCreators, dispatch),
       ...bindActionCreators(scratchActionCreators, dispatch),
     };
   }
@@ -67,14 +67,14 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
       render() {
         const {
           scratch,
-          wrappedComponentActionCreators,
-          wrappedComponentProps,
+          wrappedActionCreators,
+          wrappedProps,
         } = this.props;
 
         return (
           <WrappedComponent
-            {...wrappedComponentProps}
-            {...wrappedComponentActionCreators}
+            {...wrappedProps}
+            {...wrappedActionCreators}
             updateScratch={this.updateScratch}
             scratch={scratch || {}}
           />
@@ -88,8 +88,8 @@ function connectWithScratch(computeScratchKey, mapStateToProps, actionCreators) 
       deleteScratch: PropTypes.func.isRequired,
       scratchKey: PropTypes.string.isRequired,
       updateScratch: PropTypes.func.isRequired,
-      wrappedComponentActionCreators: PropTypes.objectOf(PropTypes.func).isRequired,
-      wrappedComponentProps: PropTypes.objectOf(PropTypes.any).isRequired,
+      wrappedActionCreators: PropTypes.objectOf(PropTypes.func).isRequired,
+      wrappedProps: PropTypes.objectOf(PropTypes.any).isRequired,
       scratch: scratchShape,
     };
 

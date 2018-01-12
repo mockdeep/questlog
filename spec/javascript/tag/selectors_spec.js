@@ -14,7 +14,10 @@ describe('getActiveTags', () => {
     const task1 = makeTask({tagIds: [tag2.id]});
     const task2 = makeTask({tagIds: [tag1.id], releaseAt: 'foo'});
     const task3 = makeTask({tagIds: [tag2.id, tag3.id]});
-    const state = makeState({tag: [tag1, tag2, tag3], task: [task1, task2, task3]});
+    const state = makeState({
+      tag: [tag1, tag2, tag3],
+      task: [task1, task2, task3],
+    });
     const expected = [
       {...tag3, tasks: [task3]},
       {...tag2, tasks: [task1, task3]},

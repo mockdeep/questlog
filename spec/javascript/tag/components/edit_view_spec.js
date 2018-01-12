@@ -5,11 +5,13 @@ import TagEditView from 'src/tag/components/edit_view';
 
 import {makeTag} from '_test_helpers/factories';
 
+const tag = makeTag();
 const updateScratch = jest.fn();
+const updateTag = jest.fn(() => Promise.resolve());
 const props = {
-  tag: {},
+  tag,
   setRoute: jest.fn(),
-  updateTag: jest.fn(),
+  updateTag,
   updateScratch,
   scratch: {rules: []},
 };
@@ -48,9 +50,22 @@ it('adds rules when "Add Rule" button is clicked', () => {
 
 it('updates rules when component receives a new tag', () => {
   const component = shallow(<TagEditView {...props} />);
-  const tag = makeTag({rules: [{field: 'title', check: 'isWobbly'}]});
+  const newTag = makeTag({rules: [{field: 'title', check: 'isWobbly'}]});
 
-  component.setProps({tag});
+  component.setProps({tag: newTag});
 
-  expect(updateScratch).toHaveBeenCalledWith({rules: tag.rules});
+  expect(updateScratch).toHaveBeenCalledWith({rules: newTag.rules});
+});
+
+it('saves the tag on submit', () => {
+  const tempRules = [{field: 'title', check: 'isWobbly'}];
+  const overrides = {...props, scratch: {rules: tempRules}};
+  const component = shallow(<TagEditView {...overrides} />);
+  const preventDefault = jest.fn();
+  const fakeEvent = {preventDefault};
+
+  component.find('form').simulate('submit', fakeEvent);
+
+  expect(preventDefault).toHaveBeenCalled();
+  expect(updateTag).toHaveBeenCalledWith(tag.id, {rules: tempRules});
 });

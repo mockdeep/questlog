@@ -57,10 +57,7 @@ function processTasks(tasksById) {
   });
 }
 
-const getTasksById = createSelector(
-  state => state.task.byId,
-  tasksById => processTasks(tasksById)
-);
+const getTasksById = createSelector(state => state.task.byId, processTasks);
 
 const getOrderedTasks = createSelector(
   getTasksById,
