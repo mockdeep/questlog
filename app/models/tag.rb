@@ -28,10 +28,6 @@ class Tag < ApplicationRecord
     value.to_s.parameterize(preserve_case: true)
   end
 
-  def any?
-    unfinished_tasks_count.positive?
-  end
-
   def next_task
     tasks.next
   end
