@@ -1,4 +1,6 @@
-jest.mock('src/_helpers/ajax', () => ({ajaxGet() { return {then: jest.fn()}; }}));
+jest.mock('src/_helpers/ajax', () => ({
+  ajaxGet() { return {then: jest.fn()}; },
+}));
 import {shallow} from 'enzyme';
 
 import appBase from 'src/app_base';

@@ -46,7 +46,7 @@ rules:
   jsx-a11y/no-onchange: off
   jsx-a11y/no-static-element-interactions: off
   jsx-a11y/onclick-has-role: off
-  max-len: [error, 82]
+  max-len: [error, 81]
   max-statements: [error, { max: 14 }]
   multiline-comment-style: off
   no-magic-numbers: off
@@ -83,6 +83,7 @@ rules:
   no-extra-parens: [error, all, { nestedBinaryExpressions: false, ignoreJSX: 'multi-line' }]
   no-multiple-empty-lines: [error, { max: 1, maxEOF: 0, maxBOF: 0 }]
   no-underscore-dangle: [error, { allowAfterThis: true }]
+  object-curly-newline: [error, { consistent: true }]
   object-property-newline: [error, { allowMultiplePropertiesPerLine: true }]
   one-var: [error, never]
   padded-blocks: [error, never]
