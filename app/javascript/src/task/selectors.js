@@ -1,8 +1,12 @@
-import {at, groupBy, mapValues, partition, sortBy} from 'lodash';
+import {at, groupBy, partition, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
 import {getRouteName, getRouteParams} from 'src/route/selectors';
+
+function isActiveTask(task) {
+  return Boolean(!task.doneAt || task.releaseAt);
+}
 
 function isChildTask(task) {
   return task.subTaskIds.length === 0;
@@ -48,13 +52,14 @@ function getSubTasks(task, tasksById) {
 }
 
 function processTasks(tasksById) {
-  const tasksByParentId = groupBy(Object.values(tasksById), 'parentTaskId');
+  const activeTasks = Object.values(tasksById).filter(isActiveTask);
+  const tasksByParentId = groupBy(activeTasks, 'parentTaskId');
 
-  return mapValues(tasksById, task => {
+  return activeTasks.reduce((result, task) => {
     const subTaskIds = (tasksByParentId[task.id] || []).map(subTask => subTask.id);
 
-    return {...task, subTaskIds};
-  });
+    return {...result, [task.id]: {...task, subTaskIds}};
+  }, {});
 }
 
 const getTasksById = createSelector(state => state.task.byId, processTasks);

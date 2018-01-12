@@ -7,9 +7,11 @@ import appBase from 'src/app_base';
 import appStore from 'src/app_store';
 import {fetchRoute} from 'src/route/action_creators';
 import {removeNotification} from 'src/notification/action_creators';
+import debug from 'src/_helpers/debug';
 
 window.$ = $;
 window.jQuery = $;
+window.debug = debug;
 
 $(() => $('[class^=flash-]').fadeOut(1500));
 
