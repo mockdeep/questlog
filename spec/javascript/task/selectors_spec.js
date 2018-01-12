@@ -60,7 +60,7 @@ describe('getUndoneTasks', () => {
     const task = makeTask({title: 'a task', timeframe: 'yesterday'});
     const state = makeState({task: [task]});
 
-    expect(() => getUndoneTasks(state)).toThrow(/object has no key "yesterday"/);
+    expect(() => getUndoneTasks(state)).toThrow(/has no key "yesterday"/);
   });
 });
 

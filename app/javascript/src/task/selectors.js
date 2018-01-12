@@ -59,6 +59,10 @@ function processTasks(tasksById) {
   }, {});
 }
 
+function filterTasksByRouteName(tasks, routeName) {
+  return tasks.filter(grab(TASK_FILTERS, routeName));
+}
+
 const getTasksById = createSelector(state => state.task.byId, processTasks);
 
 const getOrderedTasks = createSelector(
@@ -85,7 +89,7 @@ const getCurrentSubTasks = createSelector(
 
 const getOrderedTasksForRoute = createSelector(
   [getOrderedTasks, getRouteName],
-  (orderedTasks, routeName) => orderedTasks.filter(grab(TASK_FILTERS, routeName))
+  filterTasksByRouteName
 );
 
 const getPartitionedTasksForRoute = createSelector(

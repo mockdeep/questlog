@@ -9,6 +9,8 @@ import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
+const BUTTON_CLASS = 'btn btn-link task-list__action';
+
 class TaskRow extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -162,7 +164,7 @@ class TaskRow extends React.PureComponent {
     if (!task.pending) { return false; }
 
     return (
-      <button className='btn btn-link task-list__action' onClick={this.undoTask}>
+      <button className={BUTTON_CLASS} onClick={this.undoTask}>
         {'UNDO'}
       </button>
     );
@@ -174,12 +176,11 @@ class TaskRow extends React.PureComponent {
 
   render() {
     const {keyPrefix, task, timeframesEnabled} = this.props;
-    const buttonClass = 'btn btn-link task-list__action';
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
         <td className='task-list__cell'>
-          <button className={buttonClass} onClick={this.markDone}>
+          <button className={BUTTON_CLASS} onClick={this.markDone}>
             {'DONE'}
           </button>
         </td>
@@ -200,7 +201,7 @@ class TaskRow extends React.PureComponent {
         </td>
         <td>
           {task.pending ? this.undoButton() : ''}
-          <button className={buttonClass} onClick={this.deleteTask}>
+          <button className={BUTTON_CLASS} onClick={this.deleteTask}>
             {'DELETE'}
           </button>
         </td>

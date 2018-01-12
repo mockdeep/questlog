@@ -67,7 +67,8 @@ describe('when no task is given and ajaxState is pending', () => {
   });
 
   it('renders a loading message', () => {
-    const component = shallow(<TaskFocusView {...props} ajaxState='fetching' />);
+    const overrides = {...props, ajaxState: 'fetching'};
+    const component = shallow(<TaskFocusView {...overrides} />);
 
     expect(component).toIncludeText('Loading...');
   });
