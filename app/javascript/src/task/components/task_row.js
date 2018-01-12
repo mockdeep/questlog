@@ -108,21 +108,19 @@ class TaskRow extends React.PureComponent {
 
     if (!timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
-      return map(timeframeNameMap, function timeframeOption(title, name) {
+      return map(timeframeNameMap, (title, name) => {
         const optionTitle = name === 'inbox' ? '-' : title;
 
         return <option value={name} key={name}>{optionTitle}</option>;
       });
     }
-    const that = this;
-
-    return map(timeframeNameMap, function detailedTimeframeOption(title, name) {
-      const disabled = !that.timeframeHasSpace(name);
+    return map(timeframeNameMap, (title, name) => {
+      const disabled = !this.timeframeHasSpace(name);
       const optionTitle = name === 'inbox' ? '-' : title;
 
       return (
         <option value={name} disabled={disabled} key={name}>
-          {that.optionText(optionTitle, name)}
+          {this.optionText(optionTitle, name)}
         </option>
       );
     });
