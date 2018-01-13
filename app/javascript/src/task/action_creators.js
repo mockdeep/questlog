@@ -6,9 +6,14 @@ import {setTags, upsertTags} from 'src/tag/action_creators';
 const BASE_PATH = '/api/v1/tasks';
 
 const INIT = 'task/INIT';
+const CREATE = 'task/CREATE';
 const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
 const UPDATE_META = 'task/UPDATE_META';
+
+function createTaskPlain(payload) {
+  return {type: CREATE, payload};
+}
 
 function setTasks(payload) {
   return {type: SET, payload};
@@ -33,11 +38,12 @@ function createTask(payload) {
   return async function createTaskThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
-    await ajaxPost(BASE_PATH, {task: payload});
+    const {data, included} = await ajaxPost(BASE_PATH, {task: payload});
 
     dispatch(updateTaskMeta({ajaxState: 'ready'}));
     dispatch(updateTaskMeta({newTask: {title: ''}}));
-    dispatch(fetchTasks());
+    dispatch(createTaskPlain(data));
+    dispatch(upsertTags(included));
     TaskStore.unload();
     flash('success', 'Task added');
   };
@@ -81,5 +87,5 @@ function updateTask(id, payload) {
   };
 }
 
-export {INIT, SET, UPDATE, UPDATE_META};
+export {INIT, CREATE, SET, UPDATE, UPDATE_META};
 export {createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta};
