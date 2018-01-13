@@ -6,7 +6,7 @@ import createAppStore from 'src/create_app_store';
 import {ajaxDelete, ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
-  SET, UPDATE, UPDATE_META,
+  CREATE, SET, UPDATE, UPDATE_META,
   createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
 import {upsertTagPlain} from 'src/tag/action_creators';
@@ -52,16 +52,44 @@ describe('createTask', () => {
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('sets ajax state to "ready" on success', async () => {
-    const thunk = createTask();
+  describe('on success', () => {
+    beforeEach(async () => {
+      const data = {title: 'fooble doo'};
+      const included = [{foo: 'tag'}, {bar: 'tag'}];
+      ajaxPost.mockReturnValue(Promise.resolve({data, included}));
 
-    ajaxPost.mockReturnValue(Promise.resolve());
+      const createThunk = createTask({title: 'bar'});
 
-    await thunk(dispatch);
+      await createThunk(dispatch);
 
-    const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+      expect(ajaxPost).toHaveBeenCalled();
+    });
 
-    expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    it('sets ajax state to "ready"', () => {
+      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+
+    it('dispatches a CREATE action', () => {
+      const payload = {title: 'fooble doo'};
+      expect(dispatch).toHaveBeenCalledWith({type: CREATE, payload});
+    });
+
+    it('upserts associated tags', () => {
+      const [thunk] = dispatch.mock.calls[4];
+      expect(thunk).toBeInstanceOf(Function);
+      expect(thunk.name).toBe('upsertTagsThunk');
+
+      thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({foo: 'tag'}));
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({bar: 'tag'}));
+    });
+
+    it('marks TaskStore unloaded', () => {
+      expect(TaskStore.unload).toHaveBeenCalled();
+    });
   });
 });
 
