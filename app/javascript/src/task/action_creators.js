@@ -7,12 +7,17 @@ const BASE_PATH = '/api/v1/tasks';
 
 const INIT = 'task/INIT';
 const CREATE = 'task/CREATE';
+const DELETE = 'task/DELETE';
 const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
 const UPDATE_META = 'task/UPDATE_META';
 
 function createTaskPlain(payload) {
   return {type: CREATE, payload};
+}
+
+function deleteTaskPlain(payload) {
+  return {type: DELETE, payload};
 }
 
 function setTasks(payload) {
@@ -53,7 +58,7 @@ function deleteTask(taskId) {
   return async function deleteTaskThunk(dispatch) {
     await ajaxDelete(`${BASE_PATH}/${taskId}`);
 
-    dispatch(fetchTasks());
+    dispatch(deleteTaskPlain(taskId));
     TaskStore.unload();
   };
 }
@@ -87,5 +92,5 @@ function updateTask(id, payload) {
   };
 }
 
-export {INIT, CREATE, SET, UPDATE, UPDATE_META};
+export {INIT, CREATE, DELETE, SET, UPDATE, UPDATE_META};
 export {createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta};

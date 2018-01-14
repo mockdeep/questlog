@@ -6,7 +6,7 @@ import createAppStore from 'src/create_app_store';
 import {ajaxDelete, ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
-  CREATE, SET, UPDATE, UPDATE_META,
+  CREATE, DELETE, SET, UPDATE, UPDATE_META,
   createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
 import {upsertTagPlain} from 'src/tag/action_creators';
@@ -112,8 +112,7 @@ describe('deleteTask', () => {
     await thunk(dispatch);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
-    expect(dispatch).toHaveBeenLastCalledWith(expect.any(Function));
-    expect(dispatch.mock.calls[0][0].name).toBe('fetchTasksThunk');
+    expect(dispatch).toHaveBeenLastCalledWith({type: DELETE, payload: 5});
   });
 
   it('unloads the task store', async () => {

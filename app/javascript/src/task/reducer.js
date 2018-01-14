@@ -2,7 +2,14 @@ import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
-import {INIT, CREATE, SET, UPDATE, UPDATE_META} from 'src/task/action_creators';
+import {
+  INIT,
+  CREATE,
+  DELETE,
+  SET,
+  UPDATE,
+  UPDATE_META,
+} from 'src/task/action_creators';
 
 function estimateMinutes(task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
@@ -30,6 +37,10 @@ export default createBasicReducer({
     const task = processTask(taskAttrs);
 
     return update(previousState, {byId: {$merge: {[task.id]: task}}});
+  },
+
+  [DELETE](previousState, taskId) {
+    return update(previousState, {byId: {$unset: [taskId]}});
   },
 
   [SET](previousState, taskData) {

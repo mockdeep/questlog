@@ -15,13 +15,12 @@ RSpec.describe 'tasks index page', js: true do
 
   it 'allows the user to delete tasks' do
     visit '/'
-    fill_in 'new-title', with: 'do laundry'
-    click_button 'Add Task'
+    add_task('do laundry')
+    add_task('feed dog')
     expect(page).to have_task('do laundry')
     click_link 'All my tasks'
     expect(current_tasks).to have_task('do laundry')
-    create(:task, user: user, release_at: 1.hour.ago, title: 'feed dog')
-    accept_confirm { click_button 'DELETE' }
+    accept_confirm { task_row('do laundry').click_button('DELETE') }
     expect(current_tasks).to have_no_task('do laundry')
     expect(current_tasks).to have_task('feed dog')
   end
