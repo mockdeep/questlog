@@ -1,4 +1,4 @@
-import {INIT, SET, UPDATE, UPDATE_META} from 'src/tag/action_creators';
+import {INIT, SET, UPDATE, UPDATE_META, UPSERT} from 'src/tag/action_creators';
 import tagReducer from 'src/tag/reducer';
 
 describe(INIT, () => {
@@ -48,6 +48,30 @@ describe(UPDATE_META, () => {
     const previousState = {meta: {foo: 'bar', baz: 'butz'}};
     const action = {type: UPDATE_META, payload: {baz: 'bootz'}};
     const expectedState = {meta: {foo: 'bar', baz: 'bootz'}};
+
+    expect(tagReducer(previousState, action)).toEqual(expectedState);
+  });
+});
+
+describe(UPSERT, () => {
+  it('updates the tag when existing', () => {
+    const tag1 = {id: 1, goo: 'ber', bloo: 'blah'};
+    const tag2 = {id: 2, bar: 'butz'};
+    const previousState = {byId: {1: tag1, 2: tag2}};
+    const payload = {id: 1, bloo: 'blargh'};
+    const action = {type: UPSERT, payload};
+    const expectedState = {byId: {1: {...tag1, bloo: 'blargh'}, 2: tag2}};
+
+    expect(tagReducer(previousState, action)).toEqual(expectedState);
+  });
+
+  it('adds a new tag when one is not present', () => {
+    const tag1 = {id: 1, goo: 'ber', bloo: 'blah'};
+    const tag2 = {id: 2, bar: 'butz'};
+    const previousState = {byId: {1: tag1}};
+    const payload = tag2;
+    const action = {type: UPSERT, payload};
+    const expectedState = {byId: {1: tag1, 2: tag2}};
 
     expect(tagReducer(previousState, action)).toEqual(expectedState);
   });

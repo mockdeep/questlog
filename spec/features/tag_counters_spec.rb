@@ -41,7 +41,6 @@ RSpec.describe 'tag counters', js: true do
   end
 
   it 'updates when a task is updated to a new tag' do
-    skip
     expect(page).to have_no_task
 
     add_task('task with #existing-tag')

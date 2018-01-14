@@ -19,7 +19,7 @@ module API
       def update
         task = current_user.tasks.find(params[:id])
         Task::Update.(task, task_params)
-        render json: serialize(task), status: :ok
+        render json: serialize(task, included: task.tags), status: :ok
       end
 
       def destroy

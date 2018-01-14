@@ -46,4 +46,11 @@ RSpec.describe API::V1::TasksController, '#update' do
     expect(task['estimateSeconds']).to eq 300
   end
 
+  it 'responds with associated tags as json' do
+    put(:update, params: valid_params)
+    tags = JSON.parse(response.body)['included']
+    expect(tags.length).to eq 1
+    expect(tags.first['name']).to eq 'home'
+  end
+
 end

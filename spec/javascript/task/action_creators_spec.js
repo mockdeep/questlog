@@ -9,6 +9,7 @@ import {
   SET, UPDATE, UPDATE_META,
   createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
+import {upsertTagPlain} from 'src/tag/action_creators';
 
 let store;
 let dispatch;
@@ -143,7 +144,9 @@ describe('updateTask', () => {
 
   describe('on success', () => {
     beforeEach(async () => {
-      ajaxPut.mockReturnValue(Promise.resolve({data: {title: 'fooble doo'}}));
+      const data = {title: 'fooble doo'};
+      const included = [{foo: 'tag'}, {bar: 'tag'}];
+      ajaxPut.mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
@@ -155,6 +158,17 @@ describe('updateTask', () => {
     it('dispatches an UPDATE action', () => {
       const payload = {id: taskAttrs.id, title: 'fooble doo'};
       expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
+    });
+
+    it('upserts associated tags', () => {
+      const [thunk] = dispatch.mock.calls[3];
+      expect(thunk).toBeInstanceOf(Function);
+      expect(thunk.name).toBe('upsertTagsThunk');
+
+      thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({foo: 'tag'}));
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({bar: 'tag'}));
     });
 
     it('marks TaskStore unloaded', () => {
