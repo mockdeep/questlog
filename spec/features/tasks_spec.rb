@@ -62,7 +62,7 @@ RSpec.describe 'Tasks page', js: true do
     add_task('do laundry #home')
     expect(page).to have_button('Done')
     expect(page).to have_selector('#postpone')
-    expect(page).to have_text('home (1)')
+    expect(page).to have_tag('home (1)')
     expect(page).to have_task('do laundry')
     expect(Task.count).to eq 1
     expect(Task.first.repeat_string).to be_nil

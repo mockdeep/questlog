@@ -1,7 +1,7 @@
 import {ajaxGet, ajaxPut, ajaxPost, ajaxDelete} from 'src/_helpers/ajax';
 import flash from 'src/_helpers/flash';
 import TaskStore from 'src/task/store';
-import {setTags} from 'src/tag/action_creators';
+import {setTags, upsertTags} from 'src/tag/action_creators';
 
 const BASE_PATH = '/api/v1/tasks';
 
@@ -72,9 +72,11 @@ function updateTask(id, payload) {
 
     dispatch(updateTaskPlain(id, clientPayload));
 
-    const {data} = await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
+    const response = await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
+    const {data, included} = response;
 
     dispatch(updateTaskPlain(id, data));
+    dispatch(upsertTags(included));
     TaskStore.unload();
   };
 }
