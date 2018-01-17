@@ -7,7 +7,7 @@ RSpec.describe 'tasks index page', js: true do
   it 'allows the user to mark tasks as done' do
     visit '/'
     add_task('do laundry')
-    click_link 'All my tasks'
+    all_tasks_link.click
     expect(current_tasks).to have_task('do laundry')
     click_button 'DONE'
     expect(page).to have_no_task('do laundry')
@@ -18,7 +18,7 @@ RSpec.describe 'tasks index page', js: true do
     add_task('do laundry')
     add_task('feed dog')
     expect(page).to have_task('do laundry')
-    click_link 'All my tasks'
+    all_tasks_link.click
     expect(current_tasks).to have_task('do laundry')
     accept_confirm { task_row('do laundry').click_button('DELETE') }
     expect(current_tasks).to have_no_task('do laundry')

@@ -14,9 +14,11 @@ class Link extends React.Component {
   navigate(event) {
     event.preventDefault();
 
-    const {params, setRoute, to} = this.props;
+    const {onNavigate, params, setRoute, to} = this.props;
 
     setRoute({name: to, ...params});
+
+    if (onNavigate) { onNavigate(); }
   }
 
   path() {
@@ -63,6 +65,7 @@ Link.propTypes = {
   to: PropTypes.string.isRequired,
   baseClass: PropTypes.string,
   className: PropTypes.string,
+  onNavigate: PropTypes.func,
   params: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
