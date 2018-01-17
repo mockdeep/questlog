@@ -1,10 +1,7 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import {Provider} from 'react-redux';
+import {shallow} from 'enzyme';
 
-import createAppStore from 'src/create_app_store';
 import TagButtons from 'src/tag/components/buttons';
-import {fetchRoute} from 'src/route/action_creators';
 
 import {makeTag, makeTask} from '_test_helpers/factories';
 
@@ -13,27 +10,17 @@ const tags = [
   makeTag({name: 'work', slug: 'work', tasks: [makeTask(), makeTask()]}),
 ];
 const props = {task: {}, tags, currentTagIds: []};
-const store = createAppStore();
-store.dispatch(fetchRoute());
 
 it('renders tag buttons', () => {
-  const provider =
-    <Provider store={store}>
-      <TagButtons {...props} />
-    </Provider>;
-  const wrapper = mount(provider);
+  const component = shallow(<TagButtons {...props} />);
 
-  expect(wrapper).toIncludeText('home (1)');
-  expect(wrapper).toIncludeText('work (2)');
+  expect(component.find('TagButton').at(0)).toHaveProp('tag', tags[0]);
+  expect(component.find('TagButton').at(1)).toHaveProp('tag', tags[1]);
 });
 
 it('passes down active when tag slug matches the selected tag slug', () => {
-  const provider =
-    <Provider store={store}>
-      <TagButtons {...props} selectedTagSlug={'work'} />
-    </Provider>;
-  const wrapper = mount(provider);
+  const component = shallow(<TagButtons {...props} selectedTagSlug={'work'} />);
 
-  expect(wrapper.find('TagButton').at(0)).toHaveProp('isActive', false);
-  expect(wrapper.find('TagButton').at(1)).toHaveProp('isActive', true);
+  expect(component.find('TagButton').at(0)).toHaveProp('isActive', false);
+  expect(component.find('TagButton').at(1)).toHaveProp('isActive', true);
 });
