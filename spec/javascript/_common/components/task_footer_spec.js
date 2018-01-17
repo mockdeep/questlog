@@ -13,17 +13,14 @@ it('renders the notification checkbox', () => {
 
 it('renders a footer with useful links', () => {
   const component = shallow(<TaskFooter {...props} />);
-  const links = component.find('Connect(Link)');
+  const links = component.find('a');
 
-  expect(links).toHaveLength(2);
+  expect(links).toHaveLength(1);
 
-  const link1 = links.at(0);
-  const link2 = links.at(1);
+  const link = links.at(0);
 
-  expect(link1).toHaveProp('to', 'tasks');
-  expect(link1.children()).toHaveText('All my tasks');
-  expect(link2).toHaveProp('to', 'timeframes');
-  expect(link2.children()).toHaveText('Timeframes');
+  expect(link).toHaveProp('href', '/bulk_task/new');
+  expect(link.children()).toHaveText('Add multiple tasks');
 
   expect(component.find('Connect(HelpLink)')).toHaveLength(2);
 });

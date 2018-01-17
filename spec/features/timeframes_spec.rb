@@ -16,7 +16,7 @@ RSpec.describe 'timeframes', js: true do
     add_task('clean dishes')
 
     tomorrow do
-      click_link('Timeframes')
+      timeframes_link.click
       expect(page).to have_text('Median Productivity: 1 hour per day')
     end
 
@@ -25,7 +25,7 @@ RSpec.describe 'timeframes', js: true do
     click_button 'Done'
     expect(page).to have_task('feed dog')
     tomorrow do
-      click_link('Timeframes')
+      timeframes_link.click
       expect(page).to have_text('Median Productivity: 30 minutes per day')
     end
 
@@ -34,7 +34,7 @@ RSpec.describe 'timeframes', js: true do
     click_button 'Done'
     expect(page).to have_task('read feeds')
     tomorrow do
-      click_link('Timeframes')
+      timeframes_link.click
       expect(page).to have_text('Median Productivity: 35 minutes per day')
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'timeframes', js: true do
     postpone_button.click
     expect(page).to have_task('clean dishes')
     tomorrow do
-      click_link('Timeframes')
+      timeframes_link.click
       expect(page).to have_text('Median Productivity: 35 minutes per day')
     end
 
@@ -52,7 +52,7 @@ RSpec.describe 'timeframes', js: true do
     click_button 'Done'
     expect(page).to have_task('read feeds')
     tomorrow do
-      click_link('Timeframes')
+      timeframes_link.click
       expected_text = 'Median Productivity: 1 hour, 5 minutes per day'
       expect(page).to have_text(expected_text)
     end
@@ -74,7 +74,7 @@ RSpec.describe 'timeframes', js: true do
     create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
     create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
 
-    click_link('Timeframes')
+    timeframes_link.click
 
     expect(page).to have_content('Median Productivity')
 

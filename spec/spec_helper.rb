@@ -12,19 +12,30 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 require 'rspec/rails'
 require 'capybara/poltergeist'
 
+chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+  chrome_options: { args: %w[--window-size=1200x600 --start-maximized] },
+)
+
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chrome_options: { args: %w[headless] },
+  chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chrome_options: { args: %w[--start-maximized] },
   )
-
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    desired_capabilities: capabilities,
+    desired_capabilities: chrome_capabilities,
+  )
+end
+
+Capybara.register_driver :headless_chrome do |app|
+  chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    # --start-maximized doesn't seem to work on headless
+    chrome_options: { args: %w[headless --window-size=1900x1080] },
+  )
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    desired_capabilities: chrome_capabilities,
   )
 end
 
