@@ -26,11 +26,21 @@ class Link extends React.Component {
     return findRoute(to).toPath(pathParams);
   }
 
+  className() {
+    const {to, routeName, className} = this.props;
+
+    return routeName === to ? `${className} ${className}--active` : className;
+  }
+
   render() {
-    const {className, children} = this.props;
+    const {children} = this.props;
 
     return (
-      <a href={this.path()} className={className} onClick={this.navigate}>
+      <a
+        href={this.path()}
+        className={this.className()}
+        onClick={this.navigate}
+      >
         {children}
       </a>
     );
@@ -42,6 +52,7 @@ Link.propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]).isRequired,
+  routeName: PropTypes.string.isRequired,
   setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
   className: PropTypes.string,
