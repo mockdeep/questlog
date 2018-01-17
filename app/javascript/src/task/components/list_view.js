@@ -7,17 +7,11 @@ import {DragDropContext as dragDropContext} from 'react-dnd';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
-import LinkSet from 'src/route/components/link_set';
+import Link from 'src/route/containers/link';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
-import {routeShape, taskShape} from 'src/shapes';
-
-const TASK_FILTER_LINKS = [
-  {routeName: 'tasks', label: 'ALL'},
-  {routeName: 'rootTasks', label: 'ROOT'},
-  {routeName: 'leafTasks', label: 'LEAF'},
-];
+import {taskShape} from 'src/shapes';
 
 function findTask(tasks, taskId) {
   return tasks.find(task => task.id === taskId);
@@ -157,14 +151,14 @@ class TaskListView extends React.Component {
   }
 
   render() {
-    const {route} = this.props;
-
     return (
       <div>
         <NewTaskForm />
         <br />
         {'Filter: '}
-        <LinkSet links={TASK_FILTER_LINKS} route={route} />
+        <Link to='tasks' className='task-filter'>{'ALL'}</Link>
+        <Link to='rootTasks' className='task-filter'>{'ROOT'}</Link>
+        <Link to='leafTasks' className='task-filter'>{'LEAF'}</Link>
         {this.currentTasksTable()}
         {this.pendingTasksTable()}
       </div>
@@ -176,7 +170,6 @@ TaskListView.propTypes = {
   currentTasks: PropTypes.arrayOf(taskShape).isRequired,
   deleteTask: PropTypes.func.isRequired,
   pendingTasks: PropTypes.arrayOf(taskShape).isRequired,
-  route: routeShape.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 

@@ -32,6 +32,16 @@
   padding: 15px;
 }
 
+.task-filter--active {
+  cursor: default;
+  color: black;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: black;
+  }
+}
+
 .task-link {
   text-decoration: none;
   color: black;
