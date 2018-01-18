@@ -156,9 +156,9 @@ class TaskListView extends React.Component {
         <NewTaskForm />
         <br />
         {'Filter: '}
-        <Link to='tasks' className='task-filter'>{'ALL'}</Link>
-        <Link to='rootTasks' className='task-filter'>{'ROOT'}</Link>
-        <Link to='leafTasks' className='task-filter'>{'LEAF'}</Link>
+        <Link to='tasks' baseClass='task-filter'>{'ALL'}</Link>
+        <Link to='rootTasks' baseClass='task-filter'>{'ROOT'}</Link>
+        <Link to='leafTasks' baseClass='task-filter'>{'LEAF'}</Link>
         {this.currentTasksTable()}
         {this.pendingTasksTable()}
       </div>
