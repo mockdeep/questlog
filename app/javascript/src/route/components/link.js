@@ -27,9 +27,15 @@ class Link extends React.Component {
   }
 
   className() {
-    const {to, routeName, className} = this.props;
+    const {baseClass, className, to, routeName} = this.props;
 
-    return routeName === to ? `${className} ${className}--active` : className;
+    const classes = [
+      baseClass,
+      baseClass && routeName === to && `${baseClass}--active`,
+      className,
+    ];
+
+    return classes.filter(item => item).join(' ');
   }
 
   render() {
@@ -55,6 +61,7 @@ Link.propTypes = {
   routeName: PropTypes.string.isRequired,
   setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
+  baseClass: PropTypes.string,
   className: PropTypes.string,
   params: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.string,
