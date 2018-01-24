@@ -5,6 +5,10 @@ import Sidebar from 'src/_common/components/sidebar';
 
 const Link = 'Connect(Link)';
 
+beforeEach(() => {
+  document.body.innerHTML = '<div class="content"></div>';
+});
+
 it('updates the mobile status when screen size changes', () => {
   const component = shallow(<Sidebar />);
 

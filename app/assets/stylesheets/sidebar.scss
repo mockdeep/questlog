@@ -80,3 +80,9 @@
     width: 100vw;
   }
 }
+
+@media (min-width: 600px) and (max-width: 1300px) {
+  .content.sidebar-open {
+    margin-left: 250px;
+  }
+}
