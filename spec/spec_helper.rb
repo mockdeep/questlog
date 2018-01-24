@@ -7,10 +7,14 @@ end
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 require 'rspec/rails'
 require 'capybara/poltergeist'
+
+def support_path
+  Rails.root.join('spec', 'support')
+end
+Dir[support_path.join('**', '*.rb')].each { |f| require f }
 
 chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
   chrome_options: { args: %w[--window-size=1200x600 --start-maximized] },
@@ -51,6 +55,7 @@ RSpec.configure do |config|
   config.render_views
   config.include(FactoryGirl::Syntax::Methods)
   config.include(Questlog::Matchers)
+  config.include(Questlog::Wrappers)
   config.fixture_path = Rails.root.join('spec', 'fixtures')
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
@@ -94,6 +99,8 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     visit '/'
+    page.execute_script(File.read(support_path.join('disable_animations.js')))
+    sidebar.close
   end
 
   config.after(:each) do
@@ -140,12 +147,13 @@ def login_as(user)
 end
 
 def feature_login_as(user)
-  visit '/'
   click_link 'Log in'
   fill_in 'email', with: user.account.email
   fill_in 'password', with: user.account.password
   click_button 'Login'
   expect(page).to have_content("Logged in as #{user.account.email}")
+  page.execute_script(File.read(support_path.join('disable_animations.js')))
+  sidebar.close
 end
 
 def add_task(task_title)
