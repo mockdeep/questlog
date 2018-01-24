@@ -19,7 +19,7 @@ RSpec.describe 'adding sub tasks', js: true do
     expect(task_row('the sub sub task')).to be
     click_link('the parent task')
     expect(page).to have_task('the parent task')
-    visit '/'
+    sidebar.click('FOCUS')
     expect(page).to have_task('the sub sub task')
     click_button 'Done'
     expect(page).to have_task('the sub task')
@@ -35,7 +35,7 @@ RSpec.describe 'adding sub tasks', js: true do
     add_task('the sub task')
     task_row('the sub task').find('.task-link').click
     add_task('the sub sub task')
-    visit '/tasks'
+    sidebar.click('ALL TASKS')
     expect(page).to have_task('the parent task')
     expect(page).to have_task('the sub task')
     expect(page).to have_task('the sub sub task')
