@@ -5,7 +5,6 @@ RSpec.describe 'tasks index page', js: true do
   before(:each) { feature_login_as(user) }
 
   it 'allows the user to mark tasks as done' do
-    visit '/'
     add_task('do laundry')
     all_tasks_link.click
     expect(current_tasks).to have_task('do laundry')
@@ -14,7 +13,6 @@ RSpec.describe 'tasks index page', js: true do
   end
 
   it 'allows the user to delete tasks' do
-    visit '/'
     add_task('do laundry')
     add_task('feed dog')
     expect(page).to have_task('do laundry')
@@ -26,7 +24,6 @@ RSpec.describe 'tasks index page', js: true do
   end
 
   it 'highlights priority tasks as red' do
-    visit '/'
     add_task('do laundry')
     expect(page.find('#task')['class']).not_to include('priority-1')
     add_task('feed dog !1 #home')

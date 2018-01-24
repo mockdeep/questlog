@@ -2,8 +2,6 @@ RSpec.describe 'Tasks page', js: true do
 
   let(:user) { create(:free_user) }
 
-  before { visit '/' }
-
   context 'when a user is logged out' do
     it 'associates tasks with a new user' do
       add_task('do laundry')
