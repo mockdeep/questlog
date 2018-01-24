@@ -4,7 +4,8 @@ module Questlog
 
     class Sidebar
 
-      include RSpec::Matchers, Capybara::DSL
+      include Capybara::DSL
+      include RSpec::Matchers
 
       attr_accessor :element
 
