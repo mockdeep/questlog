@@ -8,24 +8,36 @@ class Sidebar extends React.Component {
     super(props);
 
     autobind(this);
+  }
 
+  componentWillMount() {
     this.mediaQueryList = window.matchMedia('(max-width: 600px)');
     this.mediaQueryList.addListener(this.updateScreenSize);
-
-    const mobile = this.mediaQueryList.matches;
-
-    this.state = {mobile, visible: !mobile};
+    this.updateScreenSize();
   }
 
   updateScreenSize() {
     const mobile = this.mediaQueryList.matches;
+    const visible = !mobile;
+    this.toggleSidebarClass(visible);
 
-    this.setState({mobile, visible: !mobile});
+    this.setState({mobile, visible});
+  }
+
+  toggleSidebarClass(visible) {
+    const contentDiv = document.querySelector('.content');
+    contentDiv.classList.toggle('sidebar-open', visible);
   }
 
   toggleVisible(event) {
     event.preventDefault();
-    this.setState(state => ({visible: !state.visible}));
+    this.setState(state => {
+      const visible = !state.visible;
+
+      this.toggleSidebarClass(visible);
+
+      return {visible};
+    });
   }
 
   sidebarToggle() {
