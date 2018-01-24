@@ -92,6 +92,10 @@ RSpec.configure do |config|
     Capybara.reset!
   end
 
+  config.before(:each, type: :feature) do
+    visit '/'
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end

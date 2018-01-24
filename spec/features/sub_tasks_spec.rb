@@ -5,7 +5,6 @@ RSpec.describe 'adding sub tasks', js: true do
   before { feature_login_as(user) }
 
   it 'allows adding sub tasks to another task' do
-    visit '/'
     add_task('the parent task')
     find('.task-link').click
     expect(page).to have_current_path(task_path(Task.last))
@@ -31,7 +30,6 @@ RSpec.describe 'adding sub tasks', js: true do
   end
 
   it 'allows filtering for root and leaf tasks on index page' do
-    visit '/'
     add_task('the parent task')
     find('.task-link').click
     add_task('the sub task')
@@ -79,7 +77,6 @@ RSpec.describe 'adding sub tasks', js: true do
   end
 
   it 'does not have side effects on adding tasks on other pages' do
-    visit '/'
     add_task('the parent task')
     find('.task-link').click
     expect(page).to have_task('the parent task')

@@ -3,7 +3,6 @@ RSpec.describe 'user accounts', js: true do
   let(:user) { create(:free_user) }
 
   it 'allows a user sign up for an account' do
-    visit '/'
     expect(page).to have_content('You\'re not logged in!')
     click_link('Sign up')
     fill_in 'Email', with: 'some@email.com'
@@ -15,7 +14,6 @@ RSpec.describe 'user accounts', js: true do
   end
 
   it 'allows an existing user to log in' do
-    visit '/'
     click_link('Log in')
     fill_in 'email', with: user.account.email
     fill_in 'password', with: user.account.password

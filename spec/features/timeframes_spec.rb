@@ -9,7 +9,6 @@ RSpec.describe 'timeframes', js: true do
   end
 
   it 'displays the median productivity of the user' do
-    visit '/'
     add_task('do laundry')
     add_task('feed dog ~5m')
     add_task('read feeds ~1h')

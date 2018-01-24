@@ -7,7 +7,6 @@ RSpec.describe 'bulk task creation', js: true do
   end
 
   it 'allows the user to upload multiple tasks at the same time' do
-    visit '/'
     click_link 'Add multiple tasks'
     titles = "#home *1w do laundry\n#online @10am check mail"
     fill_in 'new-titles', with: titles
