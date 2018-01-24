@@ -16,26 +16,15 @@ def support_path
 end
 Dir[support_path.join('**', '*.rb')].each { |f| require f }
 
-chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-  chrome_options: { args: %w[--window-size=1200x600 --start-maximized] },
-)
-
 Capybara.register_driver :chrome do |app|
-  chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chrome_options: { args: %w[--start-maximized] },
-  )
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    desired_capabilities: chrome_capabilities,
-  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
 Capybara.register_driver :headless_chrome do |app|
   chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    # --start-maximized doesn't seem to work on headless
-    chrome_options: { args: %w[headless --window-size=1900x1080] },
+    chrome_options: { args: %w[headless] },
   )
+
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
