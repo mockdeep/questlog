@@ -14,7 +14,6 @@ gem 'friendly_id'
 gem 'gon'
 gem 'haml-rails'
 gem 'honeybadger'
-gem 'hstore_accessor'
 gem 'junk_drawer'
 gem 'newrelic_rpm'
 gem 'normalize-rails'
@@ -26,10 +25,6 @@ gem 'sidekiq'
 gem 'skylight'
 gem 'stripe', '~> 2.8'
 gem 'webpacker'
-
-group :production do
-  gem 'rails_12factor'
-end
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
@@ -44,13 +39,13 @@ end
 
 group :development, :test do
   gem 'bullet'
-  gem 'byebug'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'foreman'
   gem 'guard'
   gem 'guard-rubocop'
   gem 'haml_lint', require: false
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -59,11 +54,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'coderay'
-  gem 'database_cleaner'
   gem 'guard-rspec'
-  gem 'launchy'
-  gem 'poltergeist'
   gem 'rb-inotify'
   gem 'rspec_junit_formatter', require: false
   gem 'selenium-webdriver'
