@@ -15,131 +15,103 @@ AllCops:
     - db/schema.rb
     - !ruby/regexp /node_modules\/.*/
 
-Rails:
-  Enabled: true
+Rails: { Enabled: true }
 
-AccessModifierIndentation:
-  EnforcedStyle: outdent
+# ............................................................................ #
+# departures from default
+# ............................................................................ #
 
-Output:
-  Exclude:
-    - lib/tasks/fix_counters.rake
+Documentation: { Enabled: false }
 
-CollectionMethods:
-  PreferredMethods:
-    collect: map
-    collect!: map!
-    inject: reduce
-    find: detect
-    find_all: select
-
-Documentation:
-  Enabled: false
-
-Layout/EmptyLinesAroundClassBody:
-  EnforcedStyle: empty_lines
-
-Layout/EmptyLinesAroundModuleBody:
-  EnforcedStyle: empty_lines
-
-Layout/IndentArray:
-  EnforcedStyle: consistent
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
+Layout/AccessModifierIndentation: { EnforcedStyle: outdent }
+Layout/EmptyLinesAroundClassBody: { EnforcedStyle: empty_lines }
+Layout/EmptyLinesAroundModuleBody: { EnforcedStyle: empty_lines }
+Layout/IndentArray: { EnforcedStyle: consistent }
+Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 
 Metrics/BlockLength:
   Exclude:
     - config/environments/production.rb
     - config/routes.rb
     - spec/**/*.rb
+Metrics/LineLength: { Exclude: [bin/*] }
 
-Metrics/LineLength:
-  Exclude:
-    - bin/*
+Rails/Output: { Exclude: [lib/tasks/fix_counters.rake] }
 
-Style/GuardClause:
-  MinBodyLength: 2
+RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
+RSpec/ContextWording: { Prefixes: [after, when] }
 
-Style/TrivialAccessors:
-  AllowPredicates: true
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: map
+    collect!: map!
+    inject: reduce
+    find: detect
+    find_all: select
+Style/EmptyMethod: { EnforcedStyle: expanded }
+Style/GuardClause: { MinBodyLength: 2 }
+Style/LambdaCall: { EnforcedStyle: braces }
+Style/MixinUsage: { Exclude: [bin/*] }
+Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
+Style/TrailingCommaInLiteral: { EnforcedStyleForMultiline: comma }
+Style/TrivialAccessors: { AllowPredicates: true }
 
-Style/EmptyMethod:
-  EnforcedStyle: expanded
-
-ClassLength:
-  Max: 120
-
-RSpec/FilePath:
-  Exclude: [spec/matchers/**/*]
-
-Style/LambdaCall:
-  EnforcedStyle: braces
-
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
-
-Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: comma
-
+# ............................................................................ #
 # enable or confirm the rules below
 # ............................................................................ #
 
-# https://github.com/bbatsov/rubocop/pull/4237
-Lint/AmbiguousBlockAssociation:
-  Enabled: false
+Layout/ClassStructure: { Enabled: false } # default disabled
+Layout/EmptyLinesAroundBlockBody: { Enabled: false } # https://github.com/bbatsov/rubocop/issues/1568
+Layout/FirstArrayElementLineBreak: { Enabled: false } # default disabled
+Layout/FirstHashElementLineBreak: { Enabled: false } # default disabled
+Layout/FirstMethodArgumentLineBreak: { Enabled: false } # default disabled
+Layout/FirstMethodParameterLineBreak: { Enabled: false } # default disabled
+Layout/MultilineAssignmentLayout: { Enabled: false } # default disabled
 
-Style/RegexpLiteral:
-  Enabled: false
+Lint/AmbiguousBlockAssociation: { Enabled: false } # https://github.com/bbatsov/rubocop/pull/4237
 
-Rails/SkipsModelValidations:
-  Enabled: false
+Metrics/AbcSize: { Max: 26 }
+Metrics/ClassLength: { Max: 120 }
+Metrics/MethodLength: { Max: 12 }
 
-Rails/TimeZone:
-  Enabled: false
+Naming/VariableNumber: { EnforcedStyle: snake_case }
 
-MethodLength:
-  Max: 12
+Rails/SaveBang: { Enabled: false } # default disabled
+Rails/SkipsModelValidations: { Enabled: false }
+Rails/TimeZone: { Enabled: false }
 
-Metrics/AbcSize:
-  Max: 26
+RSpec/AnyInstance: { Enabled: false }
+RSpec/DescribeClass: { Enabled: false }
+RSpec/DescribeMethod: { Enabled: false }
+RSpec/ExampleLength: { Enabled: false }
+RSpec/HookArgument: { Enabled: false }
+RSpec/MessageExpectation: { Enabled: false }
+RSpec/MessageSpies: { Enabled: false }
+RSpec/MultipleExpectations: { Enabled: false }
+RSpec/NotToNot: { Enabled: false }
+RSpec/VerifiedDoubles: { Enabled: false }
 
-# https://github.com/bbatsov/rubocop/issues/1568
-EmptyLinesAroundBlockBody:
-  Enabled: false
+Style/AutoResourceCleanup: { Enabled: false } # default disabled
+Style/Copyright: { Enabled: false } # default disabled
+Style/DocumentationMethod: { Enabled: false } # default disabled
+Style/FrozenStringLiteralComment: { Enabled: false }
+Style/ImplicitRuntimeError: { Enabled: false } # default disabled
+Style/InlineComment: { Enabled: false } # default disabled
+Style/MethodCalledOnDoEndBlock: { Enabled: false } # default disabled
+Style/MethodCallWithArgsParentheses: { Enabled: false } # default disabled
+Style/MissingElse: { Enabled: false } # default disabled
+Style/OptionHash: { Enabled: false } # default disabled
+Style/RegexpLiteral: { Enabled: false }
+Style/ReturnNil: { Enabled: false } # default disabled
+Style/Send: { Enabled: false } # default disabled
+Style/SingleLineBlockParams: { Enabled: false } # default disabled
+Style/StringHashKeys: { Enabled: false } # default disabled
+Style/StringMethods: { Enabled: false } # default disabled
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
+# ............................................................................ #
+# intentionally disabled
+# ............................................................................ #
 
-Style/VariableNumber:
-  EnforcedStyle: snake_case
+Rails/HasManyOrHasOneDependent: { Enabled: false }
 
-RSpec/ExampleLength:
-  Enabled: false
-
-RSpec/MessageSpies:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/DescribeClass:
-  Enabled: false
-
-RSpec/HookArgument:
-  Enabled: false
-
-RSpec/NotToNot:
-  Enabled: false
-
-RSpec/DescribeMethod:
-  Enabled: false
-
-RSpec/MessageExpectation:
-  Enabled: false
-
-RSpec/AnyInstance:
-  Enabled: false
-
-RSpec/VerifiedDoubles:
-  Enabled: false
+RSpec/ExpectInHook: { Enabled: false }

@@ -8,7 +8,7 @@ RSpec.describe TasksController, '#show' do
     login_as(user)
   end
 
-  context 'format.json' do
+  context 'when format is json' do
     it 'renders the task as json' do
       get(:show, format: :json)
       serial_task = {

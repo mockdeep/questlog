@@ -58,7 +58,7 @@ RSpec.describe Task, '#done=' do
       end
     end
 
-    context 'if it was not previously nil' do
+    context 'when it was not previously nil' do
       it 'does not change unfinished_tasks_count for its tags' do
         task.update!(tags: [tag], done: true)
         expect(tag.reload.unfinished_tasks_count).to eq 0
@@ -89,7 +89,7 @@ RSpec.describe Task, '#done=' do
       expect(task.done_at).to eq nil
     end
 
-    context 'if it was previously nil' do
+    context 'when it was previously nil' do
       it 'does not change unfinished_tasks_count for its tags' do
         task.update(tags: [tag])
         expect(tag.reload.unfinished_tasks_count).to eq 1
@@ -105,7 +105,7 @@ RSpec.describe Task, '#done=' do
       end
     end
 
-    context 'if it was not previously nil' do
+    context 'when it was not previously nil' do
       it 'increments unfinished_tasks_count for its associated tags' do
         task.update!(tags: [tag], done: true)
         expect do

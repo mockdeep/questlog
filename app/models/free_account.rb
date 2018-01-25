@@ -2,7 +2,7 @@ class FreeAccount < ApplicationRecord
 
   has_secure_password
 
-  has_one :user, as: :account
+  has_one :user, as: :account, inverse_of: :account
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 

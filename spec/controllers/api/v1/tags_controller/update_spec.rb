@@ -11,7 +11,7 @@ RSpec.describe API::V1::TagsController, '#update' do
     expect do
       put(:update, params: valid_params)
     end.to change { tag.reload.name }.to('foo tag')
-      .and change { tag.rules }.to(rules.map(&:stringify_keys))
+      .and change(tag, :rules).to(rules.map(&:stringify_keys))
   end
 
   it 'throws an error when tag is not associated with user' do
