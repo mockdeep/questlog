@@ -42,7 +42,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.disable_monkey_patching!
   config.render_views
-  config.include(FactoryGirl::Syntax::Methods)
+  config.include(FactoryBot::Syntax::Methods)
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
   config.fixture_path = Rails.root.join('spec', 'fixtures')
