@@ -5,13 +5,13 @@ import {shallow} from 'enzyme';
 
 import createAppStore from 'src/create_app_store';
 import TaskListViewContainer from 'src/task/containers/list_view';
-import {getRouteName} from 'src/route/selectors';
+import {setRoute} from 'src/route/action_creators';
 
 const TaskListView = 'DragDropContext(TaskListView)';
 it('wraps the TaskListView component', () => {
-  getRouteName.mockImplementation(() => 'tasks');
-  const props = {store: createAppStore()};
-  const container = shallow(<TaskListViewContainer {...props} />);
+  const store = createAppStore();
+  store.dispatch(setRoute({name: 'tasks'}));
+  const container = shallow(<TaskListViewContainer store={store} />);
 
   expect(container.find(TaskListView)).toBePresent();
 });

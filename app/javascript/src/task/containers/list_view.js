@@ -1,11 +1,23 @@
 import {connect} from 'react-redux';
 
+import grab from 'src/_helpers/grab';
 import TaskListView from 'src/task/components/list_view';
 import {deleteTask, updateTask} from 'src/task/action_creators';
-import {getPartitionedTasksForRoute} from 'src/task/selectors';
+import {
+  getPartitionedTasks,
+  getPartitionedLeafTasks,
+  getPartitionedRootTasks,
+} from 'src/task/selectors';
+
+const ROUTE_SELECTORS = {
+  tasks: getPartitionedTasks,
+  rootTasks: getPartitionedRootTasks,
+  leafTasks: getPartitionedLeafTasks,
+};
 
 function mapStateToProps(state) {
-  const {pending, undone} = getPartitionedTasksForRoute(state);
+  const selector = grab(ROUTE_SELECTORS, state.route.name);
+  const {pending, undone} = selector(state);
 
   return {currentTasks: undone, pendingTasks: pending, route: state.route};
 }

@@ -1,6 +1,8 @@
 import {
   getCurrentTask,
-  getPartitionedTasksForRoute,
+  getPartitionedLeafTasks,
+  getPartitionedRootTasks,
+  getPartitionedTasks,
   getUndoneTasks,
 } from 'src/task/selectors';
 
@@ -64,35 +66,50 @@ describe('getUndoneTasks', () => {
   });
 });
 
-describe('getPartitionedTasksForRoute', () => {
-  const parentTask = makeTask();
-  const subTask = makeTask({parentTaskId: parentTask.id});
-  const subSubTask = makeTask({parentTaskId: subTask.id});
-  parentTask.subTaskIds = [subTask.id];
-  subTask.subTaskIds = [subSubTask.id];
-  const tasks = [parentTask, subTask, subSubTask];
+describe('getPartitionedLeafTasks', () => {
+  it('returns leaf tasks partitioned on pending status', () => {
+    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task2 = makeTask({});
+    const task3 = makeTask({parentTaskId: task2.id});
+    const task4 = makeTask({doneAt: new Date()});
 
-  it('returns all tasks when route is "/tasks"', () => {
-    const state = makeState({route: {name: 'tasks'}, task: tasks});
+    const state = makeState({task: [task1, task2, task3, task4]});
+
+    const expected = {undone: [task3], pending: [task1]};
+    expect(getPartitionedLeafTasks(state)).toEqual(expected);
+  });
+});
+
+describe('getPartitionedRootTasks', () => {
+  it('returns root tasks partitioned on pending status', () => {
+    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task2 = makeTask({});
+    const task3 = makeTask({parentTaskId: task2.id});
+    const task4 = makeTask({doneAt: new Date()});
+
+    const state = makeState({task: [task1, task2, task3, task4]});
+
     const expected = {
-      pending: [],
-      undone: [parentTask, subTask, subSubTask],
+      undone: [{...task2, subTaskIds: [task3.id]}],
+      pending: [task1],
     };
-
-    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
+    expect(getPartitionedRootTasks(state)).toEqual(expected);
   });
+});
 
-  it('returns root tasks when route is "/tasks/root"', () => {
-    const state = makeState({route: {name: 'rootTasks'}, task: tasks});
-    const expected = {pending: [], undone: [parentTask]};
+describe('getPartitionedTasks', () => {
+  it('returns tasks partitioned on pending status', () => {
+    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task2 = makeTask({});
+    const task3 = makeTask({parentTaskId: task2.id});
+    const task4 = makeTask({doneAt: new Date()});
 
-    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
-  });
+    const state = makeState({task: [task1, task2, task3, task4]});
 
-  it('returns leaf tasks when route is "/tasks/leaf"', () => {
-    const state = makeState({route: {name: 'leafTasks'}, task: tasks});
-    const expected = {pending: [], undone: [subSubTask]};
-
-    expect(getPartitionedTasksForRoute(state)).toEqual(expected);
+    const expected = {
+      undone: [{...task2, subTaskIds: [task3.id]}, task3],
+      pending: [task1],
+    };
+    expect(getPartitionedTasks(state)).toEqual(expected);
   });
 });

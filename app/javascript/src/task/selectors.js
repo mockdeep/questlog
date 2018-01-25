@@ -2,7 +2,7 @@ import {at, groupBy, partition, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
-import {getRouteName, getRouteParams} from 'src/route/selectors';
+import {getRouteParams} from 'src/route/selectors';
 
 function isActiveTask(task) {
   return Boolean(!task.doneAt || task.releaseAt);
@@ -12,11 +12,9 @@ function isLeafTask(task) {
   return task.subTaskIds.length === 0;
 }
 
-const TASK_FILTERS = {
-  tasks() { return true; },
-  leafTasks(task) { return isLeafTask(task); },
-  rootTasks(task) { return !task.parentTaskId; },
-};
+function isRootTask(task) {
+  return !task.parentTaskId;
+}
 
 const timeframePositions = {
   today: 1,
@@ -59,10 +57,6 @@ function processTasks(tasksById) {
   }, {});
 }
 
-function filterTasksByRouteName(tasks, routeName) {
-  return tasks.filter(grab(TASK_FILTERS, routeName));
-}
-
 const getTasksById = createSelector(state => state.task.byId, processTasks);
 
 const getOrderedTasks = createSelector(
@@ -71,6 +65,26 @@ const getOrderedTasks = createSelector(
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
+
+const getLeafTasks = createSelector(
+  getOrderedTasks,
+  orderedTasks => orderedTasks.filter(isLeafTask)
+);
+
+const getRootTasks = createSelector(
+  getOrderedTasks,
+  orderedTasks => orderedTasks.filter(isRootTask)
+);
+
+const getPartitionedLeafTasks = createSelector(
+  getLeafTasks,
+  partitionTasks
+);
+
+const getPartitionedRootTasks = createSelector(
+  getRootTasks,
+  partitionTasks
+);
 
 const getUndoneTasks = createSelector(
   getPartitionedTasks,
@@ -87,19 +101,12 @@ const getCurrentSubTasks = createSelector(
   (currentTask, tasksById) => getSubTasks(currentTask, tasksById)
 );
 
-const getOrderedTasksForRoute = createSelector(
-  [getOrderedTasks, getRouteName],
-  filterTasksByRouteName
-);
-
-const getPartitionedTasksForRoute = createSelector(
-  getOrderedTasksForRoute,
-  partitionTasks
-);
-
 export {
   getCurrentSubTasks,
   getCurrentTask,
-  getPartitionedTasksForRoute,
+  getPartitionedLeafTasks,
+  getPartitionedRootTasks,
+  getPartitionedTasks,
+  getRootTasks,
   getUndoneTasks,
 };
