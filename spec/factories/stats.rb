@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :stat do
     user
     sequence(:value) { |n| n }
