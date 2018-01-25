@@ -5,7 +5,7 @@ RSpec.describe User, '#next_task' do
   let(:task2) { create(:task, user: user) }
   let(:user) { create(:user) }
 
-  context 'given a tag_id parameter' do
+  context 'when a tag_id parameter is passed' do
     it 'returns the next task for that tag' do
       task1
       task2.tags << tag

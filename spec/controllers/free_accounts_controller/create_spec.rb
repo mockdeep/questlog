@@ -38,7 +38,8 @@ RSpec.describe FreeAccountsController, '#create' do
   context 'when the account is invalid' do
     before(:each) do
       login_as(user)
-      expect_any_instance_of(FreeAccount).to receive(:save).and_return(false)
+      fake_result = ActionResult.new(success: false, object: FreeAccount.new)
+      expect(FreeAccount::Create).to receive(:call).and_return(fake_result)
       post(:create, params: { free_account: valid_attributes })
     end
 
