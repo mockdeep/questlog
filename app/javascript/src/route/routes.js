@@ -35,6 +35,7 @@ const ROUTES = compileRoutes([
   {name: 'sessions', path: '/sessions'},
   {name: 'leafTasks', path: '/tasks/leaf'},
   {name: 'rootTasks', path: '/tasks/root'},
+  {name: 'treeTasks', path: '/tasks/tree'},
   {name: 'showTask', path: '/tasks/:taskId'},
   {name: 'tasks', path: '/tasks'},
   {name: 'privacy', path: '/privacy'},
