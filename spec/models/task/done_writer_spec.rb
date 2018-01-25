@@ -44,18 +44,6 @@ RSpec.describe Task, '#done=' do
           end.to change(task, :release_at).from(nil).to(5.minutes.from_now)
         end
       end
-
-      it 'does not decrement multiple times when hit multiple threaded times' do
-        configure_for_threading!
-
-        task.save!
-
-        threaded do
-          Task.find(task.id).update!(done: true)
-        end
-
-        expect(user.reload.unfinished_tasks_count).to eq 0
-      end
     end
 
     context 'when it was not previously nil' do

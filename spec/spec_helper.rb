@@ -2,14 +2,13 @@ require 'rubygems'
 require 'simplecov'
 if ENV['COVERAGE'] != 'false'
   SimpleCov.start 'rails'
-  SimpleCov.minimum_coverage 98.25
+  SimpleCov.minimum_coverage 98.1
 end
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
-require 'capybara/poltergeist'
 
 def support_path
   Rails.root.join('spec', 'support')
@@ -46,7 +45,7 @@ RSpec.configure do |config|
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
   config.fixture_path = Rails.root.join('spec', 'fixtures')
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
   config.raise_on_warning = true
@@ -72,17 +71,7 @@ RSpec.configure do |config|
     vcr_config.ignore_localhost = true
   end
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
   config.prepend_before(:each, type: :feature) do
-    DatabaseCleaner.strategy = :deletion
     Capybara.reset!
   end
 
@@ -90,14 +79,6 @@ RSpec.configure do |config|
     visit '/'
     page.execute_script(File.read(support_path.join('disable_animations.js')))
     sidebar.close
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-
-  config.append_after(:each, type: :feature) do
-    DatabaseCleaner.strategy = :transaction
   end
 end
 
@@ -113,22 +94,6 @@ def freeze_time(time = Time.zone.now)
   # postgres time
   time = time.round
   Timecop.freeze(time) { yield(time) }
-end
-
-def configure_for_threading!
-  DatabaseCleaner.clean
-  DatabaseCleaner.strategy = :deletion
-  DatabaseCleaner.start
-end
-
-def threaded(thread_count = 5)
-  threads = Array.new(thread_count) do
-    Thread.new do
-      yield
-      ActiveRecord::Base.connection.close
-    end
-  end
-  threads.each(&:join)
 end
 
 def login_as(user)
