@@ -8,13 +8,13 @@ function isActiveTask(task) {
   return Boolean(!task.doneAt || task.releaseAt);
 }
 
-function isChildTask(task) {
+function isLeafTask(task) {
   return task.subTaskIds.length === 0;
 }
 
 const TASK_FILTERS = {
   tasks() { return true; },
-  leafTasks(task) { return isChildTask(task); },
+  leafTasks(task) { return isLeafTask(task); },
   rootTasks(task) { return !task.parentTaskId; },
 };
 
@@ -74,7 +74,7 @@ const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getUndoneTasks = createSelector(
   getPartitionedTasks,
-  partitionedTasks => partitionedTasks.undone.filter(isChildTask)
+  partitionedTasks => partitionedTasks.undone.filter(isLeafTask)
 );
 
 const getCurrentTask = createSelector(
