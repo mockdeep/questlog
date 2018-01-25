@@ -96,6 +96,6 @@ export {
   getPartitionedLeafTasks,
   getPartitionedRootTasks,
   getPartitionedTasks,
-  getRootTasks,
+  getTasksByParentId,
   getUndoneTasks,
 };

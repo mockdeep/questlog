@@ -12,5 +12,5 @@ it('renders a new task form', () => {
 it('renders links to filters', () => {
   const component = shallow(<TaskListHeader />);
 
-  expect(component.find('Connect(Link)')).toHaveLength(3);
+  expect(component.find('Connect(Link)')).toHaveLength(4);
 });
