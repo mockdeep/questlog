@@ -15,23 +15,8 @@ def support_path
 end
 Dir[support_path.join('**', '*.rb')].each { |f| require f }
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.register_driver :headless_chrome do |app|
-  chrome_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chrome_options: { args: %w[headless] },
-  )
-
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    desired_capabilities: chrome_capabilities,
-  )
-end
-
-driver = ENV.fetch('DRIVER', :headless_chrome).to_sym
+Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
+driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.wait_on_first_by_default = true
