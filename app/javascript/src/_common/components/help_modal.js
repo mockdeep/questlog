@@ -116,4 +116,6 @@ HelpModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 };
 
+Modal.setAppElement('#app-base');
+
 export default HelpModal;

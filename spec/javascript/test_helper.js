@@ -8,3 +8,5 @@ Enzyme.configure({adapter: new Adapter()});
 import 'whatwg-fetch';
 import 'jest-enzyme';
 window.Notification = FakeNotification;
+
+document.body.innerHTML = '<div id="app-base"></div>';
