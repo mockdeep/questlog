@@ -14,6 +14,7 @@ dependencies:
 
 test:
   override:
+    - yarn lints
     - yarn test
     - rake
     - COVERAGE=false DRIVER=chrome rspec spec/features
