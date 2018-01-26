@@ -134,7 +134,7 @@
     "selector-list-comma-space-before": "never",
     "selector-max-empty-lines": 1,
     "selector-max-compound-selectors": 3,
-    "selector-max-specificity": "0,2,0",
+    "selector-max-specificity": "0,2,2",
     "selector-max-attribute": 0,
     "selector-max-id": 0,
     "selector-max-universal": 0,
