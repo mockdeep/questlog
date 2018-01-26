@@ -89,10 +89,7 @@ describe('getPartitionedRootTasks', () => {
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
-    const expected = {
-      undone: [{...task2, subTaskIds: [task3.id]}],
-      pending: [task1],
-    };
+    const expected = {undone: [task2], pending: [task1]};
     expect(getPartitionedRootTasks(state)).toEqual(expected);
   });
 });
@@ -106,10 +103,7 @@ describe('getPartitionedTasks', () => {
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
-    const expected = {
-      undone: [{...task2, subTaskIds: [task3.id]}, task3],
-      pending: [task1],
-    };
+    const expected = {undone: [task2, task3], pending: [task1]};
     expect(getPartitionedTasks(state)).toEqual(expected);
   });
 });
