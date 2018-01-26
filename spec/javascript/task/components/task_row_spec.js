@@ -21,3 +21,20 @@ it('renders the timeframe selector when enabled', () => {
 
   expect(component.find('select.timeframe-select')).toBePresent();
 });
+
+it('renders an undo button when task is pending', () => {
+  const component = shallow(<TaskRow {...props} task={{pending: true}} />);
+
+  const buttons = component.find('button');
+  expect(buttons).toHaveLength(3);
+  expect(buttons.at(1)).toHaveProp('children', 'UNDO');
+});
+
+it('does not render an undo button when task is not pending', () => {
+  const component = shallow(<TaskRow {...props} task={{pending: false}} />);
+
+  const buttons = component.find('button');
+  expect(buttons).toHaveLength(2);
+  expect(buttons.at(0)).toHaveProp('children', 'DONE');
+  expect(buttons.at(1)).toHaveProp('children', 'DELETE');
+});
