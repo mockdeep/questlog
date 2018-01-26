@@ -1,4 +1,4 @@
-import {at, groupBy, partition, sortBy} from 'lodash';
+import {pickBy, partition, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
@@ -33,23 +33,26 @@ function partitionTasks(tasks) {
   return {pending, undone};
 }
 
-function getSubTasks(task, tasksById) {
-  return at(tasksById, task.subTaskIds);
+function processTasks(tasksById) {
+  return pickBy(tasksById, isActiveTask);
 }
 
-function processTasks(tasksById) {
-  const activeTasks = Object.values(tasksById).filter(isActiveTask);
-  const tasksByParentId = groupBy(activeTasks, 'parentTaskId');
-
-  return activeTasks.reduce((result, task) => {
-    const subTasks = tasksByParentId[task.id] || [];
-    const subTaskIds = subTasks.map(subTask => subTask.id);
-
-    return {...result, [task.id]: {...task, subTaskIds}};
+function mapTasksToParentId(tasksById) {
+  return Object.values(tasksById).reduce((result, task) => {
+    result[task.id] = result[task.id] || [];
+    result[task.parentTaskId] = result[task.parentTaskId] || [];
+    result[task.parentTaskId].push(task);
+    return result;
   }, {});
 }
 
+function grabLeafTasks(orderedTasks, tasksByParentId) {
+  return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
+}
+
 const getTasksById = createSelector(state => state.task.byId, processTasks);
+
+const getTasksByParentId = createSelector(getTasksById, mapTasksToParentId);
 
 const getOrderedTasks = createSelector(
   getTasksById,
@@ -59,8 +62,8 @@ const getOrderedTasks = createSelector(
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getLeafTasks = createSelector(
-  getOrderedTasks,
-  orderedTasks => orderedTasks.filter(task => task.subTaskIds.length === 0)
+  [getOrderedTasks, getTasksByParentId],
+  grabLeafTasks
 );
 
 const getRootTasks = createSelector(
@@ -83,8 +86,8 @@ const getCurrentTask = createSelector(
 );
 
 const getCurrentSubTasks = createSelector(
-  [getCurrentTask, getTasksById],
-  getSubTasks
+  [getCurrentTask, getTasksByParentId],
+  (currentTask, tasksByParentId) => tasksByParentId[currentTask.id]
 );
 
 export {

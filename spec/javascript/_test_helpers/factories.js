@@ -34,7 +34,6 @@ function makeTask(attrs) {
     tagIds: [],
     tagNames: [],
     timeframe: null,
-    subTaskIds: [],
     ...attrs,
   };
 }
