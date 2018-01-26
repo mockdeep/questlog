@@ -3,6 +3,7 @@
 }
 
 .flashes {
+  height: 30px;
   text-align: center;
 }
 
@@ -22,29 +23,26 @@
   text-align: center;
 }
 
-.task-display {
-  text-align: center;
-}
-
 .task-filter {
-  font-family: 'RobotoCondensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: bold;
   padding: 15px;
 }
 
 .task-filter--active {
-  cursor: default;
   color: black;
+  cursor: default;
 
-  &:hover, &:focus {
-    text-decoration: none;
+  &:hover,
+  &:focus {
     color: black;
+    text-decoration: none;
   }
 }
 
 .task-link {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 
   &:hover {
     text-decoration: none;
@@ -57,6 +55,11 @@
 
 .tag-buttons {
   text-align: center;
+
+  div {
+    display: inline-block;
+    padding: 3px;
+  }
 }
 
 .task-list {
@@ -90,7 +93,7 @@
 }
 
 .task-list__action {
-  font-family: 'RobotoCondensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-right: 10px;
 }
 
@@ -104,13 +107,6 @@
 
 .task-list__row--priority-3 {
   background-color: $bg-priority-3;
-}
-
-.tag-buttons {
-  div {
-    display: inline-block;
-    padding: 3px;
-  }
 }
 
 .timeframe-select {
@@ -131,10 +127,6 @@
   padding: 0;
 }
 
-.flashes {
-  height: 30px;
-}
-
 .task-display {
   background-color: $bg-task-display;
   border-radius: 6px;
@@ -144,6 +136,7 @@
   min-height: 75px;
   padding-left: 0;
   padding-right: 0;
+  text-align: center;
 
   .fa-repeat {
     font-size: 25px;
@@ -188,11 +181,11 @@ ul {
 }
 
 .task-input {
-  text-align: center;
-  width: 100%;
-  resize: none;
   overflow: hidden;
+  resize: none;
+  text-align: center;
   vertical-align: middle;
+  width: 100%;
 }
 
 .postpone-button {
@@ -218,17 +211,17 @@ ul {
 
 html,
 body {
+  background-color: #e0e0e0;
   height: 100%;
-  background-color: #E0E0E0;
 }
 
 .content {
   background-color: white;
-  padding: 40px;
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
   min-height: 100%;
+  padding: 40px;
 }
 
 h1 {
@@ -288,13 +281,15 @@ h3 {
 }
 
 .ReactModal__Content--after-open {
-  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  max-width: 600px;
 }
 
 .modal__close-button {
+
   @extend .btn-link;
+
   float: right;
 }
 

@@ -1,29 +1,28 @@
 .sidebar {
-  position: fixed;
   background-color: #eee;
   overflow: hidden;
   padding-left: 20px;
-  z-index: 1;
+  position: fixed;
   transition: all 0.25s ease-in-out;
+  z-index: 1;
 }
 
 .sidebar--hidden {
+  height: 50px;
   left: 15px;
   top: 15px;
-  height: 50px;
   width: 50px;
 }
 
 .sidebar--visible {
+  height: 100vh;
   left: 0;
   top: 0;
-  height: 100vh;
   width: 250px;
-
 }
 
 .sidebar__header {
-  font-family: 'RobotoCondensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .sidebar__divider {
@@ -32,11 +31,11 @@
 }
 
 .sidebar__toggle {
-  font-size: 30px;
-  float: right;
   background: transparent;
   border: none;
   color: $brand-primary;
+  float: right;
+  font-size: 30px;
 
   &:focus {
     outline: 0;
@@ -44,8 +43,8 @@
 }
 
 .sidebar__toggle--hidden {
-  width: 50px;
   height: 50px;
+  width: 50px;
 }
 
 .sidebar__toggle--visible {
@@ -53,25 +52,26 @@
 }
 
 .sidebar__link {
+  font-family: RobotoBlack, Helvetica Neue, Helvetica, Arial, sans-serif;
+  white-space: nowrap;
+  width: 100%;
+
   &:hover {
     color: $brand-primary;
   }
-  width: 100%;
-  font-family: 'RobotoBlack', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  white-space: nowrap;
 }
 
 .sidebar__link--active {
-  ::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
+  :after {
     border-bottom: 12px solid transparent;
     border-right: 12px solid $brand-primary;
+    border-top: 12px solid transparent;
+    content: '';
+    height: 0;
     margin: 5px;
     position: absolute;
     right: 10px;
+    width: 0;
   }
 }
 
