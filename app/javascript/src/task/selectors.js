@@ -8,14 +8,6 @@ function isActiveTask(task) {
   return Boolean(!task.doneAt || task.releaseAt);
 }
 
-function isLeafTask(task) {
-  return task.subTaskIds.length === 0;
-}
-
-function isRootTask(task) {
-  return !task.parentTaskId;
-}
-
 const timeframePositions = {
   today: 1,
   week: 2,
@@ -68,27 +60,21 @@ const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getLeafTasks = createSelector(
   getOrderedTasks,
-  orderedTasks => orderedTasks.filter(isLeafTask)
+  orderedTasks => orderedTasks.filter(task => task.subTaskIds.length === 0)
 );
 
 const getRootTasks = createSelector(
   getOrderedTasks,
-  orderedTasks => orderedTasks.filter(isRootTask)
+  orderedTasks => orderedTasks.filter(task => !task.parentTaskId)
 );
 
-const getPartitionedLeafTasks = createSelector(
-  getLeafTasks,
-  partitionTasks
-);
+const getPartitionedLeafTasks = createSelector(getLeafTasks, partitionTasks);
 
-const getPartitionedRootTasks = createSelector(
-  getRootTasks,
-  partitionTasks
-);
+const getPartitionedRootTasks = createSelector(getRootTasks, partitionTasks);
 
 const getUndoneTasks = createSelector(
-  getPartitionedTasks,
-  partitionedTasks => partitionedTasks.undone.filter(isLeafTask)
+  getPartitionedLeafTasks,
+  partitionedTasks => partitionedTasks.undone
 );
 
 const getCurrentTask = createSelector(
@@ -98,7 +84,7 @@ const getCurrentTask = createSelector(
 
 const getCurrentSubTasks = createSelector(
   [getCurrentTask, getTasksById],
-  (currentTask, tasksById) => getSubTasks(currentTask, tasksById)
+  getSubTasks
 );
 
 export {
