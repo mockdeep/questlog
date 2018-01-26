@@ -6,4 +6,8 @@ class GuestAccount < ApplicationRecord
     true
   end
 
+  def email
+    '(guest account)'
+  end
+
 end

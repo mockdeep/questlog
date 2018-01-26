@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_headers
   before_action :check_repeats
   before_action :set_gon_variables
+  before_action :set_honeybadger_context
 
 private
 
@@ -45,6 +46,10 @@ private
       rails_env: Rails.env,
       user_id: current_user.id,
     )
+  end
+
+  def set_honeybadger_context
+    Honeybadger.context(user_id: current_user.id, email: current_user.email)
   end
 
   def find_user
