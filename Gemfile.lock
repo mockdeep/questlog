@@ -66,6 +66,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    capybara-screenshot (1.0.18)
+      capybara (>= 1.0, < 3)
+      launchy
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -152,6 +155,8 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.1.0)
     junk_drawer (1.4.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -350,6 +355,7 @@ DEPENDENCIES
   bootstrap-sass
   bullet
   capybara
+  capybara-screenshot
   dalli
   dotenv-rails
   factory_bot_rails

@@ -9,6 +9,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
+require 'capybara-screenshot/rspec'
 
 def support_path
   Rails.root.join('spec', 'support')
@@ -20,6 +21,13 @@ driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.wait_on_first_by_default = true
+Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
+
+%i[chrome selenium_chrome selenium_chrome_headless].each do |driver_name|
+  Capybara::Screenshot.register_driver(driver_name) do |capybara_driver, path|
+    capybara_driver.browser.save_screenshot(path)
+  end
+end
 
 ActiveRecord::Migration.maintain_test_schema!
 
