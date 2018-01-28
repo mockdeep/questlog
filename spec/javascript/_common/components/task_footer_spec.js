@@ -22,5 +22,5 @@ it('renders a footer with useful links', () => {
   expect(link).toHaveProp('href', '/bulk_task/new');
   expect(link.children()).toHaveText('Add multiple tasks');
 
-  expect(component.find('Connect(HelpLink)')).toHaveLength(2);
+  expect(component.find('Connect(ModalLink)')).toHaveLength(2);
 });

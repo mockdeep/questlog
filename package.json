@@ -24,6 +24,7 @@
     "jquery-ujs": "^1.2.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "nanoid": "^1.0.1",
     "path-to-regexp": "2.1.0",
     "prop-types": "^15.5.8",
     "react": "^16.0.0",

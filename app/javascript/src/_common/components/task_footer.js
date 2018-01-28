@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import HelpLink from 'src/_common/containers/help_link';
+import ModalLink from 'src/_common/containers/modal_link';
+
 import NotificationCheckbox from 'src/notification/containers/checkbox';
 import {taskShape} from 'src/shapes';
 
@@ -14,11 +15,11 @@ function TaskFooter({task, completeTask}) {
       <br />
       <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}
-      <HelpLink />
+      <ModalLink modalName={'help'}>{'Help'}</ModalLink>
       <br />
       {'Try adding a tag using "#", for example: '}
       <strong>{'#home'}</strong>{' or '}<strong>{'#5-min'}</strong>{'. '}
-      {'Click '}<HelpLink />{' for more.'}
+      {'Click '}<ModalLink modalName={'help'}>{'help'}</ModalLink>{' for more.'}
     </footer>
   );
 }
