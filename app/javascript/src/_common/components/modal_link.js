@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import grab from 'src/_helpers/grab';
+import AlphaModal from 'src/_common/components/alpha_modal';
 import HelpModal from 'src/_common/components/help_modal';
 
 const MODALS = {
+  alpha: AlphaModal,
   help: HelpModal,
 };
 
