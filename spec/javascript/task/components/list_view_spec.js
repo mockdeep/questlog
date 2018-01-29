@@ -22,10 +22,10 @@ function dive(component) {
   return shallow(component).dive();
 }
 
-it('renders a new task form', () => {
+it('renders the list headers', () => {
   const component = dive(<TaskListView {...props} />);
 
-  expect(component.find('Connect(NewTaskForm)')).toBePresent();
+  expect(component.find('TaskListHeader')).toBePresent();
 });
 
 it('renders current tasks', () => {
