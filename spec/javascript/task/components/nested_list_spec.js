@@ -10,6 +10,7 @@ const childTask = makeTask();
 const props = {
   tasks: [parentTask],
   tasksByParentId: {[parentTask.id]: [childTask]},
+  updateTask: jest.fn(),
 };
 
 it('renders a parent list item when task has sub-tasks', () => {

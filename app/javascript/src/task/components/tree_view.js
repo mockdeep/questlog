@@ -14,8 +14,8 @@ class TaskTreeView extends React.Component {
   }
 
   render() {
-    const {tasks, tasksByParentId} = this.props;
-    const listProps = {tasks, tasksByParentId};
+    const {tasks, tasksByParentId, updateTask} = this.props;
+    const listProps = {tasks, tasksByParentId, updateTask};
 
     return (
       <div>
@@ -31,6 +31,7 @@ class TaskTreeView extends React.Component {
 TaskTreeView.propTypes = {
   tasks: PropTypes.arrayOf(taskShape).isRequired,
   tasksByParentId: PropTypes.objectOf(PropTypes.arrayOf(taskShape)).isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TaskTreeView;

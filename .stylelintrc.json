@@ -83,7 +83,7 @@
     "function-url-no-scheme-relative": true,
     "function-url-quotes": "always",
     "function-url-scheme-whitelist": ["https"],
-    "function-whitelist": ["font-url", "format"],
+    "function-whitelist": ["font-url", "format", "rotate"],
     "function-whitespace-after": "always",
     "indentation": 2,
     "keyframe-declaration-no-important": true,

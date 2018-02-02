@@ -5,12 +5,51 @@ import TaskLeafListItem from 'src/task/components/leaf_list_item';
 
 import {makeTask} from '_test_helpers/factories';
 
-const props = {
-  task: makeTask({title: 'some title'}),
-};
+const task = makeTask({title: 'some title'});
+const updateTask = jest.fn();
+const props = {task, updateTask};
 
 it('renders the task title', () => {
   const component = shallow(<TaskLeafListItem {...props} />);
 
-  expect(component).toHaveText('some title');
+  expect(component.find('.task-item__title')).toHaveText('some title');
+});
+
+it('renders a task checkbox', () => {
+  const component = shallow(<TaskLeafListItem {...props} />);
+
+  const checkbox = component.find('TaskCheckbox');
+  expect(checkbox).toHaveProp('task', task);
+  expect(checkbox).toHaveProp('onChange', component.instance().toggleDone);
+  expect(checkbox).toHaveProp('checked', false);
+});
+
+it('sets the task checkbox to "checked" when task is "done"', () => {
+  const overrides = {task: makeTask({status: 'done'})};
+
+  const component = shallow(<TaskLeafListItem {...props} {...overrides} />);
+
+  expect(component.find('TaskCheckbox')).toHaveProp('checked', true);
+});
+
+it('updates the task to done when the checkbox gets checked', () => {
+  const component = shallow(<TaskLeafListItem {...props} />);
+  const stopPropagation = jest.fn();
+  const target = {checked: true};
+
+  component.find('TaskCheckbox').simulate('change', {stopPropagation, target});
+
+  expect(updateTask).toHaveBeenCalledTimes(1);
+  expect(updateTask).toHaveBeenCalledWith(task.id, {done: true});
+});
+
+it('updates the task to not done when the checkbox gets unchecked', () => {
+  const component = shallow(<TaskLeafListItem {...props} />);
+  const stopPropagation = jest.fn();
+  const target = {checked: false};
+
+  component.find('TaskCheckbox').simulate('change', {stopPropagation, target});
+
+  expect(updateTask).toHaveBeenCalledTimes(1);
+  expect(updateTask).toHaveBeenCalledWith(task.id, {done: false});
 });

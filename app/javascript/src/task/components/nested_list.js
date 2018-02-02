@@ -13,8 +13,8 @@ class TaskNestedList extends React.Component {
   }
 
   taskListItem(task) {
-    const {tasksByParentId} = this.props;
-    const listItemProps = {key: task.id, task};
+    const {tasksByParentId, updateTask} = this.props;
+    const listItemProps = {key: task.id, task, updateTask};
 
     if (tasksByParentId[task.id].length === 0) {
       return <TaskLeafListItem {...listItemProps} />;
@@ -38,6 +38,7 @@ class TaskNestedList extends React.Component {
 TaskNestedList.propTypes = {
   tasks: PropTypes.arrayOf(taskShape).isRequired,
   tasksByParentId: PropTypes.objectOf(PropTypes.arrayOf(taskShape)).isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TaskNestedList;
