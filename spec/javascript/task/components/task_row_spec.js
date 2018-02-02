@@ -13,7 +13,7 @@ const props = {
 it('renders a table row', () => {
   const component = shallow(<TaskRow {...props} />);
 
-  expect(component.find('tr')).toHaveClassName('task-list__row');
+  expect(component.find('tr')).toHaveClassName('tasks-table__row');
 });
 
 it('renders the timeframe selector when enabled', () => {

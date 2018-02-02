@@ -22,7 +22,7 @@ function SubTasksTable({subTasks, updateTask, deleteTask}) {
 
   return (
     <div>
-      <table className='task-list'>
+      <table className='tasks-table'>
         <thead><TableHeaders label={'Sub-tasks'} /></thead>
         <tbody>{taskRows(subTasks, {updateTask, deleteTask})}</tbody>
       </table>
