@@ -6,3 +6,16 @@
     float: right;
   }
 }
+
+.tag-buttons {
+  text-align: center;
+
+  div {
+    display: inline-block;
+    padding: 3px;
+  }
+}
+
+.current {
+  font-weight: bold;
+}

@@ -1,0 +1,50 @@
+.tasks-table {
+  width: 100%;
+}
+
+.tasks-table__header-row {
+  background-color: $color-table-header;
+}
+
+.tasks-table__header {
+  padding: 2px;
+}
+
+.tasks-table__cell {
+  padding: 1px;
+}
+
+.tasks-table__row {
+  &:nth-child(3n+3) {
+    border-bottom: 1px solid $color-table-header;
+  }
+}
+
+.tasks-table__row--pending {
+  opacity: 0.5;
+}
+
+.tasks-table__row--dragging {
+  opacity: 0;
+}
+
+.tasks-table__action {
+  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
+  margin-right: 10px;
+}
+
+.tasks-table__row--priority-1 {
+  background-color: $bg-priority-1;
+}
+
+.tasks-table__row--priority-2 {
+  background-color: $bg-priority-2;
+}
+
+.tasks-table__row--priority-3 {
+  background-color: $bg-priority-3;
+}
+
+.timeframes-header {
+  text-align: center;
+}

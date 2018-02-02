@@ -1,0 +1,81 @@
+.task-display {
+  background-color: $bg-task-display;
+  border-radius: 6px;
+  font-size: 31.5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  min-height: 75px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+
+  .fa-repeat {
+    font-size: 25px;
+  }
+
+  > table {
+    height: 90px;
+    text-align: middle;
+    width: 100%;
+  }
+
+  .timeframe {
+    font-size: 10px;
+    margin-left: -11px;
+    margin-top: -20px;
+    position: absolute;
+  }
+
+  .title {
+    width: 100%;
+  }
+
+  .emblems {
+    margin: 10px;
+  }
+
+  &.priority-1 {
+    background-color: $bg-priority-1;
+  }
+
+  &.priority-2 {
+    background-color: $bg-priority-2;
+  }
+
+  &.priority-3 {
+    background-color: $bg-priority-3;
+  }
+}
+
+.main-button {
+  > div {
+    padding: 3px;
+  }
+}
+
+.postpone-button {
+  padding: 0;
+
+  form,
+  label {
+    margin: 0;
+  }
+
+  > select {
+    color: $color-postpone-btn;
+    width: 150px;
+  }
+
+  label {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 10px 19px;
+  }
+}
+
+.over-skipped {
+  .title {
+    color: $color-critical;
+  }
+}
