@@ -1,0 +1,21 @@
+.task-filters {
+  margin-bottom: 30px;
+}
+
+.task-filter {
+  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.task-filter--active {
+  color: black;
+  cursor: default;
+
+  &:hover,
+  &:focus {
+    color: black;
+    text-decoration: none;
+  }
+}
+

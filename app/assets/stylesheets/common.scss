@@ -19,31 +19,6 @@
   text-align: center;
 }
 
-.timeframes-header {
-  text-align: center;
-}
-
-.task-filters {
-  margin-bottom: 30px;
-}
-
-.task-filter {
-  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  padding: 15px;
-}
-
-.task-filter--active {
-  color: black;
-  cursor: default;
-
-  &:hover,
-  &:focus {
-    color: black;
-    text-decoration: none;
-  }
-}
-
 .task-link {
   color: black;
   text-decoration: none;
@@ -57,127 +32,8 @@
   text-align: center;
 }
 
-.tag-buttons {
-  text-align: center;
-
-  div {
-    display: inline-block;
-    padding: 3px;
-  }
-}
-
-.tasks-table {
-  width: 100%;
-}
-
-.tasks-table__header-row {
-  background-color: $color-table-header;
-}
-
-.tasks-table__header {
-  padding: 2px;
-}
-
-.tasks-table__cell {
-  padding: 1px;
-}
-
-.tasks-table__row {
-  &:nth-child(3n+3) {
-    border-bottom: 1px solid $color-table-header;
-  }
-}
-
-.tasks-table__row--pending {
-  opacity: 0.5;
-}
-
-.tasks-table__row--dragging {
-  opacity: 0;
-}
-
-.tasks-table__action {
-  font-family: RobotoCondensed, Helvetica Neue, Helvetica, Arial, sans-serif;
-  margin-right: 10px;
-}
-
-.tasks-table__row--priority-1 {
-  background-color: $bg-priority-1;
-}
-
-.tasks-table__row--priority-2 {
-  background-color: $bg-priority-2;
-}
-
-.tasks-table__row--priority-3 {
-  background-color: $bg-priority-3;
-}
-
-.timeframe-select {
-  width: 130px;
-}
-
-.danger {
-  color: $color-critical;
-}
-
-.main-button {
-  > div {
-    padding: 3px;
-  }
-}
-
 .btn-link {
   padding: 0;
-}
-
-.task-display {
-  background-color: $bg-task-display;
-  border-radius: 6px;
-  font-size: 31.5px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  min-height: 75px;
-  padding-left: 0;
-  padding-right: 0;
-  text-align: center;
-
-  .fa-repeat {
-    font-size: 25px;
-  }
-
-  > table {
-    height: 90px;
-    text-align: middle;
-    width: 100%;
-  }
-
-  .timeframe {
-    font-size: 10px;
-    margin-left: -11px;
-    margin-top: -20px;
-    position: absolute;
-  }
-
-  .title {
-    width: 100%;
-  }
-
-  .emblems {
-    margin: 10px;
-  }
-
-  &.priority-1 {
-    background-color: $bg-priority-1;
-  }
-
-  &.priority-2 {
-    background-color: $bg-priority-2;
-  }
-
-  &.priority-3 {
-    background-color: $bg-priority-3;
-  }
 }
 
 ul {
@@ -190,27 +46,6 @@ ul {
   text-align: center;
   vertical-align: middle;
   width: 100%;
-}
-
-.postpone-button {
-  padding: 0;
-
-  form,
-  label {
-    margin: 0;
-  }
-
-  > select {
-    color: $color-postpone-btn;
-    width: 150px;
-  }
-
-  label {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: normal;
-    padding: 10px 19px;
-  }
 }
 
 html,
@@ -254,16 +89,6 @@ h3 {
 .hidden-border {
   background-color: inherit;
   border: 2px solid transparent;
-}
-
-.current {
-  font-weight: bold;
-}
-
-.over-skipped {
-  .title {
-    color: $color-critical;
-  }
 }
 
 .btn {
