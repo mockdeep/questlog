@@ -28,4 +28,5 @@ it('renders a nested task list for each task', () => {
   expect(nestedList).toHaveLength(1);
   expect(nestedList).toHaveProp('tasks', [parentTask]);
   expect(nestedList).toHaveProp('tasksByParentId', tasksByParentId);
+  expect(nestedList).toHaveProp('updateTask', updateTask);
 });
