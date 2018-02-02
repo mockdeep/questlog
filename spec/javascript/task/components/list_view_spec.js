@@ -22,10 +22,10 @@ function dive(component) {
   return shallow(component).dive();
 }
 
-it('renders the list headers', () => {
+it('renders the list filters', () => {
   const component = dive(<TaskListView {...props} />);
 
-  expect(component.find('TaskListHeader')).toBePresent();
+  expect(component.find('TaskListFilters')).toBePresent();
 });
 
 it('renders current tasks', () => {

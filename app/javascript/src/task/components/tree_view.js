@@ -2,7 +2,8 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import TaskListHeader from 'src/task/components/list_header';
+import NewTaskForm from 'src/task/containers/new_task_form';
+import TaskListFilters from 'src/task/components/list_filters';
 import TaskTree from 'src/task/components/tree';
 import {taskShape} from 'src/shapes';
 
@@ -17,7 +18,9 @@ class TaskTreeView extends React.Component {
 
     return (
       <div>
-        <TaskListHeader />
+        <NewTaskForm />
+        <br />
+        <TaskListFilters />
         <ul>
           {tasks.map(task => (
             <TaskTree
