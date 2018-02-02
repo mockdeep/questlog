@@ -16,7 +16,7 @@ const props = {
 it('renders the task list header', () => {
   const component = shallow(<TaskTreeView {...props} />);
 
-  expect(component.find('TaskListHeader')).toBePresent();
+  expect(component.find('TaskListFilters')).toBePresent();
 });
 
 it('renders a task tree for each task', () => {

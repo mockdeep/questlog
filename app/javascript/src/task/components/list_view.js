@@ -7,8 +7,9 @@ import {DragDropContext as dragDropContext} from 'react-dnd';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
+import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
-import TaskListHeader from 'src/task/components/list_header';
+import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import {taskShape} from 'src/shapes';
 
@@ -152,7 +153,9 @@ class TaskListView extends React.Component {
   render() {
     return (
       <div>
-        <TaskListHeader />
+        <NewTaskForm />
+        <br />
+        <TaskListFilters />
         {this.currentTasksTable()}
         {this.pendingTasksTable()}
       </div>

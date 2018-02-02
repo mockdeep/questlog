@@ -2,13 +2,10 @@ import React from 'react';
 
 import Link from 'src/route/containers/link';
 import ModalLink from 'src/_common/containers/modal_link';
-import NewTaskForm from 'src/task/containers/new_task_form';
 
-function TaskListHeader() {
+function TaskListFilters() {
   return (
-    <div>
-      <NewTaskForm />
-      <br />
+    <div className='task-filters'>
       {'Filter: '}
       <Link to='tasks' baseClass='task-filter'>{'ALL'}</Link>
       <Link to='rootTasks' baseClass='task-filter'>{'ROOT'}</Link>
@@ -21,4 +18,4 @@ function TaskListHeader() {
   );
 }
 
-export default TaskListHeader;
+export default TaskListFilters;
