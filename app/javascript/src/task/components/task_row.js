@@ -9,7 +9,7 @@ import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
-const BUTTON_CLASS = 'btn btn-link task-list__action';
+const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
 class TaskRow extends React.PureComponent {
   constructor(props) {
@@ -58,18 +58,18 @@ class TaskRow extends React.PureComponent {
   className() {
     const {isDragging, status} = this.props;
 
-    let classString = 'task-list__row';
+    let classString = 'tasks-table__row';
 
     if (this.priority()) {
-      classString += ` task-list__row--priority-${this.priority()}`;
+      classString += ` tasks-table__row--priority-${this.priority()}`;
     }
 
     if (status) {
-      classString += ` task-list__row--${status}`;
+      classString += ` tasks-table__row--${status}`;
     }
 
     if (isDragging) {
-      classString += ' task-list__row--dragging';
+      classString += ' tasks-table__row--dragging';
     }
 
     return classString;
@@ -179,7 +179,7 @@ class TaskRow extends React.PureComponent {
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
-        <td className='task-list__cell'>
+        <td className='tasks-table__cell'>
           <button className={BUTTON_CLASS} onClick={this.markDone}>
             {'DONE'}
           </button>

@@ -3,15 +3,15 @@ import React from 'react';
 
 function TableHeaders({label}) {
   return (
-    <tr className='task-list__header-row'>
-      <th className='task-list__header' />
-      <th className='task-list__header'>{label}</th>
-      <th className='task-list__header' />
-      <th className='task-list__header'>{'Estimate'}</th>
-      <th className='task-list__header' />
-      <th className='task-list__header'>{'Priority'}</th>
-      <th className='task-list__header' />
-      <th className='task-list__header' />
+    <tr className='tasks-table__header-row'>
+      <th className='tasks-table__header' />
+      <th className='tasks-table__header'>{label}</th>
+      <th className='tasks-table__header' />
+      <th className='tasks-table__header'>{'Estimate'}</th>
+      <th className='tasks-table__header' />
+      <th className='tasks-table__header'>{'Priority'}</th>
+      <th className='tasks-table__header' />
+      <th className='tasks-table__header' />
     </tr>
   );
 }
