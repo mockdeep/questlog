@@ -8,9 +8,11 @@ import {makeTask} from '_test_helpers/factories';
 const parentTask = makeTask({title: 'I am the parent'});
 const childTask = makeTask();
 const tasksByParentId = {[parentTask.id]: [childTask]};
+const updateTask = jest.fn();
 const props = {
   tasks: [parentTask],
   tasksByParentId,
+  updateTask,
 };
 
 it('renders the task list header', () => {
@@ -19,11 +21,11 @@ it('renders the task list header', () => {
   expect(component.find('TaskListFilters')).toBePresent();
 });
 
-it('renders a task tree for each task', () => {
+it('renders a nested task list for each task', () => {
   const component = shallow(<TaskTreeView {...props} />);
-  const tree = component.find('TaskTree');
+  const nestedList = component.find('TaskNestedList');
 
-  expect(tree).toHaveLength(1);
-  expect(tree).toHaveProp('task', parentTask);
-  expect(tree).toHaveProp('tasksByParentId', tasksByParentId);
+  expect(nestedList).toHaveLength(1);
+  expect(nestedList).toHaveProp('tasks', [parentTask]);
+  expect(nestedList).toHaveProp('tasksByParentId', tasksByParentId);
 });
