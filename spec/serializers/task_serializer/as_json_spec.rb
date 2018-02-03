@@ -20,6 +20,7 @@ RSpec.describe TaskSerializer, '#as_json' do
       id: task.id,
       parentTaskId: nil,
       pending: true,
+      status: 'pending',
       tagIds: task.tag_ids,
       updatedAt: task.updated_at,
       doneAt: task.done_at,

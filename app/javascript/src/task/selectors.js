@@ -4,10 +4,6 @@ import {createSelector} from 'reselect';
 import grab from 'src/_helpers/grab';
 import {getRouteParams} from 'src/route/selectors';
 
-function isActiveTask(task) {
-  return Boolean(!task.doneAt || task.releaseAt);
-}
-
 const timeframePositions = {
   today: 1,
   week: 2,
@@ -28,13 +24,13 @@ function timeframePosition(task) {
 }
 
 function partitionTasks(tasks) {
-  const [pending, undone] = partition(tasks, task => task.releaseAt);
+  const [pending, undone] = partition(tasks, task => task.status === 'pending');
 
   return {pending, undone};
 }
 
 function processTasks(tasksById) {
-  return pickBy(tasksById, isActiveTask);
+  return pickBy(tasksById, task => task.status !== 'done');
 }
 
 function mapTasksToParentId(tasksById) {

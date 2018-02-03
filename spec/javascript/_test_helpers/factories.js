@@ -31,6 +31,7 @@ function makeTask(attrs) {
     estimateMinutes: 30,
     loadingState: 'ready',
     priority: null,
+    status: 'active',
     tagIds: [],
     tagNames: [],
     timeframe: null,

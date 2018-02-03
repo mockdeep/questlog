@@ -13,6 +13,7 @@ class TaskSerializer
     :release_at,
     :repeat_seconds,
     :skip_count,
+    :status,
     :tag_ids,
     :tag_names,
     :timeframe,
