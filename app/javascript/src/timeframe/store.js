@@ -29,8 +29,6 @@ const TimeframeStore = {
   },
 
   notifyListeners() {
-    if (!this.listeners) { return; }
-
     this.listeners.forEach(listener => listener());
   },
 

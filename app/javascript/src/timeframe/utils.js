@@ -5,11 +5,14 @@ import grab from 'src/_helpers/grab';
 import TimeBalancer from 'src/_helpers/time_balancer';
 
 const timeframeEnds = {
+  inbox: null,
   today: moment().endOf('day'),
   week: moment().endOf('week'),
   month: moment().endOf('month'),
   quarter: moment().endOf('quarter'),
   year: moment().endOf('year'),
+  lustrum: null,
+  decade: null,
 };
 
 const timeframeList = [

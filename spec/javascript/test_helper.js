@@ -10,3 +10,7 @@ import 'jest-enzyme';
 window.Notification = FakeNotification;
 
 document.body.innerHTML = '<div id="app-base"></div>';
+
+beforeEach(() => {
+  expect.hasAssertions();
+});
