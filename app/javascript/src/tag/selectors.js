@@ -2,7 +2,7 @@ import {createSelector} from 'reselect';
 import {mapValues, sortBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
-import {getUndoneTasks} from 'src/task/selectors';
+import {getActiveTasks} from 'src/task/selectors';
 
 const RULES = {
   isActive() { return true; },
@@ -32,9 +32,9 @@ function minPriority(tasks) {
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
 
-function processTags(tagsById, undoneTasks) {
+function processTags(tagsById, activeTasks) {
   return mapValues(tagsById, tag => {
-    const tasks = matchingTasks(tag, undoneTasks);
+    const tasks = matchingTasks(tag, activeTasks);
 
     return {...tag, tasks, priority: minPriority(tasks)};
   });
@@ -46,7 +46,7 @@ const getSelectedTagSlug = createSelector(
 );
 
 const getTagsById = createSelector(
-  [state => state.tag.byId, getUndoneTasks],
+  [state => state.tag.byId, getActiveTasks],
   processTags
 );
 
@@ -65,13 +65,13 @@ const getSelectedTag = createSelector(
   (orderedTags, slug) => orderedTags.find(tag => tag.slug === slug)
 );
 
-const getNextUndoneTask = createSelector(
+const getNextActiveTask = createSelector(
   [getSelectedTag], selectedTag => selectedTag.tasks[0]
 );
 
 export {
   getActiveTags,
-  getNextUndoneTask,
+  getNextActiveTask,
   getOrderedTags,
   getSelectedTag,
 };

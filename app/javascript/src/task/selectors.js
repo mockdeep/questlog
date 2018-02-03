@@ -24,9 +24,9 @@ function timeframePosition(task) {
 }
 
 function partitionTasks(tasks) {
-  const [pending, undone] = partition(tasks, task => task.status === 'pending');
+  const [pending, active] = partition(tasks, task => task.status === 'pending');
 
-  return {pending, undone};
+  return {pending, active};
 }
 
 function processTasks(tasksById) {
@@ -71,9 +71,9 @@ const getPartitionedLeafTasks = createSelector(getLeafTasks, partitionTasks);
 
 const getPartitionedRootTasks = createSelector(getRootTasks, partitionTasks);
 
-const getUndoneTasks = createSelector(
+const getActiveTasks = createSelector(
   getPartitionedLeafTasks,
-  partitionedTasks => partitionedTasks.undone
+  partitionedTasks => partitionedTasks.active
 );
 
 const getCurrentTask = createSelector(
@@ -93,5 +93,5 @@ export {
   getPartitionedRootTasks,
   getPartitionedTasks,
   getTasksByParentId,
-  getUndoneTasks,
+  getActiveTasks,
 };

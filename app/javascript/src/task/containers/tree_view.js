@@ -6,7 +6,7 @@ import {getPartitionedRootTasks, getTasksByParentId} from 'src/task/selectors';
 
 function mapStateToProps(state) {
   return {
-    tasks: getPartitionedRootTasks(state).undone,
+    tasks: getPartitionedRootTasks(state).active,
     tasksByParentId: getTasksByParentId(state),
   };
 }
