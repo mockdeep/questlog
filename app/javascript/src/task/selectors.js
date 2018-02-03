@@ -1,4 +1,4 @@
-import {pickBy, partition, sortBy} from 'lodash';
+import {groupBy, pickBy, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
 import grab from 'src/_helpers/grab';
@@ -24,9 +24,7 @@ function timeframePosition(task) {
 }
 
 function partitionTasks(tasks) {
-  const [pending, active] = partition(tasks, task => task.status === 'pending');
-
-  return {pending, active};
+  return {pending: [], active: [], ...groupBy(tasks, 'status')};
 }
 
 function processTasks(tasksById) {
