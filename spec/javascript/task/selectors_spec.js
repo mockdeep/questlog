@@ -33,16 +33,16 @@ describe('getUndoneTasks', () => {
     expect(getUndoneTasks(state)).toEqual([task1, task2]);
   });
 
-  it('does not return tasks with a release date', () => {
-    const task1 = makeTask({title: 'some task', releaseAt: new Date()});
+  it('does not return tasks with a "pending" status', () => {
+    const task1 = makeTask({title: 'some task', status: 'pending'});
     const task2 = makeTask({title: 'some other task'});
     const state = makeState({task: [task1, task2]});
 
     expect(getUndoneTasks(state)).toEqual([task2]);
   });
 
-  it('does not return tasks with a done date', () => {
-    const task1 = makeTask({title: 'some task', doneAt: new Date()});
+  it('does not return tasks with a "done" status', () => {
+    const task1 = makeTask({title: 'some task', status: 'done'});
     const task2 = makeTask({title: 'some other task'});
     const state = makeState({task: [task1, task2]});
 
@@ -68,10 +68,10 @@ describe('getUndoneTasks', () => {
 
 describe('getPartitionedLeafTasks', () => {
   it('returns leaf tasks partitioned on pending status', () => {
-    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task1 = makeTask({status: 'pending'});
     const task2 = makeTask({});
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({doneAt: new Date()});
+    const task4 = makeTask({status: 'done'});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
@@ -82,10 +82,10 @@ describe('getPartitionedLeafTasks', () => {
 
 describe('getPartitionedRootTasks', () => {
   it('returns root tasks partitioned on pending status', () => {
-    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task1 = makeTask({status: 'pending'});
     const task2 = makeTask({});
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({doneAt: new Date()});
+    const task4 = makeTask({status: 'done'});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
@@ -96,10 +96,10 @@ describe('getPartitionedRootTasks', () => {
 
 describe('getPartitionedTasks', () => {
   it('returns tasks partitioned on pending status', () => {
-    const task1 = makeTask({doneAt: new Date(), releaseAt: new Date()});
+    const task1 = makeTask({status: 'pending'});
     const task2 = makeTask({});
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({doneAt: new Date()});
+    const task4 = makeTask({status: 'done'});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 

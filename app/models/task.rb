@@ -112,6 +112,16 @@ class Task < ApplicationRecord
     @decrement_counters = true if changed_to_done?
   end
 
+  def status
+    if release_at
+      'pending'
+    elsif done_at
+      'done'
+    else
+      'active'
+    end
+  end
+
   def tag_names
     @tag_names ||= tags.map(&:name)
   end
