@@ -3,7 +3,7 @@ import {
   getPartitionedLeafTasks,
   getPartitionedRootTasks,
   getPartitionedTasks,
-  getUndoneTasks,
+  getActiveTasks,
 } from 'src/task/selectors';
 
 import {makeState, makeTask} from '_test_helpers/factories';
@@ -24,13 +24,13 @@ describe('getCurrentTask', () => {
   });
 });
 
-describe('getUndoneTasks', () => {
+describe('getActiveTasks', () => {
   it('returns tasks', () => {
     const task1 = makeTask({title: 'some task'});
     const task2 = makeTask({title: 'some other task'});
     const state = makeState({task: [task1, task2]});
 
-    expect(getUndoneTasks(state)).toEqual([task1, task2]);
+    expect(getActiveTasks(state)).toEqual([task1, task2]);
   });
 
   it('does not return tasks with a "pending" status', () => {
@@ -38,7 +38,7 @@ describe('getUndoneTasks', () => {
     const task2 = makeTask({title: 'some other task'});
     const state = makeState({task: [task1, task2]});
 
-    expect(getUndoneTasks(state)).toEqual([task2]);
+    expect(getActiveTasks(state)).toEqual([task2]);
   });
 
   it('does not return tasks with a "done" status', () => {
@@ -46,7 +46,7 @@ describe('getUndoneTasks', () => {
     const task2 = makeTask({title: 'some other task'});
     const state = makeState({task: [task1, task2]});
 
-    expect(getUndoneTasks(state)).toEqual([task2]);
+    expect(getActiveTasks(state)).toEqual([task2]);
   });
 
   it('does not return tasks with sub tasks', () => {
@@ -55,14 +55,14 @@ describe('getUndoneTasks', () => {
     const task3 = makeTask({title: 'some child task', parentTaskId: task2.id});
     const state = makeState({task: [task1, task2, task3]});
 
-    expect(getUndoneTasks(state)).toEqual([task1, task3]);
+    expect(getActiveTasks(state)).toEqual([task1, task3]);
   });
 
   it('raises an error when task has invalid timeframe', () => {
     const task = makeTask({title: 'a task', timeframe: 'yesterday'});
     const state = makeState({task: [task]});
 
-    expect(() => getUndoneTasks(state)).toThrow(/has no key "yesterday"/);
+    expect(() => getActiveTasks(state)).toThrow(/has no key "yesterday"/);
   });
 });
 
@@ -75,7 +75,7 @@ describe('getPartitionedLeafTasks', () => {
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
-    const expected = {undone: [task3], pending: [task1]};
+    const expected = {active: [task3], pending: [task1]};
     expect(getPartitionedLeafTasks(state)).toEqual(expected);
   });
 });
@@ -89,7 +89,7 @@ describe('getPartitionedRootTasks', () => {
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
-    const expected = {undone: [task2], pending: [task1]};
+    const expected = {active: [task2], pending: [task1]};
     expect(getPartitionedRootTasks(state)).toEqual(expected);
   });
 });
@@ -103,7 +103,7 @@ describe('getPartitionedTasks', () => {
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
-    const expected = {undone: [task2, task3], pending: [task1]};
+    const expected = {active: [task2, task3], pending: [task1]};
     expect(getPartitionedTasks(state)).toEqual(expected);
   });
 });

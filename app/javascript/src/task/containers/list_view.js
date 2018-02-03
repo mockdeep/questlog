@@ -17,9 +17,9 @@ const ROUTE_SELECTORS = {
 
 function mapStateToProps(state) {
   const selector = grab(ROUTE_SELECTORS, state.route.name);
-  const {pending, undone} = selector(state);
+  const {pending, active} = selector(state);
 
-  return {currentTasks: undone, pendingTasks: pending, route: state.route};
+  return {currentTasks: active, pendingTasks: pending, route: state.route};
 }
 
 export default connect(mapStateToProps, {deleteTask, updateTask})(TaskListView);
