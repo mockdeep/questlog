@@ -53,3 +53,18 @@ it('updates the task to not done when the checkbox gets unchecked', () => {
   expect(updateTask).toHaveBeenCalledTimes(1);
   expect(updateTask).toHaveBeenCalledWith(task.id, {done: false});
 });
+
+it('adds a priority class to title when task has a priority', () => {
+  const overrides = {task: {...task, priority: 'foo'}};
+  const component = shallow(<TaskLeafListItem {...props} {...overrides} />);
+
+  const titleClasses = component.find('span').prop('className').split(' ');
+  expect(titleClasses).toContain('task-item__title--priority-foo');
+});
+
+it('does not add a priority class to title when task has no priority', () => {
+  const component = shallow(<TaskLeafListItem {...props} />);
+
+  const titleClass = component.find('span').prop('className');
+  expect(titleClass).not.toMatch('priority');
+});
