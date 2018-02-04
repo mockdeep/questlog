@@ -17,10 +17,15 @@ class TaskParentListItem extends React.Component {
     const tasks = tasksByParentId[task.id];
     const listProps = {tasks, tasksByParentId, updateTask};
 
+    let titleClass = 'task-item__title';
+    if (task.priority) {
+      titleClass += ` task-item__title--priority-${task.priority}`;
+    }
+
     return (
       <li className='task-item'>
         <TaskCheckbox task={task} disabled />
-        <span className='task-item__title'>{task.title}</span>
+        <span className={titleClass}>{task.title}</span>
         <TaskNestedList {...listProps} />
       </li>
     );
