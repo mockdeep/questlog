@@ -32,3 +32,18 @@ it('renders a disabled checkbox for the task', () => {
   expect(checkbox).toHaveProp('task', task);
   expect(checkbox).toHaveProp('disabled', true);
 });
+
+it('adds a priority class to title when task has a priority', () => {
+  const overrides = {task: {...task, priority: 'foo'}};
+  const component = shallow(<TaskParentListItem {...props} {...overrides} />);
+
+  const titleClasses = component.find('span').prop('className').split(' ');
+  expect(titleClasses).toContain('task-item__title--priority-foo');
+});
+
+it('does not add a priority class to title when task has no priority', () => {
+  const component = shallow(<TaskParentListItem {...props} />);
+
+  const titleClass = component.find('span').prop('className');
+  expect(titleClass).not.toMatch('priority');
+});
