@@ -23,6 +23,11 @@ class TaskLeafListItem extends React.Component {
   render() {
     const {task} = this.props;
 
+    let titleClass = 'task-item__title';
+    if (task.priority) {
+      titleClass += ` task-item__title--priority-${task.priority}`;
+    }
+
     return (
       <li className='task-item'>
         <TaskCheckbox
@@ -30,7 +35,7 @@ class TaskLeafListItem extends React.Component {
           onChange={this.toggleDone}
           checked={task.status === 'done'}
         />
-        <span className='task-item__title'>{task.title}</span>
+        <span className={titleClass}>{task.title}</span>
       </li>
     );
   }
