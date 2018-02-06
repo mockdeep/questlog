@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -10,13 +11,18 @@ class TaskCheckbox extends React.Component {
     autobind(this);
   }
 
+  labelClass() {
+    const {checked, disabled} = this.props;
+    return classnames({
+      'task-item__checkbox-display': true,
+      'task-item__checkbox-display--checked': checked,
+      'task-item__checkbox-display--enabled': !disabled,
+    });
+  }
+
   render() {
     const {checked, disabled, onChange, task} = this.props;
     const inputId = `complete-task-${task.id}`;
-    let labelClass = 'task-item__checkbox-display';
-
-    if (checked) { labelClass += ' task-item__checkbox-display--checked'; }
-    if (!disabled) { labelClass += ' task-item__checkbox-display--enabled'; }
 
     return (
       <div className='task-item__checkbox'>
@@ -28,7 +34,7 @@ class TaskCheckbox extends React.Component {
           className='task-item__checkbox-actual'
           onChange={onChange}
         />
-        <label htmlFor={inputId} className={labelClass} />
+        <label htmlFor={inputId} className={this.labelClass()} />
       </div>
     );
   }

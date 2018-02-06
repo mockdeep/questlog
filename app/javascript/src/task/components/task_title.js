@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -18,16 +19,11 @@ class TaskTitle extends React.Component {
   className() {
     const {task} = this.props;
 
-    let classString = 'col-md-12 task-display';
-
-    if (task.priority) {
-      classString = `${classString} priority-${task.priority}`;
-    }
-    if (task.skip_count >= 15) {
-      classString = `${classString} over-skipped`;
-    }
-
-    return classString;
+    return classnames({
+      'col-md-12 task-display': true,
+      [`priority-${task.priority}`]: task.priority,
+      'over-skipped': task.skip_count >= 15,
+    });
   }
 
   title() {

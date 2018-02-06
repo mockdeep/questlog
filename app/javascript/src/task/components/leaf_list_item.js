@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -20,13 +21,17 @@ class TaskLeafListItem extends React.Component {
     updateTask(task.id, {done: checked});
   }
 
-  render() {
+  titleClass() {
     const {task} = this.props;
 
-    let titleClass = 'task-item__title';
-    if (task.priority) {
-      titleClass += ` task-item__title--priority-${task.priority}`;
-    }
+    return classnames({
+      'task-item__title': true,
+      [`task-item__title--priority-${task.priority}`]: task.priority,
+    });
+  }
+
+  render() {
+    const {task} = this.props;
 
     return (
       <li className='task-item'>
@@ -35,7 +40,7 @@ class TaskLeafListItem extends React.Component {
           onChange={this.toggleDone}
           checked={task.status === 'done'}
         />
-        <span className={titleClass}>{task.title}</span>
+        <span className={this.titleClass()}>{task.title}</span>
       </li>
     );
   }

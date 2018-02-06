@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
@@ -59,6 +60,12 @@ class TaskEditTitleForm extends React.Component {
     this.input = input;
   }
 
+  className() {
+    const {scratch} = this.props;
+
+    return classnames({'task-input': true, 'hidden-border': !scratch.focused});
+  }
+
   render() {
     const {scratch, task} = this.props;
 
@@ -67,7 +74,7 @@ class TaskEditTitleForm extends React.Component {
         <Textarea
           inputRef={this.storeInput}
           name={'task-title'}
-          className={`task-input${scratch.focused ? '' : ' hidden-border'}`}
+          className={this.className()}
           value={scratch.taskTitle || task.title}
           onKeyPress={this.submitIfEnter}
           onChange={this.updateTitleInput}

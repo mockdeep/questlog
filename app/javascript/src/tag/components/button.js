@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -13,19 +14,13 @@ class TagButton extends React.Component {
 
   className() {
     const {current, isActive, tag} = this.props;
-    let classString = 'button btn btn-default';
 
-    if (isActive) {
-      classString = `${classString} active`;
-    }
-    if (current) {
-      classString = `${classString} current`;
-    }
-    if (tag.priority) {
-      classString = `${classString} priority-${tag.priority}-btn`;
-    }
-
-    return classString;
+    return classnames({
+      'button btn btn-default': true,
+      active: isActive,
+      current,
+      [`priority-${tag.priority}-btn`]: tag.priority,
+    });
   }
 
   render() {
