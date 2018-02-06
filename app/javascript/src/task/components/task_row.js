@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {map} from 'lodash';
@@ -58,21 +59,12 @@ class TaskRow extends React.PureComponent {
   className() {
     const {isDragging, status} = this.props;
 
-    let classString = 'tasks-table__row';
-
-    if (this.priority()) {
-      classString += ` tasks-table__row--priority-${this.priority()}`;
-    }
-
-    if (status) {
-      classString += ` tasks-table__row--${status}`;
-    }
-
-    if (isDragging) {
-      classString += ' tasks-table__row--dragging';
-    }
-
-    return classString;
+    return classnames({
+      'tasks-table__row': true,
+      [`tasks-table__row--priority-${this.priority()}`]: this.priority(),
+      [`tasks-table__row--${status}`]: status,
+      'tasks-table__row--dragging': isDragging,
+    });
   }
 
   priority() {

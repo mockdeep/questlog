@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {mapValues} from 'lodash';
@@ -31,13 +32,11 @@ class Link extends React.Component {
   className() {
     const {baseClass, className, to, routeName} = this.props;
 
-    const classes = [
+    return classnames(
       baseClass,
-      baseClass && routeName === to && `${baseClass}--active`,
+      {[`${baseClass}--active`]: baseClass && routeName === to},
       className,
-    ];
-
-    return classes.filter(item => item).join(' ');
+    );
   }
 
   render() {

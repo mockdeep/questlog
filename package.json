@@ -13,6 +13,7 @@
     "babelify": "^8.0.0",
     "bootstrap-sass": "^3.3.7",
     "class-autobind": "^0.1.4",
+    "classnames": "^2.2.5",
     "compression-webpack-plugin": "^1.0.0",
     "elm": "^0.18.0",
     "elm-webpack-loader": "^4.4.0",
