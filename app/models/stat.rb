@@ -11,9 +11,20 @@ class Stat < ApplicationRecord
   def self.median_productivity
     beginning = 2.weeks.ago.beginning_of_day
     ending = Time.zone.now.beginning_of_day
-    query = where('timestamp > ? AND timestamp < ?', beginning, ending)
-    values = query.pluck(:value)
-    Median.new(values, default: 1.hour)
+    scope = where('timestamp > ? AND timestamp < ?', beginning, ending)
+    scope.median || 1.hour
+  end
+
+  def self.median
+    Median.(pluck(:value))
+  end
+
+  def self.mean
+    Mean.(pluck(:value))
+  end
+
+  def self.standard_deviation
+    StandardDeviation.(pluck(:value))
   end
 
 end
