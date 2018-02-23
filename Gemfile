@@ -17,7 +17,7 @@ gem 'honeybadger'
 gem 'junk_drawer'
 gem 'newrelic_rpm'
 gem 'normalize-rails'
-gem 'pg', '~> 0.21.0' # https://github.com/rails/rails/pull/31671
+gem 'pg'
 gem 'pry'
 gem 'puma'
 gem 'puma_worker_killer'
@@ -27,7 +27,7 @@ gem 'stripe'
 gem 'webpacker'
 
 gem 'bootstrap-sass'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4.7.0'
 gem 'sass-rails'
 gem 'uglifier'
 
