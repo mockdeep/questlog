@@ -63,7 +63,7 @@
     "jest-enzyme": "^6.0.0",
     "jsdom": "^11.2.0",
     "react-test-renderer": "^16.0.0",
-    "stylelint": "^8.4.0"
+    "stylelint": "^9.2.0"
   },
   "engines": {
     "node": "9.5.0"
