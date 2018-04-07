@@ -2,23 +2,11 @@ import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import TableHeaders from 'src/timeframe/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 import {timeframeShape, timeframeSpaceShape} from 'src/shapes';
-
-const TABLE_HEADERS = (
-  <tr className='tasks-table__header-row'>
-    <th className='tasks-table__header' />
-    <th className='tasks-table__header'>{'Title'}</th>
-    <th className='tasks-table__header' />
-    <th className='tasks-table__header'>{'Estimate'}</th>
-    <th className='tasks-table__header' />
-    <th className='tasks-table__header'>{'Priority'}</th>
-    <th className='tasks-table__header'>{'Timeframe'}</th>
-    <th className='tasks-table__header' />
-  </tr>
-);
 
 class TimeframeSection extends React.Component {
   constructor(props) {
@@ -114,7 +102,7 @@ class TimeframeSection extends React.Component {
           {this.ratioSpan()}
         </h2>
         <table className='tasks-table'>
-          <thead>{TABLE_HEADERS}</thead>
+          <TableHeaders />
           <tbody>
             {this.currentTaskRows()}
             {this.pendingTaskRows()}
