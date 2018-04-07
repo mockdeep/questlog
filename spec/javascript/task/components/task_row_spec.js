@@ -19,7 +19,7 @@ it('renders a table row', () => {
 it('renders the timeframe selector when enabled', () => {
   const component = shallow(<TaskRow {...props} timeframesEnabled />);
 
-  expect(component.find('select.timeframe-select')).toBePresent();
+  expect(component.find('select.timeframe-select')).toExist();
 });
 
 it('renders an undo button when task is pending', () => {

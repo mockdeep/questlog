@@ -51,5 +51,5 @@ it('does not render empty timeframes', () => {
   component.instance().updateTimeframes(input);
   component.update();
 
-  expect(component.find('TimeframeSection')).toBeEmpty();
+  expect(component.find('TimeframeSection')).not.toExist();
 });

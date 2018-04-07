@@ -31,5 +31,5 @@ it('does not render the "All" tag', () => {
   const tags = [makeTag({name: 'All', slug: ''})];
   const component = shallow(<TagListView {...props} tags={tags} />);
 
-  expect(component.find('.tag-row')).toBeEmpty();
+  expect(component.find('.tag-row')).not.toExist();
 });

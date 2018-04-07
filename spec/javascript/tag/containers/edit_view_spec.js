@@ -9,5 +9,5 @@ const props = {store: createAppStore()};
 it('wraps the EditForm component', () => {
   const container = shallow(<TagEditFormContainer {...props} />);
 
-  expect(container.find('Scratch(TagEditView)')).toBePresent();
+  expect(container.find('Scratch(TagEditView)')).toExist();
 });

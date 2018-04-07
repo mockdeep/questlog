@@ -34,16 +34,16 @@ it('renders rule rows', () => {
   const overrides = {...props, scratch: {rules: tempRules}};
   const component = shallow(<TagEditView {...overrides} />);
 
-  expect(component.find('RuleRow')).toBePresent();
+  expect(component.find('RuleRow')).toExist();
 });
 
 it('adds rules when "Add Rule" button is clicked', () => {
   const component = shallow(<TagEditView {...props} />);
 
-  expect(component.find('RuleRow')).toBeEmpty();
+  expect(component.find('RuleRow')).not.toExist();
   const addRuleButton = component.find({value: 'Add Rule'});
 
-  expect(addRuleButton).toBePresent();
+  expect(addRuleButton).toExist();
   addRuleButton.simulate('click');
   expect(updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
 });

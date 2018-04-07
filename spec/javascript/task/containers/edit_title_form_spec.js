@@ -9,5 +9,5 @@ const props = {store: createAppStore(), task: {}};
 it('renders a scratch component', () => {
   const component = shallow(<TaskEditTitleForm {...props} />);
 
-  expect(component.find('Scratch(TaskEditTitleForm)')).toBePresent();
+  expect(component.find('Scratch(TaskEditTitleForm)')).toExist();
 });

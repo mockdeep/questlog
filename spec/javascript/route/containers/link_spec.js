@@ -13,7 +13,7 @@ it('wraps the Link component', () => {
   const container = shallow(<LinkContainer {...props}>{'text'}</LinkContainer>);
 
   const link = container.find('Link');
-  expect(link).toBePresent();
+  expect(link).toExist();
   expect(link).toHaveProp('routeName', 'fooRoute');
   expect(link).toHaveProp('children', 'text');
 });
