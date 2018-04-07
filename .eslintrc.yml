@@ -53,6 +53,7 @@ rules:
   react/forbid-component-props: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/1449
   react/jsx-curly-brace-presence: off
+  react/jsx-max-depth: off
   react/jsx-sort-props: off
   react/sort-prop-types: [error, { ignoreCase: true, requiredFirst: true, sortShapeProp: true }]
   react/no-access-state-in-setstate: off
