@@ -8,5 +8,5 @@ it('wraps the TaskTreeView component', () => {
   const store = createAppStore();
   const container = shallow(<TaskTreeViewContainer store={store} />);
 
-  expect(container.find('TaskTreeView')).toBePresent();
+  expect(container.find('TaskTreeView')).toExist();
 });

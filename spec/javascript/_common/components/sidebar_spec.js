@@ -38,7 +38,7 @@ describe('when browser is desktop', () => {
     component.find('.sidebar__toggle').simulate('click', {preventDefault});
 
     expect(preventDefault).toHaveBeenCalled();
-    expect(component.find(Link)).not.toBePresent();
+    expect(component.find(Link)).not.toExist();
   });
 
   it('does not hide the sidebar after a link is clicked', () => {
@@ -59,7 +59,7 @@ describe('when browser is mobile', () => {
   it('hides the sidebar by default', () => {
     const component = shallow(<Sidebar />);
 
-    expect(component.find(Link)).not.toBePresent();
+    expect(component.find(Link)).not.toExist();
   });
 
   it('displays the sidebar when toggle is clicked', () => {
@@ -84,6 +84,6 @@ describe('when browser is mobile', () => {
     component.find(Link).at(0).prop('onNavigate')();
     component.update();
 
-    expect(component.find(Link)).not.toBePresent();
+    expect(component.find(Link)).not.toExist();
   });
 });

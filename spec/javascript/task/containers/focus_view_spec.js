@@ -9,5 +9,5 @@ const props = {store: createAppStore(), match: {params: {}}};
 it('wraps the Item component with Scratch', () => {
   const container = shallow(<TaskFocusViewContainer {...props} />);
 
-  expect(container.find('Scratch(TaskFocusView)')).toBePresent();
+  expect(container.find('Scratch(TaskFocusView)')).toExist();
 });

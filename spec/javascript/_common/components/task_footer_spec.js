@@ -8,7 +8,7 @@ const props = {task: {}, completeTask: jest.fn()};
 it('renders the notification checkbox', () => {
   const component = shallow(<TaskFooter {...props} />);
 
-  expect(component.find('Connect(NotificationCheckbox)')).toBePresent();
+  expect(component.find('Connect(NotificationCheckbox)')).toExist();
 });
 
 it('renders a footer with useful links', () => {

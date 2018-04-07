@@ -60,7 +60,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
     "jest": "^22.1.4",
-    "jest-enzyme": "^4.0.0",
+    "jest-enzyme": "^6.0.0",
     "jsdom": "^11.2.0",
     "react-test-renderer": "^16.0.0",
     "stylelint": "^8.4.0"

@@ -25,7 +25,7 @@ function dive(component) {
 it('renders the list filters', () => {
   const component = dive(<TaskListView {...props} />);
 
-  expect(component.find('TaskListFilters')).toBePresent();
+  expect(component.find('TaskListFilters')).toExist();
 });
 
 it('renders current tasks', () => {

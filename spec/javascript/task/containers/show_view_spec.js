@@ -12,5 +12,5 @@ it('wraps the TaskShowView component', () => {
   const props = {store: createStore(() => state)};
   const container = shallow(<TaskShowViewContainer {...props} />);
 
-  expect(container.find('TaskShowView')).toBePresent();
+  expect(container.find('TaskShowView')).toExist();
 });

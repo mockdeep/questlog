@@ -67,7 +67,7 @@ it('renders the task title', () => {
 
   const component = shallow(<TaskShowView {...props} task={task} />);
 
-  expect(component.find('Connect(Scratch(TaskEditTitleForm))')).toBePresent();
+  expect(component.find('Connect(Scratch(TaskEditTitleForm))')).toExist();
 });
 
 it('renders a message about the repeat time when present', () => {

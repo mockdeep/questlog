@@ -9,5 +9,5 @@ const props = {store: createAppStore()};
 it('wraps the TagListView component', () => {
   const container = shallow(<TagListViewContainer {...props} />);
 
-  expect(container.find('TagListView')).toBePresent();
+  expect(container.find('TagListView')).toExist();
 });

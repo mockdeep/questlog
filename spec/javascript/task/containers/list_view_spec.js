@@ -13,5 +13,5 @@ it('wraps the TaskListView component', () => {
   store.dispatch(setRoute({name: 'tasks'}));
   const container = shallow(<TaskListViewContainer store={store} />);
 
-  expect(container.find(TaskListView)).toBePresent();
+  expect(container.find(TaskListView)).toExist();
 });

@@ -14,7 +14,7 @@ it('renders a link to the help dialog', () => {
   const component = shallow(<ModalLink {...props} />);
 
   expect(component).toIncludeText('help text');
-  expect(component.find('HelpModal')).toBePresent();
+  expect(component.find('HelpModal')).toExist();
 });
 
 it('updates the modal state to open when button is clicked', () => {
