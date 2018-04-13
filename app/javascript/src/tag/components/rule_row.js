@@ -84,7 +84,7 @@ class RuleRow extends React.Component {
         </select>
         {this.checksDropdown()}
 
-        <i className='fa fa-times' onClick={this.deleteRule} />
+        <i className='fas fa-times' onClick={this.deleteRule} />
       </li>
     );
   }

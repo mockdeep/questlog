@@ -27,7 +27,7 @@ gem 'stripe'
 gem 'webpacker'
 
 gem 'bootstrap-sass'
-gem 'font-awesome-sass', '~> 4.7.0'
+gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'uglifier'
 

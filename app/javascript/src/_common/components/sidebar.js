@@ -47,7 +47,7 @@ class Sidebar extends React.Component {
     const className = `sidebar__toggle sidebar__toggle--${modifier}`;
     return (
       <button onClick={this.toggleVisible} className={className}>
-        <i className='fa fa-bars' />
+        <i className='fas fa-bars' />
       </button>
     );
   }
