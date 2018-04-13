@@ -1,20 +1,15 @@
 require_relative 'boot'
 
-require 'rails'
-require 'active_job/railtie'
-require 'active_model/railtie'
-require 'active_record/railtie'
-require 'action_cable/engine'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'action_view/railtie'
-require 'sprockets/railtie'
+require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
 module Questlog
 
   class Application < Rails::Application
+
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.2
 
     config.active_job.queue_adapter     = :sidekiq
     config.active_job.queue_name_prefix = "questlog_#{Rails.env}"

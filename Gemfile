@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.0'
 
 gem 'autoprefixer-rails'
 gem 'bcrypt'
+gem 'bootsnap', require: false
 gem 'dalli'
 gem 'friendly_id'
 gem 'gon'
