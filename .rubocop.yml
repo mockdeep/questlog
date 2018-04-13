@@ -53,7 +53,8 @@ Style/GuardClause: { MinBodyLength: 2 }
 Style/LambdaCall: { EnforcedStyle: braces }
 Style/MixinUsage: { Exclude: [bin/*] }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
-Style/TrailingCommaInLiteral: { EnforcedStyleForMultiline: comma }
+Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
+Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrivialAccessors: { AllowPredicates: true }
 
 # ............................................................................ #

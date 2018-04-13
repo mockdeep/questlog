@@ -6,7 +6,7 @@ if ENV['COVERAGE'] != 'false'
 end
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 require 'rspec/rails'
 require 'capybara-screenshot/rspec'
@@ -20,7 +20,6 @@ Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
 driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
-Capybara.wait_on_first_by_default = true
 Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
 
 %i[chrome selenium_chrome selenium_chrome_headless].each do |driver_name|
