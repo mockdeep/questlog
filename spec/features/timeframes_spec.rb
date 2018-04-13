@@ -86,32 +86,32 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
-      expect(find('h2', text: /\AInbox 36\/∞\z/)).to be
+      expect(find('h2', text: /\AInbox 36\/∞\z/)).to be_truthy
       task_row(task_1.title).select('This Week', from: 'timeframe-select')
 
-      expect(find('h2', text: /\AInbox 6\/∞\z/)).to be
+      expect(find('h2', text: /\AInbox 6\/∞\z/)).to be_truthy
       task_row(task_2.title).select('Today', from: 'timeframe-select')
     end
 
     expect(page).to have_no_css('#inbox')
 
     within('.timeframe#today') do
-      expect(find('h2', text: /\AToday 6\/63\z/)).to be
+      expect(find('h2', text: /\AToday 6\/63\z/)).to be_truthy
       expect(find('tbody > tr .task-input').value).to eq(task_2.title)
     end
 
     within('.timeframe#week') do
-      expect(find('h2', text: /\AThis Week 30\/95\z/)).to be
+      expect(find('h2', text: /\AThis Week 30\/95\z/)).to be_truthy
       task_row(task_1.title).select('Today', from: 'timeframe-select')
     end
 
     expect(page).to have_no_css('.timeframe#week')
 
     within('.timeframe#today') do
-      expect(find('h2', text: /\AToday 36\/63\z/)).to be
+      expect(find('h2', text: /\AToday 36\/63\z/)).to be_truthy
       task_row(task_1.title).select('-', from: 'timeframe-select')
 
-      expect(find('h2', text: /\AToday 6\/63\z/)).to be
+      expect(find('h2', text: /\AToday 6\/63\z/)).to be_truthy
       task_row(task_2.title).select('-', from: 'timeframe-select')
     end
 
