@@ -37,7 +37,7 @@ class TaskTitle extends React.Component {
 
     if (!task.repeatSeconds) { return false; }
 
-    return <i className='fa fa-repeat' title='task repeats' />;
+    return <i className='fas fa-redo-alt' title='task repeats' />;
   }
 
   timeframeName() {

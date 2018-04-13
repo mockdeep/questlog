@@ -10,7 +10,7 @@ function AlphaModal({isOpen, closeModal}) {
       onRequestClose={closeModal}
     >
       <button className='modal__close-button' onClick={closeModal}>
-        <i className='fa fa-times fa-2x' />
+        <i className='fas fa-times fa-2x' />
       </button>
       <h3>{'What does "alpha" mean?'}</h3>
       <p>

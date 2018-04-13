@@ -122,7 +122,7 @@ def select_tag(tag_name)
 end
 
 def repeat_selector
-  'i.fa.fa-repeat'
+  'i.fas.fa-redo-alt'
 end
 
 def current_tasks

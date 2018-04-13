@@ -21,7 +21,7 @@ class DeleteButton extends React.Component {
 
   rootOpts() {
     return {
-      className: 'fa fa-times delete-button',
+      className: 'fas fa-times delete-button',
       title: 'delete task',
       onClick: this.deleteTask,
     };

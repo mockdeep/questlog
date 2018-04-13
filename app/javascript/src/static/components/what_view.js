@@ -69,7 +69,7 @@ function WhatPage() {
       <h2>{'Sub Tasks'}</h2>
       <p>
         {"Next to the task title on each page you'll find an edit icon: "}
-        <i className='fa fa-edit' />{'.'}
+        <i className='fas fa-edit' />{'.'}
         {
           ` This will take you to a page where you can view the task and also
             add sub-tasks to it. Sub-tasks will show up on the Focus Page until

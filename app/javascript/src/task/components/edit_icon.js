@@ -8,7 +8,7 @@ function TaskEditIcon({task}) {
 
   return (
     <Link to='showTask' className='task-link' params={{taskId: task.id}}>
-      <i className='fa fa-edit' />
+      <i className='fas fa-edit' />
     </Link>
   );
 }

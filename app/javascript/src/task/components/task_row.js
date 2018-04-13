@@ -53,7 +53,7 @@ class TaskRow extends React.PureComponent {
 
     if (!task.repeatSeconds) { return false; }
 
-    return <i className='fa fa-repeat' title='task repeats' />;
+    return <i className='fas fa-redo-alt' title='task repeats' />;
   }
 
   className() {
