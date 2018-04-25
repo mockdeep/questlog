@@ -12,7 +12,9 @@ const MODALS = {
   help: HelpModal,
 };
 
-class ModalLink extends React.Component {
+class ModalLink extends React.Component<any, any> {
+  modalId: string;
+
   constructor(props) {
     super(props);
     autobind(this);
