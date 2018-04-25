@@ -23,7 +23,7 @@ settings:
   import/resolver:
     node:
       moduleDirectory: [app/javascript, node_modules, spec/javascript]
-      extensions: [.js, .elm]
+      extensions: [.js, .elm, .ts, .tsx]
 rules:
   ### to enable/improve
   class-methods-use-this: off
