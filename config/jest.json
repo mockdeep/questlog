@@ -1,6 +1,6 @@
 {
   "clearMocks": true,
-  "collectCoverageFrom": ["app/javascript/**/*.js"],
+  "collectCoverageFrom": ["app/javascript/**/*.(js|ts|tsx)"],
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {
     "global": {
@@ -10,7 +10,7 @@
       "lines": 82.79
     }
   },
-  "moduleFileExtensions": ["js", "jsx"],
+  "moduleFileExtensions": ["js", "ts", "tsx"],
   "modulePaths": [
     "<rootDir>/app/javascript",
     "<rootDir>/vendor/assets/javascripts/",
@@ -18,6 +18,10 @@
   ],
   "rootDir": "../",
   "setupTestFrameworkScriptFile": "<rootDir>/spec/javascript/test_helper.js",
-  "testRegex": "/spec/javascript/.*_spec.js(x)?$",
-  "testURL": "http://test.host"
+  "testRegex": "/spec/javascript/.*_spec.(js|ts|tsx)$",
+  "testURL": "http://test.host",
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.js$": "babel-jest"
+  }
 }
