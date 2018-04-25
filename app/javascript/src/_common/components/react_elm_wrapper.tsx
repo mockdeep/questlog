@@ -4,7 +4,9 @@ import React from 'react';
 
 import {elmSourceShape} from 'src/shapes';
 
-class ReactElmWrapper extends React.Component {
+class ReactElmWrapper extends React.Component<any, any> {
+  node: any;
+
   constructor(props) {
     super(props);
     autobind(this);

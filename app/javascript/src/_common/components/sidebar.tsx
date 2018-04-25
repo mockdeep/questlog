@@ -3,11 +3,15 @@ import React from 'react';
 
 import Link from 'src/route/containers/link';
 
-class Sidebar extends React.Component {
+class Sidebar extends React.Component<any, any> {
+  mediaQueryList: any;
+
   constructor(props) {
     super(props);
 
     autobind(this);
+
+    this.state = { visible: false };
   }
 
   componentWillMount() {

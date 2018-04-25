@@ -9,6 +9,18 @@ import {fetchRoute} from 'src/route/action_creators';
 import {removeNotification} from 'src/notification/action_creators';
 import debug from 'src/_helpers/debug';
 
+declare global {
+  interface Window {
+    $: any;
+    jQuery: any;
+    debug: any;
+    gon: any;
+  }
+
+  interface Function {
+    propTypes: any;
+  }
+}
 window.$ = $;
 window.jQuery = $;
 window.debug = debug;
@@ -30,7 +42,7 @@ require('jquery-ujs');
 ReactDOM.render(appBase, $('#app-base')[0]);
 
 Honeybadger.configure({
-  api_key: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
+  apiKey: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
   environment: window.gon.railsEnv,
   onerror: true,
 });
