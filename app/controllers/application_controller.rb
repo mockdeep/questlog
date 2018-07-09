@@ -22,7 +22,7 @@ private
 
   def current_user=(user)
     return_path = session[:return_path]
-    session.clear
+    reset_session
     session[:return_path] = return_path
     session[:user_id] = user.id if user
   end
