@@ -42,7 +42,6 @@ group :development, :test do
   gem 'bullet'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'foreman'
   gem 'guard'
   gem 'guard-rubocop'
   gem 'haml_lint', require: false
