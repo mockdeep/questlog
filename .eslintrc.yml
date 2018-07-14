@@ -43,6 +43,7 @@ rules:
   jsx-a11y/click-events-have-key-events: off
   jsx-a11y/href-no-hash: off
   jsx-a11y/label-has-for: off
+  jsx-a11y/label-has-associated-control: off
   jsx-a11y/no-onchange: off
   jsx-a11y/no-static-element-interactions: off
   jsx-a11y/onclick-has-role: off
@@ -57,6 +58,8 @@ rules:
   react/jsx-sort-props: off
   react/sort-prop-types: [error, { ignoreCase: true, requiredFirst: true, sortShapeProp: true }]
   react/no-access-state-in-setstate: off
+  # semi-urgent to re-enable
+  react/no-deprecated: off
   react/no-set-state: off
   # https://github.com/yannickcr/eslint-plugin-react/issues/1389
   react/no-typos: off
