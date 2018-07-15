@@ -1,11 +1,11 @@
 {
   "clearMocks": true,
-  "collectCoverageFrom": ["app/javascript/**/*.(js|ts|tsx)"],
+  "collectCoverageFrom": ["app/javascript/**/*.(js|ts|tsx)", "!**/*.d.ts"],
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {
     "global": {
       "statements": 82.09,
-      "branches": 75.33,
+      "branches": 75.27,
       "functions": 80.45,
       "lines": 82.79
     }
