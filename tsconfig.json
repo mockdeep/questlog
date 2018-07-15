@@ -5,11 +5,18 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "es6",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES6",
+      "ES7",
+      "ES2017"
+    ],
+    "module": "ES6",
     "moduleResolution": "node",
     "paths": {"*": ["app/javascript/*"]},
     "sourceMap": true,
-    "target": "es6",
+    "target": "ES6",
     "jsx": "react"
   },
   "exclude": [

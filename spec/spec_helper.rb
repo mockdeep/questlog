@@ -105,6 +105,7 @@ end
 def add_task(task_title)
   fill_in 'new-title', with: task_title
   click_button 'Add Task'
+  # binding.pry
   expect(page).to have_content('Task added')
   expect(page).not_to have_content('Task added')
 end
