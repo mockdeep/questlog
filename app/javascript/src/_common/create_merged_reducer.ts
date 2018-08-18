@@ -19,7 +19,7 @@ function initState(reducerMap) {
 
 function createMergedReducer(reducerMap) {
   return function mergedReducer(previousState, action) {
-    if (action.type === '@@redux/INIT') { return initState(reducerMap); }
+    if (action.type.startsWith('@@redux/INIT')) { return initState(reducerMap); }
 
     const reducerKey = getReducerKey(action);
     const reducer = grab(reducerMap, reducerKey);
