@@ -91,5 +91,5 @@ describe('when no task is given and ajaxState is ready', () => {
 it('throws an error when ajaxState is not accounted for', () => {
   expect(() => {
     shallow(<TaskFocusView {...props} ajaxState='froggling' />);
-  }).toThrow(/don't know how to deal with ajaxState "froggling"/);
+  }).toThrow(/don't know how to deal with ajaxState "froggling"/u);
 });
