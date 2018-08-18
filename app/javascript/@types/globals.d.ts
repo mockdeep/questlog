@@ -29,4 +29,3 @@ export declare global {
     parentTaskId: number,
   }
 }
-
