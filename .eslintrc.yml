@@ -9,10 +9,9 @@ extends:
 plugins: [eslint-plugin-jsx-a11y, fp, import, react]
 parserOptions:
   sourceType: module
-  ecmaVersion: 2017
+  ecmaVersion: 2018
   ecmaFeatures:
     jsx: true
-    experimentalObjectRestSpread: true
 env:
   browser: true
   es6: true
@@ -24,6 +23,9 @@ settings:
     node:
       moduleDirectory: [app/javascript, node_modules, spec/javascript]
       extensions: [.js, .elm, .ts, .tsx]
+  react:
+    version: '16.0'
+
 rules:
   ### to enable/improve
   class-methods-use-this: off

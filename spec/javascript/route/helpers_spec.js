@@ -30,7 +30,7 @@ describe('findRoute', () => {
   });
 
   it('raises an error when a route cannot be found', () => {
-    expect(() => { findRoute('booRoute'); }).toThrow(/No route found/);
+    expect(() => { findRoute('booRoute'); }).toThrow(/No route found/u);
   });
 });
 
@@ -60,6 +60,6 @@ describe('matchPath', () => {
   });
 
   it('raises an error when a match cannot be found', () => {
-    expect(() => { matchPath('/not/a/route'); }).toThrow(/No route found/);
+    expect(() => { matchPath('/not/a/route'); }).toThrow(/No route found/u);
   });
 });

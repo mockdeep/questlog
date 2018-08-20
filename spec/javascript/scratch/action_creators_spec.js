@@ -24,7 +24,7 @@ describe('createScratch', () => {
       const getState = jest.fn(() => ({scratch}));
       const thunk = createScratch(scratchKey);
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/already has key/);
+      expect(() => { thunk(dispatch, getState); }).toThrow(/already has key/u);
     });
   });
 });
@@ -50,7 +50,7 @@ describe('deleteScratch', () => {
       const getState = jest.fn(() => ({scratch: {}}));
       const thunk = deleteScratch(scratchKey);
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/);
+      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/u);
     });
   });
 });
@@ -77,7 +77,7 @@ describe('updateScratch', () => {
       const getState = jest.fn(() => ({scratch: {}}));
       const thunk = updateScratch(scratchKey);
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/);
+      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/u);
     });
   });
 });

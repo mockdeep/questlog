@@ -62,7 +62,7 @@ describe('getActiveTasks', () => {
     const task = makeTask({title: 'a task', timeframe: 'yesterday'});
     const state = makeState({task: [task]});
 
-    expect(() => getActiveTasks(state)).toThrow(/has no key "yesterday"/);
+    expect(() => getActiveTasks(state)).toThrow(/has no key "yesterday"/u);
   });
 });
 
