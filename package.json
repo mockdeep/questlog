@@ -60,7 +60,7 @@
     "elm-hot-loader": "^0.5.4",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.1",
-    "eslint": "^4.5.0",
+    "eslint": "^5.4.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^21.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",

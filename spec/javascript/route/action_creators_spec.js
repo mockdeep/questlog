@@ -43,7 +43,7 @@ describe('fetchRoute', () => {
   it('raises an error when the current route cannot be matched', () => {
     window.history.replaceState(null, null, '/not/a/route');
 
-    expect(() => { fetchRoute(); }).toThrow(/No route found/);
+    expect(() => { fetchRoute(); }).toThrow(/No route found/u);
   });
 });
 
@@ -69,6 +69,6 @@ describe('setRoute', () => {
   it('raises an error when a route cannot be found', () => {
     const payload = {name: 'not-a-route'};
 
-    expect(() => { setRoute(payload); }).toThrow(/No route found/);
+    expect(() => { setRoute(payload); }).toThrow(/No route found/u);
   });
 });

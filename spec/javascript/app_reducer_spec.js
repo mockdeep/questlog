@@ -37,7 +37,7 @@ describe('appReducer', () => {
   describe('invalid action type', () => {
     it('throws an error', () => {
       const action = {type: 'booger/UPDATE', payload: {booger: 'flick'}};
-      const message = /object has no key "booger"/;
+      const message = /object has no key "booger"/u;
 
       expect(() => { reducer({foo: 'bar'}, action); }).toThrow(message);
     });

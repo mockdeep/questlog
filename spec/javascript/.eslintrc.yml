@@ -8,3 +8,4 @@ rules:
   jest/no-identical-title: error
   max-statements: [error, {max: 20}]
   max-lines: off
+  max-lines-per-function: off
