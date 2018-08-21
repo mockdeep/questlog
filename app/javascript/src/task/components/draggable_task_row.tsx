@@ -8,7 +8,9 @@ import TaskRow from 'src/task/components/task_row';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 const taskSource = {
-  canDrag({timeframesEnabled}) {
+  canDrag(props) {
+    const {timeframesEnabled} = props;
+
     return !timeframesEnabled;
   },
 
