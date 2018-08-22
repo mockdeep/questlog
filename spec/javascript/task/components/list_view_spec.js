@@ -19,7 +19,7 @@ const props = {
 const DraggableTaskRow = 'DropTarget(DragSource(DraggableTaskRow))';
 
 function dive(component) {
-  return shallow(component).dive();
+  return shallow(component).find('TaskListView').shallow();
 }
 
 it('renders the list filters', () => {
