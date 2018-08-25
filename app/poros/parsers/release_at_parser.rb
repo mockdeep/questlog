@@ -18,11 +18,11 @@ private
 
   def find_timestamp(tags)
     tags.detect do |word|
-      begin
-        Time.zone.parse(word[1..-1])
-      rescue ArgumentError
-        nil
-      end
+
+      Time.zone.parse(word[1..-1])
+    rescue ArgumentError
+      nil
+
     end
   end
 
