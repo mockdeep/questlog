@@ -1,4 +1,4 @@
 module.exports = {
   test: /\.tsx?$/u,
-  use: ['babel-loader', 'ts-loader'],
+  use: [{loader: 'ts-loader'}],
 };
