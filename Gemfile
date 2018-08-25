@@ -25,7 +25,7 @@ gem 'puma_worker_killer'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
-gem 'webpacker'
+gem 'webpacker', '>= 4.0.x'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
