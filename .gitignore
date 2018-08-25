@@ -17,9 +17,10 @@
 .eslintcache
 /coverage
 /node_modules
-/public/packs
 npm-debug.log
 /public/packs
 /public/packs-test
 /elm-stuff
 yarn-error.log
+yarn-debug.log*
+.yarn-integrity
