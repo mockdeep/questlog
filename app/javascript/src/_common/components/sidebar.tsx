@@ -11,7 +11,7 @@ class Sidebar extends React.Component<any, any> {
 
     autobind(this);
 
-    this.state = { visible: false };
+    this.state = {visible: false};
   }
 
   componentWillMount() {

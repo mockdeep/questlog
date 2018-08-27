@@ -1,4 +1,4 @@
-declare var $: any;
+declare const $: any;
 
 export default function flash(status, message) {
   const $myFlash = $('<div />', {'class': `flash-${status}`, text: message});

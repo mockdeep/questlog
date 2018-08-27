@@ -8,6 +8,7 @@ import {scratchShape, taskShape} from 'src/shapes';
 
 class TaskEditTitleForm extends React.Component<any, any> {
   submitting: boolean;
+
   input: any;
 
   constructor(props) {

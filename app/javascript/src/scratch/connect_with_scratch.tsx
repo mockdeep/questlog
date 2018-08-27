@@ -40,37 +40,37 @@ function connectWithScratch(
         super(props);
         autobind(this);
 
-        const {createScratch} = this.props;
+        const {createScratch: boundCreateScratch} = this.props;
 
-        createScratch(props.scratchKey);
+        boundCreateScratch(props.scratchKey);
       }
 
       componentWillReceiveProps(nextProps) {
         const {
-          createScratch,
-          deleteScratch,
+          createScratch: boundCreateScratch,
+          deleteScratch: boundDeleteScratch,
           scratch,
           scratchKey,
-          updateScratch,
+          updateScratch: boundUpdateScratch,
         } = this.props;
 
         if (nextProps.scratchKey === scratchKey) { return; }
 
-        createScratch(nextProps.scratchKey);
-        updateScratch(nextProps.scratchKey, scratch);
-        deleteScratch(scratchKey);
+        boundCreateScratch(nextProps.scratchKey);
+        boundUpdateScratch(nextProps.scratchKey, scratch);
+        boundDeleteScratch(scratchKey);
       }
 
       componentWillUnmount() {
-        const {deleteScratch, scratchKey} = this.props;
+        const {deleteScratch: boundDeleteScratch, scratchKey} = this.props;
 
-        deleteScratch(scratchKey);
+        boundDeleteScratch(scratchKey);
       }
 
       updateScratch(payload) {
-        const {scratchKey, updateScratch} = this.props;
+        const {scratchKey, updateScratch: boundUpdateScratch} = this.props;
 
-        updateScratch(scratchKey, payload);
+        boundUpdateScratch(scratchKey, payload);
       }
 
       render() {

@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 
 function isNode() {
-  return typeof process !== 'undefined' && !(<any>process).browser;
+  // eslint-disable-next-line no-extra-parens
+  return typeof process !== 'undefined' && !(process as any).browser;
 }
 
 const terminalEscapes = {
