@@ -1,4 +1,4 @@
-declare var debug: any;
+declare const debug: any;
 
 interface Window {
   $: any;

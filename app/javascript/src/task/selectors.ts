@@ -44,7 +44,10 @@ function grabLeafTasks(orderedTasks, tasksByParentId) {
   return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
 }
 
-const getTasksById = createSelector((state: State) => state.task.byId, processTasks);
+const getTasksById = createSelector(
+  (state: State) => state.task.byId,
+  processTasks
+);
 
 const getTasksByParentId = createSelector(getTasksById, mapTasksToParentId);
 
