@@ -44,9 +44,6 @@
     "typescript": "^3.0.1",
     "whatwg-fetch": "^2.0.3"
   },
-  "//": [
-    "jest locked at 19 because of https://github.com/facebook/jest/issues/3499"
-  ],
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "babel-jest": "^23.4.2",
