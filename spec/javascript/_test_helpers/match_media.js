@@ -10,10 +10,10 @@ function matchMedia() {
   return mediaQueryList;
 }
 
-matchMedia.setMatches = function setMatches(matches) {
+function setMatches(matches) {
   mediaQueryList.matches = matches;
   listeners.forEach(listener => listener());
-};
+}
 
 matchMedia.reset = function reset() {
   listeners = [];
@@ -21,3 +21,4 @@ matchMedia.reset = function reset() {
 };
 
 export default matchMedia;
+export {setMatches};

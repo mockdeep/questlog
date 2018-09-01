@@ -17,7 +17,7 @@
     "<rootDir>/spec/javascript/"
   ],
   "rootDir": "../",
-  "setupTestFrameworkScriptFile": "<rootDir>/spec/javascript/test_helper.js",
+  "setupTestFrameworkScriptFile": "<rootDir>/spec/javascript/test_helper.ts",
   "testRegex": "/spec/javascript/.*_spec.(js|ts|tsx)$",
   "testURL": "http://test.host",
   "transform": {

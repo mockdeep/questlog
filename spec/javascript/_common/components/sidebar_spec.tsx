@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {setMatches} from '_test_helpers/match_media';
+import Link from 'src/route/containers/link';
 import Sidebar from 'src/_common/components/sidebar';
-
-const Link = 'Connect(Link)';
 
 beforeEach(() => {
   document.body.innerHTML = '<div class="content"></div>';
@@ -14,7 +14,7 @@ it('updates the mobile status when screen size changes', () => {
 
   expect(component.find(Link)).toHaveLength(3);
 
-  window.matchMedia.setMatches(true);
+  setMatches(true);
   component.update();
 
   expect(component.find(Link)).toHaveLength(0);
@@ -53,7 +53,7 @@ describe('when browser is desktop', () => {
 
 describe('when browser is mobile', () => {
   beforeEach(() => {
-    window.matchMedia.setMatches(true);
+    setMatches(true);
   });
 
   it('hides the sidebar by default', () => {

@@ -97,7 +97,9 @@ rules:
   max-statements-per-line: [error, { max: 2 }]
   multiline-ternary: [error, never]
   newline-per-chained-call: [error, { ignoreChainWithDepth: 3 }]
-  no-extra-parens: [error, all, { nestedBinaryExpressions: false, ignoreJSX: 'multi-line' }]
+  # https://github.com/eslint/typescript-eslint-parser/issues/465
+  no-extra-parens: off
+  # no-extra-parens: [error, all, { nestedBinaryExpressions: false, ignoreJSX: 'multi-line' }]
   no-multiple-empty-lines: [error, { max: 1, maxEOF: 0, maxBOF: 0 }]
   no-underscore-dangle: [error, { allowAfterThis: true }]
   object-curly-newline: [error, { consistent: true }]
