@@ -6,8 +6,10 @@ import {
 } from 'src/notification/action_creators';
 
 describe('addNotification', () => {
+  const basePayload = {key: 'watKey', message: 'aMessage', onClick: jest.fn()};
+
   it('returns a removeNotification thunk', () => {
-    const payload = {my: 'payload'};
+    const payload = {...basePayload, my: 'payload'};
     const thunk = addNotification(payload);
 
     expect(thunk.length).toBe(1);
@@ -16,7 +18,7 @@ describe('addNotification', () => {
 
   describe('thunk', () => {
     it('dispatches an ADD action object', async () => {
-      const payload = {key: 'myKey'};
+      const payload = {...basePayload, key: 'myKey'};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
@@ -29,7 +31,7 @@ describe('addNotification', () => {
     });
 
     it('creates a new notification', async () => {
-      const payload = {key: 'myKey', message: 'my cool message'};
+      const payload = {...basePayload, key: 'myKey', message: 'my message'};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
@@ -39,11 +41,11 @@ describe('addNotification', () => {
       const {notification} = action.payload;
 
       expect(notification).toBeInstanceOf(FakeNotification);
-      expect(notification.message).toBe('my cool message');
+      expect(notification.message).toBe('my message');
     });
 
     it('adds a custom onClick handler to the notification', async () => {
-      const payload = {key: 'myKey', onClick: jest.fn()};
+      const payload = {...basePayload, key: 'myKey', onClick: jest.fn()};
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
@@ -81,7 +83,7 @@ describe('removeNotification', () => {
     it('closes the associated notification when present', () => {
       const payload = {key: 'myKey'};
       const thunk = removeNotification(payload);
-      const notification = new FakeNotification();
+      const notification = new FakeNotification('some message');
       const getState = jest.fn(() => ({notification: {myKey: notification}}));
       const dispatch = jest.fn();
 
