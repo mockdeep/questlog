@@ -8,7 +8,7 @@ import {makeState, makeTag, makeTask} from '_test_helpers/factories';
 
 describe('getActiveTags', () => {
   it('returns tags that have one or more unfinished associated tasks', () => {
-    const tag1 = makeTag();
+    const tag1 = makeTag({});
     const tag2 = makeTag({name: 'b tag'});
     const tag3 = makeTag({name: 'a tag'});
     const task1 = makeTask({tagIds: [tag2.id]});
@@ -28,7 +28,7 @@ describe('getActiveTags', () => {
 
   it('returns tags with isActive rule when any tasks are unfinished', () => {
     const tag = makeTag({rules: [{check: 'isActive'}]});
-    const task = makeTask();
+    const task = makeTask({});
     const state = makeState({tag: [tag], task: [task]});
 
     expect(getActiveTags(state)).toEqual([{...tag, tasks: [task]}]);
@@ -37,7 +37,7 @@ describe('getActiveTags', () => {
   describe('when tag has isBlank smart rule', () => {
     it('does not return tag when field is not defined', () => {
       const tag = makeTag({rules: [{check: 'isBlank', field: 'myField'}]});
-      const task = makeTask();
+      const task = makeTask({});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
@@ -238,8 +238,8 @@ describe('getNextActiveTask', () => {
 describe('getOrderedTags', () => {
   describe('processed priority', () => {
     it('returns null priority for tags with no priority tasks', () => {
-      const tag1 = makeTag();
-      const tag2 = makeTag();
+      const tag1 = makeTag({});
+      const tag2 = makeTag({});
       const task1 = makeTask({tagIds: [tag2.id]});
       const state = makeState({task: [task1], tag: [tag1, tag2]});
 
@@ -248,7 +248,7 @@ describe('getOrderedTags', () => {
     });
 
     it('returns the min priority for tasks with priority tasks', () => {
-      const tag = makeTag();
+      const tag = makeTag({});
       const task1 = makeTask({tagIds: [tag.id], priority: 3});
       const task2 = makeTask({tagIds: [tag.id], priority: 1});
       const state = makeState({task: [task1, task2], tag: [tag]});
@@ -257,7 +257,7 @@ describe('getOrderedTags', () => {
     });
 
     it('returns the numeric priority when some tasks have priority', () => {
-      const tag = makeTag();
+      const tag = makeTag({});
       const task1 = makeTask({tagIds: [tag.id], priority: null});
       const task2 = makeTask({tagIds: [tag.id], priority: 2});
       const state = makeState({task: [task1, task2], tag: [tag]});
