@@ -5,7 +5,7 @@ import TaskTitle from 'src/task/components/task_title';
 
 import {makeTask} from '_test_helpers/factories';
 
-const task = makeTask();
+const task = makeTask({});
 const props = {deleteTask: jest.fn(), task};
 
 it('renders an editable title form', () => {

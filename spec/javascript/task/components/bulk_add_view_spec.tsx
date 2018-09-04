@@ -13,7 +13,7 @@ it('redirects to TaskList on successful save', () => {
   const wrapper = mount(<TaskBulkAddView {...props} />);
   const fakeThen = jest.fn();
 
-  BulkTaskStore.create.mockReturnValueOnce({then: fakeThen});
+  (BulkTaskStore.create as jest.Mock).mockReturnValueOnce({then: fakeThen});
 
   expect(BulkTaskStore.create).not.toHaveBeenCalled();
   wrapper.find('form').simulate('submit');

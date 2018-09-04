@@ -6,7 +6,7 @@ import TaskTreeView from 'src/task/components/tree_view';
 import {makeTask} from '_test_helpers/factories';
 
 const parentTask = makeTask({title: 'I am the parent'});
-const childTask = makeTask();
+const childTask = makeTask({});
 const tasksByParentId = {[parentTask.id]: [childTask]};
 const updateTask = jest.fn();
 const props = {

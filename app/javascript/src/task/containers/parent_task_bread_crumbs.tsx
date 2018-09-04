@@ -7,7 +7,7 @@ import {taskShape} from 'src/shapes';
 // The component is in the same file as the container due to circular references
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
 // otherwise imports get funky
-function ParentTaskBreadCrumbs({task}) {
+function ParentTaskBreadCrumbs({task = null}) {
   if (!task) { return null; }
 
   // span wrapper rather than array fragments due to lack of enzyme support
