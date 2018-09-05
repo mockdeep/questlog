@@ -9,13 +9,15 @@
     "lib": ["es2017", "dom"],
     "module": "es6",
     "moduleResolution": "node",
-    "paths": {"*": ["app/javascript/*", "spec/javascript/*"]},
+    "paths": {
+      "src/*": ["app/javascript/src/*"]
+    },
     "sourceMap": true,
     "target": "es5",
     "jsx": "react"
   },
   "exclude": [
-    "**/*.spec.ts",
+    "spec",
     "node_modules",
     "vendor",
     "public"
