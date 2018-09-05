@@ -80,6 +80,6 @@
     "jest": "./node_modules/jest/bin/jest.js --config config/jest.json --coverage --maxWorkers 2",
     "pretest": "yarn stylelint && yarn eslint",
     "test": "yarn jest",
-    "tscheck": "yarn tsc --noEmit"
+    "tscheck": "yarn tsc --noEmit -p tsconfig-test.json"
   }
 }

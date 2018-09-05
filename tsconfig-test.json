@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "src/*": ["app/javascript/src/*"],
+      "_test_helpers/*": ["spec/javascript/_test_helpers/*"]
+    }
+  },
+  "extends": "./tsconfig",
+  "exclude": [
+    "node_modules",
+    "vendor",
+    "public"
+  ]
+}
