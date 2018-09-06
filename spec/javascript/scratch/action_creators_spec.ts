@@ -75,7 +75,7 @@ describe('updateScratch', () => {
       const scratchKey = 'some key thing';
       const dispatch = jest.fn();
       const getState = jest.fn(() => ({scratch: {}}));
-      const thunk = updateScratch(scratchKey);
+      const thunk = updateScratch(scratchKey, {});
 
       expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/u);
     });
