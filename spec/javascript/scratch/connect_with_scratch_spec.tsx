@@ -8,7 +8,7 @@ import {createScratch, updateScratch} from 'src/scratch/action_creators';
 let container;
 let store;
 
-function computeScratchKey(state) {
+function computeKey(state) {
   const {scratchKeySpecial} = state.scratch;
   if (scratchKeySpecial && scratchKeySpecial.keyName) {
     return scratchKeySpecial.keyName;
@@ -25,8 +25,12 @@ function TestComponent() {
   );
 }
 
-function wrapComponent(...args) {
-  const connector = connectWithScratch(...args);
+function wrapComponent(computeScratchKey, mapStateToProps, actionCreators) {
+  const connector = connectWithScratch(
+    computeScratchKey,
+    mapStateToProps,
+    actionCreators,
+  );
   const WrappedComponent = connector(TestComponent);
 
   container = mount(<WrappedComponent store={store} someProp={'fooProp'} />);
@@ -47,7 +51,7 @@ it('passes props mapped from state down to the wrapped component', () => {
   store.dispatch(createScratch('oneTest'));
   store.dispatch(updateScratch('oneTest', {value: 'something'}));
 
-  const testComponent = wrapComponent(computeScratchKey, mapStateToProps, {});
+  const testComponent = wrapComponent(computeKey, mapStateToProps, {});
 
   expect(testComponent).toHaveProp('dooble', 'dobble');
   expect(testComponent).toHaveProp('propFromState', 'something');
@@ -61,7 +65,7 @@ it('passes ownProps through', () => {
     };
   }
 
-  const testComponent = wrapComponent(computeScratchKey, mapStateToProps, {});
+  const testComponent = wrapComponent(computeKey, mapStateToProps, {});
 
   expect(testComponent).toHaveProp('propsFromProps', 'fooProp');
 });
@@ -69,17 +73,13 @@ it('passes ownProps through', () => {
 it('creates a new scratch space based on the given key', () => {
   expect(store.getState().scratch.testScratchKey).toBeUndefined();
 
-  wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  wrapComponent(computeKey, jest.fn(() => ({})), {});
 
   expect(store.getState().scratch.testScratchKey).toEqual({});
 });
 
 it('passes a bound updateScratch down to the wrapped component', () => {
-  const testComponent = wrapComponent(
-    computeScratchKey,
-    jest.fn(() => ({})),
-    {}
-  );
+  const testComponent = wrapComponent(computeKey, jest.fn(() => ({})), {});
 
   expect(store.getState().scratch.testScratchKey).toEqual({});
 
@@ -92,7 +92,7 @@ it('passes a bound updateScratch down to the wrapped component', () => {
 });
 
 it('passes the appropriate scratch state down to the wrapped component', () => {
-  let testComponent = wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  let testComponent = wrapComponent(computeKey, jest.fn(() => ({})), {});
 
   expect(testComponent).toHaveProp('scratch', {});
 
@@ -104,7 +104,7 @@ it('passes the appropriate scratch state down to the wrapped component', () => {
 });
 
 it('removes the scratch key when the component is unmounted', () => {
-  wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  wrapComponent(computeKey, jest.fn(() => ({})), {});
 
   expect(store.getState().scratch.testScratchKey).toEqual({});
 
@@ -114,7 +114,7 @@ it('removes the scratch key when the component is unmounted', () => {
 });
 
 it('moves the scratch contents when the scratch key changes', () => {
-  wrapComponent(computeScratchKey, jest.fn(() => ({})), {});
+  wrapComponent(computeKey, jest.fn(() => ({})), {});
 
   expect(store.getState().scratch.testScratchKey).toEqual({});
 
@@ -130,7 +130,7 @@ it('passes bound action creators to the wrapped component', () => {
 
   const updateFoo = jest.fn(someArg => `blah${someArg}`);
   const testComponent = wrapComponent(
-    computeScratchKey,
+    computeKey,
     jest.fn(() => ({})),
     {updateFoo}
   );
