@@ -1,4 +1,8 @@
 class FakeNotification {
+  message: string;
+
+  isOpen: boolean;
+
   static requestPermission() {
     return Promise.resolve('granted');
   }

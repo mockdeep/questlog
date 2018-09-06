@@ -29,11 +29,11 @@ describe('when run from node', () => {
 
 describe('when in the browser', () => {
   beforeEach(() => {
-    process.browser = true;
+    (process as any).browser = true;
   });
 
   afterEach(() => {
-    delete process.browser;
+    delete (process as any).browser;
   });
 
   it('prints helpful debug output without a label', () => {
