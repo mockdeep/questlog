@@ -6,8 +6,8 @@ import TagButtons from 'src/tag/components/buttons';
 import {makeTag, makeTask} from '_test_helpers/factories';
 
 const tags = [
-  makeTag({name: 'home', slug: 'home', tasks: [makeTask()]}),
-  makeTag({name: 'work', slug: 'work', tasks: [makeTask(), makeTask()]}),
+  makeTag({name: 'home', slug: 'home', tasks: [makeTask({})]}),
+  makeTag({name: 'work', slug: 'work', tasks: [makeTask({}), makeTask({})]}),
 ];
 const props = {task: {}, tags, currentTagIds: []};
 
