@@ -1,19 +1,19 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {makeTask} from '_test_helpers/factories';
+
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
+import Textarea from 'react-textarea-autosize';
 
 const updateScratch = jest.fn();
 const updateTask = jest.fn();
 const props = {
   scratch: {},
-  task: {id: 52, title: 'a title'},
+  task: makeTask({id: 52, title: 'a title'}),
   updateScratch,
   updateTask,
 };
-
-const Textarea = 'TextareaAutosize';
-
 it('renders the task title in the input', () => {
   const component = shallow(<TaskEditTitleForm {...props} />);
 
@@ -32,8 +32,9 @@ it('updates the task when form is submitted', () => {
   const overrides = {scratch: {taskTitle: 'scratch title'}};
   const component = shallow(<TaskEditTitleForm {...props} {...overrides} />);
   const preventDefault = jest.fn();
+  const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')({blur: jest.fn()});
+  component.find(Textarea).prop('inputRef')(textarea);
   component.find('form').simulate('submit', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -45,10 +46,11 @@ it('only updates once on submit', () => {
   const component = shallow(<TaskEditTitleForm {...props} {...overrides} />);
   const preventDefault = jest.fn();
   const fakeEvent = {preventDefault};
+  const textarea = document.createElement('textarea');
+  const textareaComponent = component.find(Textarea);
 
-  const textarea = component.find(Textarea);
-  const blur = jest.fn(() => textarea.prop('onBlur')(fakeEvent));
-  textarea.prop('inputRef')({blur});
+  const blur = jest.fn(() => textareaComponent.simulate('blur', fakeEvent));
+  textareaComponent.prop('inputRef')({...textarea, blur});
   component.find('form').simulate('submit', fakeEvent);
 
   expect(preventDefault).toHaveBeenCalledTimes(2);
@@ -60,8 +62,9 @@ it('updates the task when the input blurs', () => {
   const scratch = {taskTitle: 'scratch title'};
   const component = shallow(<TaskEditTitleForm {...props} scratch={scratch} />);
   const preventDefault = jest.fn();
+  const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')({blur: jest.fn()});
+  component.find(Textarea).prop('inputRef')(textarea);
   component.find(Textarea).simulate('blur', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -72,8 +75,9 @@ it('updates the task when the user hits Enter', () => {
   const scratch = {taskTitle: 'scratch title'};
   const component = shallow(<TaskEditTitleForm {...props} scratch={scratch} />);
   const preventDefault = jest.fn();
+  const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')({blur: jest.fn()});
+  component.find(Textarea).prop('inputRef')(textarea);
   component.find(Textarea).simulate('keyPress', {key: 'Enter', preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -84,8 +88,9 @@ it('does not update the task when the user hits a letter key', () => {
   const scratch = {taskTitle: 'scratch title'};
   const component = shallow(<TaskEditTitleForm {...props} scratch={scratch} />);
   const preventDefault = jest.fn();
+  const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')({blur: jest.fn()});
+  component.find(Textarea).prop('inputRef')(textarea);
   component.find(Textarea).simulate('keyPress', {key: 'k', preventDefault});
 
   expect(preventDefault).not.toHaveBeenCalled();

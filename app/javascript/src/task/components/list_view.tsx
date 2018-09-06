@@ -170,4 +170,5 @@ TaskListView.propTypes = {
   updateTask: PropTypes.func.isRequired,
 };
 
+export {TaskListView};
 export default dragDropContext(HTML5Backend)(TaskListView);
