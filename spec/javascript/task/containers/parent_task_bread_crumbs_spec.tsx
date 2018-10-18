@@ -14,7 +14,7 @@ it('renders nothing when there is no task', () => {
 });
 
 it('renders a link to the task when present', () => {
-  const task = makeTask();
+  const task = makeTask({});
   const component = shallow(<ParentTaskBreadCrumbs task={task} />);
 
   expect(component.find('TaskLink')).toHaveProp('task', task);

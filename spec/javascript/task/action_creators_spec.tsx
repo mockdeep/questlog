@@ -30,7 +30,8 @@ describe('fetchTasks', () => {
   });
 
   it('sets ajax state to "ready" on success', async () => {
-    ajaxGet.mockReturnValue(Promise.resolve({data: [], included: []}));
+    const promise = Promise.resolve({data: [], included: []});
+    (ajaxGet as jest.Mock).mockReturnValue(promise);
 
     const thunk = fetchTasks();
 
@@ -44,7 +45,7 @@ describe('fetchTasks', () => {
 
 describe('createTask', () => {
   it('sets ajax state to "taskSaving"', () => {
-    const thunk = createTask();
+    const thunk = createTask({});
     const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
 
     thunk(dispatch);
@@ -56,7 +57,8 @@ describe('createTask', () => {
     beforeEach(async () => {
       const data = {title: 'fooble doo'};
       const included = [{foo: 'tag'}, {bar: 'tag'}];
-      ajaxPost.mockReturnValue(Promise.resolve({data, included}));
+      const promise = Promise.resolve({data, included});
+      (ajaxPost as jest.Mock).mockReturnValue(promise);
 
       const createThunk = createTask({title: 'bar'});
 
@@ -97,7 +99,7 @@ describe('deleteTask', () => {
   it('sends a delete request to the server', async () => {
     const thunk = deleteTask(5);
 
-    ajaxDelete.mockReturnValue(Promise.resolve());
+    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch);
 
@@ -107,7 +109,7 @@ describe('deleteTask', () => {
   it('re-fetches tasks', async () => {
     const thunk = deleteTask(5);
 
-    ajaxDelete.mockReturnValue(Promise.resolve());
+    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch);
 
@@ -118,7 +120,7 @@ describe('deleteTask', () => {
   it('unloads the task store', async () => {
     const thunk = deleteTask(5);
 
-    ajaxDelete.mockReturnValue(Promise.resolve());
+    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch);
 
@@ -173,7 +175,7 @@ describe('updateTask', () => {
     beforeEach(async () => {
       const data = {title: 'fooble doo'};
       const included = [{foo: 'tag'}, {bar: 'tag'}];
-      ajaxPut.mockReturnValue(Promise.resolve({data, included}));
+      (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
