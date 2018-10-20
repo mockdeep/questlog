@@ -20,7 +20,8 @@ it('renders a task checkbox', () => {
 
   const checkbox = component.find('TaskCheckbox');
   expect(checkbox).toHaveProp('task', task);
-  expect(checkbox).toHaveProp('onChange', component.instance().toggleDone);
+  const {toggleDone} = (component.instance() as TaskLeafListItem);
+  expect(checkbox).toHaveProp('onChange', toggleDone);
   expect(checkbox).toHaveProp('checked', false);
 });
 
@@ -55,11 +56,11 @@ it('updates the task to not done when the checkbox gets unchecked', () => {
 });
 
 it('adds a priority class to title when task has a priority', () => {
-  const overrides = {task: {...task, priority: 'foo'}};
+  const overrides = {task: {...task, priority: 2}};
   const component = shallow(<TaskLeafListItem {...props} {...overrides} />);
 
   const titleClasses = component.find('span').prop('className').split(' ');
-  expect(titleClasses).toContain('task-item__title--priority-foo');
+  expect(titleClasses).toContain('task-item__title--priority-2');
 });
 
 it('does not add a priority class to title when task has no priority', () => {

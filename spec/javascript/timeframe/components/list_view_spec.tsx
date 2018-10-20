@@ -19,7 +19,7 @@ it('renders the current median productivity when loaded', () => {
   const input = {timeframes: [], meta: {medianProductivity: 4456}};
 
   const component = shallow(<TimeframeListView {...props} />);
-  component.instance().updateTimeframes(input);
+  (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
   const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
@@ -37,7 +37,7 @@ it('renders the given timeframes for the user', () => {
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
   const component = shallow(<TimeframeListView {...props} />);
-  component.instance().updateTimeframes(input);
+  (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
   expect(component.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
@@ -48,7 +48,7 @@ it('does not render empty timeframes', () => {
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
   const component = shallow(<TimeframeListView {...props} />);
-  component.instance().updateTimeframes(input);
+  (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
   expect(component.find('TimeframeSection')).not.toExist();
