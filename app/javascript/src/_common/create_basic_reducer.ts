@@ -1,7 +1,9 @@
 import grab from 'src/_helpers/grab';
 
-export default function createBasicReducer(operations) {
-  return function basicReducer(previousState, action) {
+type ReducerMap = {[key: string]: Function};
+
+export default function createBasicReducer(operations: ReducerMap) {
+  return function basicReducer(previousState: SubState, action: BasicAction) {
     const operation = grab(operations, action.type);
 
     return operation(previousState, action.payload);
