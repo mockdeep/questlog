@@ -1,12 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {makeTask} from '_test_helpers/factories';
 import NotificationCheckbox from 'src/notification/components/checkbox';
 
 const removeNotification = jest.fn();
 const updateUser = jest.fn();
 const props = {
-  task: {},
+  task: makeTask({}),
   addNotification: jest.fn(),
   completeTask: jest.fn(),
   disableNotifications: jest.fn(),
@@ -26,7 +27,7 @@ it('is not checked by default', () => {
 
 it('is checked when notifications are enabled and task is present', () => {
   const notificationCheckbox = shallow(
-    <NotificationCheckbox {...props} task={{id: 5}} notificationsEnabled />
+    <NotificationCheckbox {...props} task={makeTask({})} notificationsEnabled />
   );
 
   expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();
@@ -43,7 +44,8 @@ it('enables notifications when the checkbox get checked', () => {
 
 it('notifies again when updated with new task', () => {
   const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
-  const notifySpy = jest.spyOn(notificationCheckbox.instance(), 'notifyTask');
+  const instance = notificationCheckbox.instance() as NotificationCheckbox;
+  const notifySpy = jest.spyOn(instance, 'notifyTask');
 
   notificationCheckbox.setProps({...props, task: {id: 52}});
 
@@ -52,7 +54,7 @@ it('notifies again when updated with new task', () => {
 
 it('notifies on interval when notificationsEnabled changes to true', () => {
   const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
-  const instance = notificationCheckbox.instance();
+  const instance = notificationCheckbox.instance() as NotificationCheckbox;
   const notifySpy = jest.spyOn(instance, 'notifyOnInterval');
 
   notificationCheckbox.setProps({...props, notificationsEnabled: true});

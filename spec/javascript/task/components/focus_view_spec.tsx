@@ -1,5 +1,5 @@
 jest.mock('src/_helpers/request', () => {
-  const fakePromise = {then: jest.fn(() => fakePromise)};
+  const fakePromise: {then: jest.Mock} = {then: jest.fn(() => fakePromise)};
 
   return () => fakePromise;
 });
@@ -7,6 +7,7 @@ jest.mock('src/_helpers/request', () => {
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import TaskDisplay from 'src/task/components/task_display';
 import TaskFocusView from 'src/task/components/focus_view';
 
 import {makeTask} from '_test_helpers/factories';
@@ -17,14 +18,13 @@ const props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
   scratch: {postponeSeconds: 250},
-  tags: [],
   updateScratch,
   updateTask,
 };
 
 it('updates the task on postpone', () => {
-  const component = shallow(<TaskFocusView {...props} task={{}} />);
-  const taskDisplay = component.find('TaskDisplay');
+  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('postponeTask')(52);
 
@@ -32,8 +32,8 @@ it('updates the task on postpone', () => {
 });
 
 it('updates the postponeSeconds in scratch', () => {
-  const component = shallow(<TaskFocusView {...props} task={{}} />);
-  const taskDisplay = component.find('TaskDisplay');
+  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('storePostponeSeconds')(52);
 
@@ -41,8 +41,8 @@ it('updates the postponeSeconds in scratch', () => {
 });
 
 it('updates the task on completion', () => {
-  const component = shallow(<TaskFocusView {...props} task={{}} />);
-  const taskDisplay = component.find('TaskDisplay');
+  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('completeTask')(512);
 
