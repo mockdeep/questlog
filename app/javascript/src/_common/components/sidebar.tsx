@@ -3,10 +3,14 @@ import React from 'react';
 
 import Link from 'src/route/containers/link';
 
+type LocalState = {
+  visible: boolean;
+};
+
 class Sidebar extends React.Component<any, any> {
   mediaQueryList: any;
 
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
 
     autobind(this);
@@ -28,14 +32,14 @@ class Sidebar extends React.Component<any, any> {
     this.setState({mobile, visible});
   }
 
-  toggleSidebarClass(visible) {
+  toggleSidebarClass(visible: boolean) {
     const contentDiv = document.querySelector('.content');
     contentDiv.classList.toggle('sidebar-open', visible);
   }
 
-  toggleVisible(event) {
+  toggleVisible(event: React.SyntheticEvent) {
     event.preventDefault();
-    this.setState(state => {
+    this.setState((state: LocalState) => {
       const visible = !state.visible;
 
       this.toggleSidebarClass(visible);

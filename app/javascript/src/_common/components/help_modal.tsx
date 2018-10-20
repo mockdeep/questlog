@@ -2,7 +2,12 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function HelpModal({isOpen, closeModal}) {
+type Props = {
+  isOpen: boolean;
+  closeModal(): Function;
+};
+
+function HelpModal({isOpen, closeModal}: Props) {
   return (
     <Modal
       isOpen={isOpen}

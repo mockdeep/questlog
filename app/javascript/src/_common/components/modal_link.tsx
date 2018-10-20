@@ -12,10 +12,18 @@ const MODALS = {
   help: HelpModal,
 };
 
-class ModalLink extends React.Component<any, any> {
+export type Props = {
+  children: string | JSX.Element;
+  className?: string;
+  modalName: string;
+  openModalId?: string;
+  updateCommon: Function;
+};
+
+class ModalLink extends React.Component<Props, any> {
   modalId: string;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     autobind(this);
     this.modalId = `${props.modalName}-${nanoid()}`;
@@ -27,7 +35,7 @@ class ModalLink extends React.Component<any, any> {
     updateCommon({openModalId: this.modalId});
   }
 
-  closeModal(event) {
+  closeModal(event: React.SyntheticEvent) {
     event.stopPropagation();
 
     const {updateCommon} = this.props;

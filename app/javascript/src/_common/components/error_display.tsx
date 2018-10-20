@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function ErrorDisplay({errors}) {
+type Props = {
+  errors: string[];
+};
+
+function ErrorDisplay({errors}: Props) {
   return (
     <div className='row'>
       <div className='col-md-12'>

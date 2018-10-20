@@ -6,7 +6,12 @@ import ModalLink from 'src/_common/containers/modal_link';
 import NotificationCheckbox from 'src/notification/containers/checkbox';
 import {taskShape} from 'src/shapes';
 
-function TaskFooter({task, completeTask}) {
+export type Props = {
+  completeTask: Function;
+  task: Task;
+};
+
+function TaskFooter({task, completeTask}: Props) {
   const notificationProps = {task, completeTask};
 
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import {mount, shallow} from 'enzyme';
 
-import ReactElmWrapper from 'src/_common/components/react_elm_wrapper';
+import ReactElmWrapper, {Props} from 'src/_common/components/react_elm_wrapper';
 
 const src = {embed: jest.fn()};
-const props = {src};
+const props: Props = {src};
 
 it('does not update', () => {
   const component = shallow(<ReactElmWrapper {...props} />);
