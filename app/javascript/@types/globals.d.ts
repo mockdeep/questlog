@@ -16,13 +16,12 @@ interface Function {
 interface Process {
   browser: boolean;
 }
-interface State {
-  route: any,
-  tag: any,
-  task: any,
-}
-
 interface Task {
   id: number,
   parentTaskId: number,
 }
+
+type BasicAction = {
+  type: string;
+  payload?: any;
+};

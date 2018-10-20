@@ -1,15 +1,37 @@
-import grab from 'src/_helpers/grab';
+import {Reducer} from 'redux';
 
-function getReducerKey(action) {
-  return action.type.split('/')[0];
+/* eslint-disable no-unused-vars */
+type ReducerKey = 'common' | 'route' | 'tag' | 'task';
+type ReducerMap = {[key: string]: Reducer};
+/* eslint-enable no-unused-vars */
+const VALID_REDUCER_KEYS = [
+  'common',
+  'notification',
+  'route',
+  'scratch',
+  'tag',
+  'task',
+  'user',
+];
+
+function isReducerKey(key: string): key is ReducerKey {
+  return VALID_REDUCER_KEYS.includes(key);
 }
 
-function initState(reducerMap) {
-  const newState = {};
+function getReducerKey(action: BasicAction) {
+  const key = action.type.split('/')[0];
+
+  if (!isReducerKey(key)) { throw new Error(`invalid reducer key "${key}"`); }
+
+  return key;
+}
+
+function initState(reducerMap: ReducerMap) {
+  const newState: any = {};
 
   Object.keys(reducerMap).forEach(key => {
     const action = {type: `${key}/INIT`};
-    const reducer = grab(reducerMap, key);
+    const reducer = reducerMap[key];
 
     newState[key] = reducer(null, action);
   });
@@ -17,14 +39,17 @@ function initState(reducerMap) {
   return newState;
 }
 
-function createMergedReducer(reducerMap) {
-  return function mergedReducer(previousState, action) {
+function createMergedReducer(reducerMap: ReducerMap) {
+  return function mergedReducer(
+    previousState: State,
+    action: BasicAction | any,
+  ) {
     if (action.type.startsWith('@@redux/INIT')) {
       return initState(reducerMap);
     }
 
     const reducerKey = getReducerKey(action);
-    const reducer = grab(reducerMap, reducerKey);
+    const reducer = reducerMap[reducerKey];
     const newState = {...previousState};
 
     newState[reducerKey] = reducer(previousState[reducerKey], action);
