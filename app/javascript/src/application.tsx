@@ -16,7 +16,7 @@ window.addEventListener('popstate', () => {
 });
 
 window.addEventListener('beforeunload', () => {
-  appStore.dispatch(removeNotification({key: 'task'}));
+  appStore.dispatch(removeNotification({key: 'currentTask'}));
 });
 
 // depends on global jQuery, so can't be imported, as that gets hoisted

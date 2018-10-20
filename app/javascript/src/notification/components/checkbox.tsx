@@ -1,11 +1,20 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 import {taskShape} from 'src/shapes';
 
-class NotificationCheckbox extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  addNotification: Function;
+  completeTask: Function;
+  notificationsEnabled: boolean;
+  removeNotification: Function;
+  task: Task;
+  updateUser: Function;
+};
+
+class NotificationCheckbox extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
@@ -14,7 +23,7 @@ class NotificationCheckbox extends React.Component<any, any> {
     this.notifyOnInterval();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const {notificationsEnabled, task} = this.props;
 
     if (prevProps.task.id !== task.id) { this.notifyTask(); }
@@ -66,7 +75,7 @@ class NotificationCheckbox extends React.Component<any, any> {
     return Boolean(task.id) && notificationsEnabled;
   }
 
-  toggleNotifications(event) {
+  toggleNotifications(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
       this.enableNotifications();
     } else {

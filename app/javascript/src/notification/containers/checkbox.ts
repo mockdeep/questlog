@@ -7,7 +7,7 @@ import {
 } from 'src/notification/action_creators';
 import {updateUser} from 'src/user/action_creators';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {notificationsEnabled: Boolean(state.user.notificationsEnabled)};
 }
 
