@@ -28,18 +28,21 @@ describe('appReducer', () => {
   describe('user actions', () => {
     it('delegates to the user reducer', () => {
       const action = {type: 'user/UPDATE', payload: {goober: 'globber'}};
-      const result = reducer({user: {blah: 'bloo'}}, action);
+      const notificationState = {notificationsEnabled: true};
+      const result = reducer({user: notificationState}, action);
 
-      expect(result).toEqual({user: {blah: 'bloo', goober: 'globber'}});
+      expect(result).toEqual({user: {...notificationState, goober: 'globber'}});
     });
   });
 
   describe('invalid action type', () => {
     it('throws an error', () => {
       const action = {type: 'booger/UPDATE', payload: {booger: 'flick'}};
-      const message = /object has no key "booger"/u;
+      const message = /invalid reducer key "booger"/u;
 
-      expect(() => { reducer({foo: 'bar'}, action); }).toThrow(message);
+      expect(() => {
+        reducer({user: {notificationsEnabled: false}}, action);
+      }).toThrow(message);
     });
   });
 });
