@@ -17,11 +17,6 @@ interface Process {
   browser: boolean;
 }
 
-interface Task {
-  id: number,
-  parentTaskId: number,
-}
-
 type BasicAction = {
   type: string;
   payload?: any;
