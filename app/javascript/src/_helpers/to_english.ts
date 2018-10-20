@@ -1,17 +1,17 @@
 const oneMinute = 60;
 const oneHour = oneMinute * 60;
 
-function isNumeric(input) {
+function isNumeric(input: any) {
   return input - 0 === input;
 }
 
-function pluralize(input, string) {
+function pluralize(input: number, string: string) {
   const out = `${input} ${string}`;
 
   return input === 1 ? out : `${out}s`;
 }
 
-function divideSeconds(seconds) {
+function divideSeconds(seconds: number) {
   const hours = Math.floor(seconds / oneHour);
   const minutes = Math.floor(seconds % oneHour / oneMinute);
   const outputs = [
@@ -23,7 +23,7 @@ function divideSeconds(seconds) {
 }
 
 const ToEnglish = {
-  seconds(seconds) {
+  seconds(seconds: any) {
     if (!isNumeric(seconds)) {
       throw new TypeError('input must be a number');
     } else if (seconds < 0) {

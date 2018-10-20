@@ -1,10 +1,16 @@
-import moment from 'moment';
+/* eslint-disable import/named */
+import moment, {Moment} from 'moment';
+/* eslint-enable import/named */
 
-function daysBetween(startTime, endTime) {
+function daysBetween(startTime: Moment, endTime: Moment) {
   return endTime.diff(startTime, 'days');
 }
 
-function timeframes(time) {
+export type TimeBalance = {
+  [timeframeName in TimeframeName]?: number;
+};
+
+function timeframes(time: Moment): TimeBalance {
   const endOfWeek = moment(time).endOf('week');
   let endOfMonth = moment(time).endOf('month');
 
@@ -28,7 +34,7 @@ function timeframes(time) {
 }
 
 const TimeBalancer = {
-  baseBalances(time) {
+  baseBalances(time: Moment) {
     return timeframes(moment(time));
   },
 };
