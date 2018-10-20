@@ -2,10 +2,10 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import HelpModal from 'src/_common/components/help_modal';
-import ModalLink from 'src/_common/components/modal_link';
+import ModalLink, {Props} from 'src/_common/components/modal_link';
 
 const updateCommon = jest.fn();
-const props = {
+const props: Props = {
   children: 'help text',
   modalName: 'help',
   updateCommon,
@@ -31,7 +31,8 @@ it('updates the modal state to closed when closeModal is triggered', () => {
   const component = shallow(<ModalLink {...props} />);
   const stopPropagation = jest.fn();
 
-  component.find(HelpModal).prop('closeModal')({stopPropagation});
+  const helpModal = component.find(HelpModal).shallow();
+  helpModal.find('.modal__close-button').simulate('click', {stopPropagation});
 
   expect(stopPropagation).toHaveBeenCalled();
   expect(updateCommon).toHaveBeenCalledWith({openModalId: null});

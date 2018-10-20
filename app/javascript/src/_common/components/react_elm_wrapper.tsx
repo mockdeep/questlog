@@ -4,10 +4,16 @@ import React from 'react';
 
 import {elmSourceShape} from 'src/shapes';
 
-class ReactElmWrapper extends React.Component<any, any> {
+export type Props = {
+  src: { embed: Function },
+  flags?: { [nah: number]: string },
+  ports?: Function,
+};
+
+class ReactElmWrapper extends React.Component<Props, any> {
   node: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
@@ -23,7 +29,7 @@ class ReactElmWrapper extends React.Component<any, any> {
     return false;
   }
 
-  storeNode(node) {
+  storeNode(node: HTMLElement) {
     this.node = node;
   }
 
