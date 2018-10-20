@@ -1,14 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagButton from 'src/tag/components/button';
+import TagButton, {Props} from 'src/tag/components/button';
 
 import {makeTag} from '_test_helpers/factories';
 
 const tag = makeTag({slug: 'home', name: 'Home'});
-const props = {
+const props: Props = {
   current: false,
-  updateTagMeta: jest.fn(),
   tag,
   isActive: false,
 };

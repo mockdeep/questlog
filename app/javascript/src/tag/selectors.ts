@@ -4,22 +4,23 @@ import {mapValues, sortBy} from 'lodash';
 import grab from 'src/_helpers/grab';
 import {getActiveTasks} from 'src/task/selectors';
 
-interface Tag {
-  tasks: any,
-}
-
-interface State {
-  route: any,
-}
-
 const RULES = {
   isActive() { return true; },
-  isAssociated(task, tag) { return task.tagIds.includes(tag.id); },
-  isBlank(task, tag, {field}) { return task[field] === null; },
-  isEmpty(task, tag, {field}) { return task[field].length === 0; },
+  isAssociated(task: Task, tag: Tag) { return task.tagIds.includes(tag.id); },
+  isBlank(task: Task, tag: Tag, {field}: {field: keyof Task}) {
+    return task[field] === null;
+  },
+  isEmpty(task: Task, tag: Tag, {field}: {field: keyof Task}) {
+    const value = task[field];
+    if (!Array.isArray(value)) {
+      throw new Error(`task field ${field} must be array, but was ${value}.`);
+    }
+
+    return value.length === 0;
+  },
 };
 
-function matchesSmartRules(task, tag) {
+function matchesSmartRules(task: Task, tag: Tag) {
   const rules = [{check: 'isAssociated'}, ...tag.rules];
 
   return rules.some(({check, ...params}) => {
@@ -29,18 +30,18 @@ function matchesSmartRules(task, tag) {
   });
 }
 
-function matchingTasks(tag, tasks) {
+function matchingTasks(tag: Tag, tasks: Task[]) {
   return tasks.filter(task => matchesSmartRules(task, tag));
 }
 
-function minPriority(tasks) {
-  const priorities = tasks.map(task => task.priority).
+function minPriority(tasks: Task[]) {
+  const priorities = tasks.map((task: Task) => task.priority).
     filter(priority => priority !== null);
 
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
 
-function processTags(tagsById, activeTasks) {
+function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
   return mapValues(tagsById, tag => {
     const tasks = matchingTasks(tag, activeTasks);
 
@@ -54,7 +55,7 @@ const getSelectedTagSlug = createSelector(
 );
 
 const getTagsById = createSelector(
-  [state => state.tag.byId, getActiveTasks],
+  [(state: State) => state.tag.byId, getActiveTasks],
   processTags
 );
 

@@ -1,5 +1,7 @@
 jest.mock('src/_helpers/ajax');
 
+import {makeState, makeTag} from '_test_helpers/factories';
+
 import {ajaxPut} from 'src/_helpers/ajax';
 import {
   SET, UPDATE, UPDATE_META, UPSERT,
@@ -8,7 +10,7 @@ import {
 
 describe('setTags', () => {
   it('returns a SET action', () => {
-    const payload = {some: 'payload'};
+    const payload = [makeTag({})];
 
     expect(setTags(payload)).toEqual({type: SET, payload});
   });
@@ -16,7 +18,7 @@ describe('setTags', () => {
 
 describe('updateTag', () => {
   it('returns an update thunk', async () => {
-    const payload = {some: 'payload'};
+    const payload: {rules: TagRule[]} = {rules: []};
     const thunk = updateTag(5, payload);
     const dispatch = jest.fn();
     const expectedAction = {type: UPDATE, payload: {id: 5, ...payload}};
@@ -30,7 +32,7 @@ describe('updateTag', () => {
 
 describe('updateTagMeta', () => {
   it('returns an UPDATE_META action', () => {
-    const payload = {some: 'payload'};
+    const payload: {rules: TagRule[]} = {rules: []};
 
     expect(updateTagMeta(payload)).toEqual({type: UPDATE_META, payload});
   });
@@ -38,7 +40,7 @@ describe('updateTagMeta', () => {
 
 describe('upsertTagPlain', () => {
   it('returns an UPSERT action', () => {
-    const payload = {some: 'payload'};
+    const payload: {rules: TagRule[]} = {rules: []};
 
     expect(upsertTagPlain(payload)).toEqual({type: UPSERT, payload});
   });
@@ -46,18 +48,17 @@ describe('upsertTagPlain', () => {
 
 describe('upsertTags', () => {
   it('returns an upsert thunk', () => {
-    const tags = [{itsa: 'tag'}, {bea: 'chad'}];
+    const tag: {rules: TagRule[]} = {rules: []};
+    const payload = [tag];
     const dispatch = jest.fn();
 
-    const thunk = upsertTags(tags);
+    const thunk = upsertTags(payload);
 
     expect(thunk).toBeInstanceOf(Function);
     expect(thunk.name).toBe('upsertTagsThunk');
 
-    thunk(dispatch);
+    thunk(dispatch, () => makeState({}), null);
 
-    expect(dispatch).toHaveBeenCalledTimes(2);
-    expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({itsa: 'tag'}));
-    expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({bea: 'chad'}));
+    expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag));
   });
 });

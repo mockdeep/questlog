@@ -5,13 +5,17 @@ import React from 'react';
 import Link from 'src/route/containers/link';
 import {tagShape} from 'src/shapes';
 
-class TagListView extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  tags: Tag[];
+};
+
+class TagListView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  tagRow(tag) {
+  tagRow(tag: Tag) {
     if (tag.name === 'All') { return null; }
 
     return (

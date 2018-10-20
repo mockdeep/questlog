@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {SyntheticEvent} from 'react';
 import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
 
@@ -8,14 +8,22 @@ import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
 import {scratchShape, tagShape} from 'src/shapes';
 
-class TagEditView extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  scratch: Scratch,
+  setRoute: Function,
+  updateTag: Function,
+  tag: Tag,
+  updateScratch: Function,
+};
+
+class TagEditView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
     props.updateScratch({rules: (props.tag && props.tag.rules) || []});
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps: Props) {
     const {tag, updateScratch} = this.props;
 
     if (newProps.tag !== tag) {
@@ -23,21 +31,21 @@ class TagEditView extends React.Component<any, any> {
     }
   }
 
-  updateFieldValue(index, value) {
+  updateFieldValue(index: number, value: string) {
     const {scratch, updateScratch} = this.props;
     const rules = update(scratch.rules, {[index]: {$merge: {field: value}}});
 
     updateScratch({rules});
   }
 
-  deleteRule(index) {
+  deleteRule(index: number) {
     const {scratch, updateScratch} = this.props;
 
     updateScratch({rules: update(scratch.rules, {$splice: [[index, 1]]})});
   }
 
-  ruleRow(rule, index) {
-    const key = Object.values(rule).concat(index).join('-');
+  ruleRow(rule: TagRule, index: number) {
+    const key: string = Object.values(rule).concat(index.toString()).join('-');
 
     return (
       <RuleRow
@@ -68,7 +76,7 @@ class TagEditView extends React.Component<any, any> {
     return this.uniqRules().length !== scratch.rules.length;
   }
 
-  validateAndSave(event) {
+  validateAndSave(event: SyntheticEvent) {
     event.preventDefault();
 
     const {scratch, updateScratch} = this.props;
@@ -86,7 +94,7 @@ class TagEditView extends React.Component<any, any> {
     }
   }
 
-  saveTag(rules) {
+  saveTag(rules: TagRule[]) {
     const {setRoute, tag, updateTag} = this.props;
 
     updateTag(tag.id, {rules}).

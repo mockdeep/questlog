@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent, MouseEvent} from 'react';
 
 import grab from 'src/_helpers/grab';
 import {ruleShape} from 'src/shapes';
@@ -12,7 +12,7 @@ const FIELD_DISPLAY_NAMES = {
   tagIds: 'Tags',
 };
 
-const AVAILABLE_CHECKS = {
+const AVAILABLE_CHECKS: { [key: string]: string[] } = {
   estimateSeconds: ['isBlank'],
   tagIds: ['isEmpty'],
 };
@@ -22,13 +22,20 @@ const CHECK_DISPLAY_NAMES = {
   isEmpty: 'is empty',
 };
 
-class RuleRow extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  deleteRule: Function,
+  index: number,
+  rule: TagRule,
+  updateFieldValue: Function,
+};
+
+class RuleRow extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  updateFieldValue(event) {
+  updateFieldValue(event: ChangeEvent<HTMLSelectElement>) {
     const {index, updateFieldValue} = this.props;
 
     updateFieldValue(index, event.target.value);
@@ -63,7 +70,7 @@ class RuleRow extends React.Component<any, any> {
     );
   }
 
-  deleteRule(event) {
+  deleteRule(event: MouseEvent) {
     event.preventDefault();
 
     const {deleteRule, index} = this.props;

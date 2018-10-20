@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagButtons from 'src/tag/components/buttons';
+import TagButtons, {Props} from 'src/tag/components/buttons';
 
 import {makeTag, makeTask} from '_test_helpers/factories';
 
@@ -9,7 +9,7 @@ const tags = [
   makeTag({name: 'home', slug: 'home', tasks: [makeTask({})]}),
   makeTag({name: 'work', slug: 'work', tasks: [makeTask({}), makeTask({})]}),
 ];
-const props = {task: {}, tags, currentTagIds: []};
+const props: Props = {tags, currentTagIds: []};
 
 it('renders tag buttons', () => {
   const component = shallow(<TagButtons {...props} />);

@@ -5,19 +5,25 @@ import React from 'react';
 import TagButton from 'src/tag/components/button';
 import {tagShape} from 'src/shapes';
 
-class TagButtons extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  currentTagIds: number[],
+  tags: Tag[],
+  selectedTagSlug?: string,
+};
+
+class TagButtons extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  isCurrent(tag) {
+  isCurrent(tag: Tag) {
     const {currentTagIds} = this.props;
 
     return currentTagIds.includes(tag.id);
   }
 
-  isActive(tag) {
+  isActive(tag: Tag) {
     const {selectedTagSlug} = this.props;
 
     if (selectedTagSlug) { return tag.slug === selectedTagSlug; }
@@ -31,7 +37,7 @@ class TagButtons extends React.Component<any, any> {
     return tags.map(this.tagButton);
   }
 
-  tagButton(tag) {
+  tagButton(tag: Tag) {
     return (
       <TagButton
         tag={tag}

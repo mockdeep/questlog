@@ -4,13 +4,13 @@ import {getSelectedTag} from 'src/tag/selectors';
 import {setRoute} from 'src/route/action_creators';
 import {updateTag} from 'src/tag/action_creators';
 
-function computeScratchKey(state) {
+function computeScratchKey(state: State) {
   const tag = getSelectedTag(state);
 
   return tag ? `editTag-${tag.slug}` : 'editTag-loading';
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {tag: getSelectedTag(state)};
 }
 

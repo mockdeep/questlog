@@ -7,8 +7,8 @@ import {makeTag} from '_test_helpers/factories';
 
 const props = {
   tags: [
-    {name: 'At Home', slug: 'at-home'},
-    {name: 'At Work', slug: 'at-work'},
+    makeTag({name: 'At Home', slug: 'at-home'}),
+    makeTag({name: 'At Work', slug: 'at-work'}),
   ],
 };
 
