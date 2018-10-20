@@ -1,19 +1,24 @@
-import pathToRegexp from 'path-to-regexp';
+import pathToRegexp, {Key} from 'path-to-regexp';
 
-function compileRoutes(routes) {
+type Route = {
+  name: string;
+  path: string;
+};
+
+function compileRoutes(routes: Route[]) {
   return routes.map(route => {
-    const keys = [];
+    const keys: Key[] = [];
     const regexp = pathToRegexp(route.path, keys);
 
     return {
       ...route,
 
-      match(path) {
+      match(path: string) {
         const result = regexp.exec(path);
 
         if (!result) { return null; }
 
-        const params = {};
+        const params: {[key: string]: string} = {};
 
         keys.forEach((key, index) => {
           params[key.name] = result[index + 1];

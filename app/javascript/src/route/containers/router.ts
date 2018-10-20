@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import Router from 'src/route/components/router';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {route: state.route};
 }
 

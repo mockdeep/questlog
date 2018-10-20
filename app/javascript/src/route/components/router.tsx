@@ -14,7 +14,7 @@ import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 import WhatView from 'src/static/components/what_view';
 import {routeShape} from 'src/shapes';
 
-function Nothing() { return null; }
+function Nothing(): null { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskFocusViewContainer,
@@ -35,7 +35,10 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   tag: TaskFocusViewContainer,
 };
 
-function Router({route}) {
+type Props = {
+  route: Route;
+};
+function Router({route}: Props) {
   const Component = grab(ROUTE_NAME_TO_COMPONENT_MAP, route.name);
 
   return <Component />;
