@@ -1,7 +1,11 @@
 const INIT = 'common/INIT';
 const UPDATE = 'common/UPDATE';
 
-function updateCommon(payload) {
+type Payload = {
+  openModalId: number;
+};
+
+function updateCommon(payload: Payload) {
   return {type: UPDATE, payload};
 }
 
