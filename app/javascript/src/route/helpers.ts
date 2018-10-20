@@ -1,6 +1,6 @@
 import ROUTES from 'src/route/routes';
 
-function findRoute(name) {
+function findRoute(name: string) {
   const matchingRoute = ROUTES.find(route => route.name === name);
 
   if (!matchingRoute) { throw new Error(`No route found for name: ${name}`); }
@@ -8,7 +8,7 @@ function findRoute(name) {
   return matchingRoute;
 }
 
-function matchPath(path) {
+function matchPath(path: string) {
   let params;
 
   const matchingRoute = ROUTES.find(route => {

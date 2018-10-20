@@ -1,18 +1,28 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import {mapValues} from 'lodash';
 
 import {findRoute} from 'src/route/helpers';
 
-class Link extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  baseClass?: string;
+  className?: string;
+  onNavigate?: Function;
+  params?: {[key: string]: string | number};
+  routeName: string;
+  setRoute: Function;
+  to: string;
+};
+
+class Link extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  navigate(event) {
+  navigate(event: MouseEvent) {
     event.preventDefault();
 
     const {onNavigate, params, setRoute, to} = this.props;

@@ -3,11 +3,15 @@ import {findRoute, matchPath} from 'src/route/helpers';
 const INIT = 'route/INIT';
 const SET = 'route/SET';
 
+type Payload = {
+  name: string;
+};
+
 function fetchRoute() {
   return {type: SET, payload: matchPath(window.location.pathname)};
 }
 
-function setRoute(payload) {
+function setRoute(payload: Payload) {
   const {name, ...params} = payload;
   const matchingRoute = findRoute(name);
 
