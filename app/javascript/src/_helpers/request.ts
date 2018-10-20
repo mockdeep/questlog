@@ -1,21 +1,17 @@
-import reqwest from 'reqwest';
+import reqwest, {BaseRequestOptions, GivenRequestOptions} from 'reqwest';
 
 import authenticityToken from 'src/_helpers/authenticity_token';
-
-function mergeOptions(defaults, options) {
-  return {...defaults, ...options};
-}
 
 function reloadPage() {
   window.location.reload();
 }
 
-function logError(error) {
+function logError(error: Response) {
   // eslint-disable-next-line no-console
   console.log('error: ', error.statusText);
 }
 
-function defaultRequestOptions() {
+function defaultRequestOptions(): BaseRequestOptions {
   return {
     type: 'json',
     method: 'put',
@@ -25,6 +21,6 @@ function defaultRequestOptions() {
   };
 }
 
-export default function request(options) {
-  return reqwest(mergeOptions(defaultRequestOptions(), options));
+export default function request(options: GivenRequestOptions) {
+  return reqwest({...defaultRequestOptions(), ...options});
 }

@@ -1,10 +1,13 @@
-import moment from 'moment';
+/* eslint-disable import/named, no-unused-vars */
+import moment, {Moment} from 'moment';
+/* eslint-enable import/named */
 
-import TimeBalancer from 'src/_helpers/time_balancer';
+import TimeBalancer, {TimeBalance} from 'src/_helpers/time_balancer';
+/* eslint-enable no-unused-vars */
 
 describe('TimeBalancer.baseBalances', () => {
   it('returns a collection of base time pairs', () => {
-    const expectedPairs = [
+    const expectedPairs: [Moment, TimeBalance][] = [
       [
         moment([2014, 0, 1, 10]),
         {today: 1, week: 3, month: 27, quarter: 59, year: 275},
