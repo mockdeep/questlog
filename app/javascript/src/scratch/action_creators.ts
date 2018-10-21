@@ -3,19 +3,30 @@ const CREATE = 'scratch/CREATE';
 const DELETE = 'scratch/DELETE';
 const UPDATE = 'scratch/UPDATE';
 
-function createScratchPlain(payload) {
+import {Action} from 'redux';
+import {ThunkAction} from 'redux-thunk';
+
+interface AsyncAction extends ThunkAction<void, State, null, Action> { }
+type ScratchKey = string;
+export type Payload = {
+  taskTitle?: string;
+  keyName?: string; // for tests, should remove
+  key: ScratchKey;
+};
+
+function createScratchPlain(payload: ScratchKey) {
   return {type: CREATE, payload};
 }
 
-function deleteScratchPlain(payload) {
+function deleteScratchPlain(payload: ScratchKey) {
   return {type: DELETE, payload};
 }
 
-function updateScratchPlain(payload) {
+function updateScratchPlain(payload: Payload) {
   return {type: UPDATE, payload};
 }
 
-function createScratch(scratchKey) {
+function createScratch(scratchKey: ScratchKey): AsyncAction {
   return function createScratchThunk(dispatch, getState) {
     if (getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch state already has key: "${scratchKey}"`);
@@ -25,7 +36,7 @@ function createScratch(scratchKey) {
   };
 }
 
-function deleteScratch(scratchKey) {
+function deleteScratch(scratchKey: ScratchKey): AsyncAction {
   return function deleteScratchThunk(dispatch, getState) {
     if (!getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch has no such key to delete: "${scratchKey}"`);
@@ -35,7 +46,10 @@ function deleteScratch(scratchKey) {
   };
 }
 
-function updateScratch(scratchKey, payload) {
+function updateScratch(
+  scratchKey: ScratchKey,
+  payload: Partial<Payload>,
+): AsyncAction {
   return function updateScratchThunk(dispatch, getState) {
     if (!getState().scratch.hasOwnProperty(scratchKey)) {
       throw new Error(`Scratch has no such key to update: "${scratchKey}"`);

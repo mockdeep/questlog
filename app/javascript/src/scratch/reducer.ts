@@ -9,15 +9,15 @@ export default createBasicReducer({
     return {};
   },
 
-  [CREATE](previousState, key) {
+  [CREATE](previousState: ScratchState, key: string) {
     return {...previousState, [key]: {}};
   },
 
-  [DELETE](previousState, key) {
+  [DELETE](previousState: ScratchState, key: string) {
     return update(previousState, {$unset: [key]});
   },
 
-  [UPDATE](previousState, {key, ...scratch}) {
+  [UPDATE](previousState: ScratchState, {key, ...scratch}: {key: string}) {
     return update(previousState, {[key]: {$merge: scratch}});
   },
 });

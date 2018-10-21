@@ -34,9 +34,9 @@ describe(DELETE, () => {
 
 describe(UPDATE, () => {
   it('returns an object with the given key merged', () => {
-    const action = updateScratchPlain({key: 'fookey', some: 'new value'});
-    const previousState = {blah: {}, fookey: {some: 'old value'}};
-    const expectedState = {blah: {}, fookey: {some: 'new value'}};
+    const action = updateScratchPlain({key: 'fookey', taskTitle: 'new value'});
+    const previousState = {blah: {}, fookey: {taskTitle: 'old value'}};
+    const expectedState = {blah: {}, fookey: {taskTitle: 'new value'}};
 
     expect(scratchReducer(previousState, action)).toEqual(expectedState);
   });
