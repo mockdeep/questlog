@@ -9,32 +9,40 @@ import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
 import {taskShape} from 'src/shapes';
 
-function repeatString(task) {
+function repeatString(task: Task) {
   if (!task.repeatSeconds) { return 'Repeat: never'; }
 
   return `Repeat: every ${ToEnglish.seconds(task.repeatSeconds)}`;
 }
 
-function estimateString(task) {
+function estimateString(task: Task) {
   if (!task.estimateSeconds) { return 'Estimate: none'; }
 
   return `Estimate: ${ToEnglish.seconds(task.estimateSeconds)}`;
 }
 
-function priorityString(task) {
+function priorityString(task: Task) {
   if (!task.priority) { return 'Priority: none'; }
 
   return `Priority: ${task.priority}`;
 }
 
-function tagString(task) {
+function tagString(task: Task) {
   if (task.tagNames.length === 0) { return 'Tags: none'; }
 
   return `Tags: ${task.tagNames.join(', ')}`;
 }
 
-class TaskShowView extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  deleteTask: Function,
+  updateTask: Function,
+  updateTaskMeta: Function,
+  subTasks?: Task[],
+  task?: Task,
+};
+
+class TaskShowView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
 
     const {task} = this.props;
@@ -42,7 +50,7 @@ class TaskShowView extends React.Component<any, any> {
     this.setScratchTask(task);
   }
 
-  componentWillReceiveProps({task}) {
+  componentWillReceiveProps({task}: Props) {
     this.setScratchTask(task);
   }
 
@@ -52,7 +60,7 @@ class TaskShowView extends React.Component<any, any> {
     updateTaskMeta({newTask: {title: ''}});
   }
 
-  setScratchTask(task) {
+  setScratchTask(task: Task) {
     if (!task) { return; }
 
     const {updateTaskMeta} = this.props;

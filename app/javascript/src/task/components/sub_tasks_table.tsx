@@ -5,7 +5,14 @@ import TaskRow from 'src/task/components/task_row';
 import TableHeaders from 'src/task/components/table_headers';
 import {taskShape} from 'src/shapes';
 
-function taskRows(tasks, {updateTask, deleteTask}) {
+type FunctionProps = {
+  deleteTask: Function,
+  updateTask: Function,
+};
+
+export type Props = FunctionProps & { subTasks: Task[]; };
+
+function taskRows(tasks: Task[], {updateTask, deleteTask}: FunctionProps) {
   return tasks.map(task => (
     <TaskRow
       key={task.id}
@@ -17,7 +24,7 @@ function taskRows(tasks, {updateTask, deleteTask}) {
   ));
 }
 
-function SubTasksTable({subTasks, updateTask, deleteTask}) {
+function SubTasksTable({subTasks, updateTask, deleteTask}: Props) {
   if (subTasks.length === 0) { return null; }
 
   return (

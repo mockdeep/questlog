@@ -3,12 +3,12 @@ import {shallow} from 'enzyme';
 
 import {makeTask} from '_test_helpers/factories';
 
-import TaskEditTitleForm from 'src/task/components/edit_title_form';
+import TaskEditTitleForm, {Props} from 'src/task/components/edit_title_form';
 import Textarea from 'react-textarea-autosize';
 
 const updateScratch = jest.fn();
 const updateTask = jest.fn();
-const props = {
+const props: Props = {
   scratch: {},
   task: makeTask({id: 52, title: 'a title'}),
   updateScratch,

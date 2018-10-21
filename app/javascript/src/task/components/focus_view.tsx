@@ -7,8 +7,17 @@ import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
 import {taskShape, scratchShape} from 'src/shapes';
 
-class TaskFocusView extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  ajaxState: string,
+  deleteTask: Function,
+  scratch: Scratch,
+  updateScratch: Function,
+  updateTask: Function,
+  task?: Task,
+};
+
+class TaskFocusView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
 
@@ -17,17 +26,17 @@ class TaskFocusView extends React.Component<any, any> {
     updateScratch({postponeSeconds: 300});
   }
 
-  storePostponeSeconds(postponeSeconds) {
+  storePostponeSeconds(postponeSeconds: number) {
     const {updateScratch} = this.props;
 
     updateScratch({postponeSeconds});
   }
 
-  setTitle(title) {
+  setTitle(title: string) {
     document.title = title;
   }
 
-  postponeTask(taskId) {
+  postponeTask(taskId: number) {
     const {scratch, updateTask} = this.props;
 
     const attrs = {postpone: scratch.postponeSeconds};
@@ -35,7 +44,7 @@ class TaskFocusView extends React.Component<any, any> {
     updateTask(taskId, attrs);
   }
 
-  completeTask(taskId) {
+  completeTask(taskId: number) {
     const {updateTask} = this.props;
 
     updateTask(taskId, {done: true});
@@ -107,7 +116,6 @@ TaskFocusView.propTypes = {
   updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   task: taskShape,
-  url: PropTypes.string,
 };
 
 export default TaskFocusView;

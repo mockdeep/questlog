@@ -7,11 +7,11 @@ import BulkTaskStore from 'src/task/bulk_store';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import TableHeaders from 'src/task/components/table_headers';
 import TaskListFilters from 'src/task/components/list_filters';
-import {TaskListView} from 'src/task/components/list_view';
+import {Props, TaskListView} from 'src/task/components/list_view';
 
 import {makeTask} from '_test_helpers/factories';
 
-const props = {
+const props: Props = {
   currentTasks: [],
   deleteTask: jest.fn(),
   pendingTasks: [],
@@ -25,7 +25,7 @@ it('renders the list filters', () => {
 });
 
 it('renders current tasks', () => {
-  const overrides = {...props, currentTasks: [makeTask({})]};
+  const overrides: Props = {...props, currentTasks: [makeTask({})]};
 
   const component = shallow(<TaskListView {...overrides} />);
 
@@ -43,7 +43,7 @@ it('does not render a current tasks table when none are present', () => {
 });
 
 it('renders pending tasks', () => {
-  const overrides = {...props, pendingTasks: [makeTask({})]};
+  const overrides: Props = {...props, pendingTasks: [makeTask({})]};
 
   const component = shallow(<TaskListView {...overrides} />);
 
@@ -61,7 +61,7 @@ it('does not render a pending tasks table when none are present', () => {
 });
 
 it('updates task rows based on updated props', () => {
-  const overrides = {...props, currentTasks: [makeTask({})]};
+  const overrides: Props = {...props, currentTasks: [makeTask({})]};
 
   const component = shallow(<TaskListView {...overrides} />);
   component.setProps({currentTasks: [], pendingTasks: [makeTask({})]});
@@ -76,7 +76,7 @@ describe('moving a task when dragging', () => {
   it('moves a task after another task', () => {
     const task1 = makeTask({});
     const task2 = makeTask({});
-    const overrides = {...props, currentTasks: [task1, task2]};
+    const overrides: Props = {...props, currentTasks: [task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
     expect(taskRows).toHaveLength(2);
@@ -95,7 +95,7 @@ describe('moving a task when dragging', () => {
   it('does nothing when moving task id is the same as after task id', () => {
     const task1 = makeTask({});
     const task2 = makeTask({});
-    const overrides = {...props, currentTasks: [task1, task2]};
+    const overrides: Props = {...props, currentTasks: [task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
     expect(taskRows).toHaveLength(2);
@@ -117,7 +117,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: null});
-    const overrides = {...props, currentTasks: [task3, task1, task2]};
+    const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -131,7 +131,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task3, task1, task2]};
+    const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -145,7 +145,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task2, task3, task1]};
+    const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -159,7 +159,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: null});
-    const overrides = {...props, currentTasks: [task2, task3, task1]};
+    const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -173,7 +173,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: null});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task1, task3, task2]};
+    const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task2}, updatePriority};
@@ -187,7 +187,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task1, task3, task2]};
+    const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -201,7 +201,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -215,7 +215,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 1});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -229,7 +229,7 @@ describe('saving task after drop', () => {
     const task1 = makeTask({priority: 1});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides = {...props, currentTasks: [task2, task1, task3]};
+    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const component = shallow(<TaskListView {...overrides} />);
     const fakeComponent = {props: {task: task1}, updatePriority: jest.fn()};
 

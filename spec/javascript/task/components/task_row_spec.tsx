@@ -1,13 +1,15 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TaskRow from 'src/task/components/task_row';
+import {makeTask} from '_test_helpers/factories';
 
-const props = {
+import TaskRow, {Props} from 'src/task/components/task_row';
+
+const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   keyPrefix: 'testPrefix',
-  task: {},
+  task: makeTask({}),
 };
 
 it('renders a table row', () => {
@@ -23,7 +25,8 @@ it('renders the timeframe selector when enabled', () => {
 });
 
 it('renders an undo button when task is pending', () => {
-  const component = shallow(<TaskRow {...props} task={{pending: true}} />);
+  const task = makeTask({pending: true});
+  const component = shallow(<TaskRow {...props} task={task} />);
 
   const buttons = component.find('button');
   expect(buttons).toHaveLength(3);
@@ -31,7 +34,8 @@ it('renders an undo button when task is pending', () => {
 });
 
 it('does not render an undo button when task is not pending', () => {
-  const component = shallow(<TaskRow {...props} task={{pending: false}} />);
+  const task = makeTask({pending: false});
+  const component = shallow(<TaskRow {...props} task={task} />);
 
   const buttons = component.find('button');
   expect(buttons).toHaveLength(2);

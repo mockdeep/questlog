@@ -1,9 +1,21 @@
+type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
+
 type Task = {
   id: number;
+  estimateMinutes: number;
+  estimateSeconds?: number;
   parentTaskId?: number;
+  pending: boolean;
   priority: number;
+  releaseAt?: string;
+  repeatSeconds?: number;
+  skipCount: number;
+  status: 'active' | 'done' | 'pending';
   tagIds: number[];
+  tagNames: string[];
+  timeframe: TimeframeName;
   title: string;
+  loadingState: TaskLoadingState;
 };
 
 type TaskMeta = {
@@ -17,4 +29,8 @@ type AjaxTask = {
   priority?: number;
   timeframe?: string;
   title: string;
+};
+
+type TasksByParentId = {
+  [parentTaskId: number]: Task[];
 };

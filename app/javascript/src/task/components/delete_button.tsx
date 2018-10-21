@@ -1,16 +1,21 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {MouseEvent} from 'react';
 
 import {taskShape} from 'src/shapes';
 
-class DeleteButton extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  deleteTask: Function,
+  task: Task,
+};
+
+class DeleteButton extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  deleteTask(event) {
+  deleteTask(event: MouseEvent) {
     event.stopPropagation();
 
     const {deleteTask, task} = this.props;

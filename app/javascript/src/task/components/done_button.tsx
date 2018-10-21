@@ -4,8 +4,13 @@ import React from 'react';
 
 import {taskShape} from 'src/shapes';
 
-class DoneButton extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  completeTask: Function,
+  task: Task,
+};
+
+class DoneButton extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }

@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function TableHeaders({label}) {
+type Props = {label: string};
+
+function TableHeaders({label}: Props) {
   return (
     <tr className='tasks-table__header-row'>
       <th className='tasks-table__header' />

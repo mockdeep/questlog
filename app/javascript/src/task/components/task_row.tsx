@@ -1,7 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent, MouseEvent} from 'react';
 import {map} from 'lodash';
 
 import grab from 'src/_helpers/grab';
@@ -12,35 +12,46 @@ import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
-class TaskRow extends React.PureComponent<any, any> {
+export type Props = {
+  deleteTask: Function,
+  keyPrefix: string,
+  task: Task,
+  updateTask: Function,
+  isDragging?: boolean,
+  status?: string,
+  timeframesEnabled?: boolean,
+  timeframeSpace?: TimeframeSpace,
+};
+
+class TaskRow extends React.PureComponent<Props, any> {
   domNode: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     autobind(this);
     this.state = {timeframeClicked: false};
   }
 
-  markDone(event) {
+  markDone(event: MouseEvent) {
     const {task, updateTask} = this.props;
 
     event.preventDefault();
     updateTask(task.id, {done: true});
   }
 
-  updatePriority(event) {
+  updatePriority(event: ChangeEvent<HTMLSelectElement>) {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {priority: event.target.value});
   }
 
-  updateTimeframe(event) {
+  updateTimeframe(event: ChangeEvent<HTMLSelectElement>) {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {timeframe: event.target.value});
   }
 
-  deleteTask(event) {
+  deleteTask(event: MouseEvent) {
     const {deleteTask, task} = this.props;
 
     event.preventDefault();
@@ -81,13 +92,13 @@ class TaskRow extends React.PureComponent<any, any> {
     return task.timeframe;
   }
 
-  timeframeHasSpace(name) {
+  timeframeHasSpace(name: string) {
     const {task, timeframeSpace} = this.props;
 
     return grab(timeframeSpace, name) >= task.estimateMinutes;
   }
 
-  optionText(title, name) {
+  optionText(title: string, name: string) {
     const {timeframeSpace} = this.props;
     const space = grab(timeframeSpace, name);
     let text = title;
@@ -164,7 +175,7 @@ class TaskRow extends React.PureComponent<any, any> {
     );
   }
 
-  storeDOMNode(domNode) {
+  storeDOMNode(domNode: HTMLTableRowElement) {
     this.domNode = domNode;
   }
 

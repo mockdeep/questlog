@@ -1,15 +1,20 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 import SelectOption from 'src/_common/components/select_option';
 import {taskShape} from 'src/shapes';
 
-function isPostponing(task) {
+function isPostponing(task: Task) {
   return task.loadingState === 'postponing';
 }
 
-const selectOptionsOptions = [
+type OptionOptions = {
+  value: string;
+  content: string;
+};
+
+const selectOptionsOptions: OptionOptions[] = [
   {value: '300', content: '5 minutes'},
   {value: '1800', content: '30 minutes'},
   {value: '3600', content: '1 hour'},
@@ -27,8 +32,15 @@ const selectOptionsOptions = [
 
 const className = 'btn btn-info btn-lg btn-block postpone-button';
 
-class PostponeButton extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  disabled: boolean,
+  postponeTask: Function,
+  storePostponeSeconds: Function,
+  task: Task,
+};
+
+class PostponeButton extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
@@ -45,7 +57,7 @@ class PostponeButton extends React.Component<any, any> {
     return selectOptionsOptions.map(this.selectOption);
   }
 
-  selectOption(optionOptions) {
+  selectOption(optionOptions: OptionOptions) {
     return (
       <SelectOption
         value={optionOptions.value}
@@ -55,7 +67,7 @@ class PostponeButton extends React.Component<any, any> {
     );
   }
 
-  storePostponeSeconds(event) {
+  storePostponeSeconds(event: ChangeEvent<HTMLSelectElement>) {
     const {storePostponeSeconds} = this.props;
 
     storePostponeSeconds(parseInt(event.target.value, 10));

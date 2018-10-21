@@ -7,8 +7,14 @@ import TaskCheckbox from 'src/task/components/checkbox';
 import TaskNestedList from 'src/task/components/nested_list';
 import {taskShape} from 'src/shapes';
 
-class TaskParentListItem extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  task: Task,
+  tasksByParentId: TasksByParentId,
+  updateTask: Function,
+};
+
+class TaskParentListItem extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
