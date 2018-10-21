@@ -1,14 +1,21 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount, ReactWrapper} from 'enzyme';
+import {ActionCreator, Action} from 'redux';
 
 import connectWithScratch from 'src/scratch/connect_with_scratch';
 import createAppStore from 'src/create_app_store';
 import {createScratch, updateScratch} from 'src/scratch/action_creators';
 
-let container;
-let store;
+let container: ReactWrapper;
+let store = createAppStore();
 
-function computeKey(state) {
+type TestProps = {
+  updateFoo?: Function;
+  updateScratch: Function;
+  someProp?: string;
+};
+
+function computeKey(state: ScratchState) {
   const {scratchKeySpecial} = state.scratch;
   if (scratchKeySpecial && scratchKeySpecial.keyName) {
     return scratchKeySpecial.keyName;
@@ -17,15 +24,15 @@ function computeKey(state) {
   return 'testScratchKey';
 }
 
-function TestComponent() {
-  return (
-    <div>
-      {'Hello'}
-    </div>
-  );
+function TestComponent(props: TestProps) {
+  return <div>{`Hello ${props}`}</div>;
 }
 
-function wrapComponent(computeScratchKey, mapStateToProps, actionCreators) {
+function wrapComponent(
+  computeScratchKey: (state: ScratchState, props: TestProps) => string,
+  mapStateToProps: (state: ScratchState, props: TestProps) => any,
+  actionCreators: {[name: string]: ActionCreator<Action>},
+) {
   const connector = connectWithScratch(
     computeScratchKey,
     mapStateToProps,
@@ -41,15 +48,15 @@ function wrapComponent(computeScratchKey, mapStateToProps, actionCreators) {
 beforeEach(() => { store = createAppStore(); });
 
 it('passes props mapped from state down to the wrapped component', () => {
-  function mapStateToProps(state) {
+  function mapStateToProps(state: ScratchState) {
     return {
       dooble: 'dobble',
-      propFromState: state.scratch.oneTest.value,
+      propFromState: state.scratch.oneTest.taskTitle,
     };
   }
 
   store.dispatch(createScratch('oneTest'));
-  store.dispatch(updateScratch('oneTest', {value: 'something'}));
+  store.dispatch(updateScratch('oneTest', {taskTitle: 'something'}));
 
   const testComponent = wrapComponent(computeKey, mapStateToProps, {});
 
@@ -58,7 +65,7 @@ it('passes props mapped from state down to the wrapped component', () => {
 });
 
 it('passes ownProps through', () => {
-  function mapStateToProps(state, ownProps) {
+  function mapStateToProps(state: ScratchState, ownProps: TestProps) {
     return {
       dooble: 'dobble',
       propsFromProps: ownProps.someProp,
@@ -96,11 +103,11 @@ it('passes the appropriate scratch state down to the wrapped component', () => {
 
   expect(testComponent).toHaveProp('scratch', {});
 
-  store.dispatch(updateScratch('testScratchKey', {value: 'something'}));
+  store.dispatch(updateScratch('testScratchKey', {taskTitle: 'something'}));
   container.update();
 
   testComponent = container.find(TestComponent);
-  expect(testComponent).toHaveProp('scratch', {value: 'something'});
+  expect(testComponent).toHaveProp('scratch', {taskTitle: 'something'});
 });
 
 it('removes the scratch key when the component is unmounted', () => {

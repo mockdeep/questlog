@@ -12,7 +12,7 @@ describe('createScratch', () => {
       const getState = jest.fn(() => ({scratch: {}}));
       const thunk = createScratch(scratchKey);
 
-      thunk(dispatch, getState);
+      thunk(dispatch, getState, null);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
@@ -24,7 +24,9 @@ describe('createScratch', () => {
       const getState = jest.fn(() => ({scratch}));
       const thunk = createScratch(scratchKey);
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/already has key/u);
+      expect(() => {
+        thunk(dispatch, getState, null);
+      }).toThrow(/already has key/u);
     });
   });
 });
@@ -39,7 +41,7 @@ describe('deleteScratch', () => {
       const getState = jest.fn(() => ({scratch}));
       const thunk = deleteScratch(scratchKey);
 
-      thunk(dispatch, getState);
+      thunk(dispatch, getState, null);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
@@ -50,7 +52,9 @@ describe('deleteScratch', () => {
       const getState = jest.fn(() => ({scratch: {}}));
       const thunk = deleteScratch(scratchKey);
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/u);
+      expect(() => {
+        thunk(dispatch, getState, null);
+      }).toThrow(/no such key/u);
     });
   });
 });
@@ -60,13 +64,13 @@ describe('updateScratch', () => {
     it('dispatches an UPDATE action object', () => {
       const scratchKey = 'some key thing';
       const scratch = {[scratchKey]: {}};
-      const payload = {key: scratchKey, foo: 'butz'};
+      const payload = {key: scratchKey, taskTitle: 'butz'};
       const expectedAction = {type: UPDATE, payload};
       const dispatch = jest.fn();
       const getState = jest.fn(() => ({scratch}));
-      const thunk = updateScratch(scratchKey, {foo: 'butz'});
+      const thunk = updateScratch(scratchKey, {taskTitle: 'butz'});
 
-      thunk(dispatch, getState);
+      thunk(dispatch, getState, null);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
@@ -77,7 +81,9 @@ describe('updateScratch', () => {
       const getState = jest.fn(() => ({scratch: {}}));
       const thunk = updateScratch(scratchKey, {});
 
-      expect(() => { thunk(dispatch, getState); }).toThrow(/no such key/u);
+      expect(() => {
+        thunk(dispatch, getState, null);
+      }).toThrow(/no such key/u);
     });
   });
 });

@@ -1,21 +1,26 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
-import {bindActionCreators} from 'redux';
+import React, {Component} from 'react';
+import {bindActionCreators, ActionCreator, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {createScratch, deleteScratch, updateScratch}
-  from 'src/scratch/action_creators';
+import {
+  createScratch, deleteScratch, updateScratch,
+  Payload,
+} from 'src/scratch/action_creators';
 import {scratchShape} from 'src/shapes';
 
+type Props = {
+  [key: string]: any
+};
 const scratchActionCreators = {createScratch, deleteScratch, updateScratch};
 
 function connectWithScratch(
-  computeScratchKey,
-  mapStateToProps,
-  actionCreators
+  computeScratchKey: Function,
+  mapStateToProps: Function,
+  actionCreators: {[key: string]: ActionCreator<any>}
 ) {
-  function scratchMapStateToProps(state, ownProps) {
+  function scratchMapStateToProps(state: State, ownProps: Props) {
     const scratchKey = computeScratchKey(state, ownProps);
 
     return {
@@ -25,18 +30,18 @@ function connectWithScratch(
     };
   }
 
-  function scratchMapDispatchToProps(dispatch) {
+  function scratchMapDispatchToProps(dispatch: Dispatch) {
     return {
       wrappedActionCreators: bindActionCreators(actionCreators, dispatch),
       ...bindActionCreators(scratchActionCreators, dispatch),
     };
   }
 
-  return function wrapComponentWithScratch(WrappedComponent) {
-    class ConnectWithScratch extends React.Component<any, any> {
+  return function wrapComponentWithScratch(WrappedComponent: any) {
+    class ConnectWithScratch extends Component<Props, any> {
       static displayName: string;
 
-      constructor(props) {
+      constructor(props: Props) {
         super(props);
         autobind(this);
 
@@ -45,7 +50,7 @@ function connectWithScratch(
         boundCreateScratch(props.scratchKey);
       }
 
-      componentWillReceiveProps(nextProps) {
+      componentWillReceiveProps(nextProps: Props) {
         const {
           createScratch: boundCreateScratch,
           deleteScratch: boundDeleteScratch,
@@ -67,7 +72,7 @@ function connectWithScratch(
         boundDeleteScratch(scratchKey);
       }
 
-      updateScratch(payload) {
+      updateScratch(payload: Payload) {
         const {scratchKey, updateScratch: boundUpdateScratch} = this.props;
 
         boundUpdateScratch(scratchKey, payload);
