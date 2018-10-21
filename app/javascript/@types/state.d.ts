@@ -20,6 +20,8 @@ type State = {
   user?: any;
 };
 
+type StateKey = keyof State;
+
 type SubState = ScratchState
   | TagState
   | NotificationState;

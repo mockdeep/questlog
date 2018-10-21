@@ -1,10 +1,12 @@
-import moment from 'moment';
+/* eslint-disable import/named, no-unused-vars */
+import moment, {Moment} from 'moment';
+/* eslint-enable import/named, no-unused-vars */
 import {sumBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
 import TimeBalancer from 'src/_helpers/time_balancer';
 
-const timeframeEnds = {
+const timeframeEnds: {[timeframeName in TimeframeName]: Moment} = {
   inbox: null,
   today: moment().endOf('day'),
   week: moment().endOf('week'),
@@ -15,7 +17,7 @@ const timeframeEnds = {
   decade: null,
 };
 
-const timeframeList = [
+const timeframeList: TimeframeName[] = [
   'inbox',
   'today',
   'week',
@@ -26,13 +28,13 @@ const timeframeList = [
   'decade',
 ];
 
-function baseBalance(name) {
+function baseBalance(name: TimeframeName) {
   const {balanceTime} = window;
 
   return TimeBalancer.baseBalances(balanceTime)[name];
 }
 
-function calculateMaxMinutes(name, medianProductivity) {
+function calculateMaxMinutes(name: TimeframeName, medianProductivity: number) {
   const baseMinutes = baseBalance(name);
 
   if (typeof baseMinutes === 'undefined') { return Infinity; }
@@ -42,14 +44,14 @@ function calculateMaxMinutes(name, medianProductivity) {
   return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
 }
 
-function calculateTotalMinutes(timeframe) {
+function calculateTotalMinutes(timeframe: Timeframe) {
   const allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
 
   return sumBy(allTasks, 'estimateMinutes');
 }
 
-function timeframeNameForPendingTask(task) {
-  const releaseAt = moment(task.release_at);
+function timeframeNameForPendingTask(task: Task) {
+  const releaseAt = moment(task.releaseAt);
   let index = timeframeList.indexOf(task.timeframe) - 1;
   let timeframeName;
   let timeframeEnd;
@@ -64,7 +66,7 @@ function timeframeNameForPendingTask(task) {
   return timeframeList[index];
 }
 
-function timeframeNameForTask(task) {
+function timeframeNameForTask(task: Task) {
   if (!task.timeframe) { return 'inbox'; }
 
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;

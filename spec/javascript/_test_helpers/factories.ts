@@ -2,6 +2,17 @@ import appReducer from 'src/app_reducer';
 
 let nextTagId = 0;
 let nextTaskId = 0;
+let nextTimeframeId = 0;
+const timeframeNames: TimeframeName[] = [
+  'inbox',
+  'today',
+  'week',
+  'month',
+  'quarter',
+  'year',
+  'lustrum',
+  'decade',
+];
 
 function makeState(attrs) {
   return Object.keys(attrs).reduce((state, key) => {
@@ -23,20 +34,36 @@ function makeTag(attrs) {
   };
 }
 
-function makeTask(attrs) {
+function makeTask(attrs: Partial<Task>): Task {
   nextTaskId += 1;
 
   return {
     id: nextTaskId,
+    done: false,
     estimateMinutes: 30,
     loadingState: 'ready',
+    pending: false,
+    position: nextTaskId,
     priority: null,
+    skipCount: 0,
     status: 'active',
     tagIds: [],
     tagNames: [],
     timeframe: null,
+    title: `Task ${nextTaskId}`,
     ...attrs,
   };
 }
 
-export {makeState, makeTag, makeTask};
+function makeTimeframe(attrs: Partial<Timeframe>): Timeframe {
+  nextTimeframeId += 1;
+
+  return {
+    name: timeframeNames[nextTimeframeId],
+    currentTasks: [],
+    pendingTasks: [],
+    ...attrs,
+  };
+}
+
+export {makeState, makeTag, makeTask, makeTimeframe};

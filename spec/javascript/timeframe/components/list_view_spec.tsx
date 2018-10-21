@@ -3,6 +3,8 @@ import {shallow} from 'enzyme';
 
 import TimeframeListView from 'src/timeframe/components/list_view';
 
+import {makeTask, makeTimeframe} from '_test_helpers/factories';
+
 const props = {
   deleteTask: jest.fn(),
   fetchTasks: jest.fn(),
@@ -16,7 +18,8 @@ it('renders a loading message before content has been loaded', () => {
 });
 
 it('renders the current median productivity when loaded', () => {
-  const input = {timeframes: [], meta: {medianProductivity: 4456}};
+  const input: TimeframeData =
+    {timeframes: [], meta: {medianProductivity: 4456}};
 
   const component = shallow(<TimeframeListView {...props} />);
   (component.instance() as TimeframeListView).updateTimeframes(input);
@@ -28,12 +31,11 @@ it('renders the current median productivity when loaded', () => {
 });
 
 it('renders the given timeframes for the user', () => {
-  const timeframe = {
+  const timeframe: Timeframe = makeTimeframe({
     name: 'inbox',
-    title: 'Inbox',
-    currentTasks: [{id: 5, title: 'do laundry'}],
+    currentTasks: [makeTask({title: 'do laundry'})],
     pendingTasks: [],
-  };
+  });
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
   const component = shallow(<TimeframeListView {...props} />);
@@ -44,7 +46,8 @@ it('renders the given timeframes for the user', () => {
 });
 
 it('does not render empty timeframes', () => {
-  const timeframe = {name: 'Inbox', currentTasks: [], pendingTasks: []};
+  const timeframe: Timeframe =
+    {name: 'inbox', currentTasks: [], pendingTasks: []};
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
   const component = shallow(<TimeframeListView {...props} />);

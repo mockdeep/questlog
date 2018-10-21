@@ -8,13 +8,20 @@ import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 import {timeframeShape, timeframeSpaceShape} from 'src/shapes';
 
-class TimeframeSection extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  deleteTask: Function,
+  timeframe: Timeframe,
+  timeframeSpace: TimeframeSpace,
+  updateTask: Function,
+};
+
+class TimeframeSection extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  renderTask(task) {
+  renderTask(task: Task) {
     const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
 
     return (
@@ -30,7 +37,7 @@ class TimeframeSection extends React.Component<any, any> {
     );
   }
 
-  renderPendingTask(task) {
+  renderPendingTask(task: Task) {
     const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
 
     return (

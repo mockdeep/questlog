@@ -2,10 +2,12 @@ type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
 
 type Task = {
   id: number;
+  done: boolean;
   estimateMinutes: number;
   estimateSeconds?: number;
   parentTaskId?: number;
   pending: boolean;
+  position: number;
   priority: number;
   releaseAt?: string;
   repeatSeconds?: number;
