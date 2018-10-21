@@ -22,4 +22,6 @@ type BasicAction = {
   payload?: any;
 };
 
+type Callback = { (): void };
+
 type AjaxData = { tag: AjaxTag } | { task: AjaxTask };

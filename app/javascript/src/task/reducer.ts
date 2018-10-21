@@ -11,11 +11,11 @@ import {
   UPDATE_META,
 } from 'src/task/action_creators';
 
-function estimateMinutes(task) {
+function estimateMinutes(task: Task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 
-function processTask(task) {
+function processTask(task: Task) {
   const processedTask = {
     loadingState: 'ready',
     ...task,
@@ -33,29 +33,29 @@ export default createBasicReducer({
     };
   },
 
-  [CREATE](previousState, taskAttrs) {
+  [CREATE](previousState: State, taskAttrs: Task) {
     const task = processTask(taskAttrs);
 
     return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },
 
-  [DELETE](previousState, taskId) {
+  [DELETE](previousState: State, taskId: number) {
     return update(previousState, {byId: {$unset: [taskId]}});
   },
 
-  [SET](previousState, taskData) {
+  [SET](previousState: State, taskData: Task[]) {
     const tasks = taskData.map(processTask);
 
     return {...previousState, byId: keyBy(tasks, 'id')};
   },
 
-  [UPDATE](previousState, taskAttrs) {
+  [UPDATE](previousState: State, taskAttrs: Task) {
     const task = processTask(taskAttrs);
 
     return update(previousState, {byId: {[task.id]: {$merge: task}}});
   },
 
-  [UPDATE_META](previousState, meta) {
+  [UPDATE_META](previousState: State, meta: TaskMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
 });

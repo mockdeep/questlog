@@ -2,6 +2,11 @@ jest.mock('src/_helpers/flash');
 jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
+import {Dispatch, Store} from 'redux';
+// import {ThunkDispatch} from 'redux-thunk';
+
+import {makeState} from '_test_helpers/factories';
+
 import createAppStore from 'src/create_app_store';
 import {ajaxDelete, ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
@@ -11,12 +16,13 @@ import {
 } from 'src/task/action_creators';
 import {upsertTagPlain} from 'src/tag/action_creators';
 
-let store;
-let dispatch;
+let store: Store;
+let dispatch: Dispatch;
 
 beforeEach(() => {
   store = createAppStore();
-  dispatch = jest.spyOn(store, 'dispatch');
+  jest.spyOn(store, 'dispatch');
+  dispatch = store.dispatch;
 });
 
 describe('fetchTasks', () => {
@@ -24,7 +30,7 @@ describe('fetchTasks', () => {
     const thunk = fetchTasks();
     const expectedAction = updateTaskMeta({ajaxState: 'fetching'});
 
-    thunk(dispatch);
+    thunk(dispatch, () => makeState({}), null);
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
@@ -35,7 +41,7 @@ describe('fetchTasks', () => {
 
     const thunk = fetchTasks();
 
-    await thunk(dispatch);
+    await thunk(store.dispatch, () => makeState({}), null);
 
     const expectedAction = updateTaskMeta({ajaxState: 'ready'});
 
@@ -48,7 +54,7 @@ describe('createTask', () => {
     const thunk = createTask({title: 'foo'});
     const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
 
-    thunk(dispatch);
+    thunk(dispatch, () => makeState({}), null);
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
@@ -65,7 +71,7 @@ describe('createTask', () => {
 
       const createThunk = createTask({title: 'bar'});
 
-      await createThunk(dispatch);
+      await createThunk(dispatch, () => makeState({}), null);
 
       expect(ajaxPost).toHaveBeenCalled();
     });
@@ -104,20 +110,22 @@ describe('createTask', () => {
 describe('deleteTask', () => {
   it('sends a delete request to the server', async () => {
     const thunk = deleteTask(5);
+    const state = makeState({});
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
-    await thunk(dispatch);
+    await thunk(dispatch, () => state, null);
 
     expect(ajaxDelete).toHaveBeenCalledWith('/api/v1/tasks/5');
   });
 
   it('re-fetches tasks', async () => {
     const thunk = deleteTask(5);
+    const state = makeState({});
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
-    await thunk(dispatch);
+    await thunk(dispatch, () => state, null);
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenLastCalledWith({type: DELETE, payload: 5});
@@ -125,10 +133,11 @@ describe('deleteTask', () => {
 
   it('unloads the task store', async () => {
     const thunk = deleteTask(5);
+    const state = makeState({});
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
-    await thunk(dispatch);
+    await thunk(dispatch, () => state, null);
 
     expect(TaskStore.unload).toHaveBeenCalled();
   });
@@ -144,8 +153,9 @@ describe('updateTask', () => {
   it('updates the client task with "marking_done" when marking done', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'foo', done: true});
     const payload = {id: 5, loadingState: 'marking_done'};
+    const state = makeState({});
 
-    updateThunk(dispatch);
+    updateThunk(dispatch, () => state, null);
 
     expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
   });
@@ -154,8 +164,9 @@ describe('updateTask', () => {
     const updateThunk =
       updateTask(taskAttrs.id, {title: 'foo', postpone: true});
     const payload = {id: 5, loadingState: 'postponing'};
+    const state = makeState({});
 
-    updateThunk(dispatch);
+    updateThunk(dispatch, () => state, null);
 
     expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
   });
@@ -163,8 +174,9 @@ describe('updateTask', () => {
   it('updates the client task with "updating" otherwise', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'foo blah #bar'});
     const payload = {id: 5, loadingState: 'updating'};
+    const state = makeState({});
 
-    updateThunk(dispatch);
+    updateThunk(dispatch, () => state, null);
 
     expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload});
   });
@@ -172,8 +184,9 @@ describe('updateTask', () => {
   it('sends a request to the server', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
     const expected = ['/api/v1/tasks/5', {task: {title: 'bar'}}];
+    const state = makeState({});
 
-    updateThunk(dispatch);
+    updateThunk(dispatch, () => state, null);
 
     expect(ajaxPut).toHaveBeenCalledWith(...expected);
   });
@@ -188,8 +201,9 @@ describe('updateTask', () => {
       (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
+      const state = makeState({});
 
-      updateThunk(dispatch);
+      updateThunk(dispatch, () => state, null);
 
       expect(ajaxPut).toHaveBeenCalled();
     });
