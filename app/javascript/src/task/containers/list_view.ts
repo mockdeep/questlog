@@ -15,7 +15,7 @@ const ROUTE_SELECTORS = {
   leafTasks: getPartitionedLeafTasks,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   const selector = grab(ROUTE_SELECTORS, state.route.name);
   const {pending, active} = selector(state);
 
