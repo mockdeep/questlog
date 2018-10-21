@@ -10,11 +10,11 @@ export default createBasicReducer({
     return {byId: {}, meta: {}};
   },
 
-  [SET](previousState, tags) {
+  [SET](previousState: State, tags: Tag[]) {
     return {...previousState, byId: keyBy(tags, 'id')};
   },
 
-  [UPDATE](previousState, tagAttrs) {
+  [UPDATE](previousState: TagState, tagAttrs: Tag) {
     if (!previousState.byId[tagAttrs.id]) {
       throw new Error(`no tag found for id ${tagAttrs.id}`);
     }
@@ -22,7 +22,7 @@ export default createBasicReducer({
     return update(previousState, {byId: {[tagAttrs.id]: {$merge: tagAttrs}}});
   },
 
-  [UPSERT](previousState, tag) {
+  [UPSERT](previousState: TagState, tag: Tag) {
     if (previousState.byId.hasOwnProperty(tag.id)) {
       return update(previousState, {byId: {[tag.id]: {$merge: tag}}});
     }
@@ -30,7 +30,7 @@ export default createBasicReducer({
     return update(previousState, {byId: {$merge: {[tag.id]: tag}}});
   },
 
-  [UPDATE_META](previousState, meta) {
+  [UPDATE_META](previousState: State, meta: TagMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
 });

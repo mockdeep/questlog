@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import TagListView from 'src/tag/components/list_view';
 import {getOrderedTags} from 'src/tag/selectors';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {tags: getOrderedTags(state)};
 }
 
