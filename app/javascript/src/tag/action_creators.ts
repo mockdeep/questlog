@@ -1,3 +1,6 @@
+import {Action, Dispatch} from 'redux';
+import {ThunkAction} from 'redux-thunk';
+
 import {ajaxPut} from 'src/_helpers/ajax';
 
 const BASE_PATH = '/api/v1/tags';
@@ -8,33 +11,33 @@ const UPDATE = 'tag/UPDATE';
 const UPDATE_META = 'tag/UPDATE_META';
 const UPSERT = 'tag/UPSERT';
 
-function setTags(payload) {
+function setTags(payload: Tag[]) {
   return {type: SET, payload};
 }
 
-function updateTagPlain(id, payload) {
+function updateTagPlain(id: number, payload: AjaxTag) {
   return {type: UPDATE, payload: {id, ...payload}};
 }
 
-function updateTag(id, payload) {
-  return async function updateTagThunk(dispatch) {
+function updateTag(id: number, payload: AjaxTag) {
+  return async function updateTagThunk(dispatch: Dispatch) {
     await ajaxPut(`${BASE_PATH}/${id}`, {tag: payload});
 
     dispatch(updateTagPlain(id, payload));
   };
 }
 
-function upsertTagPlain(payload) {
+function upsertTagPlain(payload: AjaxTag) {
   return {type: UPSERT, payload};
 }
 
-function upsertTags(tags) {
+function upsertTags(tags: AjaxTag[]): ThunkAction<void, State, null, Action> {
   return function upsertTagsThunk(dispatch) {
     tags.forEach(tag => dispatch(upsertTagPlain(tag)));
   };
 }
 
-function updateTagMeta(payload) {
+function updateTagMeta(payload: AjaxTag) {
   return {type: UPDATE_META, payload};
 }
 

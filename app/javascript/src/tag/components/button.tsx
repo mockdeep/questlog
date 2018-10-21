@@ -6,8 +6,14 @@ import React from 'react';
 import Link from 'src/route/containers/link';
 import {tagShape} from 'src/shapes';
 
-class TagButton extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  current: boolean,
+  isActive: boolean,
+  tag: Tag,
+};
+
+class TagButton extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }

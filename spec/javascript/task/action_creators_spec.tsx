@@ -45,7 +45,7 @@ describe('fetchTasks', () => {
 
 describe('createTask', () => {
   it('sets ajax state to "taskSaving"', () => {
-    const thunk = createTask({});
+    const thunk = createTask({title: 'foo'});
     const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
 
     thunk(dispatch);
@@ -56,7 +56,10 @@ describe('createTask', () => {
   describe('on success', () => {
     beforeEach(async () => {
       const data = {title: 'fooble doo'};
-      const included = [{foo: 'tag'}, {bar: 'tag'}];
+      const included = [
+        {rules: [{check: 'someCheck'}]},
+        {rules: [{check: 'someOtherCheck'}]},
+      ];
       const promise = Promise.resolve({data, included});
       (ajaxPost as jest.Mock).mockReturnValue(promise);
 
@@ -79,14 +82,17 @@ describe('createTask', () => {
     });
 
     it('upserts associated tags', () => {
-      const [thunk] = dispatch.mock.calls[4];
+      const [thunk] = (dispatch as jest.Mock).mock.calls[4];
       expect(thunk).toBeInstanceOf(Function);
       expect(thunk.name).toBe('upsertTagsThunk');
 
+      const tag1 = {rules: [{check: 'someCheck'}]};
+      const tag2 = {rules: [{check: 'someOtherCheck'}]};
+
       thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({foo: 'tag'}));
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({bar: 'tag'}));
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag1));
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag2));
     });
 
     it('marks TaskStore unloaded', () => {
@@ -136,7 +142,7 @@ describe('updateTask', () => {
   });
 
   it('updates the client task with "marking_done" when marking done', () => {
-    const updateThunk = updateTask(taskAttrs.id, {done: true});
+    const updateThunk = updateTask(taskAttrs.id, {title: 'foo', done: true});
     const payload = {id: 5, loadingState: 'marking_done'};
 
     updateThunk(dispatch);
@@ -145,7 +151,8 @@ describe('updateTask', () => {
   });
 
   it('updates the client task with "postponing" when postponing', () => {
-    const updateThunk = updateTask(taskAttrs.id, {postpone: true});
+    const updateThunk =
+      updateTask(taskAttrs.id, {title: 'foo', postpone: true});
     const payload = {id: 5, loadingState: 'postponing'};
 
     updateThunk(dispatch);
@@ -172,14 +179,17 @@ describe('updateTask', () => {
   });
 
   describe('on success', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       const data = {title: 'fooble doo'};
-      const included = [{foo: 'tag'}, {bar: 'tag'}];
+      const included = [
+        {rules: [{check: 'someCheck'}]},
+        {rules: [{check: 'someOtherCheck'}]},
+      ];
       (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
 
-      await updateThunk(dispatch);
+      updateThunk(dispatch);
 
       expect(ajaxPut).toHaveBeenCalled();
     });
@@ -190,14 +200,17 @@ describe('updateTask', () => {
     });
 
     it('upserts associated tags', () => {
-      const [thunk] = dispatch.mock.calls[3];
+      const [thunk] = (dispatch as jest.Mock).mock.calls[3];
       expect(thunk).toBeInstanceOf(Function);
       expect(thunk.name).toBe('upsertTagsThunk');
 
       thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({foo: 'tag'}));
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain({bar: 'tag'}));
+      const tag1 = {rules: [{check: 'someCheck'}]};
+      const tag2 = {rules: [{check: 'someOtherCheck'}]};
+
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag1));
+      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag2));
     });
 
     it('marks TaskStore unloaded', () => {
@@ -208,6 +221,8 @@ describe('updateTask', () => {
 
 describe('updateTaskMeta', () => {
   it('returns an UPDATE_META action', () => {
-    expect(updateTaskMeta('foo')).toEqual({type: UPDATE_META, payload: 'foo'});
+    const payload: TaskMeta = {ajaxState: 'taskSaving'};
+
+    expect(updateTaskMeta(payload)).toEqual({type: UPDATE_META, payload});
   });
 });

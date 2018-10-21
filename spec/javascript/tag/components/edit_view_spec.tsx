@@ -1,14 +1,14 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagEditView from 'src/tag/components/edit_view';
+import TagEditView, {Props} from 'src/tag/components/edit_view';
 
 import {makeTag} from '_test_helpers/factories';
 
 const tag = makeTag({});
 const updateScratch = jest.fn();
 const updateTag = jest.fn(() => Promise.resolve());
-const props = {
+const props: Props = {
   tag,
   setRoute: jest.fn(),
   updateTag,

@@ -44,16 +44,16 @@ describe('getActiveTags', () => {
     });
 
     it('does not return tag when field is set to a value', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'myField'}]});
-      const task = makeTask({myField: 'not blank'});
+      const tag = makeTag({rules: [{check: 'isBlank', field: 'releaseAt'}]});
+      const task = makeTask({releaseAt: 'not blank'});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
 
     it('returns tag when field is set to null', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'myField'}]});
-      const task = makeTask({myField: null});
+      const tag = makeTag({rules: [{check: 'isBlank', field: 'releaseAt'}]});
+      const task = makeTask({releaseAt: null});
       const state = makeState({tag: [tag], task: [task]});
       const expected = [{...tag, tasks: [task]}];
 
@@ -63,17 +63,17 @@ describe('getActiveTags', () => {
 
   describe('when tag has isEmpty smart rule', () => {
     it('does not return tag when field is not empty', () => {
-      const tag = makeTag({rules: [{check: 'isEmpty', field: 'myField'}]});
-      const task = makeTask({myField: [1]});
+      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagNames'}]});
+      const task = makeTask({tagNames: ['wat-tag']});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
 
     it('returns tag when field is empty on one or more tasks', () => {
-      const tag = makeTag({rules: [{check: 'isEmpty', field: 'myField'}]});
-      const task1 = makeTask({myField: []});
-      const task2 = makeTask({myField: [1]});
+      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagNames'}]});
+      const task1 = makeTask({tagNames: []});
+      const task2 = makeTask({tagNames: ['wat-tag']});
       const state = makeState({tag: [tag], task: [task1, task2]});
       const expected = [{...tag, tasks: [task1]}];
 
@@ -214,7 +214,8 @@ describe('getNextActiveTask', () => {
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
-    state = {...state, route: {params: {slug: 'tag-1-slug'}}};
+    state =
+      {...state, route: {name: 'wat-route', params: {slug: 'tag-1-slug'}}};
 
     expect(getNextActiveTask(state)).toEqual(task1);
 
@@ -223,7 +224,8 @@ describe('getNextActiveTask', () => {
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
-    state = {...state, route: {params: {slug: 'tag-2-slug'}}};
+    state =
+      {...state, route: {name: 'wat-route', params: {slug: 'tag-2-slug'}}};
 
     expect(getNextActiveTask(state)).toEqual(task1);
   });
