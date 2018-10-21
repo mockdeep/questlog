@@ -4,7 +4,7 @@ import TaskShowView from 'src/task/components/show_view';
 import {deleteTask, updateTask, updateTaskMeta} from 'src/task/action_creators';
 import {getCurrentSubTasks, getCurrentTask} from 'src/task/selectors';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {subTasks: getCurrentSubTasks(state), task: getCurrentTask(state)};
 }
 

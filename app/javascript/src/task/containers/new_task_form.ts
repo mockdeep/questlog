@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {createTask, updateTaskMeta} from 'src/task/action_creators';
 import NewTaskForm from 'src/task/components/new_task_form';
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   return {
     task: state.task.meta.newTask,
     taskSaving: state.task.meta.ajaxState === 'taskSaving',
