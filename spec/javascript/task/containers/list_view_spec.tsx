@@ -7,11 +7,12 @@ import createAppStore from 'src/create_app_store';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import {setRoute} from 'src/route/action_creators';
 
+const props = {store: createAppStore()};
+
 const TaskListView = 'DragDropContext(TaskListView)';
 it('wraps the TaskListView component', () => {
-  const store = createAppStore();
-  store.dispatch(setRoute({name: 'tasks'}));
-  const container = shallow(<TaskListViewContainer store={store} />);
+  props.store.dispatch(setRoute({name: 'tasks'}));
+  const container = shallow(<TaskListViewContainer {...props} />);
 
   expect(container.find(TaskListView)).toExist();
 });

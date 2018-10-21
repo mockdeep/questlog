@@ -4,10 +4,18 @@ import {connect} from 'react-redux';
 import TaskLink from 'src/task/components/link';
 import {taskShape} from 'src/shapes';
 
+type ComponentProps = {
+  task?: Task;
+};
+
+type ContainerProps = {
+  taskId: number;
+};
+
 // The component is in the same file as the container due to circular references
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
 // otherwise imports get funky
-function ParentTaskBreadCrumbs({task = null}) {
+function ParentTaskBreadCrumbs({task = null}: ComponentProps) {
   if (!task) { return null; }
 
   // span wrapper rather than array fragments due to lack of enzyme support
@@ -26,7 +34,7 @@ function ParentTaskBreadCrumbs({task = null}) {
 
 ParentTaskBreadCrumbs.propTypes = {task: taskShape};
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state: State, ownProps: ContainerProps) {
   return {task: state.task.byId[ownProps.taskId]};
 }
 
