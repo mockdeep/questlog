@@ -4,7 +4,7 @@ import matchMedia, {resetMedia} from '_test_helpers/match_media';
 
 (global as any).debug = debug;
 
-function requestAnimationFrame(callback) {
+function requestAnimationFrame(callback: Callback) {
   setTimeout(callback, 0);
 }
 
@@ -18,6 +18,7 @@ afterEach(() => {
   resetMedia();
 });
 
-console.error = function error(message) { // eslint-disable-line no-console
+// eslint-disable-next-line no-console
+console.error = function error(message: string) {
   throw new Error(message);
 };

@@ -3,7 +3,6 @@ jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
 import {Dispatch, Store} from 'redux';
-// import {ThunkDispatch} from 'redux-thunk';
 
 import {makeState} from '_test_helpers/factories';
 

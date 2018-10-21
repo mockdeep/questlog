@@ -7,7 +7,7 @@ class FakeNotification {
     return Promise.resolve('granted');
   }
 
-  constructor(message) {
+  constructor(message: string) {
     this.message = message;
     this.isOpen = true;
   }

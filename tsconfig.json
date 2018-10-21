@@ -1,6 +1,5 @@
 {
   "//": {
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
@@ -17,6 +16,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "alwaysStrict": true,
+    "noImplicitAny": true,
     "noImplicitThis": true,
     "paths": {
       "src/*": ["app/javascript/src/*"]

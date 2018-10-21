@@ -1,5 +1,14 @@
+type CommonState = {
+  openModalId: string;
+};
+
 type NotificationState = {
-  trash: 'goober';
+  currentTask: Notification;
+};
+
+type RouteState = {
+  name: string;
+  params: {[key: string]: string};
 };
 
 type ScratchState = {
@@ -10,18 +19,31 @@ type TagState = {
   byId: {[id: number]: Tag};
 };
 
+type TaskState = {
+  byId: {[id: string]: Task};
+  meta: TaskMeta;
+};
+
+type UserState = {
+  notificationsEnabled: boolean;
+};
+
 type State = {
-  common?: any;
+  common?: CommonState;
   notification?: NotificationState;
-  route?: any;
+  route?: RouteState;
   scratch?: ScratchState;
   tag?: TagState;
-  task?: any;
-  user?: any;
+  task?: TaskState;
+  user?: UserState;
 };
 
 type StateKey = keyof State;
 
 type SubState = ScratchState
   | TagState
-  | NotificationState;
+  | TaskState
+  | CommonState
+  | NotificationState
+  | RouteState
+  | UserState;
