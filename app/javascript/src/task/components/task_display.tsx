@@ -8,6 +8,15 @@ import TaskTitle from 'src/task/components/task_title';
 import TagButtonsContainer from 'src/tag/containers/buttons';
 import {taskShape} from 'src/shapes';
 
+type TaskDisplayProps = {
+  deleteTask: Function;
+  disabled: boolean;
+  storePostponeSeconds: Function;
+  postponeTask: Function;
+  completeTask: Function;
+  task: Task;
+};
+
 function TaskDisplay({
   deleteTask,
   disabled,
@@ -15,7 +24,7 @@ function TaskDisplay({
   postponeTask,
   completeTask,
   task,
-}) {
+}: TaskDisplayProps) {
   return (
     <div>
       <TagButtonsContainer currentTagIds={task && task.tagIds} />

@@ -1,13 +1,15 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import PostponeButton from 'src/task/components/postpone_button';
+import {makeTask} from '_test_helpers/factories';
 
-const props = {
+import PostponeButton, {Props} from 'src/task/components/postpone_button';
+
+const props: Props = {
   disabled: false,
   postponeTask: jest.fn(),
   storePostponeSeconds: jest.fn(),
-  task: {},
+  task: makeTask({}),
 };
 
 it('renders a select tag', () => {

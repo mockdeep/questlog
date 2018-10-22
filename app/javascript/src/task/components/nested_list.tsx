@@ -6,13 +6,19 @@ import TaskLeafListItem from 'src/task/components/leaf_list_item';
 import TaskParentListItem from 'src/task/components/parent_list_item';
 import {taskShape} from 'src/shapes';
 
-class TaskNestedList extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  tasks: Task[],
+  tasksByParentId: TasksByParentId,
+  updateTask: Function,
+};
+
+class TaskNestedList extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  taskListItem(task) {
+  taskListItem(task: Task) {
     const {tasksByParentId, updateTask} = this.props;
     const listItemProps = {key: task.id, task, updateTask};
 

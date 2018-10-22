@@ -8,13 +8,13 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TaskDisplay from 'src/task/components/task_display';
-import TaskFocusView from 'src/task/components/focus_view';
+import TaskFocusView, {Props} from 'src/task/components/focus_view';
 
 import {makeTask} from '_test_helpers/factories';
 
 const updateScratch = jest.fn();
 const updateTask = jest.fn();
-const props = {
+const props: Props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
   scratch: {postponeSeconds: 250},

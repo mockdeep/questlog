@@ -1,23 +1,30 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent, FormEvent} from 'react';
 
 import {taskShape} from 'src/shapes';
 
-class NewTaskForm extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  createTask: Function,
+  task: Partial<Task>,
+  taskSaving: boolean,
+  updateTaskMeta: Function,
+};
+
+class NewTaskForm extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  setTitle(event) {
+  setTitle(event: ChangeEvent<HTMLInputElement>) {
     const {task, updateTaskMeta} = this.props;
     const taskAttrs = {title: event.target.value};
 
     updateTaskMeta({newTask: {...task, ...taskAttrs}});
   }
 
-  saveTask(event) {
+  saveTask(event: FormEvent) {
     event.preventDefault();
 
     const {createTask, task} = this.props;

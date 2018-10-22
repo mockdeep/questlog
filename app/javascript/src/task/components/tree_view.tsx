@@ -7,8 +7,14 @@ import TaskNestedList from 'src/task/components/nested_list';
 import TaskListFilters from 'src/task/components/list_filters';
 import {taskShape} from 'src/shapes';
 
-class TaskTreeView extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  tasks: Task[],
+  tasksByParentId: TasksByParentId,
+  updateTask: Function,
+};
+
+class TaskTreeView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
