@@ -3,7 +3,9 @@ import React from 'react';
 import Link from 'src/route/containers/link';
 import {taskShape} from 'src/shapes';
 
-function TaskEditIcon({task}) {
+type Props = {task: Task};
+
+function TaskEditIcon({task}: Props) {
   if (!task.id) { return null; }
 
   return (

@@ -1,22 +1,25 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import SubTasksTable from 'src/task/components/sub_tasks_table';
+import {makeTask} from '_test_helpers/factories';
 
-const props = {
+import SubTasksTable, {Props} from 'src/task/components/sub_tasks_table';
+
+const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
+  subTasks: [],
 };
 
 it('renders sub-task rows', () => {
-  const subTasks = [{id: 5}, {id: 10}];
+  const subTasks = [makeTask({}), makeTask({})];
   const component = shallow(<SubTasksTable {...props} subTasks={subTasks} />);
 
   expect(component.find('TaskRow')).toHaveLength(2);
 });
 
 it('returns null when there are no sub tasks', () => {
-  const component = shallow(<SubTasksTable {...props} subTasks={[]} />);
+  const component = shallow(<SubTasksTable {...props} />);
 
   expect(component.type()).toBeNull();
 });

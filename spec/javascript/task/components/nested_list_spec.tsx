@@ -1,13 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TaskNestedList from 'src/task/components/nested_list';
+import TaskNestedList, {Props} from 'src/task/components/nested_list';
 
 import {makeTask} from '_test_helpers/factories';
 
 const parentTask = makeTask({title: 'I am the parent'});
 const childTask = makeTask({});
-const props = {
+const props: Props = {
   tasks: [parentTask],
   tasksByParentId: {[parentTask.id]: [childTask]},
   updateTask: jest.fn(),
@@ -22,8 +22,8 @@ it('renders a parent list item when task has sub-tasks', () => {
 });
 
 it('renders a leaf list item when task has no sub-tasks', () => {
-  const overrides = {tasksByParentId: {[parentTask.id]: []}};
-  const component = shallow(<TaskNestedList {...props} {...overrides} />);
+  const overrides: Props = {...props, tasksByParentId: {[parentTask.id]: []}};
+  const component = shallow(<TaskNestedList {...overrides} />);
 
   expect(component.find('TaskParentListItem')).toHaveLength(0);
   const leafListItem = component.find('TaskLeafListItem');

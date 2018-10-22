@@ -13,22 +13,29 @@ import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import {taskShape} from 'src/shapes';
 
-function findTask(tasks, taskId) {
+function findTask(tasks: Task[], taskId: number) {
   return tasks.find(task => task.id === taskId);
 }
 
-function afterTaskHasHigherPriority(task, afterTask) {
+function afterTaskHasHigherPriority(task: Task, afterTask: Task) {
   if (!task.priority) { return true; }
   return Boolean(afterTask.priority && afterTask.priority < task.priority);
 }
 
-function beforeTaskHasLowerPriority(task, beforeTask) {
+function beforeTaskHasLowerPriority(task: Task, beforeTask: Task) {
   if (!beforeTask.priority) { return true; }
   return Boolean(task.priority && beforeTask.priority > task.priority);
 }
 
-class TaskListView extends React.Component<any, any> {
-  constructor(props) {
+export type Props = {
+  currentTasks: Task[],
+  deleteTask: Function,
+  pendingTasks: Task[],
+  updateTask: Function,
+};
+
+class TaskListView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
 
     const {currentTasks, pendingTasks} = this.props;
@@ -36,12 +43,12 @@ class TaskListView extends React.Component<any, any> {
     autobind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     const {currentTasks, pendingTasks} = nextProps;
     this.setState({currentTasks, pendingTasks});
   }
 
-  moveTask(id, afterId) {
+  moveTask(id: number, afterId: number) {
     if (id === afterId) { return; }
     const {currentTasks} = this.state;
 
@@ -61,7 +68,7 @@ class TaskListView extends React.Component<any, any> {
     this.setState({currentTasks: newTasks});
   }
 
-  saveTaskPositions(component) {
+  saveTaskPositions(component: any) {
     const taskId = component.props.task.id;
     const {currentTasks} = this.state;
 
@@ -89,7 +96,7 @@ class TaskListView extends React.Component<any, any> {
   currentTaskPositions() {
     const {currentTasks} = this.state;
 
-    return currentTasks.map(task => task.id);
+    return currentTasks.map((task: Task) => task.id);
   }
 
   currentTasksTable() {
@@ -124,17 +131,19 @@ class TaskListView extends React.Component<any, any> {
 
   currentTaskRows() {
     const {currentTasks} = this.state;
+    const status = 'current';
 
-    return currentTasks.map(task => this.taskRow(task, {status: 'current'}));
+    return currentTasks.map((task: Task) => this.taskRow(task, {status}));
   }
 
   pendingTaskRows() {
     const {pendingTasks} = this.state;
+    const status = 'pending';
 
-    return pendingTasks.map(task => this.taskRow(task, {status: 'pending'}));
+    return pendingTasks.map((task: Task) => this.taskRow(task, {status}));
   }
 
-  taskRow(task, {status}) {
+  taskRow(task: Task, {status}: {status: 'current' | 'pending'}) {
     const {deleteTask, updateTask} = this.props;
 
     return (

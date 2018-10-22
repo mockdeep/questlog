@@ -1,17 +1,24 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent, FocusEvent, FormEvent, KeyboardEvent} from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import {scratchShape, taskShape} from 'src/shapes';
 
-class TaskEditTitleForm extends React.Component<any, any> {
+export type Props = {
+  scratch: Scratch,
+  task: Task,
+  updateScratch: Function,
+  updateTask: Function,
+};
+
+class TaskEditTitleForm extends React.Component<Props, any> {
   submitting: boolean;
 
   input: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     autobind(this);
     props.updateScratch({
@@ -21,7 +28,7 @@ class TaskEditTitleForm extends React.Component<any, any> {
     });
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps: Props) {
     const {task, updateScratch} = this.props;
 
     if (newProps.task.id !== task.id) {
@@ -29,13 +36,13 @@ class TaskEditTitleForm extends React.Component<any, any> {
     }
   }
 
-  updateTitleInput(event) {
+  updateTitleInput(event: ChangeEvent<HTMLTextAreaElement>) {
     const {updateScratch} = this.props;
 
     updateScratch({taskTitle: event.target.value});
   }
 
-  async saveTask(event) {
+  async saveTask(event: FocusEvent | FormEvent | KeyboardEvent) {
     event.preventDefault();
 
     if (this.submitting) { return; }
@@ -50,7 +57,7 @@ class TaskEditTitleForm extends React.Component<any, any> {
     this.submitting = false;
   }
 
-  submitIfEnter(event) {
+  submitIfEnter(event: KeyboardEvent) {
     if (event.key === 'Enter') { this.saveTask(event); }
   }
 
@@ -60,7 +67,7 @@ class TaskEditTitleForm extends React.Component<any, any> {
     updateScratch({focused: true});
   }
 
-  storeInput(input) {
+  storeInput(input: HTMLTextAreaElement) {
     this.input = input;
   }
 

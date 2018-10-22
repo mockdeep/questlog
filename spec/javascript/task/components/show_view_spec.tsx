@@ -1,12 +1,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TaskShowView from 'src/task/components/show_view';
+import TaskShowView, {Props} from 'src/task/components/show_view';
 
 import {makeTask} from '_test_helpers/factories';
 
 const updateTaskMeta = jest.fn();
-const props = {
+const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   updateTaskMeta,

@@ -1,16 +1,22 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent, FormEvent} from 'react';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
-class TaskBulkAddView extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  setRoute: Function,
+  taskTitles: string,
+  updateTaskMeta: Function,
+};
+
+class TaskBulkAddView extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  setTitles(event) {
+  setTitles(event: ChangeEvent<HTMLTextAreaElement>) {
     const {updateTaskMeta} = this.props;
 
     updateTaskMeta({newTask: {title: event.target.value}});
@@ -23,7 +29,7 @@ class TaskBulkAddView extends React.Component<any, any> {
     setRoute({name: 'tasks'});
   }
 
-  saveTasks(event) {
+  saveTasks(event: FormEvent) {
     event.preventDefault();
 
     const {taskTitles} = this.props;

@@ -6,3 +6,7 @@ type TimeframeName = 'inbox'
   | 'year'
   | 'lustrum'
   | 'decade';
+
+type TimeframeSpace = {
+  [timeframeName: string]: number;
+};

@@ -12,7 +12,6 @@ const props = {
   disabled: false,
   postponeTask: jest.fn(),
   storePostponeSeconds: jest.fn(),
-  tags: [],
   task,
   updateTask: jest.fn(),
 };

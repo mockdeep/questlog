@@ -10,8 +10,13 @@ import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {taskShape} from 'src/shapes';
 
-class TaskTitle extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  deleteTask: Function,
+  task: Task,
+};
+
+class TaskTitle extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
@@ -22,14 +27,14 @@ class TaskTitle extends React.Component<any, any> {
     return classnames({
       'col-md-12 task-display': true,
       [`priority-${task.priority}`]: task.priority,
-      'over-skipped': task.skip_count >= 15,
+      'over-skipped': task.skipCount >= 15,
     });
   }
 
   title() {
     const {task} = this.props;
 
-    return `skip count: ${task.skip_count}`;
+    return `skip count: ${task.skipCount}`;
   }
 
   emblems() {

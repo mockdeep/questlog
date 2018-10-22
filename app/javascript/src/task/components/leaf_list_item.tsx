@@ -1,18 +1,23 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
 import {taskShape} from 'src/shapes';
 
-class TaskLeafListItem extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  task: Task,
+  updateTask: Function,
+};
+
+class TaskLeafListItem extends React.Component<Props, any> {
+  constructor(props: Props) {
     super(props);
     autobind(this);
   }
 
-  toggleDone(event) {
+  toggleDone(event: ChangeEvent<HTMLInputElement>) {
     const {task, updateTask} = this.props;
     const {checked} = event.target;
 
