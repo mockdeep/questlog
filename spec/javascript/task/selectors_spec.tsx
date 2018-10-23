@@ -57,13 +57,6 @@ describe('getActiveTasks', () => {
 
     expect(getActiveTasks(state)).toEqual([task1, task3]);
   });
-
-  it('raises an error when task has invalid timeframe', () => {
-    const task = makeTask({title: 'a task', timeframe: 'yesterday'});
-    const state = makeState({task: [task]});
-
-    expect(() => getActiveTasks(state)).toThrow(/has no key "yesterday"/u);
-  });
 });
 
 describe('getPartitionedLeafTasks', () => {

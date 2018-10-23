@@ -18,6 +18,41 @@ type Task = {
   loadingState: TaskLoadingState;
 };
 
+type BulkTask = {
+  positions?: number[];
+  titles?: string;
+};
+
+type TaskStoreType = {
+  listeners: Callback[];
+  loaded: boolean;
+  models: Task[];
+  name: 'task';
+  url: '/tasks';
+  subscribe(listener: Callback): Callback;
+  notifyListeners(): void;
+  unload(): void;
+  unsubscribe(listener: Callback): void;
+  updateModels({data}: {data: Task[]}): void;
+  getState(): {loaded: boolean; tasks: Task[]};
+  dispatch(action: BasicAction): void;
+  fetchTasks(): void;
+};
+
+type BulkTaskStoreType = {
+  listeners: Callback[];
+  loaded: boolean;
+  models: Task[];
+  name: 'bulk_task';
+  url: '/bulk_task';
+  subscribe(listener: Callback): Callback;
+  unsubscribe(listener: Callback): void;
+  notifyListeners(): void;
+  unload(): void;
+  create(attrs: BulkTask): Promise<string>;
+  update(attrs: BulkTask): Promise<string>;
+};
+
 type TaskMeta = {
   ajaxState?: 'taskSaving' | 'fetching' | 'ready';
   newTask?: Partial<Task>;
@@ -33,4 +68,8 @@ type AjaxTask = {
 
 type TasksByParentId = {
   [parentTaskId: number]: Task[];
+};
+
+type TasksById = {
+  [taskId: string]: Task;
 };

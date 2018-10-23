@@ -1,10 +1,10 @@
 import request from 'src/_helpers/request';
 
-function estimateMinutes(task) {
+function estimateMinutes(task: Task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 
-export default {
+const TaskStore: TaskStoreType = {
   listeners: [],
   loaded: false,
   models: [],
@@ -68,3 +68,5 @@ export default {
     });
   },
 };
+
+export default TaskStore;
