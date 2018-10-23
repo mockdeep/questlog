@@ -1,19 +1,31 @@
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 
+import {makeTask, makeTimeframe} from '_test_helpers/factories';
+
 describe('calculateTotalMinutes()', () => {
   it('returns the total number of minutes from tasks', () => {
-    let timeframe = {currentTasks: [{estimateMinutes: 10}], pendingTasks: []};
+    let timeframe: Timeframe = makeTimeframe({
+      currentTasks: [makeTask({estimateMinutes: 10})],
+    });
 
     expect(calculateTotalMinutes(timeframe)).toBe(10);
-    timeframe = {
-      currentTasks: [{estimateMinutes: 10}, {estimateMinutes: 8}],
-      pendingTasks: [],
-    };
+    timeframe = makeTimeframe({
+      currentTasks: [
+        makeTask({estimateMinutes: 10}),
+        makeTask({estimateMinutes: 8}),
+      ],
+    });
     expect(calculateTotalMinutes(timeframe)).toBe(18);
-    timeframe = {
-      currentTasks: [{estimateMinutes: 10}, {estimateMinutes: 8}],
-      pendingTasks: [{estimateMinutes: 5}, {estimateMinutes: 6}],
-    };
+    timeframe = makeTimeframe({
+      currentTasks: [
+        makeTask({estimateMinutes: 10}),
+        makeTask({estimateMinutes: 8}),
+      ],
+      pendingTasks: [
+        makeTask({estimateMinutes: 5}),
+        makeTask({estimateMinutes: 6}),
+      ],
+    });
     expect(calculateTotalMinutes(timeframe)).toBe(29);
   });
 });

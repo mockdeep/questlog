@@ -7,9 +7,9 @@ import {
   timeframeNameForTask,
 } from 'src/timeframe/utils';
 
-let medianProductivity;
+let medianProductivity: number;
 
-const TimeframeStore = {
+const TimeframeStore: TimeframeStoreType = {
   listeners: [],
   loaded: false,
   models: [],
@@ -39,7 +39,7 @@ const TimeframeStore = {
 
   updateModels(data) {
     const {tasks} = data;
-    const timeframes = {};
+    const timeframes: {[timeframeName in TimeframeName]?: Timeframe} = {};
 
     timeframeList.forEach(timeframeName => {
       timeframes[timeframeName] = {
@@ -88,7 +88,7 @@ const TimeframeStore = {
       request({
         method: 'get',
         url: this.url,
-        success: timeframeData => {
+        success: (timeframeData: TimeframeData) => {
           ({medianProductivity} = timeframeData.meta);
 
           this.updateModels(TaskStore.getState());

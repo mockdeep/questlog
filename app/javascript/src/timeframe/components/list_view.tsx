@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {MouseEvent} from 'react';
 
 import ToEnglish from 'src/_helpers/to_english';
 import TaskStore from 'src/task/store';
@@ -10,21 +10,27 @@ import TimeframeStore from 'src/timeframe/store';
 import TimeframeSection from 'src/timeframe/components/section';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 
-function timeframeHasTasks(timeframe) {
+function timeframeHasTasks(timeframe: Timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
-class TimeframeListView extends React.Component<any, any> {
+type Props = {
+  deleteTask: Function,
+  fetchTasks: Function,
+  updateTask: Function,
+};
+
+class TimeframeListView extends React.Component<Props, any> {
   unsubscribeTimeframes: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {timeframes: [], medianProductivity: null, loading: true};
     autobind(this);
   }
 
   componentDidMount() {
-    TimeframeStore.getAll().then(data => {
+    TimeframeStore.getAll().then((data: TimeframeData) => {
       this.updateTimeframes(data);
       this.unsubscribeTimeframes = TimeframeStore.subscribe(this.loadTasks);
     });
@@ -38,7 +44,7 @@ class TimeframeListView extends React.Component<any, any> {
     TimeframeStore.getAll().then(this.updateTimeframes);
   }
 
-  updateTimeframes(data) {
+  updateTimeframes(data: TimeframeData) {
     this.setState({
       timeframes: data.timeframes,
       medianProductivity: data.meta.medianProductivity,
@@ -54,9 +60,9 @@ class TimeframeListView extends React.Component<any, any> {
 
   timeframeSpace() {
     const {timeframes} = this.state;
-    const counts = {};
+    const counts: TimeframeSpace = {};
 
-    timeframes.forEach(timeframe => {
+    timeframes.forEach((timeframe: Timeframe) => {
       const minuteTotal = calculateTotalMinutes(timeframe);
 
       counts[timeframe.name] = timeframe.minuteMax - minuteTotal;
@@ -65,7 +71,7 @@ class TimeframeListView extends React.Component<any, any> {
     return counts;
   }
 
-  renderTimeframe(timeframe) {
+  renderTimeframe(timeframe: Timeframe) {
     const {medianProductivity} = this.state;
     const {deleteTask, updateTask} = this.props;
 
@@ -91,7 +97,7 @@ class TimeframeListView extends React.Component<any, any> {
     return timeframes.filter(timeframeHasTasks);
   }
 
-  refresh(event) {
+  refresh(event: MouseEvent) {
     const {fetchTasks} = this.props;
 
     event.preventDefault();
