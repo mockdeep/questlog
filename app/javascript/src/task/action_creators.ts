@@ -1,7 +1,12 @@
+import {Action} from 'redux';
+import {ThunkAction} from 'redux-thunk';
+
 import {ajaxGet, ajaxPut, ajaxPost, ajaxDelete} from 'src/_helpers/ajax';
 import flash from 'src/_helpers/flash';
 import TaskStore from 'src/task/store';
 import {setTags, upsertTags} from 'src/tag/action_creators';
+
+interface AsyncAction extends ThunkAction<void, State, null, Action> { }
 
 const BASE_PATH = '/api/v1/tasks';
 
@@ -12,23 +17,23 @@ const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
 const UPDATE_META = 'task/UPDATE_META';
 
-function createTaskPlain(payload) {
+function createTaskPlain(payload: Task) {
   return {type: CREATE, payload};
 }
 
-function deleteTaskPlain(payload) {
+function deleteTaskPlain(payload: number) {
   return {type: DELETE, payload};
 }
 
-function setTasks(payload) {
+function setTasks(payload: Task[]) {
   return {type: SET, payload};
 }
 
-function updateTaskMeta(payload) {
+function updateTaskMeta(payload: TaskMeta) {
   return {type: UPDATE_META, payload};
 }
 
-function fetchTasks() {
+function fetchTasks(): AsyncAction {
   return async function fetchTasksThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'fetching'}));
     const {data, included} = await ajaxGet(BASE_PATH);
@@ -39,7 +44,7 @@ function fetchTasks() {
   };
 }
 
-function createTask(payload) {
+function createTask(payload: AjaxTask): AsyncAction {
   return async function createTaskThunk(dispatch) {
     dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
 
@@ -54,7 +59,7 @@ function createTask(payload) {
   };
 }
 
-function deleteTask(taskId) {
+function deleteTask(taskId: number): AsyncAction {
   return async function deleteTaskThunk(dispatch) {
     await ajaxDelete(`${BASE_PATH}/${taskId}`);
 
@@ -63,7 +68,7 @@ function deleteTask(taskId) {
   };
 }
 
-function getLoadingState(payload) {
+function getLoadingState(payload: AjaxTask): TaskLoadingState {
   if (payload.done) {
     return 'marking_done';
   } else if (payload.postpone) {
@@ -73,11 +78,11 @@ function getLoadingState(payload) {
   return 'updating';
 }
 
-function updateTaskPlain(id, payload) {
+function updateTaskPlain(id: number, payload: Partial<Task>) {
   return {type: UPDATE, payload: {id, ...payload}};
 }
 
-function updateTask(id, payload) {
+function updateTask(id: number, payload: AjaxTask): AsyncAction {
   return async function updateTaskThunk(dispatch) {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
@@ -93,4 +98,11 @@ function updateTask(id, payload) {
 }
 
 export {INIT, CREATE, DELETE, SET, UPDATE, UPDATE_META};
-export {createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta};
+export {
+  createTask,
+  deleteTask,
+  fetchTasks,
+  setTasks,
+  updateTask,
+  updateTaskMeta,
+};

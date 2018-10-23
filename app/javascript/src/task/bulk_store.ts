@@ -4,7 +4,7 @@ import appStore from 'src/app_store';
 import TaskStore from 'src/task/store';
 import {fetchTasks} from 'src/task/action_creators';
 
-const BulkTaskStore = {
+const BulkTaskStore: BulkTaskStoreType = {
   listeners: [],
   loaded: false,
   models: [],
@@ -35,9 +35,7 @@ const BulkTaskStore = {
   },
 
   create(attrs) {
-    const data = {};
-
-    data[this.name] = attrs;
+    const data = {[this.name]: attrs};
 
     return request({
       data,
@@ -48,9 +46,7 @@ const BulkTaskStore = {
   },
 
   update(attrs) {
-    const data = {};
-
-    data[this.name] = attrs;
+    const data = {[this.name]: attrs};
 
     return request({data, url: this.url, success: this.unload.bind(this)});
   },

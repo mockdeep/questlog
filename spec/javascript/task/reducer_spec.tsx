@@ -1,4 +1,7 @@
-import {INIT, SET, UPDATE, UPDATE_META} from 'src/task/action_creators';
+import {
+  setTasks,
+  INIT, SET, UPDATE, UPDATE_META,
+} from 'src/task/action_creators';
 import taskReducer from 'src/task/reducer';
 
 describe(INIT, () => {
@@ -37,7 +40,7 @@ describe(SET, () => {
       meta: 'foo',
       byId: {dont: 'care'},
     };
-    const action = {type: SET, payload: []};
+    const action = setTasks([]);
     const expectedState = {meta: 'foo', byId: {}};
 
     expect(taskReducer(previousState, action)).toEqual(expectedState);
