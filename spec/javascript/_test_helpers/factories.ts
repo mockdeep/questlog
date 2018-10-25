@@ -14,19 +14,21 @@ const timeframeNames: TimeframeName[] = [
   'decade',
 ];
 
-function makeState(attrs) {
-  return Object.keys(attrs).reduce((state, key) => {
+function makeState(attrs: {[key in keyof State]: any}): State {
+  return Object.keys(attrs).reduce((state: State, key: StateKey) => {
     const action = {type: `${key}/SET`, payload: attrs[key]};
 
     return {...state, ...appReducer(state, action)};
   }, {});
 }
 
-function makeTag(attrs) {
+function makeTag(attrs: Partial<Tag>): Tag {
   nextTagId += 1;
 
   return {
     id: nextTagId,
+    name: `Tag ${nextTagId}`,
+    slug: `tag-${nextTagId}`,
     priority: null,
     rules: [],
     tasks: [],
