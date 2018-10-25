@@ -1,7 +1,7 @@
-let listeners = [];
+let listeners: Callback[] = [];
 const DEFAULT_MEDIA_QUERY_LIST = {
   matches: false,
-  addListener(callback) { listeners.push(callback); },
+  addListener(callback: Callback) { listeners.push(callback); },
 };
 
 let mediaQueryList = {...DEFAULT_MEDIA_QUERY_LIST};
@@ -10,7 +10,7 @@ function matchMedia() {
   return mediaQueryList;
 }
 
-function setMatches(matches) {
+function setMatches(matches: boolean) {
   mediaQueryList.matches = matches;
   listeners.forEach(listener => listener());
 }
