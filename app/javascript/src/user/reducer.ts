@@ -7,7 +7,7 @@ export default createBasicReducer({
     return {};
   },
 
-  [UPDATE](previousState, payload) {
+  [UPDATE](previousState: State, payload: User) {
     return {...previousState, ...payload};
   },
 });

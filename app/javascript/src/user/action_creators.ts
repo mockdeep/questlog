@@ -1,7 +1,7 @@
 const INIT = 'user/INIT';
 const UPDATE = 'user/UPDATE';
 
-function updateUser(payload) {
+function updateUser(payload: User) {
   return {type: UPDATE, payload};
 }
 
