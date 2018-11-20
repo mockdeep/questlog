@@ -23,7 +23,7 @@ describe('appStore', () => {
     expect(appStore.getState()).toEqual(expectedState);
 
     appStore.subscribe(subSpy);
-    appStore.dispatch({type: '@@redux/INIT'});
+    appStore.dispatch({type: 'task/INIT'});
     expect(subSpy).toHaveBeenCalled();
   });
 });
