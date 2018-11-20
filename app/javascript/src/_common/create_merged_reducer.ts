@@ -44,7 +44,7 @@ function createMergedReducer(reducerMap: ReducerMap) {
     previousState: State,
     action: BasicAction | any,
   ) {
-    if (action.type.startsWith('@@redux/INIT')) {
+    if (!previousState) {
       return initState(reducerMap);
     }
 
