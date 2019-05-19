@@ -73,9 +73,6 @@
     "typescript-eslint-parser": "^18.0.0",
     "webpack-dev-server": "^3.1.5"
   },
-  "engines": {
-    "node": "10.9.0"
-  },
   "license": "UNLICENSED",
   "scripts": {
     "lints": "yarn stylelint && yarn eslint && yarn tscheck && yarn rubocop && bundle exec rake haml_lint",

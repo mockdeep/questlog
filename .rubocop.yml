@@ -6,6 +6,7 @@ AllCops:
   DefaultFormatter: fuubar
   DisplayCopNames: true
   Exclude:
+    - vendor/**/*
     - db/schema.rb
     - !ruby/regexp /node_modules\/.*/
 
