@@ -24,7 +24,7 @@ if (isProduction) {
 }
 
 module.exports = {
-  test: /\.elm(\.erb)?$/u,
+  test: /\.elm$/u,
   exclude: [/elm-stuff/u, /node_modules/u],
   use: loaders,
 };
