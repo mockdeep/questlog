@@ -56,7 +56,7 @@
     "@types/jest": "^23.3.1",
     "babel-jest": "^23.6.0",
     "elm-hot-loader": "^0.5.4",
-    "enzyme": "^3.0.0",
+    "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "eslint": "^5.4.0",
     "eslint-plugin-import": "^2.17.2",
