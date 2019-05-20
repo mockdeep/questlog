@@ -1,7 +1,6 @@
 version: 2.1
-jobs:
-  build:
-    parallelism: 1
+executors:
+  ruby_image:
     docker:
       - image: circleci/ruby:2.5.0-stretch-node-browsers
         environment:
@@ -19,6 +18,8 @@ jobs:
 
     working_directory: ~/app
 
+commands:
+  setup_environment:
     steps:
       - checkout
 
@@ -59,10 +60,6 @@ jobs:
             - ~/.cache/yarn
 
       - run:
-          name: Lints
-          command: yarn lints
-
-      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
@@ -72,27 +69,66 @@ jobs:
             bin/rails db:create
             bin/rails db:schema:load
 
+jobs:
+  lints:
+    executor: ruby_image
+    steps:
+      - setup_environment
+      - run:
+          name: Lints
+          command: yarn lints
+
+  javascript_tests:
+    executor: ruby_image
+    steps:
+      - setup_environment
       - run:
           name: JavaScript tests
-          command: yarn test
+          command: yarn jest
 
+  unit_tests:
+    executor: ruby_image
+    steps:
+      - setup_environment
       - run:
-          name: JavaScript tests
-          command: yarn test
-
-      - run:
-          name: Run full build
+          name: Run unit tests
           command: |
-            bundle exec rake
+            bundle exec rspec --exclude-pattern "**/features/*_spec.rb"
             # bundle exec rspec --profile 10 \
             #                   --format RspecJunitFormatter \
             #                   --out test_results/rspec.xml \
             #                   --format progress \
             #                   $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
+      - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
+
+  feature_tests_chrome_headless:
+    executor: ruby_image
+    steps:
+      - setup_environment
+      - run:
+          name: Run feature tests on Chrome headless
+          command: COVERAGE=false DRIVER=selenium_chrome_headless bundle exec rspec spec/features
+
+  feature_tests_chrome:
+    executor: ruby_image
+    steps:
+      - setup_environment
       - run:
           name: Run feature tests on Chrome
           command: COVERAGE=false DRIVER=chrome bundle exec rspec spec/features
 
-      - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
-          path: test_results
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - lints
+      - javascript_tests:
+          requires: [lints]
+      - unit_tests:
+          requires: [lints]
+      - feature_tests_chrome_headless:
+          requires: [unit_tests]
+      - feature_tests_chrome:
+          requires: [unit_tests]
