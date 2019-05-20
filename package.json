@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.14",
-    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^23.3.1",
     "babel-jest": "^23.6.0",
     "elm-hot-loader": "^0.5.4",
