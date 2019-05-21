@@ -1,5 +1,6 @@
 {
   "clearMocks": true,
+  "collectCoverage": true,
   "collectCoverageFrom": ["app/javascript/**/*.(js|ts|tsx)", "!**/*.d.ts"],
   "coverageReporters": ["json", "lcov"],
   "coverageThreshold": {
@@ -10,14 +11,17 @@
       "lines": 82.79
     }
   },
+  "errorOnDeprecated": true,
   "moduleFileExtensions": ["js", "ts", "tsx"],
   "modulePaths": [
     "<rootDir>/app/javascript",
     "<rootDir>/vendor/assets/javascripts/",
     "<rootDir>/spec/javascript/"
   ],
+  "notify": true,
+  "notifyMode": "always",
   "rootDir": "../",
-  "setupTestFrameworkScriptFile": "<rootDir>/spec/javascript/test_helper.ts",
+  "setupFilesAfterEnv": ["<rootDir>/spec/javascript/test_helper.ts"],
   "testRegex": "/spec/javascript/.*_spec.(js|ts|tsx)$",
   "testURL": "http://test.host",
   "transform": {
