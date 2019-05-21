@@ -3,7 +3,7 @@
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
     "@rails/webpacker": "^4.0.0-pre.2",
-    "@types/classnames": "^2.2.6",
+    "@types/classnames": "^2.2.7",
     "@types/jquery": "^3.3.29",
     "@types/lodash": "^4.14.117",
     "@types/nanoid": "^1.2.0",
