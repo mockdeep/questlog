@@ -67,6 +67,7 @@ rules:
   # https://github.com/yannickcr/eslint-plugin-react/issues/1449
   react/jsx-curly-brace-presence: off
   react/jsx-max-depth: off
+  react/jsx-props-no-spreading: off
   react/jsx-sort-props: off
   react/sort-comp: off
   react/sort-prop-types: [error, { ignoreCase: true, requiredFirst: true, sortShapeProp: true }]
@@ -81,6 +82,7 @@ rules:
   react/prefer-es6-class: off
   react/require-default-props: off
   react/require-optimization: off
+  react/static-property-placement: off
   sort-imports: off # https://github.com/eslint/eslint/issues/7766
   sort-keys: off
 
