@@ -26,7 +26,7 @@
     "elm-webpack-loader": "^4.4.0",
     "eslint-plugin-fp": "^2.3.0",
     "glob": "^7.1.2",
-    "honeybadger-js": "^0.5.1",
+    "honeybadger-js": "^1.0.3",
     "immutability-helper": "^2.3.1",
     "jquery": "^3.4.0",
     "jquery-ujs": "^1.2.2",
