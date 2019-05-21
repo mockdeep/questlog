@@ -9,3 +9,4 @@ rules:
   max-statements: [error, {max: 20}]
   max-lines: off
   max-lines-per-function: off
+  react/jsx-props-no-spreading: off
