@@ -129,6 +129,6 @@ workflows:
       - unit_tests:
           requires: [lints]
       - feature_tests_chrome_headless:
-          requires: [unit_tests]
+          requires: [unit_tests, javascript_tests]
       - feature_tests_chrome:
-          requires: [unit_tests]
+          requires: [unit_tests, javascript_tests]
