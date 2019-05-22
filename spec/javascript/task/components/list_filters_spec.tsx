@@ -5,6 +5,7 @@ import TaskListFilters from 'src/task/components/list_filters';
 
 it('renders links to filters', () => {
   const component = shallow(<TaskListFilters />);
+  const filters = component.find('ConnectFunction[baseClass="task-filter"]');
 
-  expect(component.find('Connect(Link)')).toHaveLength(4);
+  expect(filters).toHaveLength(4);
 });
