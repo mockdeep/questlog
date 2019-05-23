@@ -2,6 +2,7 @@ class StatValue
 
   def self.new(user:, value:)
     return value if value
+
     last_done_at = user.tasks.maximum(:done_at)
 
     return 30.minutes unless last_done_at
