@@ -415,7 +415,7 @@ DEPENDENCIES
   uglifier
   vcr
   webmock
-  webpacker (>= 4.0.x)
+  webpacker
 
 RUBY VERSION
    ruby 2.5.0p0
