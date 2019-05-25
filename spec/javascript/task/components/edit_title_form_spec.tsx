@@ -34,7 +34,7 @@ it('updates the task when form is submitted', () => {
   const preventDefault = jest.fn();
   const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')(textarea);
+  (component.find(Textarea).prop('inputRef') as Function)(textarea);
   component.find('form').simulate('submit', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -50,7 +50,7 @@ it('only updates once on submit', () => {
   const textareaComponent = component.find(Textarea);
 
   const blur = jest.fn(() => textareaComponent.simulate('blur', fakeEvent));
-  textareaComponent.prop('inputRef')({...textarea, blur});
+  (textareaComponent.prop('inputRef') as Function)({...textarea, blur});
   component.find('form').simulate('submit', fakeEvent);
 
   expect(preventDefault).toHaveBeenCalledTimes(2);
@@ -64,7 +64,7 @@ it('updates the task when the input blurs', () => {
   const preventDefault = jest.fn();
   const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')(textarea);
+  (component.find(Textarea).prop('inputRef') as Function)(textarea);
   component.find(Textarea).simulate('blur', {preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -77,7 +77,7 @@ it('updates the task when the user hits Enter', () => {
   const preventDefault = jest.fn();
   const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')(textarea);
+  (component.find(Textarea).prop('inputRef') as Function)(textarea);
   component.find(Textarea).simulate('keyPress', {key: 'Enter', preventDefault});
 
   expect(preventDefault).toHaveBeenCalled();
@@ -90,7 +90,7 @@ it('does not update the task when the user hits a letter key', () => {
   const preventDefault = jest.fn();
   const textarea = document.createElement('textarea');
 
-  component.find(Textarea).prop('inputRef')(textarea);
+  (component.find(Textarea).prop('inputRef') as Function)(textarea);
   component.find(Textarea).simulate('keyPress', {key: 'k', preventDefault});
 
   expect(preventDefault).not.toHaveBeenCalled();
