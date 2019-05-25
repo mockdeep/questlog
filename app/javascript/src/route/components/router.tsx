@@ -38,10 +38,15 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
 type Props = {
   route: Route;
 };
-function Router({route}: Props) {
-  const Component = grab(ROUTE_NAME_TO_COMPONENT_MAP, route.name);
 
-  return <Component />;
+// eslint-disable-next-line react/prefer-stateless-function
+class Router extends React.Component<Props, any> {
+  render() {
+    const {route} = this.props;
+    const Component = grab(ROUTE_NAME_TO_COMPONENT_MAP, route.name);
+
+    return <Component />;
+  }
 }
 
 Router.propTypes = {route: routeShape.isRequired};
