@@ -15,26 +15,26 @@ const props: Props = {
 it('adds an active class when tag is selected', () => {
   const component = shallow(<TagButton {...props} isActive />);
 
-  expect(component.find('Connect(Link)')).toHaveClassName('active');
+  expect(component.find('ConnectFunction')).toHaveClassName('active');
 });
 
 it('adds a current class when tag current', () => {
   const component = shallow(<TagButton {...props} current />);
 
-  expect(component.find('Connect(Link)')).toHaveClassName('current');
+  expect(component.find('ConnectFunction')).toHaveClassName('current');
 });
 
 it('adds a priority class when tag has a priority', () => {
   const overrides = {tag: {...tag, priority: 2}};
   const component = shallow(<TagButton {...props} {...overrides} />);
 
-  expect(component.find('Connect(Link)')).toHaveClassName('priority-2-btn');
+  expect(component.find('ConnectFunction')).toHaveClassName('priority-2-btn');
 });
 
 it('passes routing params to Link sub-component', () => {
   const component = shallow(<TagButton {...props} />);
 
-  const link = component.find('Connect(Link)');
+  const link = component.find('ConnectFunction');
 
   expect(link).toHaveProp('to', 'tag');
   expect(link).toHaveProp('params', {slug: 'home'});
@@ -44,7 +44,7 @@ it('passes root routing params to Link sub-component when tag is "All"', () => {
   const overrides = {tag: {...tag, name: 'All', slug: ''}};
   const component = shallow(<TagButton {...props} {...overrides} />);
 
-  const link = component.find('Connect(Link)');
+  const link = component.find('ConnectFunction');
 
   expect(link).toHaveProp('to', 'root');
   expect(link).toHaveProp('params', {slug: ''});

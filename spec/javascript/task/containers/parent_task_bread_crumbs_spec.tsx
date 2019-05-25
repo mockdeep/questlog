@@ -23,7 +23,7 @@ it('renders a link to the task when present', () => {
 it('renders a parent task link recursively when tree goes deeper', () => {
   const task = makeTask({title: 'some parent', parentTaskId: 5});
   const component = shallow(<ParentTaskBreadCrumbs task={task} />);
-  const container = component.find('Connect(ParentTaskBreadCrumbs)');
+  const container = component.find('ConnectFunction');
 
   expect(container).toHaveProp('taskId', 5);
 });

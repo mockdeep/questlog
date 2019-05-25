@@ -10,7 +10,8 @@ const props = {deleteTask: jest.fn(), task};
 
 it('renders an editable title form', () => {
   const component = shallow(<TaskTitle {...props} />);
-  const editTitleForm = component.find('Connect(Scratch(TaskEditTitleForm))');
+  const editTitleForm =
+    component.find('ConnectFunction[keyPrefix="focusView"]');
 
   expect(editTitleForm).toHaveProp('task', task);
 });
