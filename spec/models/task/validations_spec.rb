@@ -11,7 +11,7 @@ RSpec.describe Task, 'validations' do
   it do
     is_expected.to validate_inclusion_of(:timeframe)
       .in_array(Timeframe::NAMES)
-      .allow_nil(true)
+      .allow_nil
   end
 
 end
