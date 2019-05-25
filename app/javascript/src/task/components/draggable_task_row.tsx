@@ -6,7 +6,6 @@ import {
   DragSourceConnector, DragSourceMonitor, DropTargetConnector,
   DropTargetMonitor,
 } from 'react-dnd';
-import {flow} from 'lodash';
 
 import TaskRow from 'src/task/components/task_row';
 import {taskShape, timeframeSpaceShape} from 'src/shapes';
@@ -138,7 +137,6 @@ DraggableTaskRow.propTypes = {
   timeframeSpace: timeframeSpaceShape,
 };
 
-export default flow(
-  dragSource('task', taskSource, sourceCollect),
-  dropTarget('task', taskTarget, targetCollect)
-)(DraggableTaskRow);
+export default dropTarget('task', taskTarget, targetCollect)(
+  dragSource('task', taskSource, sourceCollect)(DraggableTaskRow)
+);
