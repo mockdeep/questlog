@@ -19,12 +19,14 @@ it('renders tag rows', () => {
   expect(tagRows).toHaveLength(2);
 
   const tagRow1 = tagRows.at(0);
+  const connector1 = tagRow1.find('ConnectFunction');
   const tagRow2 = tagRows.at(1);
+  const connector2 = tagRow2.find('ConnectFunction');
 
   expect(tagRow1).toIncludeText('At Home');
-  expect(tagRow1.find('Connect(Link)')).toHaveProp('params', {slug: 'at-home'});
+  expect(connector1).toHaveProp('params', {slug: 'at-home'});
   expect(tagRow2).toIncludeText('At Work');
-  expect(tagRow2.find('Connect(Link)')).toHaveProp('params', {slug: 'at-work'});
+  expect(connector2).toHaveProp('params', {slug: 'at-work'});
 });
 
 it('does not render the "All" tag', () => {
