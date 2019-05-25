@@ -42,9 +42,9 @@ type State = {
 type StateKey = keyof State;
 
 type SubState = ScratchState
-  | TagState
-  | TaskState
-  | CommonState
-  | NotificationState
-  | RouteState
-  | UserState;
+| TagState
+| TaskState
+| CommonState
+| NotificationState
+| RouteState
+| UserState;

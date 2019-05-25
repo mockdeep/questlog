@@ -1,3 +1,3 @@
 declare module 'class-autobind' {
-  export default function autobind(instance: Object): void;
+  export default function autobind(instance: Record<string, any>): void;
 }
