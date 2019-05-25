@@ -30,7 +30,7 @@ export default createBasicReducer({
     return update(previousState, {byId: {$merge: {[tag.id]: tag}}});
   },
 
-  [UPDATE_META](previousState: State, meta: TagMeta) {
+  [UPDATE_META](previousState: TagState, meta: TagMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
 });
