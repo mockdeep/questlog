@@ -33,29 +33,29 @@ export default createBasicReducer({
     };
   },
 
-  [CREATE](previousState: State, taskAttrs: Task) {
+  [CREATE](previousState: TaskState, taskAttrs: Task) {
     const task = processTask(taskAttrs);
 
     return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },
 
-  [DELETE](previousState: State, taskId: number) {
+  [DELETE](previousState: TaskState, taskId: number) {
     return update(previousState, {byId: {$unset: [taskId]}});
   },
 
-  [SET](previousState: State, taskData: Task[]) {
+  [SET](previousState: TaskState, taskData: Task[]) {
     const tasks = taskData.map(processTask);
 
     return {...previousState, byId: keyBy(tasks, 'id')};
   },
 
-  [UPDATE](previousState: State, taskAttrs: Task) {
+  [UPDATE](previousState: TaskState, taskAttrs: Task) {
     const task = processTask(taskAttrs);
 
     return update(previousState, {byId: {[task.id]: {$merge: task}}});
   },
 
-  [UPDATE_META](previousState: State, meta: TaskMeta) {
+  [UPDATE_META](previousState: TaskState, meta: TaskMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
 });

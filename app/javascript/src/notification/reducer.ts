@@ -5,7 +5,7 @@ import createBasicReducer from 'src/_common/create_basic_reducer';
 import {INIT, ADD, REMOVE} from 'src/notification/action_creators';
 
 type Payload = {
-  key: string;
+  key: NotificationKey;
   notification: Notification;
 };
 
