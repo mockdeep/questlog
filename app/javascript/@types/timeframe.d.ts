@@ -1,11 +1,11 @@
 type TimeframeName = 'inbox'
-  | 'today'
-  | 'week'
-  | 'month'
-  | 'quarter'
-  | 'year'
-  | 'lustrum'
-  | 'decade';
+| 'today'
+| 'week'
+| 'month'
+| 'quarter'
+| 'year'
+| 'lustrum'
+| 'decade';
 
 type Timeframe = {
   currentTasks: Task[];
