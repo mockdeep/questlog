@@ -55,6 +55,8 @@
     "@types/enzyme": "^3.9.2",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^23.3.1",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "babel-jest": "^23.6.0",
     "elm-hot-loader": "^0.5.4",
     "enzyme": "^3.9.0",
@@ -64,14 +66,12 @@
     "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-typescript": "^0.14.0",
     "jest": "^24.8.0",
     "jest-enzyme": "^7.0.2",
     "jsdom": "^15.1.0",
     "react-test-renderer": "^16.8.6",
     "stylelint": "^10.0.1",
     "ts-jest": "^23.1.4",
-    "typescript-eslint-parser": "^18.0.0",
     "webpack-dev-server": "^3.1.11"
   },
   "engines": {

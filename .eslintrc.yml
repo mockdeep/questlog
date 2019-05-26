@@ -6,7 +6,8 @@ extends:
   - plugin:fp/recommended
   - plugin:import/errors
   - plugin:react/all
-plugins: [eslint-plugin-jsx-a11y, fp, import, react]
+  - plugin:@typescript-eslint/recommended
+plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
 parserOptions:
   sourceType: module
   ecmaVersion: 2018
@@ -26,17 +27,16 @@ settings:
   react:
     version: '16.0'
 
-overrides:
-  - files: ['**/*.ts', '**/*.tsx']
-    parser: typescript-eslint-parser
-    plugins: [typescript]
-    rules:
-      no-undef: off
-      typescript/no-unused-vars: error
-
+parser: '@typescript-eslint/parser'
 
 rules:
   ### to enable/improve
+  '@typescript-eslint/explicit-function-return-type': off
+  '@typescript-eslint/explicit-member-accessibility': off
+  '@typescript-eslint/member-delimiter-style': off
+  '@typescript-eslint/no-empty-interface': off
+  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/no-var-requires': off
   class-methods-use-this: off
   fp/no-class: off
   fp/no-delete: off
@@ -87,6 +87,7 @@ rules:
   sort-keys: off
 
   ### departures from default
+  '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   comma-dangle: [error, always-multiline]
@@ -118,6 +119,7 @@ rules:
   spaced-comment: [error, always, { markers: [=] }]
 
   ### dumb rules
+  '@typescript-eslint/prefer-interface': off
   array-element-newline: off
   capitalized-comments: off
   line-comment-position: off
