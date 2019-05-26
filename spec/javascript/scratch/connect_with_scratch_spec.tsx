@@ -143,7 +143,7 @@ it('moves the scratch contents when the scratch key changes', () => {
 it('passes bound action creators to the wrapped component', () => {
   jest.spyOn(store, 'dispatch').mockImplementation(jest.fn());
 
-  const updateFoo = jest.fn(someArg => `blah${someArg}`);
+  const updateFoo = jest.fn(someArg => ({type: `blah${someArg}`}));
   const testComponent = wrapComponent(
     computeKey,
     jest.fn(() => ({})),
@@ -152,5 +152,5 @@ it('passes bound action creators to the wrapped component', () => {
 
   testComponent.prop('updateFoo')('boo');
 
-  expect(store.dispatch).toHaveBeenCalledWith('blahboo');
+  expect(store.dispatch).toHaveBeenCalledWith({type: 'blahboo'});
 });
