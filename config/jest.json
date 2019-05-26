@@ -24,6 +24,11 @@
   "setupFilesAfterEnv": ["<rootDir>/spec/javascript/test_helper.ts"],
   "testRegex": "/spec/javascript/.*_spec.(js|ts|tsx)$",
   "testURL": "http://test.host",
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig-test.json"
+    }
+  },
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest",
     "^.+\\.js$": "babel-jest"
