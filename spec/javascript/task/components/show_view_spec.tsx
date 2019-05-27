@@ -66,9 +66,8 @@ it('renders the task title', () => {
   const task = makeTask({title: 'foo title'});
 
   const component = shallow(<TaskShowView {...props} task={task} />);
-  const connectComponent = component.find('h2').find('ConnectFunction');
 
-  expect(connectComponent).toHaveProp('keyPrefix', 'showView');
+  expect(component.find('Connect(Scratch(TaskEditTitleForm))')).toExist();
 });
 
 it('renders a message about the repeat time when present', () => {

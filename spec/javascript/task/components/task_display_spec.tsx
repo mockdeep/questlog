@@ -18,7 +18,7 @@ const props = {
 
 it('renders TagButtons', () => {
   const component = shallow(<TaskDisplay {...props} />);
-  const tagButtonsContainer = component.find('ConnectFunction').at(0);
+  const tagButtonsContainer = component.find('Connect(TagButtons)');
 
   expect(tagButtonsContainer).toHaveProp('currentTagIds', task.tagIds);
 });
