@@ -52,7 +52,9 @@ commands:
 
       - run:
           name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
+          command: |
+            yarn install --cache-folder ~/.cache/yarn --frozen-lockfile
+            yarn deduplicate --fail || (echo 'Duplicate packages in yarn.lock. Run `yarn deduplicate` locally.'; exit 1)
 
       - save_cache:
           key: questlog-yarn-{{ checksum "yarn.lock" }}
