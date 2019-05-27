@@ -8,5 +8,5 @@ import appBase from 'src/app_base';
 it('renders routes', () => {
   const wrapper = shallow(appBase);
 
-  expect(wrapper.find('ConnectFunction')).toExist();
+  expect(wrapper.find('Connect(Router)')).toExist();
 });
