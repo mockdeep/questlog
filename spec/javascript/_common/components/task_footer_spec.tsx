@@ -8,9 +8,8 @@ const props: Props = {task: makeTask({}), completeTask: jest.fn()};
 
 it('renders the notification checkbox', () => {
   const component = shallow(<TaskFooter {...props} />);
-  const connectComponent = component.find('ConnectFunction').at(0);
 
-  expect(connectComponent).toHaveProp('task', props.task);
+  expect(component.find('Connect(NotificationCheckbox)')).toExist();
 });
 
 it('renders a footer with useful links', () => {
@@ -24,5 +23,5 @@ it('renders a footer with useful links', () => {
   expect(link).toHaveProp('href', '/bulk_task/new');
   expect(link.children()).toHaveText('Add multiple tasks');
 
-  expect(component.find('ConnectFunction[modalName="help"]')).toHaveLength(2);
+  expect(component.find('Connect(ModalLink)')).toHaveLength(2);
 });
