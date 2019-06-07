@@ -950,7 +950,7 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/hoist-non-react-statics@^3.3.0":
+"@types/hoist-non-react-statics@^3.3.0", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
   integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
@@ -3845,10 +3845,10 @@ discontinuous-range@1.0.0:
   resolved "https://registry.yarnpkg.com/discontinuous-range/-/discontinuous-range-1.0.0.tgz#e38331f0844bba49b9a9cb71c771585aab1bc65a"
   integrity sha1-44Mx8IRLukm5qctxx3FYWqsbxlo=
 
-dnd-core@^7.4.4:
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-7.4.4.tgz#9a27d991a1c1e2882fa7888ea6132db04c739db1"
-  integrity sha512-xR8SINDCJG9AmKSjXUMJ1PEl8ih1+xSHH8x4DgBtzScXnEtpCnV1ibDZNV0uyps9VgkXTTbYYzJdF04y0v0e3Q==
+dnd-core@^7.4.4, dnd-core@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-7.5.0.tgz#5ab1ca698059beea456436ec35d86ef0ea3ebb7e"
+  integrity sha512-Xzu5mFyjgvFzA7pIfuAboNZv7ro3OzoexQho/tMc2i2xMEo+jrDKCqulUyQQ5Z3Gxq6oCRdc23kIMoH47y7E9w==
   dependencies:
     asap "^2.0.6"
     invariant "^2.2.4"
@@ -9302,12 +9302,13 @@ react-dnd-html5-backend@7.4.4:
   dependencies:
     dnd-core "^7.4.4"
 
-react-dnd@^7.4.5:
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-7.4.5.tgz#cb4a2c97cd81f514d892c6cc2f020908ca7382a5"
-  integrity sha512-/689FECqmfNxHZJymC0Ge0Vt5A2oxXwcpVpFjM7O21ifzSh3YtZl83rre6Cosdc4Sx9ucrMq3sRxKMH9p/ekCg==
+react-dnd@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-7.5.0.tgz#777fedc7423e33895fa68a2cff79a920b6c9cfa2"
+  integrity sha512-IFjXLQFauZINUQITnl6kdzDuORVaJHna9lXEZK98mjFSRpNuM/fbh/hpVq/juxzBsXV/Jv0Ew5JaraFinkjDWw==
   dependencies:
-    dnd-core "^7.4.4"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    dnd-core "^7.5.0"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.1.0"
     shallowequal "^1.1.0"
