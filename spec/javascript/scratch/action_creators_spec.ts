@@ -3,13 +3,15 @@ import {
   createScratch, deleteScratch, updateScratch,
 } from 'src/scratch/action_creators';
 
+import {makeState} from '_test_helpers/factories';
+
 describe('createScratch', () => {
   describe('thunk', () => {
     it('dispatches a CREATE action object', () => {
       const scratchKey = 'some key thing';
       const expectedAction = {type: CREATE, payload: scratchKey};
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch: {}}));
+      function getState() { return makeState({scratch: {}}); }
       const thunk = createScratch(scratchKey);
 
       thunk(dispatch, getState, null);
@@ -21,7 +23,7 @@ describe('createScratch', () => {
       const scratchKey = 'some key thing';
       const scratch = {[scratchKey]: {}};
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch}));
+      function getState() { return makeState({scratch}); }
       const thunk = createScratch(scratchKey);
 
       expect(() => {
@@ -38,7 +40,7 @@ describe('deleteScratch', () => {
       const scratch = {[scratchKey]: {}};
       const expectedAction = {type: DELETE, payload: scratchKey};
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch}));
+      function getState() { return makeState({scratch}); }
       const thunk = deleteScratch(scratchKey);
 
       thunk(dispatch, getState, null);
@@ -49,7 +51,7 @@ describe('deleteScratch', () => {
     it('throws an error when scratchKey does not exists', () => {
       const scratchKey = 'some key thing';
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch: {}}));
+      function getState() { return makeState({scratch: {}}); }
       const thunk = deleteScratch(scratchKey);
 
       expect(() => {
@@ -67,7 +69,7 @@ describe('updateScratch', () => {
       const payload = {key: scratchKey, taskTitle: 'butz'};
       const expectedAction = {type: UPDATE, payload};
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch}));
+      function getState() { return makeState({scratch}); }
       const thunk = updateScratch(scratchKey, {taskTitle: 'butz'});
 
       thunk(dispatch, getState, null);
@@ -78,7 +80,7 @@ describe('updateScratch', () => {
     it('throws an error when scratchKey does not exists', () => {
       const scratchKey = 'some key thing';
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({scratch: {}}));
+      function getState() { return makeState({scratch: {}}); }
       const thunk = updateScratch(scratchKey, {});
 
       expect(() => {

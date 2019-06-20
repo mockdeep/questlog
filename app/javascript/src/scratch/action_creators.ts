@@ -1,6 +1,7 @@
 const INIT = 'scratch/INIT';
 const CREATE = 'scratch/CREATE';
 const DELETE = 'scratch/DELETE';
+const SET = 'scratch/SET';
 const UPDATE = 'scratch/UPDATE';
 
 import {Action} from 'redux';
@@ -59,6 +60,6 @@ function updateScratch(
   };
 }
 
-export {INIT, CREATE, DELETE, UPDATE};
+export {INIT, CREATE, DELETE, SET, UPDATE};
 export {createScratchPlain, deleteScratchPlain, updateScratchPlain};
 export {createScratch, deleteScratch, updateScratch};
