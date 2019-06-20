@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-import {INIT, ADD, REMOVE} from 'src/notification/action_creators';
+import {INIT, ADD, REMOVE, SET} from 'src/notification/action_creators';
 
 type Payload = {
   key: NotificationKey;
@@ -20,5 +20,9 @@ export default createBasicReducer({
 
   [REMOVE](previousState: NotificationState, payload: Payload) {
     return update(previousState, {$unset: [payload.key]});
+  },
+
+  [SET](previousState: NotificationState, payload: NotificationState) {
+    return payload;
   },
 });
