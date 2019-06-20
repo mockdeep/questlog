@@ -4,6 +4,7 @@ import {ThunkAction} from 'redux-thunk';
 const INIT = 'notification/INIT';
 const ADD = 'notification/ADD';
 const REMOVE = 'notification/REMOVE';
+const SET = 'notification/SET';
 
 interface AsyncAction extends ThunkAction<void, State, null, Action> { }
 
@@ -46,5 +47,5 @@ function removeNotification(payload: {key: NotificationKey}): AsyncAction {
   };
 }
 
-export {INIT, ADD, REMOVE};
+export {INIT, ADD, REMOVE, SET};
 export {addNotification, removeNotification};

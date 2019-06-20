@@ -30,13 +30,13 @@ type UserState = {
 };
 
 type State = {
-  common?: CommonState;
-  notification?: NotificationState;
-  route?: RouteState;
-  scratch?: ScratchState;
-  tag?: TagState;
-  task?: TaskState;
-  user?: UserState;
+  common: CommonState;
+  notification: NotificationState;
+  route: RouteState;
+  scratch: ScratchState;
+  tag: TagState;
+  task: TaskState;
+  user: UserState;
 };
 
 type StateKey = keyof State;

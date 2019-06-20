@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-import {INIT, CREATE, DELETE, UPDATE} from 'src/scratch/action_creators';
+import {INIT, CREATE, DELETE, SET, UPDATE} from 'src/scratch/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
@@ -15,6 +15,10 @@ export default createBasicReducer({
 
   [DELETE](previousState: ScratchState, key: string) {
     return update(previousState, {$unset: [key]});
+  },
+
+  [SET](previousState: ScratchState, payload: ScratchState) {
+    return payload;
   },
 
   [UPDATE](previousState: ScratchState, {key, ...scratch}: {key: string}) {

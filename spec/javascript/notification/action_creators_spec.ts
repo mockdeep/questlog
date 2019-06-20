@@ -73,7 +73,9 @@ describe('removeNotification', () => {
   describe('thunk', () => {
     it('does not try to close a non-existent notification', () => {
       const thunk = removeNotification({key: 'currentTask'});
-      const getState = jest.fn(() => ({notification: {currentTask: null}}));
+      function getState() {
+        return makeState({notification: {currentTask: null}});
+      }
       const dispatch = jest.fn();
 
       expect(() => thunk(dispatch, getState, null)).not.toThrow();
@@ -82,8 +84,9 @@ describe('removeNotification', () => {
     it('closes the associated notification when present', () => {
       const thunk = removeNotification({key: 'currentTask'});
       const notification = new FakeNotification('some message');
-      const getState =
-        jest.fn(() => ({notification: {currentTask: notification}}));
+      function getState() {
+        return makeState({notification: {currentTask: notification}});
+      }
       const dispatch = jest.fn();
 
       expect(notification.isOpen).toBe(true);
@@ -94,7 +97,9 @@ describe('removeNotification', () => {
     it('dispatches a REMOVE action', () => {
       const payload: {key: NotificationKey} = {key: 'currentTask'};
       const thunk = removeNotification(payload);
-      const getState = jest.fn(() => ({notification: {currentTask: null}}));
+      function getState() {
+        return makeState({notification: {currentTask: null}});
+      }
       const dispatch = jest.fn();
 
       thunk(dispatch, getState, null);

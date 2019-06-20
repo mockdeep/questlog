@@ -1,5 +1,7 @@
 import reducer from 'src/app_reducer';
 
+import {makeState} from '_test_helpers/factories';
+
 describe('appReducer', () => {
   describe('init', () => {
     it('returns a blank nested tree of state', () => {
@@ -29,7 +31,7 @@ describe('appReducer', () => {
     it('delegates to the user reducer', () => {
       const action = {type: 'user/UPDATE', payload: {goober: 'globber'}};
       const notificationState = {notificationsEnabled: true};
-      const result = reducer({user: notificationState}, action);
+      const result = reducer(makeState({user: notificationState}), action);
 
       expect(result).toEqual({user: {...notificationState, goober: 'globber'}});
     });
@@ -41,7 +43,7 @@ describe('appReducer', () => {
       const message = /invalid reducer key "booger"/u;
 
       expect(() => {
-        reducer({user: {notificationsEnabled: false}}, action);
+        reducer(makeState({user: {notificationsEnabled: false}}), action);
       }).toThrow(message);
     });
   });
