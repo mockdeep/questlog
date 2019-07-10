@@ -43,7 +43,7 @@
     "react-modal": "^3.8.2",
     "react-redux": "^7.1.0",
     "react-textarea-autosize": "^7.1.0",
-    "redux": "^4.0.2",
+    "redux": "^4.0.3",
     "redux-thunk": "^2.2.0",
     "reqwest": "*",
     "reselect": "^4.0.0",
