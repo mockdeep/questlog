@@ -105,7 +105,7 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
-    font-awesome-sass (5.8.1)
+    font-awesome-sass (5.9.0)
       sassc (>= 1.11)
     formatador (0.2.5)
     friendly_id (5.2.5)
