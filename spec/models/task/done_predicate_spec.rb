@@ -1,6 +1,6 @@
 RSpec.describe Task, '#done?' do
 
-  let(:task) { Task.new }
+  let(:task) { described_class.new }
 
   it 'returns true when done_at is present' do
     task.done_at = Time.now

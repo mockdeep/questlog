@@ -7,13 +7,13 @@ RSpec.describe Task, '.next_timeframe' do
     task_2 = create(:task, user: user, timeframe: 'week')
     task_3 = create(:task, priority: 1, user: user, timeframe: 'today')
     create(:task, priority: 2, user: user)
-    expect(Task.next_timeframe).to eq 'today'
+    expect(described_class.next_timeframe).to eq 'today'
     task_3.update(done: true)
-    expect(Task.next_timeframe).to eq 'today'
+    expect(described_class.next_timeframe).to eq 'today'
     task_1.update(done: true)
-    expect(Task.next_timeframe).to eq 'week'
+    expect(described_class.next_timeframe).to eq 'week'
     task_2.update(done: true)
-    expect(Task.next_timeframe).to be_nil
+    expect(described_class.next_timeframe).to be_nil
   end
 
 end

@@ -6,7 +6,7 @@ RSpec.describe Task, '#untagged' do
 
     task_1.tags << create(:tag)
 
-    expect(Task.untagged).to eq [task_2]
+    expect(described_class.untagged).to eq [task_2]
   end
 
 end

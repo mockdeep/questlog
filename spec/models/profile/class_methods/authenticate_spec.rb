@@ -13,11 +13,11 @@ RSpec.describe Profile, '.authenticate' do
   end
 
   it 'returns false when account fails to authenticate' do
-    expect(Profile.authenticate(email, 'bad password')).to be false
+    expect(described_class.authenticate(email, 'bad password')).to be false
   end
 
   it 'downcases the given email' do
-    expect(Profile.authenticate(email.upcase, password)).to eq account
+    expect(described_class.authenticate(email.upcase, password)).to eq account
   end
 
 end

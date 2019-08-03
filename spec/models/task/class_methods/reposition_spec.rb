@@ -6,8 +6,9 @@ RSpec.describe Task, '.reposition' do
     task_3 = create(:task, position: 3)
     task_4 = create(:task, position: 4)
     task_5 = create(:task, position: 5)
+    ordered_tasks = [task_4, task_2, task_1, task_3, task_5]
 
-    Task.reposition([task_4, task_2, task_1, task_3, task_5].map(&:id))
+    described_class.reposition(ordered_tasks.map(&:id))
 
     expect(task_1.reload.position).to eq 3
     expect(task_2.reload.position).to eq 2
