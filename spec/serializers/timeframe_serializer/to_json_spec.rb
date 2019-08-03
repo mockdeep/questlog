@@ -2,7 +2,7 @@ RSpec.describe TimeframeSerializer, '#to_json' do
 
   let(:task) { create(:task) }
   let(:timeframe) { Timeframe.new(name: 'Inbox', tasks: [task]) }
-  let(:timeframe_serializer) { TimeframeSerializer.new }
+  let(:timeframe_serializer) { described_class.new }
 
   it 'returns the timeframe with its tasks serialized' do
     expected = {
