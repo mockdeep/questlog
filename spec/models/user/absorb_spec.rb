@@ -22,7 +22,7 @@ RSpec.describe User, '#absorb' do
   it 'deletes the other user' do
     other_user = create(:user)
     user.absorb(other_user)
-    expect(User.find_by(id: other_user.id)).to be_nil
+    expect(described_class.find_by(id: other_user.id)).to be_nil
   end
 
   it 'merges tags' do

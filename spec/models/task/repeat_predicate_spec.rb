@@ -1,6 +1,6 @@
 RSpec.describe Task, '#repeat?' do
 
-  let(:task) { Task.new }
+  let(:task) { described_class.new }
 
   it 'returns true when repeat_seconds is present' do
     task.repeat_seconds = 1234

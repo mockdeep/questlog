@@ -3,25 +3,25 @@ RSpec.describe Timeframe, '.for' do
   let(:user) { create(:user) }
 
   it 'returns a collection of timeframes for the given user' do
-    expect(Timeframe.for(user: user)).to eq [
-      Timeframe.new(name: 'inbox', tasks: []),
-      Timeframe.new(name: 'today', tasks: []),
-      Timeframe.new(name: 'week', tasks: []),
-      Timeframe.new(name: 'month', tasks: []),
-      Timeframe.new(name: 'quarter', tasks: []),
-      Timeframe.new(name: 'year', tasks: []),
-      Timeframe.new(name: 'lustrum', tasks: []),
-      Timeframe.new(name: 'decade', tasks: []),
-      Timeframe.new(name: 'century', tasks: []),
+    expect(described_class.for(user: user)).to eq [
+      described_class.new(name: 'inbox', tasks: []),
+      described_class.new(name: 'today', tasks: []),
+      described_class.new(name: 'week', tasks: []),
+      described_class.new(name: 'month', tasks: []),
+      described_class.new(name: 'quarter', tasks: []),
+      described_class.new(name: 'year', tasks: []),
+      described_class.new(name: 'lustrum', tasks: []),
+      described_class.new(name: 'decade', tasks: []),
+      described_class.new(name: 'century', tasks: []),
     ]
     task = create(:task, user: user)
-    timeframes = Timeframe.for(user: user)
+    timeframes = described_class.for(user: user)
     inbox_timeframe = timeframes.first
     expect(inbox_timeframe.name).to eq 'inbox'
     expect(inbox_timeframe.tasks).to eq [task]
 
     task.update(timeframe: 'year')
-    timeframes = Timeframe.for(user: user)
+    timeframes = described_class.for(user: user)
     inbox_timeframe = timeframes.first
     expect(inbox_timeframe.name).to eq 'inbox'
     expect(inbox_timeframe.tasks).to eq []

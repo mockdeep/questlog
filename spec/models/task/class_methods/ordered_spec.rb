@@ -8,8 +8,9 @@ RSpec.describe Task, '.ordered' do
     task_3 = create(:task, user: user, priority: 1)
     task_4 = create(:task, user: user, priority: 2)
     task_5 = create(:task, user: user)
+    ordered_tasks = [task_3, task_4, task_2, task_1, task_5]
 
-    expect(Task.ordered).to eq [task_3, task_4, task_2, task_1, task_5]
+    expect(described_class.ordered).to eq ordered_tasks
   end
 
 end

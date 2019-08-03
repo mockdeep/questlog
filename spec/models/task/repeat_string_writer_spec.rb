@@ -1,6 +1,6 @@
 RSpec.describe Task, '#repeat_string=' do
 
-  let(:task) { Task.new }
+  let(:task) { described_class.new }
 
   it 'sets it to nil when the string is blank' do
     task.repeat_string = ''
