@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-const elmSourceShape = PropTypes.shape({});
 const routeShape = PropTypes.shape({});
 const ruleShape = PropTypes.shape({});
 const scratchShape = PropTypes.shape({});
@@ -10,7 +9,6 @@ const timeframeShape = PropTypes.shape({});
 const timeframeSpaceShape = PropTypes.shape({});
 
 export {
-  elmSourceShape,
   routeShape,
   ruleShape,
   scratchShape,

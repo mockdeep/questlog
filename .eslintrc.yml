@@ -23,7 +23,7 @@ settings:
   import/resolver:
     node:
       moduleDirectory: [app/javascript, node_modules, spec/javascript]
-      extensions: [.js, .elm, .ts, .tsx]
+      extensions: [.js, .ts, .tsx]
   react:
     version: '16.0'
 
