@@ -20,7 +20,6 @@
 npm-debug.log
 /public/packs
 /public/packs-test
-/elm-stuff
 yarn-error.log
 yarn-debug.log*
 .yarn-integrity
