@@ -2,6 +2,7 @@
   "name": "questlog",
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
+    "@babel/core": "^7.5.5",
     "@rails/webpacker": "^4.0.7",
     "@types/classnames": "^2.2.9",
     "@types/hoist-non-react-statics": "^3.3.0",
@@ -13,7 +14,6 @@
     "@types/react-modal": "^3.8.2",
     "@types/react-redux": "^7.1.1",
     "@types/react-textarea-autosize": "^4.3.4",
-    "babel-core": "^6.26.0",
     "babel-loader": "8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
