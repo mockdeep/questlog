@@ -65,7 +65,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "jest": "^24.8.0",
-    "jest-enzyme": "^7.0.2",
+    "jest-enzyme": "^7.1.0",
     "jsdom": "^15.1.1",
     "react-test-renderer": "^16.8.6",
     "stylelint": "^10.1.0",
