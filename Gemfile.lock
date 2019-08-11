@@ -189,7 +189,7 @@ GEM
       connection_pool (~> 2.2)
     newrelic_rpm (6.5.0.357)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     normalize-rails (4.1.1)
     notiffany (0.1.3)
