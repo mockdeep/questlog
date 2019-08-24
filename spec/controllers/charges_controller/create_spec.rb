@@ -27,7 +27,7 @@ RSpec.describe ChargesController, '#create' do
 
   context 'when charge is not successfully created' do
     before(:each) do
-      error = Stripe::CardError.new('bad news', 'param', 'code')
+      error = Stripe::CardError.new('bad news', 'param', code: 'code')
       allow(Stripe::Charge).to receive(:create).and_raise(error)
     end
 
