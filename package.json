@@ -35,8 +35,8 @@
     "path-to-regexp": "3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-dnd": "^7.6.0",
-    "react-dnd-html5-backend": "7.6.0",
+    "react-dnd": "^9.3.4",
+    "react-dnd-html5-backend": "9.3.4",
     "react-dom": "^16.9.0",
     "react-modal": "^3.10.1",
     "react-redux": "^7.1.0",
@@ -50,6 +50,9 @@
     "webpack": "^4.39.2",
     "whatwg-fetch": "^3.0.0"
   },
+  "//": {
+    "eslint-import-resolver-typescript": "https://github.com/benmosher/eslint-plugin-import/issues/1341"
+  },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -60,6 +63,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.2",
+    "eslint-import-resolver-typescript": "JounQin/eslint-import-resolver-typescript#feat/resolve_dts",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
