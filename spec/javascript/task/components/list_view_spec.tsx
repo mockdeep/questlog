@@ -7,7 +7,7 @@ import BulkTaskStore from 'src/task/bulk_store';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import TableHeaders from 'src/task/components/table_headers';
 import TaskListFilters from 'src/task/components/list_filters';
-import {Props, TaskListView} from 'src/task/components/list_view';
+import TaskListView, {Props} from 'src/task/components/list_view';
 
 import {makeTask} from '_test_helpers/factories';
 
