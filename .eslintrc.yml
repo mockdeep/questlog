@@ -92,6 +92,7 @@ rules:
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   comma-dangle: [error, always-multiline]
   func-style: [error, declaration]
+  function-call-argument-newline: [error, consistent]
   function-paren-newline: [error, consistent]
   id-length: [error, { exceptions: [_, $] }]
   indent: [error, 2]
