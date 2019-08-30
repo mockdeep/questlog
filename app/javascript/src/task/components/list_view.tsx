@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'immutability-helper';
 import HTML5Backend from 'react-dnd-html5-backend';
-import {DragDropContext as dragDropContext} from 'react-dnd';
+import {DndProvider} from 'react-dnd';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
@@ -161,13 +161,15 @@ class TaskListView extends React.Component<Props, any> {
 
   render() {
     return (
-      <div>
-        <NewTaskForm />
-        <br />
-        <TaskListFilters />
-        {this.currentTasksTable()}
-        {this.pendingTasksTable()}
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div>
+          <NewTaskForm />
+          <br />
+          <TaskListFilters />
+          {this.currentTasksTable()}
+          {this.pendingTasksTable()}
+        </div>
+      </DndProvider>
     );
   }
 }
@@ -179,5 +181,4 @@ TaskListView.propTypes = {
   updateTask: PropTypes.func.isRequired,
 };
 
-export {TaskListView};
-export default dragDropContext(HTML5Backend)(TaskListView);
+export default TaskListView;
