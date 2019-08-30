@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   require_relative '../lib/html_constraint'
   require_relative '../lib/json_constraint'
 
@@ -27,5 +29,4 @@ Rails.application.routes.draw do
 
     get '(/:slug)', to: 'tasks#show'
   end
-
 end
