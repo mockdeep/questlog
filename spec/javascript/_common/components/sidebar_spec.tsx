@@ -2,9 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import {setMatches} from '_test_helpers/match_media';
-import Link from 'src/route/containers/link';
 import Sidebar from 'src/_common/components/sidebar';
-import {assert} from 'src/_helpers/assert';
 
 beforeEach(() => {
   document.body.innerHTML = '<div class="content"></div>';
@@ -13,22 +11,22 @@ beforeEach(() => {
 it('updates the mobile status when screen size changes', () => {
   const component = shallow(<Sidebar />);
 
-  expect(component.find(Link)).toHaveLength(3);
+  expect(component.find('a')).toHaveLength(3);
 
   setMatches(true);
   component.update();
 
-  expect(component.find(Link)).toHaveLength(0);
+  expect(component.find('a')).toHaveLength(0);
 });
 
 describe('when browser is desktop', () => {
-  it('displays the sidebar by default when not on a mobile browser', () => {
+  it('displays the sidebar by default', () => {
     const component = shallow(<Sidebar />);
 
-    const links = component.find(Link);
+    const links = component.find('a');
 
     expect(links).toHaveLength(3);
-    expect(links.at(0)).toHaveProp('to', 'root');
+    expect(links.at(0)).toHaveProp('href', '/');
     expect(links.at(0)).toContainReact(<h2>{'FOCUS'}</h2>);
   });
 
@@ -39,16 +37,7 @@ describe('when browser is desktop', () => {
     component.find('.sidebar__toggle').simulate('click', {preventDefault});
 
     expect(preventDefault).toHaveBeenCalled();
-    expect(component.find(Link)).not.toExist();
-  });
-
-  it('does not hide the sidebar after a link is clicked', () => {
-    const component = shallow(<Sidebar />);
-
-    assert(component.find(Link).at(0).prop('onNavigate'))();
-    component.update();
-
-    expect(component.find(Link)).toHaveLength(3);
+    expect(component.find('a')).not.toExist();
   });
 });
 
@@ -60,7 +49,7 @@ describe('when browser is mobile', () => {
   it('hides the sidebar by default', () => {
     const component = shallow(<Sidebar />);
 
-    expect(component.find(Link)).not.toExist();
+    expect(component.find('a')).not.toExist();
   });
 
   it('displays the sidebar when toggle is clicked', () => {
@@ -69,22 +58,10 @@ describe('when browser is mobile', () => {
 
     component.find('.sidebar__toggle').simulate('click', {preventDefault});
 
-    const links = component.find(Link);
+    const links = component.find('a');
 
     expect(preventDefault).toHaveBeenCalled();
     expect(links).toHaveLength(3);
-    expect(links.at(0)).toHaveProp('to', 'root');
-  });
-
-  it('hides the sidebar after a link is clicked', () => {
-    const component = shallow(<Sidebar />);
-    const preventDefault = jest.fn();
-
-    component.find('.sidebar__toggle').simulate('click', {preventDefault});
-
-    assert(component.find(Link).at(0).prop('onNavigate'))();
-    component.update();
-
-    expect(component.find(Link)).not.toExist();
+    expect(links.at(0)).toHaveProp('href', '/');
   });
 });

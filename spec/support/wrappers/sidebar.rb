@@ -27,6 +27,7 @@ module Questlog
       def click(link_text)
         open
         element.find('a', text: link_text).click
+        expect(page).to have_selector('.sidebar__link--active', text: link_text)
         close
       end
     end
