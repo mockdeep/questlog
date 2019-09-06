@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('./.ruby-version').strip
 
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: %i[development test]
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.0'
 
 gem 'autoprefixer-rails'
 gem 'bcrypt'
@@ -15,6 +16,7 @@ gem 'friendly_id'
 gem 'gon'
 gem 'haml-rails'
 gem 'honeybadger'
+# gem 'image_processing'
 gem 'junk_drawer'
 gem 'newrelic_rpm'
 gem 'normalize-rails'
@@ -25,6 +27,7 @@ gem 'puma_worker_killer'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stripe'
+# gem 'turbolinks'
 gem 'webpacker'
 
 gem 'bootstrap-sass'
@@ -34,8 +37,11 @@ gem 'uglifier'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'listen'
+  gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :development, :test do
@@ -63,5 +69,6 @@ group :test do
   gem 'simplecov'
   gem 'timecop'
   gem 'vcr'
+  gem 'webdrivers'
   gem 'webmock'
 end

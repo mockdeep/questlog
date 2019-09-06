@@ -27,10 +27,7 @@ Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 
 Metrics/BlockLength:
   Exclude:
-    - config/environments/production.rb
-    - config/routes.rb
     - spec/**/*.rb
-Metrics/LineLength: { Exclude: [bin/*] }
 
 Rails/Output: { Exclude: [lib/tasks/fix_counters.rake] }
 
@@ -47,7 +44,6 @@ Style/CollectionMethods:
 Style/EmptyMethod: { EnforcedStyle: expanded }
 Style/GuardClause: { MinBodyLength: 2 }
 Style/LambdaCall: { EnforcedStyle: braces }
-Style/MixinUsage: { Exclude: [bin/*] }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
