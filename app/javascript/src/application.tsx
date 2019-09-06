@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'src/globals';
 import $ from 'jquery';
 import Honeybadger from 'honeybadger-js';
