@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import debug from 'src/_helpers/debug';
 import matchMedia, {resetMedia} from '_test_helpers/match_media';
 
