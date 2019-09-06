@@ -28,6 +28,8 @@ Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
   end
 end
 
+Webdrivers::Chromedriver.required_version = '2.37'
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -59,7 +61,7 @@ RSpec.configure do |config|
   VCR.configure do |vcr_config|
     vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
     vcr_config.hook_into :webmock
-    vcr_config.ignore_hosts 'validator.w3.org'
+    vcr_config.ignore_hosts 'chromedriver.storage.googleapis.com'
     vcr_config.ignore_localhost = true
   end
 

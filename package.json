@@ -1,5 +1,6 @@
 {
   "name": "questlog",
+  "private": true,
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
     "@babel/core": "^7.5.5",
@@ -51,6 +52,10 @@
     "whatwg-fetch": "^3.0.0"
   },
   "//": {
+    "later -> @rails/ujs": "^6.0.0-alpha",
+    "later -> turbolinks": "^5.2.0",
+    "later -> @rails/activestorage": "^6.0.0-alpha",
+    "later -> @rails/actioncable": "^6.0.0-alpha",
     "eslint-import-resolver-typescript": "https://github.com/benmosher/eslint-plugin-import/issues/1341"
   },
   "devDependencies": {
