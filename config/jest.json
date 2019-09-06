@@ -35,7 +35,6 @@
     "^react-dnd-html5-backend$": "react-dnd-html5-backend/dist/cjs"
   },
   "transform": {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-    "^.+\\.js$": "babel-jest"
+    "^.+\\.(ts|tsx)$": "ts-jest"
   }
 }
