@@ -71,7 +71,7 @@
     "react-test-renderer": "^16.9.0",
     "stylelint": "^10.1.0",
     "ts-jest": "^24.1.0",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.1"
   },
   "engines": {
     "node": "~10.16.3"
