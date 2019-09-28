@@ -68,7 +68,7 @@
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.1",
     "jsdom": "^15.1.1",
-    "react-test-renderer": "^16.9.0",
+    "react-test-renderer": "^16.10.0",
     "stylelint": "^11.0.0",
     "ts-jest": "^24.1.0",
     "webpack-dev-server": "^3.8.1"
