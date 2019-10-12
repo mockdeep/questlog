@@ -58,7 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.5.1",
     "eslint-import-resolver-typescript": "JounQin/eslint-import-resolver-typescript#feat/resolve_dts",
     "eslint-plugin-import": "^2.18.2",
