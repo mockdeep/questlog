@@ -62,7 +62,7 @@ class TaskListView extends React.Component<Props, any> {
 
     const newTasks = update(
       currentTasks,
-      {$splice: [[taskIndex, 1], [afterIndex, 0, task]]}
+      {$splice: [[taskIndex, 1], [afterIndex, 0, task]]},
     );
 
     this.setState({currentTasks: newTasks});

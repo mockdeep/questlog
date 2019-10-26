@@ -22,5 +22,5 @@ const actionCreators = {deleteTask, updateTask, updateTaskMeta};
 export default connectWithScratch(
   computeScratchKey,
   mapStateToProps,
-  actionCreators
+  actionCreators,
 )(TaskFocusView);

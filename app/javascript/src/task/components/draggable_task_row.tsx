@@ -138,5 +138,5 @@ DraggableTaskRow.propTypes = {
 };
 
 export default dropTarget('task', taskTarget, targetCollect)(
-  dragSource('task', taskSource, sourceCollect)(DraggableTaskRow)
+  dragSource('task', taskSource, sourceCollect)(DraggableTaskRow),
 );

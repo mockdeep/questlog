@@ -19,5 +19,5 @@ const actionCreators = {setRoute, updateTag};
 export default connectWithScratch(
   computeScratchKey,
   mapStateToProps,
-  actionCreators
+  actionCreators,
 )(TagEditView);

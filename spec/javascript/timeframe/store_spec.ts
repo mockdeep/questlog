@@ -113,7 +113,7 @@ describe('updateModels', () => {
     const {timeframes} = TimeframeStore.getState();
     expect(timeframes).toHaveLength(8);
     timeframes.forEach(
-      timeframe => expect(timeframe.medianProductivity).toBe(15)
+      timeframe => expect(timeframe.medianProductivity).toBe(15),
     );
   });
 

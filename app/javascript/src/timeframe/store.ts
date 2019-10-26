@@ -65,7 +65,7 @@ const TimeframeStore: TimeframeStoreType = {
       timeframe.medianProductivity = medianProductivity;
       timeframe.minuteMax = calculateMaxMinutes(
         timeframeName,
-        medianProductivity
+        medianProductivity,
       );
 
       return timeframe;
