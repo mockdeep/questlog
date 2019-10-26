@@ -18,5 +18,5 @@ function mapStateToProps(state: State, ownProps: Props) {
 export default connectWithScratch(
   computeScratchKey,
   mapStateToProps,
-  {updateTask}
+  {updateTask},
 )(TaskEditTitleForm);

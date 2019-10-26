@@ -18,7 +18,7 @@ const scratchActionCreators = {createScratch, deleteScratch, updateScratch};
 function connectWithScratch(
   computeScratchKey: Function,
   mapStateToProps: Function,
-  actionCreators: {[key: string]: ActionCreator<any>}
+  actionCreators: {[key: string]: ActionCreator<any>},
 ) {
   function scratchMapStateToProps(state: State, ownProps: Props) {
     const scratchKey = computeScratchKey(state, ownProps);
@@ -109,7 +109,7 @@ function connectWithScratch(
 
     return connect(
       scratchMapStateToProps,
-      scratchMapDispatchToProps
+      scratchMapDispatchToProps,
     )(ConnectWithScratch);
   };
 }
