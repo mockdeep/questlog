@@ -52,26 +52,26 @@ function grabLeafTasks(orderedTasks: Task[], tasksByParentId: TasksByParentId) {
 
 const getTasksById = createSelector(
   (state: State) => state.task.byId,
-  processTasks
+  processTasks,
 );
 
 const getTasksByParentId = createSelector(getTasksById, mapTasksToParentId);
 
 const getOrderedTasks = createSelector(
   getTasksById,
-  tasksById => sortBy(tasksById, [timeframePosition, 'priority', 'position'])
+  tasksById => sortBy(tasksById, [timeframePosition, 'priority', 'position']),
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
 
 const getLeafTasks = createSelector(
   [getOrderedTasks, getTasksByParentId],
-  grabLeafTasks
+  grabLeafTasks,
 );
 
 const getRootTasks = createSelector(
   getOrderedTasks,
-  orderedTasks => orderedTasks.filter(task => !task.parentTaskId)
+  orderedTasks => orderedTasks.filter(task => !task.parentTaskId),
 );
 
 const getPartitionedLeafTasks = createSelector(getLeafTasks, partitionTasks);
@@ -80,18 +80,18 @@ const getPartitionedRootTasks = createSelector(getRootTasks, partitionTasks);
 
 const getActiveTasks = createSelector(
   getPartitionedLeafTasks,
-  partitionedTasks => partitionedTasks.active
+  partitionedTasks => partitionedTasks.active,
 );
 
 const getCurrentTask = createSelector(
   getTasksById,
   getRouteParams,
-  (tasksById: TasksById, routeParams) => tasksById[routeParams.taskId]
+  (tasksById: TasksById, routeParams) => tasksById[routeParams.taskId],
 );
 
 const getCurrentSubTasks = createSelector(
   [getCurrentTask, getTasksByParentId],
-  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id]
+  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id],
 );
 
 export {

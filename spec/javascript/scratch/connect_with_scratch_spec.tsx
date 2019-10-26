@@ -147,7 +147,7 @@ it('passes bound action creators to the wrapped component', () => {
   const testComponent = wrapComponent(
     computeKey,
     jest.fn(() => ({})),
-    {updateFoo}
+    {updateFoo},
   );
 
   testComponent.prop('updateFoo')('boo');

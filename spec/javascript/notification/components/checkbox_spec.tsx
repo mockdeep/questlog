@@ -27,7 +27,7 @@ it('is not checked by default', () => {
 
 it('is checked when notifications are enabled and task is present', () => {
   const notificationCheckbox = shallow(
-    <NotificationCheckbox {...props} task={makeTask({})} notificationsEnabled />
+    <NotificationCheckbox {...props} notificationsEnabled />,
   );
 
   expect(notificationCheckbox.find('input[type="checkbox"]')).toBeChecked();

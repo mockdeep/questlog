@@ -51,31 +51,31 @@ function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
 
 const getSelectedTagSlug = createSelector(
   (state: State) => state.route.params.slug,
-  slug => slug || ''
+  slug => slug || '',
 );
 
 const getTagsById = createSelector(
   [(state: State) => state.tag.byId, getActiveTasks],
-  processTags
+  processTags,
 );
 
 const getOrderedTags = createSelector(
   getTagsById,
-  tagsById => sortBy(Object.values(tagsById), 'name')
+  tagsById => sortBy(Object.values(tagsById), 'name'),
 );
 
 const getActiveTags = createSelector(
   [getOrderedTags],
-  orderedTags => orderedTags.filter(tag => tag.tasks.length > 0)
+  orderedTags => orderedTags.filter(tag => tag.tasks.length > 0),
 );
 
 const getSelectedTag = createSelector(
   [getOrderedTags, getSelectedTagSlug],
-  (orderedTags, slug) => orderedTags.find(tag => tag.slug === slug)
+  (orderedTags, slug) => orderedTags.find(tag => tag.slug === slug),
 );
 
 const getNextActiveTask = createSelector(
-  [getSelectedTag], (selectedTag: Tag) => selectedTag.tasks[0]
+  [getSelectedTag], (selectedTag: Tag) => selectedTag.tasks[0],
 );
 
 export {
