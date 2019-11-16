@@ -28,7 +28,7 @@
     "nanoid": "^2.1.6",
     "path-to-regexp": "3.1.0",
     "prop-types": "^15.7.2",
-    "react": "^16.11.0",
+    "react": "^16.12.0",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "9.4.0",
     "react-dom": "^16.11.0",
