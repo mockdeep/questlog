@@ -22,7 +22,7 @@ module Questlog
     config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
 
     config.autoload_paths << Rails.root.join('lib')
-    config.autoload_paths << Rails.root.join('app', 'poros', 'parsers')
+    config.autoload_paths << Rails.root.join('app/poros/parsers')
 
     config.eager_load_paths << Rails.root.join('lib')
 

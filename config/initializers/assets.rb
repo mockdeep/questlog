@@ -7,9 +7,9 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Emoji.images_path
 Rails.application.config.assets.paths += [
   Rails.root.join('node_modules'),
-  Rails.root.join('vendor', 'assets', 'fonts'),
+  Rails.root.join('vendor/assets/fonts'),
   # paths for CSS assets in node_modules directory
-  Rails.root.join('node_modules', 'bootstrap-sass', 'assets', 'stylesheets'),
+  Rails.root.join('node_modules/bootstrap-sass/assets/stylesheets'),
 ]
 
 # Precompile additional assets.

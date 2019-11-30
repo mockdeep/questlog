@@ -18,8 +18,6 @@ Rails: { Enabled: true }
 # departures from default
 # ............................................................................ #
 
-Documentation: { Enabled: false }
-
 Layout/AccessModifierIndentation: { EnforcedStyle: outdent }
 Layout/EmptyLinesAroundClassBody: { EnforcedStyle: empty_lines }
 Layout/EmptyLinesAroundModuleBody: { EnforcedStyle: empty_lines }
@@ -42,6 +40,7 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
+Style/Documentation: { Enabled: false }
 Style/EmptyMethod: { EnforcedStyle: expanded }
 Style/GuardClause: { MinBodyLength: 2 }
 Style/LambdaCall: { EnforcedStyle: braces }
