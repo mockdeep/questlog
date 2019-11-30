@@ -1,4 +1,4 @@
-import pathToRegexp, {Key} from 'path-to-regexp';
+import {pathToRegexp, compile, Key} from 'path-to-regexp';
 
 type Route = {
   name: string;
@@ -27,7 +27,7 @@ function compileRoutes(routes: Route[]) {
         return params;
       },
 
-      toPath: pathToRegexp.compile(route.path),
+      toPath: compile(route.path),
     };
   });
 }
