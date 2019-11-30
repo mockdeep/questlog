@@ -12,9 +12,9 @@ require 'rspec/rails'
 require 'capybara-screenshot/rspec'
 
 def support_path
-  Rails.root.join('spec', 'support')
+  Rails.root.join('spec/support')
 end
-Dir[support_path.join('**', '*.rb')].each { |f| require f }
+Dir[support_path.join('**/*.rb')].each { |f| require f }
 
 Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
 driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
@@ -38,7 +38,7 @@ RSpec.configure do |config|
   config.include(FactoryBot::Syntax::Methods)
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
-  config.fixture_path = Rails.root.join('spec', 'fixtures')
+  config.fixture_path = Rails.root.join('spec/fixtures')
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
