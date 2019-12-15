@@ -6,7 +6,7 @@ ruby File.read('./.ruby-version').strip
 # needs to be included before any other gems that use environment variables
 gem 'dotenv-rails', groups: %i[development test]
 
-gem 'rails', '~> 6.0.1'
+gem 'rails', '~> 6.0.2'
 
 gem 'autoprefixer-rails'
 gem 'bcrypt'
