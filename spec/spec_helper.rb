@@ -14,7 +14,7 @@ require 'capybara-screenshot/rspec'
 def support_path
   Rails.root.join('spec/support')
 end
-Dir[support_path.join('**/*.rb')].each { |f| require f }
+Dir[support_path.join('**/*.rb')].sort.each { |f| require f }
 
 Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
 driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
