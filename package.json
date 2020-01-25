@@ -48,8 +48,7 @@
     "later -> @rails/ujs": "^6.0.0-alpha",
     "later -> turbolinks": "^5.2.0",
     "later -> @rails/activestorage": "^6.0.0-alpha",
-    "later -> @rails/actioncable": "^6.0.0-alpha",
-    "eslint-import-resolver-typescript": "https://github.com/benmosher/eslint-plugin-import/issues/1341"
+    "later -> @rails/actioncable": "^6.0.0-alpha"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.4",
@@ -60,7 +59,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
-    "eslint-import-resolver-typescript": "JounQin/eslint-import-resolver-typescript#feat/resolve_dts",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
