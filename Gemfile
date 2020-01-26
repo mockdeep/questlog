@@ -66,7 +66,7 @@ group :test do
   gem 'rb-inotify'
   gem 'rspec_junit_formatter', require: false
   gem 'selenium-webdriver'
-  gem 'simplecov'
+  gem 'simplecov', '~> 0.18.0.beta3'
   gem 'timecop'
   gem 'vcr'
   gem 'webdrivers'

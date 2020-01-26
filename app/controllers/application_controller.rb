@@ -24,7 +24,7 @@ private
     return_path = session[:return_path]
     reset_session
     session[:return_path] = return_path
-    session[:user_id] = user.id if user
+    session[:user_id] = user.id
   end
   helper_method :current_user=
 

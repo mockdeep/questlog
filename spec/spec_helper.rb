@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'simplecov'
 if ENV['COVERAGE'] != 'false'
-  SimpleCov.start 'rails'
-  SimpleCov.minimum_coverage 100
+  SimpleCov.start('rails') do
+    enable_coverage :branch
+    minimum_coverage 100
+  end
 end
 
 ENV['RAILS_ENV'] ||= 'test'
