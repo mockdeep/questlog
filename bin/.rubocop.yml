@@ -1,4 +1,4 @@
 inherit_from: ../.rubocop.yml
 
+Layout/LineLength: { Max: 100 }
 Style/MixinUsage: { Enabled: false }
-Metrics/LineLength: { Max: 100 }
