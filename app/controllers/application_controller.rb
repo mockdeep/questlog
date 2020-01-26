@@ -65,14 +65,4 @@ private
     redirect_to(session.delete(:return_path) || fallback_path, options)
   end
 
-  def store_return_path
-    session[:return_path] = request.fullpath
-  end
-
-  def login_first
-    store_return_path
-    flash[:notice] = 'Please login first'
-    redirect_to '/sessions/new'
-  end
-
 end

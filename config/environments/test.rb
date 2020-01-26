@@ -8,7 +8,7 @@ Rails.application.configure do
 
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-  config.cache_classes = true
+  config.cache_classes = false
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
