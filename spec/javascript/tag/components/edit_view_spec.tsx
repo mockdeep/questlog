@@ -6,14 +6,11 @@ import TagEditView, {Props} from 'src/tag/components/edit_view';
 import {makeTag} from '_test_helpers/factories';
 
 const tag = makeTag({});
-const updateScratch = jest.fn();
 const updateTag = jest.fn(() => Promise.resolve());
 const props: Props = {
   tag,
   setRoute: jest.fn(),
   updateTag,
-  updateScratch,
-  scratch: {rules: []},
 };
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
 
@@ -23,18 +20,12 @@ it('renders null when there is no tag', () => {
   expect(component.type()).toBeNull();
 });
 
-it('renders null when scratch rules are not present', () => {
-  const component = shallow(<TagEditView {...props} scratch={{}} />);
-
-  expect(component.type()).toBeNull();
-});
-
 it('renders rule rows', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
-  const overrides = {...props, scratch: {rules: tempRules}};
+  const overrides = {...props, tag: {...tag, rules: tempRules}};
   const component = shallow(<TagEditView {...overrides} />);
 
-  expect(component.find('RuleRow')).toExist();
+  expect(component.find('RuleRow')).toHaveProp('rule', tempRules[0]);
 });
 
 it('adds rules when "Add Rule" button is clicked', () => {
@@ -45,21 +36,12 @@ it('adds rules when "Add Rule" button is clicked', () => {
 
   expect(addRuleButton).toExist();
   addRuleButton.simulate('click');
-  expect(updateScratch).toHaveBeenCalledWith({rules: [defaultRule]});
-});
-
-it('updates rules when component receives a new tag', () => {
-  const component = shallow(<TagEditView {...props} />);
-  const newTag = makeTag({rules: [{field: 'title', check: 'isWobbly'}]});
-
-  component.setProps({tag: newTag});
-
-  expect(updateScratch).toHaveBeenCalledWith({rules: newTag.rules});
+  expect(component.find('RuleRow')).toHaveProp('rule', defaultRule);
 });
 
 it('saves the tag on submit', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
-  const overrides = {...props, scratch: {rules: tempRules}};
+  const overrides = {...props, tag: {...tag, rules: tempRules}};
   const component = shallow(<TagEditView {...overrides} />);
   const preventDefault = jest.fn();
   const fakeEvent = {preventDefault};
