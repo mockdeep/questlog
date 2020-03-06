@@ -12,32 +12,30 @@ import TaskFocusView, {Props} from 'src/task/components/focus_view';
 
 import {makeTask} from '_test_helpers/factories';
 
-const updateScratch = jest.fn();
 const updateTask = jest.fn();
 const props: Props = {
   ajaxState: 'ready',
   deleteTask: jest.fn(),
-  scratch: {postponeSeconds: 250},
-  updateScratch,
   updateTask,
 };
 
 it('updates the task on postpone', () => {
   const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
   const taskDisplay = component.find(TaskDisplay);
+  taskDisplay.prop('storePostponeSeconds')(250);
 
   taskDisplay.prop('postponeTask')(52);
 
   expect(updateTask).toHaveBeenCalledWith(52, {postpone: 250});
 });
 
-it('updates the postponeSeconds in scratch', () => {
+it('updates the postponeSeconds in state', () => {
   const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
   const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('storePostponeSeconds')(52);
 
-  expect(updateScratch).toHaveBeenCalledWith({postponeSeconds: 52});
+  expect(component).toHaveState({postponeSeconds: 52});
 });
 
 it('updates the task on completion', () => {
