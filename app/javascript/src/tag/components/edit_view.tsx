@@ -6,42 +6,40 @@ import {uniqWith, isEqual} from 'lodash';
 
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
-import {scratchShape, tagShape} from 'src/shapes';
+import {tagShape} from 'src/shapes';
 
 export type Props = {
-  scratch: Scratch,
   setRoute: Function,
   updateTag: Function,
   tag: Tag,
-  updateScratch: Function,
 };
 
-class TagEditView extends React.Component<Props, any> {
+type State = {
+  rules: TagRule[]
+};
+
+class TagEditView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     autobind(this);
-    props.updateScratch({rules: (props.tag && props.tag.rules) || []});
-  }
-
-  componentWillReceiveProps(newProps: Props) {
-    const {tag, updateScratch} = this.props;
-
-    if (newProps.tag !== tag) {
-      updateScratch({rules: newProps.tag.rules});
-    }
+    this.state = {
+      rules: (props.tag && props.tag.rules) || [],
+    };
   }
 
   updateFieldValue(index: number, value: string) {
-    const {scratch, updateScratch} = this.props;
-    const rules = update(scratch.rules, {[index]: {$merge: {field: value}}});
-
-    updateScratch({rules});
+    this.setState(state => {
+      const rules = update(state.rules, {[index]: {$merge: {field: value}}});
+      return {rules};
+    });
   }
 
   deleteRule(index: number) {
-    const {scratch, updateScratch} = this.props;
+    this.setState(state => {
+      const rules = update(state.rules, {$splice: [[index, 1]]});
 
-    updateScratch({rules: update(scratch.rules, {$splice: [[index, 1]]})});
+      return {rules};
+    });
   }
 
   ruleRow(rule: TagRule, index: number) {
@@ -59,27 +57,26 @@ class TagEditView extends React.Component<Props, any> {
   }
 
   ruleRows() {
-    const {scratch} = this.props;
+    const {rules} = this.state;
 
-    return scratch.rules.map((rule, index) => this.ruleRow(rule, index));
+    return rules.map((rule, index) => this.ruleRow(rule, index));
   }
 
   uniqRules() {
-    const {scratch} = this.props;
+    const {rules} = this.state;
 
-    return uniqWith(scratch.rules, isEqual);
+    return uniqWith(rules, isEqual);
   }
 
   hasDuplicateRules() {
-    const {scratch} = this.props;
+    const {rules} = this.state;
 
-    return this.uniqRules().length !== scratch.rules.length;
+    return this.uniqRules().length !== rules.length;
   }
 
   validateAndSave(event: SyntheticEvent) {
     event.preventDefault();
-
-    const {scratch, updateScratch} = this.props;
+    const {rules} = this.state;
 
     if (this.hasDuplicateRules()) {
       // eslint-disable-next-line no-alert
@@ -87,10 +84,10 @@ class TagEditView extends React.Component<Props, any> {
 
       const uniqRules = this.uniqRules();
 
-      updateScratch({rules: uniqRules});
+      this.setState({rules: uniqRules});
       this.saveTag(uniqRules);
     } else {
-      this.saveTag(scratch.rules);
+      this.saveTag(rules);
     }
   }
 
@@ -102,16 +99,16 @@ class TagEditView extends React.Component<Props, any> {
   }
 
   addRule() {
-    const {scratch, updateScratch} = this.props;
+    const {rules} = this.state;
     const newRule = {field: 'estimateSeconds', check: 'isBlank'};
 
-    updateScratch({rules: scratch.rules.concat(newRule)});
+    this.setState({rules: rules.concat(newRule)});
   }
 
   render() {
-    const {scratch, tag} = this.props;
+    const {tag} = this.props;
 
-    if (!tag || !scratch.rules) { return null; }
+    if (!tag) { return null; }
 
     return (
       <div>
@@ -143,11 +140,9 @@ class TagEditView extends React.Component<Props, any> {
 }
 
 TagEditView.propTypes = {
-  scratch: scratchShape.isRequired,
   setRoute: PropTypes.func.isRequired,
   updateTag: PropTypes.func.isRequired,
   tag: tagShape,
-  updateScratch: PropTypes.func,
 };
 
 export default TagEditView;
