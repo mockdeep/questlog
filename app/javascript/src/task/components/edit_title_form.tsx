@@ -4,16 +4,19 @@ import PropTypes from 'prop-types';
 import React, {ChangeEvent, FocusEvent, FormEvent, KeyboardEvent} from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import {scratchShape, taskShape} from 'src/shapes';
+import {taskShape} from 'src/shapes';
 
 export type Props = {
-  scratch: Scratch,
   task: Task,
-  updateScratch: Function,
   updateTask: Function,
 };
 
-class TaskEditTitleForm extends React.Component<Props, any> {
+type State = {
+  taskTitle: string;
+  focused: boolean;
+}
+
+class TaskEditTitleForm extends React.Component<Props, State> {
   submitting: boolean;
 
   input: any;
@@ -21,25 +24,22 @@ class TaskEditTitleForm extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
     autobind(this);
-    props.updateScratch({
+    this.state = {
       focused: false,
-      submitting: false,
       taskTitle: props.task.title,
-    });
+    };
   }
 
   componentWillReceiveProps(newProps: Props) {
-    const {task, updateScratch} = this.props;
+    const {task} = this.props;
 
     if (newProps.task.id !== task.id) {
-      updateScratch({focused: false, taskTitle: newProps.task.title});
+      this.setState({focused: false, taskTitle: newProps.task.title});
     }
   }
 
   updateTitleInput(event: ChangeEvent<HTMLTextAreaElement>) {
-    const {updateScratch} = this.props;
-
-    updateScratch({taskTitle: event.target.value});
+    this.setState({taskTitle: event.target.value});
   }
 
   async saveTask(event: FocusEvent | FormEvent | KeyboardEvent) {
@@ -48,12 +48,13 @@ class TaskEditTitleForm extends React.Component<Props, any> {
     if (this.submitting) { return; }
     this.submitting = true;
 
-    const {scratch, task, updateScratch, updateTask} = this.props;
+    const {task, updateTask} = this.props;
+    const {taskTitle} = this.state;
 
     this.input.blur();
-    updateScratch({focused: false});
+    this.setState({focused: false});
 
-    await updateTask(task.id, {title: scratch.taskTitle});
+    await updateTask(task.id, {title: taskTitle});
     this.submitting = false;
   }
 
@@ -62,9 +63,7 @@ class TaskEditTitleForm extends React.Component<Props, any> {
   }
 
   setFocused() {
-    const {updateScratch} = this.props;
-
-    updateScratch({focused: true});
+    this.setState({focused: true});
   }
 
   storeInput(input: HTMLTextAreaElement) {
@@ -72,13 +71,14 @@ class TaskEditTitleForm extends React.Component<Props, any> {
   }
 
   className() {
-    const {scratch} = this.props;
+    const {focused} = this.state;
 
-    return classnames({'task-input': true, 'hidden-border': !scratch.focused});
+    return classnames({'task-input': true, 'hidden-border': !focused});
   }
 
   render() {
-    const {scratch, task} = this.props;
+    const {task} = this.props;
+    const {taskTitle} = this.state;
 
     return (
       <form onSubmit={this.saveTask}>
@@ -86,7 +86,7 @@ class TaskEditTitleForm extends React.Component<Props, any> {
           inputRef={this.storeInput}
           name={'task-title'}
           className={this.className()}
-          value={scratch.taskTitle || task.title}
+          value={taskTitle || task.title}
           onKeyPress={this.submitIfEnter}
           onChange={this.updateTitleInput}
           onBlur={this.saveTask}
@@ -98,9 +98,7 @@ class TaskEditTitleForm extends React.Component<Props, any> {
 }
 
 TaskEditTitleForm.propTypes = {
-  scratch: scratchShape.isRequired,
   task: taskShape.isRequired,
-  updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 
