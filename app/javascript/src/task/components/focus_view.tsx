@@ -5,31 +5,29 @@ import React from 'react';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
-import {taskShape, scratchShape} from 'src/shapes';
+import {taskShape} from 'src/shapes';
 
 export type Props = {
   ajaxState: string,
   deleteTask: Function,
-  scratch: Scratch,
-  updateScratch: Function,
   updateTask: Function,
   task?: Task,
 };
 
-class TaskFocusView extends React.Component<Props, any> {
+type State = {
+  postponeSeconds: number;
+};
+
+class TaskFocusView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     autobind(this);
 
-    const {updateScratch} = this.props;
-
-    updateScratch({postponeSeconds: 300});
+    this.state = {postponeSeconds: 300};
   }
 
   storePostponeSeconds(postponeSeconds: number) {
-    const {updateScratch} = this.props;
-
-    updateScratch({postponeSeconds});
+    this.setState({postponeSeconds});
   }
 
   setTitle(title: string) {
@@ -37,9 +35,10 @@ class TaskFocusView extends React.Component<Props, any> {
   }
 
   postponeTask(taskId: number) {
-    const {scratch, updateTask} = this.props;
+    const {updateTask} = this.props;
+    const {postponeSeconds} = this.state;
 
-    const attrs = {postpone: scratch.postponeSeconds};
+    const attrs = {postpone: postponeSeconds};
 
     updateTask(taskId, attrs);
   }
@@ -112,8 +111,6 @@ class TaskFocusView extends React.Component<Props, any> {
 TaskFocusView.propTypes = {
   ajaxState: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  scratch: scratchShape.isRequired,
-  updateScratch: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   task: taskShape,
 };
