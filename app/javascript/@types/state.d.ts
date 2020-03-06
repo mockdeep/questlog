@@ -11,10 +11,6 @@ type RouteState = {
   params: {[key: string]: string};
 };
 
-type ScratchState = {
-  [scratchKey: string]: any;
-};
-
 type TagState = {
   byId: TagsById;
 };
@@ -32,7 +28,6 @@ type State = {
   common: CommonState;
   notification: NotificationState;
   route: RouteState;
-  scratch: ScratchState;
   tag: TagState;
   task: TaskState;
   user: UserState;
@@ -40,8 +35,7 @@ type State = {
 
 type StateKey = keyof State;
 
-type SubState = ScratchState
-| TagState
+type SubState = TagState
 | TaskState
 | CommonState
 | NotificationState
