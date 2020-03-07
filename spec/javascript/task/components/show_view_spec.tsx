@@ -28,8 +28,8 @@ it('sets the task in scratch space', () => {
   const {newTask} = payload;
 
   expect(newTask.priority).toBeNull();
-  expect(newTask.repeatSeconds).toBeUndefined();
-  expect(newTask.releaseAt).toBeUndefined();
+  expect(newTask.repeatSeconds).toBeNull();
+  expect(newTask.releaseAt).toBeNull();
   expect(newTask.tagNames).toEqual([]);
   expect(newTask.timeframe).toBeNull();
   expect(newTask.parentTaskId).toBe(task.id);
