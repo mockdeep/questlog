@@ -46,8 +46,7 @@ it('renders the given timeframes for the user', () => {
 });
 
 it('does not render empty timeframes', () => {
-  const timeframe: Timeframe =
-    {name: 'inbox', currentTasks: [], pendingTasks: []};
+  const timeframe = makeTimeframe({});
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
   const component = shallow(<TimeframeListView {...props} />);
