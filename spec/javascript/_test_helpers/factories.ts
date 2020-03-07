@@ -2,17 +2,6 @@ import appReducer from 'src/app_reducer';
 
 let nextTagId = 0;
 let nextTaskId = 0;
-let nextTimeframeId = 0;
-const timeframeNames: TimeframeName[] = [
-  'inbox',
-  'today',
-  'week',
-  'month',
-  'quarter',
-  'year',
-  'lustrum',
-  'decade',
-];
 
 function makeState(attrs: {[key in keyof State]?: any}): State {
   return Object.keys(attrs).reduce((state: State, key: StateKey) => {
@@ -58,10 +47,10 @@ function makeTask(attrs: Partial<Task>): Task {
 }
 
 function makeTimeframe(attrs: Partial<Timeframe>): Timeframe {
-  nextTimeframeId += 1;
-
   return {
-    name: timeframeNames[nextTimeframeId],
+    name: 'inbox',
+    medianProductivity: 30,
+    minuteMax: Infinity,
     currentTasks: [],
     pendingTasks: [],
     ...attrs,

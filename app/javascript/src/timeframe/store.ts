@@ -46,6 +46,8 @@ const TimeframeStore: TimeframeStoreType = {
         name: timeframeName,
         currentTasks: [],
         pendingTasks: [],
+        medianProductivity,
+        minuteMax: calculateMaxMinutes(timeframeName, medianProductivity),
       };
     });
 
@@ -59,17 +61,8 @@ const TimeframeStore: TimeframeStoreType = {
       }
     });
 
-    this.models = timeframeList.map(timeframeName => {
-      const timeframe = grab(timeframes, timeframeName);
-
-      timeframe.medianProductivity = medianProductivity;
-      timeframe.minuteMax = calculateMaxMinutes(
-        timeframeName,
-        medianProductivity,
-      );
-
-      return timeframe;
-    });
+    this.models =
+      timeframeList.map(timeframeName => grab(timeframes, timeframeName));
   },
 
   getState() {
