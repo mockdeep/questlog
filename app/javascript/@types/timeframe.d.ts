@@ -11,8 +11,8 @@ type Timeframe = {
   currentTasks: Task[];
   pendingTasks: Task[];
   name: TimeframeName;
-  medianProductivity?: number;
-  minuteMax?: number;
+  medianProductivity: number;
+  minuteMax: number;
 };
 
 type TimeframeSpace = {
