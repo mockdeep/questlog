@@ -234,7 +234,7 @@ describe('updateTask', () => {
 
 describe('updateTaskMeta', () => {
   it('returns an UPDATE_META action', () => {
-    const payload: TaskMeta = {ajaxState: 'taskSaving'};
+    const payload: Partial<TaskMeta> = {ajaxState: 'taskSaving'};
 
     expect(updateTaskMeta(payload)).toEqual({type: UPDATE_META, payload});
   });

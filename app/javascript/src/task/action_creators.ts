@@ -29,7 +29,7 @@ function setTasks(payload: Task[]) {
   return {type: SET, payload};
 }
 
-function updateTaskMeta(payload: TaskMeta) {
+function updateTaskMeta(payload: Partial<TaskMeta>) {
   return {type: UPDATE_META, payload};
 }
 
