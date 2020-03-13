@@ -37,8 +37,8 @@ export type Props = {
   deleteTask: Function,
   updateTask: Function,
   updateTaskMeta: Function,
-  subTasks?: Task[],
-  task?: Task,
+  subTasks: Task[],
+  task: Task,
 };
 
 class TaskShowView extends React.Component<Props, any> {
@@ -79,8 +79,6 @@ class TaskShowView extends React.Component<Props, any> {
 
   render() {
     const {task, subTasks, updateTask, deleteTask} = this.props;
-
-    if (!task) { return null; }
 
     return (
       <section>
