@@ -6,7 +6,7 @@ type TagRule = {
 type Tag = {
   id: number;
   name: string;
-  priority: number;
+  priority: number | null;
   slug: string;
   rules: TagRule[];
   tasks: Task[];
