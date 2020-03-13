@@ -15,7 +15,7 @@ function setRoute(payload: Payload) {
   const {name, ...params} = payload;
   const matchingRoute = findRoute(name);
 
-  window.history.pushState(null, null, matchingRoute.toPath(params));
+  window.history.pushState(null, '', matchingRoute.toPath(params));
 
   return {type: SET, payload: {name: matchingRoute.name, params}};
 }

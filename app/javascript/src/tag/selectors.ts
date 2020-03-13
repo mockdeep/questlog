@@ -36,7 +36,7 @@ function matchingTasks(tag: Tag, tasks: Task[]) {
 
 function minPriority(tasks: Task[]) {
   const priorities = tasks.map((task: Task) => task.priority).
-    filter(priority => priority !== null);
+    filter((priority): priority is number => typeof priority === 'number');
 
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
