@@ -45,7 +45,7 @@ describe('getActiveTags', () => {
 
     it('does not return tag when field is set to a value', () => {
       const tag = makeTag({rules: [{check: 'isBlank', field: 'releaseAt'}]});
-      const task = makeTask({releaseAt: 'not blank'});
+      const task = makeTask({pending: true, releaseAt: 'not blank'});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);

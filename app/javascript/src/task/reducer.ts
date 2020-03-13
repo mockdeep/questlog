@@ -15,7 +15,7 @@ function estimateMinutes(task: Task) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 
-function processTask(task: Task) {
+function processTask(task: Task): Task {
   const processedTask = {
     loadingState: 'ready',
     ...task,

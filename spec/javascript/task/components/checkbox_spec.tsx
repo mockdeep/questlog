@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TaskCheckbox from 'src/task/components/checkbox';
+import {assert} from 'src/_helpers/assert';
 import {makeTask} from '_test_helpers/factories';
 
 const task = makeTask({});
@@ -40,7 +41,7 @@ it('adds a "checked" class to the label when checked', () => {
   const component = shallow(<TaskCheckbox {...props} checked />);
 
   const expectedClass = 'task-item__checkbox-display--checked';
-  const actualClass = component.find('label').prop('className');
+  const actualClass = assert(component.find('label').prop('className'));
   expect(actualClass.split(' ')).toContain(expectedClass);
 });
 
@@ -48,6 +49,6 @@ it('adds an "enabled" class to the label when not disabled', () => {
   const component = shallow(<TaskCheckbox {...props} />);
 
   const expectedClass = 'task-item__checkbox-display--enabled';
-  const actualClass = component.find('label').prop('className');
+  const actualClass = assert(component.find('label').prop('className'));
   expect(actualClass.split(' ')).toContain(expectedClass);
 });
