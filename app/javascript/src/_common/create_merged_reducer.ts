@@ -41,7 +41,7 @@ function initState(reducerMap: ReducerMap) {
 
 function createMergedReducer(reducerMap: ReducerMap) {
   return function mergedReducer(
-    previousState: State,
+    previousState: State | null,
     action: BasicAction | any,
   ) {
     if (!previousState) {

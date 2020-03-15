@@ -52,11 +52,13 @@ function makePendingTask(attrs: Partial<Task>): PendingTask {
     throw new Error('pending task must have releaseAt');
   }
 
+  const releaseAt = '2020-03-20T11:24:42.892-07:00';
+
   return {
     ...makeBaseTask(),
-    releaseAt: '2020-03-20T11:24:42.892-07:00',
     ...attrs,
     pending: true,
+    releaseAt,
   };
 }
 

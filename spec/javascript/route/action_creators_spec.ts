@@ -4,7 +4,7 @@ import {
 } from 'src/route/action_creators';
 
 afterEach(() => {
-  window.history.replaceState(null, null, '/');
+  window.history.replaceState(null, '', '/');
 });
 
 describe('fetchRoute', () => {
@@ -17,7 +17,7 @@ describe('fetchRoute', () => {
   it('returns a SET action with "tasks" when route is "/tasks"', () => {
     const expectedAction = {type: SET, payload: {name: 'tasks', params: {}}};
 
-    window.history.replaceState(null, null, '/tasks');
+    window.history.replaceState(null, '', '/tasks');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });
@@ -26,7 +26,7 @@ describe('fetchRoute', () => {
     const payload = {name: 'tag', params: {slug: 'my-house'}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, null, '/my-house');
+    window.history.replaceState(null, '', '/my-house');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });
@@ -35,13 +35,13 @@ describe('fetchRoute', () => {
     const payload = {name: 'sessionsNew', params: {}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, null, '/sessions/new');
+    window.history.replaceState(null, '', '/sessions/new');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });
 
   it('raises an error when the current route cannot be matched', () => {
-    window.history.replaceState(null, null, '/not/a/route');
+    window.history.replaceState(null, '', '/not/a/route');
 
     expect(() => { fetchRoute(); }).toThrow(/No route found/u);
   });

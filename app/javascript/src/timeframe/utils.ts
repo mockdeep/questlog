@@ -7,7 +7,7 @@ import grab from 'src/_helpers/grab';
 import TimeBalancer from 'src/_helpers/time_balancer';
 import {assert} from 'src/_helpers/assert';
 
-const timeframeEnds: {[timeframeName in TimeframeName]: Moment} = {
+const timeframeEnds: {[timeframeName in TimeframeName]: Moment | null} = {
   inbox: null,
   today: moment().endOf('day'),
   week: moment().endOf('week'),
@@ -35,7 +35,10 @@ function baseBalance(name: TimeframeName) {
   return TimeBalancer.baseBalances(balanceTime)[name];
 }
 
-function calculateMaxMinutes(name: TimeframeName, medianProductivity: number) {
+function calculateMaxMinutes(
+  name: TimeframeName,
+  medianProductivity: number,
+): number {
   const baseMinutes = baseBalance(name);
 
   if (typeof baseMinutes === 'undefined') { return Infinity; }

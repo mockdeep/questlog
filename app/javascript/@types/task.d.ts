@@ -1,5 +1,9 @@
 type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
 
+type NewTask = {
+  title: string;
+};
+
 type BaseTask = {
   id: number;
   done: boolean;

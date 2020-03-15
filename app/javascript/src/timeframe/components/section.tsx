@@ -60,7 +60,7 @@ class TimeframeSection extends React.Component<Props, any> {
     return calculateTotalMinutes(timeframe);
   }
 
-  maxTime() {
+  maxTime(): number | '∞' {
     const {timeframe} = this.props;
 
     return isFinite(timeframe.minuteMax) ? timeframe.minuteMax : '∞';
