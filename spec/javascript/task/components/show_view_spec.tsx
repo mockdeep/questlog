@@ -10,14 +10,9 @@ const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   updateTaskMeta,
+  task: makeTask({}),
   subTasks: [],
 };
-
-it('renders nothing when the task is not present', () => {
-  const component = shallow(<TaskShowView {...props} />);
-
-  expect(component.type()).toBeNull();
-});
 
 it('sets the task in scratch space', () => {
   const task = makeTask({title: 'foo title'});
