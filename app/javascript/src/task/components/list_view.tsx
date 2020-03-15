@@ -11,10 +11,11 @@ import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
 import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
+import {assert} from 'src/_helpers/assert';
 import {taskShape} from 'src/shapes';
 
-function findTask(tasks: Task[], taskId: number) {
-  return tasks.find(task => task.id === taskId);
+function findTask(tasks: Task[], taskId: number): Task {
+  return assert(tasks.find(task => task.id === taskId));
 }
 
 function afterTaskHasHigherPriority(task: Task, afterTask: Task) {

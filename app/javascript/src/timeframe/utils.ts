@@ -5,6 +5,7 @@ import {sumBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
 import TimeBalancer from 'src/_helpers/time_balancer';
+import {assert} from 'src/_helpers/assert';
 
 const timeframeEnds: {[timeframeName in TimeframeName]: Moment} = {
   inbox: null,
@@ -51,8 +52,8 @@ function calculateTotalMinutes(timeframe: Timeframe) {
 }
 
 function timeframeNameForPendingTask(task: Task) {
-  const releaseAt = moment(task.releaseAt);
-  let index = timeframeList.indexOf(task.timeframe) - 1;
+  const releaseAt = moment(assert(task.releaseAt));
+  let index = timeframeList.indexOf(assert(task.timeframe)) - 1;
   let timeframeName;
   let timeframeEnd;
 

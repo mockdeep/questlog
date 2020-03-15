@@ -5,6 +5,7 @@ import {ActionCreator, Action} from 'redux';
 
 import connectWithScratch from 'src/scratch/connect_with_scratch';
 import createAppStore from 'src/create_app_store';
+import {assert} from 'src/_helpers/assert';
 import {createScratch, updateScratch} from 'src/scratch/action_creators';
 
 let container: ReactWrapper;
@@ -150,7 +151,7 @@ it('passes bound action creators to the wrapped component', () => {
     {updateFoo},
   );
 
-  testComponent.prop('updateFoo')('boo');
+  assert(testComponent.prop('updateFoo'))('boo');
 
   expect(store.dispatch).toHaveBeenCalledWith({type: 'blahboo'});
 });

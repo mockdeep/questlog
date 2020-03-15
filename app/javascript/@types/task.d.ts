@@ -1,15 +1,13 @@
 type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
 
-type Task = {
+type BaseTask = {
   id: number;
   done: boolean;
   estimateMinutes: number;
   estimateSeconds: number | null;
   parentTaskId: number | null;
-  pending: boolean;
   position: number;
   priority: number | null;
-  releaseAt: string | null;
   repeatSeconds: number | null;
   skipCount: number;
   status: 'active' | 'done' | 'pending';
@@ -19,6 +17,18 @@ type Task = {
   title: string;
   loadingState: TaskLoadingState;
 };
+
+type PendingTask = BaseTask & {
+  pending: true;
+  releaseAt: string;
+}
+
+type CurrentTask = BaseTask & {
+  pending: false;
+  releaseAt: null;
+}
+
+type Task = PendingTask | CurrentTask;
 
 type BulkTask = {
   positions?: number[];

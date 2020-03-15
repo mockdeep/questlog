@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TaskLeafListItem from 'src/task/components/leaf_list_item';
+import {assert} from 'src/_helpers/assert';
 
 import {makeTask} from '_test_helpers/factories';
 
@@ -59,7 +60,8 @@ it('adds a priority class to title when task has a priority', () => {
   const overrides = {task: {...task, priority: 2}};
   const component = shallow(<TaskLeafListItem {...props} {...overrides} />);
 
-  const titleClasses = component.find('span').prop('className').split(' ');
+  const className = assert(component.find('span').prop('className'));
+  const titleClasses = className.split(' ');
   expect(titleClasses).toContain('task-item__title--priority-2');
 });
 
