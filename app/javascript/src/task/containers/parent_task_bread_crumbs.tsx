@@ -9,7 +9,7 @@ type ComponentProps = {
 };
 
 type ContainerProps = {
-  taskId: number;
+  taskId: number | null;
 };
 
 // The component is in the same file as the container due to circular references
@@ -39,7 +39,7 @@ class ParentTaskBreadCrumbs extends React.Component<ComponentProps, any> {
 ParentTaskBreadCrumbs.propTypes = {task: taskShape};
 
 function mapStateToProps(state: State, ownProps: ContainerProps) {
-  return {task: state.task.byId[ownProps.taskId]};
+  return {task: ownProps.taskId && state.task.byId[ownProps.taskId]};
 }
 
 const ParentTaskBreadCrumbsContainer =

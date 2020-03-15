@@ -40,8 +40,10 @@ function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
   const tasks = Object.values(tasksById);
   return tasks.reduce((result: TasksByParentId, task: Task) => {
     result[task.id] = result[task.id] || [];
-    result[task.parentTaskId] = result[task.parentTaskId] || [];
-    result[task.parentTaskId].push(task);
+    if (task.parentTaskId) {
+      result[task.parentTaskId] = result[task.parentTaskId] || [];
+      result[task.parentTaskId].push(task);
+    }
     return result;
   }, {});
 }

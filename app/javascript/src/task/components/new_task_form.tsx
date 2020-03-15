@@ -6,7 +6,7 @@ import {taskShape} from 'src/shapes';
 
 type Props = {
   createTask: Function,
-  task: Partial<Task>,
+  task: NewTask,
   taskSaving: boolean,
   updateTaskMeta: Function,
 };

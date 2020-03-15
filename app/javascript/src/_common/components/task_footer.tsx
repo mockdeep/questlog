@@ -8,15 +8,13 @@ import {taskShape} from 'src/shapes';
 
 export type Props = {
   completeTask: Function;
-  task: Task;
+  task?: Task;
 };
 
 function TaskFooter({task, completeTask}: Props) {
-  const notificationProps = {task, completeTask};
-
   return (
     <footer className='task-footer'>
-      {task ? <NotificationCheckbox {...notificationProps} /> : null}
+      {task && <NotificationCheckbox task={task} completeTask={completeTask} />}
       <br />
       <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}

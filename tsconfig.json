@@ -1,7 +1,5 @@
 {
   "//": {
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "strict": true
   },
@@ -22,6 +20,7 @@
       "src/*": ["app/javascript/src/*"]
     },
     "sourceMap": true,
+    "strictNullChecks": true,
     "target": "es5",
     "jsx": "react"
   },

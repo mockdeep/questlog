@@ -14,12 +14,6 @@ const props: Props = {
 };
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
 
-it('renders null when there is no tag', () => {
-  const component = shallow(<TagEditView {...props} tag={null} />);
-
-  expect(component.type()).toBeNull();
-});
-
 it('renders rule rows', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
   const overrides = {...props, tag: {...tag, rules: tempRules}};

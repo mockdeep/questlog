@@ -108,8 +108,6 @@ class TagEditView extends React.Component<Props, State> {
   render() {
     const {tag} = this.props;
 
-    if (!tag) { return null; }
-
     return (
       <div>
         {`Editing tag ${tag.name}`}

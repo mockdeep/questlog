@@ -89,7 +89,7 @@ class TaskRow extends React.PureComponent<Props, any> {
   timeframe() {
     const {task} = this.props;
 
-    return task.timeframe;
+    return task.timeframe || 'inbox';
   }
 
   timeframeHasSpace(name: string) {

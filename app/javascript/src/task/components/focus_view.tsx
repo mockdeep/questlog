@@ -53,7 +53,7 @@ class TaskFocusView extends React.Component<Props, State> {
     const {ajaxState, task} = this.props;
 
     if (task) {
-      return this.nextTaskDisplay();
+      return this.nextTaskDisplay(task);
     } else if (['fetching', 'taskSaving'].includes(ajaxState)) {
       return this.loadingDisplay();
     } else if (ajaxState === 'ready') {
@@ -63,8 +63,8 @@ class TaskFocusView extends React.Component<Props, State> {
     throw new Error(`don't know how to deal with ajaxState "${ajaxState}"`);
   }
 
-  nextTaskDisplay() {
-    const {deleteTask, task} = this.props;
+  nextTaskDisplay(task: Task) {
+    const {deleteTask} = this.props;
     const {completeTask, postponeTask, storePostponeSeconds} = this;
 
     this.setTitle(task.title);
