@@ -25,7 +25,7 @@ function makeTag(attrs: Partial<Tag>): Tag {
   };
 }
 
-function makeTask(attrs: Partial<Task>): Task {
+function makeBaseTask(): BaseTask {
   nextTaskId += 1;
 
   return {
@@ -35,10 +35,8 @@ function makeTask(attrs: Partial<Task>): Task {
     estimateSeconds: null,
     loadingState: 'ready',
     parentTaskId: null,
-    pending: false,
     position: nextTaskId,
     priority: null,
-    releaseAt: null,
     repeatSeconds: null,
     skipCount: 0,
     status: 'active',
@@ -46,8 +44,40 @@ function makeTask(attrs: Partial<Task>): Task {
     tagNames: [],
     timeframe: null,
     title: `Task ${nextTaskId}`,
-    ...attrs,
   };
+}
+
+function makePendingTask(attrs: Partial<Task>): PendingTask {
+  if (attrs.hasOwnProperty('releaseAt') && !attrs.releaseAt) {
+    throw new Error('pending task must have releaseAt');
+  }
+
+  return {
+    ...makeBaseTask(),
+    releaseAt: '2020-03-20T11:24:42.892-07:00',
+    ...attrs,
+    pending: true,
+  };
+}
+
+function makeCurrentTask(attrs: Partial<Task>): CurrentTask {
+  if (attrs.releaseAt) {
+    throw new Error('non-pending task must not have releaseAt');
+  }
+
+  return {
+    ...makeBaseTask(),
+    ...attrs,
+    pending: false,
+    releaseAt: null,
+  };
+}
+
+function makeTask(attrs: Partial<Task>): Task {
+  if (attrs.pending) {
+    return makePendingTask(attrs);
+  }
+  return makeCurrentTask(attrs);
 }
 
 function makeTimeframe(attrs: Partial<Timeframe>): Timeframe {

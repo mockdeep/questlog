@@ -4,6 +4,7 @@ import {shallow} from 'enzyme';
 import {setMatches} from '_test_helpers/match_media';
 import Link from 'src/route/containers/link';
 import Sidebar from 'src/_common/components/sidebar';
+import {assert} from 'src/_helpers/assert';
 
 beforeEach(() => {
   document.body.innerHTML = '<div class="content"></div>';
@@ -44,7 +45,7 @@ describe('when browser is desktop', () => {
   it('does not hide the sidebar after a link is clicked', () => {
     const component = shallow(<Sidebar />);
 
-    component.find(Link).at(0).prop('onNavigate')();
+    assert(component.find(Link).at(0).prop('onNavigate'))();
     component.update();
 
     expect(component.find(Link)).toHaveLength(3);
@@ -81,7 +82,7 @@ describe('when browser is mobile', () => {
 
     component.find('.sidebar__toggle').simulate('click', {preventDefault});
 
-    component.find(Link).at(0).prop('onNavigate')();
+    assert(component.find(Link).at(0).prop('onNavigate'))();
     component.update();
 
     expect(component.find(Link)).not.toExist();

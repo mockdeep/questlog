@@ -2,6 +2,7 @@ import autobind from 'class-autobind';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
+import {assert} from 'src/_helpers/assert';
 
 type LocalState = {
   visible: boolean;
@@ -33,7 +34,7 @@ class Sidebar extends React.Component<any, any> {
   }
 
   toggleSidebarClass(visible: boolean) {
-    const contentDiv = document.querySelector('.content');
+    const contentDiv = assert(document.querySelector('.content'));
     contentDiv.classList.toggle('sidebar-open', visible);
   }
 
