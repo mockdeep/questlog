@@ -1,7 +1,7 @@
 import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
-import createBasicReducer from 'src/_common/create_basic_reducer';
+import grab from 'src/_helpers/grab';
 import {
   INIT,
   CREATE,
@@ -25,7 +25,7 @@ function processTask(task: Task): Task {
   return processedTask;
 }
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {
       byId: {},
@@ -58,4 +58,12 @@ export default createBasicReducer({
   [UPDATE_META](previousState: TaskState, meta: TaskMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
-});
+};
+
+function taskReducer(previousState: TaskState | null, action: BasicAction) {
+  const operation = grab(operations, action.type);
+
+  return operation(previousState, action.payload);
+}
+
+export default taskReducer;
