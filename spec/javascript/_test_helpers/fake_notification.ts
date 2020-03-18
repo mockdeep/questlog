@@ -1,21 +1,21 @@
 class FakeNotification {
   message: string;
 
-  actions: null;
+  actions: NotificationAction[];
 
-  badge: null;
+  badge: string;
 
-  body: null;
+  body: string;
 
   data: null;
 
-  dir: null;
+  dir: NotificationDirection;
 
-  icon: null;
+  icon: string;
 
-  image: null;
+  image: string;
 
-  lang: null;
+  lang: string;
 
   onclick: null;
 
@@ -25,27 +25,21 @@ class FakeNotification {
 
   onshow: null;
 
-  renotify: null;
+  renotify = false;
 
-  requireInteraction: null;
+  requireInteraction = false;
 
-  silent: null;
+  silent = false;
 
-  tag: null;
+  tag = '';
 
-  timestamp: null;
+  timestamp = Number(new Date());
 
-  title: null;
+  title: string;
 
-  vibrate: null;
+  vibrate = [];
 
-  addEventListener: null;
-
-  removeEventListener: null;
-
-  dispatchEvent: null;
-
-  isOpen: boolean;
+  isOpen = true;
 
   static requestPermission() {
     return Promise.resolve('granted');
@@ -58,6 +52,18 @@ class FakeNotification {
 
   close() {
     this.isOpen = false;
+  }
+
+  addEventListener() {
+    return true;
+  }
+
+  removeEventListener() {
+    return true;
+  }
+
+  dispatchEvent() {
+    return true;
   }
 }
 
