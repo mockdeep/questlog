@@ -27,7 +27,7 @@ function makePendingTask(attrs: Partial<Task>): PendingTask {
     throw new Error('pending task must have releaseAt');
   }
 
-  const releaseAt = '2020-03-20T11:24:42.892-07:00';
+  const releaseAt = attrs.releaseAt || '2020-03-20T11:24:42.892-07:00';
 
   return {
     ...makeBaseTask(),
@@ -57,4 +57,19 @@ function makeTask(attrs: Partial<Task>): Task {
   return makeCurrentTask(attrs);
 }
 
-export {makeTask};
+const defaultMeta: TaskMeta = {ajaxState: 'ready', newTask: {}};
+function makeTaskState(
+  {tasks = [], meta = {}}: {tasks?: Task[], meta?: Partial<TaskMeta>},
+): TaskState {
+  const byId: TasksById = tasks.reduce((result: TasksById, task) => {
+    result[task.id] = task;
+    return result;
+  }, {});
+
+  return {
+    byId,
+    meta: {...defaultMeta, ...meta},
+  };
+}
+
+export {makeTask, makeTaskState};
