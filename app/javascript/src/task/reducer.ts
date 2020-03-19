@@ -1,7 +1,7 @@
 import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
-import grab from 'src/_helpers/grab';
+import createBasicReducer from 'src/_common/create_basic_reducer';
 import {
   INIT,
   CREATE,
@@ -60,10 +60,4 @@ const operations = {
   },
 };
 
-function taskReducer(previousState: TaskState | null, action: BasicAction) {
-  const operation = grab(operations, action.type);
-
-  return operation(previousState, action.payload);
-}
-
-export default taskReducer;
+export default createBasicReducer<TaskState, typeof operations>(operations);
