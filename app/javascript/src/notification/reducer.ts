@@ -9,7 +9,7 @@ type Payload = {
   notification: Notification;
 };
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {};
   },
@@ -25,4 +25,7 @@ export default createBasicReducer({
   [SET](previousState: NotificationState, payload: NotificationState) {
     return payload;
   },
-});
+};
+
+export default
+createBasicReducer<NotificationState, typeof operations>(operations);
