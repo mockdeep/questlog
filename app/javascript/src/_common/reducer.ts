@@ -5,7 +5,7 @@ type Payload = {
   foo: string;
 };
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {};
   },
@@ -13,4 +13,6 @@ export default createBasicReducer({
   [UPDATE](previousState: State, payload: Payload) {
     return {...previousState, ...payload};
   },
-});
+};
+
+export default createBasicReducer<State, typeof operations>(operations);
