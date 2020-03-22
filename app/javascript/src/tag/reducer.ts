@@ -3,7 +3,7 @@ import {keyBy} from 'lodash';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
 
-import {INIT, SET, UPDATE, UPDATE_META, UPSERT} from 'src/tag/action_creators';
+import {INIT, SET, UPDATE, UPSERT} from 'src/tag/action_creators';
 
 export default createBasicReducer({
   [INIT]() {
@@ -28,9 +28,5 @@ export default createBasicReducer({
     }
 
     return update(previousState, {byId: {$merge: {[tag.id]: tag}}});
-  },
-
-  [UPDATE_META](previousState: TagState, meta: TagMeta) {
-    return update(previousState, {meta: {$merge: meta}});
   },
 });

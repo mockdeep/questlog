@@ -4,8 +4,8 @@ import {makeState, makeTag} from '_test_helpers/factories';
 
 import {ajaxPut} from 'src/_helpers/ajax';
 import {
-  SET, UPDATE, UPDATE_META, UPSERT,
-  setTags, updateTag, updateTagMeta, upsertTagPlain, upsertTags,
+  SET, UPDATE, UPSERT,
+  setTags, updateTag, upsertTagPlain, upsertTags,
 } from 'src/tag/action_creators';
 
 describe('setTags', () => {
@@ -27,14 +27,6 @@ describe('updateTag', () => {
 
     expect(ajaxPut).toHaveBeenCalledWith('/api/v1/tags/5', {tag: payload});
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
-  });
-});
-
-describe('updateTagMeta', () => {
-  it('returns an UPDATE_META action', () => {
-    const payload: {rules: TagRule[]} = {rules: []};
-
-    expect(updateTagMeta(payload)).toEqual({type: UPDATE_META, payload});
   });
 });
 

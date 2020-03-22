@@ -12,10 +12,6 @@ type Tag = {
   tasks: Task[];
 };
 
-type TagMeta = {
-  bad: string;
-};
-
 type AjaxTag = {
   rules: TagRule[];
 };
