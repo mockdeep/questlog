@@ -14,7 +14,7 @@ const props: Props = {
   subTasks: [],
 };
 
-it('sets the task in scratch space', () => {
+it('sets the task in meta', () => {
   const task = makeTask({title: 'foo title'});
 
   shallow(<TaskShowView {...props} task={task} />);
@@ -31,7 +31,7 @@ it('sets the task in scratch space', () => {
   expect(newTask.title).toBe('');
 });
 
-it('updates the task in scratch space when component updates', () => {
+it('updates the task in meta when component updates', () => {
   const task = makeTask({title: 'foo title'});
   const component = shallow(<TaskShowView {...props} task={task} />);
 
@@ -40,7 +40,7 @@ it('updates the task in scratch space when component updates', () => {
   expect(updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
 });
 
-it('clears the scratch space when component unmounts', () => {
+it('clears the task meta space when component unmounts', () => {
   const task = makeTask({title: 'foo title'});
   const component = shallow(<TaskShowView {...props} task={task} />);
 

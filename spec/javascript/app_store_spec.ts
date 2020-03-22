@@ -7,7 +7,6 @@ describe('appStore', () => {
       user: {},
       notification: {},
       route: {params: {}},
-      scratch: {},
       tag: {byId: {}, meta: {}},
       task: {
         byId: {},
