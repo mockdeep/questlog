@@ -4,7 +4,7 @@ import createBasicReducer from 'src/_common/create_basic_reducer';
 
 import {INIT, CREATE, DELETE, SET, UPDATE} from 'src/scratch/action_creators';
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {};
   },
@@ -24,4 +24,6 @@ export default createBasicReducer({
   [UPDATE](previousState: ScratchState, {key, ...scratch}: {key: string}) {
     return update(previousState, {[key]: {$merge: scratch}});
   },
-});
+};
+
+export default createBasicReducer<ScratchState, typeof operations>(operations);

@@ -14,4 +14,13 @@ function makeTag(attrs: Partial<Tag>): Tag {
   };
 }
 
-export {makeTag};
+function makeTagState({tags = []}: {tags?: Tag[]}): TagState {
+  const byId: TagsById = tags.reduce((result: TagsById, tag) => {
+    result[tag.id] = tag;
+    return result;
+  }, {});
+
+  return {byId};
+}
+
+export {makeTag, makeTagState};

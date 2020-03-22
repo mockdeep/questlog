@@ -5,12 +5,12 @@ import createBasicReducer from 'src/_common/create_basic_reducer';
 
 import {INIT, SET, UPDATE, UPSERT} from 'src/tag/action_creators';
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {byId: {}, meta: {}};
   },
 
-  [SET](previousState: State, tags: Tag[]) {
+  [SET](previousState: TagState, tags: Tag[]) {
     return {...previousState, byId: keyBy(tags, 'id')};
   },
 
@@ -29,4 +29,6 @@ export default createBasicReducer({
 
     return update(previousState, {byId: {$merge: {[tag.id]: tag}}});
   },
-});
+};
+
+export default createBasicReducer<TagState, typeof operations>(operations);
