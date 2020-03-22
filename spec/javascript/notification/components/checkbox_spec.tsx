@@ -7,7 +7,7 @@ import NotificationCheckbox from 'src/notification/components/checkbox';
 const removeNotification = jest.fn();
 const updateUser = jest.fn();
 const props = {
-  task: makeTask({}),
+  task: makeTask(),
   addNotification: jest.fn(),
   completeTask: jest.fn(),
   disableNotifications: jest.fn(),

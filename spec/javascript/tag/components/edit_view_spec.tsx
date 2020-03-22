@@ -5,7 +5,7 @@ import TagEditView, {Props} from 'src/tag/components/edit_view';
 
 import {makeTag} from '_test_helpers/factories';
 
-const tag = makeTag({});
+const tag = makeTag();
 const updateTag = jest.fn(() => Promise.resolve());
 const props: Props = {
   tag,

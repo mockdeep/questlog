@@ -12,7 +12,7 @@ const props: Props = {
 };
 
 it('renders sub-task rows', () => {
-  const subTasks = [makeTask({}), makeTask({})];
+  const subTasks = [makeTask(), makeTask()];
   const component = shallow(<SubTasksTable {...props} subTasks={subTasks} />);
 
   expect(component.find('TaskRow')).toHaveLength(2);

@@ -13,7 +13,7 @@ describe(INIT, () => {
 
 describe(UPDATE, () => {
   it('returns a new object with updated config', () => {
-    const previousState = makeUserState({});
+    const previousState = makeUserState();
     const action = {type: UPDATE, payload: {notificationsEnabled: true}};
     const expectedState = {notificationsEnabled: true};
 

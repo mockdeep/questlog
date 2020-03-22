@@ -10,7 +10,7 @@ import {makeTask} from '_test_helpers/factories';
 const props = {
   completeTask: jest.fn(),
   store: createAppStore(),
-  task: makeTask({}),
+  task: makeTask(),
 };
 
 it('wraps the NotificationCheckbox component', () => {

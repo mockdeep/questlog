@@ -62,7 +62,7 @@ describe('getActiveTasks', () => {
 describe('getPartitionedLeafTasks', () => {
   it('returns leaf tasks partitioned on pending status', () => {
     const task1 = makeTask({status: 'pending'});
-    const task2 = makeTask({});
+    const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
     const task4 = makeTask({status: 'done'});
 
@@ -76,7 +76,7 @@ describe('getPartitionedLeafTasks', () => {
 describe('getPartitionedRootTasks', () => {
   it('returns root tasks partitioned on pending status', () => {
     const task1 = makeTask({status: 'pending'});
-    const task2 = makeTask({});
+    const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
     const task4 = makeTask({status: 'done'});
 
@@ -90,7 +90,7 @@ describe('getPartitionedRootTasks', () => {
 describe('getPartitionedTasks', () => {
   it('returns tasks partitioned on pending status', () => {
     const task1 = makeTask({status: 'pending'});
-    const task2 = makeTask({});
+    const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
     const task4 = makeTask({status: 'done'});
 

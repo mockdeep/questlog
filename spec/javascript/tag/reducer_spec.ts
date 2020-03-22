@@ -13,7 +13,7 @@ describe(INIT, () => {
 
 describe(SET, () => {
   it('replaces the existing tags', () => {
-    const previousState = makeTagState({tags: [makeTag({})]});
+    const previousState = makeTagState({tags: [makeTag()]});
     const tag1 = {id: 1, name: 'a tag'};
     const tag2 = {id: 5, name: 'wat tag'};
     const action = {type: SET, payload: [tag2, tag1]};

@@ -10,7 +10,7 @@ const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   updateTaskMeta,
-  task: makeTask({}),
+  task: makeTask(),
   subTasks: [],
 };
 

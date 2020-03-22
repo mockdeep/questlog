@@ -9,7 +9,7 @@ const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   keyPrefix: 'testPrefix',
-  task: makeTask({}),
+  task: makeTask(),
 };
 
 it('renders a table row', () => {
