@@ -8,7 +8,6 @@ const BASE_PATH = '/api/v1/tags';
 const INIT = 'tag/INIT';
 const SET = 'tag/SET';
 const UPDATE = 'tag/UPDATE';
-const UPDATE_META = 'tag/UPDATE_META';
 const UPSERT = 'tag/UPSERT';
 
 function setTags(payload: Tag[]) {
@@ -37,9 +36,5 @@ function upsertTags(tags: AjaxTag[]): ThunkAction<void, State, null, Action> {
   };
 }
 
-function updateTagMeta(payload: AjaxTag) {
-  return {type: UPDATE_META, payload};
-}
-
-export {INIT, SET, UPDATE, UPDATE_META, UPSERT};
-export {setTags, updateTag, updateTagMeta, upsertTagPlain, upsertTags};
+export {INIT, SET, UPDATE, UPSERT};
+export {setTags, updateTag, upsertTagPlain, upsertTags};

@@ -1,4 +1,4 @@
-import {INIT, SET, UPDATE, UPDATE_META, UPSERT} from 'src/tag/action_creators';
+import {INIT, SET, UPDATE, UPSERT} from 'src/tag/action_creators';
 import tagReducer from 'src/tag/reducer';
 
 describe(INIT, () => {
@@ -38,16 +38,6 @@ describe(UPDATE, () => {
     const payload = {id: 1, bloo: 'blargh'};
     const action = {type: UPDATE, payload};
     const expectedState = {byId: {1: {...tag1, bloo: 'blargh'}, 2: tag2}};
-
-    expect(tagReducer(previousState, action)).toEqual(expectedState);
-  });
-});
-
-describe(UPDATE_META, () => {
-  it('updates meta information in the state', () => {
-    const previousState = {meta: {foo: 'bar', baz: 'butz'}};
-    const action = {type: UPDATE_META, payload: {baz: 'bootz'}};
-    const expectedState = {meta: {foo: 'bar', baz: 'bootz'}};
 
     expect(tagReducer(previousState, action)).toEqual(expectedState);
   });
