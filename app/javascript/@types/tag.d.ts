@@ -12,6 +12,10 @@ type Tag = {
   tasks: Task[];
 };
 
+type TagsById = {
+  [tagId: number]: Tag;
+}
+
 type AjaxTag = {
   rules: TagRule[];
 };

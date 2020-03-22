@@ -16,7 +16,7 @@ type ScratchState = {
 };
 
 type TagState = {
-  byId: {[id: number]: Tag};
+  byId: TagsById;
 };
 
 type TaskState = {
