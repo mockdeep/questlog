@@ -47,11 +47,11 @@ class TaskShowView extends React.Component<Props, any> {
 
     const {task} = this.props;
 
-    this.setScratchTask(task);
+    this.setTask(task);
   }
 
   componentWillReceiveProps({task}: Props) {
-    this.setScratchTask(task);
+    this.setTask(task);
   }
 
   componentWillUnmount() {
@@ -60,7 +60,7 @@ class TaskShowView extends React.Component<Props, any> {
     updateTaskMeta({newTask: {title: ''}});
   }
 
-  setScratchTask(task: Task) {
+  setTask(task: Task) {
     if (!task) { return; }
 
     const {updateTaskMeta} = this.props;

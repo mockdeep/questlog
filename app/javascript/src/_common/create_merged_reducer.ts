@@ -8,7 +8,6 @@ const VALID_REDUCER_KEYS = [
   'common',
   'notification',
   'route',
-  'scratch',
   'tag',
   'task',
   'user',
