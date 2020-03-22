@@ -2,7 +2,7 @@ import createBasicReducer from 'src/_common/create_basic_reducer';
 
 import {INIT, SET, UPDATE} from 'src/user/action_creators';
 
-export default createBasicReducer({
+const operations = {
   [INIT]() {
     return {};
   },
@@ -14,4 +14,6 @@ export default createBasicReducer({
   [UPDATE](previousState: State, payload: User) {
     return {...previousState, ...payload};
   },
-});
+};
+
+export default createBasicReducer<UserState, typeof operations>(operations);
