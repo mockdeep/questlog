@@ -25,7 +25,7 @@ it('renders the list filters', () => {
 });
 
 it('renders current tasks', () => {
-  const overrides: Props = {...props, currentTasks: [makeTask({})]};
+  const overrides: Props = {...props, currentTasks: [makeTask()]};
 
   const component = shallow(<TaskListView {...overrides} />);
 
@@ -43,7 +43,7 @@ it('does not render a current tasks table when none are present', () => {
 });
 
 it('renders pending tasks', () => {
-  const overrides: Props = {...props, pendingTasks: [makeTask({})]};
+  const overrides: Props = {...props, pendingTasks: [makeTask()]};
 
   const component = shallow(<TaskListView {...overrides} />);
 
@@ -61,10 +61,10 @@ it('does not render a pending tasks table when none are present', () => {
 });
 
 it('updates task rows based on updated props', () => {
-  const overrides: Props = {...props, currentTasks: [makeTask({})]};
+  const overrides: Props = {...props, currentTasks: [makeTask()]};
 
   const component = shallow(<TaskListView {...overrides} />);
-  component.setProps({currentTasks: [], pendingTasks: [makeTask({})]});
+  component.setProps({currentTasks: [], pendingTasks: [makeTask()]});
 
   expect(component.find(DraggableTaskRow)).toHaveLength(1);
   const tableHeaders = component.find(TableHeaders);
@@ -74,8 +74,8 @@ it('updates task rows based on updated props', () => {
 
 describe('moving a task when dragging', () => {
   it('moves a task after another task', () => {
-    const task1 = makeTask({});
-    const task2 = makeTask({});
+    const task1 = makeTask();
+    const task2 = makeTask();
     const overrides: Props = {...props, currentTasks: [task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
@@ -93,8 +93,8 @@ describe('moving a task when dragging', () => {
   });
 
   it('does nothing when moving task id is the same as after task id', () => {
-    const task1 = makeTask({});
-    const task2 = makeTask({});
+    const task1 = makeTask();
+    const task2 = makeTask();
     const overrides: Props = {...props, currentTasks: [task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     let taskRows = component.find(DraggableTaskRow);
@@ -116,7 +116,7 @@ describe('saving task after drop', () => {
   it('sets null task priority to match below task when moved to top', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
-    const task3 = makeTask({});
+    const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
@@ -158,7 +158,7 @@ describe('saving task after drop', () => {
   it('sets task priority to null when above task has null priority', () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
-    const task3 = makeTask({});
+    const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
     const component = shallow(<TaskListView {...overrides} />);
     const updatePriority = jest.fn();
@@ -171,7 +171,7 @@ describe('saving task after drop', () => {
 
   it('keeps task priority at null when moved to bottom', () => {
     const task1 = makeTask({priority: 2});
-    const task2 = makeTask({});
+    const task2 = makeTask();
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
     const component = shallow(<TaskListView {...overrides} />);

@@ -1,4 +1,4 @@
-function makeUserState(attrs: Partial<UserState>): UserState {
+function makeUserState(attrs: Partial<UserState> = {}): UserState {
   return {
     notificationsEnabled: false,
     ...attrs,

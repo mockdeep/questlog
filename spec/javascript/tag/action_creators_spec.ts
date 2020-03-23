@@ -10,7 +10,7 @@ import {
 
 describe('setTags', () => {
   it('returns a SET action', () => {
-    const payload = [makeTag({})];
+    const payload = [makeTag()];
 
     expect(setTags(payload)).toEqual({type: SET, payload});
   });
@@ -49,7 +49,7 @@ describe('upsertTags', () => {
     expect(thunk).toBeInstanceOf(Function);
     expect(thunk.name).toBe('upsertTagsThunk');
 
-    thunk(dispatch, () => makeState({}), null);
+    thunk(dispatch, () => makeState(), null);
 
     expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag));
   });

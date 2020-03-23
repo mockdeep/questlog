@@ -6,7 +6,7 @@ import TaskNestedList, {Props} from 'src/task/components/nested_list';
 import {makeTask} from '_test_helpers/factories';
 
 const parentTask = makeTask({title: 'I am the parent'});
-const childTask = makeTask({});
+const childTask = makeTask();
 const props: Props = {
   tasks: [parentTask],
   tasksByParentId: {[parentTask.id]: [childTask]},

@@ -29,7 +29,7 @@ describe('fetchTasks', () => {
     const thunk = fetchTasks();
     const expectedAction = updateTaskMeta({ajaxState: 'fetching'});
 
-    thunk(dispatch, () => makeState({}), null);
+    thunk(dispatch, () => makeState(), null);
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
@@ -40,7 +40,7 @@ describe('fetchTasks', () => {
 
     const thunk = fetchTasks();
 
-    await thunk(store.dispatch, () => makeState({}), null);
+    await thunk(store.dispatch, () => makeState(), null);
 
     const expectedAction = updateTaskMeta({ajaxState: 'ready'});
 
@@ -53,7 +53,7 @@ describe('createTask', () => {
     const thunk = createTask({title: 'foo'});
     const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
 
-    thunk(dispatch, () => makeState({}), null);
+    thunk(dispatch, () => makeState(), null);
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
@@ -70,7 +70,7 @@ describe('createTask', () => {
 
       const createThunk = createTask({title: 'bar'});
 
-      await createThunk(dispatch, () => makeState({}), null);
+      await createThunk(dispatch, () => makeState(), null);
 
       expect(ajaxPost).toHaveBeenCalled();
     });
@@ -109,7 +109,7 @@ describe('createTask', () => {
 describe('deleteTask', () => {
   it('sends a delete request to the server', async () => {
     const thunk = deleteTask(5);
-    const state = makeState({});
+    const state = makeState();
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
@@ -120,7 +120,7 @@ describe('deleteTask', () => {
 
   it('re-fetches tasks', async () => {
     const thunk = deleteTask(5);
-    const state = makeState({});
+    const state = makeState();
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
@@ -132,7 +132,7 @@ describe('deleteTask', () => {
 
   it('unloads the task store', async () => {
     const thunk = deleteTask(5);
-    const state = makeState({});
+    const state = makeState();
 
     (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
 
@@ -152,7 +152,7 @@ describe('updateTask', () => {
   it('updates the client task with "marking_done" when marking done', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'foo', done: true});
     const payload = {id: 5, loadingState: 'marking_done'};
-    const state = makeState({});
+    const state = makeState();
 
     updateThunk(dispatch, () => state, null);
 
@@ -163,7 +163,7 @@ describe('updateTask', () => {
     const updateThunk =
       updateTask(taskAttrs.id, {title: 'foo', postpone: true});
     const payload = {id: 5, loadingState: 'postponing'};
-    const state = makeState({});
+    const state = makeState();
 
     updateThunk(dispatch, () => state, null);
 
@@ -173,7 +173,7 @@ describe('updateTask', () => {
   it('updates the client task with "updating" otherwise', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'foo blah #bar'});
     const payload = {id: 5, loadingState: 'updating'};
-    const state = makeState({});
+    const state = makeState();
 
     updateThunk(dispatch, () => state, null);
 
@@ -183,7 +183,7 @@ describe('updateTask', () => {
   it('sends a request to the server', () => {
     const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
     const expected = ['/api/v1/tasks/5', {task: {title: 'bar'}}];
-    const state = makeState({});
+    const state = makeState();
 
     updateThunk(dispatch, () => state, null);
 
@@ -200,7 +200,7 @@ describe('updateTask', () => {
       (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
-      const state = makeState({});
+      const state = makeState();
 
       updateThunk(dispatch, () => state, null);
 

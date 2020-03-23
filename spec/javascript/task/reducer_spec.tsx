@@ -19,7 +19,7 @@ describe(INIT, () => {
 
 describe(SET, () => {
   it('replaces the existing tasks', () => {
-    const previousState = makeTaskState({tasks: [makeTask({})]});
+    const previousState = makeTaskState({tasks: [makeTask()]});
     const task1 = makeTask({title: 'a task'});
     const task2 = makeTask({title: 'wat task'});
     const action = {type: SET, payload: [task2, task1]};
@@ -29,7 +29,7 @@ describe(SET, () => {
   });
 
   it('sets empty state when no tasks', () => {
-    const previousState = makeTaskState({tasks: [makeTask({})]});
+    const previousState = makeTaskState({tasks: [makeTask()]});
     const action = setTasks([]);
     const expectedState = makeTaskState({tasks: []});
 
@@ -37,7 +37,7 @@ describe(SET, () => {
   });
 
   it('sets estimateMinutes for subTasks', () => {
-    const previousState = makeTaskState({});
+    const previousState = makeTaskState();
     const task1 = makeTask({title: 'a task', parentTaskId: 5});
     const task2 = makeTask({title: 'wat task'});
     const action = {type: SET, payload: [task1, task2]};

@@ -50,7 +50,7 @@ function makeCurrentTask(attrs: Partial<Task>): CurrentTask {
   };
 }
 
-function makeTask(attrs: Partial<Task>): Task {
+function makeTask(attrs: Partial<Task> = {}): Task {
   if (attrs.pending) {
     return makePendingTask(attrs);
   }
@@ -59,7 +59,7 @@ function makeTask(attrs: Partial<Task>): Task {
 
 const defaultMeta: TaskMeta = {ajaxState: 'ready', newTask: {}};
 function makeTaskState(
-  {tasks = [], meta = {}}: {tasks?: Task[], meta?: Partial<TaskMeta>},
+  {tasks = [], meta = {}}: {tasks?: Task[], meta?: Partial<TaskMeta>} = {},
 ): TaskState {
   const byId: TasksById = tasks.reduce((result: TasksById, task) => {
     result[task.id] = task;

@@ -20,7 +20,7 @@ const props: Props = {
 };
 
 it('updates the task on postpone', () => {
-  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const component = shallow(<TaskFocusView {...props} task={makeTask()} />);
   const taskDisplay = component.find(TaskDisplay);
   taskDisplay.prop('storePostponeSeconds')(250);
 
@@ -30,7 +30,7 @@ it('updates the task on postpone', () => {
 });
 
 it('updates the postponeSeconds in state', () => {
-  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const component = shallow(<TaskFocusView {...props} task={makeTask()} />);
   const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('storePostponeSeconds')(52);
@@ -39,7 +39,7 @@ it('updates the postponeSeconds in state', () => {
 });
 
 it('updates the task on completion', () => {
-  const component = shallow(<TaskFocusView {...props} task={makeTask({})} />);
+  const component = shallow(<TaskFocusView {...props} task={makeTask()} />);
   const taskDisplay = component.find(TaskDisplay);
 
   taskDisplay.prop('completeTask')(512);
