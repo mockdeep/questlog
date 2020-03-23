@@ -1,6 +1,6 @@
 import {nextId} from '_test_helpers/factories/id';
 
-function makeTag(attrs: Partial<Tag>): Tag {
+function makeTag(attrs: Partial<Tag> = {}): Tag {
   const nextTagId = nextId();
 
   return {
@@ -14,7 +14,7 @@ function makeTag(attrs: Partial<Tag>): Tag {
   };
 }
 
-function makeTagState({tags = []}: {tags?: Tag[]}): TagState {
+function makeTagState({tags = []}: {tags?: Tag[]} = {}): TagState {
   const byId: TagsById = tags.reduce((result: TagsById, tag) => {
     result[tag.id] = tag;
     return result;

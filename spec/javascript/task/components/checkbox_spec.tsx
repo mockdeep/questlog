@@ -5,7 +5,7 @@ import TaskCheckbox from 'src/task/components/checkbox';
 import {assert} from 'src/_helpers/assert';
 import {makeTask} from '_test_helpers/factories';
 
-const task = makeTask({});
+const task = makeTask();
 const props = {task};
 
 it('enables the checkbox by default', () => {

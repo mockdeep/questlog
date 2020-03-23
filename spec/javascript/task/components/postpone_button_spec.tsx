@@ -9,7 +9,7 @@ const props: Props = {
   disabled: false,
   postponeTask: jest.fn(),
   storePostponeSeconds: jest.fn(),
-  task: makeTask({}),
+  task: makeTask(),
 };
 
 it('renders a select tag', () => {

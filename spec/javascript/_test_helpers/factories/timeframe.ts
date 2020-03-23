@@ -1,4 +1,4 @@
-function makeTimeframe(attrs: Partial<Timeframe>): Timeframe {
+function makeTimeframe(attrs: Partial<Timeframe> = {}): Timeframe {
   return {
     name: 'inbox',
     medianProductivity: 30,

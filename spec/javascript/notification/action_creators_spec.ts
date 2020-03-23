@@ -24,7 +24,7 @@ describe('addNotification', () => {
       const thunk = addNotification(basePayload);
       const dispatch = jest.fn();
 
-      await thunk(dispatch, () => makeState({}), null);
+      await thunk(dispatch, () => makeState(), null);
 
       const [action] = dispatch.mock.calls[0];
 
@@ -37,7 +37,7 @@ describe('addNotification', () => {
       const thunk = addNotification(payload);
       const dispatch = jest.fn();
 
-      await thunk(dispatch, () => makeState({}), null);
+      await thunk(dispatch, () => makeState(), null);
 
       const [action] = dispatch.mock.calls[0];
       const {notification} = action.payload;
@@ -50,7 +50,7 @@ describe('addNotification', () => {
       const thunk = addNotification(basePayload);
       const dispatch = jest.fn();
 
-      await thunk(dispatch, () => makeState({}), null);
+      await thunk(dispatch, () => makeState(), null);
 
       const [action] = dispatch.mock.calls[0];
       const {notification} = action.payload;
