@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import nanoid from 'nanoid';
+import {nanoid} from 'nanoid';
 import PropTypes from 'prop-types';
 import React from 'react';
 
