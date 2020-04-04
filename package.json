@@ -19,7 +19,7 @@
     "eslint-plugin-fp": "^2.3.0",
     "glob": "^7.1.6",
     "honeybadger-js": "^2.1.2",
-    "immutability-helper": "^3.0.1",
+    "immutability-helper": "^3.0.2",
     "jquery": "^3.4.0",
     "jquery-ujs": "^1.2.2",
     "lodash": "^4.17.15",
