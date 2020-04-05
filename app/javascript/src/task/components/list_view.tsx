@@ -150,7 +150,6 @@ class TaskListView extends React.Component<Props, any> {
     return (
       <DraggableTaskRow
         key={task.id}
-        keyPrefix={`${status}TimeframeSection`}
         task={task}
         moveTask={this.moveTask}
         saveTaskPositions={this.saveTaskPositions}

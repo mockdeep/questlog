@@ -18,7 +18,6 @@ type DragProps = {
 
 type OwnProps = {
   deleteTask: Function,
-  keyPrefix: string;
   moveTask: Function;
   saveTaskPositions: Function,
   task: Task,
@@ -100,7 +99,6 @@ class DraggableTaskRow extends React.PureComponent<Props, any> {
     const {
       deleteTask,
       isDragging,
-      keyPrefix,
       status,
       task,
       timeframeSpace,
@@ -112,7 +110,6 @@ class DraggableTaskRow extends React.PureComponent<Props, any> {
       <TaskRow
         deleteTask={deleteTask}
         isDragging={isDragging}
-        keyPrefix={keyPrefix}
         status={status}
         task={task}
         timeframeSpace={timeframeSpace}
@@ -129,7 +126,6 @@ DraggableTaskRow.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  keyPrefix: PropTypes.string.isRequired,
   task: taskShape.isRequired,
   updateTask: PropTypes.func.isRequired,
   status: PropTypes.string,

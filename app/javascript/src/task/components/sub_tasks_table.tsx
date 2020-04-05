@@ -16,7 +16,6 @@ function taskRows(tasks: Task[], {updateTask, deleteTask}: FunctionProps) {
   return tasks.map(task => (
     <TaskRow
       key={task.id}
-      keyPrefix={'subTasksTable'}
       task={task}
       updateTask={updateTask}
       deleteTask={deleteTask}

@@ -8,7 +8,6 @@ import TaskRow, {Props} from 'src/task/components/task_row';
 const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
-  keyPrefix: 'testPrefix',
   task: makeTask(),
 };
 
