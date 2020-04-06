@@ -30,7 +30,6 @@ class TimeframeSection extends React.Component<Props, any> {
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
-        keyPrefix={`${timeframe.name}TimeframeSection`}
         updateTask={updateTask}
         deleteTask={deleteTask}
       />
@@ -47,7 +46,6 @@ class TimeframeSection extends React.Component<Props, any> {
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
-        keyPrefix={`${timeframe.name}PendingTimeframeSection`}
         updateTask={updateTask}
         deleteTask={deleteTask}
       />

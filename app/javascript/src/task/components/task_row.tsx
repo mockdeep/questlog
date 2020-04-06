@@ -14,7 +14,6 @@ const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
 export type Props = {
   deleteTask: Function,
-  keyPrefix: string,
   task: Task,
   updateTask: Function,
   isDragging?: boolean,
@@ -180,7 +179,7 @@ class TaskRow extends React.PureComponent<Props, any> {
   }
 
   render() {
-    const {keyPrefix, task, timeframesEnabled} = this.props;
+    const {task, timeframesEnabled} = this.props;
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
@@ -189,7 +188,7 @@ class TaskRow extends React.PureComponent<Props, any> {
             {'DONE'}
           </button>
         </td>
-        <td><TaskEditTitleForm keyPrefix={keyPrefix} task={task} /></td>
+        <td><TaskEditTitleForm task={task} /></td>
         <td><TaskEditIcon task={task} /></td>
         <td>{this.taskEstimate()}</td>
         <td>{this.emblems()}</td>
@@ -217,7 +216,6 @@ class TaskRow extends React.PureComponent<Props, any> {
 
 TaskRow.propTypes = {
   deleteTask: PropTypes.func.isRequired,
-  keyPrefix: PropTypes.string.isRequired,
   task: taskShape.isRequired,
   updateTask: PropTypes.func.isRequired,
   isDragging: PropTypes.bool,
