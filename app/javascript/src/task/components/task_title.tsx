@@ -72,7 +72,7 @@ class TaskTitle extends React.Component<Props, any> {
                 </td>
                 <td className='col-xs-10 title'>
                   <div className='col-xs-10 col-xs-offset-1'>
-                    <TaskEditTitleForm keyPrefix={'focusView'} task={task} />
+                    <TaskEditTitleForm task={task} />
                   </div>
 
                   <div className='col-xs-1'>
