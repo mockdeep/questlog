@@ -132,19 +132,17 @@ class TaskListView extends React.Component<Props, any> {
 
   currentTaskRows() {
     const {currentTasks} = this.state;
-    const status = 'current';
 
-    return currentTasks.map((task: Task) => this.taskRow(task, {status}));
+    return currentTasks.map((task: Task) => this.taskRow(task));
   }
 
   pendingTaskRows() {
     const {pendingTasks} = this.state;
-    const status = 'pending';
 
-    return pendingTasks.map((task: Task) => this.taskRow(task, {status}));
+    return pendingTasks.map((task: Task) => this.taskRow(task));
   }
 
-  taskRow(task: Task, {status}: {status: 'current' | 'pending'}) {
+  taskRow(task: Task) {
     const {deleteTask, updateTask} = this.props;
 
     return (

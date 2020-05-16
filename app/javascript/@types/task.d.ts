@@ -7,7 +7,6 @@ type NewTask = {
 type BaseTask = {
   id: number;
   done: boolean;
-  estimateMinutes: number;
   estimateSeconds: number | null;
   parentTaskId: number | null;
   position: number;
@@ -19,18 +18,27 @@ type BaseTask = {
   tagNames: string[];
   timeframe: TimeframeName | null;
   title: string;
-  loadingState: TaskLoadingState;
 };
 
-type PendingTask = BaseTask & {
+type UnprocessedPendingTask = BaseTask & {
   pending: true;
   releaseAt: string;
 }
 
-type CurrentTask = BaseTask & {
+type UnprocessedCurrentTask = BaseTask & {
   pending: false;
   releaseAt: null;
 }
+
+type UnprocessedTask = UnprocessedPendingTask | UnprocessedCurrentTask;
+
+type ProcessedTaskAttributes = {
+  estimateMinutes: number;
+  loadingState: TaskLoadingState;
+};
+
+type PendingTask = UnprocessedPendingTask & ProcessedTaskAttributes;
+type CurrentTask = UnprocessedCurrentTask & ProcessedTaskAttributes;
 
 type Task = PendingTask | CurrentTask;
 
