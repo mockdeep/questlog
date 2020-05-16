@@ -22,7 +22,7 @@ class TimeframeSection extends React.Component<Props, any> {
   }
 
   renderTask(task: Task) {
-    const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
+    const {deleteTask, timeframeSpace, updateTask} = this.props;
 
     return (
       <TaskRow
@@ -37,7 +37,7 @@ class TimeframeSection extends React.Component<Props, any> {
   }
 
   renderPendingTask(task: Task) {
-    const {deleteTask, timeframe, timeframeSpace, updateTask} = this.props;
+    const {deleteTask, timeframeSpace, updateTask} = this.props;
 
     return (
       <TaskRow

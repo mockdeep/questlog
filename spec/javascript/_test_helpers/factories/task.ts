@@ -6,9 +6,7 @@ function makeBaseTask(): BaseTask {
   return {
     id: nextTaskId,
     done: false,
-    estimateMinutes: 30,
     estimateSeconds: null,
-    loadingState: 'ready',
     parentTaskId: null,
     position: nextTaskId,
     priority: null,
@@ -31,6 +29,8 @@ function makePendingTask(attrs: Partial<Task>): PendingTask {
 
   return {
     ...makeBaseTask(),
+    estimateMinutes: 30,
+    loadingState: 'ready',
     ...attrs,
     pending: true,
     releaseAt,
@@ -44,6 +44,8 @@ function makeCurrentTask(attrs: Partial<Task>): CurrentTask {
 
   return {
     ...makeBaseTask(),
+    estimateMinutes: 30,
+    loadingState: 'ready',
     ...attrs,
     pending: false,
     releaseAt: null,

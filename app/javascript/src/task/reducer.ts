@@ -11,12 +11,12 @@ import {
   UPDATE_META,
 } from 'src/task/action_creators';
 
-function estimateMinutes(task: Task) {
+function estimateMinutes(task: UnprocessedTask) {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 
-function processTask(task: Task): Task {
-  const processedTask = {
+function processTask(task: UnprocessedTask): Task {
+  const processedTask: Task = {
     loadingState: 'ready',
     ...task,
     estimateMinutes: estimateMinutes(task),
@@ -50,9 +50,10 @@ const operations = {
   },
 
   [UPDATE](previousState: TaskState, taskAttrs: Task) {
-    const task = processTask(taskAttrs);
+    const task =
+      processTask({...previousState.byId[taskAttrs.id], ...taskAttrs});
 
-    return update(previousState, {byId: {[task.id]: {$merge: task}}});
+    return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },
 
   [UPDATE_META](previousState: TaskState, meta: TaskMeta) {
