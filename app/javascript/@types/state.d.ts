@@ -16,7 +16,7 @@ type TagState = {
 };
 
 type TaskState = {
-  byId: {[id: string]: Task};
+  byId: {[id: number]: Task};
   meta: TaskMeta;
 };
 
