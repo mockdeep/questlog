@@ -38,7 +38,7 @@
       .row
         .col-md-12.flashes#flashes
           - flash.each do |name, msg|
-            = content_tag :div, msg, class: "flash-#{name}"
+            = tag.div(msg, class: "flash-#{name}")
 
       .row
         .col-md-12
