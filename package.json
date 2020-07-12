@@ -70,7 +70,7 @@
     "stylelint": "^13.2.0",
     "ts-jest": "^26.0.0",
     "webpack-dev-server": "^3.10.3",
-    "yarn-deduplicate": "^2.0.0"
+    "yarn-deduplicate": "^2.1.0"
   },
   "engines": {
     "node": ">= 12.18.2"
