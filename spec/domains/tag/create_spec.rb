@@ -15,7 +15,7 @@ RSpec.describe Tag::Create do
   it 'throws an error when user is missing' do
     expect do
       described_class.(name: 'foo tag')
-    end.to raise_error(ArgumentError, 'missing keyword: user')
+    end.to raise_error(ArgumentError, 'missing keyword: :user')
   end
 
 end
