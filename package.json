@@ -41,7 +41,7 @@
     "ts-loader": "^8.0.0",
     "typescript": "^3.7.5",
     "webpack": "^4.41.6",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.4.0"
   },
   "//": {
     "later -> @rails/ujs": "^6.0.0-alpha",
