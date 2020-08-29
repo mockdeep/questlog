@@ -8,7 +8,7 @@ gem 'dotenv-rails', groups: %i[development test]
 
 gem 'rails', '~> 6.0.2'
 
-gem 'autoprefixer-rails', '9.8.5'
+gem 'autoprefixer-rails', '9.8.6.3'
 gem 'bcrypt'
 gem 'bootsnap', require: false
 gem 'dalli'
