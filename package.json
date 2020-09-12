@@ -67,7 +67,7 @@
     "jest-enzyme": "^7.1.2",
     "jsdom": "^16.1.0",
     "react-test-renderer": "^16.12.0",
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.7.1",
     "ts-jest": "^26.0.0",
     "webpack-dev-server": "^3.10.3",
     "yarn-deduplicate": "^3.0.0"
