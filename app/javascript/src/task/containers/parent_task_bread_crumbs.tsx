@@ -26,6 +26,7 @@ class ParentTaskBreadCrumbs extends React.Component<ComponentProps, any> {
     // hack didn't work
     return (
       <span>
+        {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
         <ParentTaskBreadCrumbsContainer taskId={task.parentTaskId} />
         <span>
           {' > '}
