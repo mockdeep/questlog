@@ -197,7 +197,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     parallel (1.19.2)
-    parser (2.7.1.4)
+    parser (2.7.1.5)
       ast (~> 2.4.1)
     pg (1.2.3)
     pry (0.13.1)
@@ -385,7 +385,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autoprefixer-rails (= 10.0.0.2)
+  autoprefixer-rails
   bcrypt
   better_errors
   bootsnap
