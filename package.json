@@ -73,7 +73,7 @@
     "yarn-deduplicate": "^3.0.0"
   },
   "engines": {
-    "node": ">= 12.18.2"
+    "node": ">=12.19.0"
   },
   "license": "UNLICENSED",
   "scripts": {
