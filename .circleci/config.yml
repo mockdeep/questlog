@@ -1,8 +1,12 @@
 version: 2.1
+
+orbs:
+  node: circleci/node@4.1.0
+
 executors:
   ruby_image:
     docker:
-      - image: circleci/ruby:2.7.1-buster-node-browsers
+      - image: circleci/ruby:2.7.1-buster-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -22,6 +26,10 @@ commands:
   setup_environment:
     steps:
       - checkout
+
+      - node/install:
+          node-version: 14.13.1
+          install-yarn: true
 
       - run:
           name: Which versions?
