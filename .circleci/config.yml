@@ -28,7 +28,7 @@ commands:
       - checkout
 
       - node/install:
-          node-version: 14.14.0
+          node-version: 14.15.0
           install-yarn: true
 
       - run:
