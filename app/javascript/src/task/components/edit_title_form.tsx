@@ -17,7 +17,7 @@ type State = {
 }
 
 class TaskEditTitleForm extends React.Component<Props, State> {
-  submitting: boolean;
+  submitting = false;
 
   input: any;
 
