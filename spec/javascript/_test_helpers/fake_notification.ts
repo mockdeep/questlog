@@ -1,29 +1,27 @@
-class FakeNotification {
-  message: string;
+class FakeNotification implements Notification {
+  actions = [];
 
-  actions: NotificationAction[];
+  badge = '';
 
-  badge: string;
+  body = '';
 
-  body: string;
+  data = null;
 
-  data: null;
+  dir: NotificationDirection = 'auto';
 
-  dir: NotificationDirection;
+  icon = '';
 
-  icon: string;
+  image = '';
 
-  image: string;
+  lang = '';
 
-  lang: string;
+  onclick = null;
 
-  onclick: null;
+  onclose = null;
 
-  onclose: null;
+  onerror = null;
 
-  onerror: null;
-
-  onshow: null;
+  onshow = null;
 
   renotify = false;
 
@@ -39,14 +37,14 @@ class FakeNotification {
 
   vibrate = [];
 
-  isOpen = true;
+  isOpen = true; // custom
 
   static requestPermission() {
     return Promise.resolve('granted');
   }
 
-  constructor(message: string) {
-    this.message = message;
+  constructor(title: string) {
+    this.title = title;
     this.isOpen = true;
   }
 

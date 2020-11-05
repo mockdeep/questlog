@@ -1,6 +1,6 @@
 {
   "//": {
-    "strictPropertyInitialization": true,
+    "strictFunctionTypes": true,
     "strict": true
   },
   "compilerOptions": {
@@ -20,7 +20,9 @@
       "src/*": ["app/javascript/src/*"]
     },
     "sourceMap": true,
+    "strictBindCallApply": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "target": "es5",
     "jsx": "react"
   },

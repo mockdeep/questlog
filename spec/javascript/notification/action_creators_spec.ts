@@ -43,7 +43,7 @@ describe('addNotification', () => {
       const {notification} = action.payload;
 
       expect(notification).toBeInstanceOf(FakeNotification);
-      expect(notification.message).toBe('my message');
+      expect(notification.title).toBe('my message');
     });
 
     it('adds a custom onClick handler to the notification', async () => {
