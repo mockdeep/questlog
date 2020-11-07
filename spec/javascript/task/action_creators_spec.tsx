@@ -26,6 +26,8 @@ beforeEach(() => {
 
 describe('fetchTasks', () => {
   it('sets ajax state to "fetching"', () => {
+    const promise = Promise.resolve({data: [], included: []});
+    (ajaxGet as jest.Mock).mockReturnValue(promise);
     const thunk = fetchTasks();
     const expectedAction = updateTaskMeta({ajaxState: 'fetching'});
 
@@ -50,6 +52,8 @@ describe('fetchTasks', () => {
 
 describe('createTask', () => {
   it('sets ajax state to "taskSaving"', () => {
+    const promise = Promise.resolve({data: [], included: []});
+    (ajaxPost as jest.Mock).mockReturnValue(promise);
     const thunk = createTask({title: 'foo'});
     const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
 
@@ -147,6 +151,8 @@ describe('updateTask', () => {
 
   beforeEach(() => {
     store.dispatch({type: SET, payload: [taskAttrs]});
+    const promise = Promise.resolve({data: [], included: []});
+    (ajaxPut as jest.Mock).mockReturnValue(promise);
   });
 
   it('updates the client task with "marking_done" when marking done', () => {
