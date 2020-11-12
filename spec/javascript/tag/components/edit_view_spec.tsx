@@ -14,6 +14,24 @@ const props: Props = {
 };
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
 
+it('renders nothing when tag is not present', () => {
+  const overrides = {...props, tag: undefined};
+  const component = shallow(<TagEditView {...overrides} />);
+
+  expect(component.type()).toBeNull();
+});
+
+it('updates when props update with new tag', () => {
+  const overrides = {...props, tag: undefined};
+  const component = shallow(<TagEditView {...overrides} />);
+
+  expect(component.type()).toBeNull();
+
+  component.setProps({tag});
+
+  expect(component.type()).toBe('div');
+});
+
 it('renders rule rows', () => {
   const tempRules = [{field: 'title', check: 'isWobbly'}];
   const overrides = {...props, tag: {...tag, rules: tempRules}};
