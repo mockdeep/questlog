@@ -6,12 +6,13 @@ import {uniqWith, isEqual} from 'lodash';
 
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
+import {assert} from 'src/_helpers/assert';
 import {tagShape} from 'src/shapes';
 
 export type Props = {
-  setRoute: Function,
-  updateTag: Function,
-  tag: Tag,
+  setRoute: Function;
+  updateTag: Function;
+  tag: Tag | undefined;
 };
 
 type State = {
@@ -25,6 +26,14 @@ class TagEditView extends React.Component<Props, State> {
     this.state = {
       rules: (props.tag && props.tag.rules) || [],
     };
+  }
+
+  UNSAFE_componentWillReceiveProps({tag: newTag}: Props) {
+    const {tag} = this.props;
+
+    if (!newTag || tag === newTag) { return; }
+
+    this.setState({rules: newTag.rules});
   }
 
   updateFieldValue(index: number, value: string) {
@@ -94,7 +103,7 @@ class TagEditView extends React.Component<Props, State> {
   saveTag(rules: TagRule[]) {
     const {setRoute, tag, updateTag} = this.props;
 
-    updateTag(tag.id, {rules}).
+    updateTag(assert(tag).id, {rules}).
       then(() => setRoute({name: 'tags'}));
   }
 
@@ -107,6 +116,8 @@ class TagEditView extends React.Component<Props, State> {
 
   render() {
     const {tag} = this.props;
+
+    if (!tag) { return null; }
 
     return (
       <div>

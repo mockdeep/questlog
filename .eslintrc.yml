@@ -97,6 +97,7 @@ rules:
   '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
+  camelcase: [error, { allow: ["^UNSAFE_"] }]
   comma-dangle: [error, always-multiline]
   func-style: [error, declaration]
   function-call-argument-newline: [error, consistent]
@@ -126,7 +127,7 @@ rules:
   space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
 
-  ### dumb rules
+  ### rules we don't want
   '@typescript-eslint/prefer-interface': off
   array-element-newline: off
   capitalized-comments: off
@@ -134,6 +135,7 @@ rules:
   no-inline-comments: off
   no-prototype-builtins: off
   no-ternary: off
+  no-undefined: off
   react/jsx-filename-extension: off
   react/jsx-handler-names: off
   react/jsx-max-props-per-line: off
