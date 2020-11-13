@@ -1,4 +1,4 @@
-class Repeat
+module Repeat
 
   def self.repeat_maps
     {
