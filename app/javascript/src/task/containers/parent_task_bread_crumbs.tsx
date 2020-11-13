@@ -40,7 +40,10 @@ class ParentTaskBreadCrumbs extends React.Component<ComponentProps, any> {
 ParentTaskBreadCrumbs.propTypes = {task: taskShape};
 
 function mapStateToProps(state: State, ownProps: ContainerProps) {
-  return {task: ownProps.taskId && state.task.byId[ownProps.taskId]};
+  const {taskId} = ownProps;
+  let task;
+  if (taskId !== null) { task = state.task.byId[taskId]; }
+  return {task};
 }
 
 const ParentTaskBreadCrumbsContainer =
