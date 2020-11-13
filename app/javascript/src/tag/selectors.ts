@@ -75,7 +75,7 @@ const getSelectedTag = createSelector(
 );
 
 const getNextActiveTask = createSelector(
-  [getSelectedTag], (selectedTag: Tag) => selectedTag.tasks[0],
+  [getSelectedTag], (selectedTag: Tag | undefined) => selectedTag?.tasks[0],
 );
 
 export {
