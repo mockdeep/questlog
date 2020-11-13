@@ -5,7 +5,7 @@ import TaskFocusView from 'src/task/components/focus_view';
 
 function mapStateToProps(state: State) {
   const {ajaxState} = state.task.meta;
-  const task = ajaxState === 'ready' ? getNextActiveTask(state) : null;
+  const task = getNextActiveTask(state);
 
   return {task, ajaxState};
 }
