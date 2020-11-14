@@ -79,7 +79,7 @@ type BulkTaskStoreType = {
 
 type TaskMeta = {
   ajaxState: 'taskSaving' | 'fetching' | 'ready';
-  newTask: Partial<Task>;
+  newTask: NewTask;
 };
 
 type AjaxTask = {
