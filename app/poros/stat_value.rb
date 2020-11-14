@@ -1,4 +1,4 @@
-class StatValue
+module StatValue
 
   def self.new(user:, value:)
     return value if value
