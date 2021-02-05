@@ -5,7 +5,7 @@ class Task < ApplicationRecord
     include JunkDrawer::Callable
 
     def call(user:, positions:)
-      user.tasks.reposition(positions.map(&:to_i))
+      user.tasks.reposition(positions.map(&method(:Integer)))
     end
 
   end
