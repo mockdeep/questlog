@@ -20,7 +20,7 @@
     "glob": "^7.1.6",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
-    "jquery": "^3.4.0",
+    "jquery": "^3.6.0",
     "jquery-ujs": "^1.2.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -41,7 +41,7 @@
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.2",
     "webpack": "^4.41.6",
-    "whatwg-fetch": "^3.6.1"
+    "whatwg-fetch": "^3.6.2"
   },
   "//": {
     "later -> @rails/ujs": "^6.0.0-alpha",
@@ -53,11 +53,11 @@
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.20",
-    "@typescript-eslint/eslint-plugin": "^4.15.2",
-    "@typescript-eslint/parser": "^4.15.2",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.5",
@@ -68,7 +68,7 @@
     "jsdom": "^16.1.0",
     "react-test-renderer": "^16.14.0",
     "stylelint": "^13.11.0",
-    "ts-jest": "^26.5.2",
+    "ts-jest": "^26.5.3",
     "webpack-dev-server": "^3.11.2",
     "yarn-deduplicate": "^3.1.0"
   },
