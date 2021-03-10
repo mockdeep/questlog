@@ -29,6 +29,8 @@ type OwnProps = {
 
 type Props = DragProps & OwnProps;
 
+type MonitorItem = { item: { id: number } };
+
 const taskSource = {
   canDrag(props: OwnProps) {
     const {timeframesEnabled} = props;
@@ -36,7 +38,7 @@ const taskSource = {
     return !timeframesEnabled;
   },
 
-  beginDrag(props: OwnProps) {
+  beginDrag(props: OwnProps): MonitorItem {
     const {task} = props;
 
     return {item: {id: task.id}};
@@ -53,7 +55,7 @@ const taskSource = {
 
 const taskTarget = {
   hover({moveTask, task}: OwnProps, monitor: DropTargetMonitor) {
-    const draggedId = monitor.getItem().item.id;
+    const draggedId = monitor.getItem<MonitorItem>().item.id;
 
     moveTask(draggedId, task.id);
   },
