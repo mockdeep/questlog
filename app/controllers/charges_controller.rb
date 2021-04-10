@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-    result = Charge::Create.(charge_params)
+    result = Charge::Create.(**charge_params)
 
     return if result.success?
 

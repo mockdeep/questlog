@@ -12,7 +12,7 @@ module API
       def create
         persist_current_user
 
-        task = Task::Create.(task_params.merge(user: current_user))
+        task = Task::Create.(**task_params, user: current_user)
         render json: serialize(task, included: task.tags), status: :created
       end
 

@@ -4,8 +4,8 @@ module Serializable
 
     include Serializable::InstanceMethods
 
-    def self.call(*args)
-      new.(*args)
+    def self.call(...)
+      new.(...)
     end
 
     def call(object, **options)

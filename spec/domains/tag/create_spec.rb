@@ -5,7 +5,7 @@ RSpec.describe Tag::Create do
 
   it 'creates a tag' do
     expect do
-      described_class.(valid_params)
+      described_class.(**valid_params)
     end.to change(Tag, :count).by(1)
 
     tag = Tag.last
