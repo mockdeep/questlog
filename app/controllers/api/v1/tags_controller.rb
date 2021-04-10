@@ -5,7 +5,7 @@ module API
     class TagsController < ApplicationController
 
       def create
-        tag = Tag::Create.(tag_params)
+        tag = Tag::Create.(**tag_params)
         render json: serialize(tag), status: :created
       end
 

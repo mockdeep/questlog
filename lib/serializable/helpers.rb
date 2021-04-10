@@ -2,8 +2,8 @@ module Serializable
 
   module Helpers
 
-    def serialize(*args)
-      Serializable::RootSerializer.(*args)
+    def serialize(...)
+      Serializable::RootSerializer.(...)
     end
 
   end
