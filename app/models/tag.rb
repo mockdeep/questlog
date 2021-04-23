@@ -5,9 +5,7 @@ class Tag < ApplicationRecord
 
   belongs_to :user
 
-  has_many :taggings,
-           dependent: :destroy,
-           inverse_of: :tag
+  has_many :taggings, dependent: :destroy, inverse_of: :tag
   has_many :unfinished_tasks,
            -> { where(tasks: { done_at: nil }) },
            through: :taggings,
