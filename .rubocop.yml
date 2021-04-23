@@ -20,6 +20,7 @@ Rails: { Enabled: true }
 # ............................................................................ #
 
 # https://github.com/sds/haml-lint/issues/315
+Layout/LineLength: { Max: 80, AutoCorrect: true }
 Layout/TrailingEmptyLines: { Enabled: false }
 Layout/AccessModifierIndentation: { EnforcedStyle: outdent }
 Layout/EmptyLinesAroundClassBody: { EnforcedStyle: empty_lines }
