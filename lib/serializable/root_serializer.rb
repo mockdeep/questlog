@@ -27,7 +27,7 @@ module Serializable
       invalid_keys = options.keys - allowed_keys
       if invalid_keys.any?
         raise "invalid serializer options: #{invalid_keys}, " \
-          "allowed options are #{allowed_keys}"
+              "allowed options are #{allowed_keys}"
       end
 
       if options.key?(:meta) && !options[:meta].is_a?(Hash)

@@ -2,7 +2,7 @@ RSpec.describe Serializable::RootSerializer do
   describe '.call' do
     it 'raises an error when invalid options are passed' do
       expected_error = 'invalid serializer options: [:boogers], ' \
-          'allowed options are [:meta, :included]'
+                       'allowed options are [:meta, :included]'
 
       expect { described_class.(Object.new, boogers: 'bar') }
         .to raise_error(expected_error)
