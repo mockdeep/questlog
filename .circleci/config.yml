@@ -28,7 +28,7 @@ commands:
       - checkout
 
       - node/install:
-          node-version: 16.5.0
+          node-version: 16.6.0
           install-yarn: true
 
       - run:
