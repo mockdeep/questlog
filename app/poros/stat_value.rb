@@ -9,7 +9,7 @@ module StatValue
 
     time_since_last = Time.zone.now - last_done_at
     case time_since_last
-    when (1.minute..30.minutes)
+    when ((1.minute)..(30.minutes))
       time_since_last
     else
       30.minutes
