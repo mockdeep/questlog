@@ -1,14 +1,22 @@
 {
+  "//": {
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedParameters": true
+  },
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "baseUrl": ".",
-    "declaration": false,
-    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "dom"],
     "module": "es6",
     "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "paths": {
       "src/*": ["app/javascript/src/*"]
     },
