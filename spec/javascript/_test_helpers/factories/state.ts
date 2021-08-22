@@ -1,11 +1,25 @@
 import appReducer from 'src/app_reducer';
 
-function makeState(attrs: {[key in keyof State]?: any} = {}): State {
-  return Object.keys(attrs).reduce((state: State, key: StateKey) => {
+const stateKeys = ['common', 'notification', 'route', 'tag', 'task', 'user'];
+
+function isStateKey(value: string): value is StateKey {
+  return stateKeys.includes(value);
+}
+function makeState(
+  attrs: {[key in keyof State]?: any} = {},
+  previousState: State | null = null,
+): State {
+  let state: State = previousState || appReducer(null, null);
+
+  Object.keys(attrs).forEach((key: string) => {
+    if (!isStateKey(key)) { throw new Error(`invalid key ${key}`); }
+
     const action = {type: `${key}/SET`, payload: attrs[key]};
 
-    return {...state, ...appReducer(state, action)};
-  }, {});
+    state = {...state, ...appReducer(state, action)};
+  });
+
+  return state;
 }
 
 export {makeState};
