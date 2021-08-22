@@ -32,7 +32,8 @@ describe('appReducer', () => {
       const notificationState = {notificationsEnabled: true};
       const result = reducer(makeState({user: notificationState}), action);
 
-      expect(result).toEqual({user: {...notificationState, goober: 'globber'}});
+      const expected = {user: {...notificationState, goober: 'globber'}};
+      expect(result).toMatchObject(expected);
     });
   });
 
