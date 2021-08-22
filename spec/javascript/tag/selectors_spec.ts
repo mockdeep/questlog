@@ -109,12 +109,12 @@ describe('getNextActiveTask', () => {
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
     task2 = {...task2, status: 'pending'};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
   });
@@ -131,12 +131,12 @@ describe('getNextActiveTask', () => {
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 2};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
     task2 = {...task2, status: 'pending'};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
   });
@@ -153,12 +153,12 @@ describe('getNextActiveTask', () => {
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
     task2 = {...task2, status: 'pending'};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
   });
@@ -175,27 +175,27 @@ describe('getNextActiveTask', () => {
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, position: 2};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, priority: 1};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, timeframe: 'today'};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
     task2 = {...task2, priority: null};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 
     task2 = {...task2, position: 35};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task1);
   });
@@ -220,7 +220,7 @@ describe('getNextActiveTask', () => {
     expect(getNextActiveTask(state)).toEqual(task1);
 
     task2 = {...task2, tagIds: [tag1.id]};
-    state = {...state, ...makeState({task: [task1, task2]})};
+    state = makeState({task: [task1, task2]}, state);
 
     expect(getNextActiveTask(state)).toEqual(task2);
 

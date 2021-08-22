@@ -1,8 +1,4 @@
 {
-  "//": {
-    "strictFunctionTypes": true,
-    "strict": true
-  },
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
@@ -13,16 +9,11 @@
     "lib": ["es2017", "dom"],
     "module": "es6",
     "moduleResolution": "node",
-    "alwaysStrict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
     "paths": {
       "src/*": ["app/javascript/src/*"]
     },
     "sourceMap": true,
-    "strictBindCallApply": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
+    "strict": true,
     "target": "es5",
     "jsx": "react"
   },
