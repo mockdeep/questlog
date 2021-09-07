@@ -6,9 +6,9 @@ function reloadPage() {
   window.location.reload();
 }
 
-function logError(error: Response) {
+function logError(error: DOMException) {
   // eslint-disable-next-line no-console
-  console.log('error: ', error.statusText);
+  console.log('error: ', error);
 }
 
 function defaultRequestOptions(): BaseRequestOptions {

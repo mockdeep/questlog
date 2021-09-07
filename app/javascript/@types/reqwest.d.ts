@@ -1,6 +1,6 @@
 type RequestMethod = 'put' | 'post' | 'get' | 'delete';
 type SuccessCallback = Function;
-type ErrorCallback = Function;
+// type ErrorCallback = Function;
 
 declare module 'reqwest' {
   export type BaseRequestOptions = {
