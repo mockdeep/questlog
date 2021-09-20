@@ -21,22 +21,9 @@ Rails: { Enabled: true }
 
 # https://github.com/sds/haml-lint/issues/315
 Layout/LineLength: { Max: 80, AutoCorrect: true }
-Layout/TrailingEmptyLines: { Enabled: false }
-Layout/AccessModifierIndentation: { EnforcedStyle: outdent }
-Layout/EmptyLinesAroundClassBody: { EnforcedStyle: empty_lines }
-Layout/EmptyLinesAroundModuleBody: { EnforcedStyle: empty_lines }
-Layout/FirstArrayElementIndentation: { EnforcedStyle: consistent }
-Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
-
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*.rb
-
-Rails/Output: { Exclude: [lib/tasks/fix_counters.rake] }
 
 RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
-RSpec/ContextWording: { Prefixes: [after, when] }
-RSpec/ImplicitSubject: { Exclude: ['**/validations_spec.rb'] }
+RSpec/ContextWording: { Prefixes: [when] }
 Style/CollectionMethods:
   PreferredMethods:
     collect: map
@@ -44,62 +31,9 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
-Style/Documentation: { Enabled: false }
-Style/EmptyMethod: { EnforcedStyle: expanded }
-Style/GuardClause: { MinBodyLength: 2 }
-Style/LambdaCall: { EnforcedStyle: braces }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
-Style/TrivialAccessors: { AllowPredicates: true }
-
-# ............................................................................ #
-# enable or confirm the rules below
-# ............................................................................ #
-
-Layout/ClassStructure: { Enabled: false } # default disabled
-Layout/EmptyLinesAroundBlockBody: { Enabled: false } # https://github.com/bbatsov/rubocop/issues/1568
-Layout/FirstArrayElementLineBreak: { Enabled: false } # default disabled
-Layout/FirstHashElementLineBreak: { Enabled: false } # default disabled
-Layout/FirstMethodArgumentLineBreak: { Enabled: false } # default disabled
-Layout/FirstMethodParameterLineBreak: { Enabled: false } # default disabled
-Layout/MultilineAssignmentLayout: { Enabled: false } # default disabled
-
-Lint/AmbiguousBlockAssociation: { Enabled: false } # https://github.com/bbatsov/rubocop/pull/4237
-
-Naming/VariableNumber: { EnforcedStyle: snake_case }
-
-Rails/SaveBang: { Enabled: false } # default disabled
-Rails/SkipsModelValidations: { Enabled: false }
-Rails/TimeZone: { Enabled: false }
-
-RSpec/AnyInstance: { Enabled: false }
-RSpec/DescribeClass: { Enabled: false }
-RSpec/DescribeMethod: { Enabled: false }
-RSpec/ExampleLength: { Enabled: false }
-RSpec/HookArgument: { Enabled: false }
-RSpec/MessageExpectation: { Enabled: false }
-RSpec/MessageSpies: { Enabled: false }
-RSpec/MultipleExpectations: { Enabled: false }
-RSpec/NotToNot: { Enabled: false }
-RSpec/VerifiedDoubles: { Enabled: false }
-
-Style/AutoResourceCleanup: { Enabled: false } # default disabled
-Style/Copyright: { Enabled: false } # default disabled
-Style/DocumentationMethod: { Enabled: false } # default disabled
-Style/FrozenStringLiteralComment: { Enabled: false }
-Style/ImplicitRuntimeError: { Enabled: false } # default disabled
-Style/InlineComment: { Enabled: false } # default disabled
-Style/MethodCalledOnDoEndBlock: { Enabled: false } # default disabled
-Style/MethodCallWithArgsParentheses: { Enabled: false } # default disabled
-Style/MissingElse: { Enabled: false } # default disabled
-Style/OptionHash: { Enabled: false } # default disabled
-Style/RegexpLiteral: { Enabled: false }
-Style/ReturnNil: { Enabled: false } # default disabled
-Style/Send: { Enabled: false } # default disabled
-Style/SingleLineBlockParams: { Enabled: false } # default disabled
-Style/StringHashKeys: { Enabled: false } # default disabled
-Style/StringMethods: { Enabled: false } # default disabled
 
 # ............................................................................ #
 # intentionally disabled
@@ -110,3 +44,7 @@ Bundler/GemVersion: { Enabled: false }
 Lint/AmbiguousOperatorPrecedence: { Enabled: false }
 Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }
+Style/Copyright: { Enabled: false }
+Style/Documentation: { Enabled: false }
+Style/InlineComment: { Enabled: false }
+Style/MissingElse: { Enabled: false }
