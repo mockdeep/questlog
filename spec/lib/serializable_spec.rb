@@ -2,15 +2,20 @@ RSpec.describe Serializable do
   after { Serializable::Config.remove_instance_variable(:@key_format) }
 
   def stub_classes
-    stub_const('TestObjectSerializer', Class.new do
-      include Serializable
+    test_klass =
+      Class.new do
+        attr_accessor :test_attribute
+      end
 
-      serialize :test_attribute
-    end)
+    test_serializer_klass =
+      Class.new do
+        include Serializable
 
-    stub_const('TestObject', Class.new do
-      attr_accessor :test_attribute
-    end)
+        serialize :test_attribute
+      end
+
+    stub_const('TestObject', test_klass)
+    stub_const('TestObjectSerializer', test_serializer_klass)
   end
 
   it 'serializes attributes in camelcase when key format is :camelcase' do
