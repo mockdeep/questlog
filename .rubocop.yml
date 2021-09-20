@@ -109,7 +109,6 @@ Style/StringMethods: { Enabled: false } # default disabled
 # intentionally disabled
 # ............................................................................ #
 
+Lint/AmbiguousOperatorPrecedence: { Enabled: false }
 Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }
-
-RSpec/ExpectInHook: { Enabled: false }
