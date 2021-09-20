@@ -67,10 +67,6 @@ Layout/MultilineAssignmentLayout: { Enabled: false } # default disabled
 
 Lint/AmbiguousBlockAssociation: { Enabled: false } # https://github.com/bbatsov/rubocop/pull/4237
 
-Metrics/AbcSize: { Max: 26 }
-Metrics/ClassLength: { Max: 134 }
-Metrics/MethodLength: { Max: 12 }
-
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 
 Rails/SaveBang: { Enabled: false } # default disabled
@@ -109,6 +105,8 @@ Style/StringMethods: { Enabled: false } # default disabled
 # intentionally disabled
 # ............................................................................ #
 
+Bundler/GemComment: { Enabled: false }
+Bundler/GemVersion: { Enabled: false }
 Lint/AmbiguousOperatorPrecedence: { Enabled: false }
 Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }

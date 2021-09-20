@@ -35,10 +35,13 @@ class Task < ApplicationRecord
   scope :done, -> { where.not(done_at: nil) }
   scope :ordered, -> { order(:priority, :position) }
   scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
-  scope :untagged, lambda {
-    joins('LEFT OUTER JOIN "taggings" ON "taggings"."task_id" = "tasks"."id"')
-      .where(taggings: { id: nil })
-  }
+  scope(
+    :untagged,
+    lambda {
+      joins('LEFT OUTER JOIN "taggings" ON "taggings"."task_id" = "tasks"."id"')
+        .where(taggings: { id: nil })
+    },
+  )
   scope :with_release, -> { where.not(release_at: nil) }
   scope :pending, -> { done.with_release.order(:release_at) }
   scope :without_estimate, -> { undone.where(estimate_seconds: nil) }
