@@ -34,6 +34,7 @@
     "^react-dnd$": "react-dnd/dist/cjs",
     "^react-dnd-html5-backend$": "react-dnd-html5-backend/dist/cjs"
   },
+  "testEnvironment": "jsdom",
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   }
