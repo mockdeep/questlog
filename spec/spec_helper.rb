@@ -28,8 +28,6 @@ Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
   end
 end
 
-Webdrivers::Chromedriver.required_version = '2.37'
-
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
