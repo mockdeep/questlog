@@ -5,11 +5,8 @@ rules:
   #                          Rules to enabled
   #
   ##############################################################################
-  at-rule-empty-line-before: null
   font-family-name-quotes: null
-  rule-empty-line-before: null
   scss/at-extend-no-missing-placeholder: null
-  scss/dollar-variable-empty-line-before: null
   selector-class-pattern: null
   selector-pseudo-element-colon-notation: null
   string-quotes: null
