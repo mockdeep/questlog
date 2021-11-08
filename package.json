@@ -47,7 +47,8 @@
     "later -> @rails/ujs": "^6.0.0-alpha",
     "later -> turbolinks": "^5.2.0",
     "later -> @rails/activestorage": "^6.0.0-alpha",
-    "later -> @rails/actioncable": "^6.0.0-alpha"
+    "later -> @rails/actioncable": "^6.0.0-alpha",
+    "postcss":  "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.10",
@@ -67,8 +68,10 @@
     "jest-enzyme": "^7.1.2",
     "jsdom": "^18.0.1",
     "node-notifier": "^10.0.0",
+    "postcss": "^8.3.11",
     "react-test-renderer": "^16.14.0",
-    "stylelint": "^13.13.1",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard-scss": "^2.0.1",
     "ts-jest": "^27.0.7",
     "webpack-dev-server": "^3",
     "yarn-deduplicate": "^3.1.0"
