@@ -13,7 +13,7 @@
 }
 
 .modal__close-button {
-  @extend .btn-link;
+  @extend %btn-link;
 
   float: right;
 }
