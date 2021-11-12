@@ -76,6 +76,7 @@ rules:
   react/jsx-max-depth: off
   react/jsx-props-no-spreading: off
   react/jsx-sort-props: off
+  react/no-unused-class-component-methods: off
   react/sort-comp: off
   react/sort-prop-types: [error, { ignoreCase: true, requiredFirst: true, sortShapeProp: true }]
   react/no-access-state-in-setstate: off
