@@ -56,7 +56,7 @@
     border-top: none;
     border-right: none;
     background: transparent;
-    opacity: 0%;
+    opacity: 0;
     transform: rotate(-45deg);
   }
 }
@@ -64,7 +64,7 @@
 .task-item__checkbox-display--enabled {
   &:hover:after {
     border-color: black;
-    opacity: 30%;
+    opacity: 0.3;
   }
 }
 
@@ -72,7 +72,7 @@
   background: $brand-primary;
 
   &:after {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 

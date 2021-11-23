@@ -21,11 +21,11 @@
 }
 
 .tasks-table__row--pending {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .tasks-table__row--dragging {
-  opacity: 0%;
+  opacity: 0;
 }
 
 .tasks-table__action {
