@@ -1,12 +1,13 @@
 version: 2.1
 
 orbs:
+  browser-tools: circleci/browser-tools@1.2.3
   node: circleci/node@4.1.0
 
 executors:
   ruby_image:
     docker:
-      - image: circleci/ruby:3.0.2-buster-browsers
+      - image: cimg/ruby:3.0.2-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -14,7 +15,7 @@ executors:
           PGHOST: 127.0.0.1
           PGUSER: postgres
           RAILS_ENV: test
-      - image: circleci/postgres:10.1-alpine-ram
+      - image: cimg/postgres:10.18
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: app_test
@@ -26,10 +27,12 @@ commands:
   setup_environment:
     steps:
       - checkout
+      - browser-tools/install-browser-tools
 
       - node/install:
           node-version: 16.13.0
           install-yarn: true
+          install-npm: false
 
       - run:
           name: Which versions?
