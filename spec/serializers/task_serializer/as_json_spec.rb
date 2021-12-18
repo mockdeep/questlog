@@ -6,7 +6,7 @@ RSpec.describe TaskSerializer, '#as_json' do
       position: 23,
       priority: 3,
       repeat_seconds: 25,
-      release_at: 1.week.from_now,
+      release_at: 1.week.from_now.round,
       skip_count: 3,
       tag_names: %w[home work],
       title: 'foo task',
