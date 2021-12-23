@@ -73,7 +73,7 @@
     "stylelint": "^14.1.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "ts-jest": "^27.1.1",
-    "webpack-dev-server": "^3",
+    "webpack-dev-server": "^4.7.1",
     "yarn-deduplicate": "^3.1.0"
   },
   "engines": {
