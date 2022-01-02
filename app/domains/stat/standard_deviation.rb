@@ -13,9 +13,10 @@ class Stat
 
     def sample_variance(values)
       mean = Mean.(values.map(&:to_f))
-      deviation_sum = values.reduce(0) do |acc, value|
-        acc + (value - mean)**2
-      end
+      deviation_sum =
+        values.reduce(0) do |acc, value|
+          acc + (value - mean)**2
+        end
 
       deviation_sum / (values.length - 1).to_f
     end
