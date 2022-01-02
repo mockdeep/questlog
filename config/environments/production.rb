@@ -60,14 +60,16 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  config.cache_store = :mem_cache_store,
-                       ENV.fetch('MEMCACHIER_SERVERS').split(','),
-                       {
-                         username: ENV.fetch('MEMCACHIER_USERNAME'),
-                         password: ENV.fetch('MEMCACHIER_PASSWORD'),
-                         socket_timeout: 1.5,
-                         socket_failure_delay: 0.2,
-                       }
+  config.cache_store = [
+    :mem_cache_store,
+    ENV.fetch('MEMCACHIER_SERVERS').split(','),
+    {
+      username: ENV.fetch('MEMCACHIER_USERNAME'),
+      password: ENV.fetch('MEMCACHIER_PASSWORD'),
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2,
+    },
+  ]
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
