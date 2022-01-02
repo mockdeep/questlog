@@ -42,6 +42,7 @@ Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
 Bundler/GemComment: { Enabled: false }
 Bundler/GemVersion: { Enabled: false }
 Lint/AmbiguousOperatorPrecedence: { Enabled: false }
+Lint/ConstantResolution: { Enabled: false }
 Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }
 Style/Copyright: { Enabled: false }
