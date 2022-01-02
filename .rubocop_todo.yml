@@ -42,26 +42,6 @@ Layout/MultilineMethodCallIndentation:
     - 'spec/controllers/api/v1/tags_controller/update_spec.rb'
     - 'spec/domains/task/destroy_spec.rb'
 
-# Offense count: 30
-# Cop supports --auto-correct.
-Layout/SingleLineBlockChain:
-  Exclude:
-    - 'spec/controllers/api/v1/tags_controller/update_spec.rb'
-    - 'spec/controllers/api/v1/tasks_controller/destroy_spec.rb'
-    - 'spec/controllers/application_controller/check_repeats_spec.rb'
-    - 'spec/controllers/charges_controller/create_spec.rb'
-    - 'spec/domains/stat/create_spec.rb'
-    - 'spec/domains/tag/update_spec.rb'
-    - 'spec/domains/task/destroy_spec.rb'
-    - 'spec/models/tagging/associations_spec.rb'
-    - 'spec/models/task/destroy_spec.rb'
-    - 'spec/models/task/done_writer_spec.rb'
-    - 'spec/models/task/release_at_writer_spec.rb'
-    - 'spec/models/task/release_bang_spec.rb'
-    - 'spec/models/task/tag_names_writer_spec.rb'
-    - 'spec/models/task/tags_writer_spec.rb'
-    - 'spec/models/user/absorb_spec.rb'
-
 # Offense count: 7
 # Configuration parameters: IgnoredMethods.
 Lint/AmbiguousBlockAssociation:
