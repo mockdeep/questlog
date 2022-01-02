@@ -1,5 +1,4 @@
 class CreateTaggings < ActiveRecord::Migration
-
   def change
     create_table :taggings do |t|
       t.references :context
@@ -10,5 +9,4 @@ class CreateTaggings < ActiveRecord::Migration
     add_index :taggings, :context_id
     add_index :taggings, :quickie_id
   end
-
 end

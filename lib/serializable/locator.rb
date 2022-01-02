@@ -1,7 +1,6 @@
 module Serializable
 
   class Locator
-
     BASE_CLASSES = Set.new(
       %w[
         Hash
@@ -31,7 +30,6 @@ module Serializable
         raise SerializerError, "no serializer found for #{class_name}"
       end
     end
-
   end
 
 end

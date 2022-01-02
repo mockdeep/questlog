@@ -1,7 +1,6 @@
 module Session
 
   class Create
-
     include JunkDrawer::Callable
 
     def call(current_user:, email: nil, password: nil)
@@ -15,7 +14,6 @@ module Session
       end
       ActionResult.new(success: success, object: user)
     end
-
   end
 
 end

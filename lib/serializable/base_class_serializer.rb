@@ -1,7 +1,6 @@
 module Serializable
 
   class BaseClassSerializer
-
     def self.call(object)
       new.(object)
     end
@@ -9,7 +8,6 @@ module Serializable
     def call(object)
       object
     end
-
   end
 
 end

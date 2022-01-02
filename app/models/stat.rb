@@ -1,5 +1,4 @@
 class Stat < ApplicationRecord
-
   belongs_to :user
 
   NAMES = %w[seconds-completed].freeze
@@ -26,5 +25,4 @@ class Stat < ApplicationRecord
   def self.standard_deviation
     StandardDeviation.(pluck(:value))
   end
-
 end

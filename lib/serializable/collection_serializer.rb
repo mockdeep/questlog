@@ -1,7 +1,6 @@
 module Serializable
 
   class CollectionSerializer
-
     include Serializable::InstanceMethods
 
     def self.call(object)
@@ -11,7 +10,6 @@ module Serializable
     def call(object)
       object.map(&method(:serialize))
     end
-
   end
 
 end

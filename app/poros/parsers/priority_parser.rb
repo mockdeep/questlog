@@ -1,5 +1,4 @@
 class PriorityParser
-
   include JunkDrawer::Callable
 
   def call(title)
@@ -10,5 +9,4 @@ class PriorityParser
     priority = Integer(match[1..-1]) if match
     { title: words.join(' '), priority: priority }
   end
-
 end

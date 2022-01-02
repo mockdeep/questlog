@@ -1,5 +1,4 @@
 class RenameContextsToTags < ActiveRecord::Migration
-
   def up
     rename_column :taggings, :context_id, :tag_id
     remove_foreign_key :taggings, :contexts
@@ -13,5 +12,4 @@ class RenameContextsToTags < ActiveRecord::Migration
     rename_table :tags, :contexts
     add_foreign_key :taggings, :contexts
   end
-
 end

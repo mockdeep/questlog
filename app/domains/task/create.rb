@@ -1,7 +1,5 @@
 class Task < ApplicationRecord
-
   class Create
-
     include JunkDrawer::Callable
 
     def call(user:, **task_params)
@@ -17,7 +15,5 @@ class Task < ApplicationRecord
 
       user.tasks.find(task_params[:parent_task_id])
     end
-
   end
-
 end

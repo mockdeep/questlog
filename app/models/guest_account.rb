@@ -1,5 +1,4 @@
 class GuestAccount < ApplicationRecord
-
   has_one :user, as: :account, inverse_of: :account
 
   def guest?
@@ -9,5 +8,4 @@ class GuestAccount < ApplicationRecord
   def email
     '(guest account)'
   end
-
 end
