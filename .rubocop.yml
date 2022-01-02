@@ -22,6 +22,7 @@ Rails: { Enabled: true }
 # https://github.com/sds/haml-lint/issues/315
 Layout/LineLength: { Max: 80, AutoCorrect: true }
 Metrics/BlockLength: { IgnoredMethods: [configure, context, describe] }
+Naming/VariableNumber: { EnforcedStyle: snake_case }
 RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
 Style/CollectionMethods:

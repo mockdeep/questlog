@@ -82,13 +82,6 @@ Metrics/MethodLength:
     - 'lib/serializable/root_serializer.rb'
     - 'spec/lib/serializable_spec.rb'
 
-# Offense count: 78
-# Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers.
-# SupportedStyles: snake_case, normalcase, non_integer
-# AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339
-Naming/VariableNumber:
-  Enabled: false
-
 # Offense count: 60
 # Cop supports --auto-correct.
 RSpec/AlignLeftLetBrace:
