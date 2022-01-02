@@ -1,7 +1,6 @@
 module Charge
 
   class Create
-
     include JunkDrawer::Callable
 
     CHARGE_AMOUNT = 500 # cents
@@ -29,7 +28,6 @@ module Charge
     def create_customer(email:, token:)
       Stripe::Customer.create(email: email, card: token)
     end
-
   end
 
 end

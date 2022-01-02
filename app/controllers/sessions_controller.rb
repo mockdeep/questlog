@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def create
     result = Session::Create.(**session_params, current_user: current_user)
     if result.success?
@@ -21,5 +20,4 @@ private
   def session_params
     params.require(:session).permit(:email, :password).to_h.symbolize_keys
   end
-
 end

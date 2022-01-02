@@ -1,5 +1,4 @@
 class AddConstraintsToTaggings < ActiveRecord::Migration
-
   def up
     change_column :taggings, :task_id, :integer, null: false
     change_column :taggings, :context_id, :integer, null: false
@@ -13,5 +12,4 @@ class AddConstraintsToTaggings < ActiveRecord::Migration
     remove_foreign_key :taggings, :tasks
     remove_foreign_key :taggings, :contexts
   end
-
 end

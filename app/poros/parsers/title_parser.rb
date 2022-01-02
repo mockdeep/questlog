@@ -1,5 +1,4 @@
 class TitleParser
-
   include JunkDrawer::Callable
 
   PARSERS = [
@@ -23,5 +22,4 @@ private
       result.merge!(parser.(result[:title]))
     end
   end
-
 end

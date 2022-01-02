@@ -1,7 +1,5 @@
 class Task < ApplicationRecord
-
   class Update
-
     include JunkDrawer::Callable
 
     def call(task, task_params)
@@ -20,7 +18,5 @@ class Task < ApplicationRecord
         name: 'seconds-completed',
       )
     end
-
   end
-
 end

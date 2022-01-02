@@ -1,5 +1,4 @@
 class DropModeColumn < ActiveRecord::Migration
-
   def up
     remove_column :users, :mode
   end
@@ -7,5 +6,4 @@ class DropModeColumn < ActiveRecord::Migration
   def down
     add_column :users, :mode, :string, default: 'simple'
   end
-
 end

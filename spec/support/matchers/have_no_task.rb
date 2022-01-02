@@ -3,7 +3,6 @@ module Questlog
   module Matchers
 
     class HaveNoTask
-
       attr_accessor :actual
 
       def matches?(actual)
@@ -24,7 +23,6 @@ module Questlog
       def actual_title
         actual.find(TITLE_SELECTOR).value
       end
-
     end
 
   end

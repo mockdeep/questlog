@@ -1,5 +1,4 @@
 class DropTimeframes < ActiveRecord::Migration
-
   def change
     reversible do |dir|
       dir.up { remove_foreign_key :tasks, :timeframes }
@@ -12,5 +11,4 @@ class DropTimeframes < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
-
 end

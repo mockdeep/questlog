@@ -1,7 +1,5 @@
 class Task < ApplicationRecord
-
   class BulkCreate
-
     include JunkDrawer::Callable
 
     def call(user:, titles:)
@@ -17,7 +15,5 @@ class Task < ApplicationRecord
     def title_parser
       @title_parser ||= TitleParser.new
     end
-
   end
-
 end

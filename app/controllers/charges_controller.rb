@@ -1,5 +1,4 @@
 class ChargesController < ApplicationController
-
   def new
     @stripe_data = {
       key: Rails.configuration.stripe[:publishable_key],
@@ -26,5 +25,4 @@ private
       user: current_user,
     }
   end
-
 end

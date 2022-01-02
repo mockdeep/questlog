@@ -1,5 +1,4 @@
 class AddAccountIdToUser < ActiveRecord::Migration
-
   def change
     add_column :users, :account_id, :integer
     add_column :users, :account_type, :string
@@ -7,5 +6,4 @@ class AddAccountIdToUser < ActiveRecord::Migration
     add_index :users, :account_type
     add_index :users, :account_id
   end
-
 end

@@ -1,5 +1,4 @@
 class TimeframeParser
-
   include JunkDrawer::Callable
 
   def call(title, marker)
@@ -30,5 +29,4 @@ private
       y: 1.year,
     }
   end
-
 end

@@ -3,7 +3,6 @@ module Questlog
   module Matchers
 
     class HaveTask
-
       attr_accessor :expected, :actual
 
       def initialize(expected)
@@ -29,7 +28,6 @@ module Questlog
       def actual_title
         actual.find(TITLE_SELECTOR).value
       end
-
     end
 
   end

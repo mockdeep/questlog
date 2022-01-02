@@ -1,5 +1,4 @@
 class RemoveIndices < ActiveRecord::Migration
-
   def up
     remove_index :quickies, :done_at
     remove_index :quickies, :priority
@@ -21,5 +20,4 @@ class RemoveIndices < ActiveRecord::Migration
     add_index :taggings, :quickie_id
     add_index :taggings, %i[context_id quickie_id]
   end
-
 end

@@ -1,5 +1,4 @@
 class ReleaseAtParser
-
   include JunkDrawer::Callable
 
   def call(title)
@@ -34,5 +33,4 @@ private
       time
     end
   end
-
 end

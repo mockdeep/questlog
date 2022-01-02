@@ -1,5 +1,4 @@
 class FreeAccountsController < ApplicationController
-
   def new
     @account = FreeAccount.new
   end
@@ -27,5 +26,4 @@ private
   def permitted_params
     %i[email password password_confirmation]
   end
-
 end

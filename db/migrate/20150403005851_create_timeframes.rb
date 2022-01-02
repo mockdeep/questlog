@@ -1,5 +1,4 @@
 class CreateTimeframes < ActiveRecord::Migration
-
   def change
     create_table :timeframes do |t|
       t.string :name
@@ -10,5 +9,4 @@ class CreateTimeframes < ActiveRecord::Migration
     add_index :tasks, :timeframe_id
     add_foreign_key :tasks, :timeframes
   end
-
 end

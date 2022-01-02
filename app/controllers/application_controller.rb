@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   protect_from_forgery with: :exception
 
   before_action :configure_headers
@@ -64,5 +63,4 @@ private
   def return_or_redirect_to(fallback_path, options)
     redirect_to(session.delete(:return_path) || fallback_path, options)
   end
-
 end

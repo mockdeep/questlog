@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-
   def index
     respond_to do |format|
       format.json do
@@ -40,5 +39,4 @@ private
   def parsed_title
     TitleParser.(params[:task][:title])
   end
-
 end

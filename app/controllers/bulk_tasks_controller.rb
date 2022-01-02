@@ -1,5 +1,4 @@
 class BulkTasksController < ApplicationController
-
   def create
     Task::BulkCreate.(**create_params.symbolize_keys)
     respond_to do |format|
@@ -27,5 +26,4 @@ private
       .to_h
       .merge(user: current_user)
   end
-
 end

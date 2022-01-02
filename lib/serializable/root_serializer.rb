@@ -1,7 +1,6 @@
 module Serializable
 
   class RootSerializer
-
     include Serializable::InstanceMethods
 
     def self.call(...)
@@ -38,7 +37,6 @@ module Serializable
         raise '"included" key must be a collection'
       end
     end
-
   end
 
 end

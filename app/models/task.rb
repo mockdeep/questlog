@@ -1,5 +1,4 @@
 class Task < ApplicationRecord
-
   before_create :assign_position
 
   # counter-acts the automatic decrement from counter_cache
@@ -170,5 +169,4 @@ private
   def assign_position
     self.position ||= next_position
   end
-
 end

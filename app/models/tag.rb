@@ -1,5 +1,4 @@
 class Tag < ApplicationRecord
-
   extend FriendlyId
   friendly_id :name, use: :scoped, scope: :user_id
 
@@ -47,5 +46,4 @@ class Tag < ApplicationRecord
     tag_params = missing_names.map { |name| { user: user, name: name } }
     existing_tags + create!(tag_params)
   end
-
 end
