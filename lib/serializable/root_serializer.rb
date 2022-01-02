@@ -33,9 +33,11 @@ module Serializable
         raise '"meta" key must be a hash'
       end
 
-      if options.key?(:included) && !options[:included].respond_to?(:to_ary)
-        raise '"included" key must be a collection'
-      end
+      raise '"included" must be a collection' unless valid_included?(options)
+    end
+
+    def valid_included?(options)
+      !options.key?(:included) || options[:included].respond_to?(:to_ary)
     end
   end
 

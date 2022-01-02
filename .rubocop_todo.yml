@@ -303,12 +303,6 @@ Style/GlobalStdStream:
     - 'config/environments/production.rb'
 
 # Offense count: 1
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'lib/serializable/root_serializer.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 Style/HashTransformKeys:
   Exclude:

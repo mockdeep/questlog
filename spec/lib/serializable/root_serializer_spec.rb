@@ -15,7 +15,7 @@ RSpec.describe Serializable::RootSerializer do
 
     it 'raises an error when :included key is not a collection' do
       expect { described_class.(Object.new, included: 'bar') }
-        .to raise_error('"included" key must be a collection')
+        .to raise_error('"included" must be a collection')
     end
   end
 end
