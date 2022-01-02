@@ -10,7 +10,7 @@ class TagParser
     { title: words.join(' '), tag_names: tags }
   end
 
-private
+  private
 
   def tag?(word)
     word.match(/^\#\w+/) && !word.match(/^\#\d+$/)

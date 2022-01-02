@@ -15,7 +15,7 @@ module API
         render json: serialize(tag), status: :ok
       end
 
-    private
+      private
 
       def tag_params
         params

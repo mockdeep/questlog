@@ -12,7 +12,7 @@ class Stat < ApplicationRecord
       stat.save!
     end
 
-  private
+    private
 
     def today
       Time.zone.now.beginning_of_day

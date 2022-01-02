@@ -10,7 +10,7 @@ class Task < ApplicationRecord
       user.tasks.create!(task_params)
     end
 
-  private
+    private
 
     def validate_parent_task(task_params, user:)
       return unless task_params.key?(:parent_task_id)

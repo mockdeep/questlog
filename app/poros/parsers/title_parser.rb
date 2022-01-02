@@ -16,7 +16,7 @@ class TitleParser
     parsed_results(title).delete_if { |_, value| value.blank? }
   end
 
-private
+  private
 
   def parsed_results(title)
     PARSERS.each_with_object(title: title) do |parser, result|

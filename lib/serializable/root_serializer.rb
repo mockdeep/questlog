@@ -20,7 +20,7 @@ module Serializable
       result
     end
 
-  private
+    private
 
     def validate_options(options)
       allowed_keys = %i[meta included]
