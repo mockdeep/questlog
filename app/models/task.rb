@@ -135,7 +135,7 @@ class Task < ApplicationRecord
     @tag_names ||= tags.map(&:name)
   end
 
-private
+  private
 
   def next_position
     user.tasks.undone.maximum(:position).to_i + 1

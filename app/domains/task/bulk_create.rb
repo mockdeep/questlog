@@ -8,7 +8,7 @@ class Task < ApplicationRecord
       user.tasks.create(task_params(titles))
     end
 
-  private
+    private
 
     def task_params(titles)
       titles.split("\n").map { |title| title_parser.(title) }

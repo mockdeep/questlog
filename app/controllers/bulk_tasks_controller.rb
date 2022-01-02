@@ -15,7 +15,7 @@ class BulkTasksController < ApplicationController
     end
   end
 
-private
+  private
 
   def create_params
     params.require(:bulk_task).permit(:titles).to_h.merge(user: current_user)

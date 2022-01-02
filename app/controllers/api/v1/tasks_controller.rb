@@ -28,7 +28,7 @@ module API
         render json: {}, status: :ok
       end
 
-    private
+      private
 
       def tags
         current_user.ordered_tags.to_a.tap do |tags|

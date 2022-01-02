@@ -17,7 +17,7 @@ class ChargesController < ApplicationController
     redirect_to charges_path
   end
 
-private
+  private
 
   def charge_params
     {

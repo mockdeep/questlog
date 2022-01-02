@@ -11,7 +11,7 @@ class Stat
       Math.sqrt(sample_variance(values))
     end
 
-  private
+    private
 
     def sample_variance(values)
       mean = Mean.(values.map(&:to_f))

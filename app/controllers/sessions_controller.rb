@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: 'Logged out!'
   end
 
-private
+  private
 
   def session_params
     params.require(:session).permit(:email, :password).to_h.symbolize_keys
