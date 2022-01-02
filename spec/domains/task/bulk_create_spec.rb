@@ -1,5 +1,4 @@
 RSpec.describe Task::BulkCreate do
-
   let(:user) { create(:free_user) }
   let(:bulk_task_create) { described_class.new }
 
@@ -21,5 +20,4 @@ RSpec.describe Task::BulkCreate do
       bulk_task_create.(titles: "who\ncares")
     end.to raise_error(ArgumentError)
   end
-
 end

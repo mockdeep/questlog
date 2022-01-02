@@ -1,5 +1,4 @@
 RSpec.describe Task::Create do
-
   let(:user) { create(:user) }
   let(:action) { described_class.new }
 
@@ -35,5 +34,4 @@ RSpec.describe Task::Create do
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
-
 end

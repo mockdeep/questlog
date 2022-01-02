@@ -1,5 +1,4 @@
 RSpec.describe API::V1::TasksController, '#index' do
-
   let(:user) { create(:user) }
 
   before { login_as(user) }
@@ -36,5 +35,4 @@ RSpec.describe API::V1::TasksController, '#index' do
     expect(tags.fourth.fetch('name')).to eq tag_1.name
     expect(tags.last.fetch('name')).to eq tag_2.name
   end
-
 end

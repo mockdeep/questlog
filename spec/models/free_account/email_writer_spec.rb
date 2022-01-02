@@ -1,5 +1,4 @@
 RSpec.describe FreeAccount, '#email=' do
-
   let(:account) { described_class.new }
 
   it 'downcases the email when present' do
@@ -14,5 +13,4 @@ RSpec.describe FreeAccount, '#email=' do
 
     expect(account.email).to be nil
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe Task, '#destroy' do
-
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
   let(:tag) { create(:tag, user: user) }
@@ -27,5 +26,4 @@ RSpec.describe Task, '#destroy' do
       end.not_to change { user.reload.unfinished_tasks_count }
     end
   end
-
 end

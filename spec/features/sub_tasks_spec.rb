@@ -1,5 +1,4 @@
 RSpec.describe 'adding sub tasks', js: true do
-
   let(:user) { create(:free_user) }
 
   before { feature_login_as(user) }
@@ -87,5 +86,4 @@ RSpec.describe 'adding sub tasks', js: true do
     find('.task-link').click
     expect(page).to have_no_link('the parent task')
   end
-
 end

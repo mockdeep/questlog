@@ -1,5 +1,4 @@
 RSpec.describe Task, '#release_at=' do
-
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }
   let(:tag) { create(:tag, user: user) }
@@ -52,5 +51,4 @@ RSpec.describe Task, '#release_at=' do
       end.not_to change { tag.reload.unfinished_tasks_count }
     end
   end
-
 end

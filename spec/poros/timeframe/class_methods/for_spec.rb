@@ -1,5 +1,4 @@
 RSpec.describe Timeframe, '.for' do
-
   let(:user) { create(:user) }
 
   it 'returns a collection of timeframes for the given user' do
@@ -28,5 +27,4 @@ RSpec.describe Timeframe, '.for' do
     year_timeframe = timeframes.find { |timeframe| timeframe.name == 'year' }
     expect(year_timeframe.tasks).to eq [task]
   end
-
 end

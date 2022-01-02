@@ -1,5 +1,4 @@
 RSpec.describe Questlog::Matchers::HaveNoTaskWithTitle do
-
   let(:matcher) { described_class.new('some task') }
 
   describe '#matches?' do
@@ -38,5 +37,4 @@ RSpec.describe Questlog::Matchers::HaveNoTaskWithTitle do
       expect(matcher.failure_message).to eq expected
     end
   end
-
 end

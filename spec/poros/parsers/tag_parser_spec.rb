@@ -1,5 +1,4 @@
 RSpec.describe TagParser do
-
   let(:parser) { described_class.new }
 
   it 'returns an empty array for tag_names when no tags are in the string' do
@@ -25,5 +24,4 @@ RSpec.describe TagParser do
     expect(parser.('bloo#')).to eq(title: 'bloo#', tag_names: [])
     expect(parser.('#')).to eq(title: '#', tag_names: [])
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe Task, '#repeat?' do
-
   let(:task) { described_class.new }
 
   it 'returns true when repeat_seconds is present' do
@@ -10,5 +9,4 @@ RSpec.describe Task, '#repeat?' do
   it 'returns false when repeat_seconds is not present' do
     expect(task.repeat?).to be false
   end
-
 end

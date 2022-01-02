@@ -1,5 +1,4 @@
 RSpec.describe 'Tasks page', js: true do
-
   let(:user) { create(:free_user) }
 
   context 'when a user is logged out' do
@@ -123,5 +122,4 @@ RSpec.describe 'Tasks page', js: true do
     first(:button, 'Help').click
     expect(page).to have_content('You can type different markers')
   end
-
 end

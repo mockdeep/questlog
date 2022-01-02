@@ -1,5 +1,4 @@
 RSpec.describe User, '#next_task' do
-
   let(:tag) { create(:tag, user: user) }
   let(:task_1) { create(:task, user: user) }
   let(:task_2) { create(:task, user: user) }

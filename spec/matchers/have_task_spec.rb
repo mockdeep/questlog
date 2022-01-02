@@ -1,5 +1,4 @@
 RSpec.describe Questlog::Matchers::HaveTask do
-
   let(:matcher) { described_class.new('foo title') }
 
   describe '#matches?' do
@@ -47,5 +46,4 @@ RSpec.describe Questlog::Matchers::HaveTask do
       expect(matcher.failure_message).to eq expected
     end
   end
-
 end

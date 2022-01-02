@@ -1,5 +1,4 @@
 RSpec.describe TimeframesController, '#index' do
-
   let(:user) { create(:user) }
   let(:stat_params) { { name: 'seconds-completed', user: user } }
 
@@ -44,5 +43,4 @@ RSpec.describe TimeframesController, '#index' do
     expect(timeframes).to include('name' => 'year', 'tasks' => [serial_task_3])
     expect(timeframes).to include('name' => 'lustrum', 'tasks' => [])
   end
-
 end

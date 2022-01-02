@@ -1,5 +1,4 @@
 RSpec.describe 'timeframes', js: true do
-
   let(:user) { create(:free_user) }
 
   def tomorrow
@@ -125,5 +124,4 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_tag('Needs Estimate (1)')
   end
-
 end

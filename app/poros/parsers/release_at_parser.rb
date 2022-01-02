@@ -17,11 +17,9 @@ class ReleaseAtParser
 
   def find_timestamp(tags)
     tags.detect do |word|
-
       Time.zone.parse(word[1..-1])
     rescue ArgumentError
       nil
-
     end
   end
 

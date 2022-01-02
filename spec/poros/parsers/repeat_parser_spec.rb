@@ -1,5 +1,4 @@
 RSpec.describe RepeatParser do
-
   let(:parser) { described_class.new }
 
   it 'parses * repeats with "d" abbreviation for days' do
@@ -51,5 +50,4 @@ RSpec.describe RepeatParser do
     result = parser.('*6mo get rich *1y')
     expect(result).to eq(title: 'get rich *1y', repeat_seconds: 6.months)
   end
-
 end

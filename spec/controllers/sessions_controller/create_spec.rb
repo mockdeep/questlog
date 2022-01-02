@@ -1,5 +1,4 @@
 RSpec.describe SessionsController, '#create' do
-
   let(:user) { create(:user) }
   let(:valid_attributes) { { email: 'some_email', password: 'some_password' } }
 
@@ -52,5 +51,4 @@ RSpec.describe SessionsController, '#create' do
       expect(response).to redirect_to('/sessions/new')
     end
   end
-
 end

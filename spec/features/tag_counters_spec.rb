@@ -1,5 +1,4 @@
 RSpec.describe 'tag counters', js: true do
-
   let(:user) { create(:free_user) }
 
   before do
@@ -131,5 +130,4 @@ RSpec.describe 'tag counters', js: true do
     click_button 'Done'
     expect(page).to have_no_tag('existing-tag')
   end
-
 end

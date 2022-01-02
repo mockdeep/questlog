@@ -1,5 +1,4 @@
 RSpec.describe Questlog::Matchers::HaveTag do
-
   describe '#matches?' do
     it 'returns true when there is a matching tag without count' do
       node = Capybara.string(<<-HTML)
@@ -77,5 +76,4 @@ RSpec.describe Questlog::Matchers::HaveTag do
       expect(matcher.failure_message_when_negated).to eq expected
     end
   end
-
 end

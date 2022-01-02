@@ -1,5 +1,4 @@
 RSpec.describe Stat, '#standard_deviation' do
-
   it 'returns the standard deviation of the filtered stats' do
     stat_1 = create(:stat, value: 3)
     stat_2 = create(:stat, value: 1)
@@ -18,5 +17,4 @@ RSpec.describe Stat, '#standard_deviation' do
 
     expect(described_class.where(id: stat.id).standard_deviation).to be 0
   end
-
 end

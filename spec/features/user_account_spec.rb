@@ -1,5 +1,4 @@
 RSpec.describe 'user accounts', js: true do
-
   let(:user) { create(:free_user) }
 
   it 'allows a user sign up for an account' do
@@ -22,5 +21,4 @@ RSpec.describe 'user accounts', js: true do
     expect(page).to have_content('Logged in!')
     expect(page).to have_no_content('Logged in!')
   end
-
 end

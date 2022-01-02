@@ -1,5 +1,4 @@
 RSpec.describe ChargesController, '#create' do
-
   let(:user) { create(:free_user) }
   let(:valid_params) do
     { stripeEmail: 'test@questlog.io', stripeToken: 'a_token' }
@@ -47,5 +46,4 @@ RSpec.describe ChargesController, '#create' do
       end.to change { user.reload.customer_id }.from(nil).to('an_id')
     end
   end
-
 end

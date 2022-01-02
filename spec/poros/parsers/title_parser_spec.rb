@@ -1,5 +1,4 @@
 RSpec.describe TitleParser do
-
   let(:parser) { described_class.new }
 
   it 'returns an empty hash when the title is nil' do
@@ -40,5 +39,4 @@ RSpec.describe TitleParser do
     result = parser.('#at-home eat stuff #at-work')
     expect(result[:tag_names].sort).to eq %w[at-home at-work]
   end
-
 end
