@@ -40,7 +40,8 @@ group :development do
   gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-watcher-listen'
+  # https://github.com/rails/spring-watcher-listen/issues/27
+  gem 'spring-watcher-listen', github: 'rails/spring-watcher-listen'
   gem 'web-console'
 end
 

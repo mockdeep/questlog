@@ -9,7 +9,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Turn false under Spring and add config.action_view.cache_template_loading = true
-  config.cache_classes = true
+  config.cache_classes = ENV['DISABLE_SPRING'].present?
 
   # Eager loading loads your whole application. When running a single test locally,
   # this probably isn't necessary. It's a good idea to do in a continuous integration
@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
   config.cache_store = :mem_cache_store
 
   # Raise exceptions instead of rendering exception templates.
@@ -34,7 +34,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = true
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
