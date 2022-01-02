@@ -13,16 +13,6 @@
 Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedTypes: block, case, class, if, kwbegin, module
-# SupportedStyles: same_line, new_line
-Layout/MultilineAssignmentLayout:
-  Exclude:
-    - 'app/domains/stat/standard_deviation.rb'
-    - 'config/initializers/params_parsers.rb'
-
 # Offense count: 13
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
