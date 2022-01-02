@@ -1,5 +1,4 @@
 RSpec.describe EstimateParser do
-
   let(:parser) { described_class.new }
 
   it 'parses ~ estimates with "d" abbreviation for days' do
@@ -52,5 +51,4 @@ RSpec.describe EstimateParser do
     result = parser.('~6mo get rich ~1y')
     expect(result).to eq(title: 'get rich ~1y', estimate_seconds: 6.months)
   end
-
 end

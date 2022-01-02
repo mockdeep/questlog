@@ -1,5 +1,4 @@
 RSpec.describe Profile, '.authenticate' do
-
   let(:account) { create(:free_account) }
   let(:password) { account.password }
   let(:email) { account.email }
@@ -19,5 +18,4 @@ RSpec.describe Profile, '.authenticate' do
   it 'downcases the given email' do
     expect(described_class.authenticate(email.upcase, password)).to eq account
   end
-
 end

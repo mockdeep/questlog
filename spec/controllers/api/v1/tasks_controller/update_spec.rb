@@ -1,5 +1,4 @@
 RSpec.describe API::V1::TasksController, '#update' do
-
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user, estimate_seconds: 605) }
   let(:task_2) { create(:task, user: user, estimate_seconds: 302) }
@@ -52,5 +51,4 @@ RSpec.describe API::V1::TasksController, '#update' do
     expect(tags.length).to eq 1
     expect(tags.first['name']).to eq 'home'
   end
-
 end

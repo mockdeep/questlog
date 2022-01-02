@@ -1,5 +1,4 @@
 RSpec.describe Tag::Update do
-
   let(:tag) { create(:tag) }
   let(:valid_params) { { name: 'foo tag' } }
 
@@ -8,5 +7,4 @@ RSpec.describe Tag::Update do
       described_class.(tag, valid_params)
     end.to change { tag.reload.name }.to('foo tag')
   end
-
 end

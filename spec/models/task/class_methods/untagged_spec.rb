@@ -1,5 +1,4 @@
 RSpec.describe Task, '#untagged' do
-
   it 'returns only tasks without tags' do
     task_1 = create(:task)
     task_2 = create(:task)
@@ -8,5 +7,4 @@ RSpec.describe Task, '#untagged' do
 
     expect(described_class.untagged).to eq [task_2]
   end
-
 end

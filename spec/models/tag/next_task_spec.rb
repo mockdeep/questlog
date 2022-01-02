@@ -1,5 +1,4 @@
 RSpec.describe Tag, '#next_task' do
-
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user: user) }
 
@@ -12,5 +11,4 @@ RSpec.describe Tag, '#next_task' do
     task_1.update!(done: true)
     expect(tag.next_task).to eq task_2
   end
-
 end

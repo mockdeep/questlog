@@ -1,5 +1,4 @@
 RSpec.describe Questlog::Matchers::HaveNoTag do
-
   let(:matcher) { described_class.new('foo tag') }
 
   # TAGS_SELECTOR = '.tag-buttons a.button'.freeze
@@ -32,5 +31,4 @@ RSpec.describe Questlog::Matchers::HaveNoTag do
       expect(matcher.failure_message).to eq expected
     end
   end
-
 end

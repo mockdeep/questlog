@@ -1,5 +1,4 @@
 RSpec.describe Stat, '.median_productivity' do
-
   let(:user) { create(:user) }
   let(:mock_median) { class_spy(Median) }
   let(:options) { { default: 1.hour } }
@@ -52,5 +51,4 @@ RSpec.describe Stat, '.median_productivity' do
 
     expect(result).to eq((25.minutes + 45.minutes) / 2)
   end
-
 end

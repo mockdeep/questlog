@@ -1,5 +1,4 @@
 RSpec.describe 'editing smart tags', js: true do
-
   let(:user) { create(:free_user) }
 
   it 'allows selecting rules from dropdowns' do
@@ -49,5 +48,4 @@ RSpec.describe 'editing smart tags', js: true do
     # add_task('some random task')
     # expect(page).to have_selector('a', text: tag.name)
   end
-
 end

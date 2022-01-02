@@ -22,5 +22,4 @@ task fix_counters: :environment do
     end
   end
   User.readonly_attributes << 'unfinished_tasks_count'
-
 end

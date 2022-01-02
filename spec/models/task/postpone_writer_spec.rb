@@ -1,5 +1,4 @@
 RSpec.describe Task, '#postpone=' do
-
   let(:task) { build(:task) }
 
   it 'sets the done_at' do
@@ -21,5 +20,4 @@ RSpec.describe Task, '#postpone=' do
       task.postpone = 5.minutes
     end.to change(task, :skip_count).from(0).to(1)
   end
-
 end

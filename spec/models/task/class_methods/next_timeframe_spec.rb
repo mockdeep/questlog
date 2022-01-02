@@ -1,5 +1,4 @@
 RSpec.describe Task, '.next_timeframe' do
-
   let(:user) { create(:user) }
 
   it 'returns the next timeframe that has a task' do
@@ -15,5 +14,4 @@ RSpec.describe Task, '.next_timeframe' do
     task_2.update(done: true)
     expect(described_class.next_timeframe).to be_nil
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe FreeAccountsController, '#create' do
-
   let(:valid_attributes) { attributes_for(:free_account) }
   let(:user) { create(:user) }
 
@@ -51,5 +50,4 @@ RSpec.describe FreeAccountsController, '#create' do
       expect(response.body).to include('<h1>Sign Up</h1>')
     end
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe API::V1::TasksController, '#destroy' do
-
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:tag) { create(:tag, user: user) }
@@ -24,5 +23,4 @@ RSpec.describe API::V1::TasksController, '#destroy' do
     task.update!(done: true, release_at: 1.hour.from_now)
     expect { delete(:destroy, params: valid_params) }.not_to raise_error
   end
-
 end

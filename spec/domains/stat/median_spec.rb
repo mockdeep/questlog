@@ -1,5 +1,4 @@
 RSpec.describe Stat::Median do
-
   it 'returns the median of the numbers given' do
     expect(described_class.([1])).to be 1
     expect(described_class.([1, 2])).to be 1
@@ -21,5 +20,4 @@ RSpec.describe Stat::Median do
   it 'returns nil when no numbers are given' do
     expect(described_class.([])).to be nil
   end
-
 end

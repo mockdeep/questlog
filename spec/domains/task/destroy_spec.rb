@@ -1,5 +1,4 @@
 RSpec.describe Task::Destroy do
-
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:tag) { create(:tag) }
@@ -24,5 +23,4 @@ RSpec.describe Task::Destroy do
     expect { action.(task) }.not_to raise_error
     expect(user.reload.unfinished_tasks_count).to eq 0
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe ApplicationController, '#check_repeats' do
-
   let(:user) { create(:user) }
 
   controller do

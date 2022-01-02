@@ -43,5 +43,4 @@ RSpec.describe TasksController, '#show' do
       expect(JSON.parse(response.body)['data']['title']).to eq 'blah'
     end
   end
-
 end

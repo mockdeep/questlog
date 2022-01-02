@@ -1,5 +1,4 @@
 RSpec.describe Stat::StandardDeviation do
-
   it 'returns the standard deviation of the numbers given' do
     expect(described_class.([1, 2])).to eq 0.7071067811865476
     expect(described_class.([1, 3])).to eq 1.4142135623730951
@@ -24,5 +23,4 @@ RSpec.describe Stat::StandardDeviation do
   it 'returns nil when no numbers are given' do
     expect(described_class.([])).to be nil
   end
-
 end

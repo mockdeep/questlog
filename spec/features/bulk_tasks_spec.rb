@@ -1,5 +1,4 @@
 RSpec.describe 'bulk task creation', js: true do
-
   let(:user) { create(:free_user) }
 
   before(:each) do
@@ -18,5 +17,4 @@ RSpec.describe 'bulk task creation', js: true do
     expect(pending_tasks).to have_no_task('do laundry')
     expect(pending_tasks).not_to have_selector(repeat_selector)
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe Task, '.next' do
-
   let(:user) { create(:user) }
 
   it 'returns the next task, sorted by priority first, then position' do
@@ -33,5 +32,4 @@ RSpec.describe Task, '.next' do
     task_4.update(done: true)
     expect(described_class.next).to be_nil
   end
-
 end

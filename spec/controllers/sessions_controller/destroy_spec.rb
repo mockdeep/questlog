@@ -1,5 +1,4 @@
 RSpec.describe SessionsController, '#destroy' do
-
   let(:user) { create(:user) }
 
   before(:each) do
@@ -14,5 +13,4 @@ RSpec.describe SessionsController, '#destroy' do
   it 'sets a flash message' do
     expect(flash[:notice]).to match(/logged out/i)
   end
-
 end

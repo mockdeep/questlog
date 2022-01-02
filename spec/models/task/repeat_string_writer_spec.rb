@@ -1,5 +1,4 @@
 RSpec.describe Task, '#repeat_string=' do
-
   let(:task) { described_class.new }
 
   it 'sets it to nil when the string is blank' do
@@ -11,5 +10,4 @@ RSpec.describe Task, '#repeat_string=' do
     task.repeat_string = 'foo'
     expect(task.repeat_string).to eq 'foo'
   end
-
 end

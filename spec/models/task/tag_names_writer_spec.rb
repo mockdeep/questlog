@@ -1,5 +1,4 @@
 RSpec.describe Task, '#tag_names' do
-
   let(:user) { create(:user) }
   let(:task) { build(:task, user: user) }
   let(:tag_1) { create(:tag, user: user) }
@@ -32,5 +31,4 @@ RSpec.describe Task, '#tag_names' do
       expect(tag_1.reload.unfinished_tasks_count).to eq 0
     end
   end
-
 end
