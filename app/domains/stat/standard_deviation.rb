@@ -1,7 +1,5 @@
 class Stat
-
   class StandardDeviation
-
     include JunkDrawer::Callable
 
     def call(values)
@@ -21,7 +19,5 @@ class Stat
 
       deviation_sum / (values.length - 1).to_f
     end
-
   end
-
 end

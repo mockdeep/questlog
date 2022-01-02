@@ -1,5 +1,4 @@
 class Timeframe
-
   NAMES = %w[today week month quarter year lustrum decade century].freeze
 
   attr_reader :tasks, :name
@@ -23,5 +22,4 @@ class Timeframe
   def ==(other)
     name == other.name && tasks == other.tasks
   end
-
 end

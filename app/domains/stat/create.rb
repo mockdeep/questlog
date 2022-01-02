@@ -1,7 +1,5 @@
 class Stat < ApplicationRecord
-
   class Create
-
     include JunkDrawer::Callable
 
     def call(value:, user:, name:)
@@ -17,7 +15,5 @@ class Stat < ApplicationRecord
     def today
       Time.zone.now.beginning_of_day
     end
-
   end
-
 end

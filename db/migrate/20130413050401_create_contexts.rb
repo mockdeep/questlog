@@ -1,5 +1,4 @@
 class CreateContexts < ActiveRecord::Migration
-
   def change
     create_table :contexts do |t|
       t.string :name
@@ -10,5 +9,4 @@ class CreateContexts < ActiveRecord::Migration
     end
     add_index :contexts, :user_id
   end
-
 end

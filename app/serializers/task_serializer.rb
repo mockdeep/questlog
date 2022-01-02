@@ -1,5 +1,4 @@
 class TaskSerializer
-
   include Serializable
 
   serialize(
@@ -24,5 +23,4 @@ class TaskSerializer
   def pending(task)
     task.release_at.present?
   end
-
 end

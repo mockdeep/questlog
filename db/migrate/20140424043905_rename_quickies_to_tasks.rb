@@ -1,5 +1,4 @@
 class RenameQuickiesToTasks < ActiveRecord::Migration
-
   def change
     rename_table :quickies, :tasks
 
@@ -17,5 +16,4 @@ class RenameQuickiesToTasks < ActiveRecord::Migration
     rename_column :users, :quickies_count, :tasks_count
     rename_column :contexts, :quickies_count, :tasks_count
   end
-
 end

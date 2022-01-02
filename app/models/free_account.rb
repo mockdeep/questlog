@@ -1,5 +1,4 @@
 class FreeAccount < ApplicationRecord
-
   has_secure_password
 
   has_one :user, as: :account, inverse_of: :account
@@ -14,5 +13,4 @@ class FreeAccount < ApplicationRecord
   def guest?
     false
   end
-
 end

@@ -1,5 +1,4 @@
 class ActionResult
-
   attr_accessor :object, :errors
 
   def initialize(success:, object: nil, errors: [])
@@ -15,5 +14,4 @@ class ActionResult
   def error_message
     errors.join("\n")
   end
-
 end

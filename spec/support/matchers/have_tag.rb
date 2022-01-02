@@ -3,7 +3,6 @@ module Questlog
   module Matchers
 
     class HaveTag
-
       attr_accessor :expected, :actual
 
       def initialize(expected)
@@ -29,7 +28,6 @@ module Questlog
       def failure_message_when_negated
         %(expected not to find tag "#{expected}", but it is present)
       end
-
     end
 
   end

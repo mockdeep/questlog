@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   belongs_to :account, dependent: :destroy, polymorphic: true
 
   has_many :stats, dependent: :destroy
@@ -57,5 +56,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end

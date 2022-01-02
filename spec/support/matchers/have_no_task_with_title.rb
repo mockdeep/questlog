@@ -3,7 +3,6 @@ module Questlog
   module Matchers
 
     class HaveNoTaskWithTitle
-
       attr_accessor :expected, :actual
 
       def initialize(expected)
@@ -18,7 +17,6 @@ module Questlog
       def failure_message
         %(expected not to find task "#{expected}", but it is present)
       end
-
     end
 
   end

@@ -1,5 +1,4 @@
 class TagParser
-
   include JunkDrawer::Callable
 
   def call(title)
@@ -15,5 +14,4 @@ class TagParser
   def tag?(word)
     word.match(/^\#\w+/) && !word.match(/^\#\d+$/)
   end
-
 end

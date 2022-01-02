@@ -3,7 +3,6 @@ module Questlog
   module Wrappers
 
     class Sidebar
-
       include Capybara::DSL
       include RSpec::Matchers
 
@@ -30,7 +29,6 @@ module Questlog
         element.find('a', text: link_text).click
         close
       end
-
     end
 
   end

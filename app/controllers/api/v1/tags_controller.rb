@@ -3,7 +3,6 @@ module API
   module V1
 
     class TagsController < ApplicationController
-
       def create
         tag = Tag::Create.(**tag_params)
         render json: serialize(tag), status: :created
@@ -25,7 +24,6 @@ module API
           .merge(user: current_user)
           .symbolize_keys
       end
-
     end
 
   end
