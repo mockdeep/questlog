@@ -15,7 +15,7 @@ module Charge
       ActionResult.new(success: false, errors: [e.message])
     end
 
-  private
+    private
 
     def create_charge(customer:)
       Stripe::Charge.create(

@@ -11,7 +11,7 @@ class Task < ApplicationRecord
       record_completed_stat(task) if task_params[:done]
     end
 
-  private
+    private
 
     def record_completed_stat(task)
       Stat::Create.(

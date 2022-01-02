@@ -18,7 +18,7 @@ class FreeAccountsController < ApplicationController
     end
   end
 
-private
+  private
 
   def account_params
     params.require(:free_account).permit(*permitted_params)

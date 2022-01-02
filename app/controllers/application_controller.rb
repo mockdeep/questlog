@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_gon_variables
   before_action :set_honeybadger_context
 
-private
+  private
 
   include Serializable::Helpers
 

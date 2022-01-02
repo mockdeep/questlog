@@ -14,7 +14,7 @@ class ReleaseAtParser
     { title: words.join(' '), release_at: time }
   end
 
-private
+  private
 
   def find_timestamp(tags)
     tags.detect do |word|

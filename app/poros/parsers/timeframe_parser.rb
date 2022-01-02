@@ -16,7 +16,7 @@ class TimeframeParser
     end
   end
 
-private
+  private
 
   def time_mappings
     {

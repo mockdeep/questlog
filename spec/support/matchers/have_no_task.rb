@@ -19,7 +19,7 @@ module Questlog
         end
       end
 
-    private
+      private
 
       def actual_title
         actual.find(TITLE_SELECTOR).value
