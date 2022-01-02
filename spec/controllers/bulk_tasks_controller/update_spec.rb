@@ -1,5 +1,4 @@
 RSpec.describe BulkTasksController, '#update' do
-
   let(:user) { create(:user) }
   let(:task_1) { create(:task, position: 1, user: user) }
   let(:task_2) { create(:task, position: 2, user: user) }
@@ -32,5 +31,4 @@ RSpec.describe BulkTasksController, '#update' do
       put(:update, params: { bulk_task: { positions: [bad_task.id] } })
     end.to raise_error(ActiveRecord::RecordNotFound)
   end
-
 end

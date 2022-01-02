@@ -1,5 +1,4 @@
 RSpec.describe User, '#tasks_count' do
-
   let(:user) { create(:user) }
 
   describe '#tasks_count' do
@@ -62,5 +61,4 @@ RSpec.describe User, '#tasks_count' do
       end
     end
   end
-
 end

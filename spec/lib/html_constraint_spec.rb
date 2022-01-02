@@ -1,5 +1,4 @@
 RSpec.describe HtmlConstraint do
-
   describe '#matches?' do
     let(:constraint) { described_class.new }
     let(:request) { OpenStruct.new(headers: {}) }
@@ -28,5 +27,4 @@ RSpec.describe HtmlConstraint do
       expect(constraint.matches?(request)).to be false
     end
   end
-
 end

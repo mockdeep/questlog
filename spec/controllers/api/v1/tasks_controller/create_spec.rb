@@ -1,5 +1,4 @@
 RSpec.describe API::V1::TasksController, '#create' do
-
   let(:valid_params) { { format: :json, task: attributes_for(:task) } }
 
   context 'when the user does not exist' do
@@ -36,5 +35,4 @@ RSpec.describe API::V1::TasksController, '#create' do
       expect(task['tagNames']).to eq(['home'])
     end
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe API::V1::TagsController, '#create' do
-
   let(:user) { create(:user) }
   let(:valid_params) { { tag: { name: 'foo tag' } } }
 
@@ -27,5 +26,4 @@ RSpec.describe API::V1::TagsController, '#create' do
     expect(tag.fetch('name')).to eq 'foo tag'
     expect(tag.fetch('rules')).to eq []
   end
-
 end

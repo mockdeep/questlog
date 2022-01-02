@@ -1,5 +1,4 @@
 RSpec.describe TaskSerializer, '#as_json' do
-
   it 'serializes a subset of the task attributes' do
     task_attrs = {
       estimate_seconds: 52,
@@ -34,5 +33,4 @@ RSpec.describe TaskSerializer, '#as_json' do
       result[key.to_s.camelize(:lower).to_sym] = value
     end
   end
-
 end

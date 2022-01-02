@@ -1,5 +1,4 @@
 RSpec.describe ReleaseAtParser do
-
   let(:parser) { described_class.new }
 
   context 'when time is in the past' do
@@ -50,5 +49,4 @@ RSpec.describe ReleaseAtParser do
     result = parser.(title)
     expect(result).to eq(title: title, release_at: nil)
   end
-
 end

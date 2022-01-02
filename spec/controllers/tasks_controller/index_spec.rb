@@ -1,5 +1,4 @@
 RSpec.describe TasksController, '#index' do
-
   let(:user) { create(:user) }
 
   before { login_as(user) }
@@ -33,5 +32,4 @@ RSpec.describe TasksController, '#index' do
 
     expect(JSON.parse(response.body)).to match serial_tasks
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe Tagging, 'associations' do
-
   let(:task) { create(:task) }
   let(:tag) { create(:tag) }
 
@@ -24,5 +23,4 @@ RSpec.describe Tagging, 'associations' do
       end.to change { tag.reload.unfinished_tasks_count }.from(1).to(0)
     end
   end
-
 end

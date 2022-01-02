@@ -1,5 +1,4 @@
 RSpec.describe Task, '.ordered' do
-
   let(:user) { create(:user) }
 
   it 'returns tasks with priority first, position second' do
@@ -12,5 +11,4 @@ RSpec.describe Task, '.ordered' do
 
     expect(described_class.ordered).to eq ordered_tasks
   end
-
 end

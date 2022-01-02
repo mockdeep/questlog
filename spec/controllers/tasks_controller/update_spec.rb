@@ -1,5 +1,4 @@
 RSpec.describe TasksController, '#update' do
-
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user, estimate_seconds: 605) }
   let(:task_2) { create(:task, user: user, estimate_seconds: 302) }
@@ -45,5 +44,4 @@ RSpec.describe TasksController, '#update' do
     expect(task['priority']).to eq 3
     expect(task['estimateSeconds']).to eq 300
   end
-
 end

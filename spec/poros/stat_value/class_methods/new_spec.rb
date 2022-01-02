@@ -1,5 +1,4 @@
 RSpec.describe StatValue, '#new' do
-
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
 

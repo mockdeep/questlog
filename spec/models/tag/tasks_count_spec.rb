@@ -1,5 +1,4 @@
 RSpec.describe Tag, '#tasks_count' do
-
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user: user) }
 
@@ -80,5 +79,4 @@ RSpec.describe Tag, '#tasks_count' do
       expect(tag_2.reload.unfinished_tasks_count).to eq 1
     end
   end
-
 end

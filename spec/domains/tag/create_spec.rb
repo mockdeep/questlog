@@ -1,5 +1,4 @@
 RSpec.describe Tag::Create do
-
   let(:user) { create(:user) }
   let(:valid_params) { { user: user, name: 'foo tag' } }
 
@@ -17,5 +16,4 @@ RSpec.describe Tag::Create do
       described_class.(name: 'foo tag')
     end.to raise_error(ArgumentError, 'missing keyword: :user')
   end
-
 end

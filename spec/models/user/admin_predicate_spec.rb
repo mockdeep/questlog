@@ -1,5 +1,4 @@
 RSpec.describe User, '#admin?' do
-
   it 'returns false when there is no account' do
     user = described_class.new
 
@@ -26,5 +25,4 @@ RSpec.describe User, '#admin?' do
 
     expect(user.admin?).to be true
   end
-
 end

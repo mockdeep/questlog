@@ -1,5 +1,4 @@
 RSpec.describe 'task tree', js: true do
-
   let(:user) { create(:free_user) }
 
   before(:each) do
@@ -53,5 +52,4 @@ RSpec.describe 'task tree', js: true do
     all('.task-item')[1].first('label').click
     expect(page).to have_selector('.task-item > span', text: 'child')
   end
-
 end

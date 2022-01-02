@@ -1,5 +1,4 @@
 RSpec.describe PriorityParser do
-
   let(:parser) { described_class.new }
 
   it 'returns nil when there is no priority mark in the string' do
@@ -43,5 +42,4 @@ RSpec.describe PriorityParser do
     expect(parser.("'1way")).to eq(title: "'1way", priority: nil)
     expect(parser.("not'1")).to eq(title: "not'1", priority: nil)
   end
-
 end

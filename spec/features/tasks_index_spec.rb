@@ -1,5 +1,4 @@
 RSpec.describe 'tasks index page', js: true do
-
   let(:user) { create(:free_user) }
 
   before(:each) { feature_login_as(user) }
@@ -70,5 +69,4 @@ RSpec.describe 'tasks index page', js: true do
     expect(page).to have_no_selector('#pending-tasks')
     expect(current_tasks).to have_task(task.title)
   end
-
 end

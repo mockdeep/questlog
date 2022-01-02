@@ -1,5 +1,4 @@
 RSpec.describe Task, '#tag_names' do
-
   let(:task) { create(:task) }
   let(:tag) { create(:tag, name: 'what') }
 
@@ -12,5 +11,4 @@ RSpec.describe Task, '#tag_names' do
     task.tags = [tag]
     expect(task.tag_names).to eq %w[what]
   end
-
 end

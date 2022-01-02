@@ -1,5 +1,4 @@
 RSpec.describe Stat::Create do
-
   let(:user) { create(:user) }
   let(:stat_create) { described_class.new }
   let(:date) { Time.zone.now.beginning_of_day }
@@ -30,5 +29,4 @@ RSpec.describe Stat::Create do
       stat_create.(user: user, value: 30, name: 'seconds-completed')
     end.not_to change { old_stat.reload.value }
   end
-
 end

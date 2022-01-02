@@ -1,5 +1,4 @@
 RSpec.describe Task, '#release!' do
-
   let(:user) { create(:user) }
   let(:task) do
     create(
@@ -33,5 +32,4 @@ RSpec.describe Task, '#release!' do
   it 'sets release_at to nil' do
     expect { task.release! }.to change(task, :release_at).to(nil)
   end
-
 end

@@ -1,5 +1,4 @@
 RSpec.describe User, '#absorb' do
-
   let(:user) { create(:user) }
   let(:task) { create(:task, user: user) }
 
@@ -42,5 +41,4 @@ RSpec.describe User, '#absorb' do
     expect(user.reload.tags.pluck(:name).sort).to eq expected_names
     expect(other_task.reload.tags).to eq [tag_2]
   end
-
 end
