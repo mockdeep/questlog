@@ -34,12 +34,6 @@ Layout/EmptyLinesAroundClassBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/FirstArrayElementLineBreak:
-  Exclude:
-    - 'config/environments/production.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
