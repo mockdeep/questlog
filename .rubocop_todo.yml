@@ -51,11 +51,6 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/models/task/done_writer_spec.rb'
     - 'spec/models/task/release_at_writer_spec.rb'
 
-# Offense count: 709
-# Configuration parameters: Only, Ignore.
-Lint/ConstantResolution:
-  Enabled: false
-
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoredMethods, IgnoredClasses.
