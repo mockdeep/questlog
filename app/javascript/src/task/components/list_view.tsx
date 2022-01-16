@@ -44,7 +44,7 @@ class TaskListView extends React.Component<Props, any> {
     autobind(this);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const {currentTasks, pendingTasks} = nextProps;
     this.setState({currentTasks, pendingTasks});
   }

@@ -30,7 +30,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     };
   }
 
-  componentWillReceiveProps(newProps: Props) {
+  UNSAFE_componentWillReceiveProps(newProps: Props) {
     const {task} = this.props;
 
     if (newProps.task.id !== task.id) {
