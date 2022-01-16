@@ -50,7 +50,7 @@ class TaskShowView extends React.Component<Props, any> {
     this.setTask(task);
   }
 
-  componentWillReceiveProps({task}: Props) {
+  UNSAFE_componentWillReceiveProps({task}: Props) {
     this.setTask(task);
   }
 

@@ -19,7 +19,7 @@ class Sidebar extends React.Component<any, any> {
     this.state = {visible: false};
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.mediaQueryList = window.matchMedia('(max-width: 600px)');
     this.mediaQueryList.addListener(this.updateScreenSize);
     this.updateScreenSize();
