@@ -42,9 +42,10 @@
 
       .row
         .col-md-12
-          = yield
+          #app-base
 
       .footer
         = mail_to('robert@boon.gl', 'Feedback')
 
     = javascript_pack_tag 'application'
+    = javascript_pack_tag 'react_app'
