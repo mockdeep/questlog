@@ -6,9 +6,13 @@ type NotificationState = {
   currentTask: Notification;
 };
 
+type RouteParams = {
+  [key: string]: string;
+}
+
 type RouteState = {
   name: string;
-  params: {[key: string]: string};
+  params: RouteParams;
 };
 
 type TagState = {
