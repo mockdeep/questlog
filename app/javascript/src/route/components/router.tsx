@@ -2,7 +2,6 @@ import React from 'react';
 
 import grab from 'src/_helpers/grab';
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
-import PrivacyView from 'src/static/components/privacy_view';
 import SessionNewView from 'src/session/components/new_view';
 import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
@@ -23,7 +22,6 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   sessions: Nothing,
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
-  privacy: PrivacyView,
   leafTasks: TaskListViewContainer,
   rootTasks: TaskListViewContainer,
   treeTasks: TaskTreeViewContainer,
