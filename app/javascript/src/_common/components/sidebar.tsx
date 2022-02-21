@@ -1,7 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
 
-import Link from 'src/route/containers/link';
 import {assert} from 'src/_helpers/assert';
 
 type LocalState = {
@@ -26,11 +25,10 @@ class Sidebar extends React.Component<any, any> {
   }
 
   updateScreenSize() {
-    const mobile = this.mediaQueryList.matches;
-    const visible = !mobile;
+    const visible = !this.mediaQueryList.matches;
     this.toggleSidebarClass(visible);
 
-    this.setState({mobile, visible});
+    this.setState({visible});
   }
 
   toggleSidebarClass(visible: boolean) {
@@ -61,12 +59,6 @@ class Sidebar extends React.Component<any, any> {
     );
   }
 
-  hideIfMobile() {
-    const {mobile} = this.state;
-
-    if (mobile) { this.setState({visible: false}); }
-  }
-
   render() {
     const {visible} = this.state;
 
@@ -78,18 +70,31 @@ class Sidebar extends React.Component<any, any> {
       );
     }
 
-    const linkProps = {
-      baseClass: 'sidebar__link',
-      onNavigate: this.hideIfMobile,
-    };
+    const links = [
+      {path: '/', text: 'FOCUS'},
+      {path: '/tasks', text: 'ALL TASKS'},
+      {path: '/timeframes', text: 'TIMEFRAMES'},
+    ];
 
     return (
       <div className='sidebar sidebar--visible'>
         <h2 className='sidebar__header'>{'Menu'}{this.sidebarToggle()}</h2>
         <hr className='sidebar__divider' />
-        <Link to='root' {...linkProps}><h2>{'FOCUS'}</h2></Link>
-        <Link to='tasks' {...linkProps}><h2>{'ALL TASKS'}</h2></Link>
-        <Link to='timeframes' {...linkProps}><h2>{'TIMEFRAMES'}</h2></Link>
+        {
+          links.map(link => {
+            let className = 'sidebar__link';
+
+            if (window.location.pathname === link.path) {
+              className = `${className} ${className}--active`;
+            }
+
+            return (
+              <a href={link.path} className={className} key={link.path}>
+                <h2>{link.text}</h2>
+              </a>
+            );
+          })
+        }
       </div>
     );
   }
