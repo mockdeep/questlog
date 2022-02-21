@@ -44,7 +44,6 @@ const ROUTES = compileRoutes([
   {name: 'showTask', path: '/tasks/:taskId'},
   {name: 'tasks', path: '/tasks'},
   {name: 'privacy', path: '/privacy'},
-  {name: 'what', path: '/what'},
   {name: 'timeframes', path: '/timeframes'},
   {name: 'tags', path: '/tags'},
   {name: 'editTag', path: '/tags/:slug/edit'},

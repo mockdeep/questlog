@@ -49,8 +49,8 @@ describe('fetchRoute', () => {
 
 describe('setRoute', () => {
   it('returns a SET action corresponding to the given route', () => {
-    const payload = {name: 'what', foo: 'bar'};
-    const expectedPayload = {name: 'what', params: {foo: 'bar'}};
+    const payload = {name: 'tasks', foo: 'bar'};
+    const expectedPayload = {name: 'tasks', params: {foo: 'bar'}};
     const expectedAction = {type: SET, payload: expectedPayload};
 
     setRoute(payload);
@@ -59,11 +59,11 @@ describe('setRoute', () => {
   });
 
   it('updates the browser url', () => {
-    const payload = {name: 'what', foo: 'bar'};
+    const payload = {name: 'tasks', foo: 'bar'};
 
     setRoute(payload);
 
-    expect(window.location.pathname).toBe('/what');
+    expect(window.location.pathname).toBe('/tasks');
   });
 
   it('raises an error when a route cannot be found', () => {
