@@ -68,13 +68,13 @@ RSpec.describe 'timeframes', js: true do
     expect(page).to have_no_task
 
     Timecop.travel(Time.zone.parse('2014/04/16'))
-    milliseconds = Time.zone.now.to_i * 1000
-    page.execute_script("window.balanceTime = #{milliseconds}")
 
     create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
     create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
 
     sidebar.click('TIMEFRAMES')
+    milliseconds = Time.zone.now.to_i * 1000
+    page.execute_script("window.balanceTime = #{milliseconds}")
 
     expect(page).to have_content('Median Productivity')
 
