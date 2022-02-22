@@ -16,11 +16,11 @@ describe('getCurrentTask', () => {
     expect(getCurrentTask(state)).toEqual(task);
   });
 
-  it('returns no task when task in route is not present', () => {
+  it('returns null task when task in route is not present', () => {
     const task = makeTask({title: 'foo task'});
     const state = makeState({route: {params: {taskId: 0}}, task: [task]});
 
-    expect(getCurrentTask(state)).toBeUndefined();
+    expect(getCurrentTask(state)).toEqual({tagNames: []});
   });
 });
 

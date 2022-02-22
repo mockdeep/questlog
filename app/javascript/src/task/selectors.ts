@@ -15,6 +15,10 @@ const timeframePositions = {
   century: 8,
 };
 
+const nullTask = {
+  tagNames: [],
+} as const;
+
 function timeframePosition(task: Task) {
   const {timeframe} = task;
 
@@ -50,6 +54,10 @@ function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
 
 function grabLeafTasks(orderedTasks: Task[], tasksByParentId: TasksByParentId) {
   return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
+}
+
+function grabCurrentTask(tasksById: TasksById, routeParams: RouteParams) {
+  return tasksById[routeParams.taskId] || nullTask;
 }
 
 const getTasksById = createSelector(
@@ -88,12 +96,12 @@ const getActiveTasks = createSelector(
 const getCurrentTask = createSelector(
   getTasksById,
   getRouteParams,
-  (tasksById: TasksById, routeParams) => tasksById[routeParams.taskId],
+  grabCurrentTask,
 );
 
 const getCurrentSubTasks = createSelector(
   [getCurrentTask, getTasksByParentId],
-  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id],
+  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id] || [],
 );
 
 export {
