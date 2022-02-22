@@ -1,7 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, {MouseEvent} from 'react';
+import React from 'react';
 import {mapValues} from 'lodash';
 
 import {findRoute} from 'src/route/helpers';
@@ -12,7 +12,6 @@ type Props = {
   onNavigate?: Function;
   params?: {[key: string]: string | number};
   routeName: string;
-  setRoute: Function;
   to: string;
 };
 
@@ -20,16 +19,6 @@ class Link extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
     autobind(this);
-  }
-
-  navigate(event: MouseEvent) {
-    event.preventDefault();
-
-    const {onNavigate, params, setRoute, to} = this.props;
-
-    setRoute({name: to, ...params});
-
-    if (onNavigate) { onNavigate(); }
   }
 
   path() {
@@ -53,11 +42,7 @@ class Link extends React.Component<Props, any> {
     const {children} = this.props;
 
     return (
-      <a
-        href={this.path()}
-        className={this.className()}
-        onClick={this.navigate}
-      >
+      <a href={this.path()} className={this.className()}>
         {children}
       </a>
     );
@@ -70,7 +55,6 @@ Link.propTypes = {
     PropTypes.element,
   ]).isRequired,
   routeName: PropTypes.string.isRequired,
-  setRoute: PropTypes.func.isRequired,
   to: PropTypes.string.isRequired,
   baseClass: PropTypes.string,
   className: PropTypes.string,
