@@ -70,7 +70,6 @@ RSpec.configure do |config|
   config.before(:each, type: :feature) do
     visit '/'
     page.execute_script(File.read(support_path.join('disable_animations.js')))
-    sidebar.close
   end
 end
 
@@ -99,13 +98,11 @@ def feature_login_as(user)
   click_button 'Login'
   expect(page).to have_content("Logged in as #{user.account.email}")
   page.execute_script(File.read(support_path.join('disable_animations.js')))
-  sidebar.close
 end
 
 def add_task(task_title)
   fill_in 'new-title', with: task_title
   click_button 'Add Task'
-  # binding.pry
   expect(page).to have_content('Task added')
   expect(page).not_to have_content('Task added')
 end
