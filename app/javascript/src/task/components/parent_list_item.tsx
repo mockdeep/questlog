@@ -1,11 +1,9 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
 import TaskNestedList from 'src/task/components/nested_list';
-import {taskShape} from 'src/shapes';
 
 export type Props = {
   task: Task,
@@ -42,11 +40,5 @@ class TaskParentListItem extends React.Component<Props, any> {
     );
   }
 }
-
-TaskParentListItem.propTypes = {
-  task: taskShape.isRequired,
-  tasksByParentId: PropTypes.objectOf(PropTypes.arrayOf(taskShape)).isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TaskParentListItem;

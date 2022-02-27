@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import TaskLink from 'src/task/components/link';
-import {taskShape} from 'src/shapes';
 
 type ComponentProps = {
   task?: Task;
@@ -36,8 +35,6 @@ class ParentTaskBreadCrumbs extends React.Component<ComponentProps, any> {
     );
   }
 }
-
-ParentTaskBreadCrumbs.propTypes = {task: taskShape};
 
 function mapStateToProps(state: State, ownProps: ContainerProps) {
   const {taskId} = ownProps;

@@ -1,9 +1,7 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
-import {tagShape} from 'src/shapes';
 
 type Props = {
   tags: Tag[];
@@ -36,7 +34,5 @@ class TagListView extends React.Component<Props, any> {
     );
   }
 }
-
-TagListView.propTypes = {tags: PropTypes.arrayOf(tagShape).isRequired};
 
 export default TagListView;

@@ -1,12 +1,10 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TableHeaders from 'src/timeframe/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
-import {timeframeShape, timeframeSpaceShape} from 'src/shapes';
 
 type Props = {
   deleteTask: Function,
@@ -117,12 +115,5 @@ class TimeframeSection extends React.Component<Props, any> {
     );
   }
 }
-
-TimeframeSection.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  timeframe: timeframeShape.isRequired,
-  timeframeSpace: timeframeSpaceShape.isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TimeframeSection;

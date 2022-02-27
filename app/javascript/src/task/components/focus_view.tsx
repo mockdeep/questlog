@@ -1,11 +1,9 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskFooter from 'src/_common/components/task_footer';
 import TaskDisplay from 'src/task/components/task_display';
-import {taskShape} from 'src/shapes';
 
 export type Props = {
   ajaxState: string,
@@ -107,12 +105,5 @@ class TaskFocusView extends React.Component<Props, State> {
     );
   }
 }
-
-TaskFocusView.propTypes = {
-  ajaxState: PropTypes.string.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  task: taskShape,
-};
 
 export default TaskFocusView;

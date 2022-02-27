@@ -1,5 +1,4 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent, FormEvent} from 'react';
 
 import BulkTaskStore from 'src/task/bulk_store';
@@ -80,11 +79,5 @@ class TaskBulkAddView extends React.Component<Props, any> {
     );
   }
 }
-
-TaskBulkAddView.propTypes = {
-  setRoute: PropTypes.func.isRequired,
-  taskTitles: PropTypes.string.isRequired,
-  updateTaskMeta: PropTypes.func.isRequired,
-};
 
 export default TaskBulkAddView;

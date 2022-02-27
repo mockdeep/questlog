@@ -1,8 +1,5 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent, FormEvent} from 'react';
-
-import {taskShape} from 'src/shapes';
 
 type Props = {
   createTask: Function,
@@ -78,12 +75,5 @@ class NewTaskForm extends React.Component<Props, any> {
     );
   }
 }
-
-NewTaskForm.propTypes = {
-  createTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-  taskSaving: PropTypes.bool.isRequired,
-  updateTaskMeta: PropTypes.func.isRequired,
-};
 
 export default NewTaskForm;

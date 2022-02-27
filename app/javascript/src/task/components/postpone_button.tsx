@@ -1,9 +1,7 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent} from 'react';
 
 import SelectOption from 'src/_common/components/select_option';
-import {taskShape} from 'src/shapes';
 
 function isPostponing(task: Task) {
   return task.loadingState === 'postponing';
@@ -100,12 +98,5 @@ class PostponeButton extends React.Component<Props, any> {
     );
   }
 }
-
-PostponeButton.propTypes = {
-  disabled: PropTypes.bool.isRequired,
-  postponeTask: PropTypes.func.isRequired,
-  storePostponeSeconds: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-};
 
 export default PostponeButton;

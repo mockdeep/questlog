@@ -1,6 +1,5 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {mapValues} from 'lodash';
 
@@ -48,21 +47,5 @@ class Link extends React.Component<Props, any> {
     );
   }
 }
-
-Link.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]).isRequired,
-  routeName: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-  baseClass: PropTypes.string,
-  className: PropTypes.string,
-  onNavigate: PropTypes.func,
-  params: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ])),
-};
 
 export default Link;

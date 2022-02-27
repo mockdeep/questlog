@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Link from 'src/route/containers/link';
-import {taskShape} from 'src/shapes';
 
 type Props = {task: Task};
 
@@ -12,7 +11,5 @@ function TaskLink({task}: Props) {
     </Link>
   );
 }
-
-TaskLink.propTypes = {task: taskShape.isRequired};
 
 export default TaskLink;

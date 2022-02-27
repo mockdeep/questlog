@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 type Props = {label: string};
@@ -17,7 +16,5 @@ function TableHeaders({label}: Props) {
     </tr>
   );
 }
-
-TableHeaders.propTypes = {label: PropTypes.string.isRequired};
 
 export default TableHeaders;

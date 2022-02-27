@@ -1,10 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent, FocusEvent, FormEvent, KeyboardEvent} from 'react';
 import Textarea from 'react-textarea-autosize';
-
-import {taskShape} from 'src/shapes';
 
 export type Props = {
   task: Task,
@@ -96,10 +93,5 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     );
   }
 }
-
-TaskEditTitleForm.propTypes = {
-  task: taskShape.isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TaskEditTitleForm;

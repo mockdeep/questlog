@@ -1,6 +1,5 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent, MouseEvent} from 'react';
 import {map} from 'lodash';
 
@@ -8,7 +7,6 @@ import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
-import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
@@ -213,15 +211,5 @@ class TaskRow extends React.PureComponent<Props, any> {
     );
   }
 }
-
-TaskRow.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool,
-  status: PropTypes.string,
-  timeframesEnabled: PropTypes.bool,
-  timeframeSpace: timeframeSpaceShape,
-};
 
 export default TaskRow;
