@@ -1,9 +1,7 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TagButton from 'src/tag/components/button';
-import {tagShape} from 'src/shapes';
 
 export type Props = {
   currentTagIds: number[],
@@ -56,11 +54,5 @@ class TagButtons extends React.Component<Props, any> {
     );
   }
 }
-
-TagButtons.propTypes = {
-  currentTagIds: PropTypes.arrayOf(PropTypes.number).isRequired,
-  tags: PropTypes.arrayOf(tagShape).isRequired,
-  selectedTagSlug: PropTypes.string,
-};
 
 export default TagButtons;

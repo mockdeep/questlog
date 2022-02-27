@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 type Props = {
@@ -18,9 +17,5 @@ function ErrorDisplay({errors}: Props) {
     </div>
   );
 }
-
-ErrorDisplay.propTypes = {
-  errors: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default ErrorDisplay;

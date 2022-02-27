@@ -1,10 +1,8 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent} from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
-import {taskShape} from 'src/shapes';
 
 type Props = {
   task: Task,
@@ -50,10 +48,5 @@ class TaskLeafListItem extends React.Component<Props, any> {
     );
   }
 }
-
-TaskLeafListItem.propTypes = {
-  task: taskShape.isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TaskLeafListItem;

@@ -1,10 +1,8 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Link from 'src/route/containers/link';
-import {tagShape} from 'src/shapes';
 
 export type Props = {
   current: boolean,
@@ -43,11 +41,5 @@ class TagButton extends React.Component<Props, any> {
     );
   }
 }
-
-TagButton.propTypes = {
-  current: PropTypes.bool.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  tag: tagShape.isRequired,
-};
 
 export default TagButton;

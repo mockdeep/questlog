@@ -1,5 +1,4 @@
 import Modal from 'react-modal';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 type Props = {
@@ -115,11 +114,6 @@ function HelpModal({isOpen, closeModal}: Props) {
     </Modal>
   );
 }
-
-HelpModal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-};
 
 Modal.setAppElement('#app-base');
 

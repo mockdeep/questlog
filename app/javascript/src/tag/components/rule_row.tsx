@@ -1,9 +1,7 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent, MouseEvent} from 'react';
 
 import grab from 'src/_helpers/grab';
-import {ruleShape} from 'src/shapes';
 
 const FIELD_NAMES = ['estimateSeconds', 'tagIds'];
 
@@ -100,12 +98,5 @@ class RuleRow extends React.Component<Props, any> {
     );
   }
 }
-
-RuleRow.propTypes = {
-  deleteRule: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-  rule: ruleShape.isRequired,
-  updateFieldValue: PropTypes.func.isRequired,
-};
 
 export default RuleRow;

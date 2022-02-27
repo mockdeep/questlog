@@ -1,5 +1,4 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {MouseEvent} from 'react';
 
 import ToEnglish from 'src/_helpers/to_english';
@@ -128,11 +127,5 @@ class TimeframeListView extends React.Component<Props, any> {
     );
   }
 }
-
-TimeframeListView.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  fetchTasks: PropTypes.func.isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TimeframeListView;

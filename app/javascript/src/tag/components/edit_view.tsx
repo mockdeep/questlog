@@ -6,7 +6,6 @@ import {uniqWith, isEqual} from 'lodash';
 import authenticityToken from 'src/_helpers/authenticity_token';
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
-import {tagShape} from 'src/shapes';
 
 export type Props = {
   tag: Tag | undefined;
@@ -148,9 +147,5 @@ class TagEditView extends React.Component<Props, State> {
     );
   }
 }
-
-TagEditView.propTypes = {
-  tag: tagShape,
-};
 
 export default TagEditView;

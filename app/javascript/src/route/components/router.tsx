@@ -10,7 +10,6 @@ import TaskFocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TaskTreeViewContainer from 'src/task/containers/tree_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
-import {routeShape} from 'src/shapes';
 
 function Nothing(): null { return null; }
 
@@ -44,7 +43,5 @@ class Router extends React.Component<Props, any> {
     return <Component />;
   }
 }
-
-Router.propTypes = {route: routeShape.isRequired};
 
 export default Router;

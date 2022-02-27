@@ -1,9 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent} from 'react';
-
-import {taskShape} from 'src/shapes';
 
 type Props = {
   task: Task,
@@ -46,12 +43,5 @@ class TaskCheckbox extends React.Component<Props, any> {
     );
   }
 }
-
-TaskCheckbox.propTypes = {
-  task: taskShape.isRequired,
-  checked: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-};
 
 export default TaskCheckbox;
