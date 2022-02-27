@@ -1,11 +1,9 @@
 jest.mock('src/_helpers/ajax');
 
 import {makeState, makeTag} from '_test_helpers/factories';
-
-import {ajaxPut} from 'src/_helpers/ajax';
 import {
-  SET, UPDATE, UPSERT,
-  setTags, updateTag, upsertTagPlain, upsertTags,
+  SET, UPSERT,
+  setTags, upsertTagPlain, upsertTags,
 } from 'src/tag/action_creators';
 
 describe('setTags', () => {
@@ -13,20 +11,6 @@ describe('setTags', () => {
     const payload = [makeTag()];
 
     expect(setTags(payload)).toEqual({type: SET, payload});
-  });
-});
-
-describe('updateTag', () => {
-  it('returns an update thunk', async () => {
-    const payload: {rules: TagRule[]} = {rules: []};
-    const thunk = updateTag(5, payload);
-    const dispatch = jest.fn();
-    const expectedAction = {type: UPDATE, payload: {id: 5, ...payload}};
-
-    await thunk(dispatch);
-
-    expect(ajaxPut).toHaveBeenCalledWith('/api/v1/tags/5', {tag: payload});
-    expect(dispatch).toHaveBeenCalledWith(expectedAction);
   });
 });
 
