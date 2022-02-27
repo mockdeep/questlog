@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :free_accounts, only: %i[new create]
     resources :charges, only: %i[new create]
+    resources :tags, only: %i[update]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'
 

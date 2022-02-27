@@ -1,17 +1,14 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {SyntheticEvent} from 'react';
 import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
 
+import authenticityToken from 'src/_helpers/authenticity_token';
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
-import {assert} from 'src/_helpers/assert';
 import {tagShape} from 'src/shapes';
 
 export type Props = {
-  setRoute: Function;
-  updateTag: Function;
   tag: Tag | undefined;
 };
 
@@ -84,27 +81,17 @@ class TagEditView extends React.Component<Props, State> {
   }
 
   validateAndSave(event: SyntheticEvent) {
-    event.preventDefault();
-    const {rules} = this.state;
-
     if (this.hasDuplicateRules()) {
       // eslint-disable-next-line no-alert
-      if (!confirm('There are duplicate rules. Remove extras?')) { return; }
+      if (!confirm('There are duplicate rules. Remove extras?')) {
+        event.preventDefault();
+        return;
+      }
 
       const uniqRules = this.uniqRules();
 
       this.setState({rules: uniqRules});
-      this.saveTag(uniqRules);
-    } else {
-      this.saveTag(rules);
     }
-  }
-
-  saveTag(rules: TagRule[]) {
-    const {setRoute, tag, updateTag} = this.props;
-
-    updateTag(assert(tag).id, {rules}).
-      then(() => setRoute({name: 'tags'}));
   }
 
   addRule() {
@@ -119,6 +106,8 @@ class TagEditView extends React.Component<Props, State> {
 
     if (!tag) { return null; }
 
+    const path = `/tags/${tag.id}`;
+
     return (
       <div>
         {`Editing tag ${tag.name}`}
@@ -129,7 +118,19 @@ class TagEditView extends React.Component<Props, State> {
           `Tag will include all tasks that match one or more of the following
             rules:`
         }
-        <form onSubmit={this.validateAndSave}>
+        <form action={path} method='post' onSubmit={this.validateAndSave}>
+          <input
+            type='hidden'
+            name='_method'
+            value='patch'
+            autoComplete='off'
+          />
+          <input
+            type='hidden'
+            name='authenticity_token'
+            value={authenticityToken()}
+            autoComplete='off'
+          />
           <ol>{this.ruleRows()}</ol>
           <input
             type='button'
@@ -149,8 +150,6 @@ class TagEditView extends React.Component<Props, State> {
 }
 
 TagEditView.propTypes = {
-  setRoute: PropTypes.func.isRequired,
-  updateTag: PropTypes.func.isRequired,
   tag: tagShape,
 };
 

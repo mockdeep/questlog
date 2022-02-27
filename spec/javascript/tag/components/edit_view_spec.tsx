@@ -6,13 +6,7 @@ import TagEditView, {Props} from 'src/tag/components/edit_view';
 import {makeTag} from '_test_helpers/factories';
 
 const tag = makeTag();
-type Payload = {rules: TagRule[]};
-const updateTag = jest.fn((id: number, payload: Payload) => Promise.resolve());
-const props: Props = {
-  tag,
-  setRoute: jest.fn(),
-  updateTag,
-};
+const props: Props = {tag};
 const defaultRule = {field: 'estimateSeconds', check: 'isBlank'};
 
 it('renders nothing when tag is not present', () => {
@@ -50,17 +44,4 @@ it('adds rules when "Add Rule" button is clicked', () => {
   expect(addRuleButton).toExist();
   addRuleButton.simulate('click');
   expect(component.find('RuleRow')).toHaveProp('rule', defaultRule);
-});
-
-it('saves the tag on submit', () => {
-  const tempRules = [{field: 'title', check: 'isWobbly'}];
-  const overrides = {...props, tag: {...tag, rules: tempRules}};
-  const component = shallow(<TagEditView {...overrides} />);
-  const preventDefault = jest.fn();
-  const fakeEvent = {preventDefault};
-
-  component.find('form').simulate('submit', fakeEvent);
-
-  expect(preventDefault).toHaveBeenCalled();
-  expect(updateTag).toHaveBeenCalledWith(tag.id, {rules: tempRules});
 });
