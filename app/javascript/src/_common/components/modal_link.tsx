@@ -1,6 +1,5 @@
 import autobind from 'class-autobind';
 import {nanoid} from 'nanoid';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import grab from 'src/_helpers/grab';
@@ -60,16 +59,5 @@ class ModalLink extends React.Component<Props, any> {
     );
   }
 }
-
-ModalLink.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]).isRequired,
-  modalName: PropTypes.string.isRequired,
-  updateCommon: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  openModalId: PropTypes.string,
-};
 
 export default ModalLink;

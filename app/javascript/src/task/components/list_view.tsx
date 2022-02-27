@@ -1,5 +1,4 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'immutability-helper';
 import {HTML5Backend} from 'react-dnd-html5-backend';
@@ -12,7 +11,6 @@ import TableHeaders from 'src/task/components/table_headers';
 import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import {assert} from 'src/_helpers/assert';
-import {taskShape} from 'src/shapes';
 
 function findTask(tasks: Task[], taskId: number): Task {
   return assert(tasks.find(task => task.id === taskId));
@@ -171,12 +169,5 @@ class TaskListView extends React.Component<Props, any> {
     );
   }
 }
-
-TaskListView.propTypes = {
-  currentTasks: PropTypes.arrayOf(taskShape).isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  pendingTasks: PropTypes.arrayOf(taskShape).isRequired,
-  updateTask: PropTypes.func.isRequired,
-};
 
 export default TaskListView;

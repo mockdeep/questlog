@@ -1,8 +1,5 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent} from 'react';
-
-import {taskShape} from 'src/shapes';
 
 type Props = {
   addNotification: Function;
@@ -109,14 +106,5 @@ class NotificationCheckbox extends React.Component<Props, any> {
     );
   }
 }
-
-NotificationCheckbox.propTypes = {
-  addNotification: PropTypes.func.isRequired,
-  completeTask: PropTypes.func.isRequired,
-  notificationsEnabled: PropTypes.bool.isRequired,
-  removeNotification: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-  updateUser: PropTypes.func.isRequired,
-};
 
 export default NotificationCheckbox;

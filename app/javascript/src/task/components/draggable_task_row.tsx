@@ -1,5 +1,4 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {ChangeEvent} from 'react';
 import {
   DragSource as dragSource, DropTarget as dropTarget,
@@ -8,7 +7,6 @@ import {
 } from 'react-dnd';
 
 import TaskRow from 'src/task/components/task_row';
-import {taskShape, timeframeSpaceShape} from 'src/shapes';
 
 type DragProps = {
   connectDragSource: Function,
@@ -122,18 +120,6 @@ class DraggableTaskRow extends React.PureComponent<Props, any> {
     );
   }
 }
-
-DraggableTaskRow.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
-  connectDropTarget: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired,
-  task: taskShape.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  status: PropTypes.string,
-  timeframesEnabled: PropTypes.bool,
-  timeframeSpace: timeframeSpaceShape,
-};
 
 export default dropTarget('task', taskTarget, targetCollect)(
   dragSource('task', taskSource, sourceCollect)(DraggableTaskRow),

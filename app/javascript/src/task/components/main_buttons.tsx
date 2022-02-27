@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import DoneButton from 'src/task/components/done_button';
 import PostponeButton from 'src/task/components/postpone_button';
-import {taskShape} from 'src/shapes';
 
 type Props = {
   completeTask: Function,
@@ -40,13 +38,5 @@ function MainButtons({
     </div>
   );
 }
-
-MainButtons.propTypes = {
-  completeTask: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  postponeTask: PropTypes.func.isRequired,
-  storePostponeSeconds: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-};
 
 export default MainButtons;

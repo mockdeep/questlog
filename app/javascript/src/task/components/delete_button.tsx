@@ -1,8 +1,5 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React, {MouseEvent} from 'react';
-
-import {taskShape} from 'src/shapes';
 
 type Props = {
   deleteTask: Function,
@@ -36,10 +33,5 @@ class DeleteButton extends React.Component<Props, any> {
     return <i {...this.rootOpts()} />;
   }
 }
-
-DeleteButton.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-};
 
 export default DeleteButton;

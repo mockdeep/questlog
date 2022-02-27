@@ -1,6 +1,5 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
@@ -8,7 +7,6 @@ import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
-import {taskShape} from 'src/shapes';
 
 type Props = {
   deleteTask: Function,
@@ -88,10 +86,5 @@ class TaskTitle extends React.Component<Props, any> {
     );
   }
 }
-
-TaskTitle.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-};
 
 export default TaskTitle;

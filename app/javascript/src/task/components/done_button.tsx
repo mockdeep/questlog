@@ -1,8 +1,5 @@
 import autobind from 'class-autobind';
-import PropTypes from 'prop-types';
 import React from 'react';
-
-import {taskShape} from 'src/shapes';
 
 type Props = {
   completeTask: Function,
@@ -48,10 +45,5 @@ class DoneButton extends React.Component<Props, any> {
     );
   }
 }
-
-DoneButton.propTypes = {
-  completeTask: PropTypes.func.isRequired,
-  task: taskShape.isRequired,
-};
 
 export default DoneButton;

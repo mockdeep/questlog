@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import ModalLink from 'src/_common/containers/modal_link';
 
 import NotificationCheckbox from 'src/notification/containers/checkbox';
-import {taskShape} from 'src/shapes';
 
 export type Props = {
   completeTask: Function;
@@ -26,10 +24,5 @@ function TaskFooter({task, completeTask}: Props) {
     </footer>
   );
 }
-
-TaskFooter.propTypes = {
-  completeTask: PropTypes.func.isRequired,
-  task: taskShape,
-};
 
 export default TaskFooter;

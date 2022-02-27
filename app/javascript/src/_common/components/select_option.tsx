@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 type Props = {
@@ -9,10 +8,5 @@ type Props = {
 function SelectOption({content, value}: Props) {
   return <option value={value}>{content}</option>;
 }
-
-SelectOption.propTypes = {
-  content: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
 
 export default SelectOption;

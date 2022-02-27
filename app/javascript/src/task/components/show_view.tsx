@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
@@ -7,7 +6,6 @@ import ParentTaskBreadCrumbs
   from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
-import {taskShape} from 'src/shapes';
 
 function repeatString(task: Task) {
   if (!task.repeatSeconds) { return 'Repeat: never'; }
@@ -99,13 +97,5 @@ class TaskShowView extends React.Component<Props, any> {
     );
   }
 }
-
-TaskShowView.propTypes = {
-  deleteTask: PropTypes.func.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  updateTaskMeta: PropTypes.func.isRequired,
-  subTasks: PropTypes.arrayOf(taskShape),
-  task: taskShape,
-};
 
 export default TaskShowView;
