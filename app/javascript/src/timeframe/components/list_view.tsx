@@ -71,7 +71,6 @@ class TimeframeListView extends React.Component<Props, any> {
   }
 
   renderTimeframe(timeframe: Timeframe) {
-    const {medianProductivity} = this.state;
     const {deleteTask, updateTask} = this.props;
 
     return (
@@ -79,7 +78,6 @@ class TimeframeListView extends React.Component<Props, any> {
         key={timeframe.name}
         timeframe={timeframe}
         timeframeSpace={this.timeframeSpace()}
-        medianProductivity={medianProductivity}
         updateTask={updateTask}
         deleteTask={deleteTask}
       />

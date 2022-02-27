@@ -23,7 +23,6 @@ function MainButtons({
       <div className='col-md-6'>
         <DoneButton
           task={task}
-          disabled={disabled}
           completeTask={completeTask}
         />
       </div>
