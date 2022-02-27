@@ -5,7 +5,7 @@ RSpec.describe Task::Update do
   let(:task_update_params) do
     {
       title: 'foo',
-      tag_names: %w[home],
+      tag_names: ['home'],
       priority: 3,
       estimate_seconds: 300,
     }
@@ -15,7 +15,7 @@ RSpec.describe Task::Update do
     task_update.(task, task_update_params)
     task.reload
     expect(task.title).to eq 'foo'
-    expect(task.tag_names).to eq %w[home]
+    expect(task.tag_names).to eq ['home']
     expect(task.priority).to eq 3
     expect(task.estimate_seconds).to eq 300
   end

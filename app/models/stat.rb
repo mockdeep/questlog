@@ -1,7 +1,7 @@
 class Stat < ApplicationRecord
   belongs_to :user
 
-  NAMES = %w[seconds-completed].freeze
+  NAMES = ['seconds-completed'].freeze
 
   validates :user_id, presence: true
   validates :timestamp, uniqueness: { scope: :user_id }

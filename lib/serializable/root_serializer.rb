@@ -22,7 +22,7 @@ module Serializable
     private
 
     def validate_options(options)
-      allowed_keys = %i[meta included]
+      allowed_keys = [:meta, :included]
       invalid_keys = options.keys - allowed_keys
       if invalid_keys.any?
         raise "invalid serializer options: #{invalid_keys}, " \
