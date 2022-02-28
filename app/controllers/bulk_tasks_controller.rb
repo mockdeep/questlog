@@ -1,4 +1,8 @@
 class BulkTasksController < ApplicationController
+  def new
+    render html: '', layout: 'react'
+  end
+
   def create
     Task::BulkCreate.(**create_params.symbolize_keys)
     respond_to do |format|
