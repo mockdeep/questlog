@@ -26,7 +26,7 @@ describe('findRoute', () => {
     const route = findRoute('sessionsNew');
 
     expect(route.name).toBe('sessionsNew');
-    expect(route.toPath()).toBe('/sessions/new');
+    expect(route.toPath()).toBe('/session/new');
   });
 
   it('raises an error when a route cannot be found', () => {
@@ -54,7 +54,7 @@ describe('matchPath', () => {
   });
 
   it('returns a match with a nested route', () => {
-    const match = matchPath('/sessions/new');
+    const match = matchPath('/session/new');
 
     expect(match).toEqual({name: 'sessionsNew', params: {}});
   });

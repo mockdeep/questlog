@@ -48,7 +48,7 @@ RSpec.describe SessionsController, '#create' do
 
     it 'renders the "new" template' do
       post(:create, params: { session: valid_attributes })
-      expect(response).to redirect_to('/sessions/new')
+      expect(response).to redirect_to(new_session_path)
     end
   end
 end

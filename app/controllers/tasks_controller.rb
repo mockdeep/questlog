@@ -4,6 +4,7 @@ class TasksController < ApplicationController
       format.json do
         render json: serialize(current_user.undone_and_pending_tasks)
       end
+      format.html { render html: '', layout: 'react' }
     end
   end
 
@@ -11,6 +12,7 @@ class TasksController < ApplicationController
     task = current_user.next_task(params[:slug])
     respond_to do |format|
       format.json { render json: serialize(task) }
+      format.html { render html: '', layout: 'react' }
     end
   end
 

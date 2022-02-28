@@ -36,6 +36,7 @@ RSpec.configure do |config|
   config.include(FactoryBot::Syntax::Methods)
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
+  config.include(ControllerHelpers, type: :controller)
   config.fixture_path = Rails.root.join('spec/fixtures')
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
