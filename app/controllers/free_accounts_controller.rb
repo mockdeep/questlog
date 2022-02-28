@@ -24,6 +24,6 @@ class FreeAccountsController < ApplicationController
   end
 
   def permitted_params
-    %i[email password password_confirmation]
+    [:email, :password, :password_confirmation]
   end
 end

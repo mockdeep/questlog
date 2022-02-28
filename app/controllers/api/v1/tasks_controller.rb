@@ -79,15 +79,15 @@ module API
       end
 
       def permitted_params
-        %i[
-          done
-          parent_task_id
-          postpone
-          priority
-          release_at
-          repeat_seconds
-          timeframe
-          title
+        [
+          :done,
+          :parent_task_id,
+          :postpone,
+          :priority,
+          :release_at,
+          :repeat_seconds,
+          :timeframe,
+          :title,
         ]
       end
 

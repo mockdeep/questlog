@@ -1,5 +1,14 @@
 class Timeframe
-  NAMES = %w[today week month quarter year lustrum decade century].freeze
+  NAMES = [
+    'today',
+    'week',
+    'month',
+    'quarter',
+    'year',
+    'lustrum',
+    'decade',
+    'century',
+  ].freeze
 
   attr_reader :tasks, :name
 

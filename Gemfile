@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read('./.ruby-version').strip
 
 # needs to be included before any other gems that use environment variables
-gem 'dotenv-rails', groups: %i[development test]
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '~> 7.0.0'
 

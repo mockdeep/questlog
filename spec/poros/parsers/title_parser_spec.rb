@@ -12,7 +12,7 @@ RSpec.describe TitleParser do
     title = "#at-home take out trash !3 #lame *1w ~5mi @#{time_string}"
     result = parser.(title)
     expect(result[:title]).to eq 'take out trash'
-    expect(result[:tag_names].sort).to eq %w[at-home lame]
+    expect(result[:tag_names].sort).to eq ['at-home', 'lame']
     expect(result[:priority]).to eq 3
     expect(result[:repeat_seconds]).to eq 1.week
     expect(result[:estimate_seconds]).to eq 5.minutes
@@ -22,12 +22,12 @@ RSpec.describe TitleParser do
   it 'returns no keys for missing markers' do
     result = parser.('nothing special')
     expect(result[:title]).to eq 'nothing special'
-    %i[
-      tag_names
-      priority
-      repeat_seconds
-      estimate_seconds
-      release_at
+    [
+      :tag_names,
+      :priority,
+      :repeat_seconds,
+      :estimate_seconds,
+      :release_at,
     ].each do |marker|
       expect(result).not_to have_key(marker)
     end
@@ -35,8 +35,8 @@ RSpec.describe TitleParser do
 
   it 'returns an array of tag_names when there are #tags in the string' do
     result = parser.('#at-home take out trash')
-    expect(result[:tag_names]).to eq %w[at-home]
+    expect(result[:tag_names]).to eq ['at-home']
     result = parser.('#at-home eat stuff #at-work')
-    expect(result[:tag_names].sort).to eq %w[at-home at-work]
+    expect(result[:tag_names].sort).to eq ['at-home', 'at-work']
   end
 end
