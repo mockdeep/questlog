@@ -33,7 +33,12 @@ export type Props = {
   updateTask: Function,
 };
 
-class TaskListView extends React.Component<Props, any> {
+type State = {
+  currentTasks: Task[];
+  pendingTasks: Task[];
+};
+
+class TaskListView extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 

@@ -9,7 +9,7 @@ type Props = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
 };
 
-class TaskCheckbox extends React.Component<Props, any> {
+class TaskCheckbox extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

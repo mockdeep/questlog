@@ -10,7 +10,7 @@ export type Props = {
   tag: Tag,
 };
 
-class TagButton extends React.Component<Props, any> {
+class TagButton extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

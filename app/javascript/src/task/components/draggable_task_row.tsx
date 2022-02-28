@@ -73,7 +73,7 @@ function targetCollect(connect: DropTargetConnector) {
   return {connectDropTarget: connect.dropTarget()};
 }
 
-class DraggableTaskRow extends React.PureComponent<Props, any> {
+class DraggableTaskRow extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

@@ -6,7 +6,7 @@ type Props = {
   task: Task,
 };
 
-class DeleteButton extends React.Component<Props, any> {
+class DeleteButton extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);
