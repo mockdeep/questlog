@@ -8,7 +8,7 @@ const SET = 'notification/SET';
 
 interface AsyncAction extends ThunkAction<void, State, null, Action> { }
 
-type NotificationClickCallback = (event: Event) => any;
+type NotificationClickCallback = (event: Event) => void;
 export type Payload = {
   key: NotificationKey;
   message: string;

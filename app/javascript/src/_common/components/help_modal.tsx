@@ -1,9 +1,11 @@
 import Modal from 'react-modal';
 import React from 'react';
 
+import {CloseModal} from 'src/_common/components/modal_link';
+
 type Props = {
   isOpen: boolean;
-  closeModal(): Function;
+  closeModal: CloseModal;
 };
 
 function HelpModal({isOpen, closeModal}: Props) {

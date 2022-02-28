@@ -14,7 +14,7 @@ type LocalState = {
 };
 
 class Sidebar extends React.Component<Props, State> {
-  mediaQueryList: any;
+  mediaQueryList: MediaQueryList;
 
   constructor(props: {}) {
     super(props);
@@ -22,11 +22,11 @@ class Sidebar extends React.Component<Props, State> {
     autobind(this);
 
     this.state = {visible: false};
+    this.mediaQueryList = window.matchMedia('(max-width: 600px)');
+    this.mediaQueryList.addListener(this.updateScreenSize);
   }
 
   UNSAFE_componentWillMount() {
-    this.mediaQueryList = window.matchMedia('(max-width: 600px)');
-    this.mediaQueryList.addListener(this.updateScreenSize);
     this.updateScreenSize();
   }
 

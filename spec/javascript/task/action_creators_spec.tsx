@@ -66,8 +66,8 @@ describe('createTask', () => {
     beforeEach(async () => {
       const data = {title: 'fooble doo'};
       const included = [
-        {rules: [{check: 'someCheck'}]},
-        {rules: [{check: 'someOtherCheck'}]},
+        {rules: [{check: 'isActive'}]},
+        {rules: [{check: 'isAssociated'}]},
       ];
       const promise = Promise.resolve({data, included});
       (ajaxPost as jest.Mock).mockReturnValue(promise);
@@ -95,8 +95,8 @@ describe('createTask', () => {
       expect(thunk).toBeInstanceOf(Function);
       expect(thunk.name).toBe('upsertTagsThunk');
 
-      const tag1 = {rules: [{check: 'someCheck'}]};
-      const tag2 = {rules: [{check: 'someOtherCheck'}]};
+      const tag1: AjaxTag = {rules: [{check: 'isActive'}]};
+      const tag2: AjaxTag = {rules: [{check: 'isAssociated'}]};
 
       thunk(dispatch);
 
@@ -200,8 +200,8 @@ describe('updateTask', () => {
     beforeEach(() => {
       const data = {title: 'fooble doo'};
       const included = [
-        {rules: [{check: 'someCheck'}]},
-        {rules: [{check: 'someOtherCheck'}]},
+        {rules: [{check: 'isBlank'}]},
+        {rules: [{check: 'isEmpty'}]},
       ];
       (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
 
@@ -225,8 +225,8 @@ describe('updateTask', () => {
 
       thunk(dispatch);
 
-      const tag1 = {rules: [{check: 'someCheck'}]};
-      const tag2 = {rules: [{check: 'someOtherCheck'}]};
+      const tag1: AjaxTag = {rules: [{check: 'isBlank'}]};
+      const tag2: AjaxTag = {rules: [{check: 'isEmpty'}]};
 
       expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag1));
       expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag2));
