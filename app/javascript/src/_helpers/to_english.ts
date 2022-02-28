@@ -1,10 +1,6 @@
 const oneMinute = 60;
 const oneHour = oneMinute * 60;
 
-function isNumeric(input: any) {
-  return input - 0 === input;
-}
-
 function pluralize(input: number, string: string) {
   const out = `${input} ${string}`;
 
@@ -23,10 +19,8 @@ function divideSeconds(seconds: number) {
 }
 
 const ToEnglish = {
-  seconds(seconds: any) {
-    if (!isNumeric(seconds)) {
-      throw new TypeError('input must be a number');
-    } else if (seconds < 0) {
+  seconds(seconds: number) {
+    if (seconds < 0) {
       throw new RangeError('number must not be negative');
     } else if (seconds < 1) {
       return 'None';

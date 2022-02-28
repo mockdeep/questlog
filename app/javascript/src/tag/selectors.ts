@@ -2,16 +2,17 @@ import {createSelector} from 'reselect';
 import {mapValues, sortBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
+import {assert} from 'src/_helpers/assert';
 import {getActiveTasks} from 'src/task/selectors';
 
 const RULES = {
   isActive() { return true; },
   isAssociated(task: Task, tag: Tag) { return task.tagIds.includes(tag.id); },
-  isBlank(task: Task, tag: Tag, {field}: {field: keyof Task}) {
-    return task[field] === null;
+  isBlank(task: Task, tag: Tag, {field}: {field?: keyof Task}) {
+    return task[assert(field)] === null;
   },
-  isEmpty(task: Task, tag: Tag, {field}: {field: keyof Task}) {
-    const value = task[field];
+  isEmpty(task: Task, tag: Tag, {field}: {field?: keyof Task}) {
+    const value = task[assert(field)];
     if (!Array.isArray(value)) {
       throw new Error(`task field ${field} must be array, but was ${value}.`);
     }
@@ -21,9 +22,9 @@ const RULES = {
 };
 
 function matchesSmartRules(task: Task, tag: Tag) {
-  const rules = [{check: 'isAssociated'}, ...tag.rules];
+  const rules: TagRule[] = [{check: 'isAssociated'}, ...tag.rules];
 
-  return rules.some(({check, ...params}) => {
+  return rules.some(({check, ...params}: TagRule): boolean => {
     const rule = grab(RULES, check);
 
     return rule(task, tag, params);

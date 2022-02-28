@@ -1,6 +1,8 @@
+type Check = 'isActive' | 'isAssociated' | 'isBlank' | 'isEmpty';
+
 type TagRule = {
-  field?: string;
-  check: string;
+  field?: keyof Task;
+  check: Check;
 };
 
 type Tag = {

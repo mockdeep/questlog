@@ -7,6 +7,7 @@ import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
+import {assert} from 'src/_helpers/assert';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
@@ -25,7 +26,7 @@ type State = {
 };
 
 class TaskRow extends React.PureComponent<Props, State> {
-  domNode: any;
+  domNode: HTMLTableRowElement | undefined;
 
   constructor(props: Props) {
     super(props);
@@ -96,12 +97,12 @@ class TaskRow extends React.PureComponent<Props, State> {
   timeframeHasSpace(name: string) {
     const {task, timeframeSpace} = this.props;
 
-    return grab(timeframeSpace, name) >= task.estimateMinutes;
+    return grab(assert(timeframeSpace), name) >= task.estimateMinutes;
   }
 
   optionText(title: string, name: string) {
     const {timeframeSpace} = this.props;
-    const space = grab(timeframeSpace, name);
+    const space = grab(assert(timeframeSpace), name);
     let text = title;
 
     if (this.timeframe() !== name && isFinite(space)) {

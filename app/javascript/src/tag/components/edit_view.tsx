@@ -32,7 +32,7 @@ class TagEditView extends React.Component<Props, State> {
     this.setState({rules: newTag.rules});
   }
 
-  updateFieldValue(index: number, value: string) {
+  updateFieldValue(index: number, value: keyof Task) {
     this.setState(state => {
       const rules = update(state.rules, {[index]: {$merge: {field: value}}});
       return {rules};
@@ -48,7 +48,9 @@ class TagEditView extends React.Component<Props, State> {
   }
 
   ruleRow(rule: TagRule, index: number) {
-    const key: string = Object.values(rule).concat(index.toString()).join('-');
+    const keyParts: string[] = Object.values(rule);
+    keyParts.push(index.toString());
+    const key: string = keyParts.join('-');
 
     return (
       <RuleRow
@@ -95,7 +97,7 @@ class TagEditView extends React.Component<Props, State> {
 
   addRule() {
     const {rules} = this.state;
-    const newRule = {field: 'estimateSeconds', check: 'isBlank'};
+    const newRule: TagRule = {field: 'estimateSeconds', check: 'isBlank'};
 
     this.setState({rules: rules.concat(newRule)});
   }

@@ -31,14 +31,4 @@ describe('ToEnglish.seconds', () => {
 
     expect(() => { ToEnglish.seconds(-1); }).toThrow(new RangeError(message));
   });
-
-  it('throws an error given an invalid type', () => {
-    const message = 'input must be a number';
-    const expectedError = new TypeError(message);
-
-    expect(() => { ToEnglish.seconds('0'); }).toThrow(expectedError);
-    expect(() => { ToEnglish.seconds('Blah'); }).toThrow(expectedError);
-    expect(() => { ToEnglish.seconds(['Blah']); }).toThrow(expectedError);
-    expect(() => { ToEnglish.seconds({Bla: 0}); }).toThrow(expectedError);
-  });
 });

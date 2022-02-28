@@ -7,6 +7,7 @@ import TaskStore from 'src/task/store';
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TimeframeStore from 'src/timeframe/store';
 import TimeframeSection from 'src/timeframe/components/section';
+import {assert} from 'src/_helpers/assert';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 
 function timeframeHasTasks(timeframe: Timeframe) {
@@ -26,11 +27,12 @@ type State = {
 };
 
 class TimeframeListView extends React.Component<Props, State> {
-  unsubscribeTimeframes: any;
+  unsubscribeTimeframes: Callback;
 
   constructor(props: Props) {
     super(props);
     this.state = {timeframes: [], medianProductivity: null, loading: true};
+    this.unsubscribeTimeframes = () => { /* reassigned later */ };
     autobind(this);
   }
 
@@ -60,7 +62,7 @@ class TimeframeListView extends React.Component<Props, State> {
   productivityString() {
     const {medianProductivity} = this.state;
 
-    return ToEnglish.seconds(medianProductivity);
+    return ToEnglish.seconds(assert(medianProductivity));
   }
 
   timeframeSpace() {
