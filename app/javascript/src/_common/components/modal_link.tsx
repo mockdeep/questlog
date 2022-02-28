@@ -19,7 +19,7 @@ export type Props = {
   updateCommon: Function;
 };
 
-class ModalLink extends React.Component<Props, any> {
+class ModalLink extends React.Component<Props, never> {
   modalId: string;
 
   constructor(props: Props) {

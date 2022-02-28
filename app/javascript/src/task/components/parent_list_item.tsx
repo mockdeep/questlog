@@ -11,7 +11,7 @@ export type Props = {
   updateTask: Function,
 };
 
-class TaskParentListItem extends React.Component<Props, any> {
+class TaskParentListItem extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

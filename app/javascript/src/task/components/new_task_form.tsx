@@ -8,7 +8,7 @@ type Props = {
   updateTaskMeta: Function,
 };
 
-class NewTaskForm extends React.Component<Props, any> {
+class NewTaskForm extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

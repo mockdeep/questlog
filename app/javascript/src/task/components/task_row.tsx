@@ -20,7 +20,11 @@ export type Props = {
   timeframeSpace?: TimeframeSpace,
 };
 
-class TaskRow extends React.PureComponent<Props, any> {
+type State = {
+  timeframeClicked: boolean;
+};
+
+class TaskRow extends React.PureComponent<Props, State> {
   domNode: any;
 
   constructor(props: Props) {

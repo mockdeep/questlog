@@ -39,7 +39,7 @@ export type Props = {
   task: Task,
 };
 
-class TaskShowView extends React.Component<Props, any> {
+class TaskShowView extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
 

@@ -7,7 +7,7 @@ type Props = {
   tags: Tag[];
 };
 
-class TagListView extends React.Component<Props, any> {
+class TagListView extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

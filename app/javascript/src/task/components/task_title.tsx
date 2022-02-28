@@ -13,7 +13,7 @@ type Props = {
   task: Task,
 };
 
-class TaskTitle extends React.Component<Props, any> {
+class TaskTitle extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);
