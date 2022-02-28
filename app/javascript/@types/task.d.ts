@@ -73,7 +73,6 @@ type BulkTaskStoreType = {
   unsubscribe(listener: Callback): void;
   notifyListeners(): void;
   unload(): void;
-  create(attrs: BulkTask): Promise<string>;
   update(attrs: BulkTask): Promise<string>;
 };
 
