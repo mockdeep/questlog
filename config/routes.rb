@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   scope constraints: HtmlConstraint.new do
     root 'pages#index'
 
-    resource :session, only: %i[create destroy]
+    resource :session, only: [:create, :destroy]
 
-    resources :free_accounts, only: %i[new create]
-    resources :charges, only: %i[new create]
-    resources :tags, only: %i[update]
+    resources :free_accounts, only: [:new, :create]
+    resources :charges, only: [:new, :create]
+    resources :tags, only: [:update]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'
 
@@ -21,14 +21,14 @@ Rails.application.routes.draw do
   scope constraints: JsonConstraint.new do
     namespace :api do
       namespace :v1 do
-        resources :tags, only: %i[create update]
-        resources :tasks, only: %i[index create update destroy]
+        resources :tags, only: [:create, :update]
+        resources :tasks, only: [:index, :create, :update, :destroy]
       end
     end
 
-    resources :tasks, only: %i[index update]
+    resources :tasks, only: [:index, :update]
     resources :timeframes, only: [:index]
-    resource :bulk_task, only: %i[create update]
+    resource :bulk_task, only: [:create, :update]
 
     get '(/:slug)', to: 'tasks#show'
   end

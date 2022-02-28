@@ -2,15 +2,15 @@ module Serializable
 
   class Locator
     BASE_CLASSES = Set.new(
-      %w[
-        Hash
-        NilClass
-        String
-        Fixnum
-        FalseClass
-        Integer
-        TrueClass
-        ActiveSupport::TimeWithZone
+      [
+        'Hash',
+        'NilClass',
+        'String',
+        'Fixnum',
+        'FalseClass',
+        'Integer',
+        'TrueClass',
+        'ActiveSupport::TimeWithZone',
       ],
     )
 

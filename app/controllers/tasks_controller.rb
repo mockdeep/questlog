@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def permitted_params
-    %i[done postpone title priority timeframe]
+    [:done, :postpone, :title, :priority, :timeframe]
   end
 
   def parsed_title

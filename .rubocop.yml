@@ -16,7 +16,9 @@ AllCops:
 Rails: { Enabled: true }
 
 # ............................................................................ #
+#
 # departures from default
+#
 # ............................................................................ #
 
 # https://github.com/sds/haml-lint/issues/315
@@ -32,12 +34,16 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
+Style/SymbolArray: { EnforcedStyle: brackets }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
+Style/WordArray: { EnforcedStyle: brackets }
 
 # ............................................................................ #
+#
 # intentionally disabled
+#
 # ............................................................................ #
 
 Bundler/GemComment: { Enabled: false }

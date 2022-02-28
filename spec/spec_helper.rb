@@ -22,7 +22,7 @@ Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
 
-%i[chrome selenium_chrome selenium_chrome_headless].each do |driver_name|
+[:chrome, :selenium_chrome, :selenium_chrome_headless].each do |driver_name|
   Capybara::Screenshot.register_driver(driver_name) do |capybara_driver, path|
     capybara_driver.browser.save_screenshot(path)
   end
