@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
-  layout 'react', only: :index
   def index
-    render html: '', layout: true
+    render html: '', layout: 'react'
   end
 
   def what; end

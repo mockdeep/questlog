@@ -35,7 +35,7 @@ describe('fetchRoute', () => {
     const payload = {name: 'sessionsNew', params: {}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, '', '/sessions/new');
+    window.history.replaceState(null, '', '/session/new');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });

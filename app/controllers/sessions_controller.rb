@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  def new
+    render html: '', layout: 'react'
+  end
+
   def create
     result = Session::Create.(**session_params, current_user: current_user)
     if result.success?
@@ -6,7 +10,7 @@ class SessionsController < ApplicationController
       return_or_redirect_to root_path, notice: 'Logged in!'
     else
       flash[:error] = 'Invalid email or password'
-      redirect_to '/sessions/new'
+      redirect_to new_session_path
     end
   end
 

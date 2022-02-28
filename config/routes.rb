@@ -7,16 +7,17 @@ Rails.application.routes.draw do
   scope constraints: HtmlConstraint.new do
     root 'pages#index'
 
-    resource :session, only: [:create, :destroy]
+    resource :session, only: [:new, :create, :destroy]
 
-    resource :bulk_task, only: [:create]
+    resource :bulk_task, only: [:new, :create]
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
-    resources :tags, only: [:update]
+    resources :tags, only: [:index, :update, :edit]
+    resources :tasks, only: [:index, :show]
+    resources :timeframes, only: [:index]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'
-
-    get '/*path', to: 'pages#index'
+    get '/:slug', to: 'tags#show'
   end
 
   scope constraints: JsonConstraint.new do
