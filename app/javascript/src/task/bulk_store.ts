@@ -34,17 +34,6 @@ const BulkTaskStore: BulkTaskStoreType = {
     this.notifyListeners();
   },
 
-  create(attrs) {
-    const data = {[this.name]: attrs};
-
-    return request({
-      data,
-      url: this.url,
-      method: 'post',
-      success: this.unload.bind(this),
-    });
-  },
-
   update(attrs) {
     const data = {[this.name]: attrs};
 

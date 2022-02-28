@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resource :session, only: [:create, :destroy]
 
+    resource :bulk_task, only: [:create]
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
     resources :tags, only: [:update]
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
 
     resources :tasks, only: [:index, :update]
     resources :timeframes, only: [:index]
-    resource :bulk_task, only: [:create, :update]
+    resource :bulk_task, only: [:update]
 
     get '(/:slug)', to: 'tasks#show'
   end

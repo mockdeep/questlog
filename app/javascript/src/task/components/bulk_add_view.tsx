@@ -1,10 +1,9 @@
 import autobind from 'class-autobind';
-import React, {ChangeEvent, FormEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 
-import BulkTaskStore from 'src/task/bulk_store';
+import authenticityToken from 'src/_helpers/authenticity_token';
 
 type Props = {
-  setRoute: Function,
   taskTitles: string,
   updateTaskMeta: Function,
 };
@@ -21,29 +20,11 @@ class TaskBulkAddView extends React.Component<Props, never> {
     updateTaskMeta({newTask: {title: event.target.value}});
   }
 
-  redirectToTaskList() {
-    const {setRoute, updateTaskMeta} = this.props;
-
-    updateTaskMeta({newTask: {title: ''}});
-    setRoute({name: 'tasks'});
-  }
-
-  saveTasks(event: FormEvent) {
-    event.preventDefault();
-
-    const {taskTitles} = this.props;
-
-    if (taskTitles.trim() === '') { return; }
-
-    const tasksParams = {titles: taskTitles.trim()};
-
-    BulkTaskStore.create(tasksParams).then(this.redirectToTaskList);
-  }
-
   rootAttrs() {
     return {
+      action: '/bulk_task',
+      method: 'post',
       className: 'new_bulk_task',
-      onSubmit: this.saveTasks,
       id: 'new_bulk_task',
     };
   }
@@ -53,6 +34,12 @@ class TaskBulkAddView extends React.Component<Props, never> {
 
     return (
       <form {...this.rootAttrs()}>
+        <input
+          type='hidden'
+          name='authenticity_token'
+          value={authenticityToken()}
+          autoComplete='off'
+        />
         <div className='row'>
           <div className='col-md-offset-3 col-md-6'>
             <textarea
@@ -62,6 +49,7 @@ class TaskBulkAddView extends React.Component<Props, never> {
               onChange={this.setTitles}
               value={taskTitles}
               name='bulk_task[titles]'
+              required
             />
           </div>
         </div>
