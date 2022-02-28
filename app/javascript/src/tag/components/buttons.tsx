@@ -9,7 +9,7 @@ export type Props = {
   selectedTagSlug?: string,
 };
 
-class TagButtons extends React.Component<Props, any> {
+class TagButtons extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

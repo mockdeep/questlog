@@ -10,7 +10,7 @@ export type Props = {
   updateTask: Function,
 };
 
-class TaskNestedList extends React.Component<Props, any> {
+class TaskNestedList extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

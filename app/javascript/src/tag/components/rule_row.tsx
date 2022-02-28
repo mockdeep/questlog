@@ -27,7 +27,7 @@ type Props = {
   updateFieldValue: Function,
 };
 
-class RuleRow extends React.Component<Props, any> {
+class RuleRow extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

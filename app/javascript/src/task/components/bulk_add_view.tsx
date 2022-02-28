@@ -9,7 +9,7 @@ type Props = {
   updateTaskMeta: Function,
 };
 
-class TaskBulkAddView extends React.Component<Props, any> {
+class TaskBulkAddView extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

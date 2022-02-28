@@ -9,7 +9,7 @@ type Props = {
   updateTask: Function,
 };
 
-class TaskLeafListItem extends React.Component<Props, any> {
+class TaskLeafListItem extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

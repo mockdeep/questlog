@@ -15,7 +15,7 @@ type ContainerProps = {
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
 // otherwise imports get funky
 // eslint-disable-next-line react/prefer-stateless-function
-class ParentTaskBreadCrumbs extends React.Component<ComponentProps, any> {
+class ParentTaskBreadCrumbs extends React.Component<ComponentProps, never> {
   render() {
     const {task} = this.props;
     if (!task) { return null; }

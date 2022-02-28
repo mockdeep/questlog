@@ -37,7 +37,7 @@ export type Props = {
   task: Task,
 };
 
-class PostponeButton extends React.Component<Props, any> {
+class PostponeButton extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

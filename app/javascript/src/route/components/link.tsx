@@ -14,7 +14,7 @@ type Props = {
   to: string;
 };
 
-class Link extends React.Component<Props, any> {
+class Link extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

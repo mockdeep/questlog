@@ -35,7 +35,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Router extends React.Component<Props, any> {
+class Router extends React.Component<Props, never> {
   render() {
     const {route} = this.props;
     const Component = grab(ROUTE_NAME_TO_COMPONENT_MAP, route.name);

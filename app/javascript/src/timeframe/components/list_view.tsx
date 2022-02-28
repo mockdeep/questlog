@@ -19,7 +19,13 @@ type Props = {
   updateTask: Function,
 };
 
-class TimeframeListView extends React.Component<Props, any> {
+type State = {
+  loading: boolean;
+  medianProductivity: number | null;
+  timeframes: Timeframe[];
+};
+
+class TimeframeListView extends React.Component<Props, State> {
   unsubscribeTimeframes: any;
 
   constructor(props: Props) {

@@ -3,11 +3,17 @@ import React from 'react';
 
 import {assert} from 'src/_helpers/assert';
 
+type Props = {};
+
+type State = {
+  visible: boolean;
+};
+
 type LocalState = {
   visible: boolean;
 };
 
-class Sidebar extends React.Component<any, any> {
+class Sidebar extends React.Component<Props, State> {
   mediaQueryList: any;
 
   constructor(props: {}) {
