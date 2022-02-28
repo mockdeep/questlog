@@ -12,7 +12,7 @@ type Props = {
   params?: {[key: string]: string | number};
   routeName: string;
   to: string;
-  children: any;
+  children: string;
 };
 
 class Link extends React.Component<Props, never> {

@@ -36,7 +36,7 @@ describe('getActiveTags', () => {
 
   describe('when tag has isBlank smart rule', () => {
     it('does not return tag when field is not defined', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'myField'}]});
+      const tag = makeTag({rules: [{check: 'isBlank', field: 'pending'}]});
       const task = makeTask();
       const state = makeState({tag: [tag], task: [task]});
 

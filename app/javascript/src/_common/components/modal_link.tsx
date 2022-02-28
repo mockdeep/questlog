@@ -61,3 +61,4 @@ class ModalLink extends React.Component<Props, never> {
 }
 
 export default ModalLink;
+export type CloseModal = InstanceType<typeof ModalLink>['closeModal'];
