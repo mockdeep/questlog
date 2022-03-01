@@ -1,7 +1,7 @@
 import autobind from 'class-autobind';
 import React, {ChangeEvent} from 'react';
 
-import authenticityToken from 'src/_helpers/authenticity_token';
+import AuthenticityToken from 'src/_common/components/authenticity_token';
 
 type Props = {
   taskTitles: string,
@@ -34,12 +34,7 @@ class TaskBulkAddView extends React.Component<Props, never> {
 
     return (
       <form {...this.rootAttrs()}>
-        <input
-          type='hidden'
-          name='authenticity_token'
-          value={authenticityToken()}
-          autoComplete='off'
-        />
+        <AuthenticityToken />
         <div className='row'>
           <div className='col-md-offset-3 col-md-6'>
             <textarea

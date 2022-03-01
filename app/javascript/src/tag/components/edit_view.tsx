@@ -3,7 +3,7 @@ import React, {SyntheticEvent} from 'react';
 import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
 
-import authenticityToken from 'src/_helpers/authenticity_token';
+import AuthenticityToken from 'src/_common/components/authenticity_token';
 import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
 
@@ -126,12 +126,7 @@ class TagEditView extends React.Component<Props, State> {
             value='patch'
             autoComplete='off'
           />
-          <input
-            type='hidden'
-            name='authenticity_token'
-            value={authenticityToken()}
-            autoComplete='off'
-          />
+          <AuthenticityToken />
           <ol>{this.ruleRows()}</ol>
           <input
             type='button'
