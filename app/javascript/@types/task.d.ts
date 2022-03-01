@@ -2,6 +2,7 @@ type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
 
 type NewTask = {
   title: string;
+  parentTaskId?: number;
 };
 
 type BaseTask = {

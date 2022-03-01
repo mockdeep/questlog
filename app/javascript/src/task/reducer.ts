@@ -4,7 +4,6 @@ import update from 'immutability-helper';
 import createBasicReducer from 'src/_common/create_basic_reducer';
 import {
   INIT,
-  CREATE,
   DELETE,
   SET,
   UPDATE,
@@ -31,12 +30,6 @@ const operations = {
       byId: {},
       meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
     };
-  },
-
-  [CREATE](previousState: TaskState, taskAttrs: Task) {
-    const task = processTask(taskAttrs);
-
-    return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },
 
   [DELETE](previousState: TaskState, taskId: number) {

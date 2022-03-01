@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :free_accounts, only: [:new, :create]
     resources :charges, only: [:new, :create]
     resources :tags, only: [:index, :update, :edit]
-    resources :tasks, only: [:index, :show]
+    resources :tasks, only: [:index, :create, :show]
     resources :timeframes, only: [:index]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'

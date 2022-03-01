@@ -8,13 +8,6 @@ module API
         render json: serialize(tasks, included: tags)
       end
 
-      def create
-        persist_current_user
-
-        task = Task::Create.(**task_params, user: current_user)
-        render json: serialize(task, included: task.tags), status: :created
-      end
-
       def update
         task = current_user.tasks.find(params[:id])
         Task::Update.(task, task_params)

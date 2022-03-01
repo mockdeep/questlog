@@ -20,15 +20,3 @@ it('sets the temporary task title on change', () => {
 
   expect(updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: 'mytext'}});
 });
-
-it('saves the task on submit', () => {
-  const overrides = {task: {title: 'new title'}};
-  const component = shallow(<NewTaskForm {...props} {...overrides} />);
-  const preventDefault = jest.fn();
-  const fakeEvent = {preventDefault};
-
-  component.find('form').simulate('submit', fakeEvent);
-
-  expect(preventDefault).toHaveBeenCalled();
-  expect(createTask).toHaveBeenCalledWith({title: 'new title'});
-});

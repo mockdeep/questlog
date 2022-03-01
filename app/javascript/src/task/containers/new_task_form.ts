@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {createTask, updateTaskMeta} from 'src/task/action_creators';
+import {updateTaskMeta} from 'src/task/action_creators';
 import NewTaskForm from 'src/task/components/new_task_form';
 
 function mapStateToProps(state: State) {
@@ -10,6 +10,6 @@ function mapStateToProps(state: State) {
   };
 }
 
-const actionCreators = {createTask, updateTaskMeta};
+const actionCreators = {updateTaskMeta};
 
 export default connect(mapStateToProps, actionCreators)(NewTaskForm);

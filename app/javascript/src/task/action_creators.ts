@@ -1,8 +1,7 @@
 import {Action} from 'redux';
 import {ThunkAction} from 'redux-thunk';
 
-import {ajaxGet, ajaxPut, ajaxPost, ajaxDelete} from 'src/_helpers/ajax';
-import flash from 'src/_helpers/flash';
+import {ajaxGet, ajaxPut, ajaxDelete} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {setTags, upsertTags} from 'src/tag/action_creators';
 
@@ -11,15 +10,10 @@ interface AsyncAction extends ThunkAction<void, State, null, Action> { }
 const BASE_PATH = '/api/v1/tasks';
 
 const INIT = 'task/INIT';
-const CREATE = 'task/CREATE';
 const DELETE = 'task/DELETE';
 const SET = 'task/SET';
 const UPDATE = 'task/UPDATE';
 const UPDATE_META = 'task/UPDATE_META';
-
-function createTaskPlain(payload: Task) {
-  return {type: CREATE, payload};
-}
 
 function deleteTaskPlain(payload: number) {
   return {type: DELETE, payload};
@@ -41,21 +35,6 @@ function fetchTasks(): AsyncAction {
     dispatch(setTasks(data));
     dispatch(setTags(included));
     dispatch(updateTaskMeta({ajaxState: 'ready'}));
-  };
-}
-
-function createTask(payload: AjaxTask): AsyncAction {
-  return async function createTaskThunk(dispatch) {
-    dispatch(updateTaskMeta({ajaxState: 'taskSaving'}));
-
-    const {data, included} = await ajaxPost(BASE_PATH, {task: payload});
-
-    dispatch(updateTaskMeta({ajaxState: 'ready'}));
-    dispatch(updateTaskMeta({newTask: {title: ''}}));
-    dispatch(createTaskPlain(data));
-    dispatch(upsertTags(included));
-    TaskStore.unload();
-    flash('success', 'Task added');
   };
 }
 
@@ -97,9 +76,8 @@ function updateTask(id: number, payload: AjaxTask): AsyncAction {
   };
 }
 
-export {INIT, CREATE, DELETE, SET, UPDATE, UPDATE_META};
+export {INIT, DELETE, SET, UPDATE, UPDATE_META};
 export {
-  createTask,
   deleteTask,
   fetchTasks,
   setTasks,
