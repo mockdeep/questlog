@@ -1,6 +1,6 @@
 import React from 'react';
 
-import authenticityToken from 'src/_helpers/authenticity_token';
+import AuthenticityToken from 'src/_common/components/authenticity_token';
 
 function SessionNewView() {
   return (
@@ -11,11 +11,7 @@ function SessionNewView() {
       className='login-form'
     >
       <h1>{'Log in'}</h1>
-      <input
-        type='hidden'
-        name='authenticity_token'
-        value={authenticityToken()}
-      />
+      <AuthenticityToken />
       <p>
         <label htmlFor='email'>{'Email'}</label>
         <br />
