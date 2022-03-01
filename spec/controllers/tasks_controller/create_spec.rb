@@ -1,5 +1,5 @@
-RSpec.describe API::V1::TasksController, '#create' do
-  let(:valid_params) { { format: :json, task: attributes_for(:task) } }
+RSpec.describe TasksController, '#create' do
+  let(:valid_params) { { task: attributes_for(:task) } }
 
   context 'when the user does not exist' do
     it 'creates a new user' do
@@ -16,10 +16,10 @@ RSpec.describe API::V1::TasksController, '#create' do
   end
 
   context 'when the task is valid' do
-    it 'renders status created' do
+    it 'renders a flash message' do
       post(:create, params: valid_params)
-      expect(response.status_message).to eq 'Created'
-      expect(response.status).to eq 201
+
+      expect(flash[:success]).to eq('Task added')
     end
 
     it 'creates the task' do
@@ -28,11 +28,10 @@ RSpec.describe API::V1::TasksController, '#create' do
       end.to change(Task, :count).by(1)
     end
 
-    it 'renders the task as json' do
-      post(:create, params: valid_params.merge(task: { title: 'abc123 #home' }))
-      task = JSON.parse(response.body)['data']
-      expect(task['title']).to eq('abc123')
-      expect(task['tagNames']).to eq(['home'])
+    it 'redirects to root_path' do
+      post(:create, params: valid_params)
+
+      expect(response).to redirect_to(root_path)
     end
   end
 end
