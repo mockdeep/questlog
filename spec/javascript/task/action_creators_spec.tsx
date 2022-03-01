@@ -1,4 +1,3 @@
-jest.mock('src/_helpers/flash');
 jest.mock('src/_helpers/ajax');
 jest.mock('src/task/store');
 
@@ -7,11 +6,11 @@ import {Dispatch, Store} from 'redux';
 import {makeState} from '_test_helpers/factories';
 
 import createAppStore from 'src/create_app_store';
-import {ajaxDelete, ajaxGet, ajaxPut, ajaxPost} from 'src/_helpers/ajax';
+import {ajaxDelete, ajaxGet, ajaxPut} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
-  CREATE, DELETE, SET, UPDATE, UPDATE_META,
-  createTask, deleteTask, fetchTasks, updateTask, updateTaskMeta,
+  DELETE, SET, UPDATE, UPDATE_META,
+  deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from 'src/task/action_creators';
 import {upsertTagPlain} from 'src/tag/action_creators';
 
@@ -47,66 +46,6 @@ describe('fetchTasks', () => {
     const expectedAction = updateTaskMeta({ajaxState: 'ready'});
 
     expect(dispatch).toHaveBeenCalledWith(expectedAction);
-  });
-});
-
-describe('createTask', () => {
-  it('sets ajax state to "taskSaving"', () => {
-    const promise = Promise.resolve({data: [], included: []});
-    (ajaxPost as jest.Mock).mockReturnValue(promise);
-    const thunk = createTask({title: 'foo'});
-    const expectedAction = updateTaskMeta({ajaxState: 'taskSaving'});
-
-    thunk(dispatch, () => makeState(), null);
-
-    expect(dispatch).toHaveBeenCalledWith(expectedAction);
-  });
-
-  describe('on success', () => {
-    beforeEach(async () => {
-      const data = {title: 'fooble doo'};
-      const included = [
-        {rules: [{check: 'isActive'}]},
-        {rules: [{check: 'isAssociated'}]},
-      ];
-      const promise = Promise.resolve({data, included});
-      (ajaxPost as jest.Mock).mockReturnValue(promise);
-
-      const createThunk = createTask({title: 'bar'});
-
-      await createThunk(dispatch, () => makeState(), null);
-
-      expect(ajaxPost).toHaveBeenCalled();
-    });
-
-    it('sets ajax state to "ready"', () => {
-      const expectedAction = updateTaskMeta({ajaxState: 'ready'});
-
-      expect(dispatch).toHaveBeenCalledWith(expectedAction);
-    });
-
-    it('dispatches a CREATE action', () => {
-      const payload = {title: 'fooble doo'};
-      expect(dispatch).toHaveBeenCalledWith({type: CREATE, payload});
-    });
-
-    it('upserts associated tags', () => {
-      const [thunk] = (dispatch as jest.Mock).mock.calls[4];
-      expect(thunk).toBeInstanceOf(Function);
-      expect(thunk.name).toBe('upsertTagsThunk');
-
-      const tag1: AjaxTag = {rules: [{check: 'isActive'}]};
-      const tag2: AjaxTag = {rules: [{check: 'isAssociated'}]};
-
-      thunk(dispatch);
-
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag1));
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag2));
-    });
-
-    it('marks TaskStore unloaded', () => {
-      expect(TaskStore.unload).toHaveBeenCalled();
-    });
   });
 });
 

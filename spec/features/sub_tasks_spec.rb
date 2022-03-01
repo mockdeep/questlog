@@ -81,7 +81,7 @@ RSpec.describe 'adding sub tasks', js: true do
     expect(page).to have_task('the parent task')
     add_task('the sub task')
     expect(task_row('the sub task')).to be_truthy
-    page.go_back
+    visit(root_path)
     add_task('!1 the not sub task')
     find('.task-link').click
     expect(page).to have_no_link('the parent task')

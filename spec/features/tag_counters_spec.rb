@@ -99,7 +99,7 @@ RSpec.describe 'tag counters', js: true do
     expect(page).to have_current_path(task_path(Task.last))
 
     add_task('the sub task #existing-tag')
-    page.go_back
+    visit(root_path)
     expect(page).to have_tag('existing-tag (1)')
 
     click_button 'Done'
@@ -119,7 +119,7 @@ RSpec.describe 'tag counters', js: true do
     expect(page).to have_current_path(task_path(Task.last))
 
     add_task('the sub task #new-tag')
-    page.go_back
+    visit(root_path)
     expect(page).to have_no_tag('existing-tag')
     expect(page).to have_tag('new-tag (1)')
 

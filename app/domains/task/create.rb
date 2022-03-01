@@ -11,7 +11,7 @@ class Task < ApplicationRecord
     private
 
     def validate_parent_task(task_params, user:)
-      return unless task_params.key?(:parent_task_id)
+      return if task_params[:parent_task_id].blank?
 
       user.tasks.find(task_params[:parent_task_id])
     end
