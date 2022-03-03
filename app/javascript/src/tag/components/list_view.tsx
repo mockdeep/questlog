@@ -1,8 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
 
-import Link from 'src/route/containers/link';
-
 type Props = {
   tags: Tag[];
 };
@@ -15,13 +13,12 @@ class TagListView extends React.Component<Props, never> {
 
   tagRow(tag: Tag) {
     if (tag.name === 'All') { return null; }
+    const path = `/tags/${tag.slug}/edit`;
 
     return (
       <div className='tag-row' key={tag.name}>
         {tag.name}
-        <Link to='editTag' params={{slug: tag.slug}} className='edit-button'>
-          {'Edit'}
-        </Link>
+        <a href={path} className='edit-button'>{'Edit'}</a>
       </div>
     );
   }
