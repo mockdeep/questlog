@@ -3,6 +3,7 @@
   "private": true,
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
     "@rails/webpacker": "^5.4.3",
     "@types/classnames": "^2.3.1",
     "@types/hoist-non-react-statics": "^3.3.0",

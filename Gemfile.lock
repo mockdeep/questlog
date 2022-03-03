@@ -378,6 +378,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.0.4)
+      railties (>= 6.0.0)
     stripe (5.44.0)
     strscan (3.0.1)
     sysexits (1.2.0)
@@ -466,6 +468,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen!
+  stimulus-rails
   stripe
   timecop
   uglifier
