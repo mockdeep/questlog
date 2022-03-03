@@ -1,6 +1,7 @@
 import 'src/globals';
 import $ from 'jquery';
 import Honeybadger from 'honeybadger-js';
+import 'controllers/index';
 
 $(() => $('[class^=flash-]').fadeOut(1500));
 
