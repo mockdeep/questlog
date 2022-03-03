@@ -22,9 +22,9 @@ it('renders tag rows', () => {
   const tagRow2 = tagRows.at(1);
 
   expect(tagRow1).toIncludeText('At Home');
-  expect(tagRow1.find('Connect(Link)')).toHaveProp('params', {slug: 'at-home'});
+  expect(tagRow1.find('a')).toHaveProp('href', '/tags/at-home/edit');
   expect(tagRow2).toIncludeText('At Work');
-  expect(tagRow2.find('Connect(Link)')).toHaveProp('params', {slug: 'at-work'});
+  expect(tagRow2.find('a')).toHaveProp('href', '/tags/at-work/edit');
 });
 
 it('does not render the "All" tag', () => {
