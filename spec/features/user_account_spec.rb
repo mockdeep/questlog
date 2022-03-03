@@ -14,8 +14,8 @@ RSpec.describe 'user accounts', js: true do
 
   it 'allows an existing user to log in' do
     click_link('Log in')
-    fill_in 'email', with: user.account.email
-    fill_in 'password', with: user.account.password
+    fill_in 'Email', with: user.account.email
+    fill_in 'Password', with: user.account.password
     click_button('Login')
     expect(page).to have_content("Logged in as #{user.email}")
     expect(page).to have_content('Logged in!')
