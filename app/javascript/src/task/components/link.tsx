@@ -1,14 +1,12 @@
 import React from 'react';
 
-import Link from 'src/route/containers/link';
-
 type Props = {task: Task};
 
 function TaskLink({task}: Props) {
+  const path = `/tasks/${task.id}`;
+
   return (
-    <Link to='showTask' className='task-link' params={{taskId: task.id}}>
-      {task.title}
-    </Link>
+    <a href={path} className='task-link'>{task.title}</a>
   );
 }
 
