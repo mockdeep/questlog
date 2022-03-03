@@ -23,10 +23,10 @@ describe('findRoute', () => {
   });
 
   it('returns a nested route', () => {
-    const route = findRoute('sessionsNew');
+    const route = findRoute('leafTasks');
 
-    expect(route.name).toBe('sessionsNew');
-    expect(route.toPath()).toBe('/session/new');
+    expect(route.name).toBe('leafTasks');
+    expect(route.toPath()).toBe('/tasks/leaf');
   });
 
   it('raises an error when a route cannot be found', () => {
@@ -54,9 +54,9 @@ describe('matchPath', () => {
   });
 
   it('returns a match with a nested route', () => {
-    const match = matchPath('/session/new');
+    const match = matchPath('/tasks/leaf');
 
-    expect(match).toEqual({name: 'sessionsNew', params: {}});
+    expect(match).toEqual({name: 'leafTasks', params: {}});
   });
 
   it('raises an error when a match cannot be found', () => {
