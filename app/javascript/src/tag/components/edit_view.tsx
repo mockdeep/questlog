@@ -4,7 +4,6 @@ import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
 
 import AuthenticityToken from 'src/_common/components/authenticity_token';
-import Link from 'src/route/containers/link';
 import RuleRow from 'src/tag/components/rule_row';
 
 export type Props = {
@@ -113,7 +112,7 @@ class TagEditView extends React.Component<Props, State> {
       <div>
         {`Editing tag ${tag.name}`}
         <br />
-        <Link to='tags'>{'Back to tags list'}</Link>
+        <a href='/tags'>{'Back to tags list'}</a>
         <h2>{'Rules'}</h2>
         {
           `Tag will include all tasks that match one or more of the following
