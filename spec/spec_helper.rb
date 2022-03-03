@@ -94,8 +94,8 @@ end
 
 def feature_login_as(user)
   click_link 'Log in'
-  fill_in 'email', with: user.account.email
-  fill_in 'password', with: user.account.password
+  fill_in 'Email', with: user.account.email
+  fill_in 'Password', with: user.account.password
   click_button 'Login'
   expect(page).to have_content("Logged in as #{user.account.email}")
   page.execute_script(File.read(support_path.join('disable_animations.js')))

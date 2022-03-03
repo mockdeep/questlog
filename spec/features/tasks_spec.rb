@@ -19,11 +19,7 @@ RSpec.describe 'Tasks page', js: true do
     it 'associates tasks with an existing user' do
       add_task('do laundry')
       expect(page).to have_task('do laundry')
-      click_link 'Log in'
-      fill_in 'email', with: user.account.email
-      fill_in 'password', with: user.account.password
-      click_button 'Login'
-      expect(page).to have_content('Log out')
+      feature_login_as(user)
       expect(page).to have_task('do laundry')
       click_link 'Log out'
       expect(page).to have_no_task

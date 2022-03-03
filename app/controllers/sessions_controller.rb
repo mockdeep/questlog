@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-    render html: '', layout: 'react'
-  end
+  def new; end
 
   def create
     result = Session::Create.(**session_params, current_user: current_user)

@@ -32,10 +32,10 @@ describe('fetchRoute', () => {
   });
 
   it('returns a SET action for a nested url', () => {
-    const payload = {name: 'sessionsNew', params: {}};
+    const payload = {name: 'leafTasks', params: {}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, '', '/session/new');
+    window.history.replaceState(null, '', '/tasks/leaf');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });

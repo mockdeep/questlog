@@ -2,7 +2,6 @@ import React from 'react';
 
 import grab from 'src/_helpers/grab';
 import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
-import SessionNewView from 'src/session/components/new_view';
 import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListViewContainer from 'src/tag/containers/list_view';
@@ -17,7 +16,6 @@ const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskFocusViewContainer,
   bulkTaskNew: TaskBulkAddViewContainer,
   freeAccountsNew: Nothing,
-  sessionsNew: SessionNewView,
   sessions: Nothing,
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
