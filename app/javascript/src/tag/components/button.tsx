@@ -2,8 +2,6 @@ import autobind from 'class-autobind';
 import classnames from 'classnames';
 import React from 'react';
 
-import Link from 'src/route/containers/link';
-
 export type Props = {
   current: boolean,
   isActive: boolean,
@@ -30,13 +28,13 @@ class TagButton extends React.Component<Props, never> {
   render() {
     const {tag} = this.props;
     const {slug, name} = tag;
-    const to = name === 'All' ? 'root' : 'tag';
+    const path = name === 'All' ? '/' : `/${slug}`;
 
     return (
       <div>
-        <Link to={to} params={{slug}} className={this.className()}>
+        <a href={path} className={this.className()}>
           {`${name} (${tag.tasks.length})`}
-        </Link>
+        </a>
       </div>
     );
   }
