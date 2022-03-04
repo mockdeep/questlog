@@ -1,0 +1,18 @@
+.sidebar.sidebar--visible{ data: { layout_target: 'expandedSidebar' } }
+  %h2.sidebar__header
+    Menu
+    - data = { action: 'layout#hideSidebar' }
+    %button.sidebar__toggle.sidebar__toggle--visible{ data: data }
+      %i.fas.fa-bars
+  %hr.sidebar__divider/
+  = sidebar_link_to(root_path) do
+    %h2 FOCUS
+  = sidebar_link_to(tasks_path) do
+    %h2 ALL TASKS
+  = sidebar_link_to(timeframes_path) do
+    %h2 TIMEFRAMES
+
+.sidebar.sidebar--hidden.hide-me{ data: { layout_target: 'collapsedSidebar' } }
+  - data = { action: 'layout#showSidebar' }
+  %button.sidebar__toggle.sidebar__toggle--hidden{ data: data }
+    %i.fas.fa-bars
