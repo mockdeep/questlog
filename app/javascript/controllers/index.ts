@@ -4,5 +4,7 @@
 
 import {application} from './application';
 
+import LayoutController from './layout_controller';
 import ReactController from './react_controller';
+application.register('layout', LayoutController);
 application.register('react', ReactController);
