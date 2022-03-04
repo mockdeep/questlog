@@ -73,7 +73,7 @@ RSpec.describe Task, '#done=' do
     it 'sets done_at to nil' do
       task.done = true
       task.done = false
-      expect(task.done_at).to eq nil
+      expect(task.done_at).to be_nil
     end
 
     context 'when it was previously nil' do
@@ -113,7 +113,7 @@ RSpec.describe Task, '#done=' do
     it 'sets done_at to nil' do
       task.done = true
       task.done = 'false'
-      expect(task.done_at).to eq nil
+      expect(task.done_at).to be_nil
     end
   end
 

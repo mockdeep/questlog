@@ -9,7 +9,7 @@ RSpec.describe Stat, '#standard_deviation' do
   end
 
   it 'returns nil when no values are given' do
-    expect(described_class.none.standard_deviation).to be nil
+    expect(described_class.none.standard_deviation).to be_nil
   end
 
   it 'returns 0 when only a single value is given' do
