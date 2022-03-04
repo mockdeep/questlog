@@ -11,6 +11,6 @@ RSpec.describe FreeAccount, '#email=' do
     account.email = 'BAD@bOOgers.COM'
     account.email = nil
 
-    expect(account.email).to be nil
+    expect(account.email).to be_nil
   end
 end

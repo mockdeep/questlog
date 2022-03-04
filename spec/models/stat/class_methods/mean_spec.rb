@@ -8,6 +8,6 @@ RSpec.describe Stat, '#mean' do
   end
 
   it 'returns nil when no values are given' do
-    expect(described_class.none.mean).to be nil
+    expect(described_class.none.mean).to be_nil
   end
 end

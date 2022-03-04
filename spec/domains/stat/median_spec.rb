@@ -18,6 +18,6 @@ RSpec.describe Stat::Median do
   end
 
   it 'returns nil when no numbers are given' do
-    expect(described_class.([])).to be nil
+    expect(described_class.([])).to be_nil
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe Profile, '.authenticate' do
   end
 
   it 'returns nil when account is not found' do
-    expect(described_class.authenticate('bad@email.com', password)).to be nil
+    expect(described_class.authenticate('bad@email.com', password)).to be_nil
   end
 
   it 'returns false when account fails to authenticate' do

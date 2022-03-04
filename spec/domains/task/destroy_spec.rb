@@ -6,7 +6,7 @@ RSpec.describe Task::Destroy do
 
   it 'destroys the task' do
     action.(task)
-    expect(Task.find_by(id: task.id)).to be nil
+    expect(Task.find_by(id: task.id)).to be_nil
   end
 
   it 'updates associated task counters' do
