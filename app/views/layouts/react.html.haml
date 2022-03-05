@@ -16,7 +16,8 @@
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
 
   %body
-    .container.content
+    - action = 'resize@window->layout#updateScreenSize'
+    .container.content{ data: { controller: 'layout', action: action } }
       .row
         .col-md-12.navbar
           .user-nav
@@ -42,6 +43,7 @@
 
       .row
         .col-md-12
+          = render 'layouts/sidebar'
           #app-base{ data: { controller: 'react' } }
 
       .footer
