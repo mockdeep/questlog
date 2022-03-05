@@ -116,14 +116,6 @@ jobs:
       - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
 
-  feature_tests_chrome_headless:
-    executor: ruby_image
-    steps:
-      - setup_environment
-      - run:
-          name: Run feature tests on Chrome headless
-          command: COVERAGE=false DRIVER=selenium_chrome_headless bundle exec rspec spec/features
-
   feature_tests_chrome:
     executor: ruby_image
     steps:
@@ -139,5 +131,4 @@ workflows:
       - lints
       - javascript_tests
       - unit_tests
-      - feature_tests_chrome_headless
       - feature_tests_chrome
