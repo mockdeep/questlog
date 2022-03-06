@@ -1,15 +1,9 @@
 class TagsController < ApplicationController
-  def index
-    render html: '', layout: 'react'
-  end
+  def index; end
 
-  def show
-    render html: '', layout: 'react'
-  end
+  def show; end
 
-  def edit
-    render html: '', layout: 'react'
-  end
+  def edit; end
 
   def update
     tag = current_user.tags.find(params[:id])

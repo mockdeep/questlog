@@ -5,7 +5,7 @@ class TimeframesController < ApplicationController
 
     respond_to do |format|
       format.json { render(json: serialize(timeframe, meta: meta)) }
-      format.html { render html: '', layout: 'react' }
+      format.html
     end
   end
 end
