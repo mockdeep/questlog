@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-  def index
-    render html: '', layout: 'react'
-  end
+  def index; end
 
   def what; end
 end

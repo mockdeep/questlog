@@ -17,7 +17,7 @@ end
 Dir[support_path.join('**/*.rb')].each { |f| require f }
 
 Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
-driver = ENV.fetch('DRIVER', :selenium_chrome_headless).to_sym
+driver = ENV.fetch('DRIVER', :selenium_chrome).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
