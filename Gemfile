@@ -31,7 +31,7 @@ gem 'stripe'
 # gem 'turbolinks'
 gem 'webpacker'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.4.1' # needs dartsass
 gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'uglifier'
