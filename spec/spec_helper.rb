@@ -103,9 +103,10 @@ end
 
 def add_task(task_title)
   fill_in 'new-title', with: task_title
+  expect(page).to have_field('new-title', with: task_title)
   click_button 'Add Task'
   expect(page).to have_content('Task added')
-  expect(page).not_to have_content('Task added')
+  expect(page).to have_no_field('new-title', with: task_title)
 end
 
 def edit_task(new_title)
