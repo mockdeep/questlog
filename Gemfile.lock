@@ -427,7 +427,7 @@ DEPENDENCIES
   bcrypt
   better_errors
   bootsnap
-  bootstrap-sass
+  bootstrap-sass (= 3.4.1)
   capybara
   capybara-screenshot
   dalli
