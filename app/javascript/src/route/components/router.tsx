@@ -1,7 +1,6 @@
 import React from 'react';
 
 import grab from 'src/_helpers/grab';
-import TaskBulkAddViewContainer from 'src/task/containers/bulk_add_view';
 import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
 import TagListViewContainer from 'src/tag/containers/list_view';
@@ -14,7 +13,6 @@ function Nothing(): null { return null; }
 
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskFocusViewContainer,
-  bulkTaskNew: TaskBulkAddViewContainer,
   freeAccountsNew: Nothing,
   sessions: Nothing,
   showTask: TaskShowViewContainer,
