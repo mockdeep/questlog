@@ -73,8 +73,6 @@ RSpec.describe 'timeframes', js: true do
     create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
 
     sidebar.click('TIMEFRAMES')
-    milliseconds = Time.zone.now.to_i * 1000
-    page.execute_script("window.balanceTime = #{milliseconds}")
 
     expect(page).to have_content('Median Productivity')
 

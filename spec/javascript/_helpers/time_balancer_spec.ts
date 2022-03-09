@@ -1,12 +1,11 @@
-/* eslint-disable import/named, no-unused-vars */
 import moment, {Moment} from 'moment';
-/* eslint-enable import/named */
+import FakeTimers from '@sinonjs/fake-timers';
 
 import TimeBalancer, {TimeBalance} from 'src/_helpers/time_balancer';
-/* eslint-enable no-unused-vars */
 
 describe('TimeBalancer.baseBalances', () => {
   it('returns a collection of base time pairs', () => {
+    const clock = FakeTimers.install();
     const expectedPairs: [Moment, TimeBalance][] = [
       [
         moment([2014, 0, 1, 10]),
@@ -65,8 +64,9 @@ describe('TimeBalancer.baseBalances', () => {
       ],
     ];
 
-    expectedPairs.forEach(pair => {
-      expect(TimeBalancer.baseBalances(pair[0])).toEqual(pair[1]);
+    expectedPairs.forEach(([timestamp, expectedValue]) => {
+      clock.setSystemTime(timestamp.valueOf());
+      expect(TimeBalancer.baseBalances()).toEqual(expectedValue);
     });
   });
 });
