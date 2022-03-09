@@ -1,4 +1,5 @@
 jest.mock('src/_helpers/request');
+import FakeTimers from '@sinonjs/fake-timers';
 
 import request from 'src/_helpers/request';
 import TimeframeStore from 'src/timeframe/store';
@@ -118,7 +119,7 @@ describe('updateModels', () => {
   });
 
   it('sets the max number of minutes for each timeframe', async () => {
-    window.balanceTime = new Date('July 20, 1969 00:20:18').getTime();
+    FakeTimers.install({now: new Date('July 20, 1969 00:20:18')});
 
     const promise = TimeframeStore.getAll();
 

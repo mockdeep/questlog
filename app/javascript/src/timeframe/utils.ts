@@ -30,9 +30,7 @@ const timeframeList: TimeframeName[] = [
 ];
 
 function baseBalance(name: TimeframeName) {
-  const {balanceTime} = window;
-
-  return TimeBalancer.baseBalances(balanceTime)[name];
+  return TimeBalancer.baseBalances()[name];
 }
 
 function calculateMaxMinutes(
