@@ -6,7 +6,6 @@ interface Window {
   debug: any;
   gon: any;
   Headers: any;
-  balanceTime: any;
 }
 
 interface Function {

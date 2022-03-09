@@ -52,9 +52,11 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
+    "@sinonjs/fake-timers": "^9.1.1",
     "@types/enzyme": "^3.10.11",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.4.1",
+    "@types/sinonjs__fake-timers": "^8.1.1",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "enzyme": "^3.11.0",

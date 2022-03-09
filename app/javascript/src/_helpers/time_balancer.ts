@@ -34,8 +34,8 @@ function timeframes(time: Moment): TimeBalance {
 }
 
 const TimeBalancer = {
-  baseBalances(time: Moment) {
-    return timeframes(moment(time));
+  baseBalances() {
+    return timeframes(moment());
   },
 };
 
