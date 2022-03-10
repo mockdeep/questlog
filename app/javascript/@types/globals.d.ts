@@ -8,10 +8,6 @@ interface Window {
   Headers: any;
 }
 
-interface Function {
-  propTypes: any;
-}
-
 interface Process {
   browser: boolean;
 }

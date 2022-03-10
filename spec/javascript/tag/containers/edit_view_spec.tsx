@@ -1,13 +1,14 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {Provider} from 'react-redux';
+import {mount} from 'enzyme';
 
 import TagEditFormContainer from 'src/tag/containers/edit_view';
 import createAppStore from 'src/create_app_store';
 
-const props = {store: createAppStore()};
-
 it('wraps the EditForm component', () => {
-  const container = shallow(<TagEditFormContainer {...props} />);
+  const container = mount(
+    <Provider store={createAppStore()}><TagEditFormContainer /></Provider>,
+  );
 
   expect(container.find('TagEditView')).toExist();
 });

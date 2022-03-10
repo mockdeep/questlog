@@ -1,13 +1,14 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {Provider} from 'react-redux';
+import {mount} from 'enzyme';
 
 import createAppStore from 'src/create_app_store';
 import TaskTreeViewContainer from 'src/task/containers/tree_view';
 
-const props = {store: createAppStore()};
-
 it('wraps the TaskTreeView component', () => {
-  const container = shallow(<TaskTreeViewContainer {...props} />);
+  const container = mount(
+    <Provider store={createAppStore()}><TaskTreeViewContainer /></Provider>,
+  );
 
   expect(container.find('TaskTreeView')).toExist();
 });
