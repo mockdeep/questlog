@@ -45,7 +45,7 @@ RSpec.describe 'timeframes', js: true do
       expect(page).to have_text('Median Productivity: 35 minutes per day')
     end
 
-    click_link('Refresh')
+    refresh
 
     sidebar.click('FOCUS')
     expect(page).to have_task('clean dishes')
@@ -79,7 +79,7 @@ RSpec.describe 'timeframes', js: true do
     task_1 = create(:task, user: user)
     task_2 = create(:task, user: user, estimate_seconds: 365)
 
-    click_link('Refresh')
+    refresh
 
     expect(page).to have_no_css('.timeframe')
     within('.inbox#inbox') do
