@@ -1,8 +1,7 @@
 import autobind from 'class-autobind';
-import React, {MouseEvent} from 'react';
+import React from 'react';
 
 import ToEnglish from 'src/_helpers/to_english';
-import TaskStore from 'src/task/store';
 
 import NewTaskForm from 'src/task/containers/new_task_form';
 import TimeframeStore from 'src/timeframe/store';
@@ -102,14 +101,6 @@ class TimeframeListView extends React.Component<Props, State> {
     return timeframes.filter(timeframeHasTasks);
   }
 
-  refresh(event: MouseEvent) {
-    const {fetchTasks} = this.props;
-
-    event.preventDefault();
-    TaskStore.unload();
-    fetchTasks();
-  }
-
   render() {
     const {loading} = this.state;
 
@@ -126,7 +117,6 @@ class TimeframeListView extends React.Component<Props, State> {
         <NewTaskForm />
         <header className='timeframes-header'>
           <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
-          <a onClick={this.refresh} href='/timeframes'>{'Refresh'}</a>
         </header>
         {this.renderedTimeframes()}
       </div>
