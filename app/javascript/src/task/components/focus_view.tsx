@@ -52,7 +52,7 @@ class TaskFocusView extends React.Component<Props, State> {
 
     if (task) {
       return this.nextTaskDisplay(task);
-    } else if (['fetching', 'taskSaving'].includes(ajaxState)) {
+    } else if (['fetching', 'taskSaving', 'loading'].includes(ajaxState)) {
       return this.loadingDisplay();
     } else if (ajaxState === 'ready') {
       return this.noTaskDisplay();
