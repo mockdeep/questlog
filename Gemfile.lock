@@ -388,6 +388,9 @@ GEM
     tilt (2.0.10)
     timecop (0.9.5)
     timeout (0.2.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -454,6 +457,7 @@ DEPENDENCIES
   puma_worker_killer
   rails (~> 7.0.0)
   rb-inotify
+  redis
   rspec-rails
   rspec_junit_formatter
   rubocop
@@ -471,6 +475,7 @@ DEPENDENCIES
   stimulus-rails
   stripe
   timecop
+  turbo-rails
   uglifier
   vcr
   web-console
