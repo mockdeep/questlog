@@ -36,6 +36,10 @@
   },
   "testEnvironment": "jsdom",
   "transform": {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  }
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.js$": "babel-jest"
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/(?!(@hotwired/turbo-rails)/)"
+  ]
 }
