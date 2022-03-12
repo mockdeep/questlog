@@ -24,11 +24,12 @@ gem 'pg'
 gem 'pry-rails'
 gem 'puma'
 gem 'puma_worker_killer'
+gem 'redis'
 gem 'sidekiq'
 gem 'skylight'
 gem 'stimulus-rails'
 gem 'stripe'
-# gem 'turbolinks'
+gem 'turbo-rails'
 gem 'webpacker'
 
 gem 'bootstrap-sass', '3.4.1' # needs dartsass
