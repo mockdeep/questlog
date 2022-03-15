@@ -42,6 +42,4 @@ function AlphaModal({isOpen, closeModal}: Props) {
   );
 }
 
-Modal.setAppElement('#app-base');
-
 export default AlphaModal;

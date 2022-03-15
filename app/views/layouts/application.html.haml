@@ -14,6 +14,10 @@
     /= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
+    - if Rails.env.test? && Timecop.frozen?
+      .time-freeze{ data: { timestamp: Time.now.to_i * 1000 } }
+      = javascript_pack_tag 'freeze_time'
+    = javascript_pack_tag 'application'
 
   %body
     - action = 'resize@window->layout#updateScreenSize'
@@ -48,9 +52,3 @@
 
       .footer
         = mail_to('robert@boon.gl', 'Feedback')
-
-    - if Rails.env.test? && Timecop.frozen?
-      .time-freeze{ data: { timestamp: Time.now.to_i * 1000 } }
-      = javascript_pack_tag 'freeze_time'
-
-    = javascript_pack_tag 'application'

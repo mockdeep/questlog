@@ -117,6 +117,4 @@ function HelpModal({isOpen, closeModal}: Props) {
   );
 }
 
-Modal.setAppElement('#app-base');
-
 export default HelpModal;
