@@ -115,7 +115,7 @@ RSpec.describe 'Tasks page', js: true do
   end
 
   it 'shows a help modal' do
-    first(:button, 'Help').click
+    first(:link, 'Help').click
     expect(page).to have_content('You can type different markers')
   end
 end
