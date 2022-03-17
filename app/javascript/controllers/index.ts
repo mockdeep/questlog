@@ -5,6 +5,10 @@
 import {application} from './application';
 
 import LayoutController from './layout_controller';
-import ReactController from './react_controller';
 application.register('layout', LayoutController);
+
+import DialogController from './dialog_controller';
+application.register('dialog', DialogController);
+
+import ReactController from './react_controller';
 application.register('react', ReactController);
