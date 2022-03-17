@@ -1,5 +1,4 @@
 import {Controller} from '@hotwired/stimulus';
-import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 
 import appBase from 'src/app_base';
@@ -9,8 +8,6 @@ import {removeNotification} from 'src/notification/action_creators';
 
 class ReactController extends Controller {
   connect() {
-    Modal.setAppElement('#app-base');
-
     window.addEventListener('popstate', () => {
       appStore.dispatch(fetchRoute());
     });

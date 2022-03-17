@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :update, :edit]
     resources :tasks, only: [:index, :create, :show]
     resources :timeframes, only: [:index]
+    resources :alpha, only: [:index]
     resources :help, only: [:index]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'

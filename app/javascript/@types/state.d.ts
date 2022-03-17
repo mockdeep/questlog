@@ -1,7 +1,3 @@
-type CommonState = {
-  openModalId: string;
-};
-
 type NotificationState = {
   currentTask: Notification;
 };
@@ -29,7 +25,6 @@ type UserState = {
 };
 
 type State = {
-  common: CommonState;
   notification: NotificationState;
   route: RouteState;
   tag: TagState;
@@ -41,7 +36,6 @@ type StateKey = keyof State;
 
 type SubState = TagState
 | TaskState
-| CommonState
 | NotificationState
 | RouteState
 | UserState;

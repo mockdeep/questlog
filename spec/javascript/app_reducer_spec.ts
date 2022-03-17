@@ -7,7 +7,6 @@ describe('appReducer', () => {
     it('returns a blank nested tree of state', () => {
       const action = {type: '@@redux/INIT'};
       const expectedState = {
-        common: {},
         user: {},
         notification: {},
         route: {params: {}},
