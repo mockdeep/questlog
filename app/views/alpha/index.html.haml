@@ -1,0 +1,21 @@
+= turbo_frame_tag 'dialog' do
+  .dialog-container{ data: { controller: 'dialog' }, aria: { hidden: 'true' } }
+    .dialog-overlay{ data: { a11y_dialog_hide: true } }
+    .dialog-content{ role: 'document' }
+      %button.dialog-close{ data: { a11y_dialog_hide: true } }
+        %i.fas.fa-times.fa-2x
+      %h3 What does "alpha" mean?
+      %p
+        "Alpha" means that this feature is under active development and not in
+        a particularly functional state. You may be best to avoid it. If you're
+        curious, however, or want to help guide the direction of the feature,
+        feel free to take a peek.
+        %a{ href: 'mailto:robert@boon.gl' } Feedback
+        is very welcome.
+
+      %h3 Why make this available?
+      %p
+        Mostly for the sake of simplicity. When developing features it can be
+        helpful to test them out in a real live environment. It also seems like
+        it makes for a fun opportunity for users to see how the sausage is made
+        and inform the process.

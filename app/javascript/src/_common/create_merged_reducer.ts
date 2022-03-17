@@ -1,11 +1,10 @@
 import {Reducer} from 'redux';
 
 /* eslint-disable no-unused-vars */
-type ReducerKey = 'common' | 'route' | 'tag' | 'task';
+type ReducerKey = 'route' | 'tag' | 'task';
 type ReducerMap = {[key: string]: Reducer};
 /* eslint-enable no-unused-vars */
 const VALID_REDUCER_KEYS = [
-  'common',
   'notification',
   'route',
   'tag',
