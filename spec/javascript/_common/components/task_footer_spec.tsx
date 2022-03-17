@@ -16,12 +16,10 @@ it('renders a footer with useful links', () => {
   const component = shallow(<TaskFooter {...props} />);
   const links = component.find('a');
 
-  expect(links).toHaveLength(1);
+  expect(links).toHaveLength(3);
 
   const link = links.at(0);
 
   expect(link).toHaveProp('href', '/bulk_task/new');
   expect(link.children()).toHaveText('Add multiple tasks');
-
-  expect(component.find('Connect(ModalLink)')).toHaveLength(2);
 });

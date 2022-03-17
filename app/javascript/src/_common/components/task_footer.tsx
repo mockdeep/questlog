@@ -1,7 +1,5 @@
 import React from 'react';
 
-import ModalLink from 'src/_common/containers/modal_link';
-
 import NotificationCheckbox from 'src/notification/containers/checkbox';
 
 export type Props = {
@@ -16,11 +14,17 @@ function TaskFooter({task, completeTask}: Props) {
       <br />
       <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}
-      <ModalLink modalName={'help'}>{'Help'}</ModalLink>
+      <a href='/help' data-turbo-frame='dialog' data-turbo='true'>
+        {'Help'}
+      </a>
       <br />
       {'Try adding a tag using "#", for example: '}
       <strong>{'#home'}</strong>{' or '}<strong>{'#5-min'}</strong>{'. '}
-      {'Click '}<ModalLink modalName={'help'}>{'help'}</ModalLink>{' for more.'}
+      {'Click '}
+      <a href='/help' data-turbo-frame='dialog' data-turbo='true'>
+        {'help'}
+      </a>
+      {' for more.'}
     </footer>
   );
 }
