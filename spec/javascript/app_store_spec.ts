@@ -3,7 +3,6 @@ import appStore from 'src/app_store';
 describe('appStore', () => {
   it('behaves like a store', () => {
     const expectedState = {
-      common: {},
       user: {},
       notification: {},
       route: {params: {}},
