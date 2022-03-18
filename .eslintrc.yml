@@ -13,6 +13,7 @@ extends:
   - plugin:import/errors
   - plugin:react/all
   - plugin:@typescript-eslint/recommended
+  - ./.eslint_wishlist.yml
   - ./.eslint_todo.yml
 plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
 parserOptions:

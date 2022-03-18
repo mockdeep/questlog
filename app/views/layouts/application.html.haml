@@ -3,6 +3,9 @@
   %head
     %title= page_title
     = favicon_link_tag 'favicon.ico'
+    - if Rails.env.test?
+      = javascript_pack_tag 'crash_site_onerror'
+
     = Gon::Base.render_data(camel_case: true)
     - if Rails.env.production?
       = javascript_include_tag '//js.honeybadger.io/v0.3/honeybadger.min.js'
