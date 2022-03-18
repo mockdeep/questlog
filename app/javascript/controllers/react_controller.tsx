@@ -1,22 +1,23 @@
-import {Controller} from '@hotwired/stimulus';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import {Controller} from '@hotwired/stimulus';
 
-import appBase from 'src/app_base';
+import AppBase from 'src/app_base';
 import appStore from 'src/app_store';
 import {fetchRoute} from 'src/route/action_creators';
+import {fetchTasks} from 'src/task/action_creators';
 import {removeNotification} from 'src/notification/action_creators';
 
 class ReactController extends Controller {
   connect() {
-    window.addEventListener('popstate', () => {
-      appStore.dispatch(fetchRoute());
-    });
+    appStore.dispatch(fetchRoute());
+    appStore.dispatch(fetchTasks());
 
     window.addEventListener('beforeunload', () => {
       appStore.dispatch(removeNotification({key: 'currentTask'}));
     });
 
-    ReactDOM.render(appBase, this.element);
+    ReactDOM.render(<AppBase />, this.element);
   }
 }
 
