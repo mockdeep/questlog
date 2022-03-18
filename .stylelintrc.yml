@@ -1,12 +1,11 @@
-extends: stylelint-config-standard-scss
+extends:
+  - stylelint-config-property-sort-order-smacss
+  - stylelint-config-standard-scss
+  - ./.stylelint_wishlist.yml
+  - ./.stylelint_todo.yml
+
+plugins:
+  - stylelint-selector-bem-pattern
+
 rules:
-  ##############################################################################
-  #
-  #                          Rules to enabled
-  #
-  ##############################################################################
-  alpha-value-notation: null
-  color-function-notation: null
-  selector-class-pattern: null
-  selector-pseudo-element-colon-notation: null
-  string-quotes: null
+  selector-class-pattern: null # handled by stylelint-selector-bem-pattern
