@@ -4,16 +4,16 @@
     = render 'common/errors', record: @account
 
   %p
-    = form.label :email
+    = form.label(:email)
     %br
-    = form.text_field :email
+    = form.text_field(:email)
   %p
-    = form.label :password
+    = form.label(:password)
     %br
-    = form.password_field :password
+    = form.password_field(:password)
   %p
-    = form.label :password_confirmation
+    = form.label(:password_confirmation)
     %br
-    = form.password_field :password_confirmation
+    = form.password_field(:password_confirmation)
   %p.button
-    = form.submit 'Create free account!'
+    = form.submit('Create free account!')
