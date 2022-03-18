@@ -9,12 +9,8 @@ import TaskListViewContainer from 'src/task/containers/list_view';
 import TaskTreeViewContainer from 'src/task/containers/tree_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 
-function Nothing(): null { return null; }
-
 const ROUTE_NAME_TO_COMPONENT_MAP = {
   root: TaskFocusViewContainer,
-  freeAccountsNew: Nothing,
-  sessions: Nothing,
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
   leafTasks: TaskListViewContainer,
