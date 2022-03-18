@@ -34,7 +34,6 @@ function compileRoutes(routes: Route[]) {
 
 const ROUTES = compileRoutes([
   {name: 'root', path: '/'},
-  {name: 'freeAccountsNew', path: '/free_accounts/new'},
   {name: 'leafTasks', path: '/tasks/leaf'},
   {name: 'rootTasks', path: '/tasks/root'},
   {name: 'treeTasks', path: '/tasks/tree'},
