@@ -1,3 +1,9 @@
+################################################################################
+#
+# Top level config
+#
+################################################################################
+
 root: true
 # have to include `plugin:react/recommended` to avoid errors
 extends:
@@ -7,6 +13,7 @@ extends:
   - plugin:import/errors
   - plugin:react/all
   - plugin:@typescript-eslint/recommended
+  - ./.eslint_todo.yml
 plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
 parserOptions:
   sourceType: module
@@ -31,70 +38,13 @@ settings:
 parser: '@typescript-eslint/parser'
 
 rules:
-  no-use-before-define: off
-  '@typescript-eslint/no-use-before-define': error
 
-  ### to enable/improve
-  '@typescript-eslint/ban-types': off
-  '@typescript-eslint/explicit-function-return-type': off
-  '@typescript-eslint/explicit-member-accessibility': off
-  '@typescript-eslint/explicit-module-boundary-types': off
-  '@typescript-eslint/member-delimiter-style': off
-  '@typescript-eslint/no-empty-interface': off
-  '@typescript-eslint/no-explicit-any': off
-  '@typescript-eslint/no-unused-vars': off
-  '@typescript-eslint/no-var-requires': off
-  class-methods-use-this: off
-  fp/no-class: off
-  fp/no-delete: off
-  fp/no-let: off
-  fp/no-loops: off
-  fp/no-mutating-methods: off
-  fp/no-mutation: off
-  fp/no-nil: off
-  fp/no-rest-parameters: off
-  fp/no-this: off
-  fp/no-throw: off
-  fp/no-unused-expression: off
-  init-declarations: off
-  jsx-a11y/anchor-is-valid: off
-  jsx-a11y/click-events-have-key-events: off
-  jsx-a11y/href-no-hash: off
-  jsx-a11y/label-has-for: off
-  jsx-a11y/label-has-associated-control: off
-  jsx-a11y/no-onchange: off
-  jsx-a11y/no-static-element-interactions: off
-  jsx-a11y/onclick-has-role: off
-  max-lines-per-function: [error, { max: 110 }]
-  max-statements: [error, { max: 14 }]
-  multiline-comment-style: off
-  no-magic-numbers: off
-  react/button-has-type: off
-  react/forbid-component-props: off
-  # https://github.com/yannickcr/eslint-plugin-react/issues/1449
-  react/jsx-curly-brace-presence: off
-  react/jsx-max-depth: off
-  react/jsx-props-no-spreading: off
-  react/jsx-sort-props: off
-  react/no-unused-class-component-methods: off
-  react/sort-comp: off
-  react/sort-prop-types: [error, { ignoreCase: true, requiredFirst: true, sortShapeProp: true }]
-  react/no-access-state-in-setstate: off
-  # semi-urgent to re-enable
-  react/no-deprecated: off
-  react/no-set-state: off
-  # https://github.com/yannickcr/eslint-plugin-react/issues/1389
-  react/no-typos: off
-  # https://github.com/yannickcr/eslint-plugin-react/issues/811
-  react/no-unused-prop-types: off
-  react/prefer-es6-class: off
-  react/require-default-props: off
-  react/require-optimization: off
-  react/static-property-placement: off
-  sort-imports: off # https://github.com/eslint/eslint/issues/7766
-  sort-keys: off
+  ##############################################################################
+  #
+  # Rules that depart from eslint defaults
+  #
+  ##############################################################################
 
-  ### departures from default
   '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
@@ -128,7 +78,12 @@ rules:
   space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
 
-  ### rules we don't want
+  ##############################################################################
+  #
+  # Rules we don't want to enable
+  #
+  ##############################################################################
+
   '@typescript-eslint/prefer-interface': off
   array-element-newline: off
   capitalized-comments: off
