@@ -40,15 +40,6 @@ it('updates the task in meta when component updates', () => {
   expect(updateTaskMeta.mock.calls[1][0].newTask.parentTaskId).toBe(501);
 });
 
-it('clears the task meta space when component unmounts', () => {
-  const task = makeTask({title: 'foo title'});
-  const component = shallow(<TaskShowView {...props} task={task} />);
-
-  component.unmount();
-
-  expect(updateTaskMeta).toHaveBeenLastCalledWith({newTask: {title: ''}});
-});
-
 it('renders something when the task is present', () => {
   const task = makeTask({title: 'foo title'});
 
