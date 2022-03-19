@@ -15,7 +15,6 @@ function timeframeHasTasks(timeframe: Timeframe) {
 
 type Props = {
   deleteTask: Function,
-  fetchTasks: Function,
   updateTask: Function,
 };
 
@@ -26,24 +25,17 @@ type State = {
 };
 
 class TimeframeListView extends React.Component<Props, State> {
-  unsubscribeTimeframes: Callback;
-
   constructor(props: Props) {
     super(props);
     this.state = {timeframes: [], medianProductivity: null, loading: true};
-    this.unsubscribeTimeframes = () => { /* reassigned later */ };
     autobind(this);
   }
 
   componentDidMount() {
     TimeframeStore.getAll().then((data: TimeframeData) => {
       this.updateTimeframes(data);
-      this.unsubscribeTimeframes = TimeframeStore.subscribe(this.loadTasks);
+      TimeframeStore.subscribe(this.loadTasks);
     });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeTimeframes();
   }
 
   loadTasks() {

@@ -29,10 +29,6 @@ class NotificationCheckbox extends React.Component<Props, never> {
     }
   }
 
-  componentWillUnmount() {
-    this.closeNotification();
-  }
-
   enableNotifications() {
     const {updateUser} = this.props;
 

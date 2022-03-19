@@ -52,12 +52,6 @@ class TaskShowView extends React.Component<Props, never> {
     this.setTask(task);
   }
 
-  componentWillUnmount() {
-    const {updateTaskMeta} = this.props;
-
-    updateTaskMeta({newTask: {title: ''}});
-  }
-
   setTask(task: Task) {
     if (!task) { return; }
 

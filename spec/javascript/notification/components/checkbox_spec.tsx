@@ -61,11 +61,3 @@ it('notifies on interval when notificationsEnabled changes to true', () => {
 
   expect(notifySpy).toHaveBeenCalled();
 });
-
-it('closes notifications when the component unmounts', () => {
-  const notificationCheckbox = shallow(<NotificationCheckbox {...props} />);
-
-  notificationCheckbox.unmount();
-
-  expect(removeNotification).toHaveBeenCalledWith({key: 'currentTask'});
-});
