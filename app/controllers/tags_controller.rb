@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
-  def index; end
+  def index
+    render(locals: { tags: current_user.tags.order(:name) })
+  end
 
   def show; end
 
