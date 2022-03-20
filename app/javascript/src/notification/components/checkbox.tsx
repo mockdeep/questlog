@@ -3,7 +3,6 @@ import React, {ChangeEvent} from 'react';
 
 type Props = {
   addNotification: Function;
-  completeTask: Function;
   notificationsEnabled: boolean;
   removeNotification: Function;
   task: Task;
@@ -51,15 +50,8 @@ class NotificationCheckbox extends React.Component<Props, never> {
     addNotification({
       key: 'currentTask',
       message: task.title,
-      onClick: this.completeTask,
+      onClick: this.closeNotification,
     });
-  }
-
-  completeTask() {
-    const {completeTask, task} = this.props;
-
-    this.closeNotification();
-    completeTask(task.id);
   }
 
   shouldShowNotifications() {

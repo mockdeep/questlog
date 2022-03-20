@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 import {makeTask} from '_test_helpers/factories';
 import TaskFooter, {Props} from 'src/_common/components/task_footer';
 
-const props: Props = {task: makeTask(), completeTask: jest.fn()};
+const props: Props = {task: makeTask()};
 
 it('renders the notification checkbox', () => {
   const component = shallow(<TaskFooter {...props} />);
