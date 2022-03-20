@@ -117,13 +117,13 @@ jobs:
       - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
 
-  feature_tests_chrome:
+  feature_tests:
     executor: ruby_image
     steps:
       - setup_environment
       - run:
-          name: Run feature tests on Chrome
-          command: COVERAGE=false DRIVER=chrome bundle exec rspec spec/features
+          name: Run feature tests
+          command: COVERAGE=false bundle exec rspec spec/features
 
 workflows:
   version: 2
@@ -132,4 +132,4 @@ workflows:
       - lints
       - javascript_tests
       - unit_tests
-      - feature_tests_chrome
+      - feature_tests
