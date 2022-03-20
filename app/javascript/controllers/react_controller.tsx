@@ -7,7 +7,6 @@ import appStore from 'src/app_store';
 import grab from 'src/_helpers/grab';
 import TagEditViewContainer from 'src/tag/containers/edit_view';
 import TaskShowViewContainer from 'src/task/containers/show_view';
-import TagListViewContainer from 'src/tag/containers/list_view';
 import TaskFocusViewContainer from 'src/task/containers/focus_view';
 import TaskListViewContainer from 'src/task/containers/list_view';
 import TaskTreeViewContainer from 'src/task/containers/tree_view';
@@ -20,7 +19,6 @@ const COMPONENTS = {
   editTag: TagEditViewContainer,
   focus: TaskFocusViewContainer,
   showTask: TaskShowViewContainer,
-  tags: TagListViewContainer,
   tasks: TaskListViewContainer,
   timeframes: TimeframeListViewContainer,
   treeTasks: TaskTreeViewContainer,

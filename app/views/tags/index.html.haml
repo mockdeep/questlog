@@ -1,1 +1,4 @@
-#app-base{ data: { controller: 'react', react_component_name_value: 'tags' } }
+- tags.each do |tag|
+  .tag-row
+    = tag.name
+    = link_to('Edit', edit_tag_path(tag), class: 'edit-button')
