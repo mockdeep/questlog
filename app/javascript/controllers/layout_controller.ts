@@ -7,6 +7,10 @@ class LayoutController extends Controller {
 
   collapsedSidebarTarget!: HTMLElement;
 
+  connect() {
+    this.updateScreenSize();
+  }
+
   updateScreenSize() {
     const visible = window.innerWidth > 600;
     this.toggleSidebarVisibility({visible});
