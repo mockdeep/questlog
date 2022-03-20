@@ -6,7 +6,6 @@ RSpec.describe 'editing smart tags', js: true do
     tag = create(:tag, name: 'my tag', user: user)
     visit '/tags'
 
-    expect(page).to have_selector('.tag-row', count: 3)
     within('.tag-row', text: tag.name) { click_link('Edit') }
 
     expect(page).to have_content("Editing tag #{tag.name}")

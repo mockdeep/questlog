@@ -1,8 +1,4 @@
-import {
-  getActiveTags,
-  getNextActiveTask,
-  getOrderedTags,
-} from 'src/tag/selectors';
+import {getActiveTags, getNextActiveTask} from 'src/tag/selectors';
 
 import {makeState, makeTag, makeTask} from '_test_helpers/factories';
 
@@ -234,37 +230,5 @@ describe('getNextActiveTask', () => {
     const state = makeState({route: {params: {}}, task: [], tag: [allTag]});
 
     expect(getNextActiveTask(state)).toBeUndefined();
-  });
-});
-
-describe('getOrderedTags', () => {
-  describe('processed priority', () => {
-    it('returns null priority for tags with no priority tasks', () => {
-      const tag1 = makeTag();
-      const tag2 = makeTag();
-      const task1 = makeTask({tagIds: [tag2.id]});
-      const state = makeState({task: [task1], tag: [tag1, tag2]});
-
-      expect(getOrderedTags(state)[0].priority).toBeNull();
-      expect(getOrderedTags(state)[1].priority).toBeNull();
-    });
-
-    it('returns the min priority for tasks with priority tasks', () => {
-      const tag = makeTag();
-      const task1 = makeTask({tagIds: [tag.id], priority: 3});
-      const task2 = makeTask({tagIds: [tag.id], priority: 1});
-      const state = makeState({task: [task1, task2], tag: [tag]});
-
-      expect(getOrderedTags(state)[0].priority).toBe(1);
-    });
-
-    it('returns the numeric priority when some tasks have priority', () => {
-      const tag = makeTag();
-      const task1 = makeTask({tagIds: [tag.id], priority: null});
-      const task2 = makeTask({tagIds: [tag.id], priority: 2});
-      const state = makeState({task: [task1, task2], tag: [tag]});
-
-      expect(getOrderedTags(state)[0].priority).toBe(2);
-    });
   });
 });
