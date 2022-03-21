@@ -1,19 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {makeTask} from '_test_helpers/factories';
-import TaskFooter, {Props} from 'src/_common/components/task_footer';
-
-const props: Props = {task: makeTask()};
-
-it('renders the notification checkbox', () => {
-  const component = shallow(<TaskFooter {...props} />);
-
-  expect(component.find('Connect(NotificationCheckbox)')).toExist();
-});
+import TaskFooter from 'src/_common/components/task_footer';
 
 it('renders a footer with useful links', () => {
-  const component = shallow(<TaskFooter {...props} />);
+  const component = shallow(<TaskFooter />);
   const links = component.find('a');
 
   expect(links).toHaveLength(3);
