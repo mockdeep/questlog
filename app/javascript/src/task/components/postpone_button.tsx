@@ -1,8 +1,6 @@
 import autobind from 'class-autobind';
 import React, {ChangeEvent} from 'react';
 
-import SelectOption from 'src/_common/components/select_option';
-
 function isPostponing(task: Task) {
   return task.loadingState === 'postponing';
 }
@@ -55,14 +53,8 @@ class PostponeButton extends React.Component<Props, never> {
     return selectOptionsOptions.map(this.selectOption);
   }
 
-  selectOption(optionOptions: OptionOptions) {
-    return (
-      <SelectOption
-        value={optionOptions.value}
-        key={optionOptions.value}
-        content={optionOptions.content}
-      />
-    );
+  selectOption({content, value}: OptionOptions) {
+    return <option key={value} value={value}>{content}</option>;
   }
 
   storePostponeSeconds(event: ChangeEvent<HTMLSelectElement>) {
