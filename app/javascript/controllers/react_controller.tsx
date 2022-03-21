@@ -13,7 +13,6 @@ import TaskTreeViewContainer from 'src/task/containers/tree_view';
 import TimeframeListViewContainer from 'src/timeframe/containers/list_view';
 import {fetchRoute} from 'src/route/action_creators';
 import {fetchTasks} from 'src/task/action_creators';
-import {removeNotification} from 'src/notification/action_creators';
 
 const COMPONENTS = {
   editTag: TagEditViewContainer,
@@ -32,10 +31,6 @@ class ReactController extends Controller {
   connect() {
     appStore.dispatch(fetchRoute());
     appStore.dispatch(fetchTasks());
-
-    window.addEventListener('beforeunload', () => {
-      appStore.dispatch(removeNotification({key: 'currentTask'}));
-    });
 
     const Component = grab(COMPONENTS, this.componentNameValue);
 

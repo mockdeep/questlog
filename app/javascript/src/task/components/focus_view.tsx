@@ -92,15 +92,13 @@ class TaskFocusView extends React.Component<Props, State> {
   }
 
   render() {
-    const {task} = this.props;
-
     return (
       <div>
         {this.mainDisplay()}
         <hr />
         <NewTaskForm />
 
-        <TaskFooter task={task} />
+        <TaskFooter />
       </div>
     );
   }
