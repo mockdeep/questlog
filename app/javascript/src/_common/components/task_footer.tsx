@@ -1,15 +1,8 @@
 import React from 'react';
 
-import NotificationCheckbox from 'src/notification/containers/checkbox';
-
-export type Props = {
-  task?: Task;
-};
-
-function TaskFooter({task}: Props) {
+function TaskFooter() {
   return (
     <footer className='task-footer'>
-      {task && <NotificationCheckbox task={task} />}
       <br />
       <a href='/bulk_task/new'>{'Add multiple tasks'}</a>
       {' | '}

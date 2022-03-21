@@ -7,8 +7,6 @@ describe('appReducer', () => {
     it('returns a blank nested tree of state', () => {
       const action = {type: '@@redux/INIT'};
       const expectedState = {
-        user: {},
-        notification: {},
         route: {params: {}},
         tag: {byId: {}, meta: {}},
         task: {
@@ -25,24 +23,13 @@ describe('appReducer', () => {
     });
   });
 
-  describe('user actions', () => {
-    it('delegates to the user reducer', () => {
-      const action = {type: 'user/UPDATE', payload: {goober: 'globber'}};
-      const notificationState = {notificationsEnabled: true};
-      const result = reducer(makeState({user: notificationState}), action);
-
-      const expected = {user: {...notificationState, goober: 'globber'}};
-      expect(result).toMatchObject(expected);
-    });
-  });
-
   describe('invalid action type', () => {
     it('throws an error', () => {
       const action = {type: 'booger/UPDATE', payload: {booger: 'flick'}};
       const message = /invalid reducer key "booger"/u;
 
       expect(() => {
-        reducer(makeState({user: {notificationsEnabled: false}}), action);
+        reducer(makeState({}), action);
       }).toThrow(message);
     });
   });
