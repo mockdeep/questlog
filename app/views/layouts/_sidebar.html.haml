@@ -5,12 +5,15 @@
     %button.sidebar__toggle.sidebar__toggle--visible{ data: data }
       %i.fas.fa-bars
   %hr.sidebar__divider/
-  = sidebar_link_to(root_path) do
-    %h2 FOCUS
-  = sidebar_link_to(tasks_path) do
-    %h2 ALL TASKS
-  = sidebar_link_to(timeframes_path) do
-    %h2 TIMEFRAMES
+  %h2
+    = sidebar_link_to(root_path) do
+      FOCUS
+  %h2
+    = sidebar_link_to(tasks_path) do
+      ALL TASKS
+  %h2
+    = sidebar_link_to(timeframes_path) do
+      TIMEFRAMES
 
 .sidebar.sidebar--hidden.hide-me{ data: { layout_target: 'collapsedSidebar' } }
   - data = { action: 'layout#showSidebar' }

@@ -16,13 +16,12 @@ def support_path
 end
 Dir[support_path.join('**/*.rb')].each { |f| require f }
 
-Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
-driver = ENV.fetch('DRIVER', :selenium_chrome).to_sym
+driver = ENV.fetch('DRIVER', :selenium).to_sym
 Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
 
-[:chrome, :selenium_chrome, :selenium_chrome_headless].each do |driver_name|
+[:selenium_chrome, :selenium_chrome_headless].each do |driver_name|
   Capybara::Screenshot.register_driver(driver_name) do |capybara_driver, path|
     capybara_driver.browser.save_screenshot(path)
   end
@@ -60,7 +59,12 @@ RSpec.configure do |config|
   VCR.configure do |vcr_config|
     vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
     vcr_config.hook_into :webmock
-    vcr_config.ignore_hosts 'chromedriver.storage.googleapis.com'
+
+    vcr_config.ignore_request do |request|
+      uri = request.uri
+      uri.include?('chromedriver') || uri.include?('geckodriver')
+    end
+
     vcr_config.ignore_localhost = true
   end
 
@@ -110,9 +114,9 @@ def add_task(task_title)
 end
 
 def edit_task(new_title)
-  task_input = first('.task-input')
-  task_input.native.clear
-  task_input.set("#{new_title}\n")
+  within('.task-display') do
+    find('.task-input').set(new_title).native.send_key(:enter)
+  end
 end
 
 def select_tag(tag_name)
