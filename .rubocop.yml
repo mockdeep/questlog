@@ -58,5 +58,6 @@ Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }
 Style/Copyright: { Enabled: false }
 Style/Documentation: { Enabled: false }
+Style/DocumentationMethod: { Enabled: false }
 Style/InlineComment: { Enabled: false }
 Style/MissingElse: { Enabled: false }
