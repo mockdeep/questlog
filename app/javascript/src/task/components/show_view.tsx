@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TaskEditTitleForm from 'src/task/containers/edit_title_form';
-import NewTaskForm from 'src/task/containers/new_task_form';
 import ParentTaskBreadCrumbs
   from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
@@ -34,62 +33,29 @@ function tagString(task: Task) {
 export type Props = {
   deleteTask: Function,
   updateTask: Function,
-  updateTaskMeta: Function,
   subTasks: Task[],
   task: Task,
 };
 
-class TaskShowView extends React.Component<Props, never> {
-  constructor(props: Props) {
-    super(props);
+function TaskShowView(props: Props) {
+  const {task, subTasks, updateTask, deleteTask} = props;
 
-    const {task} = this.props;
+  return (
+    <section>
+      <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
+      <h2><TaskEditTitleForm task={task} /></h2>
+      <div>{repeatString(task)}</div>
+      <div>{estimateString(task)}</div>
+      <div>{priorityString(task)}</div>
+      <div>{tagString(task)}</div>
 
-    this.setTask(task);
-  }
-
-  UNSAFE_componentWillReceiveProps({task}: Props) {
-    this.setTask(task);
-  }
-
-  setTask(task: Task) {
-    if (!task) { return; }
-
-    const {updateTaskMeta} = this.props;
-    const newTask = {
-      priority: task.priority,
-      repeatSeconds: task.repeatSeconds,
-      releaseAt: task.releaseAt,
-      tagNames: task.tagNames,
-      timeframe: task.timeframe,
-      parentTaskId: task.id,
-      title: '',
-    };
-
-    updateTaskMeta({newTask});
-  }
-
-  render() {
-    const {task, subTasks, updateTask, deleteTask} = this.props;
-
-    return (
-      <section>
-        <ParentTaskBreadCrumbs taskId={task.parentTaskId} />
-        <h2><TaskEditTitleForm task={task} /></h2>
-        <div>{repeatString(task)}</div>
-        <div>{estimateString(task)}</div>
-        <div>{priorityString(task)}</div>
-        <div>{tagString(task)}</div>
-
-        <SubTasksTable
-          subTasks={subTasks}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-        />
-        <NewTaskForm />
-      </section>
-    );
-  }
+      <SubTasksTable
+        subTasks={subTasks}
+        updateTask={updateTask}
+        deleteTask={deleteTask}
+      />
+    </section>
+  );
 }
 
 export default TaskShowView;

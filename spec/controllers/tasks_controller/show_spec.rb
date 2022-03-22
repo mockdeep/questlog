@@ -43,4 +43,13 @@ RSpec.describe TasksController, '#show' do
       expect(JSON.parse(response.body)['data']['title']).to eq 'blah'
     end
   end
+
+  it 'renders the new task form with parent task id when format is html' do
+    create(:task, user: user)
+
+    get(:show, params: { id: task.id })
+
+    expect(rendered)
+      .to have_field('task[parent_task_id]', with: task.id, type: :hidden)
+  end
 end

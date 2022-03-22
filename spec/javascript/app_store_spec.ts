@@ -7,11 +7,7 @@ describe('appStore', () => {
       tag: {byId: {}, meta: {}},
       task: {
         byId: {},
-        meta: {
-          postponeSeconds: 300,
-          newTask: {title: ''},
-          ajaxState: 'loading',
-        },
+        meta: {postponeSeconds: 300, ajaxState: 'loading'},
       },
     };
     const subSpy = jest.fn();
