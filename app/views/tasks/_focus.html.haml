@@ -1,0 +1,12 @@
+#app-base{ data: { controller: 'react', react_component_name_value: 'focus' } }
+
+%footer.task-footer
+  %br
+  = link_to('Add multiple tasks', new_bulk_task_path)
+  |
+  = dialog_link_to('Help', help_index_path)
+  %br
+
+  Try adding a tag using "#", for example: <strong>#home</strong> or
+  <strong>#5-min</strong>. Click #{dialog_link_to('help', help_index_path)} for
+  more.
