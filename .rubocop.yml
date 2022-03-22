@@ -26,7 +26,7 @@ Rails: { Enabled: true }
 
 # https://github.com/sds/haml-lint/issues/315
 Layout/LineLength: { Max: 80, AutoCorrect: true }
-Metrics/BlockLength: { IgnoredMethods: [configure, context, describe] }
+Metrics/BlockLength: { IgnoredMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
@@ -37,6 +37,11 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
+Style/MethodCallWithArgsParentheses:
+  IgnoredMethods:
+    - and
+    - describe
+    - to
 Style/SymbolArray: { EnforcedStyle: brackets }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
