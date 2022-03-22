@@ -1,13 +1,2 @@
-:ruby
-  component_name =
-    case params[:id]
-    when 'root', 'leaf'
-      'tasks'
-    when 'tree'
-      'treeTasks'
-    else
-      'showTask'
-    end
-  data = { controller: 'react', react_component_name_value: component_name }
-
+- data = { controller: 'react', react_component_name_value: 'showTask' }
 #app-base{ data: data }

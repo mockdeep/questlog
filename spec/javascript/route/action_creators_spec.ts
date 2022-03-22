@@ -35,7 +35,7 @@ describe('fetchRoute', () => {
     const payload = {name: 'leafTasks', params: {}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, '', '/tasks/leaf');
+    window.history.replaceState(null, '', '/leaf_tasks');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });
