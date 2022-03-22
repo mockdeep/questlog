@@ -34,9 +34,9 @@ function compileRoutes(routes: Route[]) {
 
 const ROUTES = compileRoutes([
   {name: 'root', path: '/'},
-  {name: 'leafTasks', path: '/tasks/leaf'},
-  {name: 'rootTasks', path: '/tasks/root'},
-  {name: 'treeTasks', path: '/tasks/tree'},
+  {name: 'leafTasks', path: '/leaf_tasks'},
+  {name: 'rootTasks', path: '/root_tasks'},
+  {name: 'treeTasks', path: '/tree_tasks'},
   {name: 'showTask', path: '/tasks/:taskId'},
   {name: 'tasks', path: '/tasks'},
   {name: 'timeframes', path: '/timeframes'},
