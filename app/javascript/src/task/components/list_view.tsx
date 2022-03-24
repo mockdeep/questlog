@@ -6,7 +6,6 @@ import {DndProvider} from 'react-dnd';
 
 import BulkTaskStore from 'src/task/bulk_store';
 
-import NewTaskForm from 'src/task/containers/new_task_form';
 import TableHeaders from 'src/task/components/table_headers';
 import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
@@ -164,8 +163,6 @@ class TaskListView extends React.Component<Props, State> {
     return (
       <DndProvider backend={HTML5Backend}>
         <div>
-          <NewTaskForm />
-          <br />
           <TaskListFilters />
           {this.currentTasksTable()}
           {this.pendingTasksTable()}

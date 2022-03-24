@@ -1,7 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
 
-import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskNestedList from 'src/task/components/nested_list';
 import TaskListFilters from 'src/task/components/list_filters';
 
@@ -23,8 +22,6 @@ class TaskTreeView extends React.Component<Props, never> {
 
     return (
       <div>
-        <NewTaskForm />
-        <br />
         <TaskListFilters />
         <TaskNestedList {...listProps} />
       </div>

@@ -1,0 +1,10 @@
+= form_with(model: Task.new, id: 'new-form') do |form|
+  .row
+    - if local_assigns[:parent_task]
+      = form.hidden_field(:parent_task_id, value: parent_task.id)
+    = form.text_field(:title,
+      id: 'new-title',
+      class: 'task-input',
+      placeholder: 'e.g: new do laundry #home @10am ~1h', required: true)
+  .row
+    = form.submit('Add Task', class: 'btn btn-success btn-block')
