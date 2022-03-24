@@ -10,7 +10,7 @@ describe(INIT, () => {
   it('sets up the basic structure for the store', () => {
     const expectedState = {
       byId: {},
-      meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
+      meta: {postponeSeconds: 300, ajaxState: 'loading'},
     };
 
     expect(taskReducer(null, {type: INIT})).toEqual(expectedState);

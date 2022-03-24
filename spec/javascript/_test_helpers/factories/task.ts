@@ -59,7 +59,7 @@ function makeTask(attrs: Partial<Task> = {}): Task {
   return makeCurrentTask(attrs);
 }
 
-const defaultMeta: TaskMeta = {ajaxState: 'ready', newTask: {title: ''}};
+const defaultMeta: TaskMeta = {ajaxState: 'ready'};
 function makeTaskState(
   {tasks = [], meta = {}}: {tasks?: Task[], meta?: Partial<TaskMeta>} = {},
 ): TaskState {

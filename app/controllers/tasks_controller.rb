@@ -21,7 +21,9 @@ class TasksController < ApplicationController
     task = current_user.next_task(params[:slug])
     respond_to do |format|
       format.json { render json: serialize(task) }
-      format.html
+      format.html do
+        render(locals: { task: current_user.tasks.find(params[:id]) })
+      end
     end
   end
 

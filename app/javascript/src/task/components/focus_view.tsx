@@ -1,7 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
 
-import NewTaskForm from 'src/task/containers/new_task_form';
 import TaskDisplay from 'src/task/components/task_display';
 
 export type Props = {
@@ -91,13 +90,7 @@ class TaskFocusView extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <div>
-        {this.mainDisplay()}
-        <hr />
-        <NewTaskForm />
-      </div>
-    );
+    return this.mainDisplay();
   }
 }
 

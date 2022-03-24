@@ -28,7 +28,7 @@ const operations = {
   [INIT]() {
     return {
       byId: {},
-      meta: {postponeSeconds: 300, newTask: {title: ''}, ajaxState: 'loading'},
+      meta: {postponeSeconds: 300, ajaxState: 'loading'},
     };
   },
 

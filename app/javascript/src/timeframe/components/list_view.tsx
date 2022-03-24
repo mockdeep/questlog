@@ -3,7 +3,6 @@ import React from 'react';
 
 import ToEnglish from 'src/_helpers/to_english';
 
-import NewTaskForm from 'src/task/containers/new_task_form';
 import TimeframeStore from 'src/timeframe/store';
 import TimeframeSection from 'src/timeframe/components/section';
 import {assert} from 'src/_helpers/assert';
@@ -106,7 +105,6 @@ class TimeframeListView extends React.Component<Props, State> {
 
     return (
       <div>
-        <NewTaskForm />
         <header className='timeframes-header'>
           <h2>{`Median Productivity: ${this.productivityString()} per day`}</h2>
         </header>
