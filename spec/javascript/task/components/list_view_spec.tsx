@@ -6,7 +6,6 @@ import {shallow} from 'enzyme';
 import BulkTaskStore from 'src/task/bulk_store';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import TableHeaders from 'src/task/components/table_headers';
-import TaskListFilters from 'src/task/components/list_filters';
 import TaskListView, {Props} from 'src/task/components/list_view';
 
 import {makeTask} from '_test_helpers/factories';
@@ -17,12 +16,6 @@ const props: Props = {
   pendingTasks: [],
   updateTask: jest.fn(),
 };
-
-it('renders the list filters', () => {
-  const component = shallow(<TaskListView {...props} />);
-
-  expect(component.find(TaskListFilters)).toExist();
-});
 
 it('renders current tasks', () => {
   const overrides: Props = {...props, currentTasks: [makeTask()]};
