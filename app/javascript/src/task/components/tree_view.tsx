@@ -2,7 +2,6 @@ import autobind from 'class-autobind';
 import React from 'react';
 
 import TaskNestedList from 'src/task/components/nested_list';
-import TaskListFilters from 'src/task/components/list_filters';
 
 type Props = {
   tasks: Task[],
@@ -20,12 +19,7 @@ class TaskTreeView extends React.Component<Props, never> {
     const {tasks, tasksByParentId, updateTask} = this.props;
     const listProps = {tasks, tasksByParentId, updateTask};
 
-    return (
-      <div>
-        <TaskListFilters />
-        <TaskNestedList {...listProps} />
-      </div>
-    );
+    return <TaskNestedList {...listProps} />;
   }
 }
 

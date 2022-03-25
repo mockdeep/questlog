@@ -7,7 +7,6 @@ import {DndProvider} from 'react-dnd';
 import BulkTaskStore from 'src/task/bulk_store';
 
 import TableHeaders from 'src/task/components/table_headers';
-import TaskListFilters from 'src/task/components/list_filters';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import {assert} from 'src/_helpers/assert';
 
@@ -162,11 +161,8 @@ class TaskListView extends React.Component<Props, State> {
   render() {
     return (
       <DndProvider backend={HTML5Backend}>
-        <div>
-          <TaskListFilters />
-          {this.currentTasksTable()}
-          {this.pendingTasksTable()}
-        </div>
+        {this.currentTasksTable()}
+        {this.pendingTasksTable()}
       </DndProvider>
     );
   }
