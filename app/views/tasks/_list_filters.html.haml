@@ -1,0 +1,10 @@
+.task-filters
+  Filter:
+  = active_link_to('ALL', tasks_path, class: 'task-filter')
+  = active_link_to('ROOT', root_tasks_path, class: 'task-filter')
+  = active_link_to('LEAF', leaf_tasks_path, class: 'task-filter')
+  = active_link_to('TREE', tree_tasks_path, class: 'task-filter')
+
+  %span.alpha-tag
+    = link_to(alpha_index_path, data: { turbo: true, turbo_frame: 'dialog' }) do
+      %sup (alpha)
