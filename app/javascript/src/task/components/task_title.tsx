@@ -5,7 +5,7 @@ import React from 'react';
 import DeleteButton from 'src/task/components/delete_button';
 import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
-import TaskEditTitleForm from 'src/task/containers/edit_title_form';
+import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 type Props = {

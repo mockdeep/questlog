@@ -32,6 +32,7 @@ class TasksController < ApplicationController
     Task::Update.(task, task_params)
     respond_to do |format|
       format.json { render json: serialize(task), status: :ok }
+      format.html { redirect_back(fallback_location: root_path) }
     end
   end
 

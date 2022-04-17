@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TaskEditTitleForm from 'src/task/containers/edit_title_form';
+import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import ParentTaskBreadCrumbs
   from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
