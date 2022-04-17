@@ -8,6 +8,8 @@ Enzyme.configure({adapter: new Adapter()});
 import 'whatwg-fetch';
 import 'jest-enzyme';
 
+(global as any).HTMLFormElement.prototype.submit = () => { /* do nothing */ };
+
 declare global {
   interface Window {
     Notification: any;
