@@ -23,7 +23,9 @@
   "rootDir": "../",
   "setupFilesAfterEnv": ["<rootDir>/spec/javascript/test_helper.ts"],
   "testRegex": "/spec/javascript/.*_spec.(js|ts|tsx)$",
-  "testURL": "http://test.host",
+  "testEnvironmentOptions": {
+    "url": "http://test.host"
+  },
   "globals": {
     "ts-jest": {
       "tsconfig": "tsconfig-test.json"
