@@ -15,14 +15,13 @@ Rails.application.routes.draw do
     resources :root_tasks, only: [:index]
     resources :leaf_tasks, only: [:index]
     resources :tree_tasks, only: [:index]
-    resources :tags, only: [:index, :update, :edit]
+    resources :tags, only: [:index, :show, :edit, :update]
     resources :tasks, only: [:index, :create, :show, :update]
     resources :timeframes, only: [:index]
     resources :alpha, only: [:index]
     resources :help, only: [:index]
     get '/what', to: 'pages#what'
     get '/privacy', to: 'pages#privacy'
-    get '/:slug', to: 'tags#show'
   end
 
   scope constraints: JsonConstraint.new do
@@ -37,6 +36,7 @@ Rails.application.routes.draw do
     resources :timeframes, only: [:index]
     resource :bulk_task, only: [:update]
 
-    get '(/:slug)', to: 'tasks#show'
+    get '/', to: 'tasks#show'
+    get '/tags/:slug', to: 'tasks#show'
   end
 end

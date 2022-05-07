@@ -3,7 +3,7 @@ RSpec.describe TagsController, '#show' do
     tag = create(:tag)
     login_as(tag.user)
 
-    get(:show, params: { slug: tag.slug })
+    get(:show, params: { id: tag.slug })
 
     expect(rendered).to have_selector('#app-base')
   end

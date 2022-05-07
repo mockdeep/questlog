@@ -26,7 +26,7 @@ describe('fetchRoute', () => {
     const payload = {name: 'tag', params: {slug: 'my-house'}};
     const expectedAction = {type: SET, payload};
 
-    window.history.replaceState(null, '', '/my-house');
+    window.history.replaceState(null, '', '/tags/my-house');
 
     expect(fetchRoute()).toEqual(expectedAction);
   });

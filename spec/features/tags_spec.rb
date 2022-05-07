@@ -10,9 +10,9 @@ RSpec.describe 'selecting tags on task display', js: true do
     select_tag('at-home')
     expect(page).to have_task('do laundry')
 
-    visit('/at-work')
+    visit(tag_path('at-work'))
     expect(page).to have_task('eat a banana')
-    visit('/at-home')
+    visit(tag_path('at-home'))
     expect(page).to have_task('do laundry')
   end
 
