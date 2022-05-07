@@ -36,7 +36,7 @@ it('renders a link with a path for a tag', () => {
 
   const link = component.find('a');
 
-  expect(link).toHaveProp('href', '/home');
+  expect(link).toHaveProp('href', '/tags/home');
 });
 
 it('renders a link with the root path when name is "All"', () => {

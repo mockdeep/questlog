@@ -42,7 +42,7 @@ const ROUTES = compileRoutes([
   {name: 'timeframes', path: '/timeframes'},
   {name: 'tags', path: '/tags'},
   {name: 'editTag', path: '/tags/:slug/edit'},
-  {name: 'tag', path: '/:slug'},
+  {name: 'tag', path: '/tags/:slug'},
 ]);
 
 export default ROUTES;
