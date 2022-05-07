@@ -19,7 +19,7 @@ describe('findRoute', () => {
     const route = findRoute('tag');
 
     expect(route.name).toBe('tag');
-    expect(route.toPath({slug: 'foo'})).toBe('/foo');
+    expect(route.toPath({slug: 'foo'})).toBe('/tags/foo');
   });
 
   it('returns a nested route', () => {
@@ -48,7 +48,7 @@ describe('matchPath', () => {
   });
 
   it('returns a match with a route param', () => {
-    const match = matchPath('/foo');
+    const match = matchPath('/tags/foo');
 
     expect(match).toEqual({name: 'tag', params: {slug: 'foo'}});
   });
