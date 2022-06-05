@@ -8,9 +8,6 @@ overrides:
   # Offense count: 41
   - rules: { '@typescript-eslint/ban-types': off }
     files:
-    - app/javascript/@types/reqwest.d.ts
-    - app/javascript/@types/vfile-message.d.ts
-    - app/javascript/src/_common/create_basic_reducer.ts
     - app/javascript/src/tag/components/rule_row.tsx
     - app/javascript/src/task/components/delete_button.tsx
     - app/javascript/src/task/components/done_button.tsx
