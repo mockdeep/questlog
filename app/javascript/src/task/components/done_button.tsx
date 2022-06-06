@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import React from 'react';
 
 type Props = {
-  completeTask: Function,
+  completeTask: (taskId: number) => void,
   task: Task,
 };
 

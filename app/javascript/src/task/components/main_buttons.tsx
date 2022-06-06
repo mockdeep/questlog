@@ -4,7 +4,7 @@ import DoneButton from 'src/task/components/done_button';
 import PostponeButton from 'src/task/components/postpone_button';
 
 type Props = {
-  completeTask: Function,
+  completeTask: (taskId: number) => void,
   disabled: boolean,
   postponeTask: Function,
   storePostponeSeconds: Function,
