@@ -9,8 +9,8 @@ import TagButtonsContainer from 'src/tag/containers/buttons';
 type TaskDisplayProps = {
   deleteTask: (taskId: number) => void;
   disabled: boolean;
-  storePostponeSeconds: Function;
-  postponeTask: Function;
+  storePostponeSeconds: (seconds: number) => void;
+  postponeTask: (taskId: number) => void;
   completeTask: (taskId: number) => void;
   task: Task;
 };
