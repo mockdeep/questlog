@@ -1,10 +1,15 @@
 import grab from 'src/_helpers/grab';
 
-type Operations = {
-  [key: string]: Function;
+type Payload = BasicAction['payload'];
+
+type Operations<S> = {
+  [key: string]: (previousState: S | null, payload: Payload) => void;
 };
 
-function createBasicReducer<S, O extends Operations>(operations: O) {
+function createBasicReducer<
+  S extends State[keyof State],
+  O extends Operations<S>
+>(operations: O) {
   function basicReducer(previousState: S | null, action: BasicAction) {
     const operation = grab(operations, action.type);
 

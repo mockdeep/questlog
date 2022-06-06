@@ -10,12 +10,12 @@ const operations = {
     return {byId: {}, meta: {}};
   },
 
-  [SET](previousState: TagState, tags: Tag[]) {
+  [SET](previousState: TagState | null, tags: Tag[]) {
     return {...previousState, byId: keyBy(tags, 'id')};
   },
 
-  [UPSERT](previousState: TagState, tag: Tag) {
-    if (previousState.byId.hasOwnProperty(tag.id)) {
+  [UPSERT](previousState: TagState | null, tag: Tag) {
+    if (previousState && previousState.byId.hasOwnProperty(tag.id)) {
       return update(previousState, {byId: {[tag.id]: {$merge: tag}}});
     }
 
