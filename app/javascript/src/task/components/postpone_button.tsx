@@ -30,8 +30,8 @@ const className = 'btn btn-info btn-lg btn-block postpone-button';
 
 export type Props = {
   disabled: boolean,
-  postponeTask: Function,
-  storePostponeSeconds: Function,
+  postponeTask: (taskId: number) => void,
+  storePostponeSeconds: (seconds: number) => void,
   task: Task,
 };
 
