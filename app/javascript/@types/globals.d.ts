@@ -27,4 +27,4 @@ type Callback = { (): void };
 // A => Action?
 // interface AsyncAction extends ThunkAction<void, State, null, Action> { }
 
-type AjaxData = { tag: AjaxTag } | { task: AjaxTask };
+type AjaxData = { tag: Partial<AjaxTag> } | { task: Partial<AjaxTask> };
