@@ -1,11 +1,14 @@
-declare const debug: any;
+type Gon = {
+  honeybadgerApiKey: string;
+  railsEnv: 'development' | 'production' | 'test';
+  userId: number;
+};
 
 interface Window {
-  $: any;
-  jQuery: any;
-  debug: any;
-  gon: any;
-  Headers: any;
+  $: JQueryStatic;
+  jQuery: JQueryStatic;
+  debug: () => void;
+  gon: Gon;
 }
 
 interface Process {
