@@ -7,6 +7,7 @@ import TimeframeStore from 'src/timeframe/store';
 import TimeframeSection from 'src/timeframe/components/section';
 import {assert} from 'src/_helpers/assert';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
+import {UpdateTask} from 'src/task/action_creators';
 
 function timeframeHasTasks(timeframe: Timeframe) {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
@@ -14,7 +15,7 @@ function timeframeHasTasks(timeframe: Timeframe) {
 
 type Props = {
   deleteTask: (taskId: number) => void,
-  updateTask: Function,
+  updateTask: UpdateTask,
 };
 
 type State = {

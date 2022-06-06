@@ -5,12 +5,13 @@ import TableHeaders from 'src/timeframe/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
+import {UpdateTask} from 'src/task/action_creators';
 
 type Props = {
   deleteTask: (taskId: number) => void,
   timeframe: Timeframe,
   timeframeSpace: TimeframeSpace,
-  updateTask: Function,
+  updateTask: UpdateTask,
 };
 
 class TimeframeSection extends React.Component<Props, never> {
