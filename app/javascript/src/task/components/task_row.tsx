@@ -12,7 +12,7 @@ import {assert} from 'src/_helpers/assert';
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
 export type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   task: Task,
   updateTask: Function,
   isDragging?: boolean,

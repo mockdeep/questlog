@@ -26,7 +26,7 @@ function beforeTaskHasLowerPriority(task: Task, beforeTask: Task) {
 
 export type Props = {
   currentTasks: Task[],
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   pendingTasks: Task[],
   updateTask: Function,
 };
