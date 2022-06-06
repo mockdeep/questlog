@@ -82,10 +82,10 @@ type TaskMeta = {
 };
 
 type AjaxTask = {
-  postpone?: boolean;
-  done?: boolean;
-  priority?: number;
-  timeframe?: string;
+  postpone: number;
+  done: boolean;
+  priority: number;
+  timeframe: string;
   title: string;
 };
 

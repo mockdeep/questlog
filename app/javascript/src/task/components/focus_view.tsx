@@ -2,11 +2,12 @@ import autobind from 'class-autobind';
 import React from 'react';
 
 import TaskDisplay from 'src/task/components/task_display';
+import {UpdateTask} from 'src/task/action_creators';
 
 export type Props = {
   ajaxState: string,
   deleteTask: (taskId: number) => void,
-  updateTask: Function,
+  updateTask: UpdateTask,
   task?: Task,
 };
 
