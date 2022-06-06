@@ -5,7 +5,7 @@ import TaskDisplay from 'src/task/components/task_display';
 
 export type Props = {
   ajaxState: string,
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   updateTask: Function,
   task?: Task,
 };
