@@ -4,7 +4,7 @@ import TaskRow from 'src/task/components/task_row';
 import TableHeaders from 'src/task/components/table_headers';
 
 type FunctionProps = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   updateTask: Function,
 };
 

@@ -15,7 +15,7 @@ type DragProps = {
 };
 
 type OwnProps = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   moveTask: Function;
   saveTaskPositions: Function,
   task: Task,

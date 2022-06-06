@@ -13,7 +13,7 @@ function timeframeHasTasks(timeframe: Timeframe) {
 }
 
 type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   updateTask: Function,
 };
 
