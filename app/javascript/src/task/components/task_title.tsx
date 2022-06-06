@@ -9,7 +9,7 @@ import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 
 type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   task: Task,
 };
 

@@ -7,7 +7,7 @@ import TaskTitle from 'src/task/components/task_title';
 import TagButtonsContainer from 'src/tag/containers/buttons';
 
 type TaskDisplayProps = {
-  deleteTask: Function;
+  deleteTask: (taskId: number) => void;
   disabled: boolean;
   storePostponeSeconds: Function;
   postponeTask: Function;
