@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import React, {MouseEvent} from 'react';
 
 type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   task: Task,
 };
 
