@@ -7,7 +7,7 @@ import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 
 type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   timeframe: Timeframe,
   timeframeSpace: TimeframeSpace,
   updateTask: Function,

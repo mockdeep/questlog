@@ -31,7 +31,7 @@ function tagString(task: Task) {
 }
 
 export type Props = {
-  deleteTask: Function,
+  deleteTask: (taskId: number) => void,
   updateTask: Function,
   subTasks: Task[],
   task: Task,
