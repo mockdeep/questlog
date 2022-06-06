@@ -28,7 +28,7 @@ it('updates when props update with new tag', () => {
 });
 
 it('renders rule rows', () => {
-  const tempRules: TagRule[] = [{field: 'title', check: 'isActive'}];
+  const tempRules: TagRule[] = [{field: 'tagIds', check: 'isEmpty'}];
   const overrides = {...props, tag: {...tag, rules: tempRules}};
   const component = shallow(<TagEditView {...overrides} />);
 

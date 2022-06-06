@@ -1,7 +1,9 @@
 type Check = 'isActive' | 'isAssociated' | 'isBlank' | 'isEmpty';
 
+type TagRuleField = 'estimateSeconds' | 'tagIds';
+
 type TagRule = {
-  field?: keyof Task;
+  field?: TagRuleField;
   check: Check;
 };
 

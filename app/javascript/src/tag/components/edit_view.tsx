@@ -31,7 +31,7 @@ class TagEditView extends React.Component<Props, State> {
     this.setState({rules: newTag.rules});
   }
 
-  updateFieldValue(index: number, value: keyof Task) {
+  updateFieldValue(index: number, value: TagRuleField) {
     this.setState(state => {
       const rules = update(state.rules, {[index]: {$merge: {field: value}}});
       return {rules};

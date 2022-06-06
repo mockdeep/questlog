@@ -31,25 +31,19 @@ describe('getActiveTags', () => {
   });
 
   describe('when tag has isBlank smart rule', () => {
-    it('does not return tag when field is not defined', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'pending'}]});
-      const task = makeTask();
-      const state = makeState({tag: [tag], task: [task]});
-
-      expect(getActiveTags(state)).toEqual([]);
-    });
-
     it('does not return tag when field is set to a value', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'releaseAt'}]});
-      const task = makeTask({pending: true, releaseAt: 'not blank'});
+      const tag =
+        makeTag({rules: [{check: 'isBlank', field: 'estimateSeconds'}]});
+      const task = makeTask({estimateSeconds: 52});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
 
     it('returns tag when field is set to null', () => {
-      const tag = makeTag({rules: [{check: 'isBlank', field: 'releaseAt'}]});
-      const task = makeTask({releaseAt: null});
+      const tag =
+        makeTag({rules: [{check: 'isBlank', field: 'estimateSeconds'}]});
+      const task = makeTask();
       const state = makeState({tag: [tag], task: [task]});
       const expected = [{...tag, tasks: [task]}];
 
@@ -59,17 +53,17 @@ describe('getActiveTags', () => {
 
   describe('when tag has isEmpty smart rule', () => {
     it('does not return tag when field is not empty', () => {
-      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagNames'}]});
-      const task = makeTask({tagNames: ['wat-tag']});
+      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagIds'}]});
+      const task = makeTask({tagIds: [52]});
       const state = makeState({tag: [tag], task: [task]});
 
       expect(getActiveTags(state)).toEqual([]);
     });
 
     it('returns tag when field is empty on one or more tasks', () => {
-      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagNames'}]});
-      const task1 = makeTask({tagNames: []});
-      const task2 = makeTask({tagNames: ['wat-tag']});
+      const tag = makeTag({rules: [{check: 'isEmpty', field: 'tagIds'}]});
+      const task1 = makeTask({tagIds: []});
+      const task2 = makeTask({tagIds: [52]});
       const state = makeState({tag: [tag], task: [task1, task2]});
       const expected = [{...tag, tasks: [task1]}];
 
