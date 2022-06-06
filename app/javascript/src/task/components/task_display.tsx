@@ -11,7 +11,7 @@ type TaskDisplayProps = {
   disabled: boolean;
   storePostponeSeconds: Function;
   postponeTask: Function;
-  completeTask: Function;
+  completeTask: (taskId: number) => void;
   task: Task;
 };
 
