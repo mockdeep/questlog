@@ -1,5 +1,6 @@
 import {Action} from 'redux';
 import {ThunkAction} from 'redux-thunk';
+import {InferThunkActionCreatorType} from 'react-redux';
 
 import {ajaxGet, ajaxPut, ajaxDelete} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
@@ -47,7 +48,7 @@ function deleteTask(taskId: number): AsyncAction {
   };
 }
 
-function getLoadingState(payload: AjaxTask): TaskLoadingState {
+function getLoadingState(payload: Partial<AjaxTask>): TaskLoadingState {
   if (payload.done) {
     return 'marking_done';
   } else if (payload.postpone) {
@@ -61,7 +62,7 @@ function updateTaskPlain(id: number, payload: Partial<Task>) {
   return {type: UPDATE, payload: {id, ...payload}};
 }
 
-function updateTask(id: number, payload: AjaxTask): AsyncAction {
+function updateTask(id: number, payload: Partial<AjaxTask>): AsyncAction {
   return async function updateTaskThunk(dispatch) {
     const clientPayload = {loadingState: getLoadingState(payload)};
 
@@ -84,3 +85,5 @@ export {
   updateTask,
   updateTaskMeta,
 };
+
+export type UpdateTask = InferThunkActionCreatorType<typeof updateTask>;

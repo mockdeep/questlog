@@ -7,6 +7,7 @@ import {
 } from 'react-dnd';
 
 import TaskRow from 'src/task/components/task_row';
+import {UpdateTask} from 'src/task/action_creators';
 
 type DragProps = {
   connectDragSource: Function,
@@ -19,7 +20,7 @@ type OwnProps = {
   moveTask: Function;
   saveTaskPositions: Function,
   task: Task,
-  updateTask: Function,
+  updateTask: UpdateTask,
   status?: string,
   timeframesEnabled?: boolean,
   timeframeSpace?: TimeframeSpace,
@@ -82,7 +83,7 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
   updatePriority(event: ChangeEvent<HTMLSelectElement>) {
     const {task, updateTask} = this.props;
 
-    updateTask(task.id, {priority: event.target.value});
+    updateTask(task.id, {priority: parseInt(event.target.value, 10)});
   }
 
   bindDragAndDrop(component: TaskRow) {

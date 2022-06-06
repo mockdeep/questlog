@@ -8,13 +8,14 @@ import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {assert} from 'src/_helpers/assert';
+import {UpdateTask} from 'src/task/action_creators';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 
 export type Props = {
   deleteTask: (taskId: number) => void,
   task: Task,
-  updateTask: Function,
+  updateTask: UpdateTask,
   isDragging?: boolean,
   status?: string,
   timeframesEnabled?: boolean,
@@ -44,7 +45,7 @@ class TaskRow extends React.PureComponent<Props, State> {
   updatePriority(event: ChangeEvent<HTMLSelectElement>) {
     const {task, updateTask} = this.props;
 
-    updateTask(task.id, {priority: event.target.value});
+    updateTask(task.id, {priority: parseInt(event.target.value, 10)});
   }
 
   updateTimeframe(event: ChangeEvent<HTMLSelectElement>) {
