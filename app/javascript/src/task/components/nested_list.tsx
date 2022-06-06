@@ -3,11 +3,12 @@ import React from 'react';
 
 import TaskLeafListItem from 'src/task/components/leaf_list_item';
 import TaskParentListItem from 'src/task/components/parent_list_item';
+import {UpdateTask} from 'src/task/action_creators';
 
 export type Props = {
   tasks: Task[],
   tasksByParentId: TasksByParentId,
-  updateTask: Function,
+  updateTask: UpdateTask,
 };
 
 class TaskNestedList extends React.Component<Props, never> {
