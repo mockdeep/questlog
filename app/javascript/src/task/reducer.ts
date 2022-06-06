@@ -2,6 +2,7 @@ import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
+import {assert} from 'src/_helpers/assert';
 import {
   INIT,
   DELETE,
@@ -32,24 +33,24 @@ const operations = {
     };
   },
 
-  [DELETE](previousState: TaskState, taskId: number) {
+  [DELETE](previousState: TaskState | null, taskId: number) {
     return update(previousState, {byId: {$unset: [taskId]}});
   },
 
-  [SET](previousState: TaskState, taskData: Task[]) {
+  [SET](previousState: TaskState | null, taskData: Task[]) {
     const tasks = taskData.map(processTask);
 
     return {...previousState, byId: keyBy(tasks, 'id')};
   },
 
-  [UPDATE](previousState: TaskState, taskAttrs: Task) {
+  [UPDATE](previousState: TaskState | null, taskAttrs: Task) {
     const task =
-      processTask({...previousState.byId[taskAttrs.id], ...taskAttrs});
+      processTask({...assert(previousState).byId[taskAttrs.id], ...taskAttrs});
 
     return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },
 
-  [UPDATE_META](previousState: TaskState, meta: TaskMeta) {
+  [UPDATE_META](previousState: TaskState | null, meta: TaskMeta) {
     return update(previousState, {meta: {$merge: meta}});
   },
 };
