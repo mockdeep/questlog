@@ -21,10 +21,10 @@ const CHECK_DISPLAY_NAMES = {
 };
 
 type Props = {
-  deleteRule: Function,
+  deleteRule: (index: number) => void,
   index: number,
   rule: TagRule,
-  updateFieldValue: Function,
+  updateFieldValue: (index: number, value: TagRuleField) => void,
 };
 
 class RuleRow extends React.Component<Props, never> {
@@ -35,8 +35,13 @@ class RuleRow extends React.Component<Props, never> {
 
   updateFieldValue(event: ChangeEvent<HTMLSelectElement>) {
     const {index, updateFieldValue} = this.props;
+    const {value} = event.target;
 
-    updateFieldValue(index, event.target.value);
+    if (value === 'estimateSeconds' || value === 'tagIds') {
+      updateFieldValue(index, value);
+    } else {
+      throw new Error(`unknown rule field: ${value}`);
+    }
   }
 
   fieldOptions() {
