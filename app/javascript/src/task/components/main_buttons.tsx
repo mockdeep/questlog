@@ -6,8 +6,8 @@ import PostponeButton from 'src/task/components/postpone_button';
 type Props = {
   completeTask: (taskId: number) => void,
   disabled: boolean,
-  postponeTask: Function,
-  storePostponeSeconds: Function,
+  postponeTask: (taskId: number) => void,
+  storePostponeSeconds: (seconds: number) => void,
   task: Task,
 };
 
