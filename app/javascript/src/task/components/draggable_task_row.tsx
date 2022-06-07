@@ -4,21 +4,23 @@ import {
   DragSource as dragSource, DropTarget as dropTarget,
   DragSourceConnector, DragSourceMonitor, DropTargetConnector,
   DropTargetMonitor,
+  ConnectDragSource, ConnectDropTarget,
 } from 'react-dnd';
 
 import TaskRow from 'src/task/components/task_row';
+import {assert} from 'src/_helpers/assert';
 import {UpdateTask} from 'src/task/action_creators';
 
 type DragProps = {
-  connectDragSource: Function,
-  connectDropTarget: Function,
+  connectDragSource: ConnectDragSource,
+  connectDropTarget: ConnectDropTarget,
   isDragging: boolean,
 };
 
 type OwnProps = {
   deleteTask: (taskId: number) => void,
-  moveTask: Function;
-  saveTaskPositions: Function,
+  moveTask: (id: number, afterId: number) => void;
+  saveTaskPositions: (component: DraggableTaskRow) => void,
   task: Task,
   updateTask: UpdateTask,
   status?: string,
@@ -92,8 +94,8 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
     const {domNode} = component;
     const {connectDragSource, connectDropTarget} = this.props;
 
-    connectDropTarget(domNode);
-    connectDragSource(domNode);
+    connectDropTarget(assert(domNode));
+    connectDragSource(assert(domNode));
   }
 
   render() {
