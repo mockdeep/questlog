@@ -3,10 +3,11 @@ import classnames from 'classnames';
 import React, {ChangeEvent} from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
+import {UpdateTask} from 'src/task/action_creators';
 
 type Props = {
   task: Task,
-  updateTask: Function,
+  updateTask: UpdateTask,
 };
 
 class TaskLeafListItem extends React.Component<Props, never> {
