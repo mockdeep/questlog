@@ -106,7 +106,7 @@ describe('updateTask', () => {
 
   it('updates the client task with "postponing" when postponing', () => {
     const updateThunk =
-      updateTask(taskAttrs.id, {title: 'foo', postpone: true});
+      updateTask(taskAttrs.id, {title: 'foo', postpone: 5});
     const payload = {id: 5, loadingState: 'postponing'};
     const state = makeState();
 
