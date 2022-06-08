@@ -10,20 +10,6 @@ overrides:
     files:
     - spec/javascript/task/action_creators_spec.tsx
 
-  # Offense count: 12
-  - rules: { '@typescript-eslint/consistent-indexed-object-style': off }
-    files:
-    - app/javascript/@types/state.d.ts
-    - app/javascript/@types/tag.d.ts
-    - app/javascript/@types/task.d.ts
-    - app/javascript/@types/timeframe.d.ts
-    - app/javascript/src/_common/create_basic_reducer.ts
-    - app/javascript/src/_common/create_merged_reducer.ts
-    - app/javascript/src/_helpers/grab.ts
-    - app/javascript/src/route/routes.ts
-    - app/javascript/src/tag/components/rule_row.tsx
-    - app/javascript/src/tag/selectors.ts
-
   # Offense count: 78
   - rules: { '@typescript-eslint/consistent-type-definitions': off }
     files:
