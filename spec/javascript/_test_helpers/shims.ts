@@ -9,7 +9,11 @@ function requestAnimationFrame(callback: Callback) {
 
 (global as any).requestAnimationFrame = requestAnimationFrame;
 
-window.gon = {};
+window.gon = {
+  honeybadgerApiKey: 'hb-api-key',
+  railsEnv: 'test',
+  userId: 1,
+};
 
 (window as any).matchMedia = matchMedia;
 
