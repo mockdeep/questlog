@@ -1,2 +1,3 @@
 rules:
   no-use-before-define: [error, nofunc]
+  '@typescript-eslint/consistent-type-definitions': [error, type]
