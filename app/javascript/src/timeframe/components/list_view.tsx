@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
+import type {ReactElement} from 'react';
 
 import ToEnglish from 'src/_helpers/to_english';
 
@@ -9,7 +10,7 @@ import {assert} from 'src/_helpers/assert';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 import type {UpdateTask} from 'src/task/action_creators';
 
-function timeframeHasTasks(timeframe: Timeframe) {
+function timeframeHasTasks(timeframe: Timeframe): boolean {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
 }
 
@@ -31,18 +32,18 @@ class TimeframeListView extends React.Component<Props, State> {
     autobind(this);
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     TimeframeStore.getAll().then((data: TimeframeData) => {
       this.updateTimeframes(data);
       TimeframeStore.subscribe(this.loadTasks);
     });
   }
 
-  loadTasks() {
+  loadTasks(): void {
     TimeframeStore.getAll().then(this.updateTimeframes);
   }
 
-  updateTimeframes(data: TimeframeData) {
+  updateTimeframes(data: TimeframeData): void {
     this.setState({
       timeframes: data.timeframes,
       medianProductivity: data.meta.medianProductivity,
@@ -50,13 +51,13 @@ class TimeframeListView extends React.Component<Props, State> {
     });
   }
 
-  productivityString() {
+  productivityString(): string {
     const {medianProductivity} = this.state;
 
     return ToEnglish.seconds(assert(medianProductivity));
   }
 
-  timeframeSpace() {
+  timeframeSpace(): TimeframeSpace {
     const {timeframes} = this.state;
     const counts: TimeframeSpace = {};
 
@@ -69,7 +70,7 @@ class TimeframeListView extends React.Component<Props, State> {
     return counts;
   }
 
-  renderTimeframe(timeframe: Timeframe) {
+  renderTimeframe(timeframe: Timeframe): ReactElement {
     const {deleteTask, updateTask} = this.props;
 
     return (
@@ -83,17 +84,17 @@ class TimeframeListView extends React.Component<Props, State> {
     );
   }
 
-  renderedTimeframes() {
+  renderedTimeframes(): ReactElement[] {
     return this.timeframesWithTasks().map(this.renderTimeframe);
   }
 
-  timeframesWithTasks() {
+  timeframesWithTasks(): Timeframe[] {
     const {timeframes} = this.state;
 
     return timeframes.filter(timeframeHasTasks);
   }
 
-  render() {
+  render(): ReactElement {
     const {loading} = this.state;
 
     if (loading) {

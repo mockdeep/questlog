@@ -39,7 +39,7 @@ class FakeNotification implements Notification {
 
   isOpen = true; // custom
 
-  static requestPermission() {
+  static requestPermission(): Promise<string> {
     return Promise.resolve('granted');
   }
 
@@ -48,19 +48,19 @@ class FakeNotification implements Notification {
     this.isOpen = true;
   }
 
-  close() {
+  close(): void {
     this.isOpen = false;
   }
 
-  addEventListener() {
+  addEventListener(): boolean {
     return true;
   }
 
-  removeEventListener() {
+  removeEventListener(): boolean {
     return true;
   }
 
-  dispatchEvent() {
+  dispatchEvent(): boolean {
     return true;
   }
 }

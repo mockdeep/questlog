@@ -11,7 +11,7 @@ import {
   UPDATE_META,
 } from 'src/task/action_creators';
 
-function estimateMinutes(task: UnprocessedTask) {
+function estimateMinutes(task: UnprocessedTask): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 

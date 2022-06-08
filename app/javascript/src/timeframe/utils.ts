@@ -47,7 +47,7 @@ function calculateMaxMinutes(
   return name === 'today' ? minuteMax : Math.floor(minuteMax / 2);
 }
 
-function calculateTotalMinutes(timeframe: Timeframe) {
+function calculateTotalMinutes(timeframe: Timeframe): number {
   const allTasks = timeframe.pendingTasks.concat(timeframe.currentTasks);
 
   return sumBy(allTasks, 'estimateMinutes');
@@ -69,7 +69,7 @@ function timeframeNameForPendingTask(task: Task) {
   return timeframeList[index];
 }
 
-function timeframeNameForTask(task: Task) {
+function timeframeNameForTask(task: Task): TimeframeName {
   if (!task.timeframe) { return 'inbox'; }
 
   return task.pending ? timeframeNameForPendingTask(task) : task.timeframe;

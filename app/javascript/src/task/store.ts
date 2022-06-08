@@ -1,6 +1,6 @@
 import request from 'src/_helpers/request';
 
-function estimateMinutes(task: Task) {
+function estimateMinutes(task: Task): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);
 }
 

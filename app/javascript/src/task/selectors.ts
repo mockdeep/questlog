@@ -19,7 +19,7 @@ const nullTask = {
   tagNames: [],
 } as const;
 
-function timeframePosition(task: Task) {
+function timeframePosition(task: Task): number {
   const {timeframe} = task;
 
   if (timeframe === null) { return 9; }
@@ -36,7 +36,7 @@ function partitionTasks(tasks: Task[]): PartitionedTasks {
   return {pending: [], active: [], ...groupBy(tasks, 'status')};
 }
 
-function processTasks(tasksById: TasksById) {
+function processTasks(tasksById: TasksById): TasksById {
   return pickBy(tasksById, (task: Task) => task.status !== 'done');
 }
 
@@ -52,11 +52,14 @@ function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
   }, {});
 }
 
-function grabLeafTasks(orderedTasks: Task[], tasksByParentId: TasksByParentId) {
+function grabLeafTasks(
+  orderedTasks: Task[],
+  tasksByParentId: TasksByParentId,
+): Task[] {
   return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
 }
 
-function grabCurrentTask(tasksById: TasksById, routeParams: RouteParams) {
+function grabCurrentTask(tasksById: TasksById, routeParams: RouteParams): Task {
   return tasksById[routeParams.taskId] || nullTask;
 }
 

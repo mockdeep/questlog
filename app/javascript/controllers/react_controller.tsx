@@ -28,7 +28,7 @@ class ReactController extends Controller {
 
   static values = {componentName: String};
 
-  connect() {
+  connect(): void {
     appStore.dispatch(fetchRoute());
     appStore.dispatch(fetchTasks());
 
