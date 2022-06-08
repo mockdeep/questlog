@@ -12,11 +12,12 @@ extends:
   - plugin:fp/recommended
   - plugin:import/errors
   - plugin:react/all
-  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/all
   - ./.eslint_wishlist.yml
   - ./.eslint_todo.yml
 plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
 parserOptions:
+  project: ['./tsconfig-test.json']
   sourceType: module
   ecmaVersion: 2018
   ecmaFeatures:
@@ -85,7 +86,6 @@ rules:
   #
   ##############################################################################
 
-  '@typescript-eslint/prefer-interface': off
   array-element-newline: off
   capitalized-comments: off
   line-comment-position: off

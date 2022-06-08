@@ -11,7 +11,7 @@ HEADING = <<~COMMENTS.freeze
   # The point is for the user to remove these configuration records
   # one by one as the offenses are removed from the code base.
 COMMENTS
-MAX_FILES_FOR_OVERRIDES = 400
+MAX_FILES_FOR_OVERRIDES = 4_000_000
 
 File.write(TODO_FILE_PATH, '')
 json = `yarn --silent eslint --format json`
