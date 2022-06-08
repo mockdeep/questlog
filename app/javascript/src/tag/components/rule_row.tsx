@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
-import React, {ChangeEvent, MouseEvent} from 'react';
+import type {ChangeEvent, MouseEvent} from 'react';
+import React from 'react';
 
 import grab from 'src/_helpers/grab';
 

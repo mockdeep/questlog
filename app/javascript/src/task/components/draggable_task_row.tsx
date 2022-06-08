@@ -1,15 +1,16 @@
 import autobind from 'class-autobind';
-import React, {ChangeEvent} from 'react';
+import type {ChangeEvent} from 'react';
+import React from 'react';
+import type {DragSourceConnector, DragSourceMonitor, DropTargetConnector,
+  DropTargetMonitor,
+  ConnectDragSource, ConnectDropTarget} from 'react-dnd';
 import {
   DragSource as dragSource, DropTarget as dropTarget,
-  DragSourceConnector, DragSourceMonitor, DropTargetConnector,
-  DropTargetMonitor,
-  ConnectDragSource, ConnectDropTarget,
 } from 'react-dnd';
 
 import TaskRow from 'src/task/components/task_row';
 import {assert} from 'src/_helpers/assert';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 type DragProps = {
   connectDragSource: ConnectDragSource,

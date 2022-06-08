@@ -3,7 +3,8 @@ import {mount} from 'enzyme';
 
 import {makeTask} from '_test_helpers/factories';
 
-import TaskEditTitleForm, {Props} from 'src/task/components/edit_title_form';
+import type {Props} from 'src/task/components/edit_title_form';
+import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import Textarea from 'react-textarea-autosize';
 
 const props: Props = {

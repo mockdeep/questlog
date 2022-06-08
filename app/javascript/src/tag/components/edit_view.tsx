@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
-import React, {SyntheticEvent} from 'react';
+import type {SyntheticEvent} from 'react';
+import React from 'react';
 import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
 

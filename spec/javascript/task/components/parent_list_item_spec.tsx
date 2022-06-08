@@ -1,7 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TaskParentListItem, {Props} from 'src/task/components/parent_list_item';
+import type {Props} from 'src/task/components/parent_list_item';
+import TaskParentListItem from 'src/task/components/parent_list_item';
 import {assert} from 'src/_helpers/assert';
 
 import {makeTask} from '_test_helpers/factories';

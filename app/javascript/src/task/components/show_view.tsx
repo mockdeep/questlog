@@ -5,7 +5,7 @@ import ParentTaskBreadCrumbs
   from 'src/task/containers/parent_task_bread_crumbs';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 function repeatString(task: Task) {
   if (!task.repeatSeconds) { return 'Repeat: never'; }
