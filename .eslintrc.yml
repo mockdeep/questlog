@@ -54,6 +54,7 @@ rules:
   camelcase: [error, { allow: ["^UNSAFE_"] }]
   comma-dangle: [error, always-multiline]
   '@typescript-eslint/comma-dangle': [error, always-multiline]
+  '@typescript-eslint/consistent-indexed-object-style': [error, index-signature]
   func-style: [error, declaration]
   function-call-argument-newline: [error, consistent]
   function-paren-newline: [error, consistent]
