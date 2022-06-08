@@ -8,7 +8,7 @@ type Operations<S> = {
 
 function createBasicReducer<
   S extends State[keyof State],
-  O extends Operations<S>
+  O extends Operations<S>,
 >(operations: O) {
   function basicReducer(previousState: S | null, action: BasicAction) {
     const operation = grab(operations, action.type);
