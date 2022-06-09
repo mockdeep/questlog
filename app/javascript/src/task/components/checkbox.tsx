@@ -1,6 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import React, {ChangeEvent} from 'react';
+import type {ChangeEvent} from 'react';
+import React from 'react';
 
 type Props = {
   task: Task,

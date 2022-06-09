@@ -3,7 +3,8 @@ import {shallow} from 'enzyme';
 
 import {makeTask} from '_test_helpers/factories';
 
-import PostponeButton, {Props} from 'src/task/components/postpone_button';
+import type {Props} from 'src/task/components/postpone_button';
+import PostponeButton from 'src/task/components/postpone_button';
 
 const props: Props = {
   disabled: false,

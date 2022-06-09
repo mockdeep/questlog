@@ -1,6 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import React, {FocusEvent, FormEvent, KeyboardEvent} from 'react';
+import type {FocusEvent, FormEvent, KeyboardEvent} from 'react';
+import React from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import AuthenticityToken from 'src/_common/components/authenticity_token';

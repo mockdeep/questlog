@@ -1,9 +1,10 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import React, {ChangeEvent} from 'react';
+import type {ChangeEvent} from 'react';
+import React from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 type Props = {
   task: Task,

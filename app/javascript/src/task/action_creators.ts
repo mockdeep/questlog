@@ -1,6 +1,6 @@
-import {Action} from 'redux';
-import {ThunkAction} from 'redux-thunk';
-import {InferThunkActionCreatorType} from 'react-redux';
+import type {Action} from 'redux';
+import type {ThunkAction} from 'redux-thunk';
+import type {InferThunkActionCreatorType} from 'react-redux';
 
 import {ajaxGet, ajaxPut, ajaxDelete} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';

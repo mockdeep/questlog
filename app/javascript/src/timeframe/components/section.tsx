@@ -5,7 +5,7 @@ import TableHeaders from 'src/timeframe/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 type Props = {
   deleteTask: (taskId: number) => void,

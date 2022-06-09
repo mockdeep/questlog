@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import React from 'react';
 
 import TaskNestedList from 'src/task/components/nested_list';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 type Props = {
   tasks: Task[],

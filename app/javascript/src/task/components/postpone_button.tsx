@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
-import React, {ChangeEvent} from 'react';
+import type {ChangeEvent} from 'react';
+import React from 'react';
 
 function isPostponing(task: Task) {
   return task.loadingState === 'postponing';

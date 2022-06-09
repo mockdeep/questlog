@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
-import React, {MouseEvent} from 'react';
+import type {MouseEvent} from 'react';
+import React from 'react';
 
 type Props = {
   deleteTask: (taskId: number) => void,

@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskRow from 'src/task/components/task_row';
 import TableHeaders from 'src/task/components/table_headers';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 type FunctionProps = {
   deleteTask: (taskId: number) => void,
