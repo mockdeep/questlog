@@ -10,11 +10,6 @@ overrides:
     files:
     - spec/javascript/task/action_creators_spec.tsx
 
-  # Offense count: 1
-  - rules: { '@typescript-eslint/ban-types': off }
-    files:
-    - app/javascript/src/task/action_creators.ts
-
   # Offense count: 2
   - rules: { '@typescript-eslint/consistent-type-definitions': off }
     files:

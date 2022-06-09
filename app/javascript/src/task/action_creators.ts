@@ -6,7 +6,7 @@ import {ajaxGet, ajaxPut, ajaxDelete} from 'src/_helpers/ajax';
 import TaskStore from 'src/task/store';
 import {setTags, upsertTags} from 'src/tag/action_creators';
 
-type AsyncAction = ThunkAction<void, State, null, Action> & { };
+type AsyncAction = ThunkAction<void, State, null, Action>;
 
 const BASE_PATH = '/api/v1/tasks';
 
