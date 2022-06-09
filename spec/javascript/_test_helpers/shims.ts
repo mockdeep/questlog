@@ -1,5 +1,4 @@
 import debug from 'src/_helpers/debug';
-import matchMedia, {resetMedia} from '_test_helpers/match_media';
 
 (global as any).debug = debug;
 
@@ -14,12 +13,6 @@ window.gon = {
   railsEnv: 'test',
   userId: 1,
 };
-
-(window as any).matchMedia = matchMedia;
-
-afterEach(() => {
-  resetMedia();
-});
 
 // eslint-disable-next-line no-console
 console.error = function error(message: string) {
