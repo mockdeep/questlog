@@ -2,7 +2,7 @@ import debug from 'src/_helpers/debug';
 
 (global as any).debug = debug;
 
-function requestAnimationFrame(callback: Callback) {
+function requestAnimationFrame(callback: Callback): void {
   setTimeout(callback, 0);
 }
 
@@ -15,6 +15,6 @@ window.gon = {
 };
 
 // eslint-disable-next-line no-console
-console.error = function error(message: string) {
+console.error = function error(message: string): void {
   throw new Error(message);
 };

@@ -7,26 +7,26 @@ class LayoutController extends Controller {
 
   collapsedSidebarTarget!: HTMLElement;
 
-  connect() {
+  connect(): void {
     this.updateScreenSize();
   }
 
-  updateScreenSize() {
+  updateScreenSize(): void {
     const visible = window.innerWidth > 600;
     this.toggleSidebarVisibility({visible});
   }
 
-  toggleSidebarVisibility({visible}: {visible: boolean}) {
+  toggleSidebarVisibility({visible}: {visible: boolean}): void {
     this.element.classList.toggle('sidebar-open', visible);
     this.expandedSidebarTarget.classList.toggle('hide-me', !visible);
     this.collapsedSidebarTarget.classList.toggle('hide-me', visible);
   }
 
-  hideSidebar() {
+  hideSidebar(): void {
     this.toggleSidebarVisibility({visible: false});
   }
 
-  showSidebar() {
+  showSidebar(): void {
     this.toggleSidebarVisibility({visible: true});
   }
 }
