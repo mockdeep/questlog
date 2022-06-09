@@ -3,7 +3,7 @@ import React from 'react';
 
 import TaskLeafListItem from 'src/task/components/leaf_list_item';
 import TaskParentListItem from 'src/task/components/parent_list_item';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 export type Props = {
   tasks: Task[],

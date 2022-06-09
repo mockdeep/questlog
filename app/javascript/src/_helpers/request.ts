@@ -1,6 +1,6 @@
-import reqwest, {BaseRequestOptions, GivenRequestOptions} from 'reqwest';
-
+import type {BaseRequestOptions, GivenRequestOptions} from 'reqwest';
 import authenticityToken from 'src/_helpers/authenticity_token';
+import reqwest from 'reqwest';
 
 function reloadPage() {
   window.location.reload();

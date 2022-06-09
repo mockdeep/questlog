@@ -1,4 +1,4 @@
-import {Reducer} from 'redux';
+import type {Reducer} from 'redux';
 
 /* eslint-disable no-unused-vars */
 type ReducerKey = 'route' | 'tag' | 'task';

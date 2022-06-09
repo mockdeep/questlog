@@ -1,4 +1,5 @@
-import {pathToRegexp, compile, Key} from 'path-to-regexp';
+import type {Key} from 'path-to-regexp';
+import {pathToRegexp, compile} from 'path-to-regexp';
 
 type Route = {
   name: string;

@@ -1,5 +1,6 @@
 /* eslint-disable import/named */
-import moment, {Moment} from 'moment';
+import type {Moment} from 'moment';
+import moment from 'moment';
 /* eslint-enable import/named */
 
 function daysBetween(startTime: Moment, endTime: Moment) {

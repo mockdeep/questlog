@@ -1,7 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import TagButton, {Props} from 'src/tag/components/button';
+import type {Props} from 'src/tag/components/button';
+import TagButton from 'src/tag/components/button';
 
 import {makeTag} from '_test_helpers/factories';
 

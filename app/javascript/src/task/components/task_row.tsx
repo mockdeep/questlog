@@ -1,6 +1,7 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import React, {ChangeEvent, MouseEvent} from 'react';
+import type {ChangeEvent, MouseEvent} from 'react';
+import React from 'react';
 import {map} from 'lodash';
 
 import grab from 'src/_helpers/grab';
@@ -8,7 +9,7 @@ import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {assert} from 'src/_helpers/assert';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
 

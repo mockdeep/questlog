@@ -6,7 +6,8 @@ import {shallow} from 'enzyme';
 import BulkTaskStore from 'src/task/bulk_store';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
 import TableHeaders from 'src/task/components/table_headers';
-import TaskListView, {Props} from 'src/task/components/list_view';
+import type {Props} from 'src/task/components/list_view';
+import TaskListView from 'src/task/components/list_view';
 
 import {makeTask} from '_test_helpers/factories';
 

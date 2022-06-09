@@ -8,7 +8,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TaskDisplay from 'src/task/components/task_display';
-import TaskFocusView, {Props} from 'src/task/components/focus_view';
+import type {Props} from 'src/task/components/focus_view';
+import TaskFocusView from 'src/task/components/focus_view';
 
 import {makeTask} from '_test_helpers/factories';
 

@@ -4,7 +4,7 @@ import React from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
 import TaskNestedList from 'src/task/components/nested_list';
-import {UpdateTask} from 'src/task/action_creators';
+import type {UpdateTask} from 'src/task/action_creators';
 
 export type Props = {
   task: Task,

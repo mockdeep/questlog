@@ -1,5 +1,6 @@
 /* eslint-disable import/named, no-unused-vars */
-import moment, {Moment} from 'moment';
+import type {Moment} from 'moment';
+import moment from 'moment';
 /* eslint-enable import/named, no-unused-vars */
 import {sumBy} from 'lodash';
 

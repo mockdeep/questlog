@@ -1,5 +1,5 @@
-import {Action} from 'redux';
-import {ThunkAction} from 'redux-thunk';
+import type {Action} from 'redux';
+import type {ThunkAction} from 'redux-thunk';
 
 const INIT = 'tag/INIT';
 const SET = 'tag/SET';
