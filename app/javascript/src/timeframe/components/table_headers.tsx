@@ -15,7 +15,7 @@ const TABLE_HEADERS = (
   </thead>
 );
 
-function TableHeaders() {
+function TableHeaders(): typeof TABLE_HEADERS {
   return TABLE_HEADERS;
 }
 

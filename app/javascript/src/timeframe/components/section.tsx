@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
 import React from 'react';
+import type {ReactElement} from 'react';
 
 import TableHeaders from 'src/timeframe/components/table_headers';
 import TaskRow from 'src/task/components/task_row';
@@ -20,7 +21,7 @@ class TimeframeSection extends React.Component<Props, never> {
     autobind(this);
   }
 
-  renderTask(task: Task) {
+  renderTask(task: Task): ReactElement {
     const {deleteTask, timeframeSpace, updateTask} = this.props;
 
     return (
@@ -35,7 +36,7 @@ class TimeframeSection extends React.Component<Props, never> {
     );
   }
 
-  renderPendingTask(task: Task) {
+  renderPendingTask(task: Task): ReactElement {
     const {deleteTask, timeframeSpace, updateTask} = this.props;
 
     return (
@@ -51,7 +52,7 @@ class TimeframeSection extends React.Component<Props, never> {
     );
   }
 
-  minuteTotal() {
+  minuteTotal(): number {
     const {timeframe} = this.props;
 
     return calculateTotalMinutes(timeframe);
@@ -63,7 +64,7 @@ class TimeframeSection extends React.Component<Props, never> {
     return isFinite(timeframe.minuteMax) ? timeframe.minuteMax : '∞';
   }
 
-  currentTaskRows() {
+  currentTaskRows(): ReactElement[] | false {
     const {timeframe} = this.props;
 
     if (timeframe.currentTasks.length === 0) { return false; }
@@ -71,7 +72,7 @@ class TimeframeSection extends React.Component<Props, never> {
     return timeframe.currentTasks.map(this.renderTask);
   }
 
-  pendingTaskRows() {
+  pendingTaskRows(): ReactElement[] | false {
     const {timeframe} = this.props;
 
     if (timeframe.pendingTasks.length === 0) { return false; }
@@ -79,7 +80,7 @@ class TimeframeSection extends React.Component<Props, never> {
     return timeframe.pendingTasks.map(this.renderPendingTask);
   }
 
-  ratioSpan() {
+  ratioSpan(): ReactElement {
     const className = this.overLimit() ? 'danger' : '';
 
     return (
@@ -89,11 +90,11 @@ class TimeframeSection extends React.Component<Props, never> {
     );
   }
 
-  overLimit() {
+  overLimit(): boolean {
     return this.minuteTotal() > this.maxTime();
   }
 
-  render() {
+  render(): ReactElement {
     const {timeframe} = this.props;
     const className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
 
