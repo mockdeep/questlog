@@ -11,9 +11,9 @@ interface Window {
   gon: Gon;
 }
 
-interface Process {
+type Process = {
   browser: boolean;
-}
+};
 
 type BasicAction = {
   type: string;
