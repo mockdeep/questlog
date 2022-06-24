@@ -14,7 +14,7 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/react-redux": "^7.1.24",
-    "@types/react-textarea-autosize": "^4.3.6",
+    "@types/react-textarea-autosize": "^8.0.0",
     "@types/sinonjs__fake-timers": "^8.1.2",
     "a11y-dialog": "^7.5.0",
     "bootstrap-sass": "3.4.1",
