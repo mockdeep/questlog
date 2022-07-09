@@ -18,18 +18,18 @@ RSpec.describe 'selecting tags on task display', js: true do
 
   it 'sets tags to active when selected' do
     add_task('#at-home do laundry #chore !2 *1w ~1h')
-    expect(page).to have_no_selector('a.active', text: /at-home/)
+    expect(page).to have_no_link('at-home', class: 'active')
     select_tag('at-home')
-    expect(page).to have_selector('a.active', text: /at-home/)
+    expect(page).to have_link('at-home', class: 'active')
   end
 
   it 'sets tags to current when associated with current task' do
     add_task('#work get paid !1')
     add_task('#at-home do laundry #chore !2 *1w ~1h')
-    expect(page).to have_selector('a.current', text: /work/)
-    expect(page).to have_no_selector('a.current', text: /chore/)
+    expect(page).to have_link('work', class: 'current')
+    expect(page).to have_no_link('chore', class: 'current')
     select_tag('at-home')
-    expect(page).to have_selector('a.current', text: /chore/)
+    expect(page).to have_link('chore', class: 'current')
   end
 
   it 'shows a smart tag for tasks without tags' do

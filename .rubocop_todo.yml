@@ -1110,7 +1110,4 @@ Style/StringHashKeys:
     - 'spec/poros/parsers/priority_parser_spec.rb'
 
 # Offense count: 13
-Style/TopLevelMethodDefinition:
-  Exclude:
-    - 'spec/spec_helper.rb'
-    - 'spec/support/finders/task.rb'
+Style/TopLevelMethodDefinition: { Enabled: false }
