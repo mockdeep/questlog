@@ -23,15 +23,15 @@ class TaskFocusView extends React.Component<Props, State> {
     this.state = {postponeSeconds: 300};
   }
 
-  storePostponeSeconds(postponeSeconds: number) {
+  storePostponeSeconds(postponeSeconds: number): void {
     this.setState({postponeSeconds});
   }
 
-  setTitle(title: string) {
+  setTitle(title: string): void {
     document.title = title;
   }
 
-  postponeTask(taskId: number) {
+  postponeTask(taskId: number): void {
     const {updateTask} = this.props;
     const {postponeSeconds} = this.state;
 
@@ -40,7 +40,7 @@ class TaskFocusView extends React.Component<Props, State> {
     updateTask(taskId, attrs);
   }
 
-  completeTask(taskId: number) {
+  completeTask(taskId: number): void {
     const {updateTask} = this.props;
 
     updateTask(taskId, {done: true});

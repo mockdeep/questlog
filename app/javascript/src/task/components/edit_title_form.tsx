@@ -24,7 +24,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     this.state = {focused: false};
   }
 
-  UNSAFE_componentWillReceiveProps(newProps: Props) {
+  UNSAFE_componentWillReceiveProps(newProps: Props): void {
     const {task} = this.props;
 
     if (newProps.task.id !== task.id) {
@@ -32,16 +32,16 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     }
   }
 
-  saveTask(event: FocusEvent | FormEvent | KeyboardEvent) {
+  saveTask(event: FocusEvent | FormEvent | KeyboardEvent): void {
     event.preventDefault();
     assert(this.formRef.current).submit();
   }
 
-  submitIfEnter(event: KeyboardEvent) {
+  submitIfEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') { this.saveTask(event); }
   }
 
-  setFocused() {
+  setFocused(): void {
     this.setState({focused: true});
   }
 
