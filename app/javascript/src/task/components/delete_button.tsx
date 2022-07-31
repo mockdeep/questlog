@@ -13,7 +13,7 @@ class DeleteButton extends React.Component<Props, never> {
     autobind(this);
   }
 
-  deleteTask(event: MouseEvent) {
+  deleteTask(event: MouseEvent): void {
     event.stopPropagation();
 
     const {deleteTask, task} = this.props;

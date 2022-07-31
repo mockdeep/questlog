@@ -17,7 +17,7 @@ class TaskLeafListItem extends React.Component<Props, never> {
     autobind(this);
   }
 
-  toggleDone(event: ChangeEvent<HTMLInputElement>) {
+  toggleDone(event: ChangeEvent<HTMLInputElement>): void {
     const {task, updateTask} = this.props;
     const {checked} = event.target;
 

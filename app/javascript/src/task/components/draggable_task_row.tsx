@@ -41,13 +41,13 @@ const taskSource = {
     {saveTaskPositions}: OwnProps,
     _monitor: DragSourceMonitor,
     component: DraggableTaskRow,
-  ) {
+  ): void {
     saveTaskPositions(component);
   },
 };
 
 const taskTarget = {
-  hover({moveTask, task}: OwnProps, monitor: DropTargetMonitor) {
+  hover({moveTask, task}: OwnProps, monitor: DropTargetMonitor): void {
     const draggedId = monitor.getItem<MonitorItem>().item.id;
 
     moveTask(draggedId, task.id);
@@ -74,13 +74,13 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
     autobind(this);
   }
 
-  updatePriority(event: ChangeEvent<HTMLSelectElement>) {
+  updatePriority(event: ChangeEvent<HTMLSelectElement>): void {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {priority: parseInt(event.target.value, 10)});
   }
 
-  bindDragAndDrop(component: TaskRow) {
+  bindDragAndDrop(component: TaskRow): void {
     if (!component) { return; }
 
     const {domNode} = component;

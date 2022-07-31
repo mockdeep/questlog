@@ -46,12 +46,12 @@ class TaskListView extends React.Component<Props, State> {
     autobind(this);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     const {currentTasks, pendingTasks} = nextProps;
     this.setState({currentTasks, pendingTasks});
   }
 
-  moveTask(id: number, afterId: number) {
+  moveTask(id: number, afterId: number): void {
     if (id === afterId) { return; }
     const {currentTasks} = this.state;
 
@@ -71,7 +71,7 @@ class TaskListView extends React.Component<Props, State> {
     this.setState({currentTasks: newTasks});
   }
 
-  saveTaskPositions(component: any) {
+  saveTaskPositions(component: any): void {
     const taskId = component.props.task.id;
     const {currentTasks} = this.state;
 

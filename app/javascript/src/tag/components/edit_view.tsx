@@ -24,7 +24,7 @@ class TagEditView extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps({tag: newTag}: Props) {
+  UNSAFE_componentWillReceiveProps({tag: newTag}: Props): void {
     const {tag} = this.props;
 
     if (!newTag || tag === newTag) { return; }
@@ -32,14 +32,14 @@ class TagEditView extends React.Component<Props, State> {
     this.setState({rules: newTag.rules});
   }
 
-  updateFieldValue(index: number, value: TagRuleField) {
+  updateFieldValue(index: number, value: TagRuleField): void {
     this.setState(state => {
       const rules = update(state.rules, {[index]: {$merge: {field: value}}});
       return {rules};
     });
   }
 
-  deleteRule(index: number) {
+  deleteRule(index: number): void {
     this.setState(state => {
       const rules = update(state.rules, {$splice: [[index, 1]]});
 
@@ -81,7 +81,7 @@ class TagEditView extends React.Component<Props, State> {
     return this.uniqRules().length !== rules.length;
   }
 
-  validateAndSave(event: SyntheticEvent) {
+  validateAndSave(event: SyntheticEvent): void {
     if (this.hasDuplicateRules()) {
       // eslint-disable-next-line no-alert
       if (!confirm('There are duplicate rules. Remove extras?')) {
@@ -95,7 +95,7 @@ class TagEditView extends React.Component<Props, State> {
     }
   }
 
-  addRule() {
+  addRule(): void {
     const {rules} = this.state;
     const newRule: TagRule = {field: 'estimateSeconds', check: 'isBlank'};
 

@@ -12,7 +12,7 @@ class DoneButton extends React.Component<Props, never> {
     autobind(this);
   }
 
-  markDone() {
+  markDone(): void {
     if (!this.isTaskReady()) { return; }
 
     const {completeTask, task} = this.props;

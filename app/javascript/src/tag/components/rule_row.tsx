@@ -34,7 +34,7 @@ class RuleRow extends React.Component<Props, never> {
     autobind(this);
   }
 
-  updateFieldValue(event: ChangeEvent<HTMLSelectElement>) {
+  updateFieldValue(event: ChangeEvent<HTMLSelectElement>): void {
     const {index, updateFieldValue} = this.props;
     const {value} = event.target;
 
@@ -74,7 +74,7 @@ class RuleRow extends React.Component<Props, never> {
     );
   }
 
-  deleteRule(event: MouseEvent) {
+  deleteRule(event: MouseEvent): void {
     event.preventDefault();
 
     const {deleteRule, index} = this.props;
