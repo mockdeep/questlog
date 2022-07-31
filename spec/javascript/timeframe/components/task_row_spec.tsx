@@ -10,6 +10,7 @@ const props: Props = {
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
   task: makeTask(),
+  timeframeSpace: {},
 };
 
 it('renders a table row', () => {
@@ -18,8 +19,8 @@ it('renders a table row', () => {
   expect(component.find('tr')).toHaveClassName('tasks-table__row');
 });
 
-it('renders the timeframe selector when enabled', () => {
-  const component = shallow(<TaskRow {...props} timeframesEnabled />);
+it('renders the timeframe selector', () => {
+  const component = shallow(<TaskRow {...props} />);
 
   expect(component.find('select.timeframe-select')).toExist();
 });

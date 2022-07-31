@@ -8,7 +8,6 @@ import grab from 'src/_helpers/grab';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
-import {assert} from 'src/_helpers/assert';
 import type {UpdateTask} from 'src/task/action_creators';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';
@@ -17,10 +16,8 @@ export type Props = {
   deleteTask: (taskId: number) => void,
   task: Task,
   updateTask: UpdateTask,
-  isDragging?: boolean,
   status?: string,
-  timeframesEnabled?: boolean,
-  timeframeSpace?: TimeframeSpace,
+  timeframeSpace: TimeframeSpace,
 };
 
 type State = {
@@ -74,13 +71,12 @@ class TaskRow extends React.PureComponent<Props, State> {
   }
 
   className() {
-    const {isDragging, status} = this.props;
+    const {status} = this.props;
 
     return classnames({
       'tasks-table__row': true,
       [`tasks-table__row--priority-${this.priority()}`]: this.priority(),
       [`tasks-table__row--${status}`]: status,
-      'tasks-table__row--dragging': isDragging,
     });
   }
 
@@ -99,12 +95,12 @@ class TaskRow extends React.PureComponent<Props, State> {
   timeframeHasSpace(name: string) {
     const {task, timeframeSpace} = this.props;
 
-    return grab(assert(timeframeSpace), name) >= task.estimateMinutes;
+    return grab(timeframeSpace, name) >= task.estimateMinutes;
   }
 
   optionText(title: string, name: string) {
     const {timeframeSpace} = this.props;
-    const space = grab(assert(timeframeSpace), name);
+    const space = grab(timeframeSpace, name);
     let text = title;
 
     if (this.timeframe() !== name && isFinite(space)) {
@@ -184,7 +180,7 @@ class TaskRow extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const {task, timeframesEnabled} = this.props;
+    const {task} = this.props;
 
     return (
       <tr className={this.className()} ref={this.storeDOMNode}>
@@ -206,7 +202,7 @@ class TaskRow extends React.PureComponent<Props, State> {
           </select>
         </td>
         <td>
-          {timeframesEnabled ? this.timeframeSelector() : ''}
+          {this.timeframeSelector()}
         </td>
         <td>
           {task.pending ? this.undoButton() : ''}
