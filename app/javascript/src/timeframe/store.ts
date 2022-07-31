@@ -22,22 +22,22 @@ const TimeframeStore: TimeframeStoreType = {
     return this.unsubscribe.bind(this, listener);
   },
 
-  unsubscribe(listener) {
+  unsubscribe(listener): void {
     const index = this.listeners.indexOf(listener);
 
     this.listeners.splice(index, 1);
   },
 
-  notifyListeners() {
+  notifyListeners(): void {
     this.listeners.forEach(listener => listener());
   },
 
-  unload() {
+  unload(): void {
     this.loaded = false;
     this.notifyListeners();
   },
 
-  updateModels(data) {
+  updateModels(data): void {
     const {tasks} = data;
     const timeframes: {[timeframeName in TimeframeName]?: Timeframe} = {};
 

@@ -17,7 +17,7 @@ function displayError(
   lineNumber: number | undefined,
   column: number | undefined,
   error: Error | undefined,
-) {
+): void {
   document.body.innerHTML = `
     <h1>javascript error while testing:</h1>
     message: ${message}<br />

@@ -17,24 +17,24 @@ const TaskStore: TaskStoreType = {
     return this.unsubscribe.bind(this, listener);
   },
 
-  unsubscribe(listener) {
+  unsubscribe(listener): void {
     const index = this.listeners.indexOf(listener);
 
     this.listeners.splice(index, 1);
   },
 
-  notifyListeners() {
+  notifyListeners(): void {
     if (!this.listeners) { return; }
 
     this.listeners.forEach(listener => { listener(); });
   },
 
-  unload() {
+  unload(): void {
     this.loaded = false;
     this.notifyListeners();
   },
 
-  updateModels({data}) {
+  updateModels({data}): void {
     this.models = data.map(taskData => ({
       ...taskData,
       estimateMinutes: estimateMinutes(taskData),
@@ -60,7 +60,7 @@ const TaskStore: TaskStoreType = {
     }
   },
 
-  fetchTasks() {
+  fetchTasks(): void {
     request({
       method: 'get',
       url: this.url,

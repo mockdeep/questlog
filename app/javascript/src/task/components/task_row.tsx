@@ -36,26 +36,26 @@ class TaskRow extends React.PureComponent<Props, State> {
     this.state = {timeframeClicked: false};
   }
 
-  markDone(event: MouseEvent) {
+  markDone(event: MouseEvent): void {
     const {task, updateTask} = this.props;
 
     event.preventDefault();
     updateTask(task.id, {done: true});
   }
 
-  updatePriority(event: ChangeEvent<HTMLSelectElement>) {
+  updatePriority(event: ChangeEvent<HTMLSelectElement>): void {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {priority: parseInt(event.target.value, 10)});
   }
 
-  updateTimeframe(event: ChangeEvent<HTMLSelectElement>) {
+  updateTimeframe(event: ChangeEvent<HTMLSelectElement>): void {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {timeframe: event.target.value});
   }
 
-  deleteTask(event: MouseEvent) {
+  deleteTask(event: MouseEvent): void {
     const {deleteTask, task} = this.props;
 
     event.preventDefault();
@@ -151,7 +151,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     );
   }
 
-  timeframeClicked() {
+  timeframeClicked(): void {
     this.setState({timeframeClicked: true});
   }
 
@@ -161,7 +161,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     return `${task.estimateMinutes} min`;
   }
 
-  undoTask() {
+  undoTask(): void {
     const {task, updateTask} = this.props;
 
     updateTask(task.id, {done: false});
@@ -179,7 +179,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     );
   }
 
-  storeDOMNode(domNode: HTMLTableRowElement) {
+  storeDOMNode(domNode: HTMLTableRowElement): void {
     this.domNode = domNode;
   }
 

@@ -42,7 +42,7 @@ class PostponeButton extends React.Component<Props, never> {
     autobind(this);
   }
 
-  postponeTask() {
+  postponeTask(): void {
     const {disabled, postponeTask, task} = this.props;
 
     if (disabled) { return; }
@@ -58,7 +58,7 @@ class PostponeButton extends React.Component<Props, never> {
     return <option key={value} value={value}>{content}</option>;
   }
 
-  storePostponeSeconds(event: ChangeEvent<HTMLSelectElement>) {
+  storePostponeSeconds(event: ChangeEvent<HTMLSelectElement>): void {
     const {storePostponeSeconds} = this.props;
 
     storePostponeSeconds(parseInt(event.target.value, 10));
