@@ -24,9 +24,6 @@ type OwnProps = {
   saveTaskPositions: (component: DraggableTaskRow) => void,
   task: Task,
   updateTask: UpdateTask,
-  status?: string,
-  timeframesEnabled?: boolean,
-  timeframeSpace?: TimeframeSpace,
 };
 
 type Props = DragProps & OwnProps;
@@ -34,12 +31,6 @@ type Props = DragProps & OwnProps;
 type MonitorItem = { item: { id: number } };
 
 const taskSource = {
-  canDrag(props: OwnProps) {
-    const {timeframesEnabled} = props;
-
-    return !timeframesEnabled;
-  },
-
   beginDrag(props: OwnProps): MonitorItem {
     const {task} = props;
 
@@ -103,10 +94,7 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
     const {
       deleteTask,
       isDragging,
-      status,
       task,
-      timeframeSpace,
-      timeframesEnabled,
       updateTask,
     } = this.props;
 
@@ -114,10 +102,7 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
       <TaskRow
         deleteTask={deleteTask}
         isDragging={isDragging}
-        status={status}
         task={task}
-        timeframeSpace={timeframeSpace}
-        timeframesEnabled={timeframesEnabled}
         updateTask={updateTask}
         ref={this.bindDragAndDrop}
       />
