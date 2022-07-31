@@ -26,7 +26,6 @@ class TimeframeSection extends React.Component<Props, never> {
 
     return (
       <TaskRow
-        timeframesEnabled
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
@@ -42,7 +41,6 @@ class TimeframeSection extends React.Component<Props, never> {
     return (
       <TaskRow
         status='pending'
-        timeframesEnabled
         timeframeSpace={timeframeSpace}
         task={task}
         key={task.id}
