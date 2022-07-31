@@ -3,7 +3,7 @@ import React from 'react';
 import type {ReactElement} from 'react';
 
 import TableHeaders from 'src/timeframe/components/table_headers';
-import TaskRow from 'src/task/components/task_row';
+import TaskRow from 'src/timeframe/components/task_row';
 import timeframeNameMap from 'src/timeframe/name_map';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 import type {UpdateTask} from 'src/task/action_creators';
