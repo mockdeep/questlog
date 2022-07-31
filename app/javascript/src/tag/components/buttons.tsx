@@ -15,13 +15,13 @@ class TagButtons extends React.Component<Props, never> {
     autobind(this);
   }
 
-  isCurrent(tag: Tag) {
+  isCurrent(tag: Tag): boolean {
     const {currentTagIds} = this.props;
 
     return currentTagIds.includes(tag.id);
   }
 
-  isActive(tag: Tag) {
+  isActive(tag: Tag): boolean {
     const {selectedTagSlug} = this.props;
 
     if (selectedTagSlug) { return tag.slug === selectedTagSlug; }
