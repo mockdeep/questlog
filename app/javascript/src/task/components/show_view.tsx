@@ -7,25 +7,25 @@ import SubTasksTable from 'src/task/components/sub_tasks_table';
 import ToEnglish from 'src/_helpers/to_english';
 import type {UpdateTask} from 'src/task/action_creators';
 
-function repeatString(task: Task) {
+function repeatString(task: Task): string {
   if (!task.repeatSeconds) { return 'Repeat: never'; }
 
   return `Repeat: every ${ToEnglish.seconds(task.repeatSeconds)}`;
 }
 
-function estimateString(task: Task) {
+function estimateString(task: Task): string {
   if (!task.estimateSeconds) { return 'Estimate: none'; }
 
   return `Estimate: ${ToEnglish.seconds(task.estimateSeconds)}`;
 }
 
-function priorityString(task: Task) {
+function priorityString(task: Task): string {
   if (!task.priority) { return 'Priority: none'; }
 
   return `Priority: ${task.priority}`;
 }
 
-function tagString(task: Task) {
+function tagString(task: Task): string {
   if (task.tagNames.length === 0) { return 'Tags: none'; }
 
   return `Tags: ${task.tagNames.join(', ')}`;

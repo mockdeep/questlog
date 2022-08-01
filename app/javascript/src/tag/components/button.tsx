@@ -14,7 +14,7 @@ class TagButton extends React.Component<Props, never> {
     autobind(this);
   }
 
-  className() {
+  className(): string {
     const {current, isActive, tag} = this.props;
 
     return classnames({

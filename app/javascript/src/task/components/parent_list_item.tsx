@@ -18,7 +18,7 @@ class TaskParentListItem extends React.Component<Props, never> {
     autobind(this);
   }
 
-  titleClass() {
+  titleClass(): string {
     const {task} = this.props;
 
     return classnames({

@@ -73,7 +73,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     return <i className='fas fa-redo-alt' title='task repeats' />;
   }
 
-  className() {
+  className(): string {
     const {isDragging, status} = this.props;
 
     return classnames({
@@ -84,13 +84,13 @@ class TaskRow extends React.PureComponent<Props, State> {
     });
   }
 
-  priority() {
+  priority(): number | '' {
     const {task} = this.props;
 
     return task.priority || '';
   }
 
-  timeframe() {
+  timeframe(): string {
     const {task} = this.props;
 
     return task.timeframe || 'inbox';
@@ -102,7 +102,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     return grab(assert(timeframeSpace), name) >= task.estimateMinutes;
   }
 
-  optionText(title: string, name: string) {
+  optionText(title: string, name: string): string {
     const {timeframeSpace} = this.props;
     const space = grab(assert(timeframeSpace), name);
     let text = title;
@@ -155,7 +155,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     this.setState({timeframeClicked: true});
   }
 
-  taskEstimate() {
+  taskEstimate(): string {
     const {task} = this.props;
 
     return `${task.estimateMinutes} min`;

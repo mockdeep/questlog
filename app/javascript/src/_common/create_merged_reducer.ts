@@ -16,7 +16,7 @@ function isReducerKey(key: string): key is ReducerKey {
   return VALID_REDUCER_KEYS.includes(key);
 }
 
-function getReducerKey(action: BasicAction) {
+function getReducerKey(action: BasicAction): ReducerKey {
   const key = action.type.split('/')[0];
 
   if (!isReducerKey(key)) { throw new Error(`invalid reducer key "${key}"`); }
