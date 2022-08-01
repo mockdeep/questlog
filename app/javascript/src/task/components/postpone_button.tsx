@@ -2,7 +2,7 @@ import autobind from 'class-autobind';
 import type {ChangeEvent} from 'react';
 import React from 'react';
 
-function isPostponing(task: Task) {
+function isPostponing(task: Task): boolean {
   return task.loadingState === 'postponing';
 }
 

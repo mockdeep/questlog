@@ -6,12 +6,14 @@ import {assert} from 'src/_helpers/assert';
 import {getActiveTasks} from 'src/task/selectors';
 
 const RULES = {
-  isActive() { return true; },
-  isAssociated(task: Task, tag: Tag) { return task.tagIds.includes(tag.id); },
-  isBlank(task: Task, tag: Tag, {field}: {field?: keyof Task}) {
+  isActive(): boolean { return true; },
+  isAssociated(task: Task, tag: Tag): boolean {
+    return task.tagIds.includes(tag.id);
+  },
+  isBlank(task: Task, tag: Tag, {field}: {field?: keyof Task}): boolean {
     return task[assert(field)] === null;
   },
-  isEmpty(task: Task, tag: Tag, {field}: {field?: keyof Task}) {
+  isEmpty(task: Task, tag: Tag, {field}: {field?: keyof Task}): boolean {
     const value = task[assert(field)];
     if (!Array.isArray(value)) {
       throw new Error(`task field ${field} must be array, but was ${value}.`);
@@ -21,7 +23,7 @@ const RULES = {
   },
 };
 
-function matchesSmartRules(task: Task, tag: Tag) {
+function matchesSmartRules(task: Task, tag: Tag): boolean {
   const rules: TagRule[] = [{check: 'isAssociated'}, ...tag.rules];
 
   return rules.some(({check, ...params}: TagRule): boolean => {

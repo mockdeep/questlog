@@ -20,7 +20,7 @@ class DoneButton extends React.Component<Props, never> {
     completeTask(task.id);
   }
 
-  isTaskReady() {
+  isTaskReady(): boolean {
     const {task} = this.props;
 
     return task.loadingState === 'ready';

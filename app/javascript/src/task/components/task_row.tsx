@@ -96,7 +96,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     return task.timeframe || 'inbox';
   }
 
-  timeframeHasSpace(name: string) {
+  timeframeHasSpace(name: string): boolean {
     const {task, timeframeSpace} = this.props;
 
     return grab(assert(timeframeSpace), name) >= task.estimateMinutes;
