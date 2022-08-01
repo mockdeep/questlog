@@ -1,8 +1,9 @@
 import React from 'react';
+import type {ReactElement} from 'react';
 
 type Props = {label: string};
 
-function TableHeaders({label}: Props) {
+function TableHeaders({label}: Props): ReactElement {
   return (
     <tr className='tasks-table__header-row'>
       <th className='tasks-table__header' />

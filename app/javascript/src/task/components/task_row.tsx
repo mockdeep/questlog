@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import type {ChangeEvent, MouseEvent} from 'react';
+import type {ChangeEvent, MouseEvent, ReactElement} from 'react';
 import React from 'react';
 import {map} from 'lodash';
 
@@ -65,10 +65,10 @@ class TaskRow extends React.PureComponent<Props, State> {
     }
   }
 
-  emblems() {
+  emblems(): ReactElement | null {
     const {task} = this.props;
 
-    if (!task.repeatSeconds) { return false; }
+    if (!task.repeatSeconds) { return null; }
 
     return <i className='fas fa-redo-alt' title='task repeats' />;
   }
@@ -114,7 +114,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     return text;
   }
 
-  timeframeOptions() {
+  timeframeOptions(): ReactElement[] {
     const {timeframeClicked} = this.state;
 
     if (!timeframeClicked) {
@@ -137,7 +137,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     });
   }
 
-  timeframeSelector() {
+  timeframeSelector(): ReactElement {
     return (
       <select
         className='timeframe-select'
@@ -167,10 +167,10 @@ class TaskRow extends React.PureComponent<Props, State> {
     updateTask(task.id, {done: false});
   }
 
-  undoButton() {
+  undoButton(): ReactElement | null {
     const {task} = this.props;
 
-    if (!task.pending) { return false; }
+    if (!task.pending) { return null; }
 
     return (
       <button className={BUTTON_CLASS} onClick={this.undoTask}>
@@ -183,7 +183,7 @@ class TaskRow extends React.PureComponent<Props, State> {
     this.domNode = domNode;
   }
 
-  render() {
+  render(): ReactElement {
     const {task, timeframesEnabled} = this.props;
 
     return (

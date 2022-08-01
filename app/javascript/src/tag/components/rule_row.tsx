@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import type {ChangeEvent, MouseEvent} from 'react';
+import type {ChangeEvent, MouseEvent, ReactElement} from 'react';
 import React from 'react';
 
 import grab from 'src/_helpers/grab';
@@ -45,7 +45,7 @@ class RuleRow extends React.Component<Props, never> {
     }
   }
 
-  fieldOptions() {
+  fieldOptions(): ReactElement[] {
     return FIELD_NAMES.map(fieldName => (
       <option value={fieldName} key={fieldName}>
         {grab(FIELD_DISPLAY_NAMES, fieldName)}
@@ -53,7 +53,7 @@ class RuleRow extends React.Component<Props, never> {
     ));
   }
 
-  checksDropdown() {
+  checksDropdown(): ReactElement | null {
     const {rule} = this.props;
 
     if (!rule.field) { return null; }
@@ -82,7 +82,7 @@ class RuleRow extends React.Component<Props, never> {
     deleteRule(index);
   }
 
-  render() {
+  render(): ReactElement {
     // value = SELECTED_CHECK || FIRST_CHECK_COMPATIBLE_WITH_FIELD;
     // <dropdown enabled={isPreviousDropdownSelected}>{value}</dropdown>
     // {needsValue ? <dropdown>{AVAILABLE_VALUES}</dropdown> : null}

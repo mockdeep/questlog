@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
@@ -27,7 +28,7 @@ class TaskParentListItem extends React.Component<Props, never> {
     });
   }
 
-  render() {
+  render(): ReactElement {
     const {task, tasksByParentId, updateTask} = this.props;
     const tasks = tasksByParentId[task.id];
     const listProps = {tasks, tasksByParentId, updateTask};

@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import type {ReactElement} from 'react';
 import React from 'react';
 import update from 'immutability-helper';
 import {HTML5Backend} from 'react-dnd-html5-backend';
@@ -102,7 +103,7 @@ class TaskListView extends React.Component<Props, State> {
     return currentTasks.map((task: Task) => task.id);
   }
 
-  currentTasksTable() {
+  currentTasksTable(): ReactElement | null {
     const {currentTasks} = this.state;
 
     if (currentTasks.length === 0) { return null; }
@@ -117,7 +118,7 @@ class TaskListView extends React.Component<Props, State> {
     );
   }
 
-  pendingTasksTable() {
+  pendingTasksTable(): ReactElement | null {
     const {pendingTasks} = this.state;
 
     if (pendingTasks.length === 0) { return null; }
@@ -132,19 +133,19 @@ class TaskListView extends React.Component<Props, State> {
     );
   }
 
-  currentTaskRows() {
+  currentTaskRows(): ReactElement[] {
     const {currentTasks} = this.state;
 
     return currentTasks.map((task: Task) => this.taskRow(task));
   }
 
-  pendingTaskRows() {
+  pendingTaskRows(): ReactElement[] {
     const {pendingTasks} = this.state;
 
     return pendingTasks.map((task: Task) => this.taskRow(task));
   }
 
-  taskRow(task: Task) {
+  taskRow(task: Task): ReactElement {
     const {deleteTask, updateTask} = this.props;
 
     return (
@@ -159,7 +160,7 @@ class TaskListView extends React.Component<Props, State> {
     );
   }
 
-  render() {
+  render(): ReactElement {
     return (
       <DndProvider backend={HTML5Backend}>
         {this.currentTasksTable()}

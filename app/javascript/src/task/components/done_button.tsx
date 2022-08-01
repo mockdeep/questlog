@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 type Props = {
@@ -33,7 +34,7 @@ class DoneButton extends React.Component<Props, never> {
     return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
   }
 
-  render() {
+  render(): ReactElement {
     return (
       <input
         type='button'

@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import TaskNestedList from 'src/task/components/nested_list';
@@ -16,7 +17,7 @@ class TaskTreeView extends React.Component<Props, never> {
     autobind(this);
   }
 
-  render() {
+  render(): ReactElement {
     const {tasks, tasksByParentId, updateTask} = this.props;
     const listProps = {tasks, tasksByParentId, updateTask};
 

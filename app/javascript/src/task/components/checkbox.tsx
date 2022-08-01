@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import type {ChangeEvent} from 'react';
+import type {ChangeEvent, ReactElement} from 'react';
 import React from 'react';
 
 type Props = {
@@ -25,7 +25,7 @@ class TaskCheckbox extends React.Component<Props, never> {
     });
   }
 
-  render() {
+  render(): ReactElement {
     const {checked, disabled, onChange, task} = this.props;
     const inputId = `complete-task-${task.id}`;
 

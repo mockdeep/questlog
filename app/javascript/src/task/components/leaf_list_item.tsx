@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import type {ChangeEvent} from 'react';
+import type {ChangeEvent, ReactElement} from 'react';
 import React from 'react';
 
 import TaskCheckbox from 'src/task/components/checkbox';
@@ -35,7 +35,7 @@ class TaskLeafListItem extends React.Component<Props, never> {
     });
   }
 
-  render() {
+  render(): ReactElement {
     const {task} = this.props;
 
     return (
