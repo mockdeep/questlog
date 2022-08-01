@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-function isNode() {
+function isNode(): boolean {
   // eslint-disable-next-line no-extra-parens
   return typeof process !== 'undefined' && !(process as any).browser;
 }

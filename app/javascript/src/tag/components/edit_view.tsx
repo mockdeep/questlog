@@ -75,7 +75,7 @@ class TagEditView extends React.Component<Props, State> {
     return uniqWith(rules, isEqual);
   }
 
-  hasDuplicateRules() {
+  hasDuplicateRules(): boolean {
     const {rules} = this.state;
 
     return this.uniqRules().length !== rules.length;

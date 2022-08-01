@@ -15,12 +15,12 @@ function findTask(tasks: Task[], taskId: number): Task {
   return assert(tasks.find(task => task.id === taskId));
 }
 
-function afterTaskHasHigherPriority(task: Task, afterTask: Task) {
+function afterTaskHasHigherPriority(task: Task, afterTask: Task): boolean {
   if (!task.priority) { return true; }
   return Boolean(afterTask.priority && afterTask.priority < task.priority);
 }
 
-function beforeTaskHasLowerPriority(task: Task, beforeTask: Task) {
+function beforeTaskHasLowerPriority(task: Task, beforeTask: Task): boolean {
   if (!beforeTask.priority) { return true; }
   return Boolean(task.priority && beforeTask.priority > task.priority);
 }
