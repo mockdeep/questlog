@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
@@ -35,18 +36,18 @@ class TaskTitle extends React.Component<Props, never> {
     return `skip count: ${task.skipCount}`;
   }
 
-  emblems() {
+  emblems(): ReactElement | null {
     const {task} = this.props;
 
-    if (!task.repeatSeconds) { return false; }
+    if (!task.repeatSeconds) { return null; }
 
     return <i className='fas fa-redo-alt' title='task repeats' />;
   }
 
-  timeframeName() {
+  timeframeName(): ReactElement | null {
     const {task} = this.props;
 
-    if (!task.timeframe) { return false; }
+    if (!task.timeframe) { return null; }
 
     const timeframeName = grab(timeframeNameMap, task.timeframe);
 
@@ -55,7 +56,7 @@ class TaskTitle extends React.Component<Props, never> {
     );
   }
 
-  render() {
+  render(): ReactElement {
     const {deleteTask, task} = this.props;
 
     return (

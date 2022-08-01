@@ -1,3 +1,4 @@
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
@@ -38,7 +39,7 @@ export type Props = {
   task: Task,
 };
 
-function TaskShowView(props: Props) {
+function TaskShowView(props: Props): ReactElement {
   const {task, subTasks, updateTask, deleteTask} = props;
 
   return (

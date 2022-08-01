@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import type {ChangeEvent} from 'react';
+import type {ChangeEvent, ReactElement} from 'react';
 import React from 'react';
 
 function isPostponing(task: Task): boolean {
@@ -50,11 +50,11 @@ class PostponeButton extends React.Component<Props, never> {
     postponeTask(task.id);
   }
 
-  selectOptions() {
+  selectOptions(): ReactElement[] {
     return selectOptionsOptions.map(this.selectOption);
   }
 
-  selectOption({content, value}: OptionOptions) {
+  selectOption({content, value}: OptionOptions): ReactElement {
     return <option key={value} value={value}>{content}</option>;
   }
 
@@ -70,7 +70,7 @@ class PostponeButton extends React.Component<Props, never> {
     return isPostponing(task) ? 'Postponing...' : 'Postpone for:';
   }
 
-  render() {
+  render(): ReactElement {
     const {disabled} = this.props;
 
     return (

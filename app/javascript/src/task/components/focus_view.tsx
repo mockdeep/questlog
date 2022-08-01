@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import TaskDisplay from 'src/task/components/task_display';
@@ -46,7 +47,7 @@ class TaskFocusView extends React.Component<Props, State> {
     updateTask(taskId, {done: true});
   }
 
-  mainDisplay() {
+  mainDisplay(): ReactElement {
     const {ajaxState, task} = this.props;
 
     if (task) {
@@ -60,7 +61,7 @@ class TaskFocusView extends React.Component<Props, State> {
     throw new Error(`don't know how to deal with ajaxState "${ajaxState}"`);
   }
 
-  nextTaskDisplay(task: Task) {
+  nextTaskDisplay(task: Task): ReactElement {
     const {deleteTask} = this.props;
     const {completeTask, postponeTask, storePostponeSeconds} = this;
 
@@ -78,19 +79,19 @@ class TaskFocusView extends React.Component<Props, State> {
     );
   }
 
-  loadingDisplay() {
+  loadingDisplay(): ReactElement {
     this.setTitle('Loading...');
 
     return <div><h1>{'Loading...'}</h1></div>;
   }
 
-  noTaskDisplay() {
+  noTaskDisplay(): ReactElement {
     this.setTitle('(no tasks!)');
 
     return <div><h2>{'No tasks! Try adding one below:'}</h2></div>;
   }
 
-  render() {
+  render(): ReactElement {
     return this.mainDisplay();
   }
 }

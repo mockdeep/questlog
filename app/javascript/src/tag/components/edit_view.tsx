@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import type {SyntheticEvent} from 'react';
+import type {SyntheticEvent, ReactElement} from 'react';
 import React from 'react';
 import update from 'immutability-helper';
 import {uniqWith, isEqual} from 'lodash';
@@ -47,7 +47,7 @@ class TagEditView extends React.Component<Props, State> {
     });
   }
 
-  ruleRow(rule: TagRule, index: number) {
+  ruleRow(rule: TagRule, index: number): ReactElement {
     const keyParts: string[] = Object.values(rule);
     keyParts.push(index.toString());
     const key: string = keyParts.join('-');
@@ -63,7 +63,7 @@ class TagEditView extends React.Component<Props, State> {
     );
   }
 
-  ruleRows() {
+  ruleRows(): ReactElement[] {
     const {rules} = this.state;
 
     return rules.map((rule, index) => this.ruleRow(rule, index));
@@ -102,7 +102,7 @@ class TagEditView extends React.Component<Props, State> {
     this.setState({rules: rules.concat(newRule)});
   }
 
-  render() {
+  render(): ReactElement | null {
     const {tag} = this.props;
 
     if (!tag) { return null; }
