@@ -45,7 +45,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     this.setState({focused: true});
   }
 
-  className() {
+  className(): string {
     const {focused} = this.state;
 
     return classnames({'task-input': true, 'hidden-border': !focused});

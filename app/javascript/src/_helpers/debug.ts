@@ -26,7 +26,7 @@ const browserStyles = {
   reset: '',
 };
 
-function debugNode<T>({result, userLabel}: {result: T, userLabel: string}) {
+function debugNode<T>({result, userLabel}: {result: T, userLabel: string}): T {
   const {debugStyle, messageStyle, arrowStyle, reset} = terminalStyles;
   let label;
 
@@ -45,7 +45,9 @@ function debugNode<T>({result, userLabel}: {result: T, userLabel: string}) {
   return result;
 }
 
-function debugBrowser<T>({result, userLabel}: {result: T, userLabel: string}) {
+function debugBrowser<T>(
+  {result, userLabel}: {result: T, userLabel: string},
+): void {
   const {debugStyle, messageStyle, arrowStyle, reset} = browserStyles;
   const consoleArgs = [debugStyle, reset];
   const debugLabel = '%c  DEBUG  %c';

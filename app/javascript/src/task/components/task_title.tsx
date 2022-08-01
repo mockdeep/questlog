@@ -19,7 +19,7 @@ class TaskTitle extends React.Component<Props, never> {
     autobind(this);
   }
 
-  className() {
+  className(): string {
     const {task} = this.props;
 
     return classnames({
@@ -29,7 +29,7 @@ class TaskTitle extends React.Component<Props, never> {
     });
   }
 
-  title() {
+  title(): string {
     const {task} = this.props;
 
     return `skip count: ${task.skipCount}`;
