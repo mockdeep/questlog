@@ -64,7 +64,7 @@ class PostponeButton extends React.Component<Props, never> {
     storePostponeSeconds(parseInt(event.target.value, 10));
   }
 
-  buttonMessage() {
+  buttonMessage(): string {
     const {task} = this.props;
 
     return isPostponing(task) ? 'Postponing...' : 'Postpone for:';

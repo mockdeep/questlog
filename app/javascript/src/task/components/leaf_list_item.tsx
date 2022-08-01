@@ -26,7 +26,7 @@ class TaskLeafListItem extends React.Component<Props, never> {
     updateTask(task.id, {done: checked});
   }
 
-  titleClass() {
+  titleClass(): string {
     const {task} = this.props;
 
     return classnames({

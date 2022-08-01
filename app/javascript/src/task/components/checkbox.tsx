@@ -16,7 +16,7 @@ class TaskCheckbox extends React.Component<Props, never> {
     autobind(this);
   }
 
-  labelClass() {
+  labelClass(): string {
     const {checked, disabled} = this.props;
     return classnames({
       'task-item__checkbox-display': true,

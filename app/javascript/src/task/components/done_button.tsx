@@ -26,7 +26,7 @@ class DoneButton extends React.Component<Props, never> {
     return task.loadingState === 'ready';
   }
 
-  buttonMessage() {
+  buttonMessage(): string {
     const {task} = this.props;
     const isMarkingDone = task.loadingState === 'marking_done';
 
