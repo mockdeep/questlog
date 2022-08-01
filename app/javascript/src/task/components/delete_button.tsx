@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import type {MouseEvent} from 'react';
+import type {MouseEvent, ReactElement} from 'react';
 import React from 'react';
 
 type Props = {
@@ -30,7 +30,7 @@ class DeleteButton extends React.Component<Props, never> {
     };
   }
 
-  render() {
+  render(): ReactElement {
     return <i {...this.rootOpts()} />;
   }
 }

@@ -1,5 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 export type Props = {
@@ -25,7 +26,7 @@ class TagButton extends React.Component<Props, never> {
     });
   }
 
-  render() {
+  render(): ReactElement {
     const {tag} = this.props;
     const {slug, name} = tag;
     const path = name === 'All' ? '/' : `/tags/${slug}`;

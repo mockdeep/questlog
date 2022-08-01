@@ -1,6 +1,6 @@
 import autobind from 'class-autobind';
 import classnames from 'classnames';
-import type {FocusEvent, FormEvent, KeyboardEvent} from 'react';
+import type {FocusEvent, FormEvent, KeyboardEvent, ReactElement} from 'react';
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
 
@@ -51,7 +51,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
     return classnames({'task-input': true, 'hidden-border': !focused});
   }
 
-  render() {
+  render(): ReactElement {
     const {task} = this.props;
 
     return (

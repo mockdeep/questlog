@@ -1,5 +1,5 @@
 import autobind from 'class-autobind';
-import type {ChangeEvent} from 'react';
+import type {ChangeEvent, ReactElement} from 'react';
 import React from 'react';
 import type {DragSourceConnector, DragSourceMonitor, DropTargetConnector,
   DropTargetMonitor,
@@ -90,7 +90,7 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
     connectDragSource(assert(domNode));
   }
 
-  render() {
+  render(): ReactElement {
     const {
       deleteTask,
       isDragging,

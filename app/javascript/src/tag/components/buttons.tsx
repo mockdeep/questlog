@@ -1,4 +1,5 @@
 import autobind from 'class-autobind';
+import type {ReactElement} from 'react';
 import React from 'react';
 
 import TagButton from 'src/tag/components/button';
@@ -29,13 +30,13 @@ class TagButtons extends React.Component<Props, never> {
     return tag.name === 'All';
   }
 
-  tagButtons() {
+  tagButtons(): ReactElement[] {
     const {tags} = this.props;
 
     return tags.map(this.tagButton);
   }
 
-  tagButton(tag: Tag) {
+  tagButton(tag: Tag): ReactElement {
     return (
       <TagButton
         tag={tag}
@@ -46,7 +47,7 @@ class TagButtons extends React.Component<Props, never> {
     );
   }
 
-  render() {
+  render(): ReactElement {
     return (
       <div className='row'>
         <div className='col-md-12 tag-buttons'>{this.tagButtons()}</div>

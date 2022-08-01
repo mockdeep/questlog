@@ -1,3 +1,4 @@
+import type {ReactElement} from 'react';
 import React from 'react';
 import {connect} from 'react-redux';
 
@@ -16,7 +17,7 @@ type ContainerProps = {
 // otherwise imports get funky
 // eslint-disable-next-line react/prefer-stateless-function
 class ParentTaskBreadCrumbs extends React.Component<ComponentProps, never> {
-  render() {
+  render(): ReactElement | null {
     const {task} = this.props;
     if (!task) { return null; }
 

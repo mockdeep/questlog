@@ -1,4 +1,5 @@
 import React from 'react';
+import type {ReactElement} from 'react';
 
 import TaskRow from 'src/task/components/task_row';
 import TableHeaders from 'src/task/components/table_headers';
@@ -11,7 +12,10 @@ type FunctionProps = {
 
 export type Props = FunctionProps & { subTasks: Task[]; };
 
-function taskRows(tasks: Task[], {updateTask, deleteTask}: FunctionProps) {
+function taskRows(
+  tasks: Task[],
+  {updateTask, deleteTask}: FunctionProps,
+): ReactElement[] {
   return tasks.map(task => (
     <TaskRow
       key={task.id}
@@ -22,7 +26,9 @@ function taskRows(tasks: Task[], {updateTask, deleteTask}: FunctionProps) {
   ));
 }
 
-function SubTasksTable({subTasks, updateTask, deleteTask}: Props) {
+function SubTasksTable(
+  {subTasks, updateTask, deleteTask}: Props,
+): ReactElement | null {
   if (subTasks.length === 0) { return null; }
 
   return (
