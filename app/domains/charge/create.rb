@@ -6,9 +6,9 @@ module Charge
     CHARGE_AMOUNT = 500 # cents
 
     def call(user:, email:, token:)
-      customer = create_customer(email: email, token: token)
+      customer = create_customer(email:, token:)
       user.update!(customer_id: customer.id)
-      create_charge(customer: customer)
+      create_charge(customer:)
       ActionResult.new(success: true)
     rescue Stripe::CardError => e
       ActionResult.new(success: false, errors: [e.message])
@@ -26,7 +26,7 @@ module Charge
     end
 
     def create_customer(email:, token:)
-      Stripe::Customer.create(email: email, card: token)
+      Stripe::Customer.create(email:, card: token)
     end
   end
 

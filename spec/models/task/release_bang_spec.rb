@@ -6,7 +6,7 @@ RSpec.describe Task, '#release!' do
       position: 5,
       release_at: 1.day.ago,
       done_at: 1.month.ago,
-      user: user,
+      user:,
     )
   end
 
@@ -15,10 +15,10 @@ RSpec.describe Task, '#release!' do
   end
 
   it 'sets the position to the max position' do
-    create(:task, user: user)
-    create(:task, user: user, position: 15)
-    create(:task, user: user, position: 3)
-    create(:task, done_at: 1.month.ago, user: user, position: 18)
+    create(:task, user:)
+    create(:task, user:, position: 15)
+    create(:task, user:, position: 3)
+    create(:task, done_at: 1.month.ago, user:, position: 18)
     create(:task, position: 17)
     expect { task.release! }.to change(task, :position).to(16)
   end

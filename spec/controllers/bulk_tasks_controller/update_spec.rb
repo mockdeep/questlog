@@ -1,12 +1,12 @@
 RSpec.describe BulkTasksController, '#update' do
   let(:user) { create(:user) }
-  let(:task_1) { create(:task, position: 1, user: user) }
-  let(:task_2) { create(:task, position: 2, user: user) }
-  let(:task_3) { create(:task, position: 3, user: user) }
-  let(:task_4) { create(:task, position: 4, user: user) }
-  let(:task_5) { create(:task, position: 5, user: user) }
+  let(:task_1) { create(:task, position: 1, user:) }
+  let(:task_2) { create(:task, position: 2, user:) }
+  let(:task_3) { create(:task, position: 3, user:) }
+  let(:task_4) { create(:task, position: 4, user:) }
+  let(:task_5) { create(:task, position: 5, user:) }
   let(:positions) { [task_4, task_2, task_1, task_3, task_5].map(&:id) }
-  let(:valid_params) { { bulk_task: { positions: positions } } }
+  let(:valid_params) { { bulk_task: { positions: } } }
 
   before(:each) { login_as(user) }
 

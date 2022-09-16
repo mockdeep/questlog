@@ -4,14 +4,14 @@ RSpec.describe TasksController, '#index' do
   before { login_as(user) }
 
   it 'renders all incomplete tasks for the user' do
-    create(:task, user: user, done_at: 1.week.ago)
+    create(:task, user:, done_at: 1.week.ago)
     task_2 = create(
       :task,
-      user: user,
+      user:,
       done_at: 1.week.ago,
       release_at: 1.week.from_now,
     )
-    task_3 = create(:task, user: user)
+    task_3 = create(:task, user:)
 
     get(:index, format: :json)
 

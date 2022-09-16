@@ -43,7 +43,7 @@ class Tag < ApplicationRecord
 
     existing_tags = user.tags.where(name: names)
     missing_names = names - existing_tags.map(&:name)
-    tag_params = missing_names.map { |name| { user: user, name: name } }
+    tag_params = missing_names.map { |name| { user:, name: } }
     existing_tags + create!(tag_params)
   end
 end

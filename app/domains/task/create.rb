@@ -3,7 +3,7 @@ class Task < ApplicationRecord
     include JunkDrawer::Callable
 
     def call(user:, **task_params)
-      validate_parent_task(task_params, user: user)
+      validate_parent_task(task_params, user:)
 
       user.tasks.create!(task_params)
     end

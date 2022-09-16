@@ -4,7 +4,7 @@ RSpec.describe Task::Create do
 
   it 'creates a task with the given params' do
     expect do
-      action.(user: user, title: 'a title', priority: 3)
+      action.(user:, title: 'a title', priority: 3)
     end.to change(Task, :count).by(1)
 
     task = Task.last
@@ -15,10 +15,10 @@ RSpec.describe Task::Create do
 
   context 'when given a parent_task_id' do
     it 'associates the created task with the parent task' do
-      task_1 = create(:task, user: user)
+      task_1 = create(:task, user:)
 
       expect do
-        action.(user: user, title: 'a title', parent_task_id: task_1.id)
+        action.(user:, title: 'a title', parent_task_id: task_1.id)
       end.to change(Task, :count).by(1)
 
       task_2 = Task.last
@@ -30,7 +30,7 @@ RSpec.describe Task::Create do
       task_1 = create(:task)
 
       expect do
-        action.(user: user, title: 'a title', parent_task_id: task_1.id)
+        action.(user:, title: 'a title', parent_task_id: task_1.id)
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

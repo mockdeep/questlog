@@ -1,6 +1,6 @@
 RSpec.describe Task::Update do
   let(:user) { create(:user) }
-  let(:task) { create(:task, estimate_seconds: 301, user: user) }
+  let(:task) { create(:task, estimate_seconds: 301, user:) }
   let(:task_update) { described_class.new }
   let(:task_update_params) do
     {

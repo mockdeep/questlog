@@ -69,15 +69,15 @@ RSpec.describe 'timeframes', js: true do
 
     Timecop.travel(Time.zone.parse('2014/04/16'))
 
-    create(:stat, user: user, timestamp: 3.days.ago, value: 3600)
-    create(:stat, user: user, timestamp: 4.days.ago, value: 4000)
+    create(:stat, user:, timestamp: 3.days.ago, value: 3600)
+    create(:stat, user:, timestamp: 4.days.ago, value: 4000)
 
     sidebar.click('TIMEFRAMES')
 
     expect(page).to have_content('Median Productivity')
 
-    task_1 = create(:task, user: user)
-    task_2 = create(:task, user: user, estimate_seconds: 365)
+    task_1 = create(:task, user:)
+    task_2 = create(:task, user:, estimate_seconds: 365)
 
     refresh
 

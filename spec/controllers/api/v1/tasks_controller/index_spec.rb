@@ -4,13 +4,13 @@ RSpec.describe API::V1::TasksController, '#index' do
   before { login_as(user) }
 
   it 'renders json of undone and pending tasks for the user' do
-    task_1 = create(:task, user: user)
-    create(:task, done_at: 1.week.ago, user: user)
+    task_1 = create(:task, user:)
+    create(:task, done_at: 1.week.ago, user:)
     task_3 = create(
       :task,
       done_at: 1.week.ago,
       release_at: 1.week.from_now,
-      user: user,
+      user:,
     )
 
     get(:index)
@@ -22,8 +22,8 @@ RSpec.describe API::V1::TasksController, '#index' do
   end
 
   it 'renders json of tags for the user' do
-    tag_1 = create(:tag, user: user)
-    tag_2 = create(:tag, user: user)
+    tag_1 = create(:tag, user:)
+    tag_2 = create(:tag, user:)
 
     get(:index)
 

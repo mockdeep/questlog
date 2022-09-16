@@ -4,7 +4,7 @@ RSpec.describe SessionsController, '#create' do
 
   context 'when a profile is found' do
     before(:each) do
-      fake_profile = double(user: user)
+      fake_profile = double(user:)
       expect(Profile).to receive(:authenticate)
         .with('some_email', 'some_password')
         .and_return(fake_profile)

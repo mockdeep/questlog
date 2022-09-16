@@ -1,6 +1,6 @@
 RSpec.describe Tag::Create do
   let(:user) { create(:user) }
-  let(:valid_params) { { user: user, name: 'foo tag' } }
+  let(:valid_params) { { user:, name: 'foo tag' } }
 
   it 'creates a tag' do
     expect do

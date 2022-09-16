@@ -1,7 +1,7 @@
 RSpec.describe Task, '#destroy' do
   let(:user) { create(:user) }
-  let(:task) { create(:task, user: user) }
-  let(:tag) { create(:tag, user: user) }
+  let(:task) { create(:task, user:) }
+  let(:tag) { create(:tag, user:) }
 
   context 'when task is pending' do
     it 'does not change tag counters' do

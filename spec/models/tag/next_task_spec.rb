@@ -1,10 +1,10 @@
 RSpec.describe Tag, '#next_task' do
   let(:user) { create(:user) }
-  let(:tag) { create(:tag, user: user) }
+  let(:tag) { create(:tag, user:) }
 
   it 'returns the next task' do
-    task_1 = create(:task, user: user)
-    task_2 = create(:task, user: user)
+    task_1 = create(:task, user:)
+    task_2 = create(:task, user:)
     tag.tasks << task_1
     tag.tasks << task_2
     expect(tag.next_task).to eq task_1

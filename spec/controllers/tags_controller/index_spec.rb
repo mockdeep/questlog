@@ -2,7 +2,7 @@ RSpec.describe TagsController, '#index' do
   it 'renders tags for the current user, ordered by name' do
     user = create(:user)
     login_as(user)
-    create(:tag, user: user, name: 'At home')
+    create(:tag, user:, name: 'At home')
 
     get(:index)
 

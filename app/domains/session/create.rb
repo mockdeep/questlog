@@ -12,7 +12,7 @@ module Session
       else
         success = false
       end
-      ActionResult.new(success: success, object: user)
+      ActionResult.new(success:, object: user)
     end
   end
 
