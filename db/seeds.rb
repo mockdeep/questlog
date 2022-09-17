@@ -4,7 +4,7 @@ account = FreeAccount.create!(
   password_confirmation: 'pizzas',
 )
 
-user = User.create(account: account)
+user = User.create(account:)
 
 home_tag = user.tags.create(name: 'home')
 work_tag = user.tags.create(name: 'work')

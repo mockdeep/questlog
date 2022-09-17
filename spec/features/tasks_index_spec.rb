@@ -59,7 +59,7 @@ RSpec.describe 'tasks index page', js: true do
   it 'allows a user to undo a task' do
     task = create(
       :task,
-      user: user,
+      user:,
       done_at: Time.zone.now,
       release_at: 1.week.from_now,
     )

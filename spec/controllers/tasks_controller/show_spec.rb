@@ -2,7 +2,7 @@ RSpec.describe TasksController, '#show' do
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:task_2) { create(:task, title: 'blah') }
-  let(:tag) { create(:tag, user: user, tasks: [task_2], slug: 'foo') }
+  let(:tag) { create(:tag, user:, tasks: [task_2], slug: 'foo') }
 
   before(:each) do
     login_as(user)
@@ -45,7 +45,7 @@ RSpec.describe TasksController, '#show' do
   end
 
   it 'renders the new task form with parent task id when format is html' do
-    create(:task, user: user)
+    create(:task, user:)
 
     get(:show, params: { id: task.id })
 

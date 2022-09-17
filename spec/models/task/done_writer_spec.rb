@@ -1,7 +1,7 @@
 RSpec.describe Task, '#done=' do
   let(:user) { create(:user) }
-  let(:task) { build(:task, user: user) }
-  let(:tag) { create(:tag, user: user) }
+  let(:task) { build(:task, user:) }
+  let(:tag) { create(:tag, user:) }
 
   context 'when given true' do
     it 'sets done_at to Time.now' do

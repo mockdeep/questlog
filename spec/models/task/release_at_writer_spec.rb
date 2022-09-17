@@ -1,7 +1,7 @@
 RSpec.describe Task, '#release_at=' do
   let(:user) { create(:user) }
-  let(:task) { build(:task, user: user) }
-  let(:tag) { create(:tag, user: user) }
+  let(:task) { build(:task, user:) }
+  let(:tag) { create(:tag, user:) }
 
   it 'does not change "done" when it has already been changed' do
     task.update!(done: true)

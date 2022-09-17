@@ -1,8 +1,8 @@
 RSpec.describe API::V1::TagsController, '#update' do
   let(:user) { create(:user) }
-  let(:tag) { create(:tag, user: user) }
+  let(:tag) { create(:tag, user:) }
   let(:rules) { [{ field: 'estimateSeconds', check: 'isBlank' }] }
-  let(:valid_params) { { id: tag.id, tag: { name: 'foo tag', rules: rules } } }
+  let(:valid_params) { { id: tag.id, tag: { name: 'foo tag', rules: } } }
 
   before { login_as(user) }
 

@@ -2,10 +2,10 @@ RSpec.describe Stat, '.median_productivity' do
   let(:user) { create(:user) }
   let(:mock_median) { class_spy(Median) }
   let(:options) { { default: 1.hour } }
-  let(:stat_params) { { name: 'seconds-completed', user: user } }
+  let(:stat_params) { { name: 'seconds-completed', user: } }
 
   def create_stat(value:, timestamp:)
-    described_class.create!(**stat_params, value: value, timestamp: timestamp)
+    described_class.create!(**stat_params, value:, timestamp:)
   end
 
   it 'returns 1 hour when there are no stats in past 2 weeks' do

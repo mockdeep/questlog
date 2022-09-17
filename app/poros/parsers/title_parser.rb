@@ -18,7 +18,7 @@ class TitleParser
   private
 
   def parsed_results(title)
-    PARSERS.each_with_object(title: title) do |parser, result|
+    PARSERS.each_with_object(title:) do |parser, result|
       result.merge!(parser.(result[:title]))
     end
   end

@@ -24,7 +24,6 @@ Rails: { Enabled: true }
 #
 # ............................................................................ #
 
-# https://github.com/sds/haml-lint/issues/315
 Layout/LineLength: { Max: 80, AutoCorrect: true }
 Metrics/BlockLength: { IgnoredMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
@@ -37,6 +36,7 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
+Style/HashSyntax: { Exclude: [app/views/**/*.haml*] } # https://github.com/sds/haml-lint/issues/372
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:
     - and

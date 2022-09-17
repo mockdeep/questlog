@@ -1,7 +1,7 @@
 RSpec.describe API::V1::TasksController, '#destroy' do
   let(:task) { create(:task) }
   let(:user) { task.user }
-  let(:tag) { create(:tag, user: user) }
+  let(:tag) { create(:tag, user:) }
   let(:valid_params) { { id: task.id, format: :json } }
 
   before(:each) do

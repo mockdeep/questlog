@@ -153,7 +153,7 @@ class Task < ApplicationRecord
   def associate_tags
     return unless @tag_names
 
-    self.tags = Tag.find_or_create_all(user: user, names: @tag_names)
+    self.tags = Tag.find_or_create_all(user:, names: @tag_names)
   end
 
   def update_counters

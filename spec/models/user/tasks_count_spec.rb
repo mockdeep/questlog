@@ -9,20 +9,20 @@ RSpec.describe User, '#tasks_count' do
       task = user.tasks.new(title: 'blah')
       task.save!
       expect(user.reload.unfinished_tasks_count).to eq 2
-      create(:task, user: user)
+      create(:task, user:)
       expect(user.reload.unfinished_tasks_count).to eq 3
     end
 
     context 'when a user is added to the task' do
       it 'is incremented' do
-        create(:task, user: user)
+        create(:task, user:)
         expect(user.reload.unfinished_tasks_count).to eq 1
       end
     end
 
     context 'when a task is marked complete' do
       it 'is decremented' do
-        task = create(:task, user: user)
+        task = create(:task, user:)
         expect(user.reload.unfinished_tasks_count).to eq 1
         task.update(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
@@ -31,7 +31,7 @@ RSpec.describe User, '#tasks_count' do
 
     context 'when a task is destroyed' do
       it 'is decremented' do
-        task = create(:task, user: user)
+        task = create(:task, user:)
         task.destroy
         expect(user.reload.unfinished_tasks_count).to eq 0
       end
@@ -39,7 +39,7 @@ RSpec.describe User, '#tasks_count' do
 
     context 'when a task is marked complete and then incomplete' do
       it 'is decremented and then incremented' do
-        task = create(:task, user: user)
+        task = create(:task, user:)
         expect(user.reload.unfinished_tasks_count).to eq 1
         task.update(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
@@ -50,7 +50,7 @@ RSpec.describe User, '#tasks_count' do
 
     context 'when a task is updated within a transaction' do
       it 'still increments and decrements properly' do
-        task = create(:task, user: user)
+        task = create(:task, user:)
         expect(user.reload.unfinished_tasks_count).to eq 1
         task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0

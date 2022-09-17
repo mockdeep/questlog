@@ -1,7 +1,7 @@
 RSpec.describe User, '#next_task' do
-  let(:tag) { create(:tag, user: user) }
-  let(:task_1) { create(:task, user: user) }
-  let(:task_2) { create(:task, user: user) }
+  let(:tag) { create(:tag, user:) }
+  let(:task_1) { create(:task, user:) }
+  let(:task_2) { create(:task, user:) }
   let(:user) { create(:user) }
 
   context 'when a tag_id parameter is passed' do

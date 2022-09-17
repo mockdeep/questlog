@@ -1,6 +1,6 @@
 RSpec.describe TimeframesController, '#index' do
   let(:user) { create(:user) }
-  let(:stat_params) { { name: 'seconds-completed', user: user } }
+  let(:stat_params) { { name: 'seconds-completed', user: } }
 
   before(:each) { login_as(user) }
 
@@ -17,7 +17,7 @@ RSpec.describe TimeframesController, '#index' do
   end
 
   it 'returns the inbox timeframe for the current user' do
-    task = create(:task, user: user)
+    task = create(:task, user:)
     serial_task = hash_including('id' => task.id, 'timeframe' => nil)
     get(:index, format: :json)
     timeframes = JSON.parse(response.body)['data']
@@ -25,9 +25,9 @@ RSpec.describe TimeframesController, '#index' do
   end
 
   it 'returns various other timeframes' do
-    task_1 = create(:task, user: user)
-    task_2 = create(:task, user: user, timeframe: 'week')
-    task_3 = create(:task, user: user, timeframe: 'year')
+    task_1 = create(:task, user:)
+    task_2 = create(:task, user:, timeframe: 'week')
+    task_3 = create(:task, user:, timeframe: 'year')
 
     serial_task_1 = hash_including('id' => task_1.id, 'timeframe' => nil)
     serial_task_2 = hash_including('id' => task_2.id, 'timeframe' => 'week')

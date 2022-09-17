@@ -2,7 +2,7 @@ RSpec.describe Timeframe, '.for' do
   let(:user) { create(:user) }
 
   it 'returns a collection of timeframes for the given user' do
-    expect(described_class.for(user: user)).to eq [
+    expect(described_class.for(user:)).to eq [
       described_class.new(name: 'inbox', tasks: []),
       described_class.new(name: 'today', tasks: []),
       described_class.new(name: 'week', tasks: []),
@@ -13,14 +13,14 @@ RSpec.describe Timeframe, '.for' do
       described_class.new(name: 'decade', tasks: []),
       described_class.new(name: 'century', tasks: []),
     ]
-    task = create(:task, user: user)
-    timeframes = described_class.for(user: user)
+    task = create(:task, user:)
+    timeframes = described_class.for(user:)
     inbox_timeframe = timeframes.first
     expect(inbox_timeframe.name).to eq 'inbox'
     expect(inbox_timeframe.tasks).to eq [task]
 
     task.update(timeframe: 'year')
-    timeframes = described_class.for(user: user)
+    timeframes = described_class.for(user:)
     inbox_timeframe = timeframes.first
     expect(inbox_timeframe.name).to eq 'inbox'
     expect(inbox_timeframe.tasks).to eq []

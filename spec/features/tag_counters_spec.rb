@@ -2,7 +2,7 @@ RSpec.describe 'tag counters', js: true do
   let(:user) { create(:free_user) }
 
   before do
-    create(:tag, user: user, name: 'existing-tag')
+    create(:tag, user:, name: 'existing-tag')
     feature_login_as(user)
   end
 
