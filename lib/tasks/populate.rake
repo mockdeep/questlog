@@ -10,6 +10,6 @@ namespace :db do
       password: 'pizzas',
       password_confirmation: 'pizzas',
     )
-    User.create!(account: account)
+    User.create!(account:)
   end
 end

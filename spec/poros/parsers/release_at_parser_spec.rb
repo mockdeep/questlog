@@ -47,6 +47,6 @@ RSpec.describe ReleaseAtParser do
     time_string = time.strftime('%I:%M%P')
     title = "do it #{time_string}"
     result = parser.(title)
-    expect(result).to eq(title: title, release_at: nil)
+    expect(result).to eq(title:, release_at: nil)
   end
 end

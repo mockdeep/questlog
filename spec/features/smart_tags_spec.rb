@@ -3,7 +3,7 @@ RSpec.describe 'editing smart tags', js: true do
 
   it 'allows selecting rules from dropdowns' do
     feature_login_as(user)
-    tag = create(:tag, name: 'my tag', user: user)
+    tag = create(:tag, name: 'my tag', user:)
     visit '/tags'
 
     within('.tag-row', text: tag.name) { click_link('Edit') }

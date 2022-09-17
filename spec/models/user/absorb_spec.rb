@@ -1,6 +1,6 @@
 RSpec.describe User, '#absorb' do
   let(:user) { create(:user) }
-  let(:task) { create(:task, user: user) }
+  let(:task) { create(:task, user:) }
 
   it 'takes the tasks from the other user' do
     other_user = create(:user)
@@ -34,8 +34,8 @@ RSpec.describe User, '#absorb' do
       user: other_user,
       tags: [other_tag_2],
     )
-    create(:tag, name: 'another-solo', user: user)
-    tag_2 = create(:tag, name: 'duplicate', user: user)
+    create(:tag, name: 'another-solo', user:)
+    tag_2 = create(:tag, name: 'duplicate', user:)
     expected_names = ['another-solo', 'duplicate', 'solo']
     user.absorb(other_user)
     expect(user.reload.tags.pluck(:name).sort).to eq expected_names

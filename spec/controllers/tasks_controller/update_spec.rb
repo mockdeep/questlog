@@ -1,7 +1,7 @@
 RSpec.describe TasksController, '#update' do
   let(:user) { create(:user) }
-  let(:task) { create(:task, user: user, estimate_seconds: 605) }
-  let(:task_2) { create(:task, user: user, estimate_seconds: 302) }
+  let(:task) { create(:task, user:, estimate_seconds: 605) }
+  let(:task_2) { create(:task, user:, estimate_seconds: 302) }
   let(:valid_attributes) { { title: 'foo #home !3 ~5m' } }
   let(:valid_params) { { id: task.id, task: valid_attributes, format: :json } }
 

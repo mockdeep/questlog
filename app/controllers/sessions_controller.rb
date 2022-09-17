@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    result = Session::Create.(**session_params, current_user: current_user)
+    result = Session::Create.(**session_params, current_user:)
     if result.success?
       self.current_user = result.object
       return_or_redirect_to root_path, notice: 'Logged in!'

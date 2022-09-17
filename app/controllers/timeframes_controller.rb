@@ -4,7 +4,7 @@ class TimeframesController < ApplicationController
     meta = { medianProductivity: current_user.stats.median_productivity }
 
     respond_to do |format|
-      format.json { render(json: serialize(timeframe, meta: meta)) }
+      format.json { render(json: serialize(timeframe, meta:)) }
       format.html
     end
   end

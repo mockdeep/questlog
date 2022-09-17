@@ -9,7 +9,7 @@ RSpec.describe Tagging, 'associations' do
     context 'when the task is not done' do
       it 'increments the associated tag unfinished_tasks_count' do
         expect do
-          create(:tagging, tag: tag, task: task)
+          create(:tagging, tag:, task:)
         end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
       end
     end
@@ -17,7 +17,7 @@ RSpec.describe Tagging, 'associations' do
 
   context 'after destroy' do
     it 'decrements the associated tag unfinished_tasks_count' do
-      tagging = create(:tagging, tag: tag, task: task)
+      tagging = create(:tagging, tag:, task:)
       expect do
         tagging.destroy
       end.to change { tag.reload.unfinished_tasks_count }.from(1).to(0)

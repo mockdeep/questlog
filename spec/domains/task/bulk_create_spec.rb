@@ -4,14 +4,14 @@ RSpec.describe Task::BulkCreate do
 
   it 'creates tasks from the given title string, split on newline' do
     expect do
-      bulk_task_create.(titles: "*1d eat\n@10pm wax teeth\n#me moo", user: user)
+      bulk_task_create.(titles: "*1d eat\n@10pm wax teeth\n#me moo", user:)
     end.to change(Task, :count).by(3)
     expect(Task.undone.pluck(:title).sort).to eq ['eat', 'moo']
   end
 
   it 'does not create blank tasks' do
     expect do
-      bulk_task_create.(titles: "one\n \nanother", user: user)
+      bulk_task_create.(titles: "one\n \nanother", user:)
     end.to change(Task, :count).by(2)
   end
 

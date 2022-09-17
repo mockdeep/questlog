@@ -1,8 +1,8 @@
 RSpec.describe Task, '#tag_names' do
   let(:user) { create(:user) }
-  let(:task) { build(:task, user: user) }
-  let(:tag_1) { create(:tag, user: user) }
-  let(:tag_2) { create(:tag, user: user) }
+  let(:task) { build(:task, user:) }
+  let(:tag_1) { create(:tag, user:) }
+  let(:tag_2) { create(:tag, user:) }
 
   context 'after save' do
     it 'sets the tags for the task' do

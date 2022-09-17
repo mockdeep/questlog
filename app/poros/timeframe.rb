@@ -23,7 +23,7 @@ class Timeframe
     timeframes = [Timeframe.new(tasks: inbox_tasks, name: 'inbox')]
     NAMES.each do |name|
       tasks = all_tasks[name] || []
-      timeframes << Timeframe.new(name: name, tasks: tasks)
+      timeframes << Timeframe.new(name:, tasks:)
     end
     timeframes
   end
