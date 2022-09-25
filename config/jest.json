@@ -26,11 +26,6 @@
   "testEnvironmentOptions": {
     "url": "http://test.host"
   },
-  "globals": {
-    "ts-jest": {
-      "tsconfig": "tsconfig-test.json"
-    }
-  },
   "moduleNameMapper": {
     "^dnd-core$": "dnd-core/dist/cjs",
     "^react-dnd$": "react-dnd/dist/cjs",
@@ -38,7 +33,7 @@
   },
   "testEnvironment": "jsdom",
   "transform": {
-    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.(ts|tsx)$": ["ts-jest", { "tsconfig": "tsconfig-test.json" }],
     "^.+\\.js$": "babel-jest"
   },
   "transformIgnorePatterns": [
