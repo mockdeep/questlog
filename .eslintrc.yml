@@ -47,6 +47,9 @@ rules:
   #
   ##############################################################################
 
+  # https://github.com/typescript-eslint/typescript-eslint/issues/5807
+  '@typescript-eslint/no-misused-promises': off
+
   '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
