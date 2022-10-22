@@ -434,7 +434,7 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
-  puma
+  puma (~> 5.6)
   puma_worker_killer
   rails (~> 7.0.0)
   rb-inotify
