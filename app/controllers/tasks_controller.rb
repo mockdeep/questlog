@@ -8,15 +8,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def create
-    persist_current_user
-
-    Task::Create.(**task_params, user: current_user)
-
-    flash[:success] = 'Task added'
-    redirect_back(fallback_location: root_path)
-  end
-
   def show
     task = current_user.next_task(params[:slug])
     respond_to do |format|
@@ -25,6 +16,15 @@ class TasksController < ApplicationController
         render(locals: { task: current_user.tasks.find(params[:id]) })
       end
     end
+  end
+
+  def create
+    persist_current_user
+
+    Task::Create.(**task_params, user: current_user)
+
+    flash[:success] = 'Task added'
+    redirect_back(fallback_location: root_path)
   end
 
   def update
