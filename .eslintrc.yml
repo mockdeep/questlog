@@ -54,7 +54,7 @@ rules:
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   '@typescript-eslint/brace-style': [error, 1tbs, { allowSingleLine: true }]
-  camelcase: [error, { allow: ["^UNSAFE_"] }]
+  camelcase: [error, { allow: ['^UNSAFE_'] }]
   comma-dangle: [error, always-multiline]
   '@typescript-eslint/comma-dangle': [error, always-multiline]
   '@typescript-eslint/consistent-indexed-object-style': [error, index-signature]
@@ -85,6 +85,14 @@ rules:
   react/jsx-wrap-multilines: [error, { declaration: false }]
   space-before-function-paren: [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
+
+  ##############################################################################
+  #
+  # Rules we might want to enable
+  #
+  ##############################################################################
+
+  '@typescript-eslint/keyword-spacing': off
 
   ##############################################################################
   #
