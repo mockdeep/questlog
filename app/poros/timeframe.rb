@@ -12,11 +12,6 @@ class Timeframe
 
   attr_reader :tasks, :name
 
-  def initialize(tasks:, name:)
-    @name = name
-    @tasks = tasks
-  end
-
   def self.for(user:)
     all_tasks = user.unfinished_tasks.includes(:tags).group_by(&:timeframe)
     inbox_tasks = all_tasks[nil] || []
@@ -26,6 +21,11 @@ class Timeframe
       timeframes << Timeframe.new(name:, tasks:)
     end
     timeframes
+  end
+
+  def initialize(tasks:, name:)
+    @name = name
+    @tasks = tasks
   end
 
   def ==(other)
