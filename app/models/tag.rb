@@ -17,6 +17,16 @@ class Tag < ApplicationRecord
   scope :ordered, -> { order(:name) }
   scope :active, -> { where('tags.unfinished_tasks_count > 0') }
 
+  def self.find_or_create_all(options)
+    user = options.fetch(:user)
+    names = options.fetch(:names)
+
+    existing_tags = user.tags.where(name: names)
+    missing_names = names - existing_tags.map(&:name)
+    tag_params = missing_names.map { |name| { user:, name: } }
+    existing_tags + create!(tag_params)
+  end
+
   def should_generate_new_friendly_id?
     true
   end
@@ -35,15 +45,5 @@ class Tag < ApplicationRecord
 
   def decrement_tasks_count!
     self.class.decrement_counter(:unfinished_tasks_count, id)
-  end
-
-  def self.find_or_create_all(options)
-    user = options.fetch(:user)
-    names = options.fetch(:names)
-
-    existing_tags = user.tags.where(name: names)
-    missing_names = names - existing_tags.map(&:name)
-    tag_params = missing_names.map { |name| { user:, name: } }
-    existing_tags + create!(tag_params)
   end
 end
