@@ -62,7 +62,7 @@ class Task < ApplicationRecord
   end
 
   def self.next_timeframe
-    (Timeframe::NAMES & undone.distinct(:timeframe).pluck(:timeframe)).first
+    (undone.distinct(:timeframe).pluck(:timeframe) & Timeframe::NAMES).first
   end
 
   def done=(done)
