@@ -15,7 +15,7 @@ RSpec.describe API::V1::TasksController, '#index' do
 
     get(:index)
 
-    tasks = JSON.parse(response.body).fetch('data')
+    tasks = response.parsed_body.fetch('data')
     expect(tasks.length).to eq 2
     expect(tasks.first.fetch('title')).to eq task_1.title
     expect(tasks.last.fetch('title')).to eq task_3.title
@@ -27,7 +27,7 @@ RSpec.describe API::V1::TasksController, '#index' do
 
     get(:index)
 
-    tags = JSON.parse(response.body).fetch('included')
+    tags = response.parsed_body.fetch('included')
     expect(tags.length).to eq 5
     expect(tags.first.fetch('name')).to eq 'All'
     expect(tags.second.fetch('name')).to eq 'Untagged'

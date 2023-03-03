@@ -38,7 +38,7 @@ RSpec.describe API::V1::TasksController, '#update' do
 
   it 'responds with the task as json' do
     put(:update, params: valid_params)
-    task = JSON.parse(response.body)['data']
+    task = response.parsed_body['data']
     expect(task['title']).to eq 'foo'
     expect(task['tagNames']).to eq ['home']
     expect(task['priority']).to eq 3
@@ -47,7 +47,7 @@ RSpec.describe API::V1::TasksController, '#update' do
 
   it 'responds with associated tags as json' do
     put(:update, params: valid_params)
-    tags = JSON.parse(response.body)['included']
+    tags = response.parsed_body['included']
     expect(tags.length).to eq 1
     expect(tags.first['name']).to eq 'home'
   end

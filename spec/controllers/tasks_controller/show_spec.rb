@@ -29,18 +29,18 @@ RSpec.describe TasksController, '#show' do
         'timeframe' => nil,
         'updatedAt' => task.updated_at.as_json,
       }
-      expect(JSON.parse(response.body)['data']).to eq serial_task
+      expect(response.parsed_body['data']).to eq serial_task
     end
 
     it 'renders "null" when there are no tasks' do
       task.destroy!
       get(:show, params: { format: :json })
-      expect(JSON.parse(response.body)).to eq('data' => nil)
+      expect(response.parsed_body).to eq('data' => nil)
     end
 
     it 'renders tasks associated with a tag given a slug' do
       get(:show, params: { format: :json, slug: tag.slug })
-      expect(JSON.parse(response.body)['data']['title']).to eq 'blah'
+      expect(response.parsed_body['data']['title']).to eq 'blah'
     end
   end
 
