@@ -30,6 +30,6 @@ RSpec.describe TasksController, '#index' do
       ],
     }
 
-    expect(JSON.parse(response.body)).to match serial_tasks
+    expect(response.parsed_body).to match serial_tasks
   end
 end

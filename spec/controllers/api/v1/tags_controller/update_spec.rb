@@ -24,7 +24,7 @@ RSpec.describe API::V1::TagsController, '#update' do
   it 'renders JSON of the updated tag' do
     put(:update, params: valid_params)
 
-    tag = JSON.parse(response.body).fetch('data')
+    tag = response.parsed_body.fetch('data')
     expect(tag.fetch('name')).to eq 'foo tag'
   end
 end

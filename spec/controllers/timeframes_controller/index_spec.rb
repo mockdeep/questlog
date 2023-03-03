@@ -8,11 +8,11 @@ RSpec.describe TimeframesController, '#index' do
     Stat.create!(stat_params.merge(value: 35.minutes, timestamp: 1.month.ago))
     Stat.create!(stat_params.merge(value: 1.hour, timestamp: 1.week.ago))
     get(:index, format: :json)
-    meta = JSON.parse(response.body)['meta']
+    meta = response.parsed_body['meta']
     expect(meta).to include('medianProductivity' => 1.hour)
     Stat.create!(stat_params.merge(value: 35.minutes, timestamp: 5.days.ago))
     get(:index, format: :json)
-    meta = JSON.parse(response.body)['meta']
+    meta = response.parsed_body['meta']
     expect(meta).to include('medianProductivity' => 2850)
   end
 
@@ -20,7 +20,7 @@ RSpec.describe TimeframesController, '#index' do
     task = create(:task, user:)
     serial_task = hash_including('id' => task.id, 'timeframe' => nil)
     get(:index, format: :json)
-    timeframes = JSON.parse(response.body)['data']
+    timeframes = response.parsed_body['data']
     expect(timeframes).to include('name' => 'inbox', 'tasks' => [serial_task])
   end
 
@@ -35,7 +35,7 @@ RSpec.describe TimeframesController, '#index' do
 
     get(:index, format: :json)
 
-    timeframes = JSON.parse(response.body)['data']
+    timeframes = response.parsed_body['data']
     expect(timeframes).to include('name' => 'inbox', 'tasks' => [serial_task_1])
     expect(timeframes).to include('name' => 'week', 'tasks' => [serial_task_2])
     expect(timeframes).to include('name' => 'month', 'tasks' => [])
