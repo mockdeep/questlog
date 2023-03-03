@@ -22,7 +22,7 @@ RSpec.describe API::V1::TagsController, '#create' do
   it 'renders JSON of the created tag' do
     post(:create, params: valid_params)
 
-    tag = JSON.parse(response.body).fetch('data')
+    tag = response.parsed_body.fetch('data')
     expect(tag.fetch('name')).to eq 'foo tag'
     expect(tag.fetch('rules')).to eq []
   end
