@@ -4,7 +4,7 @@
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
-    "@hotwired/turbo-rails": "^7.2.5",
+    "@hotwired/turbo-rails": "^7.3.0",
     "@rails/webpacker": "^5.4.4",
     "@sinonjs/fake-timers": "^10.0.2",
     "@types/classnames": "^2.3.1",
