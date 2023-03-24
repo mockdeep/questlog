@@ -1,10 +1,7 @@
 .dialog-container {
   display: flex;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   z-index: 2;
 }
 
@@ -14,10 +11,7 @@
 
 .dialog-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   background-color: rgba(43, 46, 56, 0.9);
   animation: fade-in 200ms both;
 }
