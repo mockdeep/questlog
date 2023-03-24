@@ -370,7 +370,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    stripe (8.3.0)
+    stripe (8.4.0)
     sysexits (1.2.0)
     temple (0.10.0)
     thor (1.2.1)
