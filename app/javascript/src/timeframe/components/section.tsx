@@ -89,7 +89,9 @@ class TimeframeSection extends React.Component<Props, never> {
   }
 
   overLimit(): boolean {
-    return this.minuteTotal() > this.maxTime();
+    const {timeframe} = this.props;
+
+    return this.minuteTotal() > timeframe.minuteMax;
   }
 
   render(): ReactElement {
