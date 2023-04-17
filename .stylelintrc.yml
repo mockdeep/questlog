@@ -9,3 +9,4 @@ plugins:
 
 rules:
   selector-class-pattern: null # handled by stylelint-selector-bem-pattern
+  media-feature-range-notation: prefix
