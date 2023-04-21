@@ -4,6 +4,7 @@ inherit_mode:
   merge: [Exclude]
 
 require:
+  - rubocop-capybara
   - rubocop-rails
   - rubocop-rspec
 
@@ -61,6 +62,7 @@ Lint/AmbiguousOperatorPrecedence: { Enabled: false }
 Lint/ConstantResolution: { Enabled: false }
 Rails/BulkChangeTable: { Enabled: false }
 Rails/HasManyOrHasOneDependent: { Enabled: false }
+RSpec/IndexedLet: { Enabled: false }
 Style/Copyright: { Enabled: false }
 Style/Documentation: { Enabled: false }
 Style/DocumentationMethod: { Enabled: false }
