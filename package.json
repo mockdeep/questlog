@@ -75,7 +75,7 @@
     "stylelint": "^15.7.0",
     "stylelint-config-property-sort-order-smacss": "^9.1.0",
     "stylelint-config-standard-scss": "^9.0.0",
-    "stylelint-selector-bem-pattern": "^2.1.1",
+    "stylelint-selector-bem-pattern": "^3.0.0",
     "ts-jest": "^29.1.0",
     "webpack-dev-server": "^3",
     "yarn-deduplicate": "^6.0.2"
@@ -88,7 +88,7 @@
     "lints": "yarn stylelint && yarn eslint && yarn tscheck && yarn rubocop && bundle exec rake haml_lint",
     "deduplicate": "yarn-deduplicate --strategy fewer",
     "rubocop": "bundle exec rubocop -f q",
-    "stylelint": "./node_modules/stylelint/bin/stylelint.js 'app/assets/stylesheets/**/*.scss'",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*.scss'",
     "eslint": "./node_modules/eslint/bin/eslint.js ./ --ext .js,.jsx,.ts,.tsx --cache",
     "jest": "./node_modules/jest/bin/jest.js --config config/jest.json  --maxWorkers 2",
     "pretest": "yarn stylelint && yarn tscheck && yarn eslint",
