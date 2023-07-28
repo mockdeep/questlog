@@ -113,4 +113,5 @@ rules:
   react/jsx-newline: off
   react/jsx-no-bind: off
   react/jsx-one-expression-per-line: off
+  react/prefer-read-only-props: off
   require-jsdoc: off
