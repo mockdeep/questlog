@@ -16,7 +16,7 @@
     "@types/react-redux": "^7.1.25",
     "@types/react-textarea-autosize": "^4.3.6",
     "@types/sinonjs__fake-timers": "^8.1.2",
-    "a11y-dialog": "^7.5.3",
+    "a11y-dialog": "^8.0.0",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.3.2",
