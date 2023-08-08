@@ -20,7 +20,7 @@ class TagEditView extends React.Component<Props, State> {
     super(props);
     autobind(this);
     this.state = {
-      rules: (props.tag && props.tag.rules) || [],
+      rules: (props.tag && props.tag.rules) ?? [],
     };
   }
 
