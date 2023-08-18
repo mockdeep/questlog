@@ -5,9 +5,9 @@ RSpec.describe Task, '#done=' do
 
   context 'when given true' do
     it 'sets done_at to Time.now' do
-      freeze_time do |time|
+      freeze_time do
         task.done = true
-        expect(task.done_at).to eq time
+        expect(task.done_at).to eq Time.zone.now
       end
     end
 

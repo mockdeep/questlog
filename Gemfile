@@ -68,7 +68,6 @@ group :test do
   gem 'rspec_junit_formatter', require: false
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'timecop'
   gem 'vcr'
   gem 'webdrivers'
   gem 'webmock'

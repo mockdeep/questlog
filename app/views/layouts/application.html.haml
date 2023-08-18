@@ -20,7 +20,7 @@
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
 
   %body
-    - if Rails.env.test? && Timecop.frozen?
+    - if Rails.env.test?
       .time-freeze{ data: { timestamp: Time.now.to_i * 1000 } }
       = javascript_pack_tag 'freeze_time'
 
