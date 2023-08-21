@@ -42,7 +42,7 @@ RSpec.describe 'Tasks page', js: true do
     click_button 'Done'
     expect(page).to have_no_task
 
-    Timecop.travel(1.hour.from_now)
+    travel_to(1.hour.from_now)
 
     visit '/'
     expect(page).to have_task('do laundry')
@@ -68,7 +68,7 @@ RSpec.describe 'Tasks page', js: true do
     click_button 'Done'
     expect(page).to have_no_task
 
-    Timecop.travel(10.minutes.from_now)
+    travel_to(10.minutes.from_now)
 
     visit '/'
     expect(page).to have_selector('#task')

@@ -1,10 +1,8 @@
 RSpec.describe 'timeframes', js: true do
   let(:user) { create(:free_user) }
 
-  def tomorrow
-    Timecop.travel(1.day.from_now)
-    yield
-    Timecop.return
+  def tomorrow(&)
+    travel(1.day, &)
   end
 
   it 'displays the median productivity of the user' do
@@ -67,7 +65,7 @@ RSpec.describe 'timeframes', js: true do
 
     expect(page).to have_no_task
 
-    Timecop.travel(Time.zone.parse('2014/04/16'))
+    travel_to(Time.zone.parse('2014/04/16'))
 
     create(:stat, user:, timestamp: 3.days.ago, value: 3600)
     create(:stat, user:, timestamp: 4.days.ago, value: 4000)

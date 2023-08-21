@@ -32,6 +32,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.disable_monkey_patching!
   config.render_views
+  config.include(ActiveSupport::Testing::TimeHelpers)
   config.include(FactoryBot::Syntax::Methods)
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
@@ -83,13 +84,6 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
-end
-
-def freeze_time(time = Time.zone.now)
-  # round time to get rid of nanosecond discrepancies between ruby time and
-  # postgres time
-  time = time.round
-  Timecop.freeze(time) { yield(time) }
 end
 
 def login_as(user)
