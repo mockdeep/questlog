@@ -206,7 +206,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    newrelic_rpm (9.4.1)
+    newrelic_rpm (9.4.2)
     nio4r (2.5.9)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
@@ -305,7 +305,7 @@ GEM
     rspec-support (3.12.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.56.0)
+    rubocop (1.56.1)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
