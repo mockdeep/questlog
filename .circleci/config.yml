@@ -28,9 +28,8 @@ commands:
     steps:
       - checkout
       - browser-tools/install-browser-tools:
-          # https://github.com/CircleCI-Public/browser-tools-orb/issues/90
-          chrome-version: 116.0.5845.96
-          replace-existing-chrome: true
+          install-chrome: false
+          install-chromedriver: false
 
       - node/install:
           node-version: 16.14.0
