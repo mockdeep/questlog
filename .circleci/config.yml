@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.2.3
+  browser-tools: circleci/browser-tools@1.4.4
   node: circleci/node@4.1.0
 
 executors:
@@ -27,7 +27,10 @@ commands:
   setup_environment:
     steps:
       - checkout
-      - browser-tools/install-browser-tools
+      - browser-tools/install-browser-tools:
+          # https://github.com/CircleCI-Public/browser-tools-orb/issues/90
+          chrome-version: 116.0.5845.96
+          replace-existing-chrome: true
 
       - node/install:
           node-version: 16.14.0
