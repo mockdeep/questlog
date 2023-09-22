@@ -4,6 +4,6 @@ RSpec.describe PagesController, '#index' do
 
     body = Capybara.string(response.body)
 
-    expect(body).to have_selector('#app-base')
+    expect(body).to have_css('#app-base')
   end
 end

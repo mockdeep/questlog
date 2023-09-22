@@ -5,6 +5,6 @@ RSpec.describe TagsController, '#show' do
 
     get(:show, params: { id: tag.slug })
 
-    expect(rendered).to have_selector('#app-base')
+    expect(rendered).to have_css('#app-base')
   end
 end
