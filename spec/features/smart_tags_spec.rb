@@ -11,11 +11,11 @@ RSpec.describe 'editing smart tags', js: true do
     expect(page).to have_content("Editing tag #{tag.name}")
     expect(page).to have_no_selector('li')
     click_button('Add Rule')
-    expect(page).to have_selector('li', count: 1)
+    expect(page).to have_css('li', count: 1)
     click_button('Save Tag')
 
     within('.tag-row', text: tag.name) { click_link('Edit') }
-    expect(page).to have_selector('li', count: 1)
+    expect(page).to have_css('li', count: 1)
     within('li') do
       fields, checks = find_all('select').to_a
       expect(fields.value).to eq 'estimateSeconds'
@@ -30,14 +30,14 @@ RSpec.describe 'editing smart tags', js: true do
     click_button('Add Rule')
     click_button('Add Rule')
 
-    expect(page).to have_selector('li', count: 4)
+    expect(page).to have_css('li', count: 4)
 
     dismiss_confirm { click_button('Save Tag') }
     accept_confirm { click_button('Save Tag') }
 
     within('.tag-row', text: tag.name) { click_link('Edit') }
 
-    expect(page).to have_selector('li', count: 2)
+    expect(page).to have_css('li', count: 2)
 
     # visit '/'
 
