@@ -31,7 +31,7 @@ RSpec.describe 'Tasks page', js: true do
     expect(page).to have_no_task
     add_task('do laundry #home')
     expect(page).to have_button('Done')
-    expect(page).to have_selector('#postpone')
+    expect(page).to have_css('#postpone')
     expect(page).to have_task('do laundry')
     add_task('feed dog')
     expect(page).to have_task('do laundry')
@@ -54,7 +54,7 @@ RSpec.describe 'Tasks page', js: true do
   it 'allows a free user to manage tasks' do
     add_task('do laundry #home')
     expect(page).to have_button('Done')
-    expect(page).to have_selector('#postpone')
+    expect(page).to have_css('#postpone')
     expect(page).to have_tag('home (1)')
     expect(page).to have_task('do laundry')
     expect(Task.count).to eq 1
@@ -71,7 +71,7 @@ RSpec.describe 'Tasks page', js: true do
     travel_to(10.minutes.from_now)
 
     visit '/'
-    expect(page).to have_selector('#task')
+    expect(page).to have_css('#task')
     expect(page).to have_task('check email')
   end
 

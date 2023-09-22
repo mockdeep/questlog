@@ -14,7 +14,7 @@ module Questlog
 
       def click(link_text)
         click_link(link_text)
-        expect(page).to have_selector('.sidebar__link--active', text: link_text)
+        expect(page).to have_css('.sidebar__link--active', text: link_text)
       end
     end
 

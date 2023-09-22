@@ -12,30 +12,30 @@ RSpec.describe 'task tree', js: true do
 
   it 'displays tasks in a tree format' do
     parent_item = first('.task-item')
-    expect(parent_item).to have_selector('span', text: 'parent')
+    expect(parent_item).to have_css('span', text: 'parent')
     within parent_item do
       child_item = first('.task-item')
-      expect(child_item).to have_selector('span', text: 'child')
+      expect(child_item).to have_css('span', text: 'child')
 
       within child_item do
         grandchild_item = first('.task-item')
-        expect(grandchild_item).to have_selector('span', text: 'grandchild')
+        expect(grandchild_item).to have_css('span', text: 'grandchild')
         expect(grandchild_item).to have_no_selector('.task-item')
       end
     end
   end
 
   it 'checks off child tasks' do
-    expect(page).to have_selector('.task-item', count: 3)
-    expect(page).to have_selector('.task-item > span', text: 'grandchild')
+    expect(page).to have_css('.task-item', count: 3)
+    expect(page).to have_css('.task-item > span', text: 'grandchild')
     all('.task-item').last.find('label').click
     expect(page).to have_no_selector('.task-item > span', text: 'grandchild')
 
-    expect(page).to have_selector('.task-item > span', text: 'child')
+    expect(page).to have_css('.task-item > span', text: 'child')
     all('.task-item').last.find('label').click
     expect(page).to have_no_selector('.task-item > span', text: 'child')
 
-    expect(page).to have_selector('.task-item > span', text: 'parent')
+    expect(page).to have_css('.task-item > span', text: 'parent')
     all('.task-item').last.find('label').click
     expect(page).to have_no_selector('.task-item > span', text: 'parent')
     expect(page).to have_no_selector('.task-item')
@@ -44,12 +44,12 @@ RSpec.describe 'task tree', js: true do
   end
 
   it 'does not allow checking off parent tasks' do
-    expect(page).to have_selector('.task-item > span', text: 'parent')
+    expect(page).to have_css('.task-item > span', text: 'parent')
     first('.task-item').first('label').click
-    expect(page).to have_selector('.task-item > span', text: 'parent')
+    expect(page).to have_css('.task-item > span', text: 'parent')
 
-    expect(page).to have_selector('.task-item > span', text: 'child')
+    expect(page).to have_css('.task-item > span', text: 'child')
     all('.task-item')[1].first('label').click
-    expect(page).to have_selector('.task-item > span', text: 'child')
+    expect(page).to have_css('.task-item > span', text: 'child')
   end
 end
