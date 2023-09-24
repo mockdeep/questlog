@@ -1,4 +1,4 @@
-RSpec.describe 'Tasks page', js: true do
+RSpec.describe 'Tasks page', :js do
   let(:user) { create(:free_user) }
 
   context 'when a user is logged out' do

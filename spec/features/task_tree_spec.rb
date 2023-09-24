@@ -1,4 +1,4 @@
-RSpec.describe 'task tree', js: true do
+RSpec.describe 'task tree', :js do
   let(:user) { create(:free_user) }
 
   before(:each) do

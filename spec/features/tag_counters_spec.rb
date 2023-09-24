@@ -1,4 +1,4 @@
-RSpec.describe 'tag counters', js: true do
+RSpec.describe 'tag counters', :js do
   let(:user) { create(:free_user) }
 
   before do
