@@ -1,4 +1,4 @@
-RSpec.describe 'editing smart tags', js: true do
+RSpec.describe 'editing smart tags', :js do
   let(:user) { create(:free_user) }
 
   it 'allows selecting rules from dropdowns' do

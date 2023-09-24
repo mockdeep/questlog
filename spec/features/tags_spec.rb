@@ -1,4 +1,4 @@
-RSpec.describe 'selecting tags on task display', js: true do
+RSpec.describe 'selecting tags on task display', :js do
   it 'shows tasks for the selected tag' do
     add_task('#at-home do laundry #chore !2 *1w ~1h')
     expect(page).to have_tag('at-home (1)')

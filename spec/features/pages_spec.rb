@@ -1,4 +1,4 @@
-RSpec.describe 'landing pages', js: true do
+RSpec.describe 'landing pages', :js do
   it 'lets you view the privacy page' do
     visit '/privacy'
     expect(page).to have_content('We won\'t sell your data')

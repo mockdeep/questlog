@@ -1,4 +1,4 @@
-RSpec.describe 'adding sub tasks', js: true do
+RSpec.describe 'adding sub tasks', :js do
   let(:user) { create(:free_user) }
 
   before { feature_login_as(user) }

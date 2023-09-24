@@ -1,4 +1,4 @@
-RSpec.describe 'bulk task creation', js: true do
+RSpec.describe 'bulk task creation', :js do
   let(:user) { create(:free_user) }
 
   before(:each) do

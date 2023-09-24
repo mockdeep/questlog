@@ -1,4 +1,4 @@
-RSpec.describe 'tasks index page', js: true do
+RSpec.describe 'tasks index page', :js do
   let(:user) { create(:free_user) }
 
   before(:each) { feature_login_as(user) }

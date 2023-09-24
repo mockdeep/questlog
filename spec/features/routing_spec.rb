@@ -1,4 +1,4 @@
-RSpec.describe 'front end routing', js: true do
+RSpec.describe 'front end routing', :js do
   it 'allows the user to navigate forward and backward' do
     add_task('do laundry')
     sidebar.click('ALL TASKS')
