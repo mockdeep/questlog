@@ -1,4 +1,4 @@
-RSpec.describe 'timeframes', js: true do
+RSpec.describe 'timeframes', :js do
   let(:user) { create(:free_user) }
 
   def tomorrow(&)
