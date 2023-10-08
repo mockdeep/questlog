@@ -62,7 +62,7 @@ class RuleRow extends React.Component<Props, never> {
     const defaultValue = checks.includes(rule.check) ? rule.check : checks[0];
 
     return (
-      <select name={'tag[rules[][check]]'} defaultValue={defaultValue}>
+      <select name={'tag[rules][][check]'} defaultValue={defaultValue}>
         {
           checks.map(check => (
             <option value={check} key={check}>
@@ -91,7 +91,7 @@ class RuleRow extends React.Component<Props, never> {
     return (
       <li>
         <select
-          name={'tag[rules[][field]]'}
+          name={'tag[rules][][field]'}
           defaultValue={rule.field}
           onChange={this.updateFieldValue}
         >
