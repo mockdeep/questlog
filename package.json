@@ -52,7 +52,7 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
-    "@types/enzyme": "3.10.12",
+    "@types/enzyme": "3.10.15",
     "@types/enzyme-adapter-react-16": "^1.0.7",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
@@ -79,6 +79,9 @@
     "ts-jest": "^29.1.1",
     "webpack-dev-server": "^3",
     "yarn-deduplicate": "^6.0.2"
+  },
+  "resolutions": {
+    "@types/react": "18.2.22"
   },
   "engines": {
     "node": "16.14.0"
