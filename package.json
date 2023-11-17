@@ -8,14 +8,14 @@
     "@rails/webpacker": "^5.4.4",
     "@sinonjs/fake-timers": "^11.2.2",
     "@types/classnames": "^2.3.1",
-    "@types/hoist-non-react-statics": "^3.3.3",
+    "@types/hoist-non-react-statics": "^3.3.5",
     "@types/jquery": "^3.5.25",
-    "@types/lodash": "^4.14.200",
-    "@types/react": "^18.2.28",
-    "@types/react-dom": "^18.2.14",
-    "@types/react-redux": "^7.1.28",
+    "@types/lodash": "^4.14.201",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/react-redux": "^7.1.30",
     "@types/react-textarea-autosize": "^4.3.6",
-    "@types/sinonjs__fake-timers": "^8.1.4",
+    "@types/sinonjs__fake-timers": "^8.1.5",
     "a11y-dialog": "^8.0.4",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
@@ -53,10 +53,10 @@
   },
   "devDependencies": {
     "@types/enzyme": "3.10.16",
-    "@types/enzyme-adapter-react-16": "^1.0.8",
-    "@types/jest": "^29.5.6",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
+    "@types/enzyme-adapter-react-16": "^1.0.9",
+    "@types/jest": "^29.5.8",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.7",
     "eslint": "^8.52.0",
@@ -81,7 +81,7 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "18.2.28"
+    "@types/react": "18.2.37"
   },
   "engines": {
     "node": "16.14.0"
