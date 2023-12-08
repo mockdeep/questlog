@@ -31,6 +31,7 @@ Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
+Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/CollectionMethods:
   PreferredMethods:
     collect: map
