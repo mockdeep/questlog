@@ -67,7 +67,7 @@ commands:
       - run:
           name: Yarn Install
           command: |
-            yarn install --cache-folder ~/.cache/yarn --frozen-lockfile
+            yarn install --cache-folder ~/.cache/yarn --frozen-lockfile --ignore-engines
             yarn deduplicate --fail || (echo 'Duplicate packages in yarn.lock. Run `yarn deduplicate` locally.'; exit 1)
 
       - save_cache:
