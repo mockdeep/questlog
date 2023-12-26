@@ -11,7 +11,7 @@
     "@types/hoist-non-react-statics": "^3.3.5",
     "@types/jquery": "^3.5.29",
     "@types/lodash": "^4.14.202",
-    "@types/react": "^18.2.37",
+    "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
     "@types/react-redux": "^7.1.32",
     "@types/react-textarea-autosize": "^4.3.6",
@@ -40,9 +40,9 @@
     "reqwest": "*",
     "reselect": "^5.0.1",
     "ts-loader": "^8.4.0",
-    "typescript": "^5.3.2",
+    "typescript": "^5.3.3",
     "webpack": "^4.41.6",
-    "whatwg-fetch": "^3.6.19"
+    "whatwg-fetch": "^3.6.20"
   },
   "//": {
     "bootstrap-sass": "locked at 3.4.1 until dartsass is integrated",
@@ -54,14 +54,14 @@
   "devDependencies": {
     "@types/enzyme": "3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.9",
-    "@types/jest": "^29.5.10",
+    "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.7",
     "eslint": "^8.55.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
@@ -81,7 +81,7 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "18.2.37"
+    "@types/react": "18.2.45"
   },
   "engines": {
     "node": "16.14.0"
