@@ -19,9 +19,12 @@ function logError(error: DOMException): void {
 
 function defaultRequestOptions(): BaseRequestOptions {
   return {
-    type: 'json',
     method: 'put',
-    headers: {'X-CSRF-Token': authenticityToken()},
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': authenticityToken(),
+    },
     success: reloadPage,
     error: logError,
   };
