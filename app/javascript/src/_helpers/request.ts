@@ -1,6 +1,12 @@
-import type {BaseRequestOptions, GivenRequestOptions} from 'reqwest';
+import type {BaseRequestOptions} from 'reqwest';
 import authenticityToken from 'src/_helpers/authenticity_token';
 import reqwest from 'reqwest';
+
+type RequestOptions = {
+  data?: unknown;
+  method?: 'get';
+  success: (data: any) => void;
+};
 
 function reloadPage(): void {
   window.location.reload();
@@ -21,6 +27,6 @@ function defaultRequestOptions(): BaseRequestOptions {
   };
 }
 
-export default function request(options: GivenRequestOptions) {
-  return reqwest({...defaultRequestOptions(), ...options});
+export default function request(url: string, options: RequestOptions) {
+  return reqwest({...defaultRequestOptions(), ...options, url});
 }

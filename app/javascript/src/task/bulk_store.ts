@@ -37,7 +37,7 @@ const BulkTaskStore: BulkTaskStoreType = {
   update(attrs) {
     const data = {[this.name]: attrs};
 
-    return request({data, url: this.url, success: this.unload.bind(this)});
+    return request(this.url, {data, success: this.unload.bind(this)});
   },
 };
 

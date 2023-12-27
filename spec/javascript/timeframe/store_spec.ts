@@ -105,7 +105,7 @@ describe('updateModels', () => {
     expect(request).toHaveBeenCalledTimes(2);
 
     const [, secondCall] = (request as jest.Mock).mock.calls;
-    secondCall[0].success({meta: {medianProductivity: 15}});
+    secondCall[1].success({meta: {medianProductivity: 15}});
 
     await promise;
 
@@ -126,7 +126,7 @@ describe('updateModels', () => {
     expect(request).toHaveBeenCalledTimes(2);
 
     const [, secondCall] = (request as jest.Mock).mock.calls;
-    secondCall[0].success({meta: {medianProductivity: 10800}});
+    secondCall[1].success({meta: {medianProductivity: 10800}});
 
     await promise;
 
