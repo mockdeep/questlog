@@ -3,12 +3,8 @@ type SuccessCallback = (result: any) => void;
 
 declare module 'reqwest' {
   export type BaseRequestOptions = {
-    headers: {
-      Accept: 'application/json';
-      'X-CSRF-Token': string;
-      'Content-Type': 'application/json';
-    };
-    error: ErrorCallback;
+    headers: Headers;
+    credentials: 'same-origin';
   };
 
   export type GivenRequestOptions = Partial<BaseRequestOptions> & {
