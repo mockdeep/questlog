@@ -52,10 +52,9 @@ function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
   });
 }
 
-const getSelectedTagSlug = createSelector(
-  (state: State) => state.route.params.slug,
-  slug => slug || '',
-);
+function getSelectedTagSlug(state: State) {
+  return state.route.params.slug || '';
+}
 
 const getTagsById = createSelector(
   [(state: State) => state.tag.byId, getActiveTasks],
