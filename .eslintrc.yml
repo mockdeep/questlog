@@ -84,6 +84,7 @@ rules:
   react/jsx-indent: [error, 2]
   react/jsx-wrap-multilines: [error, { declaration: false }]
   space-before-function-paren: [error, { anonymous: always, named: never }]
+  '@typescript-eslint/space-before-function-paren': [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
 
   ##############################################################################
