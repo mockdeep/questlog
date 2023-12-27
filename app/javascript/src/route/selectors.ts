@@ -1,8 +1,5 @@
-import {createSelector} from 'reselect';
-
-const getRouteParams = createSelector(
-  (state: State) => state.route.params,
-  routeParams => routeParams,
-);
+function getRouteParams(state: State): RouteParams {
+  return state.route.params;
+}
 
 export {getRouteParams};
