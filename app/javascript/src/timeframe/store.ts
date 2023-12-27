@@ -78,9 +78,8 @@ const TimeframeStore: TimeframeStoreType = {
         TaskStore.dispatch({type: 'tasks/FETCH'});
       }
 
-      request({
+      request(this.url, {
         method: 'get',
-        url: this.url,
         success: (timeframeData: TimeframeData) => {
           ({medianProductivity} = timeframeData.meta);
 
