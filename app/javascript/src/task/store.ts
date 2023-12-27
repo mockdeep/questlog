@@ -61,7 +61,7 @@ const TaskStore: TaskStoreType = {
   },
 
   fetchTasks(): void {
-    request(this.url, {method: 'get', success: this.updateModels.bind(this)});
+    request(this.url, {method: 'GET', success: this.updateModels.bind(this)});
   },
 };
 

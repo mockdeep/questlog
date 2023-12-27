@@ -79,7 +79,7 @@ const TimeframeStore: TimeframeStoreType = {
       }
 
       request(this.url, {
-        method: 'get',
+        method: 'GET',
         success: (timeframeData: TimeframeData) => {
           ({medianProductivity} = timeframeData.meta);
 

@@ -4,7 +4,7 @@ import reqwest from 'reqwest';
 
 type RequestOptions = {
   data?: unknown;
-  method?: 'get';
+  method?: 'GET';
   success: (data: any) => void;
 };
 
@@ -19,7 +19,7 @@ function logError(error: DOMException): void {
 
 function defaultRequestOptions(): BaseRequestOptions {
   return {
-    method: 'put',
+    method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
