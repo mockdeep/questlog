@@ -1,4 +1,4 @@
-type RequestMethod = 'put' | 'post' | 'get' | 'delete';
+type RequestMethod = 'GET' | 'PUT';
 type SuccessCallback = (result: any) => void;
 
 declare module 'reqwest' {
