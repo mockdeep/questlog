@@ -18,7 +18,8 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "paths": {
-      "src/*": ["app/javascript/src/*"]
+      "src/*": ["app/javascript/src/*"],
+      "_test_helpers/*": ["spec/javascript/_test_helpers/*"]
     },
     "sourceMap": true,
     "strict": true,
@@ -26,7 +27,6 @@
     "jsx": "react"
   },
   "exclude": [
-    "spec",
     "node_modules",
     "vendor",
     "public"
