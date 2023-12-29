@@ -24,9 +24,9 @@ function defaultRequestOptions(): BaseRequestOptions {
   };
 }
 
-export default function request(url: string, options: RequestOptions) {
+export default function request(url: string, options: RequestOptions): void {
   const {data, success} = options;
   const method = options.method ?? 'PUT';
 
-  return reqwest({...defaultRequestOptions(), method, success, data, url});
+  void reqwest({...defaultRequestOptions(), method, success, data, url});
 }

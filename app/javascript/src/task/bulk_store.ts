@@ -34,10 +34,10 @@ const BulkTaskStore: BulkTaskStoreType = {
     this.notifyListeners();
   },
 
-  update(attrs) {
+  update(attrs): void {
     const data = {[this.name]: attrs};
 
-    return request(this.url, {data, success: this.unload.bind(this)});
+    request(this.url, {data, success: this.unload.bind(this)});
   },
 };
 
