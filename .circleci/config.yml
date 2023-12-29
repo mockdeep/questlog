@@ -52,7 +52,10 @@ commands:
 
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: bundle check || bundle install
+          command: |
+            bundle config set --local frozen 'true'
+            bundle install
+            bundle clean
 
       - save_cache:
           key: questlog-bundle-v1-{{ checksum "Gemfile.lock" }}
