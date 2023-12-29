@@ -20,6 +20,7 @@
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.3.2",
+    "esbuild": "^0.19.10",
     "eslint-plugin-fp": "^2.3.0",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
@@ -88,6 +89,7 @@
   },
   "license": "UNLICENSED",
   "scripts": {
+    "build": "bin/build_javascript",
     "lints": "yarn stylelint && yarn eslint && yarn tscheck && yarn rubocop && bundle exec rake haml_lint",
     "deduplicate": "yarn-deduplicate --strategy fewer",
     "rubocop": "bundle exec rubocop -f q",
