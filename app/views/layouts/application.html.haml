@@ -4,7 +4,7 @@
     %title= page_title
     = favicon_link_tag 'favicon.ico'
     - if Rails.env.test?
-      = javascript_pack_tag 'crash_site_onerror'
+      = javascript_include_tag 'crash_site_onerror'
 
     = Gon::Base.render_data(camel_case: true)
     - if Rails.env.production?
@@ -14,15 +14,15 @@
         media: 'all',
         'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all'
-    /= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    /= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
-    = javascript_pack_tag 'application'
+    = javascript_include_tag 'application'
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }/
 
   %body
     - if Rails.env.test?
       .time-freeze{ data: { timestamp: Time.now.to_i * 1000 } }
-      = javascript_pack_tag 'freeze_time'
+      = javascript_include_tag 'freeze_time'
 
     - action = 'resize@window->layout#updateScreenSize'
     .container.content{ data: { controller: 'layout', action: action } }

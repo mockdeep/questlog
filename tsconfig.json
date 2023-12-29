@@ -19,7 +19,8 @@
     "noUnusedLocals": true,
     "paths": {
       "src/*": ["app/javascript/src/*"],
-      "_test_helpers/*": ["spec/javascript/_test_helpers/*"]
+      "_test_helpers/*": ["spec/javascript/_test_helpers/*"],
+      "controllers/*": ["app/javascript/controllers/*"]
     },
     "sourceMap": true,
     "strict": true,
