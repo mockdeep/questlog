@@ -8,10 +8,6 @@ type RequestOptions = {
   success: (data: any) => void;
 };
 
-function reloadPage(): void {
-  window.location.reload();
-}
-
 function logError(error: DOMException): void {
   // eslint-disable-next-line no-console
   console.log('error: ', error);
@@ -19,17 +15,18 @@ function logError(error: DOMException): void {
 
 function defaultRequestOptions(): BaseRequestOptions {
   return {
-    method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'X-CSRF-Token': authenticityToken(),
     },
-    success: reloadPage,
     error: logError,
   };
 }
 
 export default function request(url: string, options: RequestOptions) {
-  return reqwest({...defaultRequestOptions(), ...options, url});
+  const {data, success} = options;
+  const method = options.method ?? 'PUT';
+
+  return reqwest({...defaultRequestOptions(), method, success, data, url});
 }
