@@ -237,7 +237,6 @@ overrides:
   - rules: { '@typescript-eslint/no-explicit-any': off }
     files:
     - app/javascript/@types/globals.d.ts
-    - app/javascript/@types/reqwest.d.ts
     - app/javascript/src/_common/create_merged_reducer.ts
     - app/javascript/src/_helpers/debug.ts
     - app/javascript/src/_helpers/request.ts
@@ -452,7 +451,6 @@ overrides:
   # Offense count: 238
   - rules: { '@typescript-eslint/prefer-readonly-parameter-types': off }
     files:
-    - app/javascript/@types/reqwest.d.ts
     - app/javascript/@types/task.d.ts
     - app/javascript/@types/timeframe.d.ts
     - app/javascript/controllers/layout_controller.ts
@@ -534,7 +532,6 @@ overrides:
     files:
     - app/javascript/@types/class-autobind.d.ts
     - app/javascript/@types/globals.d.ts
-    - app/javascript/@types/reqwest.d.ts
     - app/javascript/@types/tag.d.ts
     - app/javascript/@types/task.d.ts
     - app/javascript/@types/timeframe.d.ts
