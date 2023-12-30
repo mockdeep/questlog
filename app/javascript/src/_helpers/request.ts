@@ -1,5 +1,9 @@
-import type {BaseRequestOptions} from 'reqwest';
 import authenticityToken from 'src/_helpers/authenticity_token';
+
+type BaseRequestOptions = {
+  headers: Headers;
+  credentials: 'same-origin';
+};
 
 type RequestOptions = {
   data?: unknown;
