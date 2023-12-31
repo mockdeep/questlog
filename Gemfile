@@ -31,7 +31,6 @@ gem 'skylight'
 gem 'stimulus-rails'
 gem 'stripe'
 gem 'turbo-rails'
-gem 'webpacker'
 
 gem 'bootstrap-sass', '3.4.1' # needs dartsass
 gem 'font-awesome-sass'
