@@ -27,7 +27,7 @@ RSpec.describe 'Tasks page', :js do
   end
 
   it 'allows a guest user to manage tasks' do
-    expect(page).not_to have_button('Done')
+    expect(page).to have_no_button('Done')
     expect(page).to have_no_task
     add_task('do laundry #home')
     expect(page).to have_button('Done')
@@ -78,7 +78,7 @@ RSpec.describe 'Tasks page', :js do
   it 'allows a user to edit a task' do
     add_task('#at-home do laundry !2 ~1h')
     expect(page).to have_task('do laundry')
-    expect(page).not_to have_selector(repeat_selector)
+    expect(page).to have_no_selector(repeat_selector)
     edit_task('do lots of laundry *1w #chore')
     expect(page).to have_task('do lots of laundry')
     expect(page).to have_selector(repeat_selector)
