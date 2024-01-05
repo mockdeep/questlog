@@ -15,6 +15,6 @@ RSpec.describe 'bulk task creation', :js do
     expect(current_tasks).to have_selector(repeat_selector)
     expect(pending_tasks).to have_task('check mail')
     expect(pending_tasks).to have_no_task('do laundry')
-    expect(pending_tasks).not_to have_selector(repeat_selector)
+    expect(pending_tasks).to have_no_selector(repeat_selector)
   end
 end
