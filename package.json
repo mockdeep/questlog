@@ -39,6 +39,7 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.23.7",
     "@sinonjs/fake-timers": "^11.2.2",
     "@types/enzyme": "3.10.18",
