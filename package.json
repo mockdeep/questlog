@@ -41,7 +41,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.23.7",
     "@sinonjs/fake-timers": "^11.2.2",
-    "@types/classnames": "^2.3.1",
     "@types/enzyme": "3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.9",
     "@types/hoist-non-react-statics": "^3.3.5",
