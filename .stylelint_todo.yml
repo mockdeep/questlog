@@ -44,12 +44,3 @@ overrides:
     files:
     - app/assets/stylesheets/sidebar.scss
     - app/assets/stylesheets/tree.scss
-
-  # Offense count: 22
-  - rules: { 'string-quotes': null }
-    files:
-    - app/assets/stylesheets/application.scss
-    - app/assets/stylesheets/dialog.scss
-    - app/assets/stylesheets/sidebar.scss
-    - app/assets/stylesheets/tree.scss
-    - app/assets/stylesheets/variables/_fonts.scss
