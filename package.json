@@ -17,7 +17,7 @@
     "jquery-ujs": "^1.2.3",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
-    "nanoid": "^5.0.6",
+    "nanoid": "^5.0.7",
     "path-to-regexp": "6.2.2",
     "react": "^16.14.0",
     "react-dnd": "^14.0.5",
@@ -28,7 +28,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.0.1",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.5",
     "whatwg-fetch": "^3.6.20"
   },
   "//": {
@@ -39,8 +39,8 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "@babel/preset-env": "^7.24.3",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@sinonjs/fake-timers": "^11.2.2",
     "@types/enzyme": "3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.9",
