@@ -51,6 +51,7 @@ rules:
   '@typescript-eslint/no-misused-promises': off
 
   '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
+  '@typescript-eslint/prefer-optional-chain': off
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
   '@typescript-eslint/brace-style': [error, 1tbs, { allowSingleLine: true }]
