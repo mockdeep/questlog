@@ -8,6 +8,7 @@ require:
   - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   EnabledByDefault: true
@@ -29,7 +30,7 @@ Rails: { Enabled: true }
 Layout/LineLength: { Max: 80, AutoCorrect: true }
 Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
-RSpec/FilePath: { Exclude: [spec/matchers/**/*] }
+Rails/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
 Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/CollectionMethods:
