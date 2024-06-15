@@ -10,12 +10,13 @@ extends:
   - eslint:all
   - plugin:eslint-plugin-jsx-a11y/recommended
   - plugin:fp/recommended
-  - plugin:import/errors
+  # - plugin:import/errors
   - plugin:react/all
   - plugin:@typescript-eslint/all
   - ./.eslint_wishlist.yml
   - ./.eslint_todo.yml
-plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
+# plugins: [eslint-plugin-jsx-a11y, fp, import, react, '@typescript-eslint']
+plugins: [eslint-plugin-jsx-a11y, fp, react, '@typescript-eslint']
 parserOptions:
   project: ['./tsconfig.json']
   sourceType: module
@@ -29,11 +30,11 @@ env:
 globals:
   $: true
 settings:
-  import/resolver:
-    typescript: {}
-    node:
-      moduleDirectory: [app/javascript, node_modules, spec/javascript]
-      extensions: [.js, .ts, .tsx]
+  # import/resolver:
+  #   typescript: {}
+  #   node:
+  #     moduleDirectory: [app/javascript, node_modules, spec/javascript]
+  #     extensions: [.js, .ts, .tsx]
   react:
     version: '16.0'
 

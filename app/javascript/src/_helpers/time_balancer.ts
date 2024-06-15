@@ -1,7 +1,5 @@
-/* eslint-disable import/named */
 import type {Moment} from 'moment';
 import moment from 'moment';
-/* eslint-enable import/named */
 
 function daysBetween(startTime: Moment, endTime: Moment) {
   return endTime.diff(startTime, 'days');
