@@ -1,7 +1,5 @@
-/* eslint-disable import/named, no-unused-vars */
 import type {Moment} from 'moment';
 import moment from 'moment';
-/* eslint-enable import/named, no-unused-vars */
 import {sumBy} from 'lodash';
 
 import grab from 'src/_helpers/grab';
