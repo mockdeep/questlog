@@ -1,4 +1,3 @@
-import type {Key} from 'path-to-regexp';
 import {pathToRegexp, compile} from 'path-to-regexp';
 
 type Route = {
@@ -8,8 +7,8 @@ type Route = {
 
 function compileRoutes(routes: Route[]) {
   return routes.map(route => {
-    const keys: Key[] = [];
-    const regexp = pathToRegexp(route.path, keys);
+    const regexp = pathToRegexp(route.path);
+    const { keys } = regexp;
 
     return {
       ...route,
