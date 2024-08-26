@@ -9,6 +9,7 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "baseUrl": ".",
+    "checkJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2021", "dom"],
@@ -28,6 +29,7 @@
     "jsx": "react"
   },
   "exclude": [
+    "coverage",
     "node_modules",
     "vendor",
     "public"

@@ -51,14 +51,11 @@ rules:
   # https://github.com/typescript-eslint/typescript-eslint/issues/5807
   '@typescript-eslint/no-misused-promises': off
 
-  '@typescript-eslint/indent': [error, 2, { SwitchCase: 0 }]
   '@typescript-eslint/prefer-optional-chain': off
   arrow-parens: [error, as-needed]
   brace-style: [error, 1tbs, { allowSingleLine: true }]
-  '@typescript-eslint/brace-style': [error, 1tbs, { allowSingleLine: true }]
   camelcase: [error, { allow: ['^UNSAFE_'] }]
   comma-dangle: [error, always-multiline]
-  '@typescript-eslint/comma-dangle': [error, always-multiline]
   '@typescript-eslint/consistent-indexed-object-style': [error, index-signature]
   func-style: [error, declaration]
   function-call-argument-newline: [error, consistent]
@@ -86,7 +83,6 @@ rules:
   react/jsx-indent: [error, 2]
   react/jsx-wrap-multilines: [error, { declaration: false }]
   space-before-function-paren: [error, { anonymous: always, named: never }]
-  '@typescript-eslint/space-before-function-paren': [error, { anonymous: always, named: never }]
   spaced-comment: [error, always, { markers: [=] }]
 
   ##############################################################################
@@ -96,6 +92,7 @@ rules:
   ##############################################################################
 
   '@typescript-eslint/keyword-spacing': off
+  react/prop-types: off
 
   ##############################################################################
   #
