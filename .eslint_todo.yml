@@ -293,7 +293,6 @@ overrides:
   # Offense count: 17
   - rules: { '@typescript-eslint/no-unsafe-assignment': off }
     files:
-    - app/javascript/channels/index.js
     - app/javascript/src/_common/create_merged_reducer.ts
     - app/javascript/src/_helpers/debug.ts
     - app/javascript/src/task/action_creators.ts
@@ -305,7 +304,6 @@ overrides:
   # Offense count: 7
   - rules: { '@typescript-eslint/no-unsafe-call': off }
     files:
-    - app/javascript/channels/index.js
     - app/javascript/src/task/components/list_view.tsx
     - spec/javascript/task/action_creators_spec.tsx
     - spec/javascript/timeframe/store_spec.ts
@@ -313,7 +311,6 @@ overrides:
   # Offense count: 14
   - rules: { '@typescript-eslint/no-unsafe-member-access': off }
     files:
-    - app/javascript/channels/index.js
     - app/javascript/src/_common/create_merged_reducer.ts
     - app/javascript/src/_helpers/debug.ts
     - app/javascript/src/task/components/list_view.tsx
@@ -762,7 +759,6 @@ overrides:
   # Offense count: 854
   - rules: { 'fp/no-unused-expression': off }
     files:
-    - app/javascript/channels/index.js
     - app/javascript/controllers/dialog_controller.ts
     - app/javascript/controllers/index.ts
     - app/javascript/controllers/layout_controller.ts
