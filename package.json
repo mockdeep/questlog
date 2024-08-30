@@ -5,11 +5,11 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.5",
-    "a11y-dialog": "^8.0.4",
+    "a11y-dialog": "^8.1.0",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.5.1",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.23.1",
     "eslint-plugin-fp": "^2.3.0",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-env": "^7.25.4",
     "@sinonjs/fake-timers": "^11.2.2",
     "@types/enzyme": "3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.9",
@@ -48,7 +48,7 @@
     "@types/jest": "^29.5.12",
     "@types/jquery": "^3.5.30",
     "@types/lodash": "^4.17.7",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@types/react-redux": "^7.1.33",
     "@types/react-textarea-autosize": "^4.3.6",
@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.8",
-    "eslint": "^9.8.0",
+    "eslint": "^9.9.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^28.8.0",
@@ -70,7 +70,7 @@
     "node-notifier": "^10.0.1",
     "postcss": "^8.4.41",
     "react-test-renderer": "^16.14.0",
-    "stylelint": "^16.8.1",
+    "stylelint": "^16.8.2",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-selector-bem-pattern": "^4.0.0",
@@ -79,7 +79,7 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "18.3.3"
+    "@types/react": "18.3.4"
   },
   "engines": {
     "node": "22.7.0"
