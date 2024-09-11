@@ -7,8 +7,7 @@ type Route = {
 
 function compileRoutes(routes: Route[]) {
   return routes.map(route => {
-    const regexp = pathToRegexp(route.path);
-    const { keys } = regexp;
+    const { regexp, keys } = pathToRegexp(route.path);
 
     return {
       ...route,
