@@ -5,7 +5,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.5",
-    "a11y-dialog": "^8.1.0",
+    "a11y-dialog": "^8.1.1",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.5.1",
@@ -28,7 +28,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.1",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "whatwg-fetch": "^3.6.20"
   },
   "//": {
@@ -45,7 +45,7 @@
     "@types/enzyme": "3.10.18",
     "@types/enzyme-adapter-react-16": "^1.0.9",
     "@types/hoist-non-react-statics": "^3.3.5",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "@types/jquery": "^3.5.30",
     "@types/lodash": "^4.17.7",
     "@types/react": "^18.3.4",
@@ -53,8 +53,8 @@
     "@types/react-redux": "^7.1.33",
     "@types/react-textarea-autosize": "^4.3.6",
     "@types/sinonjs__fake-timers": "^8.1.5",
-    "@typescript-eslint/eslint-plugin": "^8.2.0",
-    "@typescript-eslint/parser": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.8",
     "eslint": "^9.9.1",
@@ -73,7 +73,7 @@
     "stylelint": "^16.9.0",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
-    "stylelint-selector-bem-pattern": "^4.0.0",
+    "stylelint-selector-bem-pattern": "^4.0.1",
     "ts-jest": "^29.2.5",
     "util": "^0.12.5",
     "yarn-deduplicate": "^6.0.2"
