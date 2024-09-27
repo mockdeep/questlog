@@ -4,7 +4,7 @@
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.5",
+    "@hotwired/turbo-rails": "^8.0.10",
     "a11y-dialog": "^8.1.1",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
@@ -48,7 +48,7 @@
     "@types/jest": "^29.5.13",
     "@types/jquery": "^3.5.30",
     "@types/lodash": "^4.17.7",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "@types/react-redux": "^7.1.33",
     "@types/react-textarea-autosize": "^4.3.6",
@@ -79,7 +79,7 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "@types/react": "18.3.4"
+    "@types/react": "18.3.9"
   },
   "engines": {
     "node": "22.9.0"
