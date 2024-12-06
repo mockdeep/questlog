@@ -17,7 +17,7 @@
     "jquery-ujs": "^1.2.3",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
-    "nanoid": "^5.0.8",
+    "nanoid": "^5.0.9",
     "path-to-regexp": "8.2.0",
     "react": "^16.14.0",
     "react-dnd": "^14.0.5",
@@ -28,7 +28,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.1",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.2",
     "whatwg-fetch": "^3.6.20"
   },
   "//": {
@@ -70,7 +70,7 @@
     "node-notifier": "^10.0.1",
     "postcss": "^8.4.49",
     "react-test-renderer": "^16.14.0",
-    "stylelint": "^16.10.0",
+    "stylelint": "^16.11.0",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-selector-bem-pattern": "^4.0.1",
