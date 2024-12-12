@@ -1,5 +1,5 @@
 ruby 3.3.6
 bundler 2.3.5
-nodejs 23.3.0
+nodejs 23.4.0
 postgres 13.7
 yarn 1.22.10
