@@ -15,7 +15,7 @@ function divideSeconds(seconds: number): string {
     minutes && pluralize(minutes, 'minute'),
   ];
 
-  return outputs.filter(value => value).join(', ');
+  return outputs.filter(value => Boolean(value)).join(', ');
 }
 
 const ToEnglish = {
