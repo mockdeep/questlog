@@ -18,8 +18,7 @@ module API
 
       def tag_params
         params
-          .require(:tag)
-          .permit(:name, rules: [:check, :field])
+          .expect(tag: [:name, { rules: [[:check, :field]] }])
           .to_h
           .merge(user: current_user)
           .symbolize_keys

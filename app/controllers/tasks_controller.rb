@@ -39,8 +39,8 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task)
-      .permit(*permitted_params)
+    params
+      .expect(task: Array(permitted_params))
       .to_h
       .symbolize_keys
       .merge(parsed_title)

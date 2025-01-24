@@ -64,8 +64,8 @@ module API
       end
 
       def task_params
-        params.require(:task)
-          .permit(*permitted_params, tag_names: [])
+        params
+          .expect(task: [*permitted_params, { tag_names: [] }])
           .to_h
           .symbolize_keys
           .merge(parsed_title)

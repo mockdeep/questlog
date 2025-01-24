@@ -20,7 +20,7 @@ class FreeAccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:free_account).permit(*permitted_params)
+    params.expect(free_account: Array(permitted_params))
   end
 
   def permitted_params
