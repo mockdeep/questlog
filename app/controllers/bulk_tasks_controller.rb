@@ -19,13 +19,10 @@ class BulkTasksController < ApplicationController
   private
 
   def create_params
-    params.require(:bulk_task).permit(:titles).to_h.merge(user: current_user)
+    params.expect(bulk_task: [:titles]).to_h.merge(user: current_user)
   end
 
   def update_params
-    params.require(:bulk_task)
-      .permit(positions: [])
-      .to_h
-      .merge(user: current_user)
+    params.expect(bulk_task: [positions: []]).to_h.merge(user: current_user)
   end
 end
