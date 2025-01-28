@@ -17,8 +17,7 @@ class TagsController < ApplicationController
 
   def tag_params
     params
-      .require(:tag)
-      .permit(rules: [:check, :field])
+      .expect(tag: [rules: [[:check, :field]]])
       .to_h
       .merge(user: current_user)
       .symbolize_keys
