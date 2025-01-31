@@ -54,7 +54,7 @@
     "@types/react-textarea-autosize": "^4.3.6",
     "@types/sinonjs__fake-timers": "^8.1.5",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
-    "@typescript-eslint/parser": "^8.18.2",
+    "@typescript-eslint/parser": "^8.21.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.8",
     "eslint": "^9.18.0",
