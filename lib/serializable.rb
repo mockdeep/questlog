@@ -54,9 +54,7 @@ module Serializable
       end
     end
 
-    def serialized_attributes
-      self.class.serialized_attributes
-    end
+    delegate :serialized_attributes, to: :class
 
   end
 
