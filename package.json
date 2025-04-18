@@ -28,7 +28,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.1",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "whatwg-fetch": "^3.6.20"
   },
   "//": {
@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^8.29.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.8",
-    "eslint": "^9.22.0",
+    "eslint": "^9.24.0",
     "eslint-import-resolver-typescript": "^4.3.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
