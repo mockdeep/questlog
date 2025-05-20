@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'active_support/all'
+require 'stringio'
 
 TODO_FILE_PATH = './.stylelint_todo.yml'
 HEADING = <<~COMMENTS.freeze
@@ -12,7 +13,8 @@ HEADING = <<~COMMENTS.freeze
 COMMENTS
 
 File.write(TODO_FILE_PATH, '{}')
-json = `yarn --silent stylelint --formatter json`
+json =
+  `yarn --silent stylelint --quiet-deprecation-warnings --formatter json 2>&1`
 results = JSON.parse(json)
 
 by_rule =
