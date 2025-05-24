@@ -21,8 +21,6 @@ executors:
           POSTGRES_DB: app_test
           POSTGRES_PASSWORD:
 
-    working_directory: ~/app
-
 commands:
   setup_environment:
     steps:
