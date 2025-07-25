@@ -1,5 +1,6 @@
 class Tag < ApplicationRecord
   extend FriendlyId
+
   friendly_id :name, use: :scoped, scope: :user_id
 
   belongs_to :user
