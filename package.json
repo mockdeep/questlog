@@ -9,7 +9,7 @@
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.5.1",
-    "esbuild": "^0.25.8",
+    "esbuild": "^0.25.9",
     "eslint-plugin-fp": "^2.3.0",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
@@ -39,8 +39,8 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
     "@sinonjs/fake-timers": "^14.0.0",
     "@types/enzyme": "3.10.19",
     "@types/enzyme-adapter-react-16": "^1.0.9",
