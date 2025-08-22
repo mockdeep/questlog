@@ -1,3 +1,5 @@
+require 'ostruct'
+
 RSpec.describe JsonConstraint do
   describe '#matches?' do
     it 'returns true when accept headers include "application/json"' do
