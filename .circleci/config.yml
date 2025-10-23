@@ -30,7 +30,7 @@ commands:
           install-chromedriver: false
 
       - node/install:
-          node-version: 24.10.0
+          node-version: 25.0.0
           install-yarn: true
           yarn-version: 1.22.16
 
