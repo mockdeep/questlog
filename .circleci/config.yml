@@ -125,7 +125,7 @@ jobs:
       - setup_environment
       - run:
           name: Run feature tests
-          command: COVERAGE=false bundle exec rspec spec/features
+          command: COVERAGE=false bundle exec rspec -b spec/features
 
 workflows:
   version: 2
