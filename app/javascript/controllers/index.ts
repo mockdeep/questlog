@@ -10,5 +10,8 @@ application.register('layout', LayoutController);
 import DialogController from './dialog_controller';
 application.register('dialog', DialogController);
 
+import HotkeysController from './hotkeys_controller';
+application.register('hotkeys', HotkeysController);
+
 import ReactController from './react_controller';
 application.register('react', ReactController);
