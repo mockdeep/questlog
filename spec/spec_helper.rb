@@ -60,18 +60,6 @@ RSpec.configure do |config|
     mock_config.verify_doubled_constant_names = true
   end
 
-  VCR.configure do |vcr_config|
-    vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    vcr_config.hook_into :webmock
-
-    vcr_config.ignore_request do |request|
-      uri = request.uri
-      uri.include?('chromedriver') || uri.include?('geckodriver')
-    end
-
-    vcr_config.ignore_localhost = true
-  end
-
   config.prepend_before(:each, type: :feature) do
     Capybara.reset!
   end

@@ -22,7 +22,6 @@ gem 'junk_drawer'
 gem 'newrelic_rpm'
 gem 'normalize-rails'
 gem 'pg'
-gem 'pry-rails'
 gem 'puma', '~> 7.0'
 gem 'puma_worker_killer'
 gem 'redis'
@@ -52,7 +51,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rubocop'
   gem 'haml_lint', require: false
-  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
@@ -71,6 +69,5 @@ group :test do
   gem 'rspec_junit_formatter', require: false
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'vcr'
   gem 'webmock'
 end
