@@ -44,9 +44,7 @@ function minPriority(tasks: Task[]) {
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
 
-function processTags(tagsById: {[id: number]: Tag} | null | undefined, activeTasks: Task[]) {
-  if (!tagsById) { return {}; }
-
+function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
   return mapValues(tagsById, tag => {
     const tasks = matchingTasks(tag, activeTasks);
 
@@ -65,26 +63,17 @@ const getTagsById = createSelector(
 
 const getOrderedTags = createSelector(
   getTagsById,
-  tagsById => {
-    if (!tagsById) { return []; }
-    return sortBy(Object.values(tagsById), 'name');
-  },
+  tagsById => sortBy(Object.values(tagsById), 'name'),
 );
 
 const getActiveTags = createSelector(
   [getOrderedTags],
-  orderedTags => {
-    if (!orderedTags) { return []; }
-    return orderedTags.filter(tag => tag.tasks.length > 0);
-  },
+  orderedTags => orderedTags.filter(tag => tag.tasks.length > 0),
 );
 
 const getSelectedTag = createSelector(
   [getOrderedTags, getSelectedTagSlug],
-  (orderedTags, slug) => {
-    if (!orderedTags) { return undefined; }
-    return orderedTags.find(tag => tag.slug === slug);
-  },
+  (orderedTags, slug) => orderedTags.find(tag => tag.slug === slug),
 );
 
 const getNextActiveTask = createSelector(

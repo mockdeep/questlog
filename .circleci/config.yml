@@ -125,7 +125,7 @@ jobs:
       - setup_environment
       - run:
           name: Run feature tests
-          command: COVERAGE=false bundle exec rspec -b spec/features
+          command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/features
 
 workflows:
   version: 2

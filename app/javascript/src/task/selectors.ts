@@ -17,7 +17,7 @@ const timeframePositions = {
 
 const nullTask = {
   tagNames: [],
-} as unknown as Task;
+} as const;
 
 function timeframePosition(task: Task): number {
   const {timeframe} = task;
@@ -32,18 +32,15 @@ type PartitionedTasks = {
   pending: Task[];
 };
 
-function partitionTasks(tasks: Task[] | null | undefined): PartitionedTasks {
-  if (!tasks) { return {pending: [], active: []}; }
+function partitionTasks(tasks: Task[]): PartitionedTasks {
   return {pending: [], active: [], ...groupBy(tasks, 'status')};
 }
 
-function processTasks(tasksById: TasksById | null | undefined): TasksById {
-  if (!tasksById) { return {}; }
+function processTasks(tasksById: TasksById): TasksById {
   return pickBy(tasksById, (task: Task) => task.status !== 'done');
 }
 
-function mapTasksToParentId(tasksById: TasksById | null | undefined): TasksByParentId {
-  if (!tasksById) { return {}; }
+function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
   const tasks = Object.values(tasksById);
   return tasks.reduce((result: TasksByParentId, task: Task) => {
     result[task.id] ||= [];
@@ -56,15 +53,13 @@ function mapTasksToParentId(tasksById: TasksById | null | undefined): TasksByPar
 }
 
 function grabLeafTasks(
-  orderedTasks: Task[] | null | undefined,
-  tasksByParentId: TasksByParentId | null | undefined,
+  orderedTasks: Task[],
+  tasksByParentId: TasksByParentId,
 ): Task[] {
-  if (!orderedTasks || !tasksByParentId) { return []; }
-  return orderedTasks.filter(task => (tasksByParentId[task.id] || []).length === 0);
+  return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
 }
 
-function grabCurrentTask(tasksById: TasksById | null | undefined, routeParams: RouteParams): Task {
-  if (!tasksById) { return nullTask; }
+function grabCurrentTask(tasksById: TasksById, routeParams: RouteParams): Task {
   return tasksById[routeParams.taskId] || nullTask;
 }
 
@@ -77,10 +72,7 @@ const getTasksByParentId = createSelector(getTasksById, mapTasksToParentId);
 
 const getOrderedTasks = createSelector(
   getTasksById,
-  tasksById => {
-    if (!tasksById) { return []; }
-    return sortBy(tasksById, [timeframePosition, 'priority', 'position']);
-  },
+  tasksById => sortBy(tasksById, [timeframePosition, 'priority', 'position']),
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
@@ -92,10 +84,7 @@ const getLeafTasks = createSelector(
 
 const getRootTasks = createSelector(
   getOrderedTasks,
-  orderedTasks => {
-    if (!orderedTasks) { return []; }
-    return orderedTasks.filter(task => !task.parentTaskId);
-  },
+  orderedTasks => orderedTasks.filter(task => !task.parentTaskId),
 );
 
 const getPartitionedLeafTasks = createSelector(getLeafTasks, partitionTasks);
@@ -115,10 +104,7 @@ const getCurrentTask = createSelector(
 
 const getCurrentSubTasks = createSelector(
   [getCurrentTask, getTasksByParentId],
-  (currentTask: Task, tasksByParentId) => {
-    if (!tasksByParentId) { return []; }
-    return tasksByParentId[currentTask.id] || [];
-  },
+  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id] || [],
 );
 
 export {
