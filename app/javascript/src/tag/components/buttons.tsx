@@ -6,7 +6,7 @@ import TagButton from 'src/tag/components/button';
 
 export type Props = {
   currentTagIds: number[],
-  tags: Tag[] | null | undefined,
+  tags: Tag[],
   selectedTagSlug?: string,
 };
 
@@ -32,8 +32,6 @@ class TagButtons extends React.Component<Props, never> {
 
   tagButtons(): ReactElement[] {
     const {tags} = this.props;
-
-    if (!tags) { return []; }
 
     return tags.map(this.tagButton);
   }
