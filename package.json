@@ -83,7 +83,7 @@
     "@types/react": "18.3.27"
   },
   "engines": {
-    "node": "25.3.0"
+    "node": "25.4.0"
   },
   "license": "UNLICENSED",
   "scripts": {
