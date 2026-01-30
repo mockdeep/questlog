@@ -4,7 +4,7 @@
   "repository": "https://github.com/mockdeep/questlog",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.20",
+    "@hotwired/turbo-rails": "^8.0.21",
     "a11y-dialog": "^8.1.4",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
