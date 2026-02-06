@@ -12,7 +12,7 @@ require('bootstrap-sass');
 require('jquery-ujs');
 
 Honeybadger.configure({
-  apiKey: window.gon.honeybadgerApiKey, // eslint-disable-line camelcase
+  apiKey: window.gon.honeybadgerApiKey,  
   environment: window.gon.railsEnv,
   onerror: true,
 });

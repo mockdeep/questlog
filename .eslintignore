@@ -1,5 +1,0 @@
-app/assets/builds/*
-node_modules/*
-coverage/*
-public/*
-vendor/*
