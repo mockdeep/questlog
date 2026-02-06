@@ -1,4 +1,4 @@
-// eslint-disable-next-line max-params
+ 
 window.onerror = (...args) => {
   if (document.readyState === 'complete') {
     displayError(...args);
@@ -10,7 +10,7 @@ window.onerror = (...args) => {
   }
 };
 
-// eslint-disable-next-line max-params
+ 
 function displayError(
   message: string | Event,
   url: string | undefined,
