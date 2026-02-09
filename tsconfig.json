@@ -23,6 +23,7 @@
       "_test_helpers/*": ["spec/javascript/_test_helpers/*"],
       "controllers/*": ["app/javascript/controllers/*"]
     },
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "es6",
