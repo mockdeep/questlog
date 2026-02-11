@@ -14,7 +14,7 @@ COMMENTS
 MAX_FILES_FOR_OVERRIDES = 4_000_000
 
 File.write(TODO_FILE_PATH, "export default [];\n")
-json = `yarn --silent eslint --format json`
+json = `pnpm --silent eslint --format json`
 results = JSON.parse(json)
 
 by_rule =

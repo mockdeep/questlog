@@ -29,7 +29,7 @@ Capybara.save_path = ENV.fetch('CIRCLE_ARTIFACTS', Capybara.save_path)
   end
 end
 
-system('yarn build >/dev/null 2>&1 ', exception: true)
+system('pnpm build >/dev/null 2>&1 ', exception: true)
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
