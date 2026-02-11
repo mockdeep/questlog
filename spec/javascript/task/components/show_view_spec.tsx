@@ -7,8 +7,8 @@ import TaskShowView from 'src/task/components/show_view';
 import {makeTask} from '_test_helpers/factories';
 
 const props: Props = {
-  deleteTask: jest.fn(),
-  updateTask: jest.fn(),
+  deleteTask: vi.fn(),
+  updateTask: vi.fn(),
   task: makeTask(),
   subTasks: [],
 };

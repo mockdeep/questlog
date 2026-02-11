@@ -10,7 +10,7 @@ describe('appStore', () => {
         meta: {postponeSeconds: 300, ajaxState: 'loading'},
       },
     };
-    const subSpy = jest.fn();
+    const subSpy = vi.fn();
 
     expect(appStore.getState()).toEqual(expectedState);
 

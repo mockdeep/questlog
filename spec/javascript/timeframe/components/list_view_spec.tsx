@@ -6,9 +6,9 @@ import TimeframeListView from 'src/timeframe/components/list_view';
 import {makeTask, makeTimeframe} from '_test_helpers/factories';
 
 const props = {
-  deleteTask: jest.fn(),
-  fetchTasks: jest.fn(),
-  updateTask: jest.fn(),
+  deleteTask: vi.fn(),
+  fetchTasks: vi.fn(),
+  updateTask: vi.fn(),
 };
 
 it('renders a loading message before content has been loaded', () => {

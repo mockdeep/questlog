@@ -8,7 +8,7 @@ import {makeTask} from '_test_helpers/factories';
 const parentTask = makeTask({title: 'I am the parent'});
 const childTask = makeTask();
 const tasksByParentId = {[parentTask.id]: [childTask]};
-const updateTask = jest.fn();
+const updateTask = vi.fn();
 const props = {
   tasks: [parentTask],
   tasksByParentId,

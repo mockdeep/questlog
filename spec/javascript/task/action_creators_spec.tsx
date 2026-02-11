@@ -1,6 +1,7 @@
-jest.mock('src/_helpers/ajax');
-jest.mock('src/task/store');
+vi.mock('src/_helpers/ajax');
+vi.mock('src/task/store');
 
+import type {Mock} from 'vitest';
 import type {Dispatch, Store} from 'redux';
 
 import {makeState} from '_test_helpers/factories';
@@ -19,14 +20,14 @@ let dispatch: Dispatch;
 
 beforeEach(() => {
   store = createAppStore();
-  jest.spyOn(store, 'dispatch');
+  vi.spyOn(store, 'dispatch');
   dispatch = store.dispatch;
 });
 
 describe('fetchTasks', () => {
   it('sets ajax state to "fetching"', () => {
     const promise = Promise.resolve({data: [], included: []});
-    (ajaxGet as jest.Mock).mockReturnValue(promise);
+    (ajaxGet as Mock).mockReturnValue(promise);
     const thunk = fetchTasks();
     const expectedAction = updateTaskMeta({ajaxState: 'fetching'});
 
@@ -37,7 +38,7 @@ describe('fetchTasks', () => {
 
   it('sets ajax state to "ready" on success', async () => {
     const promise = Promise.resolve({data: [], included: []});
-    (ajaxGet as jest.Mock).mockReturnValue(promise);
+    (ajaxGet as Mock).mockReturnValue(promise);
 
     const thunk = fetchTasks();
 
@@ -54,7 +55,7 @@ describe('deleteTask', () => {
     const thunk = deleteTask(5);
     const state = makeState();
 
-    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
+    (ajaxDelete as Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch, () => state, null);
 
@@ -65,7 +66,7 @@ describe('deleteTask', () => {
     const thunk = deleteTask(5);
     const state = makeState();
 
-    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
+    (ajaxDelete as Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch, () => state, null);
 
@@ -77,7 +78,7 @@ describe('deleteTask', () => {
     const thunk = deleteTask(5);
     const state = makeState();
 
-    (ajaxDelete as jest.Mock).mockReturnValue(Promise.resolve());
+    (ajaxDelete as Mock).mockReturnValue(Promise.resolve());
 
     await thunk(dispatch, () => state, null);
 
@@ -91,7 +92,7 @@ describe('updateTask', () => {
   beforeEach(() => {
     store.dispatch({type: SET, payload: [taskAttrs]});
     const promise = Promise.resolve({data: [], included: []});
-    (ajaxPut as jest.Mock).mockReturnValue(promise);
+    (ajaxPut as Mock).mockReturnValue(promise);
   });
 
   it('updates the client task with "marking_done" when marking done', () => {
@@ -142,7 +143,7 @@ describe('updateTask', () => {
         {rules: [{check: 'isBlank'}]},
         {rules: [{check: 'isEmpty'}]},
       ];
-      (ajaxPut as jest.Mock).mockReturnValue(Promise.resolve({data, included}));
+      (ajaxPut as Mock).mockReturnValue(Promise.resolve({data, included}));
 
       const updateThunk = updateTask(taskAttrs.id, {title: 'bar'});
       const state = makeState();
@@ -158,7 +159,7 @@ describe('updateTask', () => {
     });
 
     it('upserts associated tags', () => {
-      const [thunk] = (dispatch as jest.Mock).mock.calls[3];
+      const [thunk] = (dispatch as Mock).mock.calls[3];
       expect(thunk).toBeInstanceOf(Function);
       expect(thunk.name).toBe('upsertTagsThunk');
 

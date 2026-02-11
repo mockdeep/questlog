@@ -6,7 +6,7 @@ import FakeNotification from '_test_helpers/fake_notification';
 Enzyme.configure({adapter: new Adapter()});
 
 import 'whatwg-fetch';
-import 'jest-enzyme';
+import '_test_helpers/enzyme_matchers';
 
 (global as any).HTMLFormElement.prototype.submit =
   (): void => { /* do nothing */ };

@@ -11,7 +11,7 @@ const task = makeTask({title: 'foo title'});
 const props: Props = {
   task,
   tasksByParentId: {[task.id]: []},
-  updateTask: jest.fn(),
+  updateTask: vi.fn(),
 };
 
 it('renders the task title', () => {

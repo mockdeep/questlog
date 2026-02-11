@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import fp from 'eslint-plugin-fp';
-import jest from 'eslint-plugin-jest';
+import vitest from '@vitest/eslint-plugin';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
@@ -25,6 +25,7 @@ export default [
       'vendor/**',
       'eslint.config.mjs',
       '.eslint_todo.mjs',
+      'vitest.config.ts',
     ],
   },
 
@@ -122,14 +123,23 @@ export default [
 
   {
     files: ['spec/javascript/**/*.{js,jsx,ts,tsx}'],
-    plugins: { jest },
+    plugins: { vitest },
     languageOptions: {
-      globals: globals.jest,
+      globals: {
+        afterAll: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        beforeEach: 'readonly',
+        describe: 'readonly',
+        expect: 'readonly',
+        it: 'readonly',
+        vi: 'readonly',
+      },
     },
     rules: {
-      'jest/no-disabled-tests': 'error',
-      'jest/no-focused-tests': 'error',
-      'jest/no-identical-title': 'error',
+      'vitest/no-disabled-tests': 'error',
+      'vitest/no-focused-tests': 'error',
+      'vitest/no-identical-title': 'error',
       'max-statements': ['error', { max: 20 }],
       'max-lines': 'off',
       'max-lines-per-function': 'off',

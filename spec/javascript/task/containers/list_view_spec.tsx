@@ -1,4 +1,4 @@
-jest.mock('src/route/selectors');
+vi.mock('src/route/selectors');
 
 import React from 'react';
 import {Provider} from 'react-redux';

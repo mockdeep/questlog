@@ -19,7 +19,7 @@ it('renders the task title in the input', () => {
 it('updates the task when the input blurs', () => {
   const component = mount(<TaskEditTitleForm {...props} />);
   component.find(Textarea).simulate('change', {target: {value: 'new title'}});
-  const preventDefault = jest.fn();
+  const preventDefault = vi.fn();
 
   component.find(Textarea).simulate('blur', {preventDefault});
 
@@ -29,7 +29,7 @@ it('updates the task when the input blurs', () => {
 it('updates the task when the user hits Enter', () => {
   const component = mount(<TaskEditTitleForm {...props} />);
   component.find(Textarea).simulate('change', {target: {value: 'new title'}});
-  const preventDefault = jest.fn();
+  const preventDefault = vi.fn();
 
   component.find(Textarea).simulate('keyPress', {key: 'Enter', preventDefault});
 
@@ -39,7 +39,7 @@ it('updates the task when the user hits Enter', () => {
 it('does not update the task when the user hits a letter key', () => {
   const component = mount(<TaskEditTitleForm {...props} />);
   component.find(Textarea).simulate('change', {target: {value: 'new title'}});
-  const preventDefault = jest.fn();
+  const preventDefault = vi.fn();
 
   component.find(Textarea).simulate('keyPress', {key: 'k', preventDefault});
 
