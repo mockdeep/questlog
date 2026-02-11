@@ -15,7 +15,6 @@ type ContainerProps = {
 // The component is in the same file as the container due to circular references
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
 // otherwise imports get funky
-// eslint-disable-next-line react/prefer-stateless-function
 class ParentTaskBreadCrumbs extends React.Component<ComponentProps, never> {
   render(): ReactElement | null {
     const {task} = this.props;
