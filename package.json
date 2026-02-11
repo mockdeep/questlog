@@ -28,8 +28,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.1",
-    "typescript": "^5.9.3",
-    "whatwg-fetch": "^3.6.20"
+    "typescript": "^5.9.3"
   },
   "//": {
     "bootstrap-sass": "locked at 3.4.1 until dartsass is integrated",
