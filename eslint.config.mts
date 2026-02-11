@@ -7,7 +7,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
 
-import todoConfigs from './.eslint_todo.mjs';
+import todoConfigs from './.eslint_todo.mts';
 
 export default [
   //////////////////////////////////////////////////////////////////////////////
@@ -23,8 +23,8 @@ export default [
       'coverage/**',
       'public/**',
       'vendor/**',
-      'eslint.config.mjs',
-      '.eslint_todo.mjs',
+      'eslint.config.mts',
+      '.eslint_todo.mts',
       'vitest.config.ts',
     ],
   },
