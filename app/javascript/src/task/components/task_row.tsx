@@ -4,11 +4,10 @@ import type {ChangeEvent, MouseEvent, ReactElement} from 'react';
 import React from 'react';
 import {map} from 'lodash';
 
-import grab from 'src/_helpers/grab';
+import {grab, assert} from 'helpers';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
-import {assert} from 'src/_helpers/assert';
 import type {UpdateTask} from 'src/task/action_creators';
 
 const BUTTON_CLASS = 'btn btn-link tasks-table__action';

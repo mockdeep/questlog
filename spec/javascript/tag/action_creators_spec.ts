@@ -1,4 +1,4 @@
-vi.mock('src/_helpers/ajax');
+vi.mock('helpers/ajax');
 
 import {makeState, makeTag} from '_test_helpers/factories';
 import {

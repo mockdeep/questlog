@@ -1,9 +1,9 @@
 import type {Mock} from 'vitest';
 
-vi.mock('src/_helpers/request', () => {
+vi.mock('helpers/request', () => {
   const fakePromise: {then: Mock} = {then: vi.fn(() => fakePromise)};
 
-  return {default: () => fakePromise};
+  return {request: () => fakePromise};
 });
 
 import React from 'react';

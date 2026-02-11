@@ -6,6 +6,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'src': path.resolve(__dirname, 'app/javascript/src'),
+      'helpers': path.resolve(__dirname, 'app/javascript/helpers'),
       '_test_helpers': path.resolve(__dirname, 'spec/javascript/_test_helpers'),
       'controllers': path.resolve(__dirname, 'app/javascript/controllers'),
       'javascript': path.resolve(__dirname, 'app/javascript'),

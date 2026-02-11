@@ -1,7 +1,7 @@
 import {groupBy, pickBy, sortBy} from 'lodash';
 import {createSelector} from 'reselect';
 
-import grab from 'src/_helpers/grab';
+import {grab} from 'helpers';
 import {getRouteParams} from 'src/route/selectors';
 
 const timeframePositions = {

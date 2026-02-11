@@ -1,8 +1,7 @@
 import {createSelector} from 'reselect';
 import {mapValues, sortBy} from 'lodash';
 
-import grab from 'src/_helpers/grab';
-import {assert} from 'src/_helpers/assert';
+import {grab, assert} from 'helpers';
 import {getActiveTasks} from 'src/task/selectors';
 
 const RULES = {

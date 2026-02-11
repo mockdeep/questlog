@@ -2,9 +2,7 @@ import type {Moment} from 'moment';
 import moment from 'moment';
 import {sumBy} from 'lodash';
 
-import grab from 'src/_helpers/grab';
-import TimeBalancer from 'src/_helpers/time_balancer';
-import {assert} from 'src/_helpers/assert';
+import {grab, TimeBalancer, assert} from 'helpers';
 
 const timeframeEnds: {[timeframeName in TimeframeName]: Moment | null} = {
   inbox: null,

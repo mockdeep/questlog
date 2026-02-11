@@ -1,4 +1,4 @@
-export default function authenticityToken(): string {
+export function authenticityToken(): string {
   const tokenTag = document.getElementsByName('csrf-token')[0];
 
   if (!(tokenTag instanceof HTMLMetaElement)) {

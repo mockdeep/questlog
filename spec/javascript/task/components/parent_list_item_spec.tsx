@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 
 import type {Props} from 'src/task/components/parent_list_item';
 import TaskParentListItem from 'src/task/components/parent_list_item';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 
 import {makeTask} from '_test_helpers/factories';
 

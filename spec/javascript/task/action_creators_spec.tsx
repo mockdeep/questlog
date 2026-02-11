@@ -1,4 +1,4 @@
-vi.mock('src/_helpers/ajax');
+vi.mock('helpers/ajax');
 vi.mock('src/task/store');
 
 import type {Mock} from 'vitest';
@@ -7,7 +7,7 @@ import type {Dispatch, Store} from 'redux';
 import {makeState} from '_test_helpers/factories';
 
 import createAppStore from 'src/create_app_store';
-import {ajaxDelete, ajaxGet, ajaxPut} from 'src/_helpers/ajax';
+import {ajaxDelete, ajaxGet, ajaxPut} from 'helpers/ajax';
 import TaskStore from 'src/task/store';
 import {
   DELETE, SET, UPDATE, UPDATE_META,

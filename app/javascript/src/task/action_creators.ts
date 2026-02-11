@@ -2,7 +2,7 @@ import type {Action} from 'redux';
 import type {ThunkAction} from 'redux-thunk';
 import type {InferThunkActionCreatorType} from 'react-redux';
 
-import {ajaxGet, ajaxPut, ajaxDelete} from 'src/_helpers/ajax';
+import {ajaxGet, ajaxPut, ajaxDelete} from 'helpers/ajax';
 import TaskStore from 'src/task/store';
 import {setTags, upsertTags} from 'src/tag/action_creators';
 

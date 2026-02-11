@@ -38,4 +38,4 @@ const TimeBalancer = {
   },
 };
 
-export default TimeBalancer;
+export {TimeBalancer};

@@ -9,7 +9,7 @@ import BulkTaskStore from 'src/task/bulk_store';
 
 import TableHeaders from 'src/task/components/table_headers';
 import DraggableTaskRow from 'src/task/components/draggable_task_row';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 import type {UpdateTask} from 'src/task/action_creators';
 
 function findTask(tasks: Task[], taskId: number): Task {

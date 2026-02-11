@@ -84,4 +84,4 @@ function debug(...args: any[]) {
   return result;
 }
 
-export default debug;
+export {debug};

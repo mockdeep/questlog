@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import TaskLeafListItem from 'src/task/components/leaf_list_item';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 
 import {makeTask} from '_test_helpers/factories';
 

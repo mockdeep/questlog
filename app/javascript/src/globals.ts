@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import debug from 'src/_helpers/debug';
+import {debug} from 'helpers';
 
 window.$ = $;
 window.jQuery = $;
