@@ -31,15 +31,15 @@ commands:
 
       - node/install:
           node-version: 25.6.0
-          install-yarn: true
-          yarn-version: 1.22.16
+          install-pnpm: true
+          pnpm-version: 10.26.1
 
       - run:
           name: Which versions?
           command: |
             bundle -v
             node --version
-            npm --version
+            pnpm --version
 
       # https://circleci.com/docs/2.0/caching/
       - restore_cache:
@@ -61,19 +61,17 @@ commands:
 
       - restore_cache:
           keys:
-            - questlog-yarn-{{ checksum "yarn.lock" }}
-            - questlog-yarn-
+            - questlog-pnpm-{{ checksum "pnpm-lock.yaml" }}
+            - questlog-pnpm-
 
       - run:
-          name: Yarn Install
-          command: |
-            yarn install --cache-folder ~/.cache/yarn --frozen-lockfile --ignore-engines
-            yarn deduplicate --fail || (echo 'Duplicate packages in yarn.lock. Run `yarn deduplicate` locally.'; exit 1)
+          name: pnpm Install
+          command: pnpm install --frozen-lockfile
 
       - save_cache:
-          key: questlog-yarn-{{ checksum "yarn.lock" }}
+          key: questlog-pnpm-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - ~/.cache/yarn
+            - node_modules
 
       - run:
           name: Wait for DB
@@ -92,7 +90,7 @@ jobs:
       - setup_environment
       - run:
           name: Lints
-          command: yarn lints
+          command: pnpm lints
 
   javascript_tests:
     executor: ruby_image
@@ -100,7 +98,7 @@ jobs:
       - setup_environment
       - run:
           name: JavaScript tests
-          command: yarn vitest
+          command: pnpm vitest
 
   unit_tests:
     executor: ruby_image

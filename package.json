@@ -2,6 +2,7 @@
   "name": "questlog",
   "private": true,
   "repository": "https://github.com/mockdeep/questlog",
+  "packageManager": "pnpm@10.26.1",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.21",
@@ -69,11 +70,16 @@
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-selector-bem-pattern": "^4.0.1",
     "util": "^0.12.5",
-    "vitest": "^4.0.18",
-    "yarn-deduplicate": "^6.0.2"
+    "vitest": "^4.0.18"
   },
-  "resolutions": {
-    "@types/react": "18.3.28"
+  "pnpm": {
+    "overrides": {
+      "@types/react": "18.3.28"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ]
   },
   "engines": {
     "node": "25.6.0"
@@ -81,14 +87,13 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "bin/build_javascript",
-    "lints": "yarn stylelint && yarn eslint && yarn tscheck && yarn rubocop && bundle exec rake haml_lint",
-    "deduplicate": "yarn-deduplicate --strategy fewer",
+    "lints": "pnpm stylelint && pnpm eslint && pnpm tscheck && pnpm rubocop && bundle exec rake haml_lint",
     "rubocop": "bundle exec rubocop -f q",
     "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*.scss'",
     "eslint": "eslint --cache",
     "vitest": "vitest run",
-    "pretest": "yarn stylelint && yarn tscheck && yarn eslint",
-    "test": "yarn vitest",
-    "tscheck": "yarn tsc --noEmit"
+    "pretest": "pnpm stylelint && pnpm tscheck && pnpm eslint",
+    "test": "pnpm vitest",
+    "tscheck": "pnpm tsc --noEmit"
   }
 }
