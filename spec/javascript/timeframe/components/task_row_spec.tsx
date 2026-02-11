@@ -7,8 +7,8 @@ import type {Props} from 'src/timeframe/components/task_row';
 import TaskRow from 'src/timeframe/components/task_row';
 
 const props: Props = {
-  deleteTask: jest.fn(),
-  updateTask: jest.fn(),
+  deleteTask: vi.fn(),
+  updateTask: vi.fn(),
   task: makeTask(),
   timeframeSpace: {},
 };

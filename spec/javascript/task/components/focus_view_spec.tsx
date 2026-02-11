@@ -1,7 +1,9 @@
-jest.mock('src/_helpers/request', () => {
-  const fakePromise: {then: jest.Mock} = {then: jest.fn(() => fakePromise)};
+import type {Mock} from 'vitest';
 
-  return () => fakePromise;
+vi.mock('src/_helpers/request', () => {
+  const fakePromise: {then: Mock} = {then: vi.fn(() => fakePromise)};
+
+  return {default: () => fakePromise};
 });
 
 import React from 'react';
@@ -13,10 +15,10 @@ import TaskFocusView from 'src/task/components/focus_view';
 
 import {makeTask} from '_test_helpers/factories';
 
-const updateTask = jest.fn();
+const updateTask = vi.fn();
 const props: Props = {
   ajaxState: 'ready',
-  deleteTask: jest.fn(),
+  deleteTask: vi.fn(),
   updateTask,
 };
 

@@ -29,7 +29,7 @@ describe('when passed a "disabled" prop', () => {
 });
 
 it('passes an onChange callback through to the checkbox', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const component = shallow(<TaskCheckbox {...props} onChange={onChange} />);
 
   component.find('input[type="checkbox"]').simulate('change');

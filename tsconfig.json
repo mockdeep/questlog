@@ -26,7 +26,8 @@
     "sourceMap": true,
     "strict": true,
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true
   },
   "exclude": [
     "coverage",
@@ -34,7 +35,8 @@
     "vendor",
     "public",
     "eslint.config.mjs",
-    ".eslint_todo.mjs"
+    ".eslint_todo.mjs",
+    "vitest.config.ts"
   ],
   "compileOnSave": false
 }

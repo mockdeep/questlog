@@ -7,7 +7,7 @@ import {assert} from 'src/_helpers/assert';
 import {makeTask} from '_test_helpers/factories';
 
 const task = makeTask({title: 'some title'});
-const updateTask = jest.fn();
+const updateTask = vi.fn();
 const props = {task, updateTask};
 
 it('renders the task title', () => {
@@ -36,7 +36,7 @@ it('sets the task checkbox to "checked" when task is "done"', () => {
 
 it('updates the task to done when the checkbox gets checked', () => {
   const component = shallow(<TaskLeafListItem {...props} />);
-  const stopPropagation = jest.fn();
+  const stopPropagation = vi.fn();
   const target = {checked: true};
 
   component.find('TaskCheckbox').simulate('change', {stopPropagation, target});
@@ -47,7 +47,7 @@ it('updates the task to done when the checkbox gets checked', () => {
 
 it('updates the task to not done when the checkbox gets unchecked', () => {
   const component = shallow(<TaskLeafListItem {...props} />);
-  const stopPropagation = jest.fn();
+  const stopPropagation = vi.fn();
   const target = {checked: false};
 
   component.find('TaskCheckbox').simulate('change', {stopPropagation, target});

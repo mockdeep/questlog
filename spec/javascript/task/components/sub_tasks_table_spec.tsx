@@ -7,8 +7,8 @@ import type {Props} from 'src/task/components/sub_tasks_table';
 import SubTasksTable from 'src/task/components/sub_tasks_table';
 
 const props: Props = {
-  deleteTask: jest.fn(),
-  updateTask: jest.fn(),
+  deleteTask: vi.fn(),
+  updateTask: vi.fn(),
   subTasks: [],
 };
 

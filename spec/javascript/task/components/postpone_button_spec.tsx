@@ -8,8 +8,8 @@ import PostponeButton from 'src/task/components/postpone_button';
 
 const props: Props = {
   disabled: false,
-  postponeTask: jest.fn(),
-  storePostponeSeconds: jest.fn(),
+  postponeTask: vi.fn(),
+  storePostponeSeconds: vi.fn(),
   task: makeTask(),
 };
 

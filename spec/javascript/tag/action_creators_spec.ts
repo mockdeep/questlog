@@ -1,4 +1,4 @@
-jest.mock('src/_helpers/ajax');
+vi.mock('src/_helpers/ajax');
 
 import {makeState, makeTag} from '_test_helpers/factories';
 import {
@@ -26,7 +26,7 @@ describe('upsertTags', () => {
   it('returns an upsert thunk', () => {
     const tag: {rules: TagRule[]} = {rules: []};
     const payload = [tag];
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     const thunk = upsertTags(payload);
 

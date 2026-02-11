@@ -5,10 +5,10 @@ import RuleRow from 'src/tag/components/rule_row';
 
 const tagRule: TagRule = {field: 'estimateSeconds', check: 'isBlank'};
 const props = {
-  deleteRule: jest.fn(),
+  deleteRule: vi.fn(),
   index: 1,
   rule: tagRule,
-  updateFieldValue: jest.fn(),
+  updateFieldValue: vi.fn(),
 };
 
 it('renders a select tag', () => {

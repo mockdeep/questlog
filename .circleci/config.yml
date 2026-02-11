@@ -100,7 +100,7 @@ jobs:
       - setup_environment
       - run:
           name: JavaScript tests
-          command: yarn jest
+          command: yarn vitest
 
   unit_tests:
     executor: ruby_image

@@ -1,4 +1,5 @@
-jest.mock('src/_helpers/request');
+vi.mock('src/_helpers/request');
+import type {Mock} from 'vitest';
 import FakeTimers from '@sinonjs/fake-timers';
 
 import request from 'src/_helpers/request';
@@ -8,7 +9,7 @@ import {makeTask} from '_test_helpers/factories';
 
 describe('subscribe', () => {
   it('subscribes a listener', () => {
-    const listener = jest.fn();
+    const listener = vi.fn();
 
     TimeframeStore.subscribe(listener);
 
@@ -21,7 +22,7 @@ describe('subscribe', () => {
 
 describe('unsubscribe', () => {
   it('unsubscribes a listener', () => {
-    const listener = jest.fn();
+    const listener = vi.fn();
     TimeframeStore.subscribe(listener);
 
     TimeframeStore.unsubscribe(listener);
@@ -33,8 +34,8 @@ describe('unsubscribe', () => {
 
 describe('notifyListeners', () => {
   it('notifies all listeners', () => {
-    const listener1 = jest.fn();
-    const listener2 = jest.fn();
+    const listener1 = vi.fn();
+    const listener2 = vi.fn();
     TimeframeStore.subscribe(listener1);
     TimeframeStore.subscribe(listener2);
 
@@ -64,7 +65,7 @@ describe('unload', () => {
   });
 
   it('notifies listeners', () => {
-    const listener = jest.fn();
+    const listener = vi.fn();
     TimeframeStore.subscribe(listener);
 
     TimeframeStore.unload();
@@ -104,7 +105,7 @@ describe('updateModels', () => {
 
     expect(request).toHaveBeenCalledTimes(2);
 
-    const [, secondCall] = (request as jest.Mock).mock.calls;
+    const [, secondCall] = (request as Mock).mock.calls;
     secondCall[1].success({meta: {medianProductivity: 15}});
 
     await promise;
@@ -125,7 +126,7 @@ describe('updateModels', () => {
 
     expect(request).toHaveBeenCalledTimes(2);
 
-    const [, secondCall] = (request as jest.Mock).mock.calls;
+    const [, secondCall] = (request as Mock).mock.calls;
     secondCall[1].success({meta: {medianProductivity: 10800}});
 
     await promise;

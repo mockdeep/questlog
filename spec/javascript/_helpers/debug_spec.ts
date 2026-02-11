@@ -2,7 +2,7 @@
 import debug from 'src/_helpers/debug';
 
 beforeEach(() => {
-  jest.spyOn(console, 'log').mockImplementation(() => { /* nada */ });
+  vi.spyOn(console, 'log').mockImplementation(() => { /* nada */ });
 });
 describe('when run from node', () => {
   it('prints helpful debug output without a label', () => {
