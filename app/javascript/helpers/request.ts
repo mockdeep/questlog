@@ -1,4 +1,4 @@
-import authenticityToken from 'src/_helpers/authenticity_token';
+import {authenticityToken} from './authenticity_token';
 
 type BaseRequestOptions = {
   headers: Headers;
@@ -22,7 +22,7 @@ function defaultRequestOptions(): BaseRequestOptions {
   };
 }
 
-export default function request(url: string, options: RequestOptions): void {
+export function request(url: string, options: RequestOptions): void {
   const {success} = options;
   const body = JSON.stringify(options.data);
   const method = options.method ?? 'PUT';

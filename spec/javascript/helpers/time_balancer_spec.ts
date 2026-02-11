@@ -2,8 +2,8 @@ import type {Moment} from 'moment';
 import moment from 'moment';
 import FakeTimers from '@sinonjs/fake-timers';
 
-import type {TimeBalance} from 'src/_helpers/time_balancer';
-import TimeBalancer from 'src/_helpers/time_balancer';
+import type {TimeBalance} from 'helpers/time_balancer';
+import {TimeBalancer} from 'helpers';
 
 describe('TimeBalancer.baseBalances', () => {
   it('returns a collection of base time pairs', () => {

@@ -20,6 +20,8 @@
     "noUnusedLocals": true,
     "paths": {
       "src/*": ["app/javascript/src/*"],
+      "helpers": ["app/javascript/helpers/index.ts"],
+      "helpers/*": ["app/javascript/helpers/*"],
       "_test_helpers/*": ["spec/javascript/_test_helpers/*"],
       "controllers/*": ["app/javascript/controllers/*"],
       "javascript/*": ["./app/javascript/*"]

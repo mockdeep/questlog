@@ -1,4 +1,4 @@
-import authenticityToken from 'src/_helpers/authenticity_token';
+import {authenticityToken} from './authenticity_token';
 
 const FETCH_OPTIONS: RequestInit = {
   headers: new window.Headers({

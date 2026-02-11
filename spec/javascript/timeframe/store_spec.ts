@@ -1,8 +1,8 @@
-vi.mock('src/_helpers/request');
+vi.mock('helpers/request');
 import type {Mock} from 'vitest';
 import FakeTimers from '@sinonjs/fake-timers';
 
-import request from 'src/_helpers/request';
+import {request} from 'helpers/request';
 import TimeframeStore from 'src/timeframe/store';
 
 import {makeTask} from '_test_helpers/factories';

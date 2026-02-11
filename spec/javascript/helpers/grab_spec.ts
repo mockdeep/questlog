@@ -1,4 +1,4 @@
-import grab from 'src/_helpers/grab';
+import {grab} from 'helpers';
 
 it('throws an error when object has no such key', () => {
   const expected = 'object has no key "someKey". <{"aKey":"blah"}>';

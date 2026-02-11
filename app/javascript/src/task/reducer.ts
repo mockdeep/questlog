@@ -2,7 +2,7 @@ import {keyBy} from 'lodash';
 import update from 'immutability-helper';
 
 import createBasicReducer from 'src/_common/create_basic_reducer';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 import {
   INIT,
   DELETE,

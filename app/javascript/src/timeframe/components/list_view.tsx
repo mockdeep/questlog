@@ -2,11 +2,10 @@ import autobind from 'class-autobind';
 import React from 'react';
 import type {ReactElement} from 'react';
 
-import ToEnglish from 'src/_helpers/to_english';
+import {ToEnglish, assert} from 'helpers';
 
 import TimeframeStore from 'src/timeframe/store';
 import TimeframeSection from 'src/timeframe/components/section';
-import {assert} from 'src/_helpers/assert';
 import {calculateTotalMinutes} from 'src/timeframe/utils';
 import type {UpdateTask} from 'src/task/action_creators';
 

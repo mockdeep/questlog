@@ -32,4 +32,4 @@ const ToEnglish = {
   },
 };
 
-export default ToEnglish;
+export {ToEnglish};

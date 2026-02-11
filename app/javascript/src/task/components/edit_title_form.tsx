@@ -5,7 +5,7 @@ import React from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import AuthenticityToken from 'src/_common/components/authenticity_token';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 
 export type Props = {
   task: Task,

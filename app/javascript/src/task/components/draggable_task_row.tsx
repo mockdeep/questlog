@@ -9,7 +9,7 @@ import {
 } from 'react-dnd';
 
 import TaskRow from 'src/task/components/task_row';
-import {assert} from 'src/_helpers/assert';
+import {assert} from 'helpers';
 import type {UpdateTask} from 'src/task/action_creators';
 
 type DragProps = {

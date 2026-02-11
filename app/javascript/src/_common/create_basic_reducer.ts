@@ -1,4 +1,4 @@
-import grab from 'src/_helpers/grab';
+import {grab} from 'helpers';
 
 type Payload = BasicAction['payload'];
 

@@ -4,7 +4,7 @@ import type {ReactElement} from 'react';
 import React from 'react';
 
 import DeleteButton from 'src/task/components/delete_button';
-import grab from 'src/_helpers/grab';
+import {grab} from 'helpers';
 import TaskEditIcon from 'src/task/components/edit_icon';
 import TaskEditTitleForm from 'src/task/components/edit_title_form';
 import timeframeNameMap from 'src/timeframe/name_map';
