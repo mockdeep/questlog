@@ -5,7 +5,8 @@ import FakeNotification from '_test_helpers/fake_notification';
 
 Enzyme.configure({adapter: new Adapter()});
 
-import 'whatwg-fetch';
+const promise = new Promise(() => { /* noop */ });
+vi.stubGlobal('fetch', vi.fn().mockReturnValue(promise));
 import '_test_helpers/enzyme_matchers';
 
 (global as any).HTMLFormElement.prototype.submit =

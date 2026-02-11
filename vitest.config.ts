@@ -39,7 +39,6 @@ export default defineConfig({
       },
     },
     pool: 'vmForks',
-    dangerouslyIgnoreUnhandledErrors: true,
     maxWorkers: 2,
     deps: {
       moduleDirectories: ['node_modules', 'vendor/assets/javascripts'],
