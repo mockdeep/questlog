@@ -21,7 +21,8 @@
     "paths": {
       "src/*": ["app/javascript/src/*"],
       "_test_helpers/*": ["spec/javascript/_test_helpers/*"],
-      "controllers/*": ["app/javascript/controllers/*"]
+      "controllers/*": ["app/javascript/controllers/*"],
+      "javascript/*": ["./app/javascript/*"]
     },
     "sourceMap": true,
     "strict": true,
@@ -30,6 +31,7 @@
     "skipLibCheck": true
   },
   "exclude": [
+    "app/assets/builds",
     "coverage",
     "node_modules",
     "vendor",

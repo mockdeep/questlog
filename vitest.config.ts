@@ -8,6 +8,7 @@ export default defineConfig({
       'src': path.resolve(__dirname, 'app/javascript/src'),
       '_test_helpers': path.resolve(__dirname, 'spec/javascript/_test_helpers'),
       'controllers': path.resolve(__dirname, 'app/javascript/controllers'),
+      'javascript': path.resolve(__dirname, 'app/javascript'),
       'packs': path.resolve(__dirname, 'app/javascript/packs'),
       'dnd-core': 'dnd-core/dist/cjs',
       'react-dnd': 'react-dnd/dist/cjs',
