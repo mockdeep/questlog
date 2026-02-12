@@ -1,7 +1,7 @@
 module IconHelper
 
   def edit_icon
-    icon("fas", "edit")
+    tag.i(class: "fas fa-edit", aria: { hidden: true })
   end
 
 end

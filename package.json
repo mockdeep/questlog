@@ -4,6 +4,7 @@
   "repository": "https://github.com/mockdeep/questlog",
   "packageManager": "pnpm@10.26.1",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.21",
     "@rails/actioncable": "^8.1.200",
@@ -20,6 +21,7 @@
     "lodash": "^4.17.23",
     "moment": "^2.30.1",
     "nanoid": "^5.1.6",
+    "normalize.css": "^8.0.1",
     "path-to-regexp": "8.3.0",
     "react": "^16.14.0",
     "react-dnd": "^14.0.5",
@@ -30,10 +32,10 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.1",
+    "sass": "^1.97.3",
     "typescript": "^5.9.3"
   },
   "//": {
-    "bootstrap-sass": "locked at 3.4.1 until dartsass is integrated",
     "later -> @rails/ujs": "^6.0.0-alpha",
     "later -> @rails/activestorage": "^6.0.0-alpha",
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
@@ -94,6 +96,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "bin/build_javascript",
+    "build:css": "bin/build_css",
     "lints": "pnpm stylelint && pnpm eslint && pnpm tscheck && pnpm rubocop && bundle exec rake haml_lint",
     "rubocop": "bundle exec rubocop -f q",
     "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*.scss'",

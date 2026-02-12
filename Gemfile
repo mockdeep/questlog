@@ -8,7 +8,6 @@ gem "dotenv-rails", groups: [:development, :test]
 
 gem "rails", "~> 8.1.2"
 
-gem "autoprefixer-rails"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "dalli"
@@ -17,23 +16,21 @@ gem "gon"
 gem "haml-rails"
 gem "honeybadger"
 # gem 'image_processing'
+gem "cssbundling-rails"
 gem "jsbundling-rails"
 gem "junk_drawer"
 gem "newrelic_rpm"
-gem "normalize-rails"
 gem "pg"
 gem "puma", "~> 7.0"
 gem "puma_worker_killer"
 gem "redis"
 gem "sidekiq"
 gem "skylight"
+gem "sprockets-rails"
 gem "stimulus-rails"
 gem "stripe"
 gem "turbo-rails"
 
-gem "bootstrap-sass", "3.4.1" # needs dartsass
-gem "font-awesome-sass"
-gem "sass-rails"
 gem "uglifier"
 
 group :development do
