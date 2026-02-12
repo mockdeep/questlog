@@ -1,13 +1,13 @@
-RSpec.describe API::V1::TasksController, '#update' do
+RSpec.describe API::V1::TasksController, "#update" do
   let(:user) { create(:user) }
   let(:task) { create(:task, user:, estimate_seconds: 605) }
   let(:task_2) { create(:task, user:, estimate_seconds: 302) }
-  let(:valid_attributes) { { title: 'foo #home !3 ~5m' } }
+  let(:valid_attributes) { { title: "foo #home !3 ~5m" } }
   let(:valid_params) { { id: task.id, task: valid_attributes, format: :json } }
 
   before(:each) { login_as(user) }
 
-  it 'updates the stat count for the current user when task is marked done' do
+  it "updates the stat count for the current user when task is marked done" do
     expect do
       put(:update, params: { id: task.id, task: { done: true }, format: :json })
     end.to change(user.stats, :count).by 1
@@ -21,34 +21,34 @@ RSpec.describe API::V1::TasksController, '#update' do
     expect(stat.reload.value).to eq 907
   end
 
-  it 'does not update the stat counter when task is not marked done' do
+  it "does not update the stat counter when task is not marked done" do
     expect do
       put(:update, params: valid_params)
     end.not_to change(user.stats, :count)
   end
 
-  it 'updates the task appropriately' do
+  it "updates the task appropriately" do
     put(:update, params: valid_params)
     task.reload
-    expect(task.title).to eq 'foo'
-    expect(task.tag_names).to eq ['home']
+    expect(task.title).to eq "foo"
+    expect(task.tag_names).to eq ["home"]
     expect(task.priority).to eq 3
     expect(task.estimate_seconds).to eq 300
   end
 
-  it 'responds with the task as json' do
+  it "responds with the task as json" do
     put(:update, params: valid_params)
-    task = response.parsed_body['data']
-    expect(task['title']).to eq 'foo'
-    expect(task['tagNames']).to eq ['home']
-    expect(task['priority']).to eq 3
-    expect(task['estimateSeconds']).to eq 300
+    task = response.parsed_body["data"]
+    expect(task["title"]).to eq "foo"
+    expect(task["tagNames"]).to eq ["home"]
+    expect(task["priority"]).to eq 3
+    expect(task["estimateSeconds"]).to eq 300
   end
 
-  it 'responds with associated tags as json' do
+  it "responds with associated tags as json" do
     put(:update, params: valid_params)
-    tags = response.parsed_body['included']
+    tags = response.parsed_body["included"]
     expect(tags.length).to eq 1
-    expect(tags.first['name']).to eq 'home'
+    expect(tags.first["name"]).to eq "home"
   end
 end

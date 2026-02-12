@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   include Serializable::Helpers
 
   def configure_headers
-    response.headers['Vary'] = 'Accept'
+    response.headers["Vary"] = "Accept"
   end
 
   def current_user
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def set_gon_variables
     gon.push(
-      honeybadger_api_key: ENV['HONEYBADGER_API_KEY'],
+      honeybadger_api_key: ENV["HONEYBADGER_API_KEY"],
       rails_env: Rails.env,
       user_id: current_user.id,
     )

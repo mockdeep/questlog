@@ -1,5 +1,5 @@
-RSpec.describe Task, '#untagged' do
-  it 'returns only tasks without tags' do
+RSpec.describe Task, "#untagged" do
+  it "returns only tasks without tags" do
     task_1 = create(:task)
     task_2 = create(:task)
 

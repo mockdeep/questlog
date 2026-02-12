@@ -1,4 +1,4 @@
-RSpec.describe Task, 'validations' do
+RSpec.describe Task, "validations" do
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to allow_value(1).for(:priority) }

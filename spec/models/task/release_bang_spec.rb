@@ -1,4 +1,4 @@
-RSpec.describe Task, '#release!' do
+RSpec.describe Task, "#release!" do
   let(:user) { create(:user) }
   let(:task) do
     create(
@@ -10,11 +10,11 @@ RSpec.describe Task, '#release!' do
     )
   end
 
-  it 'marks the task as not done' do
+  it "marks the task as not done" do
     expect { task.release! }.to change(task, :done_at).to(nil)
   end
 
-  it 'sets the position to the max position' do
+  it "sets the position to the max position" do
     create(:task, user:)
     create(:task, user:, position: 15)
     create(:task, user:, position: 3)
@@ -23,13 +23,13 @@ RSpec.describe Task, '#release!' do
     expect { task.release! }.to change(task, :position).to(16)
   end
 
-  it 'increments the counters' do
+  it "increments the counters" do
     expect do
       task.release!
     end.to change { user.reload.unfinished_tasks_count }.by(1)
   end
 
-  it 'sets release_at to nil' do
+  it "sets release_at to nil" do
     expect { task.release! }.to change(task, :release_at).to(nil)
   end
 end

@@ -1,4 +1,4 @@
-RSpec.describe API::V1::TasksController, '#destroy' do
+RSpec.describe API::V1::TasksController, "#destroy" do
   let(:task) { create(:task) }
   let(:user) { task.user }
   let(:tag) { create(:tag, user:) }
@@ -8,7 +8,7 @@ RSpec.describe API::V1::TasksController, '#destroy' do
     login_as(user)
   end
 
-  it 'destroys the task for the given user' do
+  it "destroys the task for the given user" do
     task.tags = [tag]
     expect(tag.tasks).to eq([task])
     expect(tag.reload.unfinished_tasks_count).to eq(1)
@@ -19,7 +19,7 @@ RSpec.describe API::V1::TasksController, '#destroy' do
     expect(user.reload.unfinished_tasks_count).to eq 0
   end
 
-  it 'allows deletion of pending tasks' do
+  it "allows deletion of pending tasks" do
     task.update!(done: true, release_at: 1.hour.from_now)
     expect { delete(:destroy, params: valid_params) }.not_to raise_error
   end

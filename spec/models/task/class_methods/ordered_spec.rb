@@ -1,7 +1,7 @@
-RSpec.describe Task, '.ordered' do
+RSpec.describe Task, ".ordered" do
   let(:user) { create(:user) }
 
-  it 'returns tasks with priority first, position second' do
+  it "returns tasks with priority first, position second" do
     task_1 = create(:task, user:)
     task_2 = create(:task, user:, priority: 3)
     task_3 = create(:task, user:, priority: 1)

@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
     Task::Create.(**task_params, user: current_user)
 
-    flash[:success] = 'Task added'
+    flash[:success] = "Task added"
     redirect_back(fallback_location: root_path)
   end
 

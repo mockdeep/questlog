@@ -6,7 +6,7 @@ class TagParser
     tags = words.select { |word| tag?(word) }
     words.delete_if { |word| tag?(word) }
     tags = tags.map { |tag| tag[1..-1] }
-    { title: words.join(' '), tag_names: tags }
+    { title: words.join(" "), tag_names: tags }
   end
 
   private

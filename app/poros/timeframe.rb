@@ -1,13 +1,13 @@
 class Timeframe
   NAMES = [
-    'today',
-    'week',
-    'month',
-    'quarter',
-    'year',
-    'lustrum',
-    'decade',
-    'century',
+    "today",
+    "week",
+    "month",
+    "quarter",
+    "year",
+    "lustrum",
+    "decade",
+    "century",
   ].freeze
 
   attr_reader :tasks, :name
@@ -15,7 +15,7 @@ class Timeframe
   def self.for(user:)
     all_tasks = user.unfinished_tasks.includes(:tags).group_by(&:timeframe)
     inbox_tasks = all_tasks[nil] || []
-    timeframes = [Timeframe.new(tasks: inbox_tasks, name: 'inbox')]
+    timeframes = [Timeframe.new(tasks: inbox_tasks, name: "inbox")]
     NAMES.each do |name|
       tasks = all_tasks[name] || []
       timeframes << Timeframe.new(name:, tasks:)

@@ -1,14 +1,14 @@
 RSpec.describe Questlog::Matchers::HaveNoTask do
   let(:matcher) { described_class.new }
 
-  describe '#matches?' do
+  describe "#matches?" do
     it 'returns true when there is no title node and there is "No tasks"' do
       node = Capybara.string('<div id="task">No tasks!</div>')
 
       expect(matcher.matches?(node)).to be true
     end
 
-    it 'returns false when there is a title node' do
+    it "returns false when there is a title node" do
       node = Capybara.string(<<-HTML)
         <div id="task"><input class="task-input" value="foo title" /></div>
       HTML
@@ -23,8 +23,8 @@ RSpec.describe Questlog::Matchers::HaveNoTask do
     end
   end
 
-  describe '#failure_message' do
-    it 'returns a message when there is a task present' do
+  describe "#failure_message" do
+    it "returns a message when there is a task present" do
       node = Capybara.string(<<-HTML)
         <div id="task"><input class="task-input" value="bar title" /></div>
       HTML
@@ -35,7 +35,7 @@ RSpec.describe Questlog::Matchers::HaveNoTask do
       expect(matcher.failure_message).to eq expected
     end
 
-    it 'returns a message with no task found when none present' do
+    it "returns a message with no task found when none present" do
       node = Capybara.string('<div id="task">bar title</div>')
       expected = 'expected to find text "No tasks!", but did not'
 

@@ -7,7 +7,7 @@ module Questlog
 
       def matches?(actual)
         self.actual = actual
-        actual.has_text?('No tasks!') && actual.has_no_selector?(TITLE_SELECTOR)
+        actual.has_text?("No tasks!") && actual.has_no_selector?(TITLE_SELECTOR)
       end
 
       def failure_message

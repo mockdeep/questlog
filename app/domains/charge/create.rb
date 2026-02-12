@@ -20,8 +20,8 @@ module Charge
       Stripe::Charge.create(
         customer: customer.id,
         amount: CHARGE_AMOUNT,
-        description: 'Questlog account upgrade',
-        currency: 'usd',
+        description: "Questlog account upgrade",
+        currency: "usd",
       )
     end
 

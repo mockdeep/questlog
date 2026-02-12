@@ -1,4 +1,4 @@
-RSpec.describe Tagging, 'validations' do
+RSpec.describe Tagging, "validations" do
   it { is_expected.to validate_presence_of(:task) }
   it { is_expected.to validate_presence_of(:tag) }
 

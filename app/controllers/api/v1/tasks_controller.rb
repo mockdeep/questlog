@@ -33,10 +33,10 @@ module API
       def estimate_tag
         Tag.new(
           id: -2,
-          name: 'Needs Estimate',
-          rules: [{ check: 'isBlank', field: 'estimateSeconds' }],
+          name: "Needs Estimate",
+          rules: [{ check: "isBlank", field: "estimateSeconds" }],
           unfinished_tasks_count: current_user.tasks.without_estimate.count,
-          slug: 'needs-estimate',
+          slug: "needs-estimate",
           tasks: current_user.tasks.without_estimate,
         )
       end
@@ -44,10 +44,10 @@ module API
       def untagged_tag
         Tag.new(
           id: -1,
-          name: 'Untagged',
-          rules: [{ check: 'isEmpty', field: 'tagIds' }],
+          name: "Untagged",
+          rules: [{ check: "isEmpty", field: "tagIds" }],
           unfinished_tasks_count: current_user.untagged_tasks.count,
-          slug: 'untagged',
+          slug: "untagged",
           tasks: current_user.untagged_tasks,
         )
       end
@@ -55,10 +55,10 @@ module API
       def all_tag
         Tag.new(
           id: 0,
-          name: 'All',
-          rules: [{ check: 'isActive' }],
+          name: "All",
+          rules: [{ check: "isActive" }],
           unfinished_tasks_count: current_user.unfinished_tasks_count,
-          slug: '',
+          slug: "",
           tasks: current_user.unfinished_tasks,
         )
       end

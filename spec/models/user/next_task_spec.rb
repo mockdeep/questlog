@@ -1,11 +1,11 @@
-RSpec.describe User, '#next_task' do
+RSpec.describe User, "#next_task" do
   let(:tag) { create(:tag, user:) }
   let(:task_1) { create(:task, user:) }
   let(:task_2) { create(:task, user:) }
   let(:user) { create(:user) }
 
-  context 'when a tag_id parameter is passed' do
-    it 'returns the next task for that tag' do
+  context "when a tag_id parameter is passed" do
+    it "returns the next task for that tag" do
       task_1
       task_2.tags << tag
       expect(user.next_task).to eq task_1
@@ -13,7 +13,7 @@ RSpec.describe User, '#next_task' do
     end
   end
 
-  it 'returns the next undone task' do
+  it "returns the next undone task" do
     task_1
     task_2
     expect(user.next_task).to eq task_1

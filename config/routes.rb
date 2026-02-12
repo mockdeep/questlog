@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  require_relative '../lib/html_constraint'
-  require_relative '../lib/json_constraint'
+  require_relative "../lib/html_constraint"
+  require_relative "../lib/json_constraint"
 
   scope constraints: HtmlConstraint.new do
-    root 'pages#index'
+    root "pages#index"
 
     resource :session, only: [:new, :create, :destroy]
 
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     resources :timeframes, only: [:index]
     resources :alpha, only: [:index]
     resources :help, only: [:index]
-    get '/what', to: 'pages#what'
-    get '/privacy', to: 'pages#privacy'
+    get "/what", to: "pages#what"
+    get "/privacy", to: "pages#privacy"
   end
 
   scope constraints: JsonConstraint.new do
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :timeframes, only: [:index]
     resource :bulk_task, only: [:update]
 
-    get '/', to: 'tasks#show'
-    get '/tags/:slug', to: 'tasks#show'
+    get "/", to: "tasks#show"
+    get "/tags/:slug", to: "tasks#show"
   end
 end

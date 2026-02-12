@@ -6,7 +6,7 @@ class Task < ApplicationRecord
 
   belongs_to(
     :parent_task,
-    class_name: 'Task',
+    class_name: "Task",
     inverse_of: :sub_tasks,
     optional: true,
   )
@@ -14,8 +14,8 @@ class Task < ApplicationRecord
 
   has_many(
     :sub_tasks,
-    foreign_key: 'parent_task_id',
-    class_name: 'Task',
+    foreign_key: "parent_task_id",
+    class_name: "Task",
     inverse_of: :parent_task,
   )
   has_many :taggings, dependent: :destroy, inverse_of: :task
@@ -33,7 +33,7 @@ class Task < ApplicationRecord
   scope :undone, -> { where(done_at: nil) }
   scope :done, -> { where.not(done_at: nil) }
   scope :ordered, -> { order(:priority, :position) }
-  scope :ready_to_release, -> { done.where('release_at < ?', Time.zone.now) }
+  scope :ready_to_release, -> { done.where("release_at < ?", Time.zone.now) }
   scope(
     :untagged,
     lambda {
@@ -54,7 +54,7 @@ class Task < ApplicationRecord
     return if ids.none?
     raise ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
 
-    where(id: ids).update_all(['position = idx(array[?], id::int)', ids])
+    where(id: ids).update_all(["position = idx(array[?], id::int)", ids])
   end
 
   def self.next
@@ -70,7 +70,7 @@ class Task < ApplicationRecord
   end
 
   def mark_done(done)
-    self.done_at = ['true', true].include?(done) ? Time.zone.now : nil
+    self.done_at = ["true", true].include?(done) ? Time.zone.now : nil
     self.release_at = nil
     if done_at?
       self.release_at = Time.zone.now + repeat_seconds if repeat_seconds
@@ -122,11 +122,11 @@ class Task < ApplicationRecord
 
   def status
     if release_at
-      'pending'
+      "pending"
     elsif done_at
-      'done'
+      "done"
     else
-      'active'
+      "active"
     end
   end
 

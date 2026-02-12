@@ -1,39 +1,39 @@
-RSpec.describe Task, '#done=' do
+RSpec.describe Task, "#done=" do
   let(:user) { create(:user) }
   let(:task) { build(:task, user:) }
   let(:tag) { create(:tag, user:) }
 
-  context 'when given true' do
-    it 'sets done_at to Time.now' do
+  context "when given true" do
+    it "sets done_at to Time.now" do
       freeze_time do
         task.done = true
         expect(task.done_at).to eq Time.zone.now
       end
     end
 
-    context 'when it was previously nil' do
-      it 'decrements unfinished_tasks_count for its associated tags' do
+    context "when it was previously nil" do
+      it "decrements unfinished_tasks_count for its associated tags" do
         task.update(tags: [tag])
         expect(tag.reload.unfinished_tasks_count).to eq 1
         task.update(done: true)
         expect(tag.reload.unfinished_tasks_count).to eq 0
       end
 
-      it 'decrements unfinished_tasks_count for its associated user' do
+      it "decrements unfinished_tasks_count for its associated user" do
         task.save!
         expect do
           task.update(done: true)
         end.to change { user.reload.unfinished_tasks_count }.from(1).to(0)
       end
 
-      it 'sets its skip_count to 0' do
+      it "sets its skip_count to 0" do
         task.skip_count = 5
         expect do
           task.done = true
         end.to change(task, :skip_count).from(5).to(0)
       end
 
-      it 'updates release_at when there is a repeat' do
+      it "updates release_at when there is a repeat" do
         task.repeat_seconds = 5.minutes
         expect(task.release_at).to be_nil
 
@@ -45,8 +45,8 @@ RSpec.describe Task, '#done=' do
       end
     end
 
-    context 'when it was not previously nil' do
-      it 'does not change unfinished_tasks_count for its tags' do
+    context "when it was not previously nil" do
+      it "does not change unfinished_tasks_count for its tags" do
         task.update!(tags: [tag], done: true)
         expect(tag.reload.unfinished_tasks_count).to eq 0
         expect do
@@ -54,14 +54,14 @@ RSpec.describe Task, '#done=' do
         end.not_to change { tag.reload.unfinished_tasks_count }
       end
 
-      it 'does not change unfinished_tasks_count for its associated user' do
+      it "does not change unfinished_tasks_count for its associated user" do
         task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
         task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
       end
 
-      it 'clears out the release_at when there is no repeat' do
+      it "clears out the release_at when there is no repeat" do
         task.update!(release_at: 1.week.from_now)
         task.update!(done: true)
         expect(task.release_at).to be_nil
@@ -69,22 +69,22 @@ RSpec.describe Task, '#done=' do
     end
   end
 
-  context 'when given false' do
-    it 'sets done_at to nil' do
+  context "when given false" do
+    it "sets done_at to nil" do
       task.done = true
       task.done = false
       expect(task.done_at).to be_nil
     end
 
-    context 'when it was previously nil' do
-      it 'does not change unfinished_tasks_count for its tags' do
+    context "when it was previously nil" do
+      it "does not change unfinished_tasks_count for its tags" do
         task.update(tags: [tag])
         expect(tag.reload.unfinished_tasks_count).to eq 1
         task.update(done: false)
         expect(tag.reload.unfinished_tasks_count).to eq 1
       end
 
-      it 'does not change unfinished_tasks_count for its associated user' do
+      it "does not change unfinished_tasks_count for its associated user" do
         task.save!
         expect(user.reload.unfinished_tasks_count).to eq 1
         task.update(done: false)
@@ -92,15 +92,15 @@ RSpec.describe Task, '#done=' do
       end
     end
 
-    context 'when it was not previously nil' do
-      it 'increments unfinished_tasks_count for its associated tags' do
+    context "when it was not previously nil" do
+      it "increments unfinished_tasks_count for its associated tags" do
         task.update!(tags: [tag], done: true)
         expect do
           task.update(done: false)
         end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
       end
 
-      it 'increments unfinished_tasks_count for its associated user' do
+      it "increments unfinished_tasks_count for its associated user" do
         task.update!(done: true)
         expect(user.reload.unfinished_tasks_count).to eq 0
         task.update!(done: false)
@@ -110,15 +110,15 @@ RSpec.describe Task, '#done=' do
   end
 
   context 'when given "false"' do
-    it 'sets done_at to nil' do
+    it "sets done_at to nil" do
       task.done = true
-      task.done = 'false'
+      task.done = "false"
       expect(task.done_at).to be_nil
     end
   end
 
-  context 'when the task is invalid' do
-    it 'does not update counters' do
+  context "when the task is invalid" do
+    it "does not update counters" do
       task.save!
       expect(user.reload.unfinished_tasks_count).to eq 1
       expect do
