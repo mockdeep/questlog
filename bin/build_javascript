@@ -17,6 +17,7 @@ export NODE_PATH="$NODE_PATH:vendor/assets/javascripts:app/"
 # $@: pass through any additional arguments (useful for adding `--watch`)
 
 pnpm esbuild app/javascript/packs/*.* \
+  --alias:react/jsx-runtime.js=react/jsx-runtime \
   --bundle \
   --format=iife \
   --jsx=automatic \

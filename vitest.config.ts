@@ -12,9 +12,7 @@ export default defineConfig({
       "controllers": path.resolve(__dirname, "app/javascript/controllers"),
       "javascript": path.resolve(__dirname, "app/javascript"),
       "packs": path.resolve(__dirname, "app/javascript/packs"),
-      "dnd-core": "dnd-core/dist/cjs",
-      "react-dnd": "react-dnd/dist/cjs",
-      "react-dnd-html5-backend": "react-dnd-html5-backend/dist/cjs",
+      "react-dnd": path.resolve(__dirname, "node_modules/react-dnd/dist/cjs"),
     },
   },
   test: {

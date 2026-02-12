@@ -17,11 +17,13 @@ function deref(ref: RefObject<TaskListView>): TaskListView {
   return ref.current;
 }
 
+const updateTask = vi.fn();
+
 const props: Props = {
   currentTasks: [],
   deleteTask: vi.fn(),
   pendingTasks: [],
-  updateTask: vi.fn(),
+  updateTask,
 };
 
 it("renders current tasks", () => {
@@ -116,12 +118,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task3}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task3.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
+    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 2});
   });
 
   it("sets task priority to match below task when moved to top", () => {
@@ -131,12 +131,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task3}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task3.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
+    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 2});
   });
 
   it("sets task priority to match above task when moved to bottom", () => {
@@ -146,12 +144,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task1}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task1.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
+    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 3});
   });
 
   it("sets task priority to null when above task has null priority", () => {
@@ -161,12 +157,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task1}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task1.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
+    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: null});
   });
 
   it("keeps task priority at null when moved to bottom", () => {
@@ -176,12 +170,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task2}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task2.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
+    expect(updateTask).toHaveBeenCalledWith(task2.id, {priority: null});
   });
 
   it("keeps task priority when below task matches but not above", () => {
@@ -191,12 +183,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task3}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task3.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
+    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 3});
   });
 
   it("keeps task priority when above task matches but not below", () => {
@@ -206,12 +196,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task1}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task1.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
+    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 2});
   });
 
   it("sets task priority to below task priority when neither match", () => {
@@ -221,12 +209,10 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const updatePriority = vi.fn();
-    const fakeComponent = {props: {task: task1}, updatePriority};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task1.id);
 
-    expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
+    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 3});
   });
 
   it("updates the tasks on the server", () => {
@@ -236,9 +222,8 @@ describe("saving task after drop", () => {
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
-    const fakeComponent = {props: {task: task1}, updatePriority: vi.fn()};
 
-    deref(ref).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(task1.id);
 
     const expected = {positions: [task2.id, task1.id, task3.id]};
     expect(BulkTaskStore.update).toHaveBeenCalledWith(expected);

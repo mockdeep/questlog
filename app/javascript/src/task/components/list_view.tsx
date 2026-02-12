@@ -78,8 +78,8 @@ class TaskListView extends Component<Props, State> {
     this.setState({currentTasks: newTasks});
   }
 
-  saveTaskPositions(component: any): void {
-    const taskId = component.props.task.id;
+  saveTaskPositions(taskId: number): void {
+    const {updateTask} = this.props;
     const {currentTasks} = this.state;
 
     const task = findTask(currentTasks, taskId);
@@ -100,7 +100,7 @@ class TaskListView extends Component<Props, State> {
     }
 
     BulkTaskStore.update({positions: this.currentTaskPositions()});
-    component.updatePriority({target: {value: newPriority}});
+    updateTask(taskId, {priority: newPriority});
   }
 
   currentTaskPositions() {
