@@ -1,16 +1,16 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
-import update from 'immutability-helper';
-import {HTML5Backend} from 'react-dnd-html5-backend';
-import {DndProvider} from 'react-dnd';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
+import update from "immutability-helper";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndProvider} from "react-dnd";
 
-import BulkTaskStore from 'src/task/bulk_store';
+import BulkTaskStore from "src/task/bulk_store";
 
-import TableHeaders from 'src/task/components/table_headers';
-import DraggableTaskRow from 'src/task/components/draggable_task_row';
-import {assert} from 'helpers';
-import type {UpdateTask} from 'src/task/action_creators';
+import TableHeaders from "src/task/components/table_headers";
+import DraggableTaskRow from "src/task/components/draggable_task_row";
+import {assert} from "helpers";
+import type {UpdateTask} from "src/task/action_creators";
 
 function findTask(tasks: Task[], taskId: number): Task {
   return assert(tasks.find(task => task.id === taskId));
@@ -111,7 +111,7 @@ class TaskListView extends React.Component<Props, State> {
     return (
       <div id='current-tasks'>
         <table className='tasks-table'>
-          <thead><TableHeaders label={'Current tasks'} /></thead>
+          <thead><TableHeaders label={"Current tasks"} /></thead>
           <tbody>{this.currentTaskRows()}</tbody>
         </table>
       </div>
@@ -126,7 +126,7 @@ class TaskListView extends React.Component<Props, State> {
     return (
       <div id='pending-tasks'>
         <table className='tasks-table'>
-          <thead><TableHeaders label={'Pending tasks'} /></thead>
+          <thead><TableHeaders label={"Pending tasks"} /></thead>
           <tbody>{this.pendingTaskRows()}</tbody>
         </table>
       </div>

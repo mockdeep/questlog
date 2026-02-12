@@ -2,14 +2,14 @@
 
 function isNode(): boolean {
    
-  return typeof process !== 'undefined' && !(process as any).browser;
+  return typeof process !== "undefined" && !(process as any).browser;
 }
 
 const terminalEscapes = {
-  magentaBackground: '\x1b[45m',
-  lightBlueForeground: '\x1b[94m',
-  bold: '\x1b[1m',
-  reset: '\x1b[0m',
+  magentaBackground: "\x1b[45m",
+  lightBlueForeground: "\x1b[94m",
+  bold: "\x1b[1m",
+  reset: "\x1b[0m",
 };
 
 const terminalStyles = {
@@ -20,10 +20,10 @@ const terminalStyles = {
 };
 
 const browserStyles = {
-  debugStyle: 'background-color: magenta; color: white',
-  messageStyle: 'color: blue',
-  arrowStyle: 'font-weight: bold',
-  reset: '',
+  debugStyle: "background-color: magenta; color: white",
+  messageStyle: "color: blue",
+  arrowStyle: "font-weight: bold",
+  reset: "",
 };
 
 function debugNode<T>({result, userLabel}: {result: T, userLabel: string}): T {
@@ -50,7 +50,7 @@ function debugBrowser<T>(
 ): void {
   const {debugStyle, messageStyle, arrowStyle, reset} = browserStyles;
   const consoleArgs = [debugStyle, reset];
-  const debugLabel = '%c  DEBUG  %c';
+  const debugLabel = "%c  DEBUG  %c";
   let label;
 
   if (userLabel) {
@@ -60,7 +60,7 @@ function debugBrowser<T>(
     label = debugLabel;
   }
 
-  const arrow = '%c==>%c';
+  const arrow = "%c==>%c";
 
   consoleArgs.push(arrowStyle, reset);
 

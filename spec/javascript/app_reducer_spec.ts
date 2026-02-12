@@ -1,17 +1,17 @@
-import reducer from 'src/app_reducer';
+import reducer from "src/app_reducer";
 
-import {makeState} from '_test_helpers/factories';
+import {makeState} from "_test_helpers/factories";
 
-describe('appReducer', () => {
-  describe('init', () => {
-    it('returns a blank nested tree of state', () => {
-      const action = {type: '@@redux/INIT'};
+describe("appReducer", () => {
+  describe("init", () => {
+    it("returns a blank nested tree of state", () => {
+      const action = {type: "@@redux/INIT"};
       const expectedState = {
         route: {params: {}},
         tag: {byId: {}, meta: {}},
         task: {
           byId: {},
-          meta: {postponeSeconds: 300, ajaxState: 'loading'},
+          meta: {postponeSeconds: 300, ajaxState: "loading"},
         },
       };
 
@@ -19,9 +19,9 @@ describe('appReducer', () => {
     });
   });
 
-  describe('invalid action type', () => {
-    it('throws an error', () => {
-      const action = {type: 'booger/UPDATE', payload: {booger: 'flick'}};
+  describe("invalid action type", () => {
+    it("throws an error", () => {
+      const action = {type: "booger/UPDATE", payload: {booger: "flick"}};
       const message = /invalid reducer key "booger"/u;
 
       expect(() => {

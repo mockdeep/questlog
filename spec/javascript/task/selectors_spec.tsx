@@ -4,67 +4,67 @@ import {
   getPartitionedRootTasks,
   getPartitionedTasks,
   getActiveTasks,
-} from 'src/task/selectors';
+} from "src/task/selectors";
 
-import {makeState, makeTask} from '_test_helpers/factories';
+import {makeState, makeTask} from "_test_helpers/factories";
 
-describe('getCurrentTask', () => {
-  it('returns the current task represented in the route', () => {
-    const task = makeTask({title: 'foo task'});
+describe("getCurrentTask", () => {
+  it("returns the current task represented in the route", () => {
+    const task = makeTask({title: "foo task"});
     const state = makeState({route: {params: {taskId: task.id}}, task: [task]});
 
     expect(getCurrentTask(state)).toEqual(task);
   });
 
-  it('returns null task when task in route is not present', () => {
-    const task = makeTask({title: 'foo task'});
+  it("returns null task when task in route is not present", () => {
+    const task = makeTask({title: "foo task"});
     const state = makeState({route: {params: {taskId: 0}}, task: [task]});
 
     expect(getCurrentTask(state)).toEqual({tagNames: []});
   });
 });
 
-describe('getActiveTasks', () => {
-  it('returns tasks', () => {
-    const task1 = makeTask({title: 'some task'});
-    const task2 = makeTask({title: 'some other task'});
+describe("getActiveTasks", () => {
+  it("returns tasks", () => {
+    const task1 = makeTask({title: "some task"});
+    const task2 = makeTask({title: "some other task"});
     const state = makeState({task: [task1, task2]});
 
     expect(getActiveTasks(state)).toEqual([task1, task2]);
   });
 
-  it('does not return tasks with a "pending" status', () => {
-    const task1 = makeTask({title: 'some task', status: 'pending'});
-    const task2 = makeTask({title: 'some other task'});
+  it("does not return tasks with a \"pending\" status", () => {
+    const task1 = makeTask({title: "some task", status: "pending"});
+    const task2 = makeTask({title: "some other task"});
     const state = makeState({task: [task1, task2]});
 
     expect(getActiveTasks(state)).toEqual([task2]);
   });
 
-  it('does not return tasks with a "done" status', () => {
-    const task1 = makeTask({title: 'some task', status: 'done'});
-    const task2 = makeTask({title: 'some other task'});
+  it("does not return tasks with a \"done\" status", () => {
+    const task1 = makeTask({title: "some task", status: "done"});
+    const task2 = makeTask({title: "some other task"});
     const state = makeState({task: [task1, task2]});
 
     expect(getActiveTasks(state)).toEqual([task2]);
   });
 
-  it('does not return tasks with sub tasks', () => {
-    const task1 = makeTask({title: 'some task'});
-    const task2 = makeTask({title: 'some other task'});
-    const task3 = makeTask({title: 'some child task', parentTaskId: task2.id});
+  it("does not return tasks with sub tasks", () => {
+    const task1 = makeTask({title: "some task"});
+    const task2 = makeTask({title: "some other task"});
+    const task3 = makeTask({title: "some child task", parentTaskId: task2.id});
     const state = makeState({task: [task1, task2, task3]});
 
     expect(getActiveTasks(state)).toEqual([task1, task3]);
   });
 });
 
-describe('getPartitionedLeafTasks', () => {
-  it('returns leaf tasks partitioned on pending status', () => {
-    const task1 = makeTask({status: 'pending'});
+describe("getPartitionedLeafTasks", () => {
+  it("returns leaf tasks partitioned on pending status", () => {
+    const task1 = makeTask({status: "pending"});
     const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: 'done'});
+    const task4 = makeTask({status: "done"});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
@@ -73,12 +73,12 @@ describe('getPartitionedLeafTasks', () => {
   });
 });
 
-describe('getPartitionedRootTasks', () => {
-  it('returns root tasks partitioned on pending status', () => {
-    const task1 = makeTask({status: 'pending'});
+describe("getPartitionedRootTasks", () => {
+  it("returns root tasks partitioned on pending status", () => {
+    const task1 = makeTask({status: "pending"});
     const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: 'done'});
+    const task4 = makeTask({status: "done"});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 
@@ -87,12 +87,12 @@ describe('getPartitionedRootTasks', () => {
   });
 });
 
-describe('getPartitionedTasks', () => {
-  it('returns tasks partitioned on pending status', () => {
-    const task1 = makeTask({status: 'pending'});
+describe("getPartitionedTasks", () => {
+  it("returns tasks partitioned on pending status", () => {
+    const task1 = makeTask({status: "pending"});
     const task2 = makeTask();
     const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: 'done'});
+    const task4 = makeTask({status: "done"});
 
     const state = makeState({task: [task1, task2, task3, task4]});
 

@@ -1,7 +1,7 @@
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 
-import {getActiveTags} from 'src/tag/selectors';
-import TagButtons from 'src/tag/components/buttons';
+import {getActiveTags} from "src/tag/selectors";
+import TagButtons from "src/tag/components/buttons";
 
 type Props = {
   currentTagIds: number[];

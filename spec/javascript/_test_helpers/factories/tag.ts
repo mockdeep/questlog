@@ -1,4 +1,4 @@
-import {nextId} from '_test_helpers/factories/id';
+import {nextId} from "_test_helpers/factories/id";
 
 function makeTag(attrs: Partial<Tag> = {}): Tag {
   const nextTagId = nextId();

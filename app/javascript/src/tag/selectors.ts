@@ -1,8 +1,8 @@
-import {createSelector} from 'reselect';
-import {mapValues, sortBy} from 'lodash';
+import {createSelector} from "reselect";
+import {mapValues, sortBy} from "lodash";
 
-import {grab, assert} from 'helpers';
-import {getActiveTasks} from 'src/task/selectors';
+import {grab, assert} from "helpers";
+import {getActiveTasks} from "src/task/selectors";
 
 const RULES = {
   isActive(): boolean { return true; },
@@ -23,7 +23,7 @@ const RULES = {
 };
 
 function matchesSmartRules(task: Task, tag: Tag): boolean {
-  const rules: TagRule[] = [{check: 'isAssociated'}, ...tag.rules];
+  const rules: TagRule[] = [{check: "isAssociated"}, ...tag.rules];
 
   return rules.some(({check, ...params}: TagRule): boolean => {
     const rule = grab(RULES, check);
@@ -38,7 +38,7 @@ function matchingTasks(tag: Tag, tasks: Task[]) {
 
 function minPriority(tasks: Task[]) {
   const priorities = tasks.map((task: Task) => task.priority).
-    filter((priority): priority is number => typeof priority === 'number');
+    filter((priority): priority is number => typeof priority === "number");
 
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
@@ -52,7 +52,7 @@ function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
 }
 
 function getSelectedTagSlug(state: State) {
-  return state.route.params.slug || '';
+  return state.route.params.slug || "";
 }
 
 const getTagsById = createSelector(
@@ -62,7 +62,7 @@ const getTagsById = createSelector(
 
 const getOrderedTags = createSelector(
   getTagsById,
-  tagsById => sortBy(Object.values(tagsById), 'name'),
+  tagsById => sortBy(Object.values(tagsById), "name"),
 );
 
 const getActiveTags = createSelector(

@@ -1,10 +1,10 @@
  
 window.onerror = (...args) => {
-  if (document.readyState === 'complete') {
+  if (document.readyState === "complete") {
     displayError(...args);
   } else {
     document.onreadystatechange = () => {
-      if (document.readyState !== 'complete') { return; }
+      if (document.readyState !== "complete") { return; }
       displayError(...args);
     };
   }
@@ -24,6 +24,6 @@ function displayError(
     url: ${url}<br />
     line number: ${lineNumber}<br />
     column: ${column}<br />
-    stack: ${error && error.stack && error.stack.replaceAll('\n', '<br />')}
+    stack: ${error && error.stack && error.stack.replaceAll("\n", "<br />")}
   `;
 }

@@ -1,15 +1,15 @@
-import {keyBy} from 'lodash';
-import update from 'immutability-helper';
+import {keyBy} from "lodash";
+import update from "immutability-helper";
 
-import createBasicReducer from 'src/_common/create_basic_reducer';
-import {assert} from 'helpers';
+import createBasicReducer from "src/_common/create_basic_reducer";
+import {assert} from "helpers";
 import {
   INIT,
   DELETE,
   SET,
   UPDATE,
   UPDATE_META,
-} from 'src/task/action_creators';
+} from "src/task/action_creators";
 
 function estimateMinutes(task: UnprocessedTask): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);
@@ -17,7 +17,7 @@ function estimateMinutes(task: UnprocessedTask): number {
 
 function processTask(task: UnprocessedTask): Task {
   const processedTask: Task = {
-    loadingState: 'ready',
+    loadingState: "ready",
     ...task,
     estimateMinutes: estimateMinutes(task),
   };
@@ -29,7 +29,7 @@ const operations = {
   [INIT]() {
     return {
       byId: {},
-      meta: {postponeSeconds: 300, ajaxState: 'loading'},
+      meta: {postponeSeconds: 300, ajaxState: "loading"},
     };
   },
 
@@ -40,7 +40,7 @@ const operations = {
   [SET](previousState: TaskState | null, taskData: Task[]) {
     const tasks = taskData.map(processTask);
 
-    return {...previousState, byId: keyBy(tasks, 'id')};
+    return {...previousState, byId: keyBy(tasks, "id")};
   },
 
   [UPDATE](previousState: TaskState | null, taskAttrs: Task) {

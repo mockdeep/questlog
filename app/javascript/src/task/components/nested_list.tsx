@@ -1,10 +1,10 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
 
-import TaskLeafListItem from 'src/task/components/leaf_list_item';
-import TaskParentListItem from 'src/task/components/parent_list_item';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskLeafListItem from "src/task/components/leaf_list_item";
+import TaskParentListItem from "src/task/components/parent_list_item";
+import type {UpdateTask} from "src/task/action_creators";
 
 export type Props = {
   tasks: Task[],

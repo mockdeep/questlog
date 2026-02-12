@@ -1,4 +1,4 @@
-import {pathToRegexp, compile} from 'path-to-regexp';
+import {pathToRegexp, compile} from "path-to-regexp";
 
 type Route = {
   name: string;
@@ -32,16 +32,16 @@ function compileRoutes(routes: Route[]) {
 }
 
 const ROUTES = compileRoutes([
-  {name: 'root', path: '/'},
-  {name: 'leafTasks', path: '/leaf_tasks'},
-  {name: 'rootTasks', path: '/root_tasks'},
-  {name: 'treeTasks', path: '/tree_tasks'},
-  {name: 'showTask', path: '/tasks/:taskId'},
-  {name: 'tasks', path: '/tasks'},
-  {name: 'timeframes', path: '/timeframes'},
-  {name: 'tags', path: '/tags'},
-  {name: 'editTag', path: '/tags/:slug/edit'},
-  {name: 'tag', path: '/tags/:slug'},
+  {name: "root", path: "/"},
+  {name: "leafTasks", path: "/leaf_tasks"},
+  {name: "rootTasks", path: "/root_tasks"},
+  {name: "treeTasks", path: "/tree_tasks"},
+  {name: "showTask", path: "/tasks/:taskId"},
+  {name: "tasks", path: "/tasks"},
+  {name: "timeframes", path: "/timeframes"},
+  {name: "tags", path: "/tags"},
+  {name: "editTag", path: "/tags/:slug/edit"},
+  {name: "tag", path: "/tags/:slug"},
 ]);
 
 export default ROUTES;

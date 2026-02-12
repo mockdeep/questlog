@@ -1,11 +1,11 @@
-import {grab} from 'helpers';
-import {request} from 'helpers/request';
-import TaskStore from 'src/task/store';
+import {grab} from "helpers";
+import {request} from "helpers/request";
+import TaskStore from "src/task/store";
 import {
   calculateMaxMinutes,
   timeframeList,
   timeframeNameForTask,
-} from 'src/timeframe/utils';
+} from "src/timeframe/utils";
 
 let medianProductivity: number;
 
@@ -13,8 +13,8 @@ const TimeframeStore: TimeframeStoreType = {
   listeners: [],
   loaded: false,
   models: [],
-  name: 'timeframe',
-  url: '/timeframes',
+  name: "timeframe",
+  url: "/timeframes",
 
   subscribe(listener) {
     this.listeners = [...this.listeners, listener];
@@ -75,11 +75,11 @@ const TimeframeStore: TimeframeStoreType = {
   getAll() {
     return new Promise(resolve => {
       if (!TaskStore.getState().loaded) {
-        TaskStore.dispatch({type: 'tasks/FETCH'});
+        TaskStore.dispatch({type: "tasks/FETCH"});
       }
 
       request(this.url, {
-        method: 'GET',
+        method: "GET",
         success: (timeframeData: TimeframeData) => {
           ({medianProductivity} = timeframeData.meta);
 

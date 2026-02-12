@@ -1,16 +1,16 @@
-import autobind from 'class-autobind';
-import type {ChangeEvent, ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ChangeEvent, ReactElement} from "react";
+import React from "react";
 import type {DragSourceConnector, DragSourceMonitor, DropTargetConnector,
   DropTargetMonitor,
-  ConnectDragSource, ConnectDropTarget} from 'react-dnd';
+  ConnectDragSource, ConnectDropTarget} from "react-dnd";
 import {
   DragSource as dragSource, DropTarget as dropTarget,
-} from 'react-dnd';
+} from "react-dnd";
 
-import TaskRow from 'src/task/components/task_row';
-import {assert} from 'helpers';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskRow from "src/task/components/task_row";
+import {assert} from "helpers";
+import type {UpdateTask} from "src/task/action_creators";
 
 type DragProps = {
   connectDragSource: ConnectDragSource,
@@ -110,6 +110,6 @@ class DraggableTaskRow extends React.PureComponent<Props, never> {
   }
 }
 
-export default dropTarget('task', taskTarget, targetCollect)(
-  dragSource('task', taskSource, sourceCollect)(DraggableTaskRow),
+export default dropTarget("task", taskTarget, targetCollect)(
+  dragSource("task", taskSource, sourceCollect)(DraggableTaskRow),
 );

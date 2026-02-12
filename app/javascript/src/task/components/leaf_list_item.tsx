@@ -1,10 +1,10 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ChangeEvent, ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ChangeEvent, ReactElement} from "react";
+import React from "react";
 
-import TaskCheckbox from 'src/task/components/checkbox';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskCheckbox from "src/task/components/checkbox";
+import type {UpdateTask} from "src/task/action_creators";
 
 type Props = {
   task: Task,
@@ -30,7 +30,7 @@ class TaskLeafListItem extends React.Component<Props, never> {
     const {task} = this.props;
 
     return classnames({
-      'task-item__title': true,
+      "task-item__title": true,
       [`task-item__title--priority-${task.priority}`]: task.priority,
     });
   }
@@ -43,7 +43,7 @@ class TaskLeafListItem extends React.Component<Props, never> {
         <TaskCheckbox
           task={task}
           onChange={this.toggleDone}
-          checked={task.status === 'done'}
+          checked={task.status === "done"}
         />
         <span className={this.titleClass()}>{task.title}</span>
       </li>

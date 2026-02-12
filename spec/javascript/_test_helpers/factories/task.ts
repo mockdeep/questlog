@@ -1,4 +1,4 @@
-import {nextId} from '_test_helpers/factories/id';
+import {nextId} from "_test_helpers/factories/id";
 
 function makeBaseTask(): BaseTask {
   const nextTaskId = nextId();
@@ -12,7 +12,7 @@ function makeBaseTask(): BaseTask {
     priority: null,
     repeatSeconds: null,
     skipCount: 0,
-    status: 'active',
+    status: "active",
     tagIds: [],
     tagNames: [],
     timeframe: null,
@@ -21,16 +21,16 @@ function makeBaseTask(): BaseTask {
 }
 
 function makePendingTask(attrs: Partial<Task>): PendingTask {
-  if (attrs.hasOwnProperty('releaseAt') && !attrs.releaseAt) {
-    throw new Error('pending task must have releaseAt');
+  if (attrs.hasOwnProperty("releaseAt") && !attrs.releaseAt) {
+    throw new Error("pending task must have releaseAt");
   }
 
-  const releaseAt = attrs.releaseAt || '2020-03-20T11:24:42.892-07:00';
+  const releaseAt = attrs.releaseAt || "2020-03-20T11:24:42.892-07:00";
 
   return {
     ...makeBaseTask(),
     estimateMinutes: 30,
-    loadingState: 'ready',
+    loadingState: "ready",
     ...attrs,
     pending: true,
     releaseAt,
@@ -39,13 +39,13 @@ function makePendingTask(attrs: Partial<Task>): PendingTask {
 
 function makeCurrentTask(attrs: Partial<Task>): CurrentTask {
   if (attrs.releaseAt) {
-    throw new Error('non-pending task must not have releaseAt');
+    throw new Error("non-pending task must not have releaseAt");
   }
 
   return {
     ...makeBaseTask(),
     estimateMinutes: 30,
-    loadingState: 'ready',
+    loadingState: "ready",
     ...attrs,
     pending: false,
     releaseAt: null,
@@ -59,7 +59,7 @@ function makeTask(attrs: Partial<Task> = {}): Task {
   return makeCurrentTask(attrs);
 }
 
-const defaultMeta: TaskMeta = {ajaxState: 'ready'};
+const defaultMeta: TaskMeta = {ajaxState: "ready"};
 function makeTaskState(
   {tasks = [], meta = {}}: {tasks?: Task[], meta?: Partial<TaskMeta>} = {},
 ): TaskState {

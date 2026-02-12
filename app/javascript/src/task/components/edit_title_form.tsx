@@ -1,11 +1,11 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {FocusEvent, FormEvent, KeyboardEvent, ReactElement} from 'react';
-import React from 'react';
-import Textarea from 'react-textarea-autosize';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {FocusEvent, FormEvent, KeyboardEvent, ReactElement} from "react";
+import React from "react";
+import Textarea from "react-textarea-autosize";
 
-import AuthenticityToken from 'src/_common/components/authenticity_token';
-import {assert} from 'helpers';
+import AuthenticityToken from "src/_common/components/authenticity_token";
+import {assert} from "helpers";
 
 export type Props = {
   task: Task,
@@ -38,7 +38,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
   }
 
   submitIfEnter(event: KeyboardEvent): void {
-    if (event.key === 'Enter') { this.saveTask(event); }
+    if (event.key === "Enter") { this.saveTask(event); }
   }
 
   setFocused(): void {
@@ -48,7 +48,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
   className(): string {
     const {focused} = this.state;
 
-    return classnames({'task-input': true, 'hidden-border': !focused});
+    return classnames({"task-input": true, "hidden-border": !focused});
   }
 
   render(): ReactElement {
@@ -59,7 +59,7 @@ class TaskEditTitleForm extends React.Component<Props, State> {
         <input type='hidden' name='_method' value='patch' autoComplete='off' />
         <AuthenticityToken />
         <Textarea
-          name={'task[title]'}
+          name={"task[title]"}
           className={this.className()}
           defaultValue={task.title}
           onKeyPress={this.submitIfEnter}

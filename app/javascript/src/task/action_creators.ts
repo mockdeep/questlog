@@ -1,20 +1,20 @@
-import type {Action} from 'redux';
-import type {ThunkAction} from 'redux-thunk';
-import type {InferThunkActionCreatorType} from 'react-redux';
+import type {Action} from "redux";
+import type {ThunkAction} from "redux-thunk";
+import type {InferThunkActionCreatorType} from "react-redux";
 
-import {ajaxGet, ajaxPut, ajaxDelete} from 'helpers/ajax';
-import TaskStore from 'src/task/store';
-import {setTags, upsertTags} from 'src/tag/action_creators';
+import {ajaxGet, ajaxPut, ajaxDelete} from "helpers/ajax";
+import TaskStore from "src/task/store";
+import {setTags, upsertTags} from "src/tag/action_creators";
 
 type AsyncAction = ThunkAction<void, State, null, Action>;
 
-const BASE_PATH = '/api/v1/tasks';
+const BASE_PATH = "/api/v1/tasks";
 
-const INIT = 'task/INIT';
-const DELETE = 'task/DELETE';
-const SET = 'task/SET';
-const UPDATE = 'task/UPDATE';
-const UPDATE_META = 'task/UPDATE_META';
+const INIT = "task/INIT";
+const DELETE = "task/DELETE";
+const SET = "task/SET";
+const UPDATE = "task/UPDATE";
+const UPDATE_META = "task/UPDATE_META";
 
 function deleteTaskPlain(payload: number) {
   return {type: DELETE, payload};
@@ -30,12 +30,12 @@ function updateTaskMeta(payload: Partial<TaskMeta>) {
 
 function fetchTasks(): AsyncAction {
   return async function fetchTasksThunk(dispatch) {
-    dispatch(updateTaskMeta({ajaxState: 'fetching'}));
+    dispatch(updateTaskMeta({ajaxState: "fetching"}));
     const {data, included} = await ajaxGet(BASE_PATH);
 
     dispatch(setTasks(data));
     dispatch(setTags(included));
-    dispatch(updateTaskMeta({ajaxState: 'ready'}));
+    dispatch(updateTaskMeta({ajaxState: "ready"}));
   };
 }
 
@@ -50,12 +50,12 @@ function deleteTask(taskId: number): AsyncAction {
 
 function getLoadingState(payload: Partial<AjaxTask>): TaskLoadingState {
   if (payload.done) {
-    return 'marking_done';
+    return "marking_done";
   } else if (payload.postpone) {
-    return 'postponing';
+    return "postponing";
   }
 
-  return 'updating';
+  return "updating";
 }
 
 function updateTaskPlain(id: number, payload: Partial<Task>) {

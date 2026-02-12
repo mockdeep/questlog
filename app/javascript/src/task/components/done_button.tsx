@@ -1,6 +1,6 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
 
 type Props = {
   completeTask: (taskId: number) => void,
@@ -24,14 +24,14 @@ class DoneButton extends React.Component<Props, never> {
   isTaskReady(): boolean {
     const {task} = this.props;
 
-    return task.loadingState === 'ready';
+    return task.loadingState === "ready";
   }
 
   buttonMessage(): string {
     const {task} = this.props;
-    const isMarkingDone = task.loadingState === 'marking_done';
+    const isMarkingDone = task.loadingState === "marking_done";
 
-    return isMarkingDone ? 'Marking done...' : 'Done! Give me another!';
+    return isMarkingDone ? "Marking done..." : "Done! Give me another!";
   }
 
   render(): ReactElement {

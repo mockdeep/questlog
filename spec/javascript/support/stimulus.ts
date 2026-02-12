@@ -1,7 +1,7 @@
-import type {Context, Controller} from '@hotwired/stimulus';
-import {Application} from '@hotwired/stimulus';
+import type {Context, Controller} from "@hotwired/stimulus";
+import {Application} from "@hotwired/stimulus";
 
-import {assert} from 'helpers';
+import {assert} from "helpers";
 
 let application: Application | null = null;
 
@@ -30,10 +30,10 @@ function getController<T extends Controller>(
   if (controller instanceof controllerClass) {
     return controller;
   } else if (controller) {
-    throw new Error('Controller class does not match');
+    throw new Error("Controller class does not match");
   }
 
-  throw new Error('Controller not found');
+  throw new Error("Controller not found");
 }
 
 afterEach(() => {

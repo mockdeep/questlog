@@ -1,4 +1,4 @@
-declare module '@hotwired/turbo-rails' {
+declare module "@hotwired/turbo-rails" {
   type TurboSession = {
     drive: boolean;
   }

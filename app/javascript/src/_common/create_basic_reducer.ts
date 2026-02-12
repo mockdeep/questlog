@@ -1,6 +1,6 @@
-import {grab} from 'helpers';
+import {grab} from "helpers";
 
-type Payload = BasicAction['payload'];
+type Payload = BasicAction["payload"];
 
 type Operations<S> = {
   [key: string]: (previousState: S | null, payload: Payload) => void;

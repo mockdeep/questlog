@@ -1,15 +1,15 @@
-import type {Reducer} from 'redux';
+import type {Reducer} from "redux";
 
  
-type ReducerKey = 'route' | 'tag' | 'task';
+type ReducerKey = "route" | "tag" | "task";
 type ReducerMap = {[key: string]: Reducer};
  
 const VALID_REDUCER_KEYS = [
-  'notification',
-  'route',
-  'tag',
-  'task',
-  'user',
+  "notification",
+  "route",
+  "tag",
+  "task",
+  "user",
 ];
 
 function isReducerKey(key: string): key is ReducerKey {
@@ -17,7 +17,7 @@ function isReducerKey(key: string): key is ReducerKey {
 }
 
 function getReducerKey(action: BasicAction): ReducerKey {
-  const key = action.type.split('/')[0];
+  const key = action.type.split("/")[0];
 
   if (!isReducerKey(key)) { throw new Error(`invalid reducer key "${key}"`); }
 

@@ -1,6 +1,6 @@
-type Check = 'isActive' | 'isAssociated' | 'isBlank' | 'isEmpty';
+type Check = "isActive" | "isAssociated" | "isBlank" | "isEmpty";
 
-type TagRuleField = 'estimateSeconds' | 'tagIds';
+type TagRuleField = "estimateSeconds" | "tagIds";
 
 type TagRule = {
   field?: TagRuleField;

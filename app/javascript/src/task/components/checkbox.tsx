@@ -1,7 +1,7 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ChangeEvent, ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ChangeEvent, ReactElement} from "react";
+import React from "react";
 
 type Props = {
   task: Task,
@@ -19,9 +19,9 @@ class TaskCheckbox extends React.Component<Props, never> {
   labelClass(): string {
     const {checked, disabled} = this.props;
     return classnames({
-      'task-item__checkbox-display': true,
-      'task-item__checkbox-display--checked': checked,
-      'task-item__checkbox-display--enabled': !disabled,
+      "task-item__checkbox-display": true,
+      "task-item__checkbox-display--checked": checked,
+      "task-item__checkbox-display--enabled": !disabled,
     });
   }
 

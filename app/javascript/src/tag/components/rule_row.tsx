@@ -1,24 +1,24 @@
-import autobind from 'class-autobind';
-import type {ChangeEvent, MouseEvent, ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ChangeEvent, MouseEvent, ReactElement} from "react";
+import React from "react";
 
-import {grab} from 'helpers';
+import {grab} from "helpers";
 
-const FIELD_NAMES = ['estimateSeconds', 'tagIds'];
+const FIELD_NAMES = ["estimateSeconds", "tagIds"];
 
 const FIELD_DISPLAY_NAMES = {
-  estimateSeconds: 'Estimate Seconds',
-  tagIds: 'Tags',
+  estimateSeconds: "Estimate Seconds",
+  tagIds: "Tags",
 };
 
 const AVAILABLE_CHECKS: { [key: string]: string[] } = {
-  estimateSeconds: ['isBlank'],
-  tagIds: ['isEmpty'],
+  estimateSeconds: ["isBlank"],
+  tagIds: ["isEmpty"],
 };
 
 const CHECK_DISPLAY_NAMES = {
-  isBlank: 'is blank',
-  isEmpty: 'is empty',
+  isBlank: "is blank",
+  isEmpty: "is empty",
 };
 
 type Props = {
@@ -38,7 +38,7 @@ class RuleRow extends React.Component<Props, never> {
     const {index, updateFieldValue} = this.props;
     const {value} = event.target;
 
-    if (value === 'estimateSeconds' || value === 'tagIds') {
+    if (value === "estimateSeconds" || value === "tagIds") {
       updateFieldValue(index, value);
     } else {
       throw new Error(`unknown rule field: ${value}`);
@@ -62,7 +62,7 @@ class RuleRow extends React.Component<Props, never> {
     const defaultValue = checks.includes(rule.check) ? rule.check : checks[0];
 
     return (
-      <select name={'tag[rules][][check]'} defaultValue={defaultValue}>
+      <select name={"tag[rules][][check]"} defaultValue={defaultValue}>
         {
           checks.map(check => (
             <option value={check} key={check}>
@@ -91,7 +91,7 @@ class RuleRow extends React.Component<Props, never> {
     return (
       <li>
         <select
-          name={'tag[rules][][field]'}
+          name={"tag[rules][][field]"}
           defaultValue={rule.field}
           onChange={this.updateFieldValue}
         >

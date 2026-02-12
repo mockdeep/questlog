@@ -1,6 +1,6 @@
-import appReducer from 'src/app_reducer';
+import appReducer from "src/app_reducer";
 
-const stateKeys = ['common', 'notification', 'route', 'tag', 'task', 'user'];
+const stateKeys = ["common", "notification", "route", "tag", "task", "user"];
 
 function isStateKey(value: string): value is StateKey {
   return stateKeys.includes(value);

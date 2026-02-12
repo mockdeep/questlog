@@ -1,11 +1,11 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from "react";
+import {shallow} from "enzyme";
 
-import TaskTreeView from 'src/task/components/tree_view';
+import TaskTreeView from "src/task/components/tree_view";
 
-import {makeTask} from '_test_helpers/factories';
+import {makeTask} from "_test_helpers/factories";
 
-const parentTask = makeTask({title: 'I am the parent'});
+const parentTask = makeTask({title: "I am the parent"});
 const childTask = makeTask();
 const tasksByParentId = {[parentTask.id]: [childTask]};
 const updateTask = vi.fn();
@@ -15,12 +15,12 @@ const props = {
   updateTask,
 };
 
-it('renders a nested task list for each task', () => {
+it("renders a nested task list for each task", () => {
   const component = shallow(<TaskTreeView {...props} />);
-  const nestedList = component.find('TaskNestedList');
+  const nestedList = component.find("TaskNestedList");
 
   expect(nestedList).toHaveLength(1);
-  expect(nestedList).toHaveProp('tasks', [parentTask]);
-  expect(nestedList).toHaveProp('tasksByParentId', tasksByParentId);
-  expect(nestedList).toHaveProp('updateTask', updateTask);
+  expect(nestedList).toHaveProp("tasks", [parentTask]);
+  expect(nestedList).toHaveProp("tasksByParentId", tasksByParentId);
+  expect(nestedList).toHaveProp("updateTask", updateTask);
 });

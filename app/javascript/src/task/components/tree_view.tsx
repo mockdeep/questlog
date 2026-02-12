@@ -1,9 +1,9 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
 
-import TaskNestedList from 'src/task/components/nested_list';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskNestedList from "src/task/components/nested_list";
+import type {UpdateTask} from "src/task/action_creators";
 
 type Props = {
   tasks: Task[],

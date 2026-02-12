@@ -1,7 +1,7 @@
-import {findRoute, matchPath} from 'src/route/helpers';
+import {findRoute, matchPath} from "src/route/helpers";
 
-const INIT = 'route/INIT';
-const SET = 'route/SET';
+const INIT = "route/INIT";
+const SET = "route/SET";
 
 type Payload = {
   name: string;
@@ -15,7 +15,7 @@ function setRoute(payload: Payload) {
   const {name, ...params} = payload;
   const matchingRoute = findRoute(name);
 
-  window.history.pushState(null, '', matchingRoute.toPath(params));
+  window.history.pushState(null, "", matchingRoute.toPath(params));
 
   return {type: SET, payload: {name: matchingRoute.name, params}};
 }

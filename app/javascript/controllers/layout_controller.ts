@@ -1,7 +1,7 @@
-import {Controller} from '@hotwired/stimulus';
+import {Controller} from "@hotwired/stimulus";
 
 class LayoutController extends Controller {
-  static targets = ['expandedSidebar', 'collapsedSidebar'];
+  static targets = ["expandedSidebar", "collapsedSidebar"];
 
   expandedSidebarTarget!: HTMLElement;
 
@@ -17,9 +17,9 @@ class LayoutController extends Controller {
   }
 
   toggleSidebarVisibility({visible}: {visible: boolean}): void {
-    this.element.classList.toggle('sidebar-open', visible);
-    this.expandedSidebarTarget.classList.toggle('hide-me', !visible);
-    this.collapsedSidebarTarget.classList.toggle('hide-me', visible);
+    this.element.classList.toggle("sidebar-open", visible);
+    this.expandedSidebarTarget.classList.toggle("hide-me", !visible);
+    this.collapsedSidebarTarget.classList.toggle("hide-me", visible);
   }
 
   hideSidebar(): void {

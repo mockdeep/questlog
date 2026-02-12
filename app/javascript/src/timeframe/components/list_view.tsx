@@ -1,13 +1,13 @@
-import autobind from 'class-autobind';
-import React from 'react';
-import type {ReactElement} from 'react';
+import autobind from "class-autobind";
+import React from "react";
+import type {ReactElement} from "react";
 
-import {ToEnglish, assert} from 'helpers';
+import {ToEnglish, assert} from "helpers";
 
-import TimeframeStore from 'src/timeframe/store';
-import TimeframeSection from 'src/timeframe/components/section';
-import {calculateTotalMinutes} from 'src/timeframe/utils';
-import type {UpdateTask} from 'src/task/action_creators';
+import TimeframeStore from "src/timeframe/store";
+import TimeframeSection from "src/timeframe/components/section";
+import {calculateTotalMinutes} from "src/timeframe/utils";
+import type {UpdateTask} from "src/task/action_creators";
 
 function timeframeHasTasks(timeframe: Timeframe): boolean {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;
@@ -99,7 +99,7 @@ class TimeframeListView extends React.Component<Props, State> {
     if (loading) {
       return (
         <header className='timeframes-header'>
-          <h2>{'Loading Timeframes...'}</h2>
+          <h2>{"Loading Timeframes..."}</h2>
         </header>
       );
     }

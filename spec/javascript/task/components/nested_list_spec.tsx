@@ -1,12 +1,12 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from "react";
+import {shallow} from "enzyme";
 
-import type {Props} from 'src/task/components/nested_list';
-import TaskNestedList from 'src/task/components/nested_list';
+import type {Props} from "src/task/components/nested_list";
+import TaskNestedList from "src/task/components/nested_list";
 
-import {makeTask} from '_test_helpers/factories';
+import {makeTask} from "_test_helpers/factories";
 
-const parentTask = makeTask({title: 'I am the parent'});
+const parentTask = makeTask({title: "I am the parent"});
 const childTask = makeTask();
 const props: Props = {
   tasks: [parentTask],
@@ -14,20 +14,20 @@ const props: Props = {
   updateTask: vi.fn(),
 };
 
-it('renders a parent list item when task has sub-tasks', () => {
+it("renders a parent list item when task has sub-tasks", () => {
   const component = shallow(<TaskNestedList {...props} />);
 
-  const parentListItem = component.find('TaskParentListItem');
+  const parentListItem = component.find("TaskParentListItem");
   expect(parentListItem).toHaveLength(1);
-  expect(parentListItem).toHaveProp('task', parentTask);
+  expect(parentListItem).toHaveProp("task", parentTask);
 });
 
-it('renders a leaf list item when task has no sub-tasks', () => {
+it("renders a leaf list item when task has no sub-tasks", () => {
   const overrides: Props = {...props, tasksByParentId: {[parentTask.id]: []}};
   const component = shallow(<TaskNestedList {...overrides} />);
 
-  expect(component.find('TaskParentListItem')).toHaveLength(0);
-  const leafListItem = component.find('TaskLeafListItem');
+  expect(component.find("TaskParentListItem")).toHaveLength(0);
+  const leafListItem = component.find("TaskLeafListItem");
   expect(leafListItem).toHaveLength(1);
-  expect(leafListItem).toHaveProp('task', parentTask);
+  expect(leafListItem).toHaveProp("task", parentTask);
 });

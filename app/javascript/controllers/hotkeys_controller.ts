@@ -1,9 +1,9 @@
-import {Controller} from '@hotwired/stimulus';
+import {Controller} from "@hotwired/stimulus";
 
-import {assert} from 'helpers';
+import {assert} from "helpers";
 
 export default class extends Controller {
-  static targets = ['click'];
+  static targets = ["click"];
 
   clickTargets!: HTMLElement[];
 

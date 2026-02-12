@@ -1,7 +1,7 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ReactElement} from "react";
+import React from "react";
 
 export type Props = {
   current: boolean,
@@ -19,7 +19,7 @@ class TagButton extends React.Component<Props, never> {
     const {current, isActive, tag} = this.props;
 
     return classnames({
-      'button btn btn-default': true,
+      "button btn btn-default": true,
       active: isActive,
       current,
       [`priority-${tag.priority}-btn`]: tag.priority,
@@ -29,7 +29,7 @@ class TagButton extends React.Component<Props, never> {
   render(): ReactElement {
     const {tag} = this.props;
     const {slug, name} = tag;
-    const path = name === 'All' ? '/' : `/tags/${slug}`;
+    const path = name === "All" ? "/" : `/tags/${slug}`;
 
     return (
       <div>

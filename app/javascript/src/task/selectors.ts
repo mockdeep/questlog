@@ -1,8 +1,8 @@
-import {groupBy, pickBy, sortBy} from 'lodash';
-import {createSelector} from 'reselect';
+import {groupBy, pickBy, sortBy} from "lodash";
+import {createSelector} from "reselect";
 
-import {grab} from 'helpers';
-import {getRouteParams} from 'src/route/selectors';
+import {grab} from "helpers";
+import {getRouteParams} from "src/route/selectors";
 
 const timeframePositions = {
   today: 1,
@@ -33,11 +33,11 @@ type PartitionedTasks = {
 };
 
 function partitionTasks(tasks: Task[]): PartitionedTasks {
-  return {pending: [], active: [], ...groupBy(tasks, 'status')};
+  return {pending: [], active: [], ...groupBy(tasks, "status")};
 }
 
 function processTasks(tasksById: TasksById): TasksById {
-  return pickBy(tasksById, (task: Task) => task.status !== 'done');
+  return pickBy(tasksById, (task: Task) => task.status !== "done");
 }
 
 function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
@@ -72,7 +72,7 @@ const getTasksByParentId = createSelector(getTasksById, mapTasksToParentId);
 
 const getOrderedTasks = createSelector(
   getTasksById,
-  tasksById => sortBy(tasksById, [timeframePosition, 'priority', 'position']),
+  tasksById => sortBy(tasksById, [timeframePosition, "priority", "position"]),
 );
 
 const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);

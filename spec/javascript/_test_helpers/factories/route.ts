@@ -1,6 +1,6 @@
 function makeRouteState(): RouteState {
   return {
-    name: 'blah',
+    name: "blah",
     params: {},
   };
 }

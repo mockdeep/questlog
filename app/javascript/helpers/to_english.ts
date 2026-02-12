@@ -11,21 +11,21 @@ function divideSeconds(seconds: number): string {
   const hours = Math.floor(seconds / oneHour);
   const minutes = Math.floor(seconds % oneHour / oneMinute);
   const outputs = [
-    hours && pluralize(hours, 'hour'),
-    minutes && pluralize(minutes, 'minute'),
+    hours && pluralize(hours, "hour"),
+    minutes && pluralize(minutes, "minute"),
   ];
 
-  return outputs.filter(value => Boolean(value)).join(', ');
+  return outputs.filter(value => Boolean(value)).join(", ");
 }
 
 const ToEnglish = {
   seconds(seconds: number): string {
     if (seconds < 0) {
-      throw new RangeError('number must not be negative');
+      throw new RangeError("number must not be negative");
     } else if (seconds < 1) {
-      return 'None';
+      return "None";
     } else if (seconds < oneMinute) {
-      return pluralize(Math.floor(seconds), 'second');
+      return pluralize(Math.floor(seconds), "second");
     } else {
       return divideSeconds(seconds);
     }

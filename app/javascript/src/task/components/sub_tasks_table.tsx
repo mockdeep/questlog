@@ -1,9 +1,9 @@
-import React from 'react';
-import type {ReactElement} from 'react';
+import React from "react";
+import type {ReactElement} from "react";
 
-import TaskRow from 'src/task/components/task_row';
-import TableHeaders from 'src/task/components/table_headers';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskRow from "src/task/components/task_row";
+import TableHeaders from "src/task/components/table_headers";
+import type {UpdateTask} from "src/task/action_creators";
 
 type FunctionProps = {
   deleteTask: (taskId: number) => void,
@@ -34,7 +34,7 @@ function SubTasksTable(
   return (
     <div>
       <table className='tasks-table'>
-        <thead><TableHeaders label={'Sub-tasks'} /></thead>
+        <thead><TableHeaders label={"Sub-tasks"} /></thead>
         <tbody>{taskRows(subTasks, {updateTask, deleteTask})}</tbody>
       </table>
     </div>

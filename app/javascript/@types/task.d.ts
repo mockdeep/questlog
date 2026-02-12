@@ -1,4 +1,4 @@
-type TaskLoadingState = 'marking_done' | 'postponing' | 'ready' | 'updating';
+type TaskLoadingState = "marking_done" | "postponing" | "ready" | "updating";
 
 type NewTask = {
   title: string;
@@ -14,7 +14,7 @@ type BaseTask = {
   priority: number | null;
   repeatSeconds: number | null;
   skipCount: number;
-  status: 'active' | 'done' | 'pending';
+  status: "active" | "done" | "pending";
   tagIds: number[];
   tagNames: string[];
   timeframe: TimeframeName | null;
@@ -52,8 +52,8 @@ type TaskStoreType = {
   listeners: Callback[];
   loaded: boolean;
   models: Task[];
-  name: 'task';
-  url: '/tasks';
+  name: "task";
+  url: "/tasks";
   subscribe(listener: Callback): Callback;
   notifyListeners(): void;
   unload(): void;
@@ -68,8 +68,8 @@ type BulkTaskStoreType = {
   listeners: Callback[];
   loaded: boolean;
   models: Task[];
-  name: 'bulk_task';
-  url: '/bulk_task';
+  name: "bulk_task";
+  url: "/bulk_task";
   subscribe(listener: Callback): Callback;
   unsubscribe(listener: Callback): void;
   notifyListeners(): void;
@@ -78,7 +78,7 @@ type BulkTaskStoreType = {
 };
 
 type TaskMeta = {
-  ajaxState: 'taskSaving' | 'fetching' | 'ready';
+  ajaxState: "taskSaving" | "fetching" | "ready";
 };
 
 type AjaxTask = {

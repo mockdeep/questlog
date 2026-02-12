@@ -1,4 +1,4 @@
-import ROUTES from 'src/route/routes';
+import ROUTES from "src/route/routes";
 
 function findRoute(name: string) {
   const matchingRoute = ROUTES.find(route => route.name === name);

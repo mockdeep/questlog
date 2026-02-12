@@ -1,13 +1,13 @@
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 
-import {grab} from 'helpers';
-import TaskListView from 'src/task/components/list_view';
-import {deleteTask, updateTask} from 'src/task/action_creators';
+import {grab} from "helpers";
+import TaskListView from "src/task/components/list_view";
+import {deleteTask, updateTask} from "src/task/action_creators";
 import {
   getPartitionedTasks,
   getPartitionedLeafTasks,
   getPartitionedRootTasks,
-} from 'src/task/selectors';
+} from "src/task/selectors";
 
 const ROUTE_SELECTORS = {
   tasks: getPartitionedTasks,
