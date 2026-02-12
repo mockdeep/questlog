@@ -8,6 +8,7 @@ export default defineConfig({
       "src": path.resolve(__dirname, "app/javascript/src"),
       "helpers": path.resolve(__dirname, "app/javascript/helpers"),
       "_test_helpers": path.resolve(__dirname, "spec/javascript/_test_helpers"),
+      "channels": path.resolve(__dirname, "app/javascript/channels"),
       "controllers": path.resolve(__dirname, "app/javascript/controllers"),
       "javascript": path.resolve(__dirname, "app/javascript"),
       "packs": path.resolve(__dirname, "app/javascript/packs"),
