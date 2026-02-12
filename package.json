@@ -9,7 +9,7 @@
     "@hotwired/turbo-rails": "^8.0.21",
     "@rails/actioncable": "^8.1.200",
     "a11y-dialog": "^8.1.4",
-    "bootstrap-sass": "3.4.1",
+    "bootstrap-sass": "3.4.3",
     "class-autobind": "^0.1.4",
     "classnames": "^2.5.1",
     "esbuild": "^0.27.2",
