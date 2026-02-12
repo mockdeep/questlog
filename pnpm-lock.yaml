@@ -17,6 +17,9 @@ importers:
       '@hotwired/turbo-rails':
         specifier: ^8.0.21
         version: 8.0.21
+      '@rails/actioncable':
+        specifier: ^8.1.200
+        version: 8.1.200
       a11y-dialog:
         specifier: ^8.1.4
         version: 8.1.4
@@ -117,6 +120,9 @@ importers:
       '@types/node':
         specifier: ^25.0.9
         version: 25.0.9
+      '@types/rails__actioncable':
+        specifier: ^8.0.3
+        version: 8.0.3
       '@types/react':
         specifier: 18.3.28
         version: 18.3.28
@@ -595,8 +601,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@rails/actioncable@8.0.200':
-    resolution: {integrity: sha512-EDqWyxck22BHmv1e+mD8Kl6GmtNkhEPdRfGFT7kvsv1yoXd9iYrqHDVAaR8bKmU/syC5eEZ2I5aWWxtB73ukMw==}
+  '@rails/actioncable@8.1.200':
+    resolution: {integrity: sha512-on0DSb7AFUkq1ocxivDNQhhGW/RQpY91zvRVyyaEWP4gOOZWy33P/UyxjQk74IENWNrTqs8+zOGHwTjiiFruRw==}
 
   '@react-dnd/asap@4.0.1':
     resolution: {integrity: sha512-kLy0PJDDwvwwTXxqTFNAAllPHD73AycE9ypWeln/IguoGBEbvFcPDbCV03G52bEcC5E+YgupBE0VzHGdC8SIXg==}
@@ -797,6 +803,9 @@ packages:
 
   '@types/prop-types@15.7.11':
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
+
+  '@types/rails__actioncable@8.0.3':
+    resolution: {integrity: sha512-y46MOTYorVQVwlHUyaZYbrh3nIkXsRYNuPna32lb3RngLVBlndNbIPvAUywFfhivftNhYg+vW5sZKWYCVIX2lA==}
 
   '@types/react-dom@18.3.7':
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
@@ -3361,7 +3370,7 @@ snapshots:
   '@hotwired/turbo-rails@8.0.21':
     dependencies:
       '@hotwired/turbo': 8.0.23
-      '@rails/actioncable': 8.0.200
+      '@rails/actioncable': 8.1.200
 
   '@hotwired/turbo@8.0.23': {}
 
@@ -3414,7 +3423,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@rails/actioncable@8.0.200': {}
+  '@rails/actioncable@8.1.200': {}
 
   '@react-dnd/asap@4.0.1': {}
 
@@ -3568,6 +3577,8 @@ snapshots:
       undici-types: 7.16.0
 
   '@types/prop-types@15.7.11': {}
+
+  '@types/rails__actioncable@8.0.3': {}
 
   '@types/react-dom@18.3.7(@types/react@18.3.28)':
     dependencies:

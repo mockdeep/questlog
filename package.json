@@ -6,6 +6,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.21",
+    "@rails/actioncable": "^8.1.200",
     "a11y-dialog": "^8.1.4",
     "bootstrap-sass": "3.4.1",
     "class-autobind": "^0.1.4",
@@ -35,7 +36,6 @@
     "bootstrap-sass": "locked at 3.4.1 until dartsass is integrated",
     "later -> @rails/ujs": "^6.0.0-alpha",
     "later -> @rails/activestorage": "^6.0.0-alpha",
-    "later -> @rails/actioncable": "^6.0.0-alpha",
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
@@ -48,6 +48,7 @@
     "@types/jquery": "^3.5.33",
     "@types/lodash": "^4.17.23",
     "@types/node": "^25.0.9",
+    "@types/rails__actioncable": "^8.0.3",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "@types/react-redux": "^7.1.34",
