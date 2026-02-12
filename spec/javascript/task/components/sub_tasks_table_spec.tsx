@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -14,13 +14,15 @@ const props: Props = {
 
 it("renders sub-task rows", () => {
   const subTasks = [makeTask(), makeTask()];
-  const component = shallow(<SubTasksTable {...props} subTasks={subTasks} />);
+  render(<SubTasksTable {...props} subTasks={subTasks} />);
 
-  expect(component.find("TaskRow")).toHaveLength(2);
+  const rows = screen.getAllByRole("row");
+  // Header row + 2 task rows
+  expect(rows).toHaveLength(3);
 });
 
 it("returns null when there are no sub tasks", () => {
-  const component = shallow(<SubTasksTable {...props} />);
+  const {container} = render(<SubTasksTable {...props} />);
 
-  expect(component.type()).toBeNull();
+  expect(container.firstChild).toBeNull();
 });

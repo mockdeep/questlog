@@ -1,7 +1,7 @@
 import React from "react";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import {mount} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import TaskShowViewContainer from "src/task/containers/show_view";
 
@@ -11,9 +11,9 @@ it("wraps the TaskShowView component", () => {
   const task = makeTask();
   const state = makeState({route: {params: {taskId: task.id}}, task: [task]});
   const store = createStore(() => state);
-  const container = mount(
+  render(
     <Provider store={store}><TaskShowViewContainer /></Provider>,
   );
 
-  expect(container.find("TaskShowView")).toExist();
+  expect(screen.getByDisplayValue(task.title)).toBeInTheDocument();
 });

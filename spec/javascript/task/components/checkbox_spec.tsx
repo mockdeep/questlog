@@ -1,54 +1,57 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {fireEvent, render, screen} from "@testing-library/react";
 
 import TaskCheckbox from "src/task/components/checkbox";
-import {assert} from "helpers";
 import {makeTask} from "_test_helpers/factories";
 
 const task = makeTask();
 const props = {task};
 
 it("enables the checkbox by default", () => {
-  const component = shallow(<TaskCheckbox {...props} />);
+  render(<TaskCheckbox {...props} />);
 
-  expect(component.find("input[type=\"checkbox\"]")).not.toBeDisabled();
+  expect(screen.getByRole("checkbox")).not.toBeDisabled();
 });
 
 describe("when passed a \"disabled\" prop", () => {
   it("disables the checkbox", () => {
-    const component = shallow(<TaskCheckbox {...props} disabled />);
+    render(<TaskCheckbox {...props} disabled />);
 
-    expect(component.find("input[type=\"checkbox\"]")).toBeDisabled();
+    expect(screen.getByRole("checkbox")).toBeDisabled();
   });
 
   it("does not add an \"enabled\" class", () => {
-    const component = shallow(<TaskCheckbox {...props} disabled />);
+    const {container} = render(<TaskCheckbox {...props} disabled />);
 
-    expect(component.find("label").prop("className")).not.toMatch("enabled");
+    const label = container.querySelector("label");
+    const cls = "task-item__checkbox-display--enabled";
+    expect(label).not.toHaveClass(cls);
   });
 });
 
 it("passes an onChange callback through to the checkbox", () => {
   const onChange = vi.fn();
-  const component = shallow(<TaskCheckbox {...props} onChange={onChange} />);
+  render(<TaskCheckbox {...props} onChange={onChange} />);
 
-  component.find("input[type=\"checkbox\"]").simulate("change");
+  fireEvent.click(screen.getByRole("checkbox"));
 
   expect(onChange).toHaveBeenCalled();
 });
 
 it("adds a \"checked\" class to the label when checked", () => {
-  const component = shallow(<TaskCheckbox {...props} checked />);
+  const el = <TaskCheckbox {...props} checked onChange={vi.fn()} />;
+  const {container} = render(el);
+  const label = container.querySelector("label");
+  const cls = "task-item__checkbox-display--checked";
 
-  const expectedClass = "task-item__checkbox-display--checked";
-  const actualClass = assert(component.find("label").prop("className"));
-  expect(actualClass.split(" ")).toContain(expectedClass);
+  expect(label).toHaveClass(cls);
 });
 
 it("adds an \"enabled\" class to the label when not disabled", () => {
-  const component = shallow(<TaskCheckbox {...props} />);
+  const {container} = render(<TaskCheckbox {...props} />);
 
-  const expectedClass = "task-item__checkbox-display--enabled";
-  const actualClass = assert(component.find("label").prop("className"));
-  expect(actualClass.split(" ")).toContain(expectedClass);
+  const label = container.querySelector("label");
+  const cls = "task-item__checkbox-display--enabled";
+
+  expect(label).toHaveClass(cls);
 });

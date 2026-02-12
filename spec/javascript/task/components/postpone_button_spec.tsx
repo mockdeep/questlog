@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -14,7 +14,7 @@ const props: Props = {
 };
 
 it("renders a select tag", () => {
-  const component = shallow(<PostponeButton {...props} />);
+  render(<PostponeButton {...props} />);
 
-  expect(component.find("select")).toHaveLength(1);
+  expect(screen.getByRole("combobox")).toBeInTheDocument();
 });

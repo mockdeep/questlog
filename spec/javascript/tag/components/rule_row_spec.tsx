@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import RuleRow from "src/tag/components/rule_row";
 
@@ -12,7 +12,8 @@ const props = {
 };
 
 it("renders a select tag", () => {
-  const component = shallow(<RuleRow {...props} />);
+  render(<RuleRow {...props} />);
 
-  expect(component.find("select")).toHaveLength(2);
+  const selects = screen.getAllByRole("combobox");
+  expect(selects).toHaveLength(2);
 });

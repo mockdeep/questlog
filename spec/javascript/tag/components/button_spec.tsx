@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import type {Props} from "src/tag/components/button";
 import TagButton from "src/tag/components/button";
@@ -14,37 +14,33 @@ const props: Props = {
 };
 
 it("adds an active class when tag is selected", () => {
-  const component = shallow(<TagButton {...props} isActive />);
+  render(<TagButton {...props} isActive />);
 
-  expect(component.find("a")).toHaveClassName("active");
+  expect(screen.getByRole("link")).toHaveClass("active");
 });
 
 it("adds a current class when tag current", () => {
-  const component = shallow(<TagButton {...props} current />);
+  render(<TagButton {...props} current />);
 
-  expect(component.find("a")).toHaveClassName("current");
+  expect(screen.getByRole("link")).toHaveClass("current");
 });
 
 it("adds a priority class when tag has a priority", () => {
   const overrides = {tag: {...tag, priority: 2}};
-  const component = shallow(<TagButton {...props} {...overrides} />);
+  render(<TagButton {...props} {...overrides} />);
 
-  expect(component.find("a")).toHaveClassName("priority-2-btn");
+  expect(screen.getByRole("link")).toHaveClass("priority-2-btn");
 });
 
 it("renders a link with a path for a tag", () => {
-  const component = shallow(<TagButton {...props} />);
+  render(<TagButton {...props} />);
 
-  const link = component.find("a");
-
-  expect(link).toHaveProp("href", "/tags/home");
+  expect(screen.getByRole("link")).toHaveAttribute("href", "/tags/home");
 });
 
 it("renders a link with the root path when name is \"All\"", () => {
   const overrides = {tag: {...tag, name: "All", slug: ""}};
-  const component = shallow(<TagButton {...props} {...overrides} />);
+  render(<TagButton {...props} {...overrides} />);
 
-  const link = component.find("a");
-
-  expect(link).toHaveProp("href", "/");
+  expect(screen.getByRole("link")).toHaveAttribute("href", "/");
 });

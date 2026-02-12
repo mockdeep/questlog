@@ -1,7 +1,9 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render} from "@testing-library/react";
+import {Provider} from "react-redux";
 
 import TaskDisplay from "src/task/components/task_display";
+import createAppStore from "src/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -17,8 +19,9 @@ const props = {
 };
 
 it("renders TagButtons", () => {
-  const component = shallow(<TaskDisplay {...props} />);
-  const tagButtonsContainer = component.find("Connect(TagButtons)");
+  const {container} = render(<Provider store={createAppStore()}>
+    <TaskDisplay {...props} />
+  </Provider>);
 
-  expect(tagButtonsContainer).toHaveProp("currentTagIds", task.tagIds);
+  expect(container.querySelector(".tag-buttons")).toBeInTheDocument();
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {fireEvent, render, screen} from "@testing-library/react";
 
 import type {Props} from "src/tag/components/edit_view";
 import TagEditView from "src/tag/components/edit_view";
@@ -8,41 +8,41 @@ import {makeTag} from "_test_helpers/factories";
 
 const tag = makeTag();
 const props: Props = {tag};
-const defaultRule = {field: "estimateSeconds", check: "isBlank"};
 
 it("renders nothing when tag is not present", () => {
   const overrides = {...props, tag: undefined};
-  const component = shallow(<TagEditView {...overrides} />);
+  const {container} = render(<TagEditView {...overrides} />);
 
-  expect(component.type()).toBeNull();
+  expect(container.firstChild).toBeNull();
 });
 
 it("updates when props update with new tag", () => {
   const overrides = {...props, tag: undefined};
-  const component = shallow(<TagEditView {...overrides} />);
+  const {container, rerender} = render(<TagEditView {...overrides} />);
 
-  expect(component.type()).toBeNull();
+  expect(container.firstChild).toBeNull();
 
-  component.setProps({tag});
+  rerender(<TagEditView {...props} />);
 
-  expect(component.type()).toBe("div");
+  expect(container.firstChild).not.toBeNull();
 });
 
 it("renders rule rows", () => {
   const tempRules: TagRule[] = [{field: "tagIds", check: "isEmpty"}];
   const overrides = {...props, tag: {...tag, rules: tempRules}};
-  const component = shallow(<TagEditView {...overrides} />);
+  render(<TagEditView {...overrides} />);
 
-  expect(component.find("RuleRow")).toHaveProp("rule", tempRules[0]);
+  expect(screen.getByDisplayValue("Tags")).toBeInTheDocument();
 });
 
 it("adds rules when \"Add Rule\" button is clicked", () => {
-  const component = shallow(<TagEditView {...props} />);
+  render(<TagEditView {...props} />);
 
-  expect(component.find("RuleRow")).not.toExist();
-  const addRuleButton = component.find({value: "Add Rule"});
+  const result = screen.queryByDisplayValue("Estimate Seconds");
+  expect(result).not.toBeInTheDocument();
+  const addRuleButton = screen.getByDisplayValue("Add Rule");
 
-  expect(addRuleButton).toExist();
-  addRuleButton.simulate("click");
-  expect(component.find("RuleRow")).toHaveProp("rule", defaultRule);
+  expect(addRuleButton).toBeInTheDocument();
+  fireEvent.click(addRuleButton);
+  expect(screen.getByDisplayValue("Estimate Seconds")).toBeInTheDocument();
 });

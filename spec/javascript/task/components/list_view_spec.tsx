@@ -1,15 +1,20 @@
 vi.mock("src/task/bulk_store");
 
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import BulkTaskStore from "src/task/bulk_store";
-import DraggableTaskRow from "src/task/components/draggable_task_row";
-import TableHeaders from "src/task/components/table_headers";
 import type {Props} from "src/task/components/list_view";
 import TaskListView from "src/task/components/list_view";
 
 import {makeTask} from "_test_helpers/factories";
+
+function deref(ref: React.RefObject<TaskListView>): TaskListView {
+  if (ref.current === null) {
+    throw new Error("ref.current is null");
+  }
+  return ref.current;
+}
 
 const props: Props = {
   currentTasks: [],
@@ -21,88 +26,82 @@ const props: Props = {
 it("renders current tasks", () => {
   const overrides: Props = {...props, currentTasks: [makeTask()]};
 
-  const component = shallow(<TaskListView {...overrides} />);
+  render(<TaskListView {...overrides} />);
 
-  expect(component.find(DraggableTaskRow)).toHaveLength(1);
-  const tableHeaders = component.find(TableHeaders);
-  expect(tableHeaders).toHaveLength(1);
-  expect(tableHeaders).toHaveProp("label", "Current tasks");
+  expect(screen.getByText("Current tasks")).toBeInTheDocument();
 });
 
 it("does not render a current tasks table when none are present", () => {
-  const component = shallow(<TaskListView {...props} />);
+  render(<TaskListView {...props} />);
 
-  expect(component.find(DraggableTaskRow)).toHaveLength(0);
-  expect(component.find(TableHeaders)).toHaveLength(0);
+  expect(screen.queryByText("Current tasks")).not.toBeInTheDocument();
 });
 
 it("renders pending tasks", () => {
   const overrides: Props = {...props, pendingTasks: [makeTask()]};
 
-  const component = shallow(<TaskListView {...overrides} />);
+  render(<TaskListView {...overrides} />);
 
-  expect(component.find(DraggableTaskRow)).toHaveLength(1);
-  const tableHeaders = component.find(TableHeaders);
-  expect(tableHeaders).toHaveLength(1);
-  expect(tableHeaders).toHaveProp("label", "Pending tasks");
+  expect(screen.getByText("Pending tasks")).toBeInTheDocument();
 });
 
 it("does not render a pending tasks table when none are present", () => {
-  const component = shallow(<TaskListView {...props} />);
+  render(<TaskListView {...props} />);
 
-  expect(component.find(DraggableTaskRow)).toHaveLength(0);
-  expect(component.find(TableHeaders)).toHaveLength(0);
+  expect(screen.queryByText("Pending tasks")).not.toBeInTheDocument();
 });
 
 it("updates task rows based on updated props", () => {
   const overrides: Props = {...props, currentTasks: [makeTask()]};
 
-  const component = shallow(<TaskListView {...overrides} />);
-  component.setProps({currentTasks: [], pendingTasks: [makeTask()]});
+  const {rerender} = render(<TaskListView {...overrides} />);
+  const updated = <TaskListView
+    {...props}
+    currentTasks={[]}
+    pendingTasks={[makeTask()]}
+    deleteTask={vi.fn()}
+    updateTask={vi.fn()}
+  />;
+  rerender(updated);
 
-  expect(component.find(DraggableTaskRow)).toHaveLength(1);
-  const tableHeaders = component.find(TableHeaders);
-  expect(tableHeaders).toHaveLength(1);
-  expect(tableHeaders).toHaveProp("label", "Pending tasks");
+  expect(screen.queryByText("Current tasks")).not.toBeInTheDocument();
+  expect(screen.getByText("Pending tasks")).toBeInTheDocument();
 });
 
 describe("moving a task when dragging", () => {
   it("moves a task after another task", () => {
-    const task1 = makeTask();
-    const task2 = makeTask();
+    const task1 = makeTask({title: "Task One"});
+    const task2 = makeTask({title: "Task Two"});
     const overrides: Props = {...props, currentTasks: [task1, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
-    let taskRows = component.find(DraggableTaskRow);
-    expect(taskRows).toHaveLength(2);
-    expect(taskRows.at(0)).toHaveProp("task", overrides.currentTasks[0]);
-    expect(taskRows.at(1)).toHaveProp("task", overrides.currentTasks[1]);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
 
-    (component.instance() as TaskListView).moveTask(task1.id, task2.id);
-    component.update();
+    const rows = screen.getAllByRole("row");
+    // Verify initial order (header + 2 task rows)
+    expect(rows).toHaveLength(3);
 
-    taskRows = component.find(DraggableTaskRow);
-    expect(taskRows).toHaveLength(2);
-    expect(taskRows.at(0)).toHaveProp("task", overrides.currentTasks[1]);
-    expect(taskRows.at(1)).toHaveProp("task", overrides.currentTasks[0]);
+    deref(ref).moveTask(task1.id, task2.id);
+
+    const updatedRows = screen.getAllByRole("row");
+    expect(updatedRows).toHaveLength(3);
+    // After move, task2 should come before task1
+    const cells = screen.getAllByDisplayValue(/Task/u);
+    expect(cells[0]).toHaveValue("Task Two");
+    expect(cells[1]).toHaveValue("Task One");
   });
 
   it("does nothing when moving task id is the same as after task id", () => {
-    const task1 = makeTask();
-    const task2 = makeTask();
+    const task1 = makeTask({title: "Task One"});
+    const task2 = makeTask({title: "Task Two"});
     const overrides: Props = {...props, currentTasks: [task1, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
-    let taskRows = component.find(DraggableTaskRow);
-    expect(taskRows).toHaveLength(2);
-    expect(taskRows.at(0)).toHaveProp("task", overrides.currentTasks[0]);
-    expect(taskRows.at(1)).toHaveProp("task", overrides.currentTasks[1]);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
 
-    (component.instance() as TaskListView).moveTask(task1.id, task1.id);
-    component.update();
+    deref(ref).moveTask(task1.id, task1.id);
 
-    taskRows = component.find(DraggableTaskRow);
-    expect(taskRows).toHaveLength(2);
-    expect(taskRows.at(0)).toHaveProp("task", overrides.currentTasks[0]);
-    expect(taskRows.at(1)).toHaveProp("task", overrides.currentTasks[1]);
+    const cells = screen.getAllByDisplayValue(/Task/u);
+    expect(cells[0]).toHaveValue("Task One");
+    expect(cells[1]).toHaveValue("Task Two");
   });
 });
 
@@ -112,11 +111,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
   });
@@ -126,11 +126,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
   });
@@ -140,11 +141,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
   });
@@ -154,11 +156,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
   });
@@ -168,11 +171,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask();
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task2}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: null}});
   });
@@ -182,11 +186,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
   });
@@ -196,11 +201,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 2}});
   });
@@ -210,11 +216,12 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     expect(updatePriority).toHaveBeenCalledWith({target: {value: 3}});
   });
@@ -224,10 +231,11 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const component = shallow(<TaskListView {...overrides} />);
+    const ref = React.createRef<TaskListView>();
+    render(<TaskListView {...overrides} ref={ref} />);
     const fakeComponent = {props: {task: task1}, updatePriority: vi.fn()};
 
-    (component.instance() as TaskListView).saveTaskPositions(fakeComponent);
+    deref(ref).saveTaskPositions(fakeComponent);
 
     const expected = {positions: [task2.id, task1.id, task3.id]};
     expect(BulkTaskStore.update).toHaveBeenCalledWith(expected);
