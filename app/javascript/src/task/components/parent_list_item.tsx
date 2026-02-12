@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
 import type {ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 import TaskCheckbox from "src/task/components/checkbox";
 import TaskNestedList from "src/task/components/nested_list";
@@ -13,7 +13,7 @@ export type Props = {
   updateTask: UpdateTask,
 };
 
-class TaskParentListItem extends React.Component<Props, never> {
+class TaskParentListItem extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

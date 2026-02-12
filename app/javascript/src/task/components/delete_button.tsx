@@ -1,13 +1,13 @@
 import autobind from "class-autobind";
 import type {MouseEvent, ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 type Props = {
   deleteTask: (taskId: number) => void,
   task: Task,
 };
 
-class DeleteButton extends React.Component<Props, never> {
+class DeleteButton extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

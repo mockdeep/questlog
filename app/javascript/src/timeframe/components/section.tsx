@@ -1,5 +1,5 @@
 import autobind from "class-autobind";
-import React from "react";
+import {Component} from "react";
 import type {ReactElement} from "react";
 
 import TableHeaders from "src/timeframe/components/table_headers";
@@ -15,7 +15,7 @@ type Props = {
   updateTask: UpdateTask,
 };
 
-class TimeframeSection extends React.Component<Props, never> {
+class TimeframeSection extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

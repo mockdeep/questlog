@@ -1,5 +1,3 @@
-import React from "react";
-
 import MainButtons from "src/task/components/main_buttons";
 import ParentTaskBreadCrumbs
   from "src/task/containers/parent_task_bread_crumbs";

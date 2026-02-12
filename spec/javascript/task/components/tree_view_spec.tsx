@@ -1,4 +1,3 @@
-import React from "react";
 import {render, screen} from "@testing-library/react";
 
 import TaskTreeView from "src/task/components/tree_view";

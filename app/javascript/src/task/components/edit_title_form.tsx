@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
 import type {FocusEvent, FormEvent, KeyboardEvent, ReactElement} from "react";
-import React from "react";
+import {Component, createRef} from "react";
 import Textarea from "react-textarea-autosize";
 
 import AuthenticityToken from "src/_common/components/authenticity_token";
@@ -15,8 +15,8 @@ type State = {
   focused: boolean;
 }
 
-class TaskEditTitleForm extends React.Component<Props, State> {
-  formRef = React.createRef<HTMLFormElement>();
+class TaskEditTitleForm extends Component<Props, State> {
+  formRef = createRef<HTMLFormElement>();
 
   constructor(props: Props) {
     super(props);

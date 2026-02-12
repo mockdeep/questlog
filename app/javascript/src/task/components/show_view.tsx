@@ -1,5 +1,4 @@
 import type {ReactElement} from "react";
-import React from "react";
 
 import TaskEditTitleForm from "src/task/components/edit_title_form";
 import ParentTaskBreadCrumbs

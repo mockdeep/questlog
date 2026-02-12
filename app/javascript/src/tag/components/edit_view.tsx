@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
+import {Component} from "react";
 import type {SyntheticEvent, ReactElement} from "react";
-import React from "react";
 import update from "immutability-helper";
 import {uniqWith, isEqual} from "lodash";
 
@@ -15,7 +15,7 @@ type State = {
   rules: TagRule[]
 };
 
-class TagEditView extends React.Component<Props, State> {
+class TagEditView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     autobind(this);

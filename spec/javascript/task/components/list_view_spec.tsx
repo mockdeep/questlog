@@ -1,6 +1,7 @@
 vi.mock("src/task/bulk_store");
 
-import React from "react";
+import {createRef} from "react";
+import type {RefObject} from "react";
 import {render, screen} from "@testing-library/react";
 
 import BulkTaskStore from "src/task/bulk_store";
@@ -9,7 +10,7 @@ import TaskListView from "src/task/components/list_view";
 
 import {makeTask} from "_test_helpers/factories";
 
-function deref(ref: React.RefObject<TaskListView>): TaskListView {
+function deref(ref: RefObject<TaskListView>): TaskListView {
   if (ref.current === null) {
     throw new Error("ref.current is null");
   }
@@ -73,7 +74,7 @@ describe("moving a task when dragging", () => {
     const task1 = makeTask({title: "Task One"});
     const task2 = makeTask({title: "Task Two"});
     const overrides: Props = {...props, currentTasks: [task1, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
 
     const rows = screen.getAllByRole("row");
@@ -94,7 +95,7 @@ describe("moving a task when dragging", () => {
     const task1 = makeTask({title: "Task One"});
     const task2 = makeTask({title: "Task Two"});
     const overrides: Props = {...props, currentTasks: [task1, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
 
     deref(ref).moveTask(task1.id, task1.id);
@@ -111,7 +112,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -126,7 +127,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -141,7 +142,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -156,7 +157,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
     const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -171,7 +172,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask();
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task2}, updatePriority};
@@ -186,7 +187,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task3}, updatePriority};
@@ -201,7 +202,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -216,7 +217,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const updatePriority = vi.fn();
     const fakeComponent = {props: {task: task1}, updatePriority};
@@ -231,7 +232,7 @@ describe("saving task after drop", () => {
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
     const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = React.createRef<TaskListView>();
+    const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
     const fakeComponent = {props: {task: task1}, updatePriority: vi.fn()};
 

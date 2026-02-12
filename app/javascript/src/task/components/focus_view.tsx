@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
 import type {ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 import TaskDisplay from "src/task/components/task_display";
 import type {UpdateTask} from "src/task/action_creators";
@@ -16,7 +16,7 @@ type State = {
   postponeSeconds: number;
 };
 
-class TaskFocusView extends React.Component<Props, State> {
+class TaskFocusView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     autobind(this);

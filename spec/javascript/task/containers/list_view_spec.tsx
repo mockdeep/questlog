@@ -1,7 +1,6 @@
 vi.mock("src/route/selectors");
 vi.mock("src/task/bulk_store");
 
-import React from "react";
 import {Provider} from "react-redux";
 import {render} from "@testing-library/react";
 

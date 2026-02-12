@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
+import {Component} from "react";
 import type {ReactElement} from "react";
-import React from "react";
 
 import TagButton from "src/tag/components/button";
 
@@ -10,7 +10,7 @@ export type Props = {
   selectedTagSlug?: string,
 };
 
-class TagButtons extends React.Component<Props, never> {
+class TagButtons extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

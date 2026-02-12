@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom";
 import {Controller} from "@hotwired/stimulus";
 import {Provider} from "react-redux";

@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
+import {Component} from "react";
 import type {ReactElement} from "react";
-import React from "react";
 
 import DeleteButton from "src/task/components/delete_button";
 import {grab} from "helpers";
@@ -14,7 +14,7 @@ type Props = {
   task: Task,
 };
 
-class TaskTitle extends React.Component<Props, never> {
+class TaskTitle extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

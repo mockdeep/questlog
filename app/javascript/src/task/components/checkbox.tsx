@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
 import type {ChangeEvent, ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 type Props = {
   task: Task,
@@ -10,7 +10,7 @@ type Props = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
 };
 
-class TaskCheckbox extends React.Component<Props, never> {
+class TaskCheckbox extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);
