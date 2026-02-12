@@ -1,10 +1,10 @@
-RSpec.describe Task, '#destroy' do
+RSpec.describe Task, "#destroy" do
   let(:user) { create(:user) }
   let(:task) { create(:task, user:) }
   let(:tag) { create(:tag, user:) }
 
-  context 'when task is pending' do
-    it 'does not change tag counters' do
+  context "when task is pending" do
+    it "does not change tag counters" do
       task.update!(tags: [tag])
       expect do
         task.update!(done: true, release_at: 1.hour.from_now)
@@ -15,7 +15,7 @@ RSpec.describe Task, '#destroy' do
       end.not_to change { tag.reload.unfinished_tasks_count }
     end
 
-    it 'does not change user counter' do
+    it "does not change user counter" do
       task
       expect do
         task.update!(done: true, release_at: 1.hour.from_now)

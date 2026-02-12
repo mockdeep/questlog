@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,12 +22,12 @@ module Questlog
     config.active_job.queue_adapter     = :sidekiq
     config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
 
-    extra_paths = [Rails.root.join('lib'), Rails.root.join('app/poros/parsers')]
+    extra_paths = [Rails.root.join("lib"), Rails.root.join("app/poros/parsers")]
 
     config.autoload_paths += extra_paths
     config.eager_load_paths += extra_paths
 
-    config.time_zone = 'Pacific Time (US & Canada)'
+    config.time_zone = "Pacific Time (US & Canada)"
 
     config.active_support.remove_deprecated_time_with_zone_name = true
   end

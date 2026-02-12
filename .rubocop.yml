@@ -46,6 +46,8 @@ Style/MethodCallWithArgsParentheses:
     - and
     - describe
     - to
+Style/StringLiterals: { EnforcedStyle: double_quotes }
+Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
 Style/SymbolArray: { EnforcedStyle: brackets }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }

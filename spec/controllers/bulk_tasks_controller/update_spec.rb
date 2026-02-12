@@ -1,4 +1,4 @@
-RSpec.describe BulkTasksController, '#update' do
+RSpec.describe BulkTasksController, "#update" do
   let(:user) { create(:user) }
   let(:task_1) { create(:task, position: 1, user:) }
   let(:task_2) { create(:task, position: 2, user:) }
@@ -10,7 +10,7 @@ RSpec.describe BulkTasksController, '#update' do
 
   before(:each) { login_as(user) }
 
-  it 'allows setting positions on tasks' do
+  it "allows setting positions on tasks" do
     put(:update, params: valid_params)
 
     expect(task_1.reload.position).to eq 3
@@ -20,12 +20,12 @@ RSpec.describe BulkTasksController, '#update' do
     expect(task_5.reload.position).to eq 5
   end
 
-  it 'redirects to tasks/index' do
+  it "redirects to tasks/index" do
     put(:update, params: valid_params)
     expect(response).to redirect_to tasks_path
   end
 
-  it 'throws an error if given an invalid task id' do
+  it "throws an error if given an invalid task id" do
     bad_task = create(:task)
     expect do
       put(:update, params: { bulk_task: { positions: [bad_task.id] } })

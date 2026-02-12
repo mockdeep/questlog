@@ -3,13 +3,13 @@ class TimeframeParser
 
   def call(title, marker)
     words = title.split
-    regex = /^#{marker}(\d+)(#{time_mappings.keys.join('|')})$/
+    regex = /^#{marker}(\d+)(#{time_mappings.keys.join("|")})$/
     index = words.index { |word| word.match(regex) }
     if index
       string = words.delete_at(index)
       count, timeframe = string.match(regex).captures
       seconds = count.to_i * time_mappings[timeframe.to_sym]
-      { title: words.join(' '), seconds: }
+      { title: words.join(" "), seconds: }
     else
       { title:, seconds: nil }
     end

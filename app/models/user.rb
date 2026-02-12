@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :unfinished_tasks,
            -> { where(tasks: { done_at: nil }) },
-           class_name: 'Task',
+           class_name: "Task",
            inverse_of: :user
   has_many :tags, dependent: :destroy
 
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    account.present? && !guest? && email == 'lobatifricha@gmail.com'
+    account.present? && !guest? && email == "lobatifricha@gmail.com"
   end
 
   def ordered_tags

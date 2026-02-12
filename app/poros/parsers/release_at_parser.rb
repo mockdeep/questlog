@@ -10,7 +10,7 @@ class ReleaseAtParser
       time = time_from_stamp(timestamp)
       words.delete(timestamp)
     end
-    { title: words.join(' '), release_at: time }
+    { title: words.join(" "), release_at: time }
   end
 
   private

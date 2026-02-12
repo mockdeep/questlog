@@ -1,50 +1,50 @@
 RSpec.describe Questlog::Matchers::HaveTag do
-  describe '#matches?' do
-    it 'returns true when there is a matching tag without count' do
+  describe "#matches?" do
+    it "returns true when there is a matching tag without count" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
 
-      expect(described_class.new('my tag').matches?(node)).to be true
+      expect(described_class.new("my tag").matches?(node)).to be true
     end
 
-    it 'returns true when there is a matching tag with count' do
+    it "returns true when there is a matching tag with count" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
 
-      expect(described_class.new('my tag (1)').matches?(node)).to be true
+      expect(described_class.new("my tag (1)").matches?(node)).to be true
     end
 
-    it 'returns false when there are no tags' do
-      node = Capybara.string('<div><a>not my tag</a></div>')
+    it "returns false when there are no tags" do
+      node = Capybara.string("<div><a>not my tag</a></div>")
 
-      expect(described_class.new('my tag').matches?(node)).to be false
+      expect(described_class.new("my tag").matches?(node)).to be false
     end
 
-    it 'returns false when there is no matching tag' do
+    it "returns false when there is no matching tag" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
 
-      expect(described_class.new('another tag (1)').matches?(node)).to be false
+      expect(described_class.new("another tag (1)").matches?(node)).to be false
     end
 
-    it 'returns false when there is a matching tag with wrong count' do
+    it "returns false when there is a matching tag with wrong count" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
 
-      expect(described_class.new('my tag (2)').matches?(node)).to be false
+      expect(described_class.new("my tag (2)").matches?(node)).to be false
     end
   end
 
-  describe '#failure_message' do
-    it 'returns a message with a list of tags when there are others' do
+  describe "#failure_message" do
+    it "returns a message with a list of tags when there are others" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
-      matcher = described_class.new('another tag')
+      matcher = described_class.new("another tag")
       expected = %(expected to find tag "another tag", but found ["my tag (1)"])
 
       matcher.matches?(node)
@@ -52,9 +52,9 @@ RSpec.describe Questlog::Matchers::HaveTag do
       expect(matcher.failure_message).to eq expected
     end
 
-    it 'returns a simple message when there are no tags' do
-      node = Capybara.string('<div><a>not my tag</a></div>')
-      matcher = described_class.new('my tag')
+    it "returns a simple message when there are no tags" do
+      node = Capybara.string("<div><a>not my tag</a></div>")
+      matcher = described_class.new("my tag")
       expected = 'expected to find tag "my tag", but no tags found'
 
       matcher.matches?(node)
@@ -63,12 +63,12 @@ RSpec.describe Questlog::Matchers::HaveTag do
     end
   end
 
-  describe '#failure_message_when_negated' do
-    it 'returns a simple message when tag is present' do
+  describe "#failure_message_when_negated" do
+    it "returns a simple message when tag is present" do
       node = Capybara.string(<<-HTML)
         <div class="tag-buttons"><a class="button">my tag (1)</a></div>
       HTML
-      matcher = described_class.new('my tag')
+      matcher = described_class.new("my tag")
       expected = 'expected not to find tag "my tag", but it is present'
 
       matcher.matches?(node)

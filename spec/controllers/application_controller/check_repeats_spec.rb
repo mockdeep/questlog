@@ -1,4 +1,4 @@
-RSpec.describe ApplicationController, '#check_repeats' do
+RSpec.describe ApplicationController, "#check_repeats" do
   let(:user) { create(:user) }
 
   controller do
@@ -11,7 +11,7 @@ RSpec.describe ApplicationController, '#check_repeats' do
     login_as(user)
   end
 
-  it 'marks tasks as not done if they are ready to release' do
+  it "marks tasks as not done if they are ready to release" do
     task_1 = create(:task, user:)
 
     task_2 = create(:task, user:, done: true, release_at: 1.hour.ago)
@@ -25,7 +25,7 @@ RSpec.describe ApplicationController, '#check_repeats' do
     expect(task_3.reload).to be_done
   end
 
-  it 'updates counters for the associated tags' do
+  it "updates counters for the associated tags" do
     tag = create(:tag, user:)
     create(:task, tags: [tag], user:, done: true, release_at: 1.week.ago)
 

@@ -1,5 +1,5 @@
-RSpec.describe Task, '.reposition' do
-  it 'sets the sort position for tasks' do
+RSpec.describe Task, ".reposition" do
+  it "sets the sort position for tasks" do
     task_1 = create(:task, position: 1)
     task_2 = create(:task, position: 2)
     task_3 = create(:task, position: 3)

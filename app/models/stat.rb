@@ -1,7 +1,7 @@
 class Stat < ApplicationRecord
   belongs_to :user
 
-  NAMES = ['seconds-completed'].freeze
+  NAMES = ["seconds-completed"].freeze
 
   validates :user_id, presence: true
   validates :timestamp, uniqueness: { scope: :user_id }
@@ -10,7 +10,7 @@ class Stat < ApplicationRecord
   def self.median_productivity
     beginning = 2.weeks.ago.beginning_of_day
     ending = Time.zone.now.beginning_of_day
-    scope = where('timestamp > ? AND timestamp < ?', beginning, ending)
+    scope = where("timestamp > ? AND timestamp < ?", beginning, ending)
     scope.median || 1.hour
   end
 

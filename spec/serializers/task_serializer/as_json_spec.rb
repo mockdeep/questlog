@@ -1,5 +1,5 @@
-RSpec.describe TaskSerializer, '#as_json' do
-  it 'serializes a subset of the task attributes' do
+RSpec.describe TaskSerializer, "#as_json" do
+  it "serializes a subset of the task attributes" do
     task_attrs = {
       estimate_seconds: 52,
       position: 23,
@@ -7,9 +7,9 @@ RSpec.describe TaskSerializer, '#as_json' do
       repeat_seconds: 25,
       release_at: 1.week.from_now.round,
       skip_count: 3,
-      tag_names: ['home', 'work'],
-      title: 'foo task',
-      timeframe: 'week',
+      tag_names: ["home", "work"],
+      title: "foo task",
+      timeframe: "week",
     }
 
     task = create(:task, task_attrs)
@@ -19,7 +19,7 @@ RSpec.describe TaskSerializer, '#as_json' do
       id: task.id,
       parentTaskId: nil,
       pending: true,
-      status: 'pending',
+      status: "pending",
       tagIds: task.tag_ids,
       updatedAt: task.updated_at,
       doneAt: task.done_at,

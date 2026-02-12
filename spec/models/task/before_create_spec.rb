@@ -1,4 +1,4 @@
-RSpec.describe Task, 'before_create' do
+RSpec.describe Task, "before_create" do
   let(:user) { create(:user) }
 
   before(:each) do
@@ -9,7 +9,7 @@ RSpec.describe Task, 'before_create' do
     create(:task, position: 17)
   end
 
-  it 'assigns a position' do
+  it "assigns a position" do
     expect(create(:task, user:).position).to eq 13
   end
 end

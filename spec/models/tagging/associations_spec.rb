@@ -1,13 +1,13 @@
-RSpec.describe Tagging, 'associations' do
+RSpec.describe Tagging, "associations" do
   let(:task) { create(:task) }
   let(:tag) { create(:tag) }
 
   it { is_expected.to belong_to(:task) }
   it { is_expected.to belong_to(:tag) }
 
-  context 'after create' do
-    context 'when the task is not done' do
-      it 'increments the associated tag unfinished_tasks_count' do
+  context "after create" do
+    context "when the task is not done" do
+      it "increments the associated tag unfinished_tasks_count" do
         expect do
           create(:tagging, tag:, task:)
         end.to change { tag.reload.unfinished_tasks_count }.from(0).to(1)
@@ -15,8 +15,8 @@ RSpec.describe Tagging, 'associations' do
     end
   end
 
-  context 'after destroy' do
-    it 'decrements the associated tag unfinished_tasks_count' do
+  context "after destroy" do
+    it "decrements the associated tag unfinished_tasks_count" do
       tagging = create(:tagging, tag:, task:)
       expect do
         tagging.destroy

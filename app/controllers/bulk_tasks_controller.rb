@@ -4,7 +4,7 @@ class BulkTasksController < ApplicationController
   def create
     Task::BulkCreate.(**create_params.symbolize_keys)
     respond_to do |format|
-      format.html { redirect_to '/tasks' }
+      format.html { redirect_to "/tasks" }
     end
   end
 

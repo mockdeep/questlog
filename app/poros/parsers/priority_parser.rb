@@ -7,6 +7,6 @@ class PriorityParser
     index ||= words.index { |word| word.match(/^'\d$/) }
     match = words.delete_at(index) if index
     priority = Integer(match[1..-1]) if match
-    { title: words.join(' '), priority: }
+    { title: words.join(" "), priority: }
   end
 end

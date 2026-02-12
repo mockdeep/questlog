@@ -1,8 +1,8 @@
-RSpec.describe Tag, '#next_task' do
+RSpec.describe Tag, "#next_task" do
   let(:user) { create(:user) }
   let(:tag) { create(:tag, user:) }
 
-  it 'returns the next task' do
+  it "returns the next task" do
     task_1 = create(:task, user:)
     task_2 = create(:task, user:)
     tag.tasks << task_1

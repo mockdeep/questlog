@@ -16,7 +16,7 @@ class Tag < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(:name) }
-  scope :active, -> { where('tags.unfinished_tasks_count > 0') }
+  scope :active, -> { where("tags.unfinished_tasks_count > 0") }
 
   def self.find_or_create_all(options)
     user = options.fetch(:user)
