@@ -3,7 +3,7 @@ import type {
   AsymmetricMatchersContaining,
   ExpectStatic,
   vi as Vi,
-} from 'vitest';
+} from "vitest";
 
 interface EnzymeMatchers<R = unknown> {
   toExist(): R;
@@ -15,7 +15,7 @@ interface EnzymeMatchers<R = unknown> {
   toBeDisabled(): R;
 }
 
-declare module 'vitest' {
+declare module "vitest" {
   interface Assertion<T> extends EnzymeMatchers<T> {}
   interface AsymmetricMatchersContaining extends EnzymeMatchers {}
 }

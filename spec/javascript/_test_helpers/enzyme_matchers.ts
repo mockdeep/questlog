@@ -1,5 +1,5 @@
-import {expect} from 'vitest';
-import type {ShallowWrapper, ReactWrapper} from 'enzyme';
+import {expect} from "vitest";
+import type {ShallowWrapper, ReactWrapper} from "enzyme";
 
 type EnzymeWrapper = ShallowWrapper | ReactWrapper;
 
@@ -11,8 +11,8 @@ expect.extend({
       pass,
       message: () =>
         pass
-          ? `expected wrapper not to exist`
-          : `expected wrapper to exist`,
+          ? "expected wrapper not to exist"
+          : "expected wrapper to exist",
     };
   },
 
@@ -26,8 +26,8 @@ expect.extend({
       pass,
       message: () =>
         pass
-          ? `expected wrapper not to have prop "${key}"${arguments.length === 3 ? ` with value ${this.utils.printExpected(value)}` : ''}`
-          : `expected wrapper to have prop "${key}"${arguments.length === 3 ? ` with value ${this.utils.printExpected(value)}, but received ${this.utils.printReceived(actual)}` : ''}`,
+          ? `expected wrapper not to have prop "${key}"${arguments.length === 3 ? ` with value ${this.utils.printExpected(value)}` : ""}`
+          : `expected wrapper to have prop "${key}"${arguments.length === 3 ? ` with value ${this.utils.printExpected(value)}, but received ${this.utils.printReceived(actual)}` : ""}`,
     };
   },
 
@@ -83,14 +83,14 @@ expect.extend({
   },
 
   toBeDisabled(received: EnzymeWrapper) {
-    const pass = received.prop('disabled') === true;
+    const pass = received.prop("disabled") === true;
 
     return {
       pass,
       message: () =>
         pass
-          ? `expected wrapper not to be disabled`
-          : `expected wrapper to be disabled`,
+          ? "expected wrapper not to be disabled"
+          : "expected wrapper to be disabled",
     };
   },
 });

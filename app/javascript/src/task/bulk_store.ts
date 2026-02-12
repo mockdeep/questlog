@@ -1,15 +1,15 @@
-import {request} from 'helpers/request';
+import {request} from "helpers/request";
 
-import appStore from 'src/app_store';
-import TaskStore from 'src/task/store';
-import {fetchTasks} from 'src/task/action_creators';
+import appStore from "src/app_store";
+import TaskStore from "src/task/store";
+import {fetchTasks} from "src/task/action_creators";
 
 const BulkTaskStore: BulkTaskStoreType = {
   listeners: [],
   loaded: false,
   models: [],
-  name: 'bulk_task',
-  url: '/bulk_task',
+  name: "bulk_task",
+  url: "/bulk_task",
 
   subscribe(listener) {
     this.listeners.push(listener);

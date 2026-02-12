@@ -1,3 +1,3 @@
 type User = {
-  foo: 'bar';
+  foo: "bar";
 };

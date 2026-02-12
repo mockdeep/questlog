@@ -1,9 +1,9 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from "react";
+import {shallow} from "enzyme";
 
-import TimeframeListView from 'src/timeframe/components/list_view';
+import TimeframeListView from "src/timeframe/components/list_view";
 
-import {makeTask, makeTimeframe} from '_test_helpers/factories';
+import {makeTask, makeTimeframe} from "_test_helpers/factories";
 
 const props = {
   deleteTask: vi.fn(),
@@ -11,13 +11,13 @@ const props = {
   updateTask: vi.fn(),
 };
 
-it('renders a loading message before content has been loaded', () => {
+it("renders a loading message before content has been loaded", () => {
   const component = shallow(<TimeframeListView {...props} />);
 
-  expect(component).toHaveText('Loading Timeframes...');
+  expect(component).toHaveText("Loading Timeframes...");
 });
 
-it('renders the current median productivity when loaded', () => {
+it("renders the current median productivity when loaded", () => {
   const input: TimeframeData =
     {timeframes: [], meta: {medianProductivity: 4456}};
 
@@ -25,15 +25,15 @@ it('renders the current median productivity when loaded', () => {
   (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
-  const expectedMessage = 'Median Productivity: 1 hour, 14 minutes per day';
+  const expectedMessage = "Median Productivity: 1 hour, 14 minutes per day";
 
   expect(component).toIncludeText(expectedMessage);
 });
 
-it('renders the given timeframes for the user', () => {
+it("renders the given timeframes for the user", () => {
   const timeframe: Timeframe = makeTimeframe({
-    name: 'inbox',
-    currentTasks: [makeTask({title: 'do laundry'})],
+    name: "inbox",
+    currentTasks: [makeTask({title: "do laundry"})],
     pendingTasks: [],
   });
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
@@ -42,10 +42,10 @@ it('renders the given timeframes for the user', () => {
   (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
-  expect(component.find('TimeframeSection')).toHaveProp('timeframe', timeframe);
+  expect(component.find("TimeframeSection")).toHaveProp("timeframe", timeframe);
 });
 
-it('does not render empty timeframes', () => {
+it("does not render empty timeframes", () => {
   const timeframe = makeTimeframe();
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
@@ -53,5 +53,5 @@ it('does not render empty timeframes', () => {
   (component.instance() as TimeframeListView).updateTimeframes(input);
   component.update();
 
-  expect(component.find('TimeframeSection')).not.toExist();
+  expect(component.find("TimeframeSection")).not.toExist();
 });

@@ -1,11 +1,11 @@
-type TimeframeName = 'inbox'
-| 'today'
-| 'week'
-| 'month'
-| 'quarter'
-| 'year'
-| 'lustrum'
-| 'decade';
+type TimeframeName = "inbox"
+| "today"
+| "week"
+| "month"
+| "quarter"
+| "year"
+| "lustrum"
+| "decade";
 
 type Timeframe = {
   currentTasks: Task[];
@@ -30,8 +30,8 @@ type TimeframeStoreType = {
   getAll(): Promise<TimeframeData>;
   subscribe(listener: Callback): Callback;
   loaded: boolean;
-  name: 'timeframe';
-  url: '/timeframes';
+  name: "timeframe";
+  url: "/timeframes";
   unsubscribe(listener: Callback): void;
   notifyListeners(): void;
   unload(): void;

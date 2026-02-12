@@ -1,13 +1,13 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ReactElement} from "react";
+import React from "react";
 
-import DeleteButton from 'src/task/components/delete_button';
-import {grab} from 'helpers';
-import TaskEditIcon from 'src/task/components/edit_icon';
-import TaskEditTitleForm from 'src/task/components/edit_title_form';
-import timeframeNameMap from 'src/timeframe/name_map';
+import DeleteButton from "src/task/components/delete_button";
+import {grab} from "helpers";
+import TaskEditIcon from "src/task/components/edit_icon";
+import TaskEditTitleForm from "src/task/components/edit_title_form";
+import timeframeNameMap from "src/timeframe/name_map";
 
 type Props = {
   deleteTask: (taskId: number) => void,
@@ -24,9 +24,9 @@ class TaskTitle extends React.Component<Props, never> {
     const {task} = this.props;
 
     return classnames({
-      'col-md-12 task-display': true,
+      "col-md-12 task-display": true,
       [`priority-${task.priority}`]: task.priority,
-      'over-skipped': task.skipCount >= 15,
+      "over-skipped": task.skipCount >= 15,
     });
   }
 

@@ -1,9 +1,9 @@
-import {calculateTotalMinutes} from 'src/timeframe/utils';
+import {calculateTotalMinutes} from "src/timeframe/utils";
 
-import {makeTask, makeTimeframe} from '_test_helpers/factories';
+import {makeTask, makeTimeframe} from "_test_helpers/factories";
 
-describe('calculateTotalMinutes()', () => {
-  it('returns the total number of minutes from tasks', () => {
+describe("calculateTotalMinutes()", () => {
+  it("returns the total number of minutes from tasks", () => {
     let timeframe: Timeframe = makeTimeframe({
       currentTasks: [makeTask({estimateMinutes: 10})],
     });

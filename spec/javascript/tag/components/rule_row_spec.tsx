@@ -1,9 +1,9 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from "react";
+import {shallow} from "enzyme";
 
-import RuleRow from 'src/tag/components/rule_row';
+import RuleRow from "src/tag/components/rule_row";
 
-const tagRule: TagRule = {field: 'estimateSeconds', check: 'isBlank'};
+const tagRule: TagRule = {field: "estimateSeconds", check: "isBlank"};
 const props = {
   deleteRule: vi.fn(),
   index: 1,
@@ -11,8 +11,8 @@ const props = {
   updateFieldValue: vi.fn(),
 };
 
-it('renders a select tag', () => {
+it("renders a select tag", () => {
   const component = shallow(<RuleRow {...props} />);
 
-  expect(component.find('select')).toHaveLength(2);
+  expect(component.find("select")).toHaveLength(2);
 });

@@ -1,8 +1,8 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
 
-import TagButton from 'src/tag/components/button';
+import TagButton from "src/tag/components/button";
 
 export type Props = {
   currentTagIds: number[],
@@ -27,7 +27,7 @@ class TagButtons extends React.Component<Props, never> {
 
     if (selectedTagSlug) { return tag.slug === selectedTagSlug; }
 
-    return tag.name === 'All';
+    return tag.name === "All";
   }
 
   tagButtons(): ReactElement[] {

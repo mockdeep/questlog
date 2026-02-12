@@ -1,16 +1,16 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ChangeEvent, MouseEvent, ReactElement} from 'react';
-import React from 'react';
-import {map} from 'lodash';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ChangeEvent, MouseEvent, ReactElement} from "react";
+import React from "react";
+import {map} from "lodash";
 
-import {grab} from 'helpers';
-import TaskEditIcon from 'src/task/components/edit_icon';
-import TaskEditTitleForm from 'src/task/components/edit_title_form';
-import timeframeNameMap from 'src/timeframe/name_map';
-import type {UpdateTask} from 'src/task/action_creators';
+import {grab} from "helpers";
+import TaskEditIcon from "src/task/components/edit_icon";
+import TaskEditTitleForm from "src/task/components/edit_title_form";
+import timeframeNameMap from "src/timeframe/name_map";
+import type {UpdateTask} from "src/task/action_creators";
 
-const BUTTON_CLASS = 'btn btn-link tasks-table__action';
+const BUTTON_CLASS = "btn btn-link tasks-table__action";
 
 export type Props = {
   deleteTask: (taskId: number) => void,
@@ -57,7 +57,7 @@ class TaskRow extends React.PureComponent<Props, State> {
 
     event.preventDefault();
     // eslint-disable-next-line no-alert
-    if (confirm('Delete this task?')) {
+    if (confirm("Delete this task?")) {
       deleteTask(task.id);
     }
   }
@@ -74,22 +74,22 @@ class TaskRow extends React.PureComponent<Props, State> {
     const {status} = this.props;
 
     return classnames({
-      'tasks-table__row': true,
+      "tasks-table__row": true,
       [`tasks-table__row--priority-${this.priority()}`]: this.priority(),
       [`tasks-table__row--${status}`]: status,
     });
   }
 
-  priority(): number | '' {
+  priority(): number | "" {
     const {task} = this.props;
 
-    return task.priority || '';
+    return task.priority || "";
   }
 
   timeframe(): string {
     const {task} = this.props;
 
-    return task.timeframe || 'inbox';
+    return task.timeframe || "inbox";
   }
 
   timeframeHasSpace(name: string) {
@@ -116,14 +116,14 @@ class TaskRow extends React.PureComponent<Props, State> {
     if (!timeframeClicked) {
       // hack optimization so that each task row doesn't need to re-render
       return map(timeframeNameMap, (title, name) => {
-        const optionTitle = name === 'inbox' ? '-' : title;
+        const optionTitle = name === "inbox" ? "-" : title;
 
         return <option value={name} key={name}>{optionTitle}</option>;
       });
     }
     return map(timeframeNameMap, (title, name) => {
       const disabled = !this.timeframeHasSpace(name);
-      const optionTitle = name === 'inbox' ? '-' : title;
+      const optionTitle = name === "inbox" ? "-" : title;
 
       return (
         <option value={name} disabled={disabled} key={name}>
@@ -170,7 +170,7 @@ class TaskRow extends React.PureComponent<Props, State> {
 
     return (
       <button className={BUTTON_CLASS} onClick={this.undoTask}>
-        {'UNDO'}
+        {"UNDO"}
       </button>
     );
   }
@@ -186,7 +186,7 @@ class TaskRow extends React.PureComponent<Props, State> {
       <tr className={this.className()} ref={this.storeDOMNode}>
         <td className='tasks-table__cell'>
           <button className={BUTTON_CLASS} onClick={this.markDone}>
-            {'DONE'}
+            {"DONE"}
           </button>
         </td>
         <td><TaskEditTitleForm task={task} /></td>
@@ -195,19 +195,19 @@ class TaskRow extends React.PureComponent<Props, State> {
         <td>{this.emblems()}</td>
         <td>
           <select onChange={this.updatePriority} value={this.priority()}>
-            <option value=''>{'-'}</option>
-            <option value='1'>{'1'}</option>
-            <option value='2'>{'2'}</option>
-            <option value='3'>{'3'}</option>
+            <option value=''>{"-"}</option>
+            <option value='1'>{"1"}</option>
+            <option value='2'>{"2"}</option>
+            <option value='3'>{"3"}</option>
           </select>
         </td>
         <td>
           {this.timeframeSelector()}
         </td>
         <td>
-          {task.pending ? this.undoButton() : ''}
+          {task.pending ? this.undoButton() : ""}
           <button className={BUTTON_CLASS} onClick={this.deleteTask}>
-            {'DELETE'}
+            {"DELETE"}
           </button>
         </td>
       </tr>

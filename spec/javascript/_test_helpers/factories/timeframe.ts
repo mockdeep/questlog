@@ -1,6 +1,6 @@
 function makeTimeframe(attrs: Partial<Timeframe> = {}): Timeframe {
   return {
-    name: 'inbox',
+    name: "inbox",
     medianProductivity: 30,
     minuteMax: Infinity,
     currentTasks: [],

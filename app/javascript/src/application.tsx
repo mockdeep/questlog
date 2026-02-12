@@ -1,15 +1,15 @@
-import 'src/globals';
-import $ from 'jquery';
-import Honeybadger from 'honeybadger-js';
-import 'controllers/index';
-import {Turbo} from '@hotwired/turbo-rails';
+import "src/globals";
+import $ from "jquery";
+import Honeybadger from "honeybadger-js";
+import "controllers/index";
+import {Turbo} from "@hotwired/turbo-rails";
 Turbo.session.drive = false;
 
-$(() => $('[class^=flash-]').fadeOut(1500));
+$(() => $("[class^=flash-]").fadeOut(1500));
 
 // depends on global jQuery, so can't be imported, as that gets hoisted
-require('bootstrap-sass');
-require('jquery-ujs');
+require("bootstrap-sass");
+require("jquery-ujs");
 
 Honeybadger.configure({
   apiKey: window.gon.honeybadgerApiKey,  

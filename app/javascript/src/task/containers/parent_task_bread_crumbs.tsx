@@ -1,8 +1,8 @@
-import type {ReactElement} from 'react';
-import React from 'react';
-import {connect} from 'react-redux';
+import type {ReactElement} from "react";
+import React from "react";
+import {connect} from "react-redux";
 
-import TaskLink from 'src/task/components/link';
+import TaskLink from "src/task/components/link";
 
 type ComponentProps = {
   task?: Task;
@@ -28,7 +28,7 @@ class ParentTaskBreadCrumbs extends React.Component<ComponentProps, never> {
         {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
         <ParentTaskBreadCrumbsContainer taskId={task.parentTaskId} />
         <span>
-          {' > '}
+          {" > "}
           <TaskLink task={task} />
         </span>
       </span>

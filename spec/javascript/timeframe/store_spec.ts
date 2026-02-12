@@ -1,14 +1,14 @@
-vi.mock('helpers/request');
-import type {Mock} from 'vitest';
-import FakeTimers from '@sinonjs/fake-timers';
+vi.mock("helpers/request");
+import type {Mock} from "vitest";
+import FakeTimers from "@sinonjs/fake-timers";
 
-import {request} from 'helpers/request';
-import TimeframeStore from 'src/timeframe/store';
+import {request} from "helpers/request";
+import TimeframeStore from "src/timeframe/store";
 
-import {makeTask} from '_test_helpers/factories';
+import {makeTask} from "_test_helpers/factories";
 
-describe('subscribe', () => {
-  it('subscribes a listener', () => {
+describe("subscribe", () => {
+  it("subscribes a listener", () => {
     const listener = vi.fn();
 
     TimeframeStore.subscribe(listener);
@@ -20,8 +20,8 @@ describe('subscribe', () => {
   });
 });
 
-describe('unsubscribe', () => {
-  it('unsubscribes a listener', () => {
+describe("unsubscribe", () => {
+  it("unsubscribes a listener", () => {
     const listener = vi.fn();
     TimeframeStore.subscribe(listener);
 
@@ -32,8 +32,8 @@ describe('unsubscribe', () => {
   });
 });
 
-describe('notifyListeners', () => {
-  it('notifies all listeners', () => {
+describe("notifyListeners", () => {
+  it("notifies all listeners", () => {
     const listener1 = vi.fn();
     const listener2 = vi.fn();
     TimeframeStore.subscribe(listener1);
@@ -48,15 +48,15 @@ describe('notifyListeners', () => {
     TimeframeStore.unsubscribe(listener2);
   });
 
-  it('does not raise an error when no listeners exist', () => {
+  it("does not raise an error when no listeners exist", () => {
     expect(TimeframeStore.listeners).toHaveLength(0);
 
     expect(() => TimeframeStore.notifyListeners()).not.toThrow();
   });
 });
 
-describe('unload', () => {
-  it('sets loaded to false', () => {
+describe("unload", () => {
+  it("sets loaded to false", () => {
     TimeframeStore.loaded = true;
 
     TimeframeStore.unload();
@@ -64,7 +64,7 @@ describe('unload', () => {
     expect(TimeframeStore.loaded).toBe(false);
   });
 
-  it('notifies listeners', () => {
+  it("notifies listeners", () => {
     const listener = vi.fn();
     TimeframeStore.subscribe(listener);
 
@@ -74,10 +74,10 @@ describe('unload', () => {
   });
 });
 
-describe('updateModels', () => {
-  it('groups tasks by timeframe', () => {
-    const task1 = makeTask({timeframe: 'today'});
-    const task2 = makeTask({timeframe: 'lustrum', pending: true});
+describe("updateModels", () => {
+  it("groups tasks by timeframe", () => {
+    const task1 = makeTask({timeframe: "today"});
+    const task2 = makeTask({timeframe: "lustrum", pending: true});
 
     TimeframeStore.updateModels({tasks: [task1, task2]});
 
@@ -85,22 +85,22 @@ describe('updateModels', () => {
     expect(timeframes).toHaveLength(8);
 
     const inboxTimeframe = timeframes[0];
-    expect(inboxTimeframe.name).toBe('inbox');
+    expect(inboxTimeframe.name).toBe("inbox");
     expect(inboxTimeframe.currentTasks).toEqual([]);
     expect(inboxTimeframe.pendingTasks).toEqual([]);
 
     const todayTimeframe = timeframes[1];
-    expect(todayTimeframe.name).toBe('today');
+    expect(todayTimeframe.name).toBe("today");
     expect(todayTimeframe.currentTasks).toEqual([task1]);
     expect(todayTimeframe.pendingTasks).toEqual([]);
 
     const lustrumTimeframe = timeframes[6];
-    expect(lustrumTimeframe.name).toBe('lustrum');
+    expect(lustrumTimeframe.name).toBe("lustrum");
     expect(lustrumTimeframe.currentTasks).toEqual([]);
     expect(lustrumTimeframe.pendingTasks).toEqual([task2]);
   });
 
-  it('sets median productivity on each timeframe', async () => {
+  it("sets median productivity on each timeframe", async () => {
     const promise = TimeframeStore.getAll();
 
     expect(request).toHaveBeenCalledTimes(2);
@@ -119,8 +119,8 @@ describe('updateModels', () => {
     );
   });
 
-  it('sets the max number of minutes for each timeframe', async () => {
-    FakeTimers.install({now: new Date('July 20, 1969 00:20:18')});
+  it("sets the max number of minutes for each timeframe", async () => {
+    FakeTimers.install({now: new Date("July 20, 1969 00:20:18")});
 
     const promise = TimeframeStore.getAll();
 
@@ -135,13 +135,13 @@ describe('updateModels', () => {
 
     const {timeframes} = TimeframeStore.getState();
     expect(timeframes).toHaveLength(8);
-    expect(timeframes[0]).toMatchObject({name: 'inbox', minuteMax: Infinity});
-    expect(timeframes[1]).toMatchObject({name: 'today', minuteMax: 180});
-    expect(timeframes[2]).toMatchObject({name: 'week', minuteMax: 540});
-    expect(timeframes[3]).toMatchObject({name: 'month', minuteMax: 450});
-    expect(timeframes[4]).toMatchObject({name: 'quarter', minuteMax: 5490});
-    expect(timeframes[5]).toMatchObject({name: 'year', minuteMax: 8280});
-    expect(timeframes[6]).toMatchObject({name: 'lustrum', minuteMax: Infinity});
-    expect(timeframes[7]).toMatchObject({name: 'decade', minuteMax: Infinity});
+    expect(timeframes[0]).toMatchObject({name: "inbox", minuteMax: Infinity});
+    expect(timeframes[1]).toMatchObject({name: "today", minuteMax: 180});
+    expect(timeframes[2]).toMatchObject({name: "week", minuteMax: 540});
+    expect(timeframes[3]).toMatchObject({name: "month", minuteMax: 450});
+    expect(timeframes[4]).toMatchObject({name: "quarter", minuteMax: 5490});
+    expect(timeframes[5]).toMatchObject({name: "year", minuteMax: 8280});
+    expect(timeframes[6]).toMatchObject({name: "lustrum", minuteMax: Infinity});
+    expect(timeframes[7]).toMatchObject({name: "decade", minuteMax: Infinity});
   });
 });

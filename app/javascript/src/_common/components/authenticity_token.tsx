@@ -1,7 +1,7 @@
-import React from 'react';
-import type {ReactElement} from 'react';
+import React from "react";
+import type {ReactElement} from "react";
 
-import {authenticityToken} from 'helpers';
+import {authenticityToken} from "helpers";
 
 function AuthenticityToken(): ReactElement {
   return (

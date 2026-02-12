@@ -1,4 +1,4 @@
-import {request} from 'helpers/request';
+import {request} from "helpers/request";
 
 function estimateMinutes(task: Task): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);
@@ -8,8 +8,8 @@ const TaskStore: TaskStoreType = {
   listeners: [],
   loaded: false,
   models: [],
-  name: 'task',
-  url: '/tasks',
+  name: "task",
+  url: "/tasks",
 
   subscribe(listener) {
     this.listeners = [...this.listeners, listener];
@@ -52,7 +52,7 @@ const TaskStore: TaskStoreType = {
 
   dispatch(action) {
     switch (action.type) {
-    case 'tasks/FETCH':
+    case "tasks/FETCH":
       this.fetchTasks();
       break;
     default:
@@ -61,7 +61,7 @@ const TaskStore: TaskStoreType = {
   },
 
   fetchTasks(): void {
-    request(this.url, {method: 'GET', success: this.updateModels.bind(this)});
+    request(this.url, {method: "GET", success: this.updateModels.bind(this)});
   },
 };
 

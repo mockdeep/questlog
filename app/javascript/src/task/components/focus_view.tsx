@@ -1,9 +1,9 @@
-import autobind from 'class-autobind';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import type {ReactElement} from "react";
+import React from "react";
 
-import TaskDisplay from 'src/task/components/task_display';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskDisplay from "src/task/components/task_display";
+import type {UpdateTask} from "src/task/action_creators";
 
 export type Props = {
   ajaxState: string,
@@ -52,9 +52,9 @@ class TaskFocusView extends React.Component<Props, State> {
 
     if (task) {
       return this.nextTaskDisplay(task);
-    } else if (['fetching', 'taskSaving', 'loading'].includes(ajaxState)) {
+    } else if (["fetching", "taskSaving", "loading"].includes(ajaxState)) {
       return this.loadingDisplay();
-    } else if (ajaxState === 'ready') {
+    } else if (ajaxState === "ready") {
       return this.noTaskDisplay();
     }
 
@@ -70,7 +70,7 @@ class TaskFocusView extends React.Component<Props, State> {
     return (
       <TaskDisplay
         task={task}
-        disabled={task.loadingState !== 'ready'}
+        disabled={task.loadingState !== "ready"}
         storePostponeSeconds={storePostponeSeconds}
         postponeTask={postponeTask}
         completeTask={completeTask}
@@ -80,15 +80,15 @@ class TaskFocusView extends React.Component<Props, State> {
   }
 
   loadingDisplay(): ReactElement {
-    this.setTitle('Loading...');
+    this.setTitle("Loading...");
 
-    return <div><h1>{'Loading...'}</h1></div>;
+    return <div><h1>{"Loading..."}</h1></div>;
   }
 
   noTaskDisplay(): ReactElement {
-    this.setTitle('(no tasks!)');
+    this.setTitle("(no tasks!)");
 
-    return <div><h2>{'No tasks! Try adding one below:'}</h2></div>;
+    return <div><h2>{"No tasks! Try adding one below:"}</h2></div>;
   }
 
   render(): ReactElement {

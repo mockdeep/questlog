@@ -1,6 +1,6 @@
 type Gon = {
   honeybadgerApiKey: string;
-  railsEnv: 'development' | 'production' | 'test';
+  railsEnv: "development" | "production" | "test";
   userId: number;
 };
 

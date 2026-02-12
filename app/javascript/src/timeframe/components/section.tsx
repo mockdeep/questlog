@@ -1,12 +1,12 @@
-import autobind from 'class-autobind';
-import React from 'react';
-import type {ReactElement} from 'react';
+import autobind from "class-autobind";
+import React from "react";
+import type {ReactElement} from "react";
 
-import TableHeaders from 'src/timeframe/components/table_headers';
-import TaskRow from 'src/timeframe/components/task_row';
-import timeframeNameMap from 'src/timeframe/name_map';
-import {calculateTotalMinutes} from 'src/timeframe/utils';
-import type {UpdateTask} from 'src/task/action_creators';
+import TableHeaders from "src/timeframe/components/table_headers";
+import TaskRow from "src/timeframe/components/task_row";
+import timeframeNameMap from "src/timeframe/name_map";
+import {calculateTotalMinutes} from "src/timeframe/utils";
+import type {UpdateTask} from "src/task/action_creators";
 
 type Props = {
   deleteTask: (taskId: number) => void,
@@ -56,10 +56,10 @@ class TimeframeSection extends React.Component<Props, never> {
     return calculateTotalMinutes(timeframe);
   }
 
-  maxTime(): number | '∞' {
+  maxTime(): number | "∞" {
     const {timeframe} = this.props;
 
-    return isFinite(timeframe.minuteMax) ? timeframe.minuteMax : '∞';
+    return isFinite(timeframe.minuteMax) ? timeframe.minuteMax : "∞";
   }
 
   currentTaskRows(): ReactElement[] | false {
@@ -79,7 +79,7 @@ class TimeframeSection extends React.Component<Props, never> {
   }
 
   ratioSpan(): ReactElement {
-    const className = this.overLimit() ? 'danger' : '';
+    const className = this.overLimit() ? "danger" : "";
 
     return (
       <span className={className}>
@@ -96,14 +96,14 @@ class TimeframeSection extends React.Component<Props, never> {
 
   render(): ReactElement {
     const {timeframe} = this.props;
-    const className = timeframe.name === 'inbox' ? 'inbox' : 'timeframe';
+    const className = timeframe.name === "inbox" ? "inbox" : "timeframe";
 
     return (
       <div key={timeframe.name} id={timeframe.name} className={className}>
         <hr />
         <h2>
           {timeframeNameMap[timeframe.name]}
-          {' '}
+          {" "}
           {this.ratioSpan()}
         </h2>
         <table className='tasks-table'>

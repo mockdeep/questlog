@@ -1,11 +1,11 @@
-import autobind from 'class-autobind';
-import classnames from 'classnames';
-import type {ReactElement} from 'react';
-import React from 'react';
+import autobind from "class-autobind";
+import classnames from "classnames";
+import type {ReactElement} from "react";
+import React from "react";
 
-import TaskCheckbox from 'src/task/components/checkbox';
-import TaskNestedList from 'src/task/components/nested_list';
-import type {UpdateTask} from 'src/task/action_creators';
+import TaskCheckbox from "src/task/components/checkbox";
+import TaskNestedList from "src/task/components/nested_list";
+import type {UpdateTask} from "src/task/action_creators";
 
 export type Props = {
   task: Task,
@@ -23,7 +23,7 @@ class TaskParentListItem extends React.Component<Props, never> {
     const {task} = this.props;
 
     return classnames({
-      'task-item__title': true,
+      "task-item__title": true,
       [`task-item__title--priority-${task.priority}`]: task.priority,
     });
   }

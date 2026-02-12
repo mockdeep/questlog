@@ -1,12 +1,12 @@
 export function authenticityToken(): string {
-  const tokenTag = document.getElementsByName('csrf-token')[0];
+  const tokenTag = document.getElementsByName("csrf-token")[0];
 
   if (!(tokenTag instanceof HTMLMetaElement)) {
-    return '';
+    return "";
     // csrf tokens don't work on test for some reason
     // throw new Error('Missing csrf-token meta tag');
   }
 
   // return tokenTag && (<HTMLMetaElement>tokenTag).content;
-  return (tokenTag && tokenTag.content) || '';
+  return (tokenTag && tokenTag.content) || "";
 }

@@ -1,4 +1,4 @@
-import {debug} from 'helpers';
+import {debug} from "helpers";
 
 (global as any).debug = debug;
 
@@ -9,8 +9,8 @@ function requestAnimationFrame(callback: Callback): void {
 (global as any).requestAnimationFrame = requestAnimationFrame;
 
 window.gon = {
-  honeybadgerApiKey: 'hb-api-key',
-  railsEnv: 'test',
+  honeybadgerApiKey: "hb-api-key",
+  railsEnv: "test",
   userId: 1,
 };
 

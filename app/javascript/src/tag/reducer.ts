@@ -1,9 +1,9 @@
-import update from 'immutability-helper';
-import {keyBy} from 'lodash';
+import update from "immutability-helper";
+import {keyBy} from "lodash";
 
-import createBasicReducer from 'src/_common/create_basic_reducer';
+import createBasicReducer from "src/_common/create_basic_reducer";
 
-import {INIT, SET, UPSERT} from 'src/tag/action_creators';
+import {INIT, SET, UPSERT} from "src/tag/action_creators";
 
 const operations = {
   [INIT]() {
@@ -11,7 +11,7 @@ const operations = {
   },
 
   [SET](previousState: TagState | null, tags: Tag[]) {
-    return {...previousState, byId: keyBy(tags, 'id')};
+    return {...previousState, byId: keyBy(tags, "id")};
   },
 
   [UPSERT](previousState: TagState | null, tag: Tag) {

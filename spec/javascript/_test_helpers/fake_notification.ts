@@ -1,19 +1,19 @@
 class FakeNotification implements Notification {
   actions = [];
 
-  badge = '';
+  badge = "";
 
-  body = '';
+  body = "";
 
   data = null;
 
-  dir: NotificationDirection = 'auto';
+  dir: NotificationDirection = "auto";
 
-  icon = '';
+  icon = "";
 
-  image = '';
+  image = "";
 
-  lang = '';
+  lang = "";
 
   onclick = null;
 
@@ -29,7 +29,7 @@ class FakeNotification implements Notification {
 
   silent = false;
 
-  tag = '';
+  tag = "";
 
   timestamp = Number(new Date());
 
@@ -40,7 +40,7 @@ class FakeNotification implements Notification {
   isOpen = true; // custom
 
   static requestPermission(): Promise<string> {
-    return Promise.resolve('granted');
+    return Promise.resolve("granted");
   }
 
   constructor(title: string) {

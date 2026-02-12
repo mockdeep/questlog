@@ -1,6 +1,6 @@
-import {bootStimulus, getController} from '../support/stimulus';
-import HotkeysController from 'controllers/hotkeys_controller';
-import {assert} from 'helpers';
+import {bootStimulus, getController} from "../support/stimulus";
+import HotkeysController from "controllers/hotkeys_controller";
+import {assert} from "helpers";
 
 function setupDOM(): void {
   document.body.innerHTML = `
@@ -13,7 +13,7 @@ function setupDOM(): void {
 async function setupController(): Promise<void> {
   setupDOM();
 
-  await bootStimulus('hotkeys', HotkeysController);
+  await bootStimulus("hotkeys", HotkeysController);
 }
 
 function element(): HTMLElement {
@@ -23,7 +23,7 @@ function element(): HTMLElement {
 }
 
 function controller(): HotkeysController {
-  return getController(element(), 'hotkeys', HotkeysController);
+  return getController(element(), "hotkeys", HotkeysController);
 }
 
 function button(): HTMLButtonElement {
@@ -32,41 +32,41 @@ function button(): HTMLButtonElement {
   return assert(document.querySelector<HTMLButtonElement>(selector));
 }
 
-describe('clickTargetConnected', () => {
-  it('indexes the connected click target by its hotkey', async () => {
+describe("clickTargetConnected", () => {
+  it("indexes the connected click target by its hotkey", async () => {
     await setupController();
 
-    expect(controller().indexedClickTargets.get('a')).toBe(button());
+    expect(controller().indexedClickTargets.get("a")).toBe(button());
   });
 });
 
-describe('clickTargetDisconnected', () => {
-  it('removes the disconnected click target from the index', async () => {
+describe("clickTargetDisconnected", () => {
+  it("removes the disconnected click target from the index", async () => {
     await setupController();
 
     button().remove();
 
     await Promise.resolve();
 
-    expect(controller().indexedClickTargets.get('a')).toBeUndefined();
+    expect(controller().indexedClickTargets.get("a")).toBeUndefined();
   });
 });
 
-describe('handleKeydown', () => {
-  it('clicks the target for the pressed key', async () => {
+describe("handleKeydown", () => {
+  it("clicks the target for the pressed key", async () => {
     await setupController();
-    const clickSpy = vi.spyOn(button(), 'click');
+    const clickSpy = vi.spyOn(button(), "click");
 
-    controller().handleKeydown(new KeyboardEvent('keydown', {key: 'a'}));
+    controller().handleKeydown(new KeyboardEvent("keydown", {key: "a"}));
 
     expect(clickSpy).toHaveBeenCalledWith();
   });
 
-  it('does nothing if there is no target for the pressed key', async () => {
+  it("does nothing if there is no target for the pressed key", async () => {
     await setupController();
-    const clickSpy = vi.spyOn(button(), 'click');
+    const clickSpy = vi.spyOn(button(), "click");
 
-    controller().handleKeydown(new KeyboardEvent('keydown', {key: 'b'}));
+    controller().handleKeydown(new KeyboardEvent("keydown", {key: "b"}));
 
     expect(clickSpy).not.toHaveBeenCalled();
   });

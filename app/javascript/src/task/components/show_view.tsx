@@ -1,35 +1,35 @@
-import type {ReactElement} from 'react';
-import React from 'react';
+import type {ReactElement} from "react";
+import React from "react";
 
-import TaskEditTitleForm from 'src/task/components/edit_title_form';
+import TaskEditTitleForm from "src/task/components/edit_title_form";
 import ParentTaskBreadCrumbs
-  from 'src/task/containers/parent_task_bread_crumbs';
-import SubTasksTable from 'src/task/components/sub_tasks_table';
-import {ToEnglish} from 'helpers';
-import type {UpdateTask} from 'src/task/action_creators';
+  from "src/task/containers/parent_task_bread_crumbs";
+import SubTasksTable from "src/task/components/sub_tasks_table";
+import {ToEnglish} from "helpers";
+import type {UpdateTask} from "src/task/action_creators";
 
 function repeatString(task: Task): string {
-  if (!task.repeatSeconds) { return 'Repeat: never'; }
+  if (!task.repeatSeconds) { return "Repeat: never"; }
 
   return `Repeat: every ${ToEnglish.seconds(task.repeatSeconds)}`;
 }
 
 function estimateString(task: Task): string {
-  if (!task.estimateSeconds) { return 'Estimate: none'; }
+  if (!task.estimateSeconds) { return "Estimate: none"; }
 
   return `Estimate: ${ToEnglish.seconds(task.estimateSeconds)}`;
 }
 
 function priorityString(task: Task): string {
-  if (!task.priority) { return 'Priority: none'; }
+  if (!task.priority) { return "Priority: none"; }
 
   return `Priority: ${task.priority}`;
 }
 
 function tagString(task: Task): string {
-  if (task.tagNames.length === 0) { return 'Tags: none'; }
+  if (task.tagNames.length === 0) { return "Tags: none"; }
 
-  return `Tags: ${task.tagNames.join(', ')}`;
+  return `Tags: ${task.tagNames.join(", ")}`;
 }
 
 export type Props = {

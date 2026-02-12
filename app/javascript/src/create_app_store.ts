@@ -1,7 +1,7 @@
-import {applyMiddleware, createStore} from 'redux';
-import thunk from 'redux-thunk';
+import {applyMiddleware, createStore} from "redux";
+import thunk from "redux-thunk";
 
-import appReducer from 'src/app_reducer';
+import appReducer from "src/app_reducer";
 
 function createAppStore() {
   return createStore(appReducer, applyMiddleware(thunk));

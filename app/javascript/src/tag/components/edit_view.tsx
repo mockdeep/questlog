@@ -1,11 +1,11 @@
-import autobind from 'class-autobind';
-import type {SyntheticEvent, ReactElement} from 'react';
-import React from 'react';
-import update from 'immutability-helper';
-import {uniqWith, isEqual} from 'lodash';
+import autobind from "class-autobind";
+import type {SyntheticEvent, ReactElement} from "react";
+import React from "react";
+import update from "immutability-helper";
+import {uniqWith, isEqual} from "lodash";
 
-import AuthenticityToken from 'src/_common/components/authenticity_token';
-import RuleRow from 'src/tag/components/rule_row';
+import AuthenticityToken from "src/_common/components/authenticity_token";
+import RuleRow from "src/tag/components/rule_row";
 
 export type Props = {
   tag: Tag | undefined;
@@ -50,7 +50,7 @@ class TagEditView extends React.Component<Props, State> {
   ruleRow(rule: TagRule, index: number): ReactElement {
     const keyParts: string[] = Object.values(rule);
     keyParts.push(index.toString());
-    const key: string = keyParts.join('-');
+    const key: string = keyParts.join("-");
 
     return (
       <RuleRow
@@ -84,7 +84,7 @@ class TagEditView extends React.Component<Props, State> {
   validateAndSave(event: SyntheticEvent): void {
     if (this.hasDuplicateRules()) {
       // eslint-disable-next-line no-alert
-      if (!confirm('There are duplicate rules. Remove extras?')) {
+      if (!confirm("There are duplicate rules. Remove extras?")) {
         event.preventDefault();
         return;
       }
@@ -97,7 +97,7 @@ class TagEditView extends React.Component<Props, State> {
 
   addRule(): void {
     const {rules} = this.state;
-    const newRule: TagRule = {field: 'estimateSeconds', check: 'isBlank'};
+    const newRule: TagRule = {field: "estimateSeconds", check: "isBlank"};
 
     this.setState({rules: rules.concat(newRule)});
   }
@@ -113,8 +113,8 @@ class TagEditView extends React.Component<Props, State> {
       <div>
         {`Editing tag ${tag.name}`}
         <br />
-        <a href='/tags'>{'Back to tags list'}</a>
-        <h2>{'Rules'}</h2>
+        <a href='/tags'>{"Back to tags list"}</a>
+        <h2>{"Rules"}</h2>
         {
           `Tag will include all tasks that match one or more of the following
             rules:`

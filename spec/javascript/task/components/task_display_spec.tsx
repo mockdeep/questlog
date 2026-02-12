@@ -1,9 +1,9 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from "react";
+import {shallow} from "enzyme";
 
-import TaskDisplay from 'src/task/components/task_display';
+import TaskDisplay from "src/task/components/task_display";
 
-import {makeTask} from '_test_helpers/factories';
+import {makeTask} from "_test_helpers/factories";
 
 const task = makeTask({tagIds: [1]});
 const props = {
@@ -16,9 +16,9 @@ const props = {
   updateTask: vi.fn(),
 };
 
-it('renders TagButtons', () => {
+it("renders TagButtons", () => {
   const component = shallow(<TaskDisplay {...props} />);
-  const tagButtonsContainer = component.find('Connect(TagButtons)');
+  const tagButtonsContainer = component.find("Connect(TagButtons)");
 
-  expect(tagButtonsContainer).toHaveProp('currentTagIds', task.tagIds);
+  expect(tagButtonsContainer).toHaveProp("currentTagIds", task.tagIds);
 });

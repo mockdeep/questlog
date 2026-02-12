@@ -2,16 +2,16 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import {application} from './application';
+import {application} from "./application";
 
-import LayoutController from './layout_controller';
-application.register('layout', LayoutController);
+import LayoutController from "./layout_controller";
+application.register("layout", LayoutController);
 
-import DialogController from './dialog_controller';
-application.register('dialog', DialogController);
+import DialogController from "./dialog_controller";
+application.register("dialog", DialogController);
 
-import HotkeysController from './hotkeys_controller';
-application.register('hotkeys', HotkeysController);
+import HotkeysController from "./hotkeys_controller";
+application.register("hotkeys", HotkeysController);
 
-import ReactController from './react_controller';
-application.register('react', ReactController);
+import ReactController from "./react_controller";
+application.register("react", ReactController);
