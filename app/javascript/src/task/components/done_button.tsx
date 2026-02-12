@@ -1,13 +1,13 @@
 import autobind from "class-autobind";
+import {Component} from "react";
 import type {ReactElement} from "react";
-import React from "react";
 
 type Props = {
   completeTask: (taskId: number) => void,
   task: Task,
 };
 
-class DoneButton extends React.Component<Props, never> {
+class DoneButton extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

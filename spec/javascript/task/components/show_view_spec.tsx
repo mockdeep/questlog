@@ -1,4 +1,4 @@
-import React from "react";
+import type {ReactElement} from "react";
 import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 
@@ -15,7 +15,7 @@ const props: Props = {
   subTasks: [],
 };
 
-function renderWithStore(ui: React.ReactElement): ReturnType<typeof render> {
+function renderWithStore(ui: ReactElement): ReturnType<typeof render> {
   return render(<Provider store={createAppStore()}>{ui}</Provider>);
 }
 

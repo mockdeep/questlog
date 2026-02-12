@@ -1,4 +1,3 @@
-import React from "react";
 import {render, screen} from "@testing-library/react";
 
 import type {Props} from "src/task/components/parent_list_item";

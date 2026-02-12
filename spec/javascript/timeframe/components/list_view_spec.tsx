@@ -11,7 +11,6 @@ vi.mock("src/timeframe/store", () => {
   };
 });
 
-import React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import TimeframeListView from "src/timeframe/components/list_view";

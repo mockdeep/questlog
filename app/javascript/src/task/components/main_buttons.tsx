@@ -1,5 +1,3 @@
-import React from "react";
-
 import DoneButton from "src/task/components/done_button";
 import PostponeButton from "src/task/components/postpone_button";
 

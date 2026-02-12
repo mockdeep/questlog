@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
 import type {ChangeEvent, ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 function isPostponing(task: Task): boolean {
   return task.loadingState === "postponing";
@@ -36,7 +36,7 @@ export type Props = {
   task: Task,
 };
 
-class PostponeButton extends React.Component<Props, never> {
+class PostponeButton extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

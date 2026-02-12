@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
 import type {ChangeEvent, MouseEvent, ReactElement} from "react";
-import React from "react";
+import {PureComponent} from "react";
 import {map} from "lodash";
 
 import {grab, assert} from "helpers";
@@ -26,7 +26,7 @@ type State = {
   timeframeClicked: boolean;
 };
 
-class TaskRow extends React.PureComponent<Props, State> {
+class TaskRow extends PureComponent<Props, State> {
   domNode: HTMLTableRowElement | undefined;
 
   constructor(props: Props) {

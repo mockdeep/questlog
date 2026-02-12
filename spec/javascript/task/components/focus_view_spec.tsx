@@ -6,7 +6,7 @@ vi.mock("helpers/request", () => {
 
 import type {Mock} from "vitest";
 
-import React from "react";
+import type {ReactElement} from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 
@@ -27,7 +27,7 @@ function noop(): void {
   // Intentionally empty
 }
 
-function renderWithStore(ui: React.ReactElement) {
+function renderWithStore(ui: ReactElement) {
   return render(<Provider store={createAppStore()}>{ui}</Provider>);
 }
 

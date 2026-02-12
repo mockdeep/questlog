@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
+import {Component} from "react";
 import type {ReactElement} from "react";
-import React from "react";
 
 export type Props = {
   current: boolean,
@@ -9,7 +9,7 @@ export type Props = {
   tag: Tag,
 };
 
-class TagButton extends React.Component<Props, never> {
+class TagButton extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

@@ -1,7 +1,7 @@
 import autobind from "class-autobind";
 import classnames from "classnames";
 import type {ChangeEvent, ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 
 import TaskCheckbox from "src/task/components/checkbox";
 import type {UpdateTask} from "src/task/action_creators";
@@ -11,7 +11,7 @@ type Props = {
   updateTask: UpdateTask,
 };
 
-class TaskLeafListItem extends React.Component<Props, never> {
+class TaskLeafListItem extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

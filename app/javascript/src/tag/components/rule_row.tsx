@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
+import {Component} from "react";
 import type {ChangeEvent, MouseEvent, ReactElement} from "react";
-import React from "react";
 
 import {grab} from "helpers";
 
@@ -28,7 +28,7 @@ type Props = {
   updateFieldValue: (index: number, value: TagRuleField) => void,
 };
 
-class RuleRow extends React.Component<Props, never> {
+class RuleRow extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
 import type {ReactElement} from "react";
-import React from "react";
+import {Component} from "react";
 import update from "immutability-helper";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {DndProvider} from "react-dnd";
@@ -38,7 +38,7 @@ type State = {
   pendingTasks: Task[];
 };
 
-class TaskListView extends React.Component<Props, State> {
+class TaskListView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 

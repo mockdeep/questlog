@@ -1,5 +1,5 @@
 import autobind from "class-autobind";
-import React from "react";
+import {Component} from "react";
 import type {ReactElement} from "react";
 
 import {ToEnglish, assert} from "helpers";
@@ -24,7 +24,7 @@ type State = {
   timeframes: Timeframe[];
 };
 
-class TimeframeListView extends React.Component<Props, State> {
+class TimeframeListView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {timeframes: [], medianProductivity: null, loading: true};

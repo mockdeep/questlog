@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
 import type {ChangeEvent, ReactElement} from "react";
-import React from "react";
+import {PureComponent} from "react";
 import type {DragSourceConnector, DragSourceMonitor, DropTargetConnector,
   DropTargetMonitor,
   ConnectDragSource, ConnectDropTarget} from "react-dnd";
@@ -68,7 +68,7 @@ function targetCollect(connect: DropTargetConnector) {
   return {connectDropTarget: connect.dropTarget()};
 }
 
-class DraggableTaskRow extends React.PureComponent<Props, never> {
+class DraggableTaskRow extends PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);

@@ -1,5 +1,3 @@
-import React from "react";
-
 const TABLE_HEADERS = (
   <thead>
     <tr className='tasks-table__header-row'>

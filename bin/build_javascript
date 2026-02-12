@@ -19,6 +19,7 @@ export NODE_PATH="$NODE_PATH:vendor/assets/javascripts:app/"
 pnpm esbuild app/javascript/packs/*.* \
   --bundle \
   --format=iife \
+  --jsx=automatic \
   --loader:.png=dataurl \
   --outdir=app/assets/builds \
   --sourcemap \

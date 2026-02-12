@@ -1,6 +1,6 @@
 import autobind from "class-autobind";
+import {Component} from "react";
 import type {ReactElement} from "react";
-import React from "react";
 
 import TaskNestedList from "src/task/components/nested_list";
 import type {UpdateTask} from "src/task/action_creators";
@@ -11,7 +11,7 @@ type Props = {
   updateTask: UpdateTask,
 };
 
-class TaskTreeView extends React.Component<Props, never> {
+class TaskTreeView extends Component<Props, never> {
   constructor(props: Props) {
     super(props);
     autobind(this);
