@@ -12,7 +12,6 @@ export default defineConfig({
       "controllers": path.resolve(__dirname, "app/javascript/controllers"),
       "javascript": path.resolve(__dirname, "app/javascript"),
       "packs": path.resolve(__dirname, "app/javascript/packs"),
-      "react-dnd": path.resolve(__dirname, "node_modules/react-dnd/dist/cjs"),
     },
   },
   test: {
