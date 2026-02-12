@@ -84,7 +84,7 @@ type TaskMeta = {
 type AjaxTask = {
   postpone: number;
   done: boolean;
-  priority: number;
+  priority: number | null;
   timeframe: string;
   title: string;
 };

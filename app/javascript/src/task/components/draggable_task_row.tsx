@@ -1,115 +1,61 @@
-import autobind from "class-autobind";
-import type {ChangeEvent, ReactElement} from "react";
-import {PureComponent} from "react";
-import type {DragSourceConnector, DragSourceMonitor, DropTargetConnector,
-  DropTargetMonitor,
-  ConnectDragSource, ConnectDropTarget} from "react-dnd";
-import {
-  DragSource as dragSource, DropTarget as dropTarget,
-} from "react-dnd";
+import {memo, useCallback} from "react";
+import type {ReactElement} from "react";
+import {useDrag, useDrop} from "react-dnd";
 
 import TaskRow from "src/task/components/task_row";
-import {assert} from "helpers";
 import type {UpdateTask} from "src/task/action_creators";
 
-type DragProps = {
-  connectDragSource: ConnectDragSource,
-  connectDropTarget: ConnectDropTarget,
-  isDragging: boolean,
-};
-
-type OwnProps = {
+type Props = {
   deleteTask: (taskId: number) => void,
   moveTask: (id: number, afterId: number) => void;
-  saveTaskPositions: (component: DraggableTaskRow) => void,
+  saveTaskPositions: (taskId: number) => void,
   task: Task,
   updateTask: UpdateTask,
 };
 
-type Props = DragProps & OwnProps;
+type DragItem = {id: number};
 
-type MonitorItem = { item: { id: number } };
+function DraggableTaskRow({
+  deleteTask,
+  moveTask,
+  saveTaskPositions,
+  task,
+  updateTask,
+}: Props): ReactElement {
+  const [{isDragging}, drag] = useDrag({
+    collect: (monitor) => {
+      return {isDragging: monitor.isDragging()};
+    },
+    end: () => { saveTaskPositions(task.id); },
+    item: (): DragItem => {
+      return {id: task.id};
+    },
+    type: "task",
+  });
 
-const taskSource = {
-  beginDrag(props: OwnProps): MonitorItem {
-    const {task} = props;
+  const [, drop] = useDrop({
+    accept: "task",
+    hover: (item: DragItem) => { moveTask(item.id, task.id); },
+  });
 
-    return {item: {id: task.id}};
-  },
-
-  endDrag(
-    {saveTaskPositions}: OwnProps,
-    _monitor: DragSourceMonitor,
-    component: DraggableTaskRow,
-  ): void {
-    saveTaskPositions(component);
-  },
-};
-
-const taskTarget = {
-  hover({moveTask, task}: OwnProps, monitor: DropTargetMonitor): void {
-    const draggedId = monitor.getItem<MonitorItem>().item.id;
-
-    moveTask(draggedId, task.id);
-  },
-};
-
-function sourceCollect(
-  connect: DragSourceConnector,
-  monitor: DragSourceMonitor,
-) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  };
-}
-
-function targetCollect(connect: DropTargetConnector) {
-  return {connectDropTarget: connect.dropTarget()};
-}
-
-class DraggableTaskRow extends PureComponent<Props, never> {
-  constructor(props: Props) {
-    super(props);
-    autobind(this);
-  }
-
-  updatePriority(event: ChangeEvent<HTMLSelectElement>): void {
-    const {task, updateTask} = this.props;
-
-    updateTask(task.id, {priority: parseInt(event.target.value, 10)});
-  }
-
-  bindDragAndDrop(component: TaskRow): void {
+  const bindRef = useCallback((component: TaskRow | null) => {
     if (!component) { return; }
-
     const {domNode} = component;
-    const {connectDragSource, connectDropTarget} = this.props;
+    if (domNode) {
+      drag(domNode);
+      drop(domNode);
+    }
+  }, [drag, drop]);
 
-    connectDropTarget(assert(domNode));
-    connectDragSource(assert(domNode));
-  }
-
-  render(): ReactElement {
-    const {
-      deleteTask,
-      isDragging,
-      task,
-      updateTask,
-    } = this.props;
-
-    return (
-      <TaskRow
-        deleteTask={deleteTask}
-        isDragging={isDragging}
-        task={task}
-        updateTask={updateTask}
-        ref={this.bindDragAndDrop}
-      />
-    );
-  }
+  return (
+    <TaskRow
+      deleteTask={deleteTask}
+      isDragging={isDragging}
+      task={task}
+      updateTask={updateTask}
+      ref={bindRef}
+    />
+  );
 }
 
-export default dropTarget("task", taskTarget, targetCollect)(
-  dragSource("task", taskSource, sourceCollect)(DraggableTaskRow),
-);
+export default memo(DraggableTaskRow);
