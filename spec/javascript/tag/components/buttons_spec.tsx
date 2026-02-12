@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import type {Props} from "src/tag/components/buttons";
 import TagButtons from "src/tag/components/buttons";
@@ -13,15 +13,15 @@ const tags = [
 const props: Props = {tags, currentTagIds: []};
 
 it("renders tag buttons", () => {
-  const component = shallow(<TagButtons {...props} />);
+  render(<TagButtons {...props} />);
 
-  expect(component.find("TagButton").at(0)).toHaveProp("tag", tags[0]);
-  expect(component.find("TagButton").at(1)).toHaveProp("tag", tags[1]);
+  expect(screen.getByRole("link", {name: /home/u})).toBeInTheDocument();
+  expect(screen.getByRole("link", {name: /work/u})).toBeInTheDocument();
 });
 
 it("passes down active when tag slug matches the selected tag slug", () => {
-  const component = shallow(<TagButtons {...props} selectedTagSlug={"work"} />);
+  render(<TagButtons {...props} selectedTagSlug={"work"} />);
 
-  expect(component.find("TagButton").at(0)).toHaveProp("isActive", false);
-  expect(component.find("TagButton").at(1)).toHaveProp("isActive", true);
+  expect(screen.getByRole("link", {name: /home/u})).not.toHaveClass("active");
+  expect(screen.getByRole("link", {name: /work/u})).toHaveClass("active");
 });

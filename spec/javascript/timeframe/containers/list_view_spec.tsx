@@ -1,15 +1,28 @@
+function noop(): void {
+  // Never resolves
+}
+
+vi.mock("src/timeframe/store", () => {
+  return {
+    "default": {
+      getAll: vi.fn().mockReturnValue(new Promise(noop)),
+      subscribe: vi.fn(),
+    },
+  };
+});
+
 import React from "react";
 import {Provider} from "react-redux";
-import {mount} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import createAppStore from "src/create_app_store";
 import TimeframeListViewContainer from "src/timeframe/containers/list_view";
 
 it("wraps the TimeframeListView component", () => {
   const store = createAppStore();
-  const container = mount(
+  render(
     <Provider store={store}><TimeframeListViewContainer /></Provider>,
   );
 
-  expect(container.find("TimeframeListView")).toHaveLength(1);
+  expect(screen.getByText("Loading Timeframes...")).toBeInTheDocument();
 });

@@ -1,9 +1,26 @@
+import type {Mock} from "vitest";
+
+import TimeframeStore from "src/timeframe/store";
+
+vi.mock("src/timeframe/store", () => {
+  return {
+    "default": {
+      getAll: vi.fn(),
+      subscribe: vi.fn(),
+    },
+  };
+});
+
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen, waitFor} from "@testing-library/react";
 
 import TimeframeListView from "src/timeframe/components/list_view";
 
 import {makeTask, makeTimeframe} from "_test_helpers/factories";
+
+function noop(): void {
+  // Never resolves
+}
 
 const props = {
   deleteTask: vi.fn(),
@@ -12,25 +29,29 @@ const props = {
 };
 
 it("renders a loading message before content has been loaded", () => {
-  const component = shallow(<TimeframeListView {...props} />);
+  (TimeframeStore.getAll as Mock).mockReturnValue(new Promise(noop));
 
-  expect(component).toHaveText("Loading Timeframes...");
+  render(<TimeframeListView {...props} />);
+
+  expect(screen.getByText("Loading Timeframes...")).toBeInTheDocument();
 });
 
-it("renders the current median productivity when loaded", () => {
+it("renders the current median productivity when loaded", async () => {
   const input: TimeframeData =
     {timeframes: [], meta: {medianProductivity: 4456}};
 
-  const component = shallow(<TimeframeListView {...props} />);
-  (component.instance() as TimeframeListView).updateTimeframes(input);
-  component.update();
+  (TimeframeStore.getAll as Mock).mockResolvedValue(input);
+
+  render(<TimeframeListView {...props} />);
 
   const expectedMessage = "Median Productivity: 1 hour, 14 minutes per day";
 
-  expect(component).toIncludeText(expectedMessage);
+  await waitFor(() => {
+    expect(screen.getByText(expectedMessage)).toBeInTheDocument();
+  });
 });
 
-it("renders the given timeframes for the user", () => {
+it("renders the given timeframes for the user", async () => {
   const timeframe: Timeframe = makeTimeframe({
     name: "inbox",
     currentTasks: [makeTask({title: "do laundry"})],
@@ -38,20 +59,27 @@ it("renders the given timeframes for the user", () => {
   });
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-  const component = shallow(<TimeframeListView {...props} />);
-  (component.instance() as TimeframeListView).updateTimeframes(input);
-  component.update();
+  (TimeframeStore.getAll as Mock).mockResolvedValue(input);
 
-  expect(component.find("TimeframeSection")).toHaveProp("timeframe", timeframe);
+  render(<TimeframeListView {...props} />);
+
+  await waitFor(() => {
+    expect(screen.getByText("do laundry")).toBeInTheDocument();
+  });
 });
 
-it("does not render empty timeframes", () => {
+it("does not render empty timeframes", async () => {
   const timeframe = makeTimeframe();
   const input = {timeframes: [timeframe], meta: {medianProductivity: 300}};
 
-  const component = shallow(<TimeframeListView {...props} />);
-  (component.instance() as TimeframeListView).updateTimeframes(input);
-  component.update();
+  (TimeframeStore.getAll as Mock).mockResolvedValue(input);
 
-  expect(component.find("TimeframeSection")).not.toExist();
+  render(<TimeframeListView {...props} />);
+
+  await waitFor(() => {
+    expect(screen.getByText(/Median Productivity/u)).toBeInTheDocument();
+  });
+
+  // No timeframe section should be rendered for empty timeframes
+  expect(screen.queryByRole("table")).not.toBeInTheDocument();
 });

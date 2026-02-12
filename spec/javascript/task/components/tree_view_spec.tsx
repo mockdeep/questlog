@@ -1,13 +1,13 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import TaskTreeView from "src/task/components/tree_view";
 
 import {makeTask} from "_test_helpers/factories";
 
 const parentTask = makeTask({title: "I am the parent"});
-const childTask = makeTask();
-const tasksByParentId = {[parentTask.id]: [childTask]};
+const childTask = makeTask({title: "I am the child"});
+const tasksByParentId = {[parentTask.id]: [childTask], [childTask.id]: []};
 const updateTask = vi.fn();
 const props = {
   tasks: [parentTask],
@@ -16,11 +16,8 @@ const props = {
 };
 
 it("renders a nested task list for each task", () => {
-  const component = shallow(<TaskTreeView {...props} />);
-  const nestedList = component.find("TaskNestedList");
+  render(<TaskTreeView {...props} />);
 
-  expect(nestedList).toHaveLength(1);
-  expect(nestedList).toHaveProp("tasks", [parentTask]);
-  expect(nestedList).toHaveProp("tasksByParentId", tasksByParentId);
-  expect(nestedList).toHaveProp("updateTask", updateTask);
+  expect(screen.getByText("I am the parent")).toBeInTheDocument();
+  expect(screen.getByText("I am the child")).toBeInTheDocument();
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -14,32 +14,35 @@ const props: Props = {
 };
 
 it("renders a table row", () => {
-  const component = shallow(<TaskRow {...props} />);
+  const el = <table><tbody><TaskRow {...props} /></tbody></table>;
+  const {container} = render(el);
 
-  expect(component.find("tr")).toHaveClassName("tasks-table__row");
+  expect(container.querySelector("tr")).toHaveClass("tasks-table__row");
 });
 
 it("renders the timeframe selector", () => {
-  const component = shallow(<TaskRow {...props} />);
+  const el = <table><tbody><TaskRow {...props} /></tbody></table>;
+  const {container} = render(el);
 
-  expect(component.find("select.timeframe-select")).toExist();
+  const select = container.querySelector("select.timeframe-select");
+  expect(select).toBeInTheDocument();
 });
 
 it("renders an undo button when task is pending", () => {
   const task = makeTask({pending: true});
-  const component = shallow(<TaskRow {...props} task={task} />);
+  render(<table><tbody><TaskRow {...props} task={task} /></tbody></table>);
 
-  const buttons = component.find("button");
+  const buttons = screen.getAllByRole("button");
   expect(buttons).toHaveLength(3);
-  expect(buttons.at(1)).toHaveProp("children", "UNDO");
+  expect(screen.getByRole("button", {name: "UNDO"})).toBeInTheDocument();
 });
 
 it("does not render an undo button when task is not pending", () => {
   const task = makeTask({pending: false});
-  const component = shallow(<TaskRow {...props} task={task} />);
+  render(<table><tbody><TaskRow {...props} task={task} /></tbody></table>);
 
-  const buttons = component.find("button");
+  const buttons = screen.getAllByRole("button");
   expect(buttons).toHaveLength(2);
-  expect(buttons.at(0)).toHaveProp("children", "DONE");
-  expect(buttons.at(1)).toHaveProp("children", "DELETE");
+  expect(screen.getByRole("button", {name: "DONE"})).toBeInTheDocument();
+  expect(screen.getByRole("button", {name: "DELETE"})).toBeInTheDocument();
 });

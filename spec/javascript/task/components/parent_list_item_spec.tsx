@@ -1,9 +1,8 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import type {Props} from "src/task/components/parent_list_item";
 import TaskParentListItem from "src/task/components/parent_list_item";
-import {assert} from "helpers";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -15,38 +14,33 @@ const props: Props = {
 };
 
 it("renders the task title", () => {
-  const component = shallow(<TaskParentListItem {...props} />);
+  render(<TaskParentListItem {...props} />);
 
-  expect(component.find(".task-item__title")).toHaveText("foo title");
+  expect(screen.getByText("foo title")).toBeInTheDocument();
 });
 
 it("renders a new nested list", () => {
-  const component = shallow(<TaskParentListItem {...props} />);
+  const {container} = render(<TaskParentListItem {...props} />);
 
-  expect(component.find("TaskNestedList")).toHaveLength(1);
+  expect(container.querySelector(".task-tree")).toBeInTheDocument();
 });
 
 it("renders a disabled checkbox for the task", () => {
-  const component = shallow(<TaskParentListItem {...props} />);
+  render(<TaskParentListItem {...props} />);
 
-  const checkbox = component.find("TaskCheckbox");
-
-  expect(checkbox).toHaveProp("task", task);
-  expect(checkbox).toHaveProp("disabled", true);
+  expect(screen.getByRole("checkbox")).toBeDisabled();
 });
 
 it("adds a priority class to title when task has a priority", () => {
   const overrides = {task: {...task, priority: 2}};
-  const component = shallow(<TaskParentListItem {...props} {...overrides} />);
+  render(<TaskParentListItem {...props} {...overrides} />);
 
-  const className = assert(component.find("span").prop("className"));
-  const titleClasses = className.split(" ");
-  expect(titleClasses).toContain("task-item__title--priority-2");
+  const title = screen.getByText("foo title");
+  expect(title).toHaveClass("task-item__title--priority-2");
 });
 
 it("does not add a priority class to title when task has no priority", () => {
-  const component = shallow(<TaskParentListItem {...props} />);
+  render(<TaskParentListItem {...props} />);
 
-  const titleClass = component.find("span").prop("className");
-  expect(titleClass).not.toMatch("priority");
+  expect(screen.getByText("foo title").className).not.toMatch("priority");
 });

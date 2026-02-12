@@ -1,7 +1,9 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {render, screen} from "@testing-library/react";
+import {Provider} from "react-redux";
 
 import TaskTitle from "src/task/components/task_title";
+import createAppStore from "src/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 
@@ -9,8 +11,9 @@ const task = makeTask();
 const props = {deleteTask: vi.fn(), task};
 
 it("renders an editable title form", () => {
-  const component = shallow(<TaskTitle {...props} />);
-  const editTitleForm = component.find("TaskEditTitleForm");
+  render(<Provider store={createAppStore()}>
+    <TaskTitle {...props} />
+  </Provider>);
 
-  expect(editTitleForm).toHaveProp("task", task);
+  expect(screen.getByDisplayValue(task.title)).toBeInTheDocument();
 });
