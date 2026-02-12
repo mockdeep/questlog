@@ -24,10 +24,10 @@ class TaskEditTitleForm extends Component<Props, State> {
     this.state = {focused: false};
   }
 
-  UNSAFE_componentWillReceiveProps(newProps: Props): void {
+  componentDidUpdate(prevProps: Props): void {
     const {task} = this.props;
 
-    if (newProps.task.id !== task.id) {
+    if (prevProps.task.id !== task.id) {
       this.setState({focused: false});
     }
   }
