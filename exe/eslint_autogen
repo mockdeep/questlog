@@ -13,7 +13,11 @@ HEADING = <<~COMMENTS.freeze
 COMMENTS
 MAX_FILES_FOR_OVERRIDES = 4_000_000
 
+<<<<<<< HEAD
 File.write(TODO_FILE_PATH, "export default [];\n")
+=======
+File.write(TODO_FILE_PATH, "export default []")
+>>>>>>> a78f4bae (fix autogen scripts (#1337))
 json = `pnpm --silent eslint --format json`
 results = JSON.parse(json)
 

@@ -79,6 +79,49 @@ commands:
 
       - run:
           name: Database setup
+<<<<<<< HEAD
+=======
+          command: bin/rails db:setup --trace
+
+      - run:
+          name: Typescript
+          command: pnpm tscheck
+
+      - run:
+          name: Find Unused ESLint Rules
+          command: pnpm eslint_find_unused_rules
+
+      - run:
+          name: ESLint
+          command: pnpm eslint
+
+      - run:
+          name: Verify ESLint Autogen
+          command: bundle exec exe/eslint_autogen
+
+      - run:
+          name: Vitest
+          command: pnpm vitest run --coverage
+
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman
+
+      - run:
+          name: Stylelint
+          command: pnpm stylelint
+
+      - run:
+          name: Verify Stylelint Autogen
+          command: bundle exec exe/stylelint_autogen
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
+          name: ✨ 🌈 ✨ Run Unit Tests ✨ 🌈 ✨
+>>>>>>> a78f4bae (fix autogen scripts (#1337))
           command: |
             bin/rails db:create
             bin/rails db:schema:load
