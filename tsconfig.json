@@ -37,10 +37,7 @@
     "coverage",
     "node_modules",
     "vendor",
-    "public",
-    "eslint.config.mts",
-    ".eslint_todo.mts",
-    "vitest.config.ts"
+    "public"
   ],
   "compileOnSave": false
 }
