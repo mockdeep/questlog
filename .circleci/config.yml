@@ -105,6 +105,9 @@ jobs:
     steps:
       - setup_environment
       - run:
+          name: Build CSS
+          command: pnpm build:css
+      - run:
           name: Run unit tests
           command: |
             bundle exec rspec --exclude-pattern "**/features/*_spec.rb"
@@ -121,6 +124,9 @@ jobs:
     executor: ruby_image
     steps:
       - setup_environment
+      - run:
+          name: Build CSS
+          command: pnpm build:css
       - run:
           name: Run feature tests
           command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/features

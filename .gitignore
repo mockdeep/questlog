@@ -20,6 +20,7 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 /public/assets
+/public/fonts
 .byebug_history
 .eslintcache
 /coverage

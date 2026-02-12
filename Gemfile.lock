@@ -78,8 +78,6 @@ GEM
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
-    autoprefixer-rails (10.4.21.0)
-      execjs (~> 2)
     base64 (0.3.0)
     bcrypt (3.1.21)
     better_errors (2.10.1)
@@ -90,9 +88,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.22.0)
       msgpack (~> 1.2)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -115,6 +110,8 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    cssbundling-rails (1.4.3)
+      railties (>= 6.0.0)
     dalli (4.3.1)
       logger
     date (3.5.1)
@@ -136,8 +133,6 @@ GEM
     faker (3.6.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.3)
-    font-awesome-sass (6.7.2)
-      sassc (~> 2.0)
     formatador (1.2.3)
       reline
     friendly_id (5.6.0)
@@ -246,7 +241,6 @@ GEM
     nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    normalize-rails (8.0.1)
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -389,16 +383,6 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     rubyzip (3.2.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     securerandom (0.4.1)
     selenium-webdriver (4.40.0)
       base64 (~> 0.2)
@@ -481,18 +465,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autoprefixer-rails
   bcrypt
   better_errors
   bootsnap
-  bootstrap-sass (= 3.4.1)
   capybara
   capybara-screenshot
+  cssbundling-rails
   dalli
   dotenv-rails
   factory_bot_rails
   faker
-  font-awesome-sass
   friendly_id
   gon
   guard
@@ -505,7 +487,6 @@ DEPENDENCIES
   junk_drawer
   listen
   newrelic_rpm
-  normalize-rails
   pg
   puma (~> 7.0)
   puma_worker_killer
@@ -520,7 +501,6 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  sass-rails
   selenium-webdriver
   shoulda-matchers
   sidekiq
@@ -529,6 +509,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen
+  sprockets-rails
   stimulus-rails
   stripe
   turbo-rails

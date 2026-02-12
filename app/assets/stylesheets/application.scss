@@ -1,8 +1,15 @@
-@import 'normalize-rails';
+@import 'normalize.css/normalize';
 @import './variables/colors';
 @import './variables/fonts';
-@import 'bootstrap';
-@import 'font-awesome';
+
+$icon-font-path: '/fonts/bootstrap/';
+
+@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+
+$fa-font-path: '/fonts/fontawesome';
+
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
 @import './brand';
 @import './common';
 @import './dialog';
