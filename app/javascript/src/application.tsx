@@ -7,8 +7,6 @@ Turbo.session.drive = false;
 
 $(() => $("[class^=flash-]").fadeOut(1500));
 
-// depends on global jQuery, so can't be imported, as that gets hoisted
-require("bootstrap-sass");
 require("jquery-ujs");
 
 Honeybadger.configure({
