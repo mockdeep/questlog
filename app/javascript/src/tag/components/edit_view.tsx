@@ -1,6 +1,7 @@
 import autobind from "class-autobind";
 import {Component} from "react";
 import type {SyntheticEvent, ReactElement} from "react";
+import {flushSync} from "react-dom";
 import update from "immutability-helper";
 import {uniqWith, isEqual} from "lodash";
 
@@ -24,12 +25,12 @@ class TagEditView extends Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps({tag: newTag}: Props): void {
+  componentDidUpdate(prevProps: Props): void {
     const {tag} = this.props;
 
-    if (!newTag || tag === newTag) { return; }
+    if (!tag || prevProps.tag === tag) { return; }
 
-    this.setState({rules: newTag.rules});
+    this.setState({rules: tag.rules});
   }
 
   updateFieldValue(index: number, value: TagRuleField): void {
@@ -91,7 +92,9 @@ class TagEditView extends Component<Props, State> {
 
       const uniqRules = this.uniqRules();
 
-      this.setState({rules: uniqRules});
+      flushSync(() => {
+        this.setState({rules: uniqRules});
+      });
     }
   }
 

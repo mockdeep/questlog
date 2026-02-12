@@ -1,4 +1,5 @@
-import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
+import type {Root} from "react-dom/client";
 import {Controller} from "@hotwired/stimulus";
 import {Provider} from "react-redux";
 
@@ -25,6 +26,8 @@ const COMPONENTS = {
 class ReactController extends Controller {
   componentNameValue!: string;
 
+  root!: Root;
+
   static values = {componentName: String};
 
   connect(): void {
@@ -33,14 +36,16 @@ class ReactController extends Controller {
 
     const Component = grab(COMPONENTS, this.componentNameValue);
 
-    ReactDOM.render(
-      <Provider store={appStore}>
-        <div>
-          <Component />
-        </div>
-      </Provider>,
-      this.element,
-    );
+    this.root = createRoot(this.element);
+    this.root.render(<Provider store={appStore}>
+      <div>
+        <Component />
+      </div>
+    </Provider>);
+  }
+
+  disconnect(): void {
+    this.root.unmount();
   }
 }
 

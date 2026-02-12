@@ -2,7 +2,7 @@ vi.mock("src/task/bulk_store");
 
 import {createRef} from "react";
 import type {RefObject} from "react";
-import {render, screen} from "@testing-library/react";
+import {act, render, screen} from "@testing-library/react";
 
 import BulkTaskStore from "src/task/bulk_store";
 import type {Props} from "src/task/components/list_view";
@@ -81,7 +81,9 @@ describe("moving a task when dragging", () => {
     // Verify initial order (header + 2 task rows)
     expect(rows).toHaveLength(3);
 
-    deref(ref).moveTask(task1.id, task2.id);
+    act(() => {
+      deref(ref).moveTask(task1.id, task2.id);
+    });
 
     const updatedRows = screen.getAllByRole("row");
     expect(updatedRows).toHaveLength(3);

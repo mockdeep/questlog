@@ -20,15 +20,22 @@ class TaskNestedList extends Component<Props, never> {
 
   taskListItem(task: Task): ReactElement {
     const {tasksByParentId, updateTask} = this.props;
-    const listItemProps = {key: task.id, task, updateTask};
 
     if (tasksByParentId[task.id].length === 0) {
-      return <TaskLeafListItem {...listItemProps} />;
+      return (
+        <TaskLeafListItem
+          key={task.id}
+          task={task}
+          updateTask={updateTask}
+        />
+      );
     }
 
     return (
       <TaskParentListItem
-        {...listItemProps}
+        key={task.id}
+        task={task}
+        updateTask={updateTask}
         tasksByParentId={tasksByParentId}
       />
     );
