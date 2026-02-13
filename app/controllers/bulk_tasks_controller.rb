@@ -23,6 +23,6 @@ class BulkTasksController < ApplicationController
   end
 
   def update_params
-    params.expect(bulk_task: [positions: []]).to_h.merge(user: current_user)
+    params.expect(bulk_task: [{ positions: [] }]).to_h.merge(user: current_user)
   end
 end
