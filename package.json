@@ -41,7 +41,7 @@
     "postcss": "a dep of stylelint-config-standard-scss, can probably be removed later"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@sinonjs/fake-timers": "^15.1.0",
     "@stylistic/eslint-plugin": "^5.8.0",
     "@testing-library/dom": "^10.4.0",
