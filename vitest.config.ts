@@ -1,7 +1,7 @@
 import {defineConfig} from "vitest/config";
 import path from "node:path";
 
-const root = __dirname;
+const root = import.meta.dirname;
 
 function appPath(subpath: string): string {
   return `${path.resolve(root, "app/javascript", subpath)}/`;
@@ -34,13 +34,13 @@ export default defineConfig({
         statements: 0,
       },
     },
-    globals: true,
     environment: "jsdom",
     environmentOptions: {
       jsdom: {
         url: "http://test.host",
       },
     },
+    globals: true,
     include: ["spec/javascript/**/*_spec.ts"],
     outputFile: {
       junit: "/tmp/test-results/junit.xml",
