@@ -101,6 +101,7 @@ describe("updateModels", () => {
   });
 
   it("sets median productivity on each timeframe", async () => {
+    (request as Mock).mockClear();
     const promise = TimeframeStore.getAll();
 
     expect(request).toHaveBeenCalledTimes(2);
@@ -120,28 +121,39 @@ describe("updateModels", () => {
   });
 
   it("sets the max number of minutes for each timeframe", async () => {
-    FakeTimers.install({now: new Date("July 20, 1969 00:20:18")});
+    const clock = FakeTimers.install({now: new Date("July 20, 1969 00:20:18")});
 
-    const promise = TimeframeStore.getAll();
+    try {
+      (request as Mock).mockClear();
+      const promise = TimeframeStore.getAll();
 
-    expect(request).toHaveBeenCalledTimes(2);
+      expect(request).toHaveBeenCalledTimes(2);
 
-    const [, secondCall] = (request as Mock).mock.calls;
-    secondCall[1].success({meta: {medianProductivity: 10800}});
+      const [, secondCall] = (request as Mock).mock.calls;
+      secondCall[1].success({meta: {medianProductivity: 10800}});
 
-    await promise;
+      await promise;
 
-    TimeframeStore.updateModels({tasks: []});
+      TimeframeStore.updateModels({tasks: []});
 
-    const {timeframes} = TimeframeStore.getState();
-    expect(timeframes).toHaveLength(8);
-    expect(timeframes[0]).toMatchObject({name: "inbox", minuteMax: Infinity});
-    expect(timeframes[1]).toMatchObject({name: "today", minuteMax: 180});
-    expect(timeframes[2]).toMatchObject({name: "week", minuteMax: 540});
-    expect(timeframes[3]).toMatchObject({name: "month", minuteMax: 450});
-    expect(timeframes[4]).toMatchObject({name: "quarter", minuteMax: 5490});
-    expect(timeframes[5]).toMatchObject({name: "year", minuteMax: 8280});
-    expect(timeframes[6]).toMatchObject({name: "lustrum", minuteMax: Infinity});
-    expect(timeframes[7]).toMatchObject({name: "decade", minuteMax: Infinity});
+      const {timeframes} = TimeframeStore.getState();
+      expect(timeframes).toHaveLength(8);
+      expect(timeframes[0]).toMatchObject({name: "inbox", minuteMax: Infinity});
+      expect(timeframes[1]).toMatchObject({name: "today", minuteMax: 180});
+      expect(timeframes[2]).toMatchObject({name: "week", minuteMax: 540});
+      expect(timeframes[3]).toMatchObject({name: "month", minuteMax: 450});
+      expect(timeframes[4]).toMatchObject({name: "quarter", minuteMax: 5490});
+      expect(timeframes[5]).toMatchObject(
+        {name: "year", minuteMax: 8280},
+      );
+      expect(timeframes[6]).toMatchObject(
+        {name: "lustrum", minuteMax: Infinity},
+      );
+      expect(timeframes[7]).toMatchObject(
+        {name: "decade", minuteMax: Infinity},
+      );
+    } finally {
+      clock.uninstall();
+    }
   });
 });

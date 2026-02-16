@@ -70,5 +70,7 @@ describe("TimeBalancer.baseBalances", () => {
       clock.setSystemTime(timestamp.valueOf());
       expect(TimeBalancer.baseBalances()).toEqual(expectedValue);
     });
+
+    clock.uninstall();
   });
 });
