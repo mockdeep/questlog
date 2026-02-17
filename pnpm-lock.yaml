@@ -11,6 +11,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/roboto':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource/roboto-condensed':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@fortawesome/fontawesome-free':
         specifier: ^7.2.0
         version: 7.2.0
@@ -551,6 +557,12 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@fontsource/roboto-condensed@5.2.8':
+    resolution: {integrity: sha512-M2OxXXGJQeif+LhxHjWiCEX3BHIYeZf64CcUTeh9AQFGp7DXo2UAXZiZUUOalVdOiuUtQSIi2CDHLDWFiyoECQ==}
+
+  '@fontsource/roboto@5.2.9':
+    resolution: {integrity: sha512-ZTkyHiPk74B/aj8BZWbsxD5Yu+Lq+nR64eV4wirlrac2qXR7jYk2h6JlLYuOuoruTkGQWNw2fMuKNavw7/rg0w==}
 
   '@fortawesome/fontawesome-free@7.2.0':
     resolution: {integrity: sha512-3DguDv/oUE+7vjMeTSOjCSG+KeawgVQOHrKRnvUuqYh1mfArrh7s+s8hXW3e4RerBA1+Wh+hBqf8sJNpqNrBWg==}
@@ -3371,6 +3383,10 @@ snapshots:
       levn: 0.4.1
 
   '@exodus/bytes@1.12.0': {}
+
+  '@fontsource/roboto-condensed@5.2.8': {}
+
+  '@fontsource/roboto@5.2.9': {}
 
   '@fortawesome/fontawesome-free@7.2.0': {}
 
