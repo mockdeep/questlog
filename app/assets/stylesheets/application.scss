@@ -1,10 +1,7 @@
 @import 'normalize.css/normalize';
 @import './variables/colors';
 @import './variables/fonts';
-
-$icon-font-path: '/fonts/bootstrap/';
-
-@import 'bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'bootstrap/dist/css/bootstrap';
 
 $fa-font-path: '/fonts/fontawesome';
 
