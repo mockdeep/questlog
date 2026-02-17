@@ -10,7 +10,7 @@ const operations = {
     return {params: {}};
   },
 
-  [SET](previousState: RouteState | null, payload: Payload) {
+  [SET](_previousState: RouteState | null, payload: Payload) {
     return payload;
   },
 };
