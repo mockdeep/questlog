@@ -179,7 +179,7 @@ class TaskRow extends PureComponent<Props, State> {
     this.domNode = domNode;
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {task} = this.props;
 
     return (

@@ -17,7 +17,7 @@ class TaskTreeView extends Component<Props, never> {
     autobind(this);
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {tasks, tasksByParentId, updateTask} = this.props;
     const listProps = {tasks, tasksByParentId, updateTask};
 

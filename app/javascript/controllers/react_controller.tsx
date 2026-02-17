@@ -28,9 +28,9 @@ class ReactController extends Controller {
 
   root!: Root;
 
-  static values = {componentName: String};
+  static override values = {componentName: String};
 
-  connect(): void {
+  override connect(): void {
     appStore.dispatch(fetchRoute());
     appStore.dispatch(fetchTasks());
 
@@ -44,7 +44,7 @@ class ReactController extends Controller {
     </Provider>);
   }
 
-  disconnect(): void {
+  override disconnect(): void {
     this.root.unmount();
   }
 }

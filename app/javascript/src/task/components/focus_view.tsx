@@ -91,7 +91,7 @@ class TaskFocusView extends Component<Props, State> {
     return <div><h2>{"No tasks! Try adding one below:"}</h2></div>;
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     return this.mainDisplay();
   }
 }

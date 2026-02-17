@@ -24,7 +24,7 @@ class TaskEditTitleForm extends Component<Props, State> {
     this.state = {focused: false};
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  override componentDidUpdate(prevProps: Props): void {
     const {task} = this.props;
 
     if (prevProps.task.id !== task.id) {
@@ -51,7 +51,7 @@ class TaskEditTitleForm extends Component<Props, State> {
     return classnames({"task-input": true, "hidden-border": !focused});
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {task} = this.props;
 
     return (

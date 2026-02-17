@@ -26,7 +26,7 @@ class TagButton extends Component<Props, never> {
     });
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {tag} = this.props;
     const {slug, name} = tag;
     const path = name === "All" ? "/" : `/tags/${slug}`;

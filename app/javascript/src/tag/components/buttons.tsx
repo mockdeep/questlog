@@ -47,7 +47,7 @@ class TagButtons extends Component<Props, never> {
     );
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     return (
       <div className='row'>
         <div className='col-md-12 tag-buttons'>{this.tagButtons()}</div>

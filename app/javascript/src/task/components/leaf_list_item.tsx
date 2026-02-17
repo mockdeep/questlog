@@ -35,7 +35,7 @@ class TaskLeafListItem extends Component<Props, never> {
     });
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {task} = this.props;
 
     return (

@@ -34,7 +34,7 @@ class DoneButton extends Component<Props, never> {
     return isMarkingDone ? "Marking done..." : "Done! Give me another!";
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     return (
       <input
         type='button'

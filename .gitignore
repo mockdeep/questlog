@@ -17,17 +17,21 @@
 /storage/*
 !/storage/.keep
 
-/app/assets/builds/*
-!/app/assets/builds/.keep
 /public/assets
-/public/fonts
 .byebug_history
-.eslintcache
-/coverage
-/node_modules
-npm-debug.log
-/public/packs
-/public/packs-test
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+spec/examples.txt
+/coverage/*
+
+/public/packs
+/public/packs-test
+/node_modules
+/app/assets/builds/*
+!/app/assets/builds/.keep
+tsconfig.tsbuildinfo
+.eslintcache
+
+# Ignore local environment variable files.
+.env.*.local

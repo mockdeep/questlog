@@ -70,7 +70,7 @@ class PostponeButton extends Component<Props, never> {
     return isPostponing(task) ? "Postponing..." : "Postpone for:";
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {disabled} = this.props;
 
     return (

@@ -31,7 +31,7 @@ class TimeframeListView extends Component<Props, State> {
     autobind(this);
   }
 
-  componentDidMount(): void {
+  override componentDidMount(): void {
     TimeframeStore.getAll().then((data: TimeframeData) => {
       this.updateTimeframes(data);
       TimeframeStore.subscribe(this.loadTasks);
@@ -93,7 +93,7 @@ class TimeframeListView extends Component<Props, State> {
     return timeframes.filter(timeframeHasTasks);
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {loading} = this.state;
 
     if (loading) {

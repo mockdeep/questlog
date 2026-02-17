@@ -28,7 +28,7 @@ class TaskParentListItem extends Component<Props, never> {
     });
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {task, tasksByParentId, updateTask} = this.props;
     const tasks = tasksByParentId[task.id];
     const listProps = {tasks, tasksByParentId, updateTask};

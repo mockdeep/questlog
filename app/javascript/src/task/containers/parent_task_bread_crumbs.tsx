@@ -16,7 +16,7 @@ type ContainerProps = {
 // ParentTaskBreadCrumbs renders ParentTaskBreadCrumbsContainer and vice versa
 // otherwise imports get funky
 class ParentTaskBreadCrumbs extends Component<ComponentProps, never> {
-  render(): ReactElement | null {
+  override render(): ReactElement | null {
     const {task} = this.props;
     if (!task) { return null; }
 
