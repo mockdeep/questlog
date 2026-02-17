@@ -5,20 +5,18 @@ mkdir -p public/fonts/fontawesome
 cp vendor/assets/fonts/*.ttf public/fonts/
 cp node_modules/@fortawesome/fontawesome-free/webfonts/* public/fonts/fontawesome/
 
-# Compile SCSS to CSS using Dart Sass
-# --load-path: resolve @import from node_modules
-# --quiet-deps: suppress deprecation warnings from third-party packages
-# --silence-deprecation=import: suppress @import deprecation (deferred to future migration)
-# $@: pass through additional arguments (useful for --watch)
-
 if [ "$RAILS_ENV" = "production" ]; then
-  STYLE="--style=compressed"
+  MINIFY="--minify"
 fi
 
-pnpm sass app/assets/stylesheets/application.scss:app/assets/builds/application.css \
-  --load-path=node_modules \
-  --quiet-deps \
-  --silence-deprecation=import \
-  --no-source-map \
-  ${STYLE:-} \
+pnpm esbuild app/assets/stylesheets/application.css \
+  --bundle \
+  --outfile=app/assets/builds/application.css \
+  --loader:.woff2=empty \
+  --loader:.ttf=empty \
+  --loader:.woff=empty \
+  --loader:.eot=empty \
+  --loader:.svg=empty \
+  --external:/fonts/* \
+  ${MINIFY:-} \
   "$@"
