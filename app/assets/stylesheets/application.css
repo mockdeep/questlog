@@ -1,0 +1,25 @@
+@import 'normalize.css/normalize.css';
+@import './variables/colors.css';
+@import './variables/fonts.css';
+@import 'bootstrap/dist/css/bootstrap.css';
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import './brand.css';
+@import './common.css';
+@import './dialog.css';
+@import './filters.css';
+@import './focus.css';
+@import './sidebar.css';
+@import './table.css';
+@import './tag.css';
+@import './timeframe.css';
+@import './tree.css';
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('/fonts/fontawesome/fa-solid-900.woff2') format('woff2'),
+    url('/fonts/fontawesome/fa-solid-900.ttf') format('truetype');
+}

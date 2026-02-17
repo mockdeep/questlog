@@ -21,17 +21,15 @@ gem "jsbundling-rails"
 gem "junk_drawer"
 gem "newrelic_rpm"
 gem "pg"
+gem "propshaft"
 gem "puma", "~> 7.0"
 gem "puma_worker_killer"
 gem "redis"
 gem "sidekiq"
 gem "skylight"
-gem "sprockets-rails"
 gem "stimulus-rails"
 gem "stripe"
 gem "turbo-rails"
-
-gem "uglifier"
 
 group :development do
   gem "better_errors"
