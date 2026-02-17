@@ -26,9 +26,9 @@ importers:
       a11y-dialog:
         specifier: ^8.1.5
         version: 8.1.5
-      bootstrap-sass:
-        specifier: 3.4.3
-        version: 3.4.3
+      bootstrap:
+        specifier: 3.4.1
+        version: 3.4.1
       class-autobind:
         specifier: ^0.1.4
         version: 0.1.4
@@ -1378,8 +1378,10 @@ packages:
   bidi-js@1.0.3:
     resolution: {integrity: sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==}
 
-  bootstrap-sass@3.4.3:
-    resolution: {integrity: sha512-vPgFnGMp1jWZZupOND65WS6mkR8rxhJxndT/AcMbqcq1hHMdkcH4sMPhznLzzoHOHkSCrd6J9F8pWBriPCKP2Q==}
+  bootstrap@3.4.1:
+    resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
+    engines: {node: '>=6'}
+    deprecated: This version of Bootstrap is no longer supported. Please upgrade to the latest version.
 
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -4234,7 +4236,7 @@ snapshots:
     dependencies:
       require-from-string: 2.0.2
 
-  bootstrap-sass@3.4.3: {}
+  bootstrap@3.4.1: {}
 
   brace-expansion@1.1.11:
     dependencies:
