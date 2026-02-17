@@ -25,7 +25,7 @@ class TaskCheckbox extends Component<Props, never> {
     });
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {checked, disabled, onChange, task} = this.props;
     const inputId = `complete-task-${task.id}`;
 

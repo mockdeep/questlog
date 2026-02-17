@@ -30,7 +30,7 @@ class DeleteButton extends Component<Props, never> {
     };
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     return <i {...this.rootOpts()} />;
   }
 }

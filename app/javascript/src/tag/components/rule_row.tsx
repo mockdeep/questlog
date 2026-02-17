@@ -82,7 +82,7 @@ class RuleRow extends Component<Props, never> {
     deleteRule(index);
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     // value = SELECTED_CHECK || FIRST_CHECK_COMPATIBLE_WITH_FIELD;
     // <dropdown enabled={isPreviousDropdownSelected}>{value}</dropdown>
     // {needsValue ? <dropdown>{AVAILABLE_VALUES}</dropdown> : null}

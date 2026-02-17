@@ -1,13 +1,13 @@
 import {Controller} from "@hotwired/stimulus";
 
 class LayoutController extends Controller {
-  static targets = ["expandedSidebar", "collapsedSidebar"];
+  static override targets = ["expandedSidebar", "collapsedSidebar"];
 
   expandedSidebarTarget!: HTMLElement;
 
   collapsedSidebarTarget!: HTMLElement;
 
-  connect(): void {
+  override connect(): void {
     this.updateScreenSize();
   }
 

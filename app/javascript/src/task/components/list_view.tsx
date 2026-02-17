@@ -47,7 +47,7 @@ class TaskListView extends Component<Props, State> {
     autobind(this);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  override componentDidUpdate(prevProps: Props): void {
     const {currentTasks, pendingTasks} = this.props;
 
     if (
@@ -166,7 +166,7 @@ class TaskListView extends Component<Props, State> {
     );
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     return (
       <DndProvider backend={HTML5Backend}>
         {this.currentTasksTable()}

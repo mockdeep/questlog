@@ -25,7 +25,7 @@ class TagEditView extends Component<Props, State> {
     };
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  override componentDidUpdate(prevProps: Props): void {
     const {tag} = this.props;
 
     if (!tag || prevProps.tag === tag) { return; }
@@ -105,7 +105,7 @@ class TagEditView extends Component<Props, State> {
     this.setState({rules: rules.concat(newRule)});
   }
 
-  render(): ReactElement | null {
+  override render(): ReactElement | null {
     const {tag} = this.props;
 
     if (!tag) { return null; }

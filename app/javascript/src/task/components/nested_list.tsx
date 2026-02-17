@@ -41,7 +41,7 @@ class TaskNestedList extends Component<Props, never> {
     );
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {tasks} = this.props;
 
     return <ul className='task-tree'>{tasks.map(this.taskListItem)}</ul>;

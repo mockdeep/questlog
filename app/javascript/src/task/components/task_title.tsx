@@ -56,7 +56,7 @@ class TaskTitle extends Component<Props, never> {
     );
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {deleteTask, task} = this.props;
 
     return (

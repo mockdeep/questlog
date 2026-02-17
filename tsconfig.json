@@ -1,7 +1,6 @@
 {
   "//": {
     "exactOptionalPropertyTypes": true,
-    "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedParameters": true
   },
@@ -16,6 +15,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "paths": {

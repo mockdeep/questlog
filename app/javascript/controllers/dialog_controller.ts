@@ -3,7 +3,7 @@ import {Controller} from "@hotwired/stimulus";
 
 // rename to DialogController
 class DialogController extends Controller<HTMLElement> {
-  connect(): void {
+  override connect(): void {
     new A11yDialog(this.element).show();
   }
 }

@@ -3,7 +3,7 @@ import {Controller} from "@hotwired/stimulus";
 import {assert} from "helpers";
 
 export default class extends Controller {
-  static targets = ["click"];
+  static override targets = ["click"];
 
   clickTargets!: HTMLElement[];
 

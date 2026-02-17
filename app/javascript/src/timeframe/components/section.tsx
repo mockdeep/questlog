@@ -94,7 +94,7 @@ class TimeframeSection extends Component<Props, never> {
     return this.minuteTotal() > timeframe.minuteMax;
   }
 
-  render(): ReactElement {
+  override render(): ReactElement {
     const {timeframe} = this.props;
     const className = timeframe.name === "inbox" ? "inbox" : "timeframe";
 
