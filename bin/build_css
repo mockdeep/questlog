@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Copy font files to public directory
-mkdir -p public/fonts/fontawesome
-cp vendor/assets/fonts/*.ttf public/fonts/
-cp node_modules/@fortawesome/fontawesome-free/webfonts/* public/fonts/fontawesome/
-
 if [ "$RAILS_ENV" = "production" ]; then
   MINIFY="--minify"
 fi
@@ -12,11 +7,10 @@ fi
 pnpm esbuild app/assets/stylesheets/application.css \
   --bundle \
   --outfile=app/assets/builds/application.css \
-  --loader:.woff2=empty \
-  --loader:.ttf=empty \
+  --loader:.woff2=copy \
+  --loader:.ttf=copy \
   --loader:.woff=empty \
   --loader:.eot=empty \
   --loader:.svg=empty \
-  --external:/fonts/* \
   ${MINIFY:-} \
   "$@"
