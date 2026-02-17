@@ -94,13 +94,11 @@
   "scripts": {
     "build": "bin/build_javascript",
     "build:css": "bin/build_css",
-    "lints": "pnpm stylelint && pnpm eslint && pnpm tscheck && pnpm rubocop && bundle exec rake haml_lint",
-    "rubocop": "bundle exec rubocop -f q",
-    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*.css'",
-    "eslint": "eslint --cache",
-    "vitest": "vitest run",
-    "pretest": "pnpm stylelint && pnpm tscheck && pnpm eslint",
-    "test": "pnpm vitest",
-    "tscheck": "pnpm tsc --noEmit"
+    "eslint": "eslint ./ --cache --max-warnings=0",
+    "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.ts",
+    "pretest": "pnpm tscheck && pnpm eslint",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'",
+    "test": "pnpm vitest run --coverage",
+    "tscheck": "tsc --noEmit"
   }
 }
