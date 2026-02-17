@@ -2,11 +2,8 @@
 @import './variables/colors';
 @import './variables/fonts';
 @import 'bootstrap/dist/css/bootstrap';
-
-$fa-font-path: '/fonts/fontawesome';
-
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
 @import './brand';
 @import './common';
 @import './dialog';
@@ -17,3 +14,12 @@ $fa-font-path: '/fonts/fontawesome';
 @import './tag';
 @import './timeframe';
 @import './tree';
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('/fonts/fontawesome/fa-solid-900.woff2') format('woff2'),
+    url('/fonts/fontawesome/fa-solid-900.ttf') format('truetype');
+}
