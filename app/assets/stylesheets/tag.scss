@@ -2,7 +2,7 @@
   border: 1px solid;
   text-align: left;
 
-  .edit-button {
+  & .edit-button {
     float: right;
   }
 }
@@ -10,7 +10,7 @@
 .tag-buttons {
   text-align: center;
 
-  div {
+  & div {
     display: inline-block;
     padding: 3px;
   }

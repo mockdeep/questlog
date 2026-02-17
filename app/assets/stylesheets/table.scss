@@ -3,7 +3,7 @@
 }
 
 .tasks-table__header-row {
-  background-color: $color-table-header;
+  background-color: var(--color-table-header);
 }
 
 .tasks-table__header {
@@ -16,7 +16,7 @@
 
 .tasks-table__row {
   &:nth-child(3n+3) {
-    border-bottom: 1px solid $color-table-header;
+    border-bottom: 1px solid var(--color-table-header);
   }
 }
 
@@ -34,15 +34,15 @@
 }
 
 .tasks-table__row--priority-1 {
-  background-color: $bg-priority-1;
+  background-color: var(--bg-priority-1);
 }
 
 .tasks-table__row--priority-2 {
-  background-color: $bg-priority-2;
+  background-color: var(--bg-priority-2);
 }
 
 .tasks-table__row--priority-3 {
-  background-color: $bg-priority-3;
+  background-color: var(--bg-priority-3);
 }
 
 .timeframes-header {

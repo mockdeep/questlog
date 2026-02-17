@@ -31,7 +31,7 @@ overrides:
     - app/assets/stylesheets/table.scss
     - app/assets/stylesheets/tree.scss
 
-  # Offense count: 88
+  # Offense count: 101
   - rules: { 'plugin/selector-bem-pattern': null }
     files:
     - app/assets/stylesheets/common.scss
@@ -43,6 +43,7 @@ overrides:
     - app/assets/stylesheets/tag.scss
     - app/assets/stylesheets/timeframe.scss
     - app/assets/stylesheets/tree.scss
+    - app/assets/stylesheets/variables/_colors.scss
 
   # Offense count: 4
   - rules: { 'selector-pseudo-element-colon-notation': null }

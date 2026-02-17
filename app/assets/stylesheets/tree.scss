@@ -10,19 +10,19 @@
   border: 3px solid transparent;
   border-radius: 3px;
   padding: 2px;
-  background-color: $bg-task-display;
+  background-color: var(--bg-task-display);
 }
 
 .task-item__title--priority-1 {
-  background-color: $bg-priority-1;
+  background-color: var(--bg-priority-1);
 }
 
 .task-item__title--priority-2 {
-  background-color: $bg-priority-2;
+  background-color: var(--bg-priority-2);
 }
 
 .task-item__title--priority-3 {
-  background-color: $bg-priority-3;
+  background-color: var(--bg-priority-3);
 }
 
 .task-item__checkbox {
@@ -42,9 +42,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: $bg-task-display;
+  background: var(--bg-task-display);
 
-  // checkmark
+  /* checkmark */
   &:after {
     content: '';
     width: 9px;
@@ -69,7 +69,7 @@
 }
 
 .task-item__checkbox-display--checked {
-  background: $brand-primary;
+  background: var(--brand-primary);
 
   &:after {
     opacity: 1;
