@@ -26,12 +26,11 @@ gem "puma_worker_killer"
 gem "redis"
 gem "sidekiq"
 gem "skylight"
-gem "sprockets-rails"
+gem "propshaft"
 gem "stimulus-rails"
 gem "stripe"
 gem "turbo-rails"
 
-gem "uglifier"
 
 group :development do
   gem "better_errors"

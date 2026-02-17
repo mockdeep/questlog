@@ -6,47 +6,52 @@
 overrides:
 
   # Offense count: 1
+  - rules: { 'declaration-property-value-no-unknown': null }
+    files:
+    - app/assets/stylesheets/focus.css
+
+  # Offense count: 1
   - rules: { 'alpha-value-notation': null }
     files:
-    - app/assets/stylesheets/dialog.scss
+    - app/assets/stylesheets/dialog.css
 
   # Offense count: 1
   - rules: { 'color-function-alias-notation': null }
     files:
-    - app/assets/stylesheets/dialog.scss
+    - app/assets/stylesheets/dialog.css
 
   # Offense count: 2
   - rules: { 'color-function-notation': null }
     files:
-    - app/assets/stylesheets/dialog.scss
+    - app/assets/stylesheets/dialog.css
 
   # Offense count: 55
   - rules: { 'order/properties-order': null }
     files:
-    - app/assets/stylesheets/common.scss
-    - app/assets/stylesheets/dialog.scss
-    - app/assets/stylesheets/filters.scss
-    - app/assets/stylesheets/focus.scss
-    - app/assets/stylesheets/sidebar.scss
-    - app/assets/stylesheets/table.scss
-    - app/assets/stylesheets/tree.scss
+    - app/assets/stylesheets/common.css
+    - app/assets/stylesheets/dialog.css
+    - app/assets/stylesheets/filters.css
+    - app/assets/stylesheets/focus.css
+    - app/assets/stylesheets/sidebar.css
+    - app/assets/stylesheets/table.css
+    - app/assets/stylesheets/tree.css
 
   # Offense count: 101
   - rules: { 'plugin/selector-bem-pattern': null }
     files:
-    - app/assets/stylesheets/common.scss
-    - app/assets/stylesheets/dialog.scss
-    - app/assets/stylesheets/filters.scss
-    - app/assets/stylesheets/focus.scss
-    - app/assets/stylesheets/sidebar.scss
-    - app/assets/stylesheets/table.scss
-    - app/assets/stylesheets/tag.scss
-    - app/assets/stylesheets/timeframe.scss
-    - app/assets/stylesheets/tree.scss
-    - app/assets/stylesheets/variables/_colors.scss
+    - app/assets/stylesheets/common.css
+    - app/assets/stylesheets/dialog.css
+    - app/assets/stylesheets/filters.css
+    - app/assets/stylesheets/focus.css
+    - app/assets/stylesheets/sidebar.css
+    - app/assets/stylesheets/table.css
+    - app/assets/stylesheets/tag.css
+    - app/assets/stylesheets/timeframe.css
+    - app/assets/stylesheets/tree.css
+    - app/assets/stylesheets/variables/colors.css
 
   # Offense count: 4
   - rules: { 'selector-pseudo-element-colon-notation': null }
     files:
-    - app/assets/stylesheets/sidebar.scss
-    - app/assets/stylesheets/tree.scss
+    - app/assets/stylesheets/sidebar.css
+    - app/assets/stylesheets/tree.css
