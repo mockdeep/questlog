@@ -141,6 +141,9 @@ GEM
       ffi (~> 1.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    goldiloader (6.0.0)
+      activerecord (>= 7.2, < 8.3)
+      activesupport (>= 7.2, < 8.3)
     gon (7.0.0)
       actionpack (>= 3.0.20)
       activesupport
@@ -470,6 +473,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   friendly_id
+  goldiloader
   gon
   guard
   guard-rspec
