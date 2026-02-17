@@ -9,10 +9,10 @@ const RULES = {
   isAssociated(task: Task, tag: Tag): boolean {
     return task.tagIds.includes(tag.id);
   },
-  isBlank(task: Task, tag: Tag, {field}: {field?: keyof Task}): boolean {
+  isBlank(task: Task, _tag: Tag, {field}: {field?: keyof Task}): boolean {
     return task[assert(field)] === null;
   },
-  isEmpty(task: Task, tag: Tag, {field}: {field?: keyof Task}): boolean {
+  isEmpty(task: Task, _tag: Tag, {field}: {field?: keyof Task}): boolean {
     const value = task[assert(field)];
     if (!Array.isArray(value)) {
       throw new Error(`task field ${field} must be array, but was ${value}.`);
