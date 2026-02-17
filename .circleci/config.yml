@@ -90,7 +90,7 @@ jobs:
       - setup_environment
       - run:
           name: Lints
-          command: pnpm lints
+          command: pnpm stylelint && pnpm eslint && pnpm tscheck && bundle exec rubocop && bundle exec rake haml_lint
 
   javascript_tests:
     executor: ruby_image
@@ -105,8 +105,8 @@ jobs:
     steps:
       - setup_environment
       - run:
-          name: Build CSS
-          command: pnpm build:css
+          name: Precompile assets
+          command: bundle exec rails assets:precompile
       - run:
           name: Run unit tests
           command: |
@@ -125,8 +125,8 @@ jobs:
     steps:
       - setup_environment
       - run:
-          name: Build CSS
-          command: pnpm build:css
+          name: Precompile assets
+          command: bundle exec rails assets:precompile
       - run:
           name: Run feature tests
           command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/features
