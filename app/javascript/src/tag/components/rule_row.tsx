@@ -58,8 +58,9 @@ class RuleRow extends Component<Props, never> {
 
     if (!rule.field) { return null; }
 
-    const checks = AVAILABLE_CHECKS[rule.field];
-    const defaultValue = checks.includes(rule.check) ? rule.check : checks[0];
+    const checks = grab(AVAILABLE_CHECKS, rule.field);
+    const defaultValue =
+      checks.includes(rule.check) ? rule.check : grab(checks, 0);
 
     return (
       <select name={"tag[rules][][check]"} defaultValue={defaultValue}>

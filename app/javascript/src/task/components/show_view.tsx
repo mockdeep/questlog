@@ -35,11 +35,13 @@ export type Props = {
   deleteTask: (taskId: number) => void,
   updateTask: UpdateTask,
   subTasks: Task[],
-  task: Task,
+  task: Task | null,
 };
 
-function TaskShowView(props: Props): ReactElement {
+function TaskShowView(props: Props): ReactElement | null {
   const {task, subTasks, updateTask, deleteTask} = props;
+
+  if (!task) { return null; }
 
   return (
     <section>

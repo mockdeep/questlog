@@ -37,8 +37,8 @@ function matchingTasks(tag: Tag, tasks: Task[]) {
 }
 
 function minPriority(tasks: Task[]) {
-  const priorities = tasks.map((task: Task) => task.priority).
-    filter((priority): priority is number => typeof priority === "number");
+  const priorities = tasks.map((task: Task) => task.priority)
+    .filter((priority): priority is number => typeof priority === "number");
 
   return priorities.length > 0 ? Math.min(...priorities) : null;
 }
@@ -52,7 +52,7 @@ function processTags(tagsById: {[id: number]: Tag}, activeTasks: Task[]) {
 }
 
 function getSelectedTagSlug(state: State) {
-  return state.route.params.slug || "";
+  return state.route.params.slug ?? "";
 }
 
 const getTagsById = createSelector(

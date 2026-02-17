@@ -2,6 +2,8 @@ vi.mock("helpers/request");
 import type {Mock} from "vitest";
 import FakeTimers from "@sinonjs/fake-timers";
 
+import {grab} from "helpers";
+
 import {request} from "helpers/request";
 import TimeframeStore from "src/timeframe/store";
 
@@ -84,17 +86,17 @@ describe("updateModels", () => {
     const {timeframes} = TimeframeStore.getState();
     expect(timeframes).toHaveLength(8);
 
-    const inboxTimeframe = timeframes[0];
+    const inboxTimeframe = grab(timeframes, 0);
     expect(inboxTimeframe.name).toBe("inbox");
     expect(inboxTimeframe.currentTasks).toEqual([]);
     expect(inboxTimeframe.pendingTasks).toEqual([]);
 
-    const todayTimeframe = timeframes[1];
+    const todayTimeframe = grab(timeframes, 1);
     expect(todayTimeframe.name).toBe("today");
     expect(todayTimeframe.currentTasks).toEqual([task1]);
     expect(todayTimeframe.pendingTasks).toEqual([]);
 
-    const lustrumTimeframe = timeframes[6];
+    const lustrumTimeframe = grab(timeframes, 6);
     expect(lustrumTimeframe.name).toBe("lustrum");
     expect(lustrumTimeframe.currentTasks).toEqual([]);
     expect(lustrumTimeframe.pendingTasks).toEqual([task2]);
@@ -106,8 +108,8 @@ describe("updateModels", () => {
 
     expect(request).toHaveBeenCalledTimes(2);
 
-    const [, secondCall] = (request as Mock).mock.calls;
-    secondCall[1].success({meta: {medianProductivity: 15}});
+    const secondCall = grab((request as Mock).mock.calls, 1);
+    grab(secondCall, 1).success({meta: {medianProductivity: 15}});
 
     await promise;
 
@@ -129,8 +131,8 @@ describe("updateModels", () => {
 
       expect(request).toHaveBeenCalledTimes(2);
 
-      const [, secondCall] = (request as Mock).mock.calls;
-      secondCall[1].success({meta: {medianProductivity: 10800}});
+      const secondCall = grab((request as Mock).mock.calls, 1);
+      grab(secondCall, 1).success({meta: {medianProductivity: 10800}});
 
       await promise;
 
@@ -138,20 +140,21 @@ describe("updateModels", () => {
 
       const {timeframes} = TimeframeStore.getState();
       expect(timeframes).toHaveLength(8);
-      expect(timeframes[0]).toMatchObject({name: "inbox", minuteMax: Infinity});
-      expect(timeframes[1]).toMatchObject({name: "today", minuteMax: 180});
-      expect(timeframes[2]).toMatchObject({name: "week", minuteMax: 540});
-      expect(timeframes[3]).toMatchObject({name: "month", minuteMax: 450});
-      expect(timeframes[4]).toMatchObject({name: "quarter", minuteMax: 5490});
-      expect(timeframes[5]).toMatchObject(
-        {name: "year", minuteMax: 8280},
-      );
-      expect(timeframes[6]).toMatchObject(
-        {name: "lustrum", minuteMax: Infinity},
-      );
-      expect(timeframes[7]).toMatchObject(
-        {name: "decade", minuteMax: Infinity},
-      );
+      expect(grab(timeframes, 0))
+        .toMatchObject({name: "inbox", minuteMax: Infinity});
+      expect(grab(timeframes, 1))
+        .toMatchObject({name: "today", minuteMax: 180});
+      expect(grab(timeframes, 2)).toMatchObject({name: "week", minuteMax: 540});
+      expect(grab(timeframes, 3))
+        .toMatchObject({name: "month", minuteMax: 450});
+      expect(grab(timeframes, 4))
+        .toMatchObject({name: "quarter", minuteMax: 5490});
+      expect(grab(timeframes, 5))
+        .toMatchObject({name: "year", minuteMax: 8280});
+      expect(grab(timeframes, 6))
+        .toMatchObject({name: "lustrum", minuteMax: Infinity});
+      expect(grab(timeframes, 7))
+        .toMatchObject({name: "decade", minuteMax: Infinity});
     } finally {
       clock.uninstall();
     }

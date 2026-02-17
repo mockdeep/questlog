@@ -1,5 +1,7 @@
 import {pathToRegexp, compile} from "path-to-regexp";
 
+import {grab} from "helpers";
+
 type Route = {
   name: string;
   path: string;
@@ -20,7 +22,7 @@ function compileRoutes(routes: Route[]) {
         const params: {[key: string]: string} = {};
 
         keys.forEach((key, index) => {
-          params[key.name] = result[index + 1];
+          params[key.name] = grab(result, index + 1);
         });
 
         return params;

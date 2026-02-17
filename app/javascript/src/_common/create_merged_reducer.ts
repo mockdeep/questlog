@@ -1,5 +1,7 @@
 import type {Reducer} from "redux";
 
+import {grab} from "helpers";
+
  
 type ReducerKey = "route" | "tag" | "task";
 type ReducerMap = {[key: string]: Reducer};
@@ -17,7 +19,7 @@ function isReducerKey(key: string): key is ReducerKey {
 }
 
 function getReducerKey(action: BasicAction): ReducerKey {
-  const key = action.type.split("/")[0];
+  const key = grab(action.type.split("/"), 0);
 
   if (!isReducerKey(key)) { throw new Error(`invalid reducer key "${key}"`); }
 
@@ -29,8 +31,7 @@ function initState(reducerMap: ReducerMap) {
 
   Object.keys(reducerMap).forEach(key => {
     const action = {type: `${key}/INIT`};
-    const reducer = reducerMap[key];
-
+    const reducer = grab(reducerMap, key);
     newState[key] = reducer(null, action);
   });
 
@@ -47,7 +48,7 @@ function createMergedReducer(reducerMap: ReducerMap) {
     }
 
     const reducerKey = getReducerKey(action);
-    const reducer = reducerMap[reducerKey];
+    const reducer = grab(reducerMap, reducerKey);
     const newState = {...previousState};
 
     newState[reducerKey] = reducer(previousState[reducerKey], action);

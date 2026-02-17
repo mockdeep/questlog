@@ -2,6 +2,7 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
+import {grab} from "helpers";
 import TaskLeafListItem from "src/task/components/leaf_list_item";
 import TaskParentListItem from "src/task/components/parent_list_item";
 import type {UpdateTask} from "src/task/action_creators";
@@ -21,7 +22,7 @@ class TaskNestedList extends Component<Props, never> {
   taskListItem(task: Task): ReactElement {
     const {tasksByParentId, updateTask} = this.props;
 
-    if (tasksByParentId[task.id].length === 0) {
+    if (grab(tasksByParentId, task.id).length === 0) {
       return (
         <TaskLeafListItem
           key={task.id}
