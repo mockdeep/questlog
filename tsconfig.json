@@ -1,44 +1,36 @@
 {
-  "//": {
-    "exactOptionalPropertyTypes": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedParameters": true
-  },
   "compilerOptions": {
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
     "baseUrl": ".",
-    "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "jsx": "react-jsx",
+    "target": "es2016",
     "lib": ["es2021", "dom"],
     "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "moduleResolution": "bundler",
     "paths": {
-      "src/*": ["app/javascript/src/*"],
-      "helpers": ["app/javascript/helpers/index.ts"],
-      "helpers/*": ["app/javascript/helpers/*"],
-      "_test_helpers/*": ["spec/javascript/_test_helpers/*"],
-      "channels/*": ["app/javascript/channels/*"],
-      "controllers/*": ["app/javascript/controllers/*"],
-      "javascript/*": ["./app/javascript/*"]
+      "src/*": ["./app/javascript/src/*"],
+      "helpers": ["./app/javascript/helpers/index.ts"],
+      "helpers/*": ["./app/javascript/helpers/*"],
+      "_test_helpers/*": ["./spec/javascript/_test_helpers/*"],
+      "channels/*": ["./app/javascript/channels/*"],
+      "controllers/*": ["./app/javascript/controllers/*"],
+      "javascript/*": ["./app/javascript/*"],
+      "packs/*": ["./app/javascript/packs/*"]
     },
+    "noUncheckedSideEffectImports": true,
     "sourceMap": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "target": "es6",
-    "jsx": "react-jsx",
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "app/assets/builds",
-    "coverage",
-    "node_modules",
-    "vendor",
-    "public"
-  ],
-  "compileOnSave": false
+  "exclude": ["app/assets/builds", "coverage", "node_modules", "public", "vendor"]
 }

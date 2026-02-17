@@ -20,6 +20,7 @@ export default defineConfig([
       "app/assets/builds/**",
       "coverage/**",
       "public/**",
+      "spec/support/**",
       "vendor/**",
     ],
   },
