@@ -1,4 +1,4 @@
-RSpec.describe "user accounts", :js do
+RSpec.describe "user accounts" do
   let(:user) { create(:free_user) }
 
   it "allows a user sign up for an account" do

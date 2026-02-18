@@ -1,4 +1,4 @@
-RSpec.describe "Tasks page", :js do
+RSpec.describe "Tasks page" do
   let(:user) { create(:free_user) }
 
   context "when a user is logged out" do
@@ -19,7 +19,7 @@ RSpec.describe "Tasks page", :js do
     it "associates tasks with an existing user" do
       add_task("do laundry")
       expect(page).to have_task("do laundry")
-      feature_login_as(user)
+      system_login_as(user)
       expect(page).to have_task("do laundry")
       click_link "Log out"
       expect(page).to have_no_task

@@ -110,7 +110,7 @@ jobs:
       - run:
           name: Run unit tests
           command: |
-            bundle exec rspec --exclude-pattern "**/features/*_spec.rb"
+            bundle exec rspec --exclude-pattern "**/system/*_spec.rb"
             # bundle exec rspec --profile 10 \
             #                   --format RspecJunitFormatter \
             #                   --out test_results/rspec.xml \
@@ -120,7 +120,7 @@ jobs:
       - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
 
-  feature_tests:
+  system_tests:
     executor: ruby_image
     steps:
       - setup_environment
@@ -128,8 +128,8 @@ jobs:
           name: Precompile assets
           command: bundle exec rails assets:precompile
       - run:
-          name: Run feature tests
-          command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/features
+          name: Run system tests
+          command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/system
 
 workflows:
   version: 2
@@ -138,4 +138,4 @@ workflows:
       - lints
       - javascript_tests
       - unit_tests
-      - feature_tests
+      - system_tests

@@ -1,7 +1,7 @@
-RSpec.describe "adding sub tasks", :js do
+RSpec.describe "adding sub tasks" do
   let(:user) { create(:free_user) }
 
-  before { feature_login_as(user) }
+  before { system_login_as(user) }
 
   it "allows adding sub tasks to another task" do
     add_task("the parent task")

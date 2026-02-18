@@ -1,4 +1,4 @@
-RSpec.describe "needs estimate", :js do
+RSpec.describe "needs estimate" do
   it 'shows a "Needs Estimate" button when there are tasks missing estimate' do
     expect(page).to have_no_tag("Needs Estimate")
     add_task("do laundry ~2h")

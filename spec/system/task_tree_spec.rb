@@ -1,11 +1,11 @@
-RSpec.describe "task tree", :js do
+RSpec.describe "task tree" do
   let(:user) { create(:free_user) }
 
   before(:each) do
     task_1 = create(:task, user:, title: "parent")
     task_2 = create(:task, user:, title: "child", parent_task: task_1)
     create(:task, user:, title: "grandchild", parent_task: task_2)
-    feature_login_as(user)
+    system_login_as(user)
     sidebar.click("ALL TASKS")
     click_link("TREE")
   end

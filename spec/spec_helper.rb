@@ -18,8 +18,6 @@ def support_path
 end
 Dir[support_path.join("**/*.rb")].each { |f| require f }
 
-driver = ENV.fetch("DRIVER", :selenium).to_sym
-Capybara.javascript_driver = driver
 Capybara.server_port = 8081
 Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
 
@@ -60,11 +58,12 @@ RSpec.configure do |config|
     mock_config.verify_doubled_constant_names = true
   end
 
-  config.prepend_before(:each, type: :feature) do
+  config.prepend_before(:each, type: :system) do
     Capybara.reset!
+    driven_by :selenium, using: :firefox
   end
 
-  config.before(:each, type: :feature) do
+  config.before(:each, type: :system) do
     visit "/"
     page.execute_script(File.read(support_path.join("disable_animations.js")))
   end
@@ -81,7 +80,7 @@ def login_as(user)
   session[:user_id] = user.id
 end
 
-def feature_login_as(user)
+def system_login_as(user)
   click_link "Log in"
   fill_in "Email", with: user.account.email
   fill_in "Password", with: user.account.password
