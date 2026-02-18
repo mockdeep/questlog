@@ -94,7 +94,7 @@
   },
   "license": "UNLICENSED",
   "scripts": {
-    "build": "bin/build_javascript",
+    "build": "bin/build",
     "build:css": "bin/build_css",
     "eslint": "eslint ./ --cache --max-warnings=0",
     "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.ts",

@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [ "$RAILS_ENV" = "production" ]; then
+set -euo pipefail
+
+if [ "${RAILS_ENV:-}" = "production" ]; then
   MINIFY="--minify"
 fi
 
