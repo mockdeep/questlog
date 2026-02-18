@@ -57,12 +57,12 @@ function timeframeNameForPendingTask(task: Task) {
 
   do {
     index += 1;
-    timeframeName = timeframeList[index];
+    timeframeName = grab(timeframeList, index);
     timeframeEnd = grab(timeframeEnds, timeframeName);
     if (!timeframeEnd) { return timeframeName; }
   } while (releaseAt.diff(timeframeEnd) > 0);
 
-  return timeframeList[index];
+  return timeframeName;
 }
 
 function timeframeNameForTask(task: Task): TimeframeName {

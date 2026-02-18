@@ -1,5 +1,9 @@
-function grab<T>(object: { [key: string | number]: T }, key: string | number) {
-  if (object.hasOwnProperty(key)) { return object[key]; }
+type Key = string | number;
+function grab<T>(object: T[], key: number): T;
+function grab<T>(object: { [key: Key]: T }, key: Key): T;
+function grab<T>(object: { [key: Key]: T }, key: Key): T {
+  const value = object[key];
+  if (value !== undefined) { return value; }
 
   throw new Error(`object has no key "${key}". <${JSON.stringify(object)}>`);
 }

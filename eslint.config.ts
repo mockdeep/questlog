@@ -43,6 +43,7 @@ export default defineConfig([
       "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/brace-style": ["error", "1tbs", {allowSingleLine: true}],
       "@stylistic/comma-dangle": ["error", "always-multiline"],
+      "@stylistic/dot-location": ["error", "property"],
       "@stylistic/function-call-argument-newline": ["error", "consistent"],
       "@stylistic/indent": ["error", 2],
       "@stylistic/max-len": ["error", 80, {ignoreUrls: true}],

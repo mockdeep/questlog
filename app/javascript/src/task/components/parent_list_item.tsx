@@ -3,6 +3,7 @@ import classnames from "classnames";
 import type {ReactElement} from "react";
 import {Component} from "react";
 
+import {grab} from "helpers";
 import TaskCheckbox from "src/task/components/checkbox";
 import TaskNestedList from "src/task/components/nested_list";
 import type {UpdateTask} from "src/task/action_creators";
@@ -30,7 +31,7 @@ class TaskParentListItem extends Component<Props, never> {
 
   override render(): ReactElement {
     const {task, tasksByParentId, updateTask} = this.props;
-    const tasks = tasksByParentId[task.id];
+    const tasks = grab(tasksByParentId, task.id);
     const listProps = {tasks, tasksByParentId, updateTask};
 
     return (

@@ -2,6 +2,7 @@ vi.mock("helpers/ajax");
 vi.mock("src/task/store");
 
 import type {Mock} from "vitest";
+import {grab} from "helpers";
 import type {Dispatch, Store} from "redux";
 
 import {makeState} from "_test_helpers/factories";
@@ -159,7 +160,7 @@ describe("updateTask", () => {
     });
 
     it("upserts associated tags", () => {
-      const [thunk] = (dispatch as Mock).mock.calls[3];
+      const [thunk] = grab((dispatch as Mock).mock.calls, 3);
       expect(thunk).toBeInstanceOf(Function);
       expect(thunk.name).toBe("upsertTagsThunk");
 

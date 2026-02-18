@@ -15,10 +15,6 @@ const timeframePositions = {
   century: 8,
 };
 
-const nullTask = {
-  tagNames: [],
-} as const;
-
 function timeframePosition(task: Task): number {
   const {timeframe} = task;
 
@@ -43,10 +39,10 @@ function processTasks(tasksById: TasksById): TasksById {
 function mapTasksToParentId(tasksById: TasksById): TasksByParentId {
   const tasks = Object.values(tasksById);
   return tasks.reduce((result: TasksByParentId, task: Task) => {
-    result[task.id] ||= [];
+    result[task.id] ??= [];
     if (task.parentTaskId) {
       result[task.parentTaskId] ||= [];
-      result[task.parentTaskId].push(task);
+      grab(result, task.parentTaskId).push(task);
     }
     return result;
   }, {});
@@ -56,11 +52,18 @@ function grabLeafTasks(
   orderedTasks: Task[],
   tasksByParentId: TasksByParentId,
 ): Task[] {
-  return orderedTasks.filter(task => tasksByParentId[task.id].length === 0);
+  return orderedTasks.filter(task => {
+    return grab(tasksByParentId, task.id).length === 0;
+  });
 }
 
-function grabCurrentTask(tasksById: TasksById, routeParams: RouteParams): Task {
-  return tasksById[routeParams.taskId] || nullTask;
+function grabCurrentTask(
+  tasksById: TasksById,
+  routeParams: RouteParams,
+): Task | null {
+  const {taskId} = routeParams;
+  if (taskId === undefined) { return null; }
+  return tasksById[taskId] ?? null;
 }
 
 const getTasksById = createSelector(
@@ -96,15 +99,22 @@ const getActiveTasks = createSelector(
   partitionedTasks => partitionedTasks.active,
 );
 
+function getAllTasksById(state: State): TasksById {
+  return state.task.byId;
+}
+
 const getCurrentTask = createSelector(
-  getTasksById,
+  getAllTasksById,
   getRouteParams,
   grabCurrentTask,
 );
 
 const getCurrentSubTasks = createSelector(
   [getCurrentTask, getTasksByParentId],
-  (currentTask: Task, tasksByParentId) => tasksByParentId[currentTask.id] || [],
+  (currentTask: Task | null, tasksByParentId) => {
+    if (!currentTask) { return []; }
+    return tasksByParentId[currentTask.id] ?? [];
+  },
 );
 
 export {
