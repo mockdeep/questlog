@@ -1,4 +1,4 @@
-RSpec.describe "timeframes", :js do
+RSpec.describe "timeframes" do
   let(:user) { create(:free_user) }
 
   def tomorrow(&)
@@ -61,7 +61,7 @@ RSpec.describe "timeframes", :js do
   end
 
   it "displays the timeframes for the user" do
-    feature_login_as(user)
+    system_login_as(user)
 
     expect(page).to have_no_task
 

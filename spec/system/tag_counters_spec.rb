@@ -1,9 +1,9 @@
-RSpec.describe "tag counters", :js do
+RSpec.describe "tag counters" do
   let(:user) { create(:free_user) }
 
   before do
     create(:tag, user:, name: "existing-tag")
-    feature_login_as(user)
+    system_login_as(user)
   end
 
   it "updates when a task is created with a new tag" do

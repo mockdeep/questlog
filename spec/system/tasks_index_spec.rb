@@ -1,7 +1,7 @@
-RSpec.describe "tasks index page", :js do
+RSpec.describe "tasks index page" do
   let(:user) { create(:free_user) }
 
-  before(:each) { feature_login_as(user) }
+  before(:each) { system_login_as(user) }
 
   it "allows the user to mark tasks as done" do
     add_task("do laundry")

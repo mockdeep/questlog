@@ -1,8 +1,8 @@
-RSpec.describe "editing smart tags", :js do
+RSpec.describe "editing smart tags" do
   let(:user) { create(:free_user) }
 
   it "allows selecting rules from dropdowns" do
-    feature_login_as(user)
+    system_login_as(user)
     tag = create(:tag, name: "my tag", user:)
     visit "/tags"
 

@@ -1,8 +1,8 @@
-RSpec.describe "bulk task creation", :js do
+RSpec.describe "bulk task creation" do
   let(:user) { create(:free_user) }
 
   before(:each) do
-    feature_login_as(user)
+    system_login_as(user)
   end
 
   it "allows the user to upload multiple tasks at the same time" do
