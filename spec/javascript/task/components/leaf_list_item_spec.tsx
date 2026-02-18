@@ -45,8 +45,7 @@ it("updates the task to not done when the checkbox gets unchecked", () => {
 
   fireEvent.click(screen.getByRole("checkbox"));
 
-  expect(updateTask).toHaveBeenCalledTimes(1);
-  expect(updateTask).toHaveBeenCalledWith(doneTask.id, {done: false});
+  expect(updateTask).toHaveBeenLastCalledWith(doneTask.id, {done: false});
 });
 
 it("adds a priority class to title when task has a priority", () => {

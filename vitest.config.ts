@@ -24,7 +24,7 @@ export default defineConfig({
   test: {
     coverage: {
       exclude: ["app/javascript/@types/**"],
-      include: ["app/javascript/**/*.ts"],
+      include: ["app/javascript/**/*.{ts,tsx}"],
       provider: "v8",
       reportsDirectory: "coverage/vitest",
       thresholds: {
@@ -41,7 +41,7 @@ export default defineConfig({
       },
     },
     globals: true,
-    include: ["spec/javascript/**/*_spec.ts"],
+    include: ["spec/javascript/**/*_spec.{ts,tsx}"],
     outputFile: {
       junit: "/tmp/test-results/junit.xml",
     },
