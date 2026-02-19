@@ -1,4 +1,4 @@
-import appReducer from "src/app_reducer";
+import appReducer from "src/_common/app_reducer";
 
 const stateKeys = ["common", "notification", "route", "tag", "task", "user"];
 

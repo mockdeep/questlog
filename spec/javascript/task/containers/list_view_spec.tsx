@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {render} from "@testing-library/react";
 
 import TaskListViewContainer from "src/task/containers/list_view";
-import createAppStore from "src/create_app_store";
+import createAppStore from "src/_common/create_app_store";
 import {setRoute} from "src/route/action_creators";
 
 it("wraps the TaskListView component", () => {

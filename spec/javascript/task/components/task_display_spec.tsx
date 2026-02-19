@@ -2,7 +2,7 @@ import {render} from "@testing-library/react";
 import {Provider} from "react-redux";
 
 import TaskDisplay from "src/task/components/task_display";
-import createAppStore from "src/create_app_store";
+import createAppStore from "src/_common/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 

@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 
 import type {Props} from "src/task/components/show_view";
 import TaskShowView from "src/task/components/show_view";
-import createAppStore from "src/create_app_store";
+import createAppStore from "src/_common/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 

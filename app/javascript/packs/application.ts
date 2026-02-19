@@ -1,1 +1,1 @@
-import "../src/application";
+import "../application";

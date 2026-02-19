@@ -3,7 +3,7 @@ import type {Root} from "react-dom/client";
 import {Controller} from "@hotwired/stimulus";
 import {Provider} from "react-redux";
 
-import appStore from "src/app_store";
+import appStore from "src/_common/app_store";
 import {grab} from "helpers";
 import TagEditViewContainer from "src/tag/containers/edit_view";
 import TaskShowViewContainer from "src/task/containers/show_view";

@@ -1,7 +1,7 @@
 import {Provider} from "react-redux";
 import {render} from "@testing-library/react";
 
-import createAppStore from "src/create_app_store";
+import createAppStore from "src/_common/create_app_store";
 import TaskTreeViewContainer from "src/task/containers/tree_view";
 
 it("wraps the TaskTreeView component", () => {
