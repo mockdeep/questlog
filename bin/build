@@ -17,7 +17,7 @@ export NODE_PATH="${NODE_PATH:-}:vendor/assets/javascripts:app/"
 # --tree-shaking: Remove unreachable code from the resulting bundle
 # $@: pass through any additional arguments (useful for adding `--watch`)
 
-pnpm esbuild app/javascript/packs/*.* \
+pnpm esbuild app/javascript/*.{ts,tsx} \
   --bundle \
   --format=iife \
   --jsx=automatic \
