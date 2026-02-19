@@ -14,8 +14,7 @@
       "_test_helpers/*": ["./spec/javascript/_test_helpers/*"],
       "channels/*": ["./app/javascript/channels/*"],
       "controllers/*": ["./app/javascript/controllers/*"],
-      "javascript/*": ["./app/javascript/*"],
-      "packs/*": ["./app/javascript/packs/*"]
+      "javascript/*": ["./app/javascript/*"]
     },
     "noUncheckedSideEffectImports": true,
     "sourceMap": true,
