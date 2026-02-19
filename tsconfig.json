@@ -8,7 +8,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "src/*": ["./app/javascript/src/*"],
+      "src/*": ["./app/javascript/*"],
       "helpers": ["./app/javascript/helpers/index.ts"],
       "helpers/*": ["./app/javascript/helpers/*"],
       "_test_helpers/*": ["./spec/javascript/_test_helpers/*"],

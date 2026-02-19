@@ -7,7 +7,7 @@ import type {Dispatch, Store} from "redux";
 
 import {makeState} from "_test_helpers/factories";
 
-import createAppStore from "src/create_app_store";
+import createAppStore from "src/_common/create_app_store";
 import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
 import TaskStore from "src/task/store";
 import {

@@ -18,7 +18,7 @@ export default defineConfig({
       {find: /^javascript\//u, replacement: appPath("")},
       {find: /^packs\//u, replacement: appPath("packs")},
       {find: /^spec\//u, replacement: `${path.resolve(root, "spec")}/`},
-      {find: /^src\//u, replacement: appPath("src")},
+      {find: /^src\//u, replacement: appPath("")},
     ],
   },
   test: {
