@@ -1,5 +1,5 @@
 RSpec.describe "bulk task creation" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   before(:each) do
     system_login_as(user)

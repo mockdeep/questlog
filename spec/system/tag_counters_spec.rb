@@ -1,5 +1,5 @@
 RSpec.describe "tag counters" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   before do
     create(:tag, user:, name: "existing-tag")

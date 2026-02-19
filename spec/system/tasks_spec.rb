@@ -1,5 +1,5 @@
 RSpec.describe "Tasks page" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   context "when a user is logged out" do
     it "associates tasks with a new user" do
