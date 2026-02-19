@@ -1,5 +1,5 @@
 RSpec.describe "user accounts" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   it "allows a user sign up for an account" do
     expect(page).to have_content("You're not logged in!")

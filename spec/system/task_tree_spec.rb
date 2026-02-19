@@ -1,5 +1,5 @@
 RSpec.describe "task tree" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   before(:each) do
     task_1 = create(:task, user:, title: "parent")

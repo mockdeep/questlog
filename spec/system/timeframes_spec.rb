@@ -1,5 +1,5 @@
 RSpec.describe "timeframes" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   def tomorrow(&)
     travel(1.day, &)

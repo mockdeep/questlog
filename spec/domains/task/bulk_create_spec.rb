@@ -1,5 +1,5 @@
 RSpec.describe Task::BulkCreate do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
   let(:bulk_task_create) { described_class.new }
 
   it "creates tasks from the given title string, split on newline" do

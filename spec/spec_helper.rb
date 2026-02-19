@@ -37,13 +37,12 @@ RSpec.configure do |config|
   config.include(FactoryBot::Syntax::Methods)
   config.include(Questlog::Matchers)
   config.include(Questlog::Wrappers)
-  config.include(ControllerHelpers, type: :controller)
+  config.include(ControllerHelpers, type: :request)
   config.fixture_paths = [Rails.root.join("spec/fixtures")]
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
   config.raise_on_warning = true
-  config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 
   config.filter_run_excluding :slow if ENV["SKIP_SLOW_SPECS"]
@@ -77,7 +76,8 @@ Shoulda::Matchers.configure do |config|
 end
 
 def login_as(user)
-  session[:user_id] = user.id
+  user.save! if user.new_record?
+  post "/session", params: { session: { email: user.account.email, password: user.account.password } }
 end
 
 def system_login_as(user)

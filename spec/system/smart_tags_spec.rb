@@ -1,5 +1,5 @@
 RSpec.describe "editing smart tags" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   it "allows selecting rules from dropdowns" do
     system_login_as(user)

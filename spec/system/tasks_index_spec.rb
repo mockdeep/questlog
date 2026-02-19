@@ -1,5 +1,5 @@
 RSpec.describe "tasks index page" do
-  let(:user) { create(:free_user) }
+  let(:user) { create(:user) }
 
   before(:each) { system_login_as(user) }
 
