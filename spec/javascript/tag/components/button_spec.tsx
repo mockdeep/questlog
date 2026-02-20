@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import type {Props} from "javascript/tag/components/button";
 import TagButton from "javascript/tag/components/button";
 
-import {makeTag} from "_test_helpers/factories";
+import {makeTag} from "support/factories";
 
 const tag = makeTag({slug: "home", name: "Home"});
 const props: Props = {

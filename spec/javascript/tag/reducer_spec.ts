@@ -1,7 +1,7 @@
 import {INIT, SET, UPSERT} from "javascript/tag/action_creators";
 import tagReducer from "javascript/tag/reducer";
 
-import {makeTag, makeTagState} from "_test_helpers/factories";
+import {makeTag, makeTagState} from "support/factories";
 
 describe(INIT, () => {
   it("sets up the basic structure for the store", () => {

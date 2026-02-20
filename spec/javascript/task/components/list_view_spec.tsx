@@ -8,7 +8,7 @@ import BulkTaskStore from "javascript/task/bulk_store";
 import type {Props} from "javascript/task/components/list_view";
 import TaskListView from "javascript/task/components/list_view";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 function deref(ref: RefObject<TaskListView>): TaskListView {
   if (ref.current === null) {

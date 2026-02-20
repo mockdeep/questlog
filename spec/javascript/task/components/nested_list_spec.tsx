@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import type {Props} from "javascript/task/components/nested_list";
 import TaskNestedList from "javascript/task/components/nested_list";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const parentTask = makeTask({title: "I am the parent"});
 const childTask = makeTask({title: "I am the child"});

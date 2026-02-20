@@ -1,6 +1,6 @@
 import {calculateTotalMinutes} from "javascript/timeframe/utils";
 
-import {makeTask, makeTimeframe} from "_test_helpers/factories";
+import {makeTask, makeTimeframe} from "support/factories";
 
 describe("calculateTotalMinutes()", () => {
   it("returns the total number of minutes from tasks", () => {

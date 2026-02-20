@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import TaskTitle from "javascript/task/components/task_title";
 import createAppStore from "javascript/_common/create_app_store";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const task = makeTask();
 const props = {deleteTask: vi.fn(), task};

@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 
 import TaskTreeView from "javascript/task/components/tree_view";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const parentTask = makeTask({title: "I am the parent"});
 const childTask = makeTask({title: "I am the child"});

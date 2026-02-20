@@ -14,7 +14,7 @@ import type {Props} from "javascript/task/components/focus_view";
 import TaskFocusView from "javascript/task/components/focus_view";
 import createAppStore from "javascript/_common/create_app_store";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const updateTask = vi.fn();
 const props: Props = {

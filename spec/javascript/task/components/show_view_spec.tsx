@@ -6,7 +6,7 @@ import type {Props} from "javascript/task/components/show_view";
 import TaskShowView from "javascript/task/components/show_view";
 import createAppStore from "javascript/_common/create_app_store";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const props: Props = {
   deleteTask: vi.fn(),

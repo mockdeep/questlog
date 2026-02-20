@@ -1,6 +1,6 @@
 vi.mock("helpers/ajax");
 
-import {makeState, makeTag} from "_test_helpers/factories";
+import {makeState, makeTag} from "support/factories";
 import {
   SET, UPSERT,
   setTags, upsertTagPlain, upsertTags,

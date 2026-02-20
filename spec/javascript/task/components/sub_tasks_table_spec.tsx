@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 import type {Props} from "javascript/task/components/sub_tasks_table";
 import SubTasksTable from "javascript/task/components/sub_tasks_table";

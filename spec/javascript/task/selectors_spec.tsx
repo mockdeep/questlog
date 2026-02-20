@@ -6,7 +6,7 @@ import {
   getActiveTasks,
 } from "javascript/task/selectors";
 
-import {makeState, makeTask} from "_test_helpers/factories";
+import {makeState, makeTask} from "support/factories";
 
 describe("getCurrentTask", () => {
   it("returns the current task represented in the route", () => {

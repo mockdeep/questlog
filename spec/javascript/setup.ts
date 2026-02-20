@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
-import "_test_helpers/shims";
-import FakeNotification from "_test_helpers/fake_notification";
+import "support/shims";
+import FakeNotification from "support/fake_notification";
 
 const fakeResponse = {json: vi.fn().mockResolvedValue({})};
 vi.stubGlobal("fetch", vi.fn().mockResolvedValue(fakeResponse));

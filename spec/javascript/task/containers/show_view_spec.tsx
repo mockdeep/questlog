@@ -4,7 +4,7 @@ import {render, screen} from "@testing-library/react";
 
 import TaskShowViewContainer from "javascript/task/containers/show_view";
 
-import {makeState, makeTask} from "_test_helpers/factories";
+import {makeState, makeTask} from "support/factories";
 
 it("wraps the TaskShowView component", () => {
   const task = makeTask();

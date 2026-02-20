@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import type {Props} from "javascript/task/components/parent_list_item";
 import TaskParentListItem from "javascript/task/components/parent_list_item";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const task = makeTask({title: "foo title"});
 const props: Props = {

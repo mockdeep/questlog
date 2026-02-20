@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import ParentTaskBreadCrumbsContainer, {ParentTaskBreadCrumbs}
   from "javascript/task/containers/parent_task_bread_crumbs";
 
-import {makeState, makeTask} from "_test_helpers/factories";
+import {makeState, makeTask} from "support/factories";
 
 describe("ParentTaskBreadCrumbs", () => {
   it("renders nothing when there is no task", () => {
