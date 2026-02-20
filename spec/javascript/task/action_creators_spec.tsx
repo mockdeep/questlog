@@ -8,7 +8,7 @@ import type {Mock} from "vitest";
 import {ajaxDelete, ajaxGet, ajaxPut, grab} from "helpers";
 import type {Dispatch, Store} from "redux";
 
-import {makeState} from "_test_helpers/factories";
+import {makeState} from "support/factories";
 
 import createAppStore from "javascript/_common/create_app_store";
 import TaskStore from "javascript/task/store";

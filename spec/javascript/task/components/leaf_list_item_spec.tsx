@@ -2,7 +2,7 @@ import {fireEvent, render, screen} from "@testing-library/react";
 
 import TaskLeafListItem from "javascript/task/components/leaf_list_item";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 const task = makeTask({title: "some title"});
 const updateTask = vi.fn();

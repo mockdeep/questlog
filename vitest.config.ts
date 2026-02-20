@@ -10,7 +10,6 @@ function appPath(subpath: string): string {
 export default defineConfig({
   resolve: {
     alias: [
-      {find: /^_test_helpers\//u, replacement: `${path.resolve(root, "spec/javascript/_test_helpers")}/`},
       {find: /^channels\//u, replacement: appPath("channels")},
       {find: /^controllers\//u, replacement: appPath("controllers")},
       {find: /^helpers\//u, replacement: appPath("helpers")},

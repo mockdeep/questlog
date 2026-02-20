@@ -1,6 +1,6 @@
 import {getActiveTags, getNextActiveTask} from "javascript/tag/selectors";
 
-import {makeState, makeTag, makeTask} from "_test_helpers/factories";
+import {makeState, makeTag, makeTask} from "support/factories";
 
 describe("getActiveTags", () => {
   it("returns tags that have one or more unfinished associated tasks", () => {

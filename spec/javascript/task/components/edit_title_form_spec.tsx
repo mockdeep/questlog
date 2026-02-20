@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 import type {Props} from "javascript/task/components/edit_title_form";
 import TaskEditTitleForm from "javascript/task/components/edit_title_form";

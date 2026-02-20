@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 
 import TaskLink from "javascript/task/components/link";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 it("renders a link to the task", () => {
   const task = makeTask({title: "my title"});

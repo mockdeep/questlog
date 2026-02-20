@@ -15,7 +15,7 @@ import {render, screen, waitFor} from "@testing-library/react";
 
 import TimeframeListView from "javascript/timeframe/components/list_view";
 
-import {makeTask, makeTimeframe} from "_test_helpers/factories";
+import {makeTask, makeTimeframe} from "support/factories";
 
 function noop(): void {
   // Never resolves

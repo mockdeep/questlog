@@ -1,7 +1,7 @@
 import {INIT, SET} from "javascript/route/action_creators";
 import routeReducer from "javascript/route/reducer";
 
-import {makeRouteState} from "_test_helpers/factories";
+import {makeRouteState} from "support/factories";
 
 describe(INIT, () => {
   it("returns basic route state", () => {

@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 import type {Props} from "javascript/task/components/postpone_button";
 import PostponeButton from "javascript/task/components/postpone_button";

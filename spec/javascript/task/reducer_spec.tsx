@@ -4,7 +4,7 @@ import {
 } from "javascript/task/action_creators";
 import taskReducer from "javascript/task/reducer";
 
-import {makeTask, makeTaskState} from "_test_helpers/factories";
+import {makeTask, makeTaskState} from "support/factories";
 
 describe(INIT, () => {
   it("sets up the basic structure for the store", () => {

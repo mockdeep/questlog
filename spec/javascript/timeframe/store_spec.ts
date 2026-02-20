@@ -8,7 +8,7 @@ import FakeTimers from "@sinonjs/fake-timers";
 import {grab, request} from "helpers";
 import TimeframeStore from "javascript/timeframe/store";
 
-import {makeTask} from "_test_helpers/factories";
+import {makeTask} from "support/factories";
 
 describe("subscribe", () => {
   it("subscribes a listener", () => {
