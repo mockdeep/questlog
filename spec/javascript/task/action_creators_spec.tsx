@@ -1,14 +1,16 @@
-vi.mock("helpers/ajax");
+vi.mock("helpers", async (importOriginal: () => Promise<object>) => {
+  const original = await importOriginal();
+  return {...original, ajaxDelete: vi.fn(), ajaxGet: vi.fn(), ajaxPut: vi.fn()};
+});
 vi.mock("javascript/task/store");
 
 import type {Mock} from "vitest";
-import {grab} from "helpers";
+import {ajaxDelete, ajaxGet, ajaxPut, grab} from "helpers";
 import type {Dispatch, Store} from "redux";
 
 import {makeState} from "_test_helpers/factories";
 
 import createAppStore from "javascript/_common/create_app_store";
-import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
 import TaskStore from "javascript/task/store";
 import {
   DELETE, SET, UPDATE, UPDATE_META,
