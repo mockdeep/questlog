@@ -1,8 +1,8 @@
 import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 
-import TaskTitle from "src/task/components/task_title";
-import createAppStore from "src/_common/create_app_store";
+import TaskTitle from "javascript/task/components/task_title";
+import createAppStore from "javascript/_common/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 

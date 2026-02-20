@@ -2,8 +2,8 @@ import {render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
-import type {Props} from "src/timeframe/components/task_row";
-import TaskRow from "src/timeframe/components/task_row";
+import type {Props} from "javascript/timeframe/components/task_row";
+import TaskRow from "javascript/timeframe/components/task_row";
 
 const props: Props = {
   deleteTask: vi.fn(),

@@ -1,5 +1,5 @@
-import {INIT, SET} from "src/route/action_creators";
-import routeReducer from "src/route/reducer";
+import {INIT, SET} from "javascript/route/action_creators";
+import routeReducer from "javascript/route/reducer";
 
 import {makeRouteState} from "_test_helpers/factories";
 

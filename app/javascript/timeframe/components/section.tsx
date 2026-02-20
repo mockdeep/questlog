@@ -2,11 +2,11 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import TableHeaders from "src/timeframe/components/table_headers";
-import TaskRow from "src/timeframe/components/task_row";
-import timeframeNameMap from "src/timeframe/name_map";
-import {calculateTotalMinutes} from "src/timeframe/utils";
-import type {UpdateTask} from "src/task/action_creators";
+import TableHeaders from "./table_headers";
+import TaskRow from "./task_row";
+import timeframeNameMap from "../name_map";
+import {calculateTotalMinutes} from "../utils";
+import type {UpdateTask} from "../../task/action_creators";
 
 type Props = {
   deleteTask: (taskId: number) => void,

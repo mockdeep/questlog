@@ -2,7 +2,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {render, screen} from "@testing-library/react";
 
-import TaskShowViewContainer from "src/task/containers/show_view";
+import TaskShowViewContainer from "javascript/task/containers/show_view";
 
 import {makeState, makeTask} from "_test_helpers/factories";
 

@@ -4,9 +4,9 @@ import type {ReactElement} from "react";
 import {Component} from "react";
 
 import {grab} from "helpers";
-import TaskCheckbox from "src/task/components/checkbox";
-import TaskNestedList from "src/task/components/nested_list";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskCheckbox from "./checkbox";
+import TaskNestedList from "./nested_list";
+import type {UpdateTask} from "../action_creators";
 
 export type Props = {
   task: Task,

@@ -3,8 +3,8 @@ import type {ThunkAction} from "redux-thunk";
 import type {InferThunkActionCreatorType} from "react-redux";
 
 import {ajaxGet, ajaxPut, ajaxDelete} from "helpers/ajax";
-import TaskStore from "src/task/store";
-import {setTags, upsertTags} from "src/tag/action_creators";
+import TaskStore from "./store";
+import {setTags, upsertTags} from "../tag/action_creators";
 
 type AsyncAction = ThunkAction<void, State, null, Action>;
 

@@ -4,7 +4,7 @@ import type {FocusEvent, FormEvent, KeyboardEvent, ReactElement} from "react";
 import {Component, createRef} from "react";
 import Textarea from "react-textarea-autosize";
 
-import AuthenticityToken from "src/_common/components/authenticity_token";
+import AuthenticityToken from "../../_common/components/authenticity_token";
 import {assert} from "helpers";
 
 export type Props = {

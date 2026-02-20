@@ -2,9 +2,9 @@ import type {ReactElement} from "react";
 import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 
-import type {Props} from "src/task/components/show_view";
-import TaskShowView from "src/task/components/show_view";
-import createAppStore from "src/_common/create_app_store";
+import type {Props} from "javascript/task/components/show_view";
+import TaskShowView from "javascript/task/components/show_view";
+import createAppStore from "javascript/_common/create_app_store";
 
 import {makeTask} from "_test_helpers/factories";
 

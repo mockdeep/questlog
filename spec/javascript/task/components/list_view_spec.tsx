@@ -1,12 +1,12 @@
-vi.mock("src/task/bulk_store");
+vi.mock("javascript/task/bulk_store");
 
 import {createRef} from "react";
 import type {RefObject} from "react";
 import {act, render, screen} from "@testing-library/react";
 
-import BulkTaskStore from "src/task/bulk_store";
-import type {Props} from "src/task/components/list_view";
-import TaskListView from "src/task/components/list_view";
+import BulkTaskStore from "javascript/task/bulk_store";
+import type {Props} from "javascript/task/components/list_view";
+import TaskListView from "javascript/task/components/list_view";
 
 import {makeTask} from "_test_helpers/factories";
 

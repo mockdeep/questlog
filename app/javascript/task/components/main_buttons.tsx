@@ -1,5 +1,5 @@
-import DoneButton from "src/task/components/done_button";
-import PostponeButton from "src/task/components/postpone_button";
+import DoneButton from "./done_button";
+import PostponeButton from "./postpone_button";
 
 type Props = {
   completeTask: (taskId: number) => void,

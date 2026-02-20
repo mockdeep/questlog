@@ -1,4 +1,4 @@
-import {calculateTotalMinutes} from "src/timeframe/utils";
+import {calculateTotalMinutes} from "javascript/timeframe/utils";
 
 import {makeTask, makeTimeframe} from "_test_helpers/factories";
 

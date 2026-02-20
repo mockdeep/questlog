@@ -1,4 +1,4 @@
-import {getActiveTags, getNextActiveTask} from "src/tag/selectors";
+import {getActiveTags, getNextActiveTask} from "javascript/tag/selectors";
 
 import {makeState, makeTag, makeTask} from "_test_helpers/factories";
 

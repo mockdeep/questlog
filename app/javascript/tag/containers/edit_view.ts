@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import TagEditView from "src/tag/components/edit_view";
-import {getSelectedTag} from "src/tag/selectors";
+import TagEditView from "../components/edit_view";
+import {getSelectedTag} from "../selectors";
 
 function mapStateToProps(state: State) {
   return {tag: getSelectedTag(state)};

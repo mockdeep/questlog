@@ -1,11 +1,11 @@
 import {grab} from "helpers";
 import {request} from "helpers/request";
-import TaskStore from "src/task/store";
+import TaskStore from "../task/store";
 import {
   calculateMaxMinutes,
   timeframeList,
   timeframeNameForTask,
-} from "src/timeframe/utils";
+} from "./utils";
 
 let medianProductivity: number;
 

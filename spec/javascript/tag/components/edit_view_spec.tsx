@@ -1,7 +1,7 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 
-import type {Props} from "src/tag/components/edit_view";
-import TagEditView from "src/tag/components/edit_view";
+import type {Props} from "javascript/tag/components/edit_view";
+import TagEditView from "javascript/tag/components/edit_view";
 
 import {makeTag} from "_test_helpers/factories";
 

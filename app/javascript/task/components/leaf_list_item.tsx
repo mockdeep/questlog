@@ -3,8 +3,8 @@ import classnames from "classnames";
 import type {ChangeEvent, ReactElement} from "react";
 import {Component} from "react";
 
-import TaskCheckbox from "src/task/components/checkbox";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskCheckbox from "./checkbox";
+import type {UpdateTask} from "../action_creators";
 
 type Props = {
   task: Task,

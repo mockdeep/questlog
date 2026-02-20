@@ -1,4 +1,4 @@
-import "src/_common/globals";
+import "./_common/globals";
 import $ from "jquery";
 import Honeybadger from "honeybadger-js";
 import "controllers/index";

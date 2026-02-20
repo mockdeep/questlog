@@ -3,11 +3,11 @@ import classnames from "classnames";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import DeleteButton from "src/task/components/delete_button";
+import DeleteButton from "./delete_button";
 import {grab} from "helpers";
-import TaskEditIcon from "src/task/components/edit_icon";
-import TaskEditTitleForm from "src/task/components/edit_title_form";
-import timeframeNameMap from "src/timeframe/name_map";
+import TaskEditIcon from "./edit_icon";
+import TaskEditTitleForm from "./edit_title_form";
+import timeframeNameMap from "../../timeframe/name_map";
 
 type Props = {
   deleteTask: (taskId: number) => void,

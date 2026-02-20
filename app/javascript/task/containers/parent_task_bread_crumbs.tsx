@@ -2,7 +2,7 @@ import {Component} from "react";
 import type {ReactElement} from "react";
 import {connect} from "react-redux";
 
-import TaskLink from "src/task/components/link";
+import TaskLink from "../components/link";
 
 type ComponentProps = {
   task?: Task;

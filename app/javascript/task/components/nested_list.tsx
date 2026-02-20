@@ -3,9 +3,9 @@ import {Component} from "react";
 import type {ReactElement} from "react";
 
 import {grab} from "helpers";
-import TaskLeafListItem from "src/task/components/leaf_list_item";
-import TaskParentListItem from "src/task/components/parent_list_item";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskLeafListItem from "./leaf_list_item";
+import TaskParentListItem from "./parent_list_item";
+import type {UpdateTask} from "../action_creators";
 
 export type Props = {
   tasks: Task[],

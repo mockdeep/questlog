@@ -17,7 +17,6 @@ export default defineConfig({
       {find: /^helpers$/u, replacement: `${path.resolve(root, "app/javascript/helpers/index.ts")}`},
       {find: /^javascript\//u, replacement: appPath("")},
       {find: /^spec\//u, replacement: `${path.resolve(root, "spec")}/`},
-      {find: /^src\//u, replacement: appPath("")},
     ],
   },
   test: {

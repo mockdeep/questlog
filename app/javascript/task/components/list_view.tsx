@@ -5,12 +5,12 @@ import update from "immutability-helper";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {DndProvider} from "react-dnd";
 
-import BulkTaskStore from "src/task/bulk_store";
+import BulkTaskStore from "../bulk_store";
 
-import TableHeaders from "src/task/components/table_headers";
-import DraggableTaskRow from "src/task/components/draggable_task_row";
+import TableHeaders from "./table_headers";
+import DraggableTaskRow from "./draggable_task_row";
 import {assert} from "helpers";
-import type {UpdateTask} from "src/task/action_creators";
+import type {UpdateTask} from "../action_creators";
 
 function findTask(tasks: Task[], taskId: number): Task {
   return assert(tasks.find(task => task.id === taskId));

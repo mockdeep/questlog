@@ -2,7 +2,7 @@ import {groupBy, pickBy, sortBy} from "lodash";
 import {createSelector} from "reselect";
 
 import {grab} from "helpers";
-import {getRouteParams} from "src/route/selectors";
+import {getRouteParams} from "../route/selectors";
 
 const timeframePositions = {
   today: 1,

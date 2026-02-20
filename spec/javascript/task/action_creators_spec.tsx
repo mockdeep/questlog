@@ -1,5 +1,5 @@
 vi.mock("helpers/ajax");
-vi.mock("src/task/store");
+vi.mock("javascript/task/store");
 
 import type {Mock} from "vitest";
 import {grab} from "helpers";
@@ -7,14 +7,14 @@ import type {Dispatch, Store} from "redux";
 
 import {makeState} from "_test_helpers/factories";
 
-import createAppStore from "src/_common/create_app_store";
+import createAppStore from "javascript/_common/create_app_store";
 import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
-import TaskStore from "src/task/store";
+import TaskStore from "javascript/task/store";
 import {
   DELETE, SET, UPDATE, UPDATE_META,
   deleteTask, fetchTasks, updateTask, updateTaskMeta,
-} from "src/task/action_creators";
-import {upsertTagPlain} from "src/tag/action_creators";
+} from "javascript/task/action_creators";
+import {upsertTagPlain} from "javascript/tag/action_creators";
 
 let store: Store;
 let dispatch: Dispatch;

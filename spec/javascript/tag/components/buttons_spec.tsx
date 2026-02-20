@@ -1,7 +1,7 @@
 import {render, screen} from "@testing-library/react";
 
-import type {Props} from "src/tag/components/buttons";
-import TagButtons from "src/tag/components/buttons";
+import type {Props} from "javascript/tag/components/buttons";
+import TagButtons from "javascript/tag/components/buttons";
 
 import {makeTag, makeTask} from "_test_helpers/factories";
 

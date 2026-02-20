@@ -1,8 +1,8 @@
-import MainButtons from "src/task/components/main_buttons";
+import MainButtons from "./main_buttons";
 import ParentTaskBreadCrumbs
-  from "src/task/containers/parent_task_bread_crumbs";
-import TaskTitle from "src/task/components/task_title";
-import TagButtonsContainer from "src/tag/containers/buttons";
+  from "../containers/parent_task_bread_crumbs";
+import TaskTitle from "./task_title";
+import TagButtonsContainer from "../../tag/containers/buttons";
 
 type TaskDisplayProps = {
   deleteTask: (taskId: number) => void;

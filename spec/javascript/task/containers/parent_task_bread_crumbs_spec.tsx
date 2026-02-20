@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 
 import ParentTaskBreadCrumbsContainer, {ParentTaskBreadCrumbs}
-  from "src/task/containers/parent_task_bread_crumbs";
+  from "javascript/task/containers/parent_task_bread_crumbs";
 
 import {makeState, makeTask} from "_test_helpers/factories";
 

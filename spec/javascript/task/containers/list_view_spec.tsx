@@ -1,12 +1,12 @@
-vi.mock("src/route/selectors");
-vi.mock("src/task/bulk_store");
+vi.mock("javascript/route/selectors");
+vi.mock("javascript/task/bulk_store");
 
 import {Provider} from "react-redux";
 import {render} from "@testing-library/react";
 
-import TaskListViewContainer from "src/task/containers/list_view";
-import createAppStore from "src/_common/create_app_store";
-import {setRoute} from "src/route/action_creators";
+import TaskListViewContainer from "javascript/task/containers/list_view";
+import createAppStore from "javascript/_common/create_app_store";
+import {setRoute} from "javascript/route/action_creators";
 
 it("wraps the TaskListView component", () => {
   const store = createAppStore();

@@ -5,10 +5,10 @@ import {PureComponent} from "react";
 import {map} from "lodash";
 
 import {grab, assert} from "helpers";
-import TaskEditIcon from "src/task/components/edit_icon";
-import TaskEditTitleForm from "src/task/components/edit_title_form";
-import timeframeNameMap from "src/timeframe/name_map";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskEditIcon from "./edit_icon";
+import TaskEditTitleForm from "./edit_title_form";
+import timeframeNameMap from "../../timeframe/name_map";
+import type {UpdateTask} from "../action_creators";
 
 const BUTTON_CLASS = "btn btn-link tasks-table__action";
 
