@@ -1,5 +1,4 @@
-import {grab} from "helpers";
-import {request} from "helpers/request";
+import {grab, request} from "helpers";
 import TaskStore from "../task/store";
 import {
   calculateMaxMinutes,

@@ -2,7 +2,7 @@ import type {Moment} from "moment";
 import moment from "moment";
 import FakeTimers from "@sinonjs/fake-timers";
 
-import type {TimeBalance} from "helpers/time_balancer";
+import type {TimeBalance} from "helpers";
 import {TimeBalancer} from "helpers";
 
 describe("TimeBalancer.baseBalances", () => {
