@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 
-import TaskTreeView from "src/task/components/tree_view";
-import {updateTask} from "src/task/action_creators";
-import {getPartitionedRootTasks, getTasksByParentId} from "src/task/selectors";
+import TaskTreeView from "../components/tree_view";
+import {updateTask} from "../action_creators";
+import {getPartitionedRootTasks, getTasksByParentId} from "../selectors";
 
 function mapStateToProps(state: State) {
   return {

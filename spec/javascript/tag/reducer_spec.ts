@@ -1,5 +1,5 @@
-import {INIT, SET, UPSERT} from "src/tag/action_creators";
-import tagReducer from "src/tag/reducer";
+import {INIT, SET, UPSERT} from "javascript/tag/action_creators";
+import tagReducer from "javascript/tag/reducer";
 
 import {makeTag, makeTagState} from "_test_helpers/factories";
 

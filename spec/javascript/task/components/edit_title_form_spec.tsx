@@ -2,8 +2,8 @@ import {fireEvent, render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
-import type {Props} from "src/task/components/edit_title_form";
-import TaskEditTitleForm from "src/task/components/edit_title_form";
+import type {Props} from "javascript/task/components/edit_title_form";
+import TaskEditTitleForm from "javascript/task/components/edit_title_form";
 
 const props: Props = {
   task: makeTask({id: 52, title: "a title"}),

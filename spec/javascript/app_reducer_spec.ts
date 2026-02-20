@@ -1,4 +1,4 @@
-import reducer from "src/_common/app_reducer";
+import reducer from "javascript/_common/app_reducer";
 
 import {makeState} from "_test_helpers/factories";
 

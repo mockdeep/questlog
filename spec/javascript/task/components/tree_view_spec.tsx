@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 
-import TaskTreeView from "src/task/components/tree_view";
+import TaskTreeView from "javascript/task/components/tree_view";
 
 import {makeTask} from "_test_helpers/factories";
 

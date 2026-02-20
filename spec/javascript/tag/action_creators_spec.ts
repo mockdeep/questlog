@@ -4,7 +4,7 @@ import {makeState, makeTag} from "_test_helpers/factories";
 import {
   SET, UPSERT,
   setTags, upsertTagPlain, upsertTags,
-} from "src/tag/action_creators";
+} from "javascript/tag/action_creators";
 
 describe("setTags", () => {
   it("returns a SET action", () => {

@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 
-import RuleRow from "src/tag/components/rule_row";
+import RuleRow from "javascript/tag/components/rule_row";
 
 const tagRule: TagRule = {field: "estimateSeconds", check: "isBlank"};
 const props = {

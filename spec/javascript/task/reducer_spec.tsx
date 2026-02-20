@@ -1,8 +1,8 @@
 import {
   setTasks,
   INIT, SET, UPDATE, UPDATE_META,
-} from "src/task/action_creators";
-import taskReducer from "src/task/reducer";
+} from "javascript/task/action_creators";
+import taskReducer from "javascript/task/reducer";
 
 import {makeTask, makeTaskState} from "_test_helpers/factories";
 

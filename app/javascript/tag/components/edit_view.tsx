@@ -5,8 +5,8 @@ import {flushSync} from "react-dom";
 import update from "immutability-helper";
 import {uniqWith, isEqual} from "lodash";
 
-import AuthenticityToken from "src/_common/components/authenticity_token";
-import RuleRow from "src/tag/components/rule_row";
+import AuthenticityToken from "../../_common/components/authenticity_token";
+import RuleRow from "./rule_row";
 
 export type Props = {
   tag: Tag | undefined;

@@ -1,11 +1,11 @@
 import type {ReactElement} from "react";
 
-import TaskEditTitleForm from "src/task/components/edit_title_form";
+import TaskEditTitleForm from "./edit_title_form";
 import ParentTaskBreadCrumbs
-  from "src/task/containers/parent_task_bread_crumbs";
-import SubTasksTable from "src/task/components/sub_tasks_table";
+  from "../containers/parent_task_bread_crumbs";
+import SubTasksTable from "./sub_tasks_table";
 import {ToEnglish} from "helpers";
-import type {UpdateTask} from "src/task/action_creators";
+import type {UpdateTask} from "../action_creators";
 
 function repeatString(task: Task): string {
   if (!task.repeatSeconds) { return "Repeat: never"; }

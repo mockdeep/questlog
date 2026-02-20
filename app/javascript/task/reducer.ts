@@ -1,7 +1,7 @@
 import {keyBy} from "lodash";
 import update from "immutability-helper";
 
-import createBasicReducer from "src/_common/create_basic_reducer";
+import createBasicReducer from "../_common/create_basic_reducer";
 import {assert} from "helpers";
 import {
   INIT,
@@ -9,7 +9,7 @@ import {
   SET,
   UPDATE,
   UPDATE_META,
-} from "src/task/action_creators";
+} from "./action_creators";
 
 function estimateMinutes(task: UnprocessedTask): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);

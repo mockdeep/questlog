@@ -1,7 +1,7 @@
 import {render, screen} from "@testing-library/react";
 
-import type {Props} from "src/task/components/parent_list_item";
-import TaskParentListItem from "src/task/components/parent_list_item";
+import type {Props} from "javascript/task/components/parent_list_item";
+import TaskParentListItem from "javascript/task/components/parent_list_item";
 
 import {makeTask} from "_test_helpers/factories";
 

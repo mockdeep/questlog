@@ -17,8 +17,8 @@ import type {Mock} from "vitest";
 import {Provider} from "react-redux";
 import {render, screen} from "@testing-library/react";
 
-import TaskFocusViewContainer from "src/task/containers/focus_view";
-import createAppStore from "src/_common/create_app_store";
+import TaskFocusViewContainer from "javascript/task/containers/focus_view";
+import createAppStore from "javascript/_common/create_app_store";
 
 it("wraps the Item component", () => {
   render(

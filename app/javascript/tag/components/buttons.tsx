@@ -2,7 +2,7 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import TagButton from "src/tag/components/button";
+import TagButton from "./button";
 
 export type Props = {
   currentTagIds: number[],

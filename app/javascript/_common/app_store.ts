@@ -1,3 +1,3 @@
-import createAppStore from "src/_common/create_app_store";
+import createAppStore from "./create_app_store";
 
 export default createAppStore();

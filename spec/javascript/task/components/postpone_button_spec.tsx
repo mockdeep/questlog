@@ -2,8 +2,8 @@ import {render, screen} from "@testing-library/react";
 
 import {makeTask} from "_test_helpers/factories";
 
-import type {Props} from "src/task/components/postpone_button";
-import PostponeButton from "src/task/components/postpone_button";
+import type {Props} from "javascript/task/components/postpone_button";
+import PostponeButton from "javascript/task/components/postpone_button";
 
 const props: Props = {
   disabled: false,

@@ -1,8 +1,8 @@
 import type {Mock} from "vitest";
 
-import TimeframeStore from "src/timeframe/store";
+import TimeframeStore from "javascript/timeframe/store";
 
-vi.mock("src/timeframe/store", () => {
+vi.mock("javascript/timeframe/store", () => {
   return {
     "default": {
       getAll: vi.fn(),
@@ -13,7 +13,7 @@ vi.mock("src/timeframe/store", () => {
 
 import {render, screen, waitFor} from "@testing-library/react";
 
-import TimeframeListView from "src/timeframe/components/list_view";
+import TimeframeListView from "javascript/timeframe/components/list_view";
 
 import {makeTask, makeTimeframe} from "_test_helpers/factories";
 

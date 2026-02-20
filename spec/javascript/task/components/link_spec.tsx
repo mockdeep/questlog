@@ -1,6 +1,6 @@
 import {render, screen} from "@testing-library/react";
 
-import TaskLink from "src/task/components/link";
+import TaskLink from "javascript/task/components/link";
 
 import {makeTask} from "_test_helpers/factories";
 

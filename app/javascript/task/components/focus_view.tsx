@@ -2,8 +2,8 @@ import autobind from "class-autobind";
 import type {ReactElement} from "react";
 import {Component} from "react";
 
-import TaskDisplay from "src/task/components/task_display";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskDisplay from "./task_display";
+import type {UpdateTask} from "../action_creators";
 
 export type Props = {
   ajaxState: string,

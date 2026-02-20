@@ -4,7 +4,7 @@ import {
   getPartitionedRootTasks,
   getPartitionedTasks,
   getActiveTasks,
-} from "src/task/selectors";
+} from "javascript/task/selectors";
 
 import {makeState, makeTask} from "_test_helpers/factories";
 

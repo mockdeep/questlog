@@ -1,9 +1,9 @@
 import update from "immutability-helper";
 import {keyBy} from "lodash";
 
-import createBasicReducer from "src/_common/create_basic_reducer";
+import createBasicReducer from "../_common/create_basic_reducer";
 
-import {INIT, SET, UPSERT} from "src/tag/action_creators";
+import {INIT, SET, UPSERT} from "./action_creators";
 
 const operations = {
   [INIT]() {

@@ -1,8 +1,8 @@
 import {request} from "helpers/request";
 
-import appStore from "src/_common/app_store";
-import TaskStore from "src/task/store";
-import {fetchTasks} from "src/task/action_creators";
+import appStore from "../_common/app_store";
+import TaskStore from "./store";
+import {fetchTasks} from "./action_creators";
 
 const BulkTaskStore: BulkTaskStoreType = {
   listeners: [],

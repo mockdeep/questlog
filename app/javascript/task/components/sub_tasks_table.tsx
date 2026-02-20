@@ -1,8 +1,8 @@
 import type {ReactElement} from "react";
 
-import TaskRow from "src/task/components/task_row";
-import TableHeaders from "src/task/components/table_headers";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskRow from "./task_row";
+import TableHeaders from "./table_headers";
+import type {UpdateTask} from "../action_creators";
 
 type FunctionProps = {
   deleteTask: (taskId: number) => void,

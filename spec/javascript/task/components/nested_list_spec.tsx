@@ -1,7 +1,7 @@
 import {render, screen} from "@testing-library/react";
 
-import type {Props} from "src/task/components/nested_list";
-import TaskNestedList from "src/task/components/nested_list";
+import type {Props} from "javascript/task/components/nested_list";
+import TaskNestedList from "javascript/task/components/nested_list";
 
 import {makeTask} from "_test_helpers/factories";
 

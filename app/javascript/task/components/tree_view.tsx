@@ -2,8 +2,8 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import TaskNestedList from "src/task/components/nested_list";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskNestedList from "./nested_list";
+import type {UpdateTask} from "../action_creators";
 
 type Props = {
   tasks: Task[],

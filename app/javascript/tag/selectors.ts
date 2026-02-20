@@ -2,7 +2,7 @@ import {createSelector} from "reselect";
 import {mapValues, sortBy} from "lodash";
 
 import {grab, assert} from "helpers";
-import {getActiveTasks} from "src/task/selectors";
+import {getActiveTasks} from "../task/selectors";
 
 const RULES = {
   isActive(): boolean { return true; },

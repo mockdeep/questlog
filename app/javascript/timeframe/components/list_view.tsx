@@ -4,10 +4,10 @@ import type {ReactElement} from "react";
 
 import {ToEnglish, assert} from "helpers";
 
-import TimeframeStore from "src/timeframe/store";
-import TimeframeSection from "src/timeframe/components/section";
-import {calculateTotalMinutes} from "src/timeframe/utils";
-import type {UpdateTask} from "src/task/action_creators";
+import TimeframeStore from "../store";
+import TimeframeSection from "./section";
+import {calculateTotalMinutes} from "../utils";
+import type {UpdateTask} from "../../task/action_creators";
 
 function timeframeHasTasks(timeframe: Timeframe): boolean {
   return timeframe.currentTasks.length > 0 || timeframe.pendingTasks.length > 0;

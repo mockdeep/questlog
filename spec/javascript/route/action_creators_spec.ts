@@ -1,7 +1,7 @@
 import {
   SET,
   setRoute, fetchRoute,
-} from "src/route/action_creators";
+} from "javascript/route/action_creators";
 
 afterEach(() => {
   window.history.replaceState(null, "", "/");

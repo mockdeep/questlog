@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 
-import TaskCheckbox from "src/task/components/checkbox";
+import TaskCheckbox from "javascript/task/components/checkbox";
 import {makeTask} from "_test_helpers/factories";
 
 const task = makeTask();

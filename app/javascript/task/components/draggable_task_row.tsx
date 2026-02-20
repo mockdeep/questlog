@@ -2,8 +2,8 @@ import {memo, useCallback} from "react";
 import type {ReactElement} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
-import TaskRow from "src/task/components/task_row";
-import type {UpdateTask} from "src/task/action_creators";
+import TaskRow from "./task_row";
+import type {UpdateTask} from "../action_creators";
 
 type Props = {
   deleteTask: (taskId: number) => void,

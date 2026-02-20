@@ -2,7 +2,7 @@ function noop(): void {
   // Never resolves
 }
 
-vi.mock("src/timeframe/store", () => {
+vi.mock("javascript/timeframe/store", () => {
   return {
     "default": {
       getAll: vi.fn().mockReturnValue(new Promise(noop)),
@@ -14,8 +14,9 @@ vi.mock("src/timeframe/store", () => {
 import {Provider} from "react-redux";
 import {render, screen} from "@testing-library/react";
 
-import createAppStore from "src/_common/create_app_store";
-import TimeframeListViewContainer from "src/timeframe/containers/list_view";
+import createAppStore from "javascript/_common/create_app_store";
+import TimeframeListViewContainer
+  from "javascript/timeframe/containers/list_view";
 
 it("wraps the TimeframeListView component", () => {
   const store = createAppStore();

@@ -5,7 +5,7 @@ import FakeTimers from "@sinonjs/fake-timers";
 import {grab} from "helpers";
 
 import {request} from "helpers/request";
-import TimeframeStore from "src/timeframe/store";
+import TimeframeStore from "javascript/timeframe/store";
 
 import {makeTask} from "_test_helpers/factories";
 
