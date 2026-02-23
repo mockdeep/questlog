@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 import TaskListView from "../components/list_view";
 import {deleteTask, updateTask} from "../action_creators";
 import {

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import type {ReactElement} from "react";
 import {Component} from "react";
 
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 import TaskCheckbox from "./checkbox";
 import TaskNestedList from "./nested_list";
 import type {UpdateTask} from "../action_creators";

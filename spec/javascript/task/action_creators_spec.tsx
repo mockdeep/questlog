@@ -1,11 +1,12 @@
-vi.mock("helpers", async (importOriginal: () => Promise<object>) => {
+vi.mock("helpers/ajax", async (importOriginal: () => Promise<object>) => {
   const original = await importOriginal();
   return {...original, ajaxDelete: vi.fn(), ajaxGet: vi.fn(), ajaxPut: vi.fn()};
 });
 vi.mock("javascript/task/store");
 
 import type {Mock} from "vitest";
-import {ajaxDelete, ajaxGet, ajaxPut, grab} from "helpers";
+import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
+import {grab} from "helpers/grab";
 import type {Dispatch, Store} from "redux";
 
 import {makeState} from "support/factories";

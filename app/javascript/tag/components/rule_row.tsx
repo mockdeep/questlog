@@ -2,7 +2,7 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ChangeEvent, MouseEvent, ReactElement} from "react";
 
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 
 const FIELD_NAMES = ["estimateSeconds", "tagIds"];
 

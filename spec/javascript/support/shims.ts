@@ -1,4 +1,4 @@
-import {debug} from "helpers";
+import {debug} from "helpers/debug";
 
 (global as any).debug = debug;
 

@@ -13,7 +13,6 @@ export default defineConfig({
       {find: /^channels\//u, replacement: appPath("channels")},
       {find: /^controllers\//u, replacement: appPath("controllers")},
       {find: /^helpers\//u, replacement: appPath("helpers")},
-      {find: /^helpers$/u, replacement: `${path.resolve(root, "app/javascript/helpers/index.ts")}`},
       {find: /^javascript\//u, replacement: appPath("")},
       {find: /^spec\//u, replacement: `${path.resolve(root, "spec")}/`},
       {

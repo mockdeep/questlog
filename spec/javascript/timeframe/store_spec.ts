@@ -1,11 +1,12 @@
-vi.mock("helpers", async (importOriginal: () => Promise<object>) => {
+vi.mock("helpers/request", async (importOriginal: () => Promise<object>) => {
   const original = await importOriginal();
   return {...original, request: vi.fn()};
 });
 import type {Mock} from "vitest";
 import FakeTimers from "@sinonjs/fake-timers";
 
-import {grab, request} from "helpers";
+import {grab} from "helpers/grab";
+import {request} from "helpers/request";
 import TimeframeStore from "javascript/timeframe/store";
 
 import {makeTask} from "support/factories";

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {debug} from "helpers";
+import {debug} from "helpers/debug";
 
 beforeEach(() => {
   vi.spyOn(console, "log").mockImplementation(() => { /* nada */ });

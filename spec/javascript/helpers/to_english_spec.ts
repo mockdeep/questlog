@@ -1,4 +1,4 @@
-import {ToEnglish} from "helpers";
+import {ToEnglish} from "helpers/to_english";
 
 describe("ToEnglish.seconds", () => {
   it("returns seconds when < 1 minute", () => {

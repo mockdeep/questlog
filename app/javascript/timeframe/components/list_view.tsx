@@ -2,7 +2,8 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import {ToEnglish, assert} from "helpers";
+import {assert} from "helpers/assert";
+import {ToEnglish} from "helpers/to_english";
 
 import TimeframeStore from "../store";
 import TimeframeSection from "./section";

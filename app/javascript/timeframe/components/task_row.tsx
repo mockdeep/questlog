@@ -4,7 +4,7 @@ import type {ChangeEvent, MouseEvent, ReactElement} from "react";
 import {PureComponent} from "react";
 import {map} from "lodash";
 
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 import TaskEditIcon from "../../task/components/edit_icon";
 import TaskEditTitleForm from "../../task/components/edit_title_form";
 import timeframeNameMap from "../name_map";
