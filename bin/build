@@ -11,4 +11,5 @@ pnpm esbuild app/javascript/*.{ts,tsx} \
   --sourcemap \
   --target=es2015 \
   --tree-shaking=true \
+  --public-path=/assets \
   "$@"
