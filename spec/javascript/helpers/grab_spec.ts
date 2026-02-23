@@ -1,4 +1,4 @@
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 
 it("throws an error when object has no such key", () => {
   const expected = "object has no key \"someKey\". <{\"aKey\":\"blah\"}>";

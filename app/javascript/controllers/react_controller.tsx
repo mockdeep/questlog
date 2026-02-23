@@ -4,7 +4,7 @@ import {Controller} from "@hotwired/stimulus";
 import {Provider} from "react-redux";
 
 import appStore from "../_common/app_store";
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 import TagEditViewContainer from "../tag/containers/edit_view";
 import TaskShowViewContainer from "../task/containers/show_view";
 import TaskFocusViewContainer from "../task/containers/focus_view";

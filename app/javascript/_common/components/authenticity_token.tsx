@@ -1,6 +1,6 @@
 import type {ReactElement} from "react";
 
-import {authenticityToken} from "helpers";
+import {authenticityToken} from "helpers/authenticity_token";
 
 function AuthenticityToken(): ReactElement {
   return (

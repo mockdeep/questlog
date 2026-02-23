@@ -1,4 +1,4 @@
-import {request} from "helpers";
+import {request} from "helpers/request";
 
 function estimateMinutes(task: Task): number {
   return Math.floor((task.estimateSeconds || 1800) / 60);

@@ -1,6 +1,6 @@
 import {pathToRegexp, compile} from "path-to-regexp";
 
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 
 type Route = {
   name: string;

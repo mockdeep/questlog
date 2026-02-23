@@ -1,4 +1,4 @@
-import {request} from "helpers";
+import {request} from "helpers/request";
 
 import appStore from "../_common/app_store";
 import TaskStore from "./store";

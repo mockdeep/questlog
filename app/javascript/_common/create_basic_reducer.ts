@@ -1,4 +1,4 @@
-import {grab} from "helpers";
+import {grab} from "helpers/grab";
 
 type Payload = BasicAction["payload"];
 

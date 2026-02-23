@@ -4,7 +4,7 @@ import TaskEditTitleForm from "./edit_title_form";
 import ParentTaskBreadCrumbs
   from "../containers/parent_task_bread_crumbs";
 import SubTasksTable from "./sub_tasks_table";
-import {ToEnglish} from "helpers";
+import {ToEnglish} from "helpers/to_english";
 import type {UpdateTask} from "../action_creators";
 
 function repeatString(task: Task): string {
