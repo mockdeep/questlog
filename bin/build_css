@@ -8,11 +8,12 @@ fi
 
 pnpm esbuild app/assets/stylesheets/application.css \
   --bundle \
-  --outfile=app/assets/builds/application.css \
   --loader:.woff2=copy \
   --loader:.ttf=copy \
   --loader:.woff=empty \
   --loader:.eot=empty \
   --loader:.svg=empty \
   ${MINIFY:-} \
+  --outdir=app/assets/builds \
+  --public-path=/assets \
   "$@"
