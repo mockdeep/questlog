@@ -130,8 +130,8 @@ importers:
         specifier: ^3.3.7
         version: 3.3.7(@types/react@18.3.28)
       '@types/jquery':
-        specifier: ^3.5.33
-        version: 3.5.33
+        specifier: ^4.0.0
+        version: 4.0.0
       '@types/lodash':
         specifier: ^4.17.24
         version: 4.17.24
@@ -932,8 +932,8 @@ packages:
     peerDependencies:
       '@types/react': 18.3.28
 
-  '@types/jquery@3.5.33':
-    resolution: {integrity: sha512-SeyVJXlCZpEki5F0ghuYe+L+PprQta6nRZqhONt9F13dWBtR/ftoaIbdRQ7cis7womE+X2LKhsDdDtkkDhJS6g==}
+  '@types/jquery@4.0.0':
+    resolution: {integrity: sha512-Z+to+A2VkaHq1DfI2oSwsoCdhCHMpTSgjWzNcbNlRGYzksDBpPUgEcAL+RQjOBJRaLoEAOHXxqDGBVP+BblBwg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -970,9 +970,6 @@ packages:
 
   '@types/sinonjs__fake-timers@15.0.1':
     resolution: {integrity: sha512-Ko2tjWJq8oozHzHV+reuvS5KYIRAokHnGbDwGh/J64LntgpbuylF74ipEL24HCyRjf9FOlBiBHWBR1RlVKsI1w==}
-
-  '@types/sizzle@2.3.8':
-    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==}
 
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
@@ -3667,9 +3664,7 @@ snapshots:
       '@types/react': 18.3.28
       hoist-non-react-statics: 3.3.2
 
-  '@types/jquery@3.5.33':
-    dependencies:
-      '@types/sizzle': 2.3.8
+  '@types/jquery@4.0.0': {}
 
   '@types/json-schema@7.0.15': {}
 
@@ -3709,8 +3704,6 @@ snapshots:
       csstype: 3.2.3
 
   '@types/sinonjs__fake-timers@15.0.1': {}
-
-  '@types/sizzle@2.3.8': {}
 
   '@types/use-sync-external-store@0.0.6': {}
 
