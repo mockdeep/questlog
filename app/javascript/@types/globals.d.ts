@@ -5,8 +5,6 @@ type Gon = {
 };
 
 interface Window {
-  $: JQueryStatic;
-  jQuery: JQueryStatic;
   debug: () => void;
   gon: Gon;
 }
