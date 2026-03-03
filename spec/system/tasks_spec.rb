@@ -12,7 +12,7 @@ RSpec.describe "Tasks page" do
       click_button "Create free account!"
       expect(page).to have_content("Log out")
       expect(page).to have_task("do laundry")
-      click_link "Log out"
+      click_button "Log out"
       expect(page).to have_no_task
     end
 
@@ -21,7 +21,7 @@ RSpec.describe "Tasks page" do
       expect(page).to have_task("do laundry")
       system_login_as(user)
       expect(page).to have_task("do laundry")
-      click_link "Log out"
+      click_button "Log out"
       expect(page).to have_no_task
     end
   end

@@ -4,5 +4,5 @@ vi.mock("@hotwired/turbo-rails");
 import "javascript/application";
 
 it("sets up the application", () => {
-  expect(window.jQuery).not.toBeUndefined();
+  expect(window.debug).not.toBeUndefined();
 });

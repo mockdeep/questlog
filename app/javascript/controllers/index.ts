@@ -13,5 +13,8 @@ application.register("dialog", DialogController);
 import HotkeysController from "./hotkeys_controller";
 application.register("hotkeys", HotkeysController);
 
+import FlashController from "./flash_controller";
+application.register("flash", FlashController);
+
 import ReactController from "./react_controller";
 application.register("react", ReactController);
