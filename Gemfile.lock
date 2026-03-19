@@ -80,10 +80,13 @@ GEM
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.22)
+<<<<<<< HEAD
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
+=======
+>>>>>>> 69263d86 (Update bcrypt to version 3.1.22 (#1376))
     bigdecimal (4.0.1)
     bindex (0.8.1)
     bootsnap (1.23.0)
