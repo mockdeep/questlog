@@ -10,7 +10,7 @@ import TaskListView from "javascript/task/components/list_view";
 
 import {makeTask} from "support/factories";
 
-function deref(ref: RefObject<TaskListView>): TaskListView {
+function deref(ref: RefObject<TaskListView | null>): TaskListView {
   if (ref.current === null) {
     throw new Error("ref.current is null");
   }
