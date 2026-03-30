@@ -1,5 +1,5 @@
 export function authenticityToken(): string {
-  const tokenTag = document.getElementsByName("csrf-token")[0];
+  const [tokenTag] = document.getElementsByName("csrf-token");
 
   if (!(tokenTag instanceof HTMLMetaElement)) {
     return "";

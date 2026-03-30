@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "incremental": true,
     "jsx": "react-jsx",
     "target": "es2016",
