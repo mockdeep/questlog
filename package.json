@@ -32,7 +32,7 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "reselect": "^5.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "//": {
     "later -> @rails/ujs": "^6.0.0-alpha",
