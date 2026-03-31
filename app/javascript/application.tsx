@@ -1,8 +1,10 @@
 import "./_common/globals";
 import Honeybadger from "honeybadger-js";
 import "controllers/index";
-import {Turbo} from "@hotwired/turbo-rails";
-Turbo.session.drive = false;
+import "@hotwired/turbo-rails";
+import {session} from "@hotwired/turbo";
+
+session.drive = false;
 
 
 Honeybadger.configure({
