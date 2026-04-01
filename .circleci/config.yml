@@ -30,9 +30,18 @@ commands:
           install-chromedriver: false
 
       - node/install:
+<<<<<<< HEAD
           node-version: 25.8.1
           install-pnpm: true
           pnpm-version: 10.26.1
+=======
+          node-version: 25.8.2
+
+      - node/install-packages:
+          pkg-manager: pnpm
+
+      - browser-tools/install_firefox
+>>>>>>> 2a75e914 (Update Node.js to version 25.8.2 (#1387))
 
       - run:
           name: Which versions?

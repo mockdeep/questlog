@@ -1,8 +1,16 @@
 {
   "name": "questlog",
   "private": true,
+<<<<<<< HEAD
   "repository": "https://github.com/mockdeep/questlog",
   "packageManager": "pnpm@10.26.1",
+=======
+  "engines": {
+    "node": "25.8.2"
+  },
+  "packageManager": "pnpm@10.5.2",
+  "version": "0.1.0",
+>>>>>>> 2a75e914 (Update Node.js to version 25.8.2 (#1387))
   "dependencies": {
     "@fontsource/roboto": "^5.2.10",
     "@fontsource/roboto-condensed": "^5.2.8",
