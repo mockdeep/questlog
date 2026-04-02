@@ -19,7 +19,7 @@
     "eslint-plugin-fp": "^2.3.0",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
-    "lodash": "^4.17.23",
+    "lodash": "^4.18.1",
     "moment": "^2.30.1",
     "nanoid": "^5.1.7",
     "normalize.css": "^8.0.1",
