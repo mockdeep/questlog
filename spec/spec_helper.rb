@@ -11,21 +11,11 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../config/environment", __dir__)
 
 require "rspec/rails"
-require "capybara-screenshot/rspec"
 
 def support_path
   Rails.root.join("spec/support")
 end
 Dir[support_path.join("**/*.rb")].each { |f| require f }
-
-Capybara.server_port = 8081
-Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
-
-[:selenium_chrome, :selenium_chrome_headless].each do |driver_name|
-  Capybara::Screenshot.register_driver(driver_name) do |capybara_driver, path|
-    capybara_driver.browser.save_screenshot(path)
-  end
-end
 
 system("pnpm build >/dev/null 2>&1 ", exception: true)
 ActiveRecord::Migration.maintain_test_schema!
@@ -55,11 +45,6 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mock_config|
     mock_config.verify_doubled_constant_names = true
-  end
-
-  config.prepend_before(:each, type: :system) do
-    Capybara.reset!
-    driven_by :selenium, using: :firefox
   end
 
   config.before(:each, type: :system) do
