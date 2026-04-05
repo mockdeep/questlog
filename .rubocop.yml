@@ -32,6 +32,7 @@ Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 Rails/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
+RSpec/MultipleMemoizedHelpers: { Max: 0, AllowSubject: false }
 Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/CollectionMethods:
   PreferredMethods:
