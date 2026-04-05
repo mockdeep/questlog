@@ -17,6 +17,7 @@ AllCops:
   Exclude:
     - vendor/**/*
     - db/schema.rb
+<<<<<<< HEAD
     - !ruby/regexp /node_modules\/.*/
 
 Rails: { Enabled: true }
@@ -32,6 +33,16 @@ Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 Rails/FilePath: { Exclude: [spec/matchers/**/*] }
 RSpec/ContextWording: { Prefixes: [when] }
+=======
+    - config/environments/development.rb
+Rails/FilePath: { EnforcedStyle: slashes }
+Metrics/MethodLength: { Exclude: [db/migrate/**/*.rb] }
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/system/**/*.rb
+RSpec/MessageExpectation: { EnforcedStyle: expect }
+RSpec/MultipleMemoizedHelpers: { Max: 0, AllowSubject: false }
+>>>>>>> e1cc408d (Rubocop: disallow let blocks (#1396))
 Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/CollectionMethods:
   PreferredMethods:
