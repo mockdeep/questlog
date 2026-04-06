@@ -1,3 +1,5 @@
+Object.method(:to_s).()
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -51,6 +53,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", require: false
+  gem "rubocop-i18n", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
