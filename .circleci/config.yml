@@ -31,8 +31,16 @@ commands:
 
       - node/install:
           node-version: 25.9.0
+<<<<<<< HEAD
           install-pnpm: true
           pnpm-version: 10.26.1
+=======
+
+      - node/install-packages:
+          pkg-manager: pnpm
+
+      - browser-tools/install_firefox
+>>>>>>> 5cd5356d (Update Node.js to version 25.9.0 (#1401))
 
       - run:
           name: Which versions?
