@@ -30,7 +30,7 @@ commands:
           install-chromedriver: false
 
       - node/install:
-          node-version: 25.8.2
+          node-version: 25.9.0
           install-pnpm: true
           pnpm-version: 10.26.1
 
