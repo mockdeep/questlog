@@ -15,7 +15,7 @@
     "bootstrap": "3.4.1",
     "class-autobind": "^0.1.4",
     "classnames": "^2.5.1",
-    "esbuild": "^0.27.4",
+    "esbuild": "^0.28.0",
     "eslint-plugin-fp": "^2.3.0",
     "honeybadger-js": "^2.3.0",
     "immutability-helper": "^3.0.1",
