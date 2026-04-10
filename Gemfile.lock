@@ -80,11 +80,15 @@ GEM
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.22)
+<<<<<<< HEAD
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
     bigdecimal (4.1.0)
+=======
+    bigdecimal (4.1.1)
+>>>>>>> 5e4dedab (Update all Bundler dependencies (2026-04-10) (#1405))
     bindex (0.8.1)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
@@ -248,8 +252,12 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+<<<<<<< HEAD
     ostruct (0.6.3)
     parallel (1.28.0)
+=======
+    parallel (2.0.1)
+>>>>>>> 5e4dedab (Update all Bundler dependencies (2026-04-10) (#1405))
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
@@ -324,11 +332,18 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+<<<<<<< HEAD
     redis (5.4.1)
       redis-client (>= 0.22.0)
     redis-client (0.28.0)
       connection_pool
     regexp_parser (2.11.3)
+=======
+    refract (1.1.0)
+      prism
+      zeitwerk
+    regexp_parser (2.12.0)
+>>>>>>> 5e4dedab (Update all Bundler dependencies (2026-04-10) (#1405))
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -356,11 +371,11 @@ GEM
     rspec-support (3.13.7)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.86.0)
+    rubocop (1.86.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
-      parallel (~> 1.10)
+      parallel (>= 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
@@ -395,7 +410,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (3.2.2)
     securerandom (0.4.1)
-    selenium-webdriver (4.41.0)
+    selenium-webdriver (4.42.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -427,11 +442,16 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
+<<<<<<< HEAD
     stripe (19.0.0)
       bigdecimal
       logger
     sysexits (1.2.0)
     temple (0.10.4)
+=======
+    strong_migrations (2.6.0)
+      activerecord (>= 7.2)
+>>>>>>> 5e4dedab (Update all Bundler dependencies (2026-04-10) (#1405))
     thor (1.5.0)
     tilt (2.7.0)
     timeout (0.6.1)
