@@ -75,6 +75,10 @@
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-selector-bem-pattern": "^4.0.1",
+<<<<<<< HEAD
+=======
+    "typescript": "^6.0.3",
+>>>>>>> e4dd5f45 (Update all pnpm dependencies (2026-04-27) (#1409))
     "typescript-eslint": "^8.57.2",
     "util": "^0.12.5",
     "vitest": "^4.1.4"
