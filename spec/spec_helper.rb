@@ -70,7 +70,7 @@ def system_login_as(user)
   fill_in "Email", with: user.account.email
   fill_in "Password", with: user.account.password
   click_button "Login"
-  expect(page).to have_content("Logged in as #{user.account.email}")
+  expect(page).to have_text("Logged in as #{user.account.email}")
   page.execute_script(File.read(support_path.join("disable_animations.js")))
 end
 
@@ -78,7 +78,7 @@ def add_task(task_title)
   fill_in "new-title", with: task_title
   expect(page).to have_field("new-title", with: task_title)
   click_button "Add Task"
-  expect(page).to have_content("Task added")
+  expect(page).to have_text("Task added")
   expect(page).to have_no_field("new-title", with: task_title)
 end
 

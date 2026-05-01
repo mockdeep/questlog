@@ -10,7 +10,7 @@ RSpec.describe "Tasks page" do
       fill_in "Password", with: "my_password"
       fill_in "Password confirmation", with: "my_password"
       click_button "Create free account!"
-      expect(page).to have_content("Log out")
+      expect(page).to have_text("Log out")
       expect(page).to have_task("do laundry")
       click_button "Log out"
       expect(page).to have_no_task
@@ -116,6 +116,6 @@ RSpec.describe "Tasks page" do
 
   it "shows a help modal" do
     first(:link, "Help").click
-    expect(page).to have_content("You can type different markers")
+    expect(page).to have_text("You can type different markers")
   end
 end

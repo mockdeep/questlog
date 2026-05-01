@@ -72,7 +72,7 @@ RSpec.describe "timeframes" do
 
     sidebar.click("TIMEFRAMES")
 
-    expect(page).to have_content("Median Productivity")
+    expect(page).to have_text("Median Productivity")
 
     task_1 = create(:task, user:)
     task_2 = create(:task, user:, estimate_seconds: 365)
