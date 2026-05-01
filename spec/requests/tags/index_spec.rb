@@ -8,6 +8,6 @@ RSpec.describe TagsController, "#index" do
 
     get "/tags"
 
-    expect(rendered.find(".tag-row")).to have_content("At home")
+    expect(rendered.find(".tag-row")).to have_text("At home")
   end
 end
