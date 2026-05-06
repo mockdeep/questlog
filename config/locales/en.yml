@@ -30,4 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  free_accounts:
+    create:
+      success: "Signed up!"
+      error: "There was a problem creating your account..."
+  sessions:
+    create:
+      error: "Invalid email or password"
+      success: "Logged in!"
+    destroy:
+      success: "Logged out!"
+  tasks:
+    create:
+      success: "Task added"
