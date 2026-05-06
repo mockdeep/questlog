@@ -5,16 +5,16 @@ class SessionsController < ApplicationController
     result = Session::Create.(**session_params, current_user:)
     if result.success?
       self.current_user = result.object
-      return_or_redirect_to root_path, notice: "Logged in!"
+      return_or_redirect_to root_path, notice: t(".success")
     else
-      flash[:error] = "Invalid email or password"
+      flash[:error] = t(".error")
       redirect_to new_session_path
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_path, notice: "Logged out!"
+    redirect_to root_path, notice: t(".success")
   end
 
   private
