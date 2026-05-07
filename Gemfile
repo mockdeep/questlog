@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-Object.method(:to_s).()
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
