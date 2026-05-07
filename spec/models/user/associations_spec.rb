@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe User, "associations" do
   it { is_expected.to belong_to(:account).dependent(:destroy) }
 

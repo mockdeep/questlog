@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPositionToTasks < ActiveRecord::Migration
   def change
     add_column :tasks, :position, :integer

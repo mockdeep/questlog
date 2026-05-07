@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "front end routing" do
   it "allows the user to navigate forward and backward" do
     add_task("do laundry")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe TagParser do
   let(:parser) { described_class.new }
 

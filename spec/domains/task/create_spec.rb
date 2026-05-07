@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task::Create do
   let(:user) { create(:user) }
   let(:action) { described_class.new }

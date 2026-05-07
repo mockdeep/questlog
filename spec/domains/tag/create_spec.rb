@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Tag::Create do
   let(:user) { create(:user) }
   let(:valid_params) { { user:, name: "foo tag" } }

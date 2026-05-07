@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat::Median do
   it "returns the median of the numbers given" do
     expect(described_class.([1])).to be 1

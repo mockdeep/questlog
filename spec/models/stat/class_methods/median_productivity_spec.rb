@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat, ".median_productivity" do
   let(:user) { create(:user) }
   let(:mock_median) { class_spy(Median) }

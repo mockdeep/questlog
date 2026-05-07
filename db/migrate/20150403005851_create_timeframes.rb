@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTimeframes < ActiveRecord::Migration
   def change
     create_table :timeframes do |t|

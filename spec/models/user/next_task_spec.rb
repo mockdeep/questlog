@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe User, "#next_task" do
   let(:tag) { create(:tag, user:) }
   let(:task_1) { create(:task, user:) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Tag::Update do
   let(:tag) { create(:tag) }
   let(:valid_params) { { name: "foo tag" } }

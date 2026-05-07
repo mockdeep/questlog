@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReleaseAtToQuickies < ActiveRecord::Migration
   def change
     add_column :quickies, :release_at, :datetime

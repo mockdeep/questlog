@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stat
   class StandardDeviation
     include JunkDrawer::Callable

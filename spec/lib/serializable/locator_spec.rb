@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Serializable::Locator do
   describe ".call" do
     it "raises an error when serializer cannot be found" do

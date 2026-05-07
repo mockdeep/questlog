@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Serializable::RootSerializer do
   describe ".call" do
     it "raises an error when invalid options are passed" do

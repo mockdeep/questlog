@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rubygems"
 require "simplecov"
 if ENV["COVERAGE"] != "false"

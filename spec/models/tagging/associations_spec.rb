@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Tagging, "associations" do
   let(:task) { create(:task) }
   let(:tag) { create(:tag) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TagsController < ApplicationController
   def index
     render(locals: { tags: current_user.tags.order(:name) })

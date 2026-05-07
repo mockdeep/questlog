@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "landing pages" do
   it "lets you view the privacy page" do
     visit "/privacy"

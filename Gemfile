@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Object.method(:to_s).()
 
 source "https://rubygems.org"

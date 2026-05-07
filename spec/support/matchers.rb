@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Questlog
 
   module Matchers
 
-    TITLE_SELECTOR = ".task-input:not(#new-title)".freeze
-    TAGS_SELECTOR = ".tag-buttons a.button".freeze
+    TITLE_SELECTOR = ".task-input:not(#new-title)"
+    TAGS_SELECTOR = ".tag-buttons a.button"
 
     def have_task(expected)
       HaveTask.new(expected)

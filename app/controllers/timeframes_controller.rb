@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TimeframesController < ApplicationController
   def index
     timeframe = Timeframe.for(user: current_user)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "editing smart tags" do
   let(:user) { create(:user) }
 

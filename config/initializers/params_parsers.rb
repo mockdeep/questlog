@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Modified from action_dispatch/http/parameters.rb
 # Transform JSON request param keys from JSON-conventional camelCase to
 # Rails-conventional snake_case.

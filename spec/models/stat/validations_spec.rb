@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat, "validations" do
   it { is_expected.to validate_presence_of(:user_id) }
 

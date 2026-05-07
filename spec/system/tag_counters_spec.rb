@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "tag counters" do
   let(:user) { create(:user) }
 

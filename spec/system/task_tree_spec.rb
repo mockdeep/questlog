@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "task tree" do
   let(:user) { create(:user) }
 

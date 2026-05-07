@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat::Create do
   let(:user) { create(:user) }
   let(:stat_create) { described_class.new }

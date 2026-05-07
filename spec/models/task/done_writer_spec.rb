@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#done=" do
   let(:user) { create(:user) }
   let(:task) { build(:task, user:) }

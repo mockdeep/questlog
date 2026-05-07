@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#postpone=" do
   let(:task) { build(:task) }
 

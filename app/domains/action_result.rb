@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActionResult
   attr_accessor :object, :errors
 

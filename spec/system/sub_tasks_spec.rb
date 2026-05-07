@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "adding sub tasks" do
   let(:user) { create(:user) }
 

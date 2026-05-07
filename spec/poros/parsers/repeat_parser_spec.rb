@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe RepeatParser do
   let(:parser) { described_class.new }
 

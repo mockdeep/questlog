@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, ".next_timeframe" do
   let(:user) { create(:user) }
 

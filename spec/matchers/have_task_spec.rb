@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Questlog::Matchers::HaveTask do
   let(:matcher) { described_class.new("foo title") }
 

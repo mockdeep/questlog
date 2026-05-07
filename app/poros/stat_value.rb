@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StatValue
 
   def self.new(user:, value:)

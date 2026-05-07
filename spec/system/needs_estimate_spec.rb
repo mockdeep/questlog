@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "needs estimate" do
   it 'shows a "Needs Estimate" button when there are tasks missing estimate' do
     expect(page).to have_no_tag("Needs Estimate")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Tag, "#unfinished_tasks" do
   it "returns unfinished tasks associated with the tag" do
     tag = create(:tag)

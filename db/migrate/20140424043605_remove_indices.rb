@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveIndices < ActiveRecord::Migration
   def up
     remove_index :quickies, :done_at

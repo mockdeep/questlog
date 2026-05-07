@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GuestAccount < ApplicationRecord
   has_one :user, as: :account, inverse_of: :account
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#status" do
   it 'returns "pending" when "release_at" is present' do
     task = described_class.new(release_at: 1.day.from_now)

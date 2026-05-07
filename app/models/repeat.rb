@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Repeat
 
   def self.repeat_maps

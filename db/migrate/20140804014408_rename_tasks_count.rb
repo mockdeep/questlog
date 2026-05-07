@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameTasksCount < ActiveRecord::Migration
   def up
     rename_column :users, :tasks_count, :unfinished_tasks_count

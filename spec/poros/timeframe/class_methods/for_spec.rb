@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Timeframe, ".for" do
   let(:user) { create(:user) }
 

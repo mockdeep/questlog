@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task::BulkCreate do
   let(:user) { create(:user) }
   let(:bulk_task_create) { described_class.new }

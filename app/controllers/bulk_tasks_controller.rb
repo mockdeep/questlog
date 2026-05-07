@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BulkTasksController < ApplicationController
   def new; end
 

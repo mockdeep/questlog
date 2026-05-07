@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 PumaWorkerKiller.config do |config|
   config.ram = (ENV.fetch("PUMA_WORKER_KILLER_RAM") { 512 }).to_i
   config.frequency = (ENV.fetch("PUMA_WORKER_KILLER_FREQUENCY") { 10 }).to_i

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat, "#mean" do
   it "returns the mean of the filtered stats" do
     stat_1 = create(:stat, value: 3)

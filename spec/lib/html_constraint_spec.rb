@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe HtmlConstraint do
   describe "#matches?" do
     let(:constraint) { described_class.new }

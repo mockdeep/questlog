@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe IconHelper, "#edit_icon" do
   it "returns an icon element" do
     expected = '<i class="fas fa-edit" aria-hidden="true"></i>'

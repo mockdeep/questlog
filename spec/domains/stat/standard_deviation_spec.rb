@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat::StandardDeviation do
   it "returns the standard deviation of the numbers given" do
     expect(described_class.([1, 2])).to eq 0.7071067811865476

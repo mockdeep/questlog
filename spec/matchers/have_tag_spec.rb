@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Questlog::Matchers::HaveTag do
   describe "#matches?" do
     it "returns true when there is a matching tag without count" do
