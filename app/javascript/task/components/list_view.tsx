@@ -9,6 +9,7 @@ import BulkTaskStore from "../bulk_store";
 
 import TableHeaders from "./table_headers";
 import DraggableTaskRow from "./draggable_task_row";
+import PendingTasksTable from "./pending_tasks_table";
 import {assert} from "helpers/assert";
 import type {UpdateTask} from "../action_creators";
 
@@ -35,26 +36,22 @@ export type Props = {
 
 type State = {
   currentTasks: Task[];
-  pendingTasks: Task[];
 };
 
 class TaskListView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const {currentTasks, pendingTasks} = this.props;
-    this.state = {currentTasks, pendingTasks};
+    const {currentTasks} = this.props;
+    this.state = {currentTasks};
     autobind(this);
   }
 
   override componentDidUpdate(prevProps: Props): void {
-    const {currentTasks, pendingTasks} = this.props;
+    const {currentTasks} = this.props;
 
-    if (
-      prevProps.currentTasks !== currentTasks ||
-      prevProps.pendingTasks !== pendingTasks
-    ) {
-      this.setState({currentTasks, pendingTasks});
+    if (prevProps.currentTasks !== currentTasks) {
+      this.setState({currentTasks});
     }
   }
 
@@ -124,31 +121,10 @@ class TaskListView extends Component<Props, State> {
     );
   }
 
-  pendingTasksTable(): ReactElement | null {
-    const {pendingTasks} = this.state;
-
-    if (pendingTasks.length === 0) { return null; }
-
-    return (
-      <div id='pending-tasks'>
-        <table className='tasks-table'>
-          <thead><TableHeaders label={"Pending tasks"} /></thead>
-          <tbody>{this.pendingTaskRows()}</tbody>
-        </table>
-      </div>
-    );
-  }
-
   currentTaskRows(): ReactElement[] {
     const {currentTasks} = this.state;
 
     return currentTasks.map((task: Task) => this.taskRow(task));
-  }
-
-  pendingTaskRows(): ReactElement[] {
-    const {pendingTasks} = this.state;
-
-    return pendingTasks.map((task: Task) => this.taskRow(task));
   }
 
   taskRow(task: Task): ReactElement {
@@ -167,10 +143,18 @@ class TaskListView extends Component<Props, State> {
   }
 
   override render(): ReactElement {
+    const {deleteTask, pendingTasks, updateTask} = this.props;
+
     return (
       <DndProvider backend={HTML5Backend}>
         {this.currentTasksTable()}
-        {this.pendingTasksTable()}
+        <PendingTasksTable
+          deleteTask={deleteTask}
+          moveTask={this.moveTask}
+          pendingTasks={pendingTasks}
+          saveTaskPositions={this.saveTaskPositions}
+          updateTask={updateTask}
+        />
       </DndProvider>
     );
   }
