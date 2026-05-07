@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe TaskSerializer, "#as_json" do
   it "serializes a subset of the task attributes" do
     task_attrs = {

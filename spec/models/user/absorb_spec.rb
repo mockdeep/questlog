@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe User, "#absorb" do
   let(:user) { create(:user) }
   let(:task) { create(:task, user:) }

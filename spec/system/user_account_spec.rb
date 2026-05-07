@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "user accounts" do
   let(:user) { create(:user) }
 

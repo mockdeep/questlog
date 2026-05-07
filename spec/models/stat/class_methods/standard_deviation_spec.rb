@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat, "#standard_deviation" do
   it "returns the standard deviation of the filtered stats" do
     stat_1 = create(:stat, value: 3)

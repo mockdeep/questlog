@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stat < ApplicationRecord
   class Create
     include JunkDrawer::Callable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat::Mean do
   it "returns the mean of the numbers given" do
     expect(described_class.([1])).to be 1

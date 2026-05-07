@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe User, "#admin?" do
   it "returns false when there is no account" do
     user = described_class.new

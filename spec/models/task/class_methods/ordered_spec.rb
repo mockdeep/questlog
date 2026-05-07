@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, ".ordered" do
   let(:user) { create(:user) }
 

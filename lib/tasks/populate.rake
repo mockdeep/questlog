@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc "populate database records for development"
   task populate: :environment do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Tag, ".ordered" do
   it "returns tags ordered by name" do
     tag_1 = create(:tag, name: "bill")

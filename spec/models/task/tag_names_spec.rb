@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#tag_names" do
   let(:task) { create(:task) }
   let(:tag) { create(:tag, name: "what") }

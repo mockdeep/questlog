@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveStringLimits < ActiveRecord::Migration
   def up
     change_column :tasks, :title, :string, limit: nil

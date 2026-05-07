@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Profile, ".authenticate" do
   let(:account) { create(:free_account) }
   let(:password) { account.password }

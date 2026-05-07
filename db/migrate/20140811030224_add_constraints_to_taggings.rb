@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddConstraintsToTaggings < ActiveRecord::Migration
   def up
     change_column :taggings, :task_id, :integer, null: false

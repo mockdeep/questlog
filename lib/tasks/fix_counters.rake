@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc "re-count counters for tasks"
 
 task fix_counters: :environment do

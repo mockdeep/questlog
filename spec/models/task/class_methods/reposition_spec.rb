@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, ".reposition" do
   it "sets the sort position for tasks" do
     task_1 = create(:task, position: 1)

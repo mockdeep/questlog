@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe User, "#tasks_count" do
   let(:user) { create(:user) }
 

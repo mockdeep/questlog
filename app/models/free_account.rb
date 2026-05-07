@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FreeAccount < ApplicationRecord
   has_secure_password
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NullFalsePositions < ActiveRecord::Migration
   def change
     change_column_null :tasks, :position, false

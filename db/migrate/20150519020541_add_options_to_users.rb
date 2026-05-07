@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddOptionsToUsers < ActiveRecord::Migration
   def change
     enable_extension "hstore"

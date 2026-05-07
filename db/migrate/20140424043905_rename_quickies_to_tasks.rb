@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameQuickiesToTasks < ActiveRecord::Migration
   def change
     rename_table :quickies, :tasks

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe PriorityParser do
   let(:parser) { described_class.new }
 

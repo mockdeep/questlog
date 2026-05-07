@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FreeAccount, "validations" do
   it { is_expected.to validate_presence_of(:email) }
 

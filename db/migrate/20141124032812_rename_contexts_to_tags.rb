@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameContextsToTags < ActiveRecord::Migration
   def up
     rename_column :taggings, :context_id, :tag_id

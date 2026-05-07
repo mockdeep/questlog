@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "Tasks page" do
   let(:user) { create(:user) }
 

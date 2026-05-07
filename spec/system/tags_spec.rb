@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "selecting tags on task display" do
   it "shows tasks for the selected tag" do
     add_task("#at-home do laundry #chore !2 *1w ~1h")

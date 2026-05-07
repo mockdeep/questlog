@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HtmlConstraint
   def matches?(request)
     # not all request headers have an 'Accept', so we default to 'text/html'

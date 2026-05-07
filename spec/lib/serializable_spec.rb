@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Serializable do
   after { Serializable::Config.remove_instance_variable(:@key_format) }
 

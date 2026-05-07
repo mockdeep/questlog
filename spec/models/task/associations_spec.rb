@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "associations" do
   it { is_expected.to belong_to(:parent_task) }
   it { is_expected.to belong_to(:user) }

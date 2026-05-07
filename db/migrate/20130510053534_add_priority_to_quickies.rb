@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPriorityToQuickies < ActiveRecord::Migration
   def change
     add_column :quickies, :priority, :integer

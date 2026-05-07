@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task::Update do
   let(:user) { create(:user) }
   let(:task) { create(:task, estimate_seconds: 301, user:) }

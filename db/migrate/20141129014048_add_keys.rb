@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddKeys < ActiveRecord::Migration
   def change
     add_foreign_key "tags", "users"

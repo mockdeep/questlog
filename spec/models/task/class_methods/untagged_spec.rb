@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#untagged" do
   it "returns only tasks without tags" do
     task_1 = create(:task)

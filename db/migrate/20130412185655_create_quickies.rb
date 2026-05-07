@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateQuickies < ActiveRecord::Migration
   def change
     create_table :quickies do |t|

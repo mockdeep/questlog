@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Stat, "#median" do
   it "returns the median of the filtered stats" do
     stat_1 = create(:stat, value: 3)

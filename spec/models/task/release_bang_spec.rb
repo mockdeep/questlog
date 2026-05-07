@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#release!" do
   let(:user) { create(:user) }
   let(:task) do

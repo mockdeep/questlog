@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FreeAccount, "#email=" do
   let(:account) { described_class.new }
 

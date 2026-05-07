@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropModeColumn < ActiveRecord::Migration
   def up
     remove_column :users, :mode

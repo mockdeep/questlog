@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe TimeframeSerializer, "#to_json" do
   let(:task) { create(:task) }
   let(:timeframe) { Timeframe.new(name: "Inbox", tasks: [task]) }

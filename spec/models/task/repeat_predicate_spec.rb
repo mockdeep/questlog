@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task, "#repeat?" do
   let(:task) { described_class.new }
 

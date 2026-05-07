@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Task::Destroy do
   let(:task) { create(:task) }
   let(:user) { task.user }

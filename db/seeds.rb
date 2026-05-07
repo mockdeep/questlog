@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 account = FreeAccount.create!(
   email: "demo@questlog.io",
   password: "pizzas",

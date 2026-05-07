@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FreeAccountsController < ApplicationController
   def new
     @account = FreeAccount.new
