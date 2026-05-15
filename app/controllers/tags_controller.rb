@@ -10,7 +10,7 @@ class TagsController < ApplicationController
   def edit; end
 
   def update
-    tag = current_user.tags.find(params[:id])
+    tag = current_user.tags.find(params.expect(:id))
     Tag::Update.(tag, tag_params)
     redirect_to "/tags"
   end

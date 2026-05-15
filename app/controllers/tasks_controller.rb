@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.json { render json: serialize(task) }
       format.html do
-        render(locals: { task: current_user.tasks.find(params[:id]) })
+        render(locals: { task: current_user.tasks.find(params.expect(:id)) })
       end
     end
   end
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = current_user.tasks.find(params[:id])
+    task = current_user.tasks.find(params.expect(:id))
     Task::Update.(task, task_params)
     respond_to do |format|
       format.json { render json: serialize(task), status: :ok }
