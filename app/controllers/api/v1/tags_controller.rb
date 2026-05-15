@@ -11,7 +11,7 @@ module API
       end
 
       def update
-        tag = current_user.tags.find(params[:id])
+        tag = current_user.tags.find(params.expect(:id))
         Tag::Update.(tag, tag_params)
         render json: serialize(tag), status: :ok
       end

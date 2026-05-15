@@ -11,13 +11,13 @@ module API
       end
 
       def update
-        task = current_user.tasks.find(params[:id])
+        task = current_user.tasks.find(params.expect(:id))
         Task::Update.(task, task_params)
         render json: serialize(task, included: task.tags), status: :ok
       end
 
       def destroy
-        task = current_user.tasks.find(params[:id])
+        task = current_user.tasks.find(params.expect(:id))
         Task::Destroy.(task)
         render json: {}, status: :ok
       end
