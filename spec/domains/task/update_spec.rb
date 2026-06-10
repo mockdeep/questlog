@@ -34,6 +34,17 @@ RSpec.describe Task::Update do
     end.not_to change(Stat, :count)
   end
 
+  it "clears the timeframe when moved to the inbox" do
+    task.update!(timeframe: "today")
+    task_update.(task, task_update_params.merge(timeframe: "inbox"))
+    expect(task.reload.timeframe).to be_nil
+  end
+
+  it "sets the timeframe when given a real timeframe" do
+    task_update.(task, task_update_params.merge(timeframe: "week"))
+    expect(task.reload.timeframe).to eq "week"
+  end
+
   it "updates the stats for the day when the task has been marked complete" do
     allow(task).to receive(:persisted?).and_return(false)
     expect do

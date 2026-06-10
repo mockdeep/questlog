@@ -17,4 +17,17 @@ RSpec.describe Task, ".reposition" do
     expect(task_4.reload.position).to eq 1
     expect(task_5.reload.position).to eq 5
   end
+
+  it "does nothing when given no ids" do
+    task = create(:task, position: 1)
+    expect { described_class.reposition([]) }
+      .not_to(change { task.reload.position })
+  end
+
+  it "raises when an id is not in the scope" do
+    task = create(:task, position: 1)
+    other_users_task = create(:task, position: 1)
+    expect { task.user.tasks.reposition([task.id, other_users_task.id]) }
+      .to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
