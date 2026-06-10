@@ -5,7 +5,7 @@ require "simplecov"
 if ENV["COVERAGE"] != "false"
   SimpleCov.start("rails") do
     enable_coverage :branch
-    minimum_coverage 100
+    minimum_coverage line: 100, branch: 100
   end
 end
 
