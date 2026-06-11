@@ -1,22 +1,22 @@
 import type {ReactElement} from "react";
 
 import TableHeaders from "./table_headers";
-import DraggableTaskRow from "./draggable_task_row";
+import TaskRow from "./task_row";
 import type {UpdateTask} from "../action_creators";
 
 interface Props {
   deleteTask: (taskId: number) => void;
-  moveTask: (id: number, afterId: number) => void;
   pendingTasks: Task[];
-  saveTaskPositions: (taskId: number) => void;
   updateTask: UpdateTask;
 }
 
+/*
+ * Pending tasks are displayed in release order and are repositioned when they
+ * release, so they are not draggable like current tasks are.
+ */
 function PendingTasksTable({
   deleteTask,
-  moveTask,
   pendingTasks,
-  saveTaskPositions,
   updateTask,
 }: Props): ReactElement | null {
   if (pendingTasks.length === 0) { return null; }
@@ -27,11 +27,9 @@ function PendingTasksTable({
         <thead><TableHeaders label={"Pending tasks"} /></thead>
         <tbody>
           {pendingTasks.map((task: Task) => {
-            return <DraggableTaskRow
+            return <TaskRow
               key={task.id}
               task={task}
-              moveTask={moveTask}
-              saveTaskPositions={saveTaskPositions}
               updateTask={updateTask}
               deleteTask={deleteTask}
             />;

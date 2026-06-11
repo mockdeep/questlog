@@ -150,9 +150,7 @@ class TaskListView extends Component<Props, State> {
         {this.currentTasksTable()}
         <PendingTasksTable
           deleteTask={deleteTask}
-          moveTask={this.moveTask}
           pendingTasks={pendingTasks}
-          saveTaskPositions={this.saveTaskPositions}
           updateTask={updateTask}
         />
       </DndProvider>

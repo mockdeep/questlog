@@ -48,6 +48,24 @@ it("renders pending tasks", () => {
   expect(screen.getByText("Pending tasks")).toBeInTheDocument();
 });
 
+it("renders current tasks as draggable rows", () => {
+  const overrides: Props = {...props, currentTasks: [makeTask()]};
+
+  render(<TaskListView {...overrides} />);
+
+  const [, taskRow] = screen.getAllByRole("row");
+  expect(taskRow).toHaveAttribute("draggable", "true");
+});
+
+it("renders pending tasks as non-draggable rows", () => {
+  const overrides: Props = {...props, pendingTasks: [makeTask()]};
+
+  render(<TaskListView {...overrides} />);
+
+  const [, taskRow] = screen.getAllByRole("row");
+  expect(taskRow).not.toHaveAttribute("draggable", "true");
+});
+
 it("does not render a pending tasks table when none are present", () => {
   render(<TaskListView {...props} />);
 

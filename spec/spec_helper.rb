@@ -90,6 +90,43 @@ def edit_task(new_title)
   end
 end
 
+# Selenium's pointer-based drag doesn't trigger react-dnd's HTML5 backend, so
+# dispatch the drag events directly. The backend applies hovers on animation
+# frames, so wait for each step to render before dispatching the next event:
+# the dragging CSS class signals the drag registered, and the reorder signals
+# the hover landed. A dragend any earlier silently cancels the pending hover.
+# A dragenter would trigger a second hover and move the task twice, so only
+# dragover is dispatched.
+def drag_task(source_title, target_title)
+  dragging_row = ".tasks-table__row--dragging"
+  source = task_row(source_title)
+  target_index = current_task_titles.index(target_title)
+
+  dispatch_drag_event("dragstart", source)
+  expect(page).to have_css(dragging_row, visible: :all)
+  dispatch_drag_event("dragover", task_row(target_title))
+  wait_for_task_index(source_title, target_index)
+  dispatch_drag_event("dragend", source)
+  expect(page).to have_no_css(dragging_row, visible: :all)
+end
+
+def dispatch_drag_event(type, element)
+  script = File.read(support_path.join("drag_task.js"))
+  page.execute_script(script, type, element)
+end
+
+def wait_for_task_index(title, index)
+  page.document.synchronize do
+    selector = Questlog::Matchers::TITLE_SELECTOR
+    titles = current_tasks.all(selector, visible: :all).map(&:value)
+
+    unless titles.index(title) == index
+      raise Capybara::ElementNotFound,
+            "expected #{title.inspect} at index #{index} in #{titles.inspect}"
+    end
+  end
+end
+
 def select_tag(tag_name)
   within(".tag-buttons") do
     click_link(text: /#{tag_name}/)
@@ -102,6 +139,10 @@ end
 
 def current_tasks
   find("#current-tasks")
+end
+
+def current_task_titles
+  current_tasks.all(Questlog::Matchers::TITLE_SELECTOR).map(&:value)
 end
 
 def pending_tasks

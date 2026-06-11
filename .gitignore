@@ -33,3 +33,4 @@ tsconfig.tsbuildinfo
 
 # Ignore local environment variable files.
 .env.*.local
+.gstack/

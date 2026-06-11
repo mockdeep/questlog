@@ -215,6 +215,7 @@ RSpec/ExampleLength:
     - 'spec/requests/timeframes/index_spec.rb'
     - 'spec/serializers/task_serializer/as_json_spec.rb'
     - 'spec/system/bulk_tasks_spec.rb'
+    - 'spec/system/drag_and_drop_spec.rb'
     - 'spec/system/needs_estimate_spec.rb'
     - 'spec/system/routing_spec.rb'
     - 'spec/system/smart_tags_spec.rb'
