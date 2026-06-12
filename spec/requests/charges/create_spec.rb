@@ -22,7 +22,7 @@ RSpec.describe ChargesController, "#create" do
   context "when charge is successfully created" do
     it "renders the a success page" do
       post "/charges", params: valid_params
-      expect(response.body).to match(/Thanks, you paid/)
+      expect(response.body).to include("Thanks, you paid")
     end
   end
 
