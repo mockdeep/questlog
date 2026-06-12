@@ -5,7 +5,7 @@ import {Component, createRef} from "react";
 import Textarea from "react-textarea-autosize";
 
 import AuthenticityToken from "../../_common/components/authenticity_token";
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 
 export type Props = {
   task: Task,
@@ -34,7 +34,7 @@ class TaskEditTitleForm extends Component<Props, State> {
 
   saveTask(event: FocusEvent | FormEvent | KeyboardEvent): void {
     event.preventDefault();
-    assert(this.formRef.current).submit();
+    ensure(this.formRef.current).submit();
   }
 
   submitIfEnter(event: KeyboardEvent): void {

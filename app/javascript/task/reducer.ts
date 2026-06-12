@@ -2,7 +2,7 @@ import {keyBy} from "lodash";
 import update from "immutability-helper";
 
 import createBasicReducer from "../_common/create_basic_reducer";
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import {
   INIT,
   DELETE,
@@ -45,7 +45,7 @@ const operations = {
 
   [UPDATE](previousState: TaskState | null, taskAttrs: Task) {
     const task =
-      processTask({...assert(previousState).byId[taskAttrs.id], ...taskAttrs});
+      processTask({...ensure(previousState).byId[taskAttrs.id], ...taskAttrs});
 
     return update(previousState, {byId: {$merge: {[task.id]: task}}});
   },

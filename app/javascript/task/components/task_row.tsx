@@ -4,7 +4,7 @@ import type {ChangeEvent, MouseEvent, ReactElement} from "react";
 import {PureComponent} from "react";
 import {map} from "lodash";
 
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import {grab} from "helpers/grab";
 import TaskEditIcon from "./edit_icon";
 import TaskEditTitleForm from "./edit_title_form";
@@ -99,12 +99,12 @@ class TaskRow extends PureComponent<Props, State> {
   timeframeHasSpace(name: string): boolean {
     const {task, timeframeSpace} = this.props;
 
-    return grab(assert(timeframeSpace), name) >= task.estimateMinutes;
+    return grab(ensure(timeframeSpace), name) >= task.estimateMinutes;
   }
 
   optionText(title: string, name: string): string {
     const {timeframeSpace} = this.props;
-    const space = grab(assert(timeframeSpace), name);
+    const space = grab(ensure(timeframeSpace), name);
     let text = title;
 
     if (this.timeframe() !== name && isFinite(space)) {

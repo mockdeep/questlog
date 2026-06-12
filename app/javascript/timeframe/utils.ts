@@ -2,7 +2,7 @@ import type {Moment} from "moment";
 import moment from "moment";
 import {sumBy} from "lodash";
 
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import {grab} from "helpers/grab";
 import {TimeBalancer} from "helpers/time_balancer";
 
@@ -52,8 +52,8 @@ function calculateTotalMinutes(timeframe: Timeframe): number {
 }
 
 function timeframeNameForPendingTask(task: Task) {
-  const releaseAt = moment(assert(task.releaseAt));
-  let index = timeframeList.indexOf(assert(task.timeframe)) - 1;
+  const releaseAt = moment(ensure(task.releaseAt));
+  let index = timeframeList.indexOf(ensure(task.timeframe)) - 1;
   let timeframeName;
   let timeframeEnd;
 

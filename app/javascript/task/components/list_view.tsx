@@ -10,11 +10,11 @@ import BulkTaskStore from "../bulk_store";
 import TableHeaders from "./table_headers";
 import DraggableTaskRow from "./draggable_task_row";
 import PendingTasksTable from "./pending_tasks_table";
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import type {UpdateTask} from "../action_creators";
 
 function findTask(tasks: Task[], taskId: number): Task {
-  return assert(tasks.find(task => task.id === taskId));
+  return ensure(tasks.find(task => task.id === taskId));
 }
 
 function afterTaskHasHigherPriority(task: Task, afterTask: Task): boolean {

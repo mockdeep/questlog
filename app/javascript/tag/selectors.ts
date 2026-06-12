@@ -1,7 +1,7 @@
 import {createSelector} from "reselect";
 import {mapValues, sortBy} from "lodash";
 
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import {grab} from "helpers/grab";
 import {getActiveTasks} from "../task/selectors";
 
@@ -11,10 +11,10 @@ const RULES = {
     return task.tagIds.includes(tag.id);
   },
   isBlank(task: Task, _tag: Tag, {field}: {field?: keyof Task}): boolean {
-    return task[assert(field)] === null;
+    return task[ensure(field)] === null;
   },
   isEmpty(task: Task, _tag: Tag, {field}: {field?: keyof Task}): boolean {
-    const value = task[assert(field)];
+    const value = task[ensure(field)];
     if (!Array.isArray(value)) {
       throw new Error(`task field ${field} must be array, but was ${value}.`);
     }
