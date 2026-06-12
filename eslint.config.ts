@@ -87,6 +87,9 @@ export default defineConfig([
           alwaysTryTypes: true,
         },
       },
+      vitest: {
+        typecheck: true,
+      },
     },
   },
   {

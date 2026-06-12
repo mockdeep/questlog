@@ -2,7 +2,7 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ReactElement} from "react";
 
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 import {ToEnglish} from "helpers/to_english";
 
 import TimeframeStore from "../store";
@@ -54,7 +54,7 @@ class TimeframeListView extends Component<Props, State> {
   productivityString(): string {
     const {medianProductivity} = this.state;
 
-    return ToEnglish.seconds(assert(medianProductivity));
+    return ToEnglish.seconds(ensure(medianProductivity));
   }
 
   timeframeSpace(): TimeframeSpace {

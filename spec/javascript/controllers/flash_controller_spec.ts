@@ -1,6 +1,6 @@
 import {bootStimulus} from "support/stimulus";
 import FlashController from "controllers/flash_controller";
-import {assert} from "helpers/assert";
+import {ensure} from "helpers/ensure";
 
 type OnFinish = (() => void) | null;
 
@@ -38,7 +38,7 @@ async function setupController(): Promise<void> {
 function element(): HTMLElement {
   const selector = "[data-controller='flash']";
 
-  return assert(document.querySelector<HTMLElement>(selector));
+  return ensure(document.querySelector<HTMLElement>(selector));
 }
 
 describe("flashController", () => {
@@ -60,7 +60,7 @@ describe("flashController", () => {
 
     const el = element();
 
-    assert(getOnFinish())();
+    ensure(getOnFinish())();
 
     expect(el.parentNode).toBeNull();
   });
