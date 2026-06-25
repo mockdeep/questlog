@@ -27,6 +27,12 @@ it("renders something when the task is present", () => {
   expect(container.querySelector("section")).not.toBeNull();
 });
 
+it("renders nothing when there is no task", () => {
+  const {container} = renderWithStore(<TaskShowView {...props} task={null} />);
+
+  expect(container.querySelector("section")).toBeNull();
+});
+
 it("renders the task title", () => {
   const task = makeTask({title: "foo title"});
 
