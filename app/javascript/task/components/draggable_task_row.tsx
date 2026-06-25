@@ -2,6 +2,7 @@ import {memo, useCallback} from "react";
 import type {ReactElement} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
+import {ensure} from "helpers/ensure";
 import TaskRow from "./task_row";
 import type {UpdateTask} from "../action_creators";
 
@@ -40,11 +41,9 @@ function DraggableTaskRow({
 
   const bindRef = useCallback((component: TaskRow | null) => {
     if (!component) { return; }
-    const {domNode} = component;
-    if (domNode) {
-      drag(domNode);
-      drop(domNode);
-    }
+    const domNode = ensure(component.domNode);
+    drag(domNode);
+    drop(domNode);
   }, [drag, drop]);
 
   return (

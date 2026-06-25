@@ -71,6 +71,8 @@
     "globals": "^17.6.0",
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
+    "react-dnd-test-backend": "^16.0.1",
+    "react-dnd-test-utils": "^16.0.1",
     "stylelint": "^17.13.0",
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard": "^40.0.0",
