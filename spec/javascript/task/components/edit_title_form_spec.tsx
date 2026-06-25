@@ -54,6 +54,29 @@ it("does not update the task when the user hits a letter key", () => {
   expect(textarea).toBeInTheDocument();
 });
 
+it("clears the focused state when the task changes", () => {
+  const {rerender} = render(<TaskEditTitleForm task={makeTask({id: 1})} />);
+  const textarea = screen.getByRole("textbox");
+  fireEvent.focus(textarea);
+
+  expect(textarea).not.toHaveClass("hidden-border");
+
+  rerender(<TaskEditTitleForm task={makeTask({id: 2})} />);
+
+  expect(textarea).toHaveClass("hidden-border");
+});
+
+it("keeps the focused state when re-rendered with the same task", () => {
+  const task = makeTask({id: 1});
+  const {rerender} = render(<TaskEditTitleForm task={task} />);
+  const textarea = screen.getByRole("textbox");
+  fireEvent.focus(textarea);
+
+  rerender(<TaskEditTitleForm task={task} />);
+
+  expect(textarea).not.toHaveClass("hidden-border");
+});
+
 it("sets focused class when the field focuses", () => {
   render(<TaskEditTitleForm {...props} />);
   const textarea = screen.getByDisplayValue("a title");
