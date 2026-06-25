@@ -192,6 +192,12 @@ importers:
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1
+      react-dnd-test-backend:
+        specifier: ^16.0.1
+        version: 16.0.1
+      react-dnd-test-utils:
+        specifier: ^16.0.1
+        version: 16.0.1(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/node@25.9.3)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dnd-html5-backend@16.0.1)(react-dnd-test-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.17))(@types/node@25.9.3)(@types/react@19.2.17)(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       stylelint:
         specifier: ^17.13.0
         version: 17.13.0(typescript@6.0.3)
@@ -2612,6 +2618,33 @@ packages:
 
   react-dnd-html5-backend@16.0.1:
     resolution: {integrity: sha512-Wu3dw5aDJmOGw8WjH1I1/yTH+vlXEL4vmjk5p+MHxP8HuHJS1lAGeIdG/hze1AvNeXWo/JgULV87LyQOr+r5jw==}
+
+  react-dnd-test-backend@16.0.1:
+    resolution: {integrity: sha512-sUsQKMmoachP3AGaHLZD4JZWq2dHPoiLRG3YVuC0gXJtGENk3PVR+uRIrml7BEnnTyv+RVeoNK2ziL38Ggh8cw==}
+
+  react-dnd-test-utils@16.0.1:
+    resolution: {integrity: sha512-hKt6HYUAuN1oVtpVIpHwxeZLqtjwfzK2wFyfQUs7Pbi6muxXK+ZDOHEUmaI3WcoWb0nhZOyX3+FwmBsrA288Eg==}
+    peerDependencies:
+      '@testing-library/react': '>= 11'
+      '@types/node': '*'
+      '@types/react': '>= 16'
+      '@types/react-dom': '>= 16'
+      react: '>= 16.14'
+      react-dnd: '>= 11.1.3'
+      react-dnd-html5-backend: '>= 11.1.3'
+      react-dnd-test-backend: '>= 10.0.0'
+      react-dom: '>= 16.14'
+    peerDependenciesMeta:
+      '@testing-library/react':
+        optional: true
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      react-dnd-html5-backend:
+        optional: true
+      react-dnd-test-backend:
+        optional: true
 
   react-dnd@16.0.1:
     resolution: {integrity: sha512-QeoM/i73HHu2XF9aKksIUuamHPDvRglEwdHL4jsp784BgUuWcg6mzfxT0QDdQz8Wj0qyRKx2eMg8iZtWvU4E2Q==}
@@ -5595,6 +5628,23 @@ snapshots:
   react-dnd-html5-backend@16.0.1:
     dependencies:
       dnd-core: 16.0.1
+
+  react-dnd-test-backend@16.0.1:
+    dependencies:
+      dnd-core: 16.0.1
+
+  react-dnd-test-utils@16.0.1(@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/node@25.9.3)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dnd-html5-backend@16.0.1)(react-dnd-test-backend@16.0.1)(react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.17))(@types/node@25.9.3)(@types/react@19.2.17)(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+    dependencies:
+      '@types/node': 25.9.3
+      react: 19.2.7
+      react-dnd: 16.0.1(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.17))(@types/node@25.9.3)(@types/react@19.2.17)(react@19.2.7)
+      react-dom: 19.2.7(react@19.2.7)
+    optionalDependencies:
+      '@testing-library/react': 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@types/react': 19.2.17
+      '@types/react-dom': 19.2.3(@types/react@19.2.17)
+      react-dnd-html5-backend: 16.0.1
+      react-dnd-test-backend: 16.0.1
 
   react-dnd@16.0.1(@types/hoist-non-react-statics@3.3.7(@types/react@19.2.17))(@types/node@25.9.3)(@types/react@19.2.17)(react@19.2.7):
     dependencies:
