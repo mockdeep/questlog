@@ -6,23 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 54
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: link_or_button, strict
-Capybara/ClickLinkOrButtonStyle:
-  Exclude:
-    - 'spec/spec_helper.rb'
-    - 'spec/support/wrappers/sidebar.rb'
-    - 'spec/system/bulk_tasks_spec.rb'
-    - 'spec/system/smart_tags_spec.rb'
-    - 'spec/system/sub_tasks_spec.rb'
-    - 'spec/system/tag_counters_spec.rb'
-    - 'spec/system/task_tree_spec.rb'
-    - 'spec/system/tasks_index_spec.rb'
-    - 'spec/system/tasks_spec.rb'
-    - 'spec/system/timeframes_spec.rb'
-    - 'spec/system/user_account_spec.rb'
-
 # Offense count: 9
 # This cop supports safe autocorrection (--autocorrect).
 Capybara/SpecificFinders:
