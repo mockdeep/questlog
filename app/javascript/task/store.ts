@@ -24,8 +24,6 @@ const TaskStore: TaskStoreType = {
   },
 
   notifyListeners(): void {
-    if (!this.listeners) { return; }
-
     this.listeners.forEach(listener => { listener(); });
   },
 
