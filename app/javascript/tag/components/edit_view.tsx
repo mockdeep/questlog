@@ -6,7 +6,7 @@ import update from "immutability-helper";
 import RuleRow from "./rule_row";
 
 export type Props = {
-  tag: Tag | undefined;
+  tag: Tag;
 };
 
 type State = {
@@ -17,17 +17,7 @@ class TagEditView extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     autobind(this);
-    this.state = {
-      rules: (props.tag && props.tag.rules) ?? [],
-    };
-  }
-
-  override componentDidUpdate(prevProps: Props): void {
-    const {tag} = this.props;
-
-    if (!tag || prevProps.tag === tag) { return; }
-
-    this.setState({rules: tag.rules});
+    this.state = {rules: props.tag.rules};
   }
 
   updateFieldValue(index: number, value: TagRuleField): void {
@@ -74,11 +64,7 @@ class TagEditView extends Component<Props, State> {
     this.setState({rules: rules.concat(newRule)});
   }
 
-  override render(): ReactElement | null {
-    const {tag} = this.props;
-
-    if (!tag) { return null; }
-
+  override render(): ReactElement {
     return (
       <>
         <ol>{this.ruleRows()}</ol>

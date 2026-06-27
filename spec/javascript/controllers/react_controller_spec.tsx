@@ -25,13 +25,16 @@ function stubFetch(): void {
  * resulting console warnings, which support/shims.ts otherwise turns into
  * throws.
  */
-async function connectController(): Promise<HTMLElement> {
+async function connectController(
+  name: string,
+  props = "{}",
+): Promise<HTMLElement> {
   vi.spyOn(console, "error").mockImplementation(noop);
   stubFetch();
   window.history.pushState(null, "", "/tasks");
   document.body.innerHTML =
-    "<div data-controller='react' " +
-    "data-react-component-name-value='tasks'></div>";
+    `<div data-controller="react" data-react-component-name-value="${name}" ` +
+    `data-react-props-value='${props}'></div>`;
   const selector = "[data-controller='react']";
 
   await bootStimulus("react", ReactController);
@@ -40,15 +43,24 @@ async function connectController(): Promise<HTMLElement> {
 }
 
 it("mounts the named react component on connect", async () => {
-  const el = await connectController();
+  const el = await connectController("tasks");
 
   await waitFor(() => {
     expect(el.querySelector("div")).not.toBeNull();
   });
 });
 
+it("passes server-rendered props to the component", async () => {
+  const tag = {rules: [{check: "isEmpty", field: "tagIds"}]};
+  const el = await connectController("editTag", JSON.stringify({tag}));
+
+  await waitFor(() => {
+    expect(el.querySelector("select")).not.toBeNull();
+  });
+});
+
 it("unmounts the component on disconnect", async () => {
-  const el = await connectController();
+  const el = await connectController("tasks");
   await waitFor(() => {
     expect(el.querySelector("div")).not.toBeNull();
   });
