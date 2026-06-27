@@ -90,7 +90,7 @@ class RuleRow extends Component<Props, never> {
     const {rule} = this.props;
 
     return (
-      <li>
+      <li data-tag-rules-target='rule'>
         <select
           name={"tag[rules][][field]"}
           defaultValue={rule.field}

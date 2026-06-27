@@ -13,6 +13,10 @@ function ruleKey(row: Element): string {
 }
 
 class TagRulesController extends Controller<HTMLElement> {
+  static override targets = ["rule"];
+
+  declare readonly ruleTargets: HTMLElement[];
+
   validateAndSave(event: Event): void {
     if (!this.hasDuplicateRules()) { return; }
 
@@ -23,13 +27,9 @@ class TagRulesController extends Controller<HTMLElement> {
   }
 
   private hasDuplicateRules(): boolean {
-    const keys = this.ruleKeys();
+    const keys = this.ruleTargets.map(ruleKey);
 
     return new Set(keys).size !== keys.length;
-  }
-
-  private ruleKeys(): string[] {
-    return Array.from(this.element.querySelectorAll("li")).map(ruleKey);
   }
 }
 
