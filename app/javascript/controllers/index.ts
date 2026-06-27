@@ -18,3 +18,6 @@ application.register("flash", FlashController);
 
 import ReactController from "./react_controller";
 application.register("react", ReactController);
+
+import TagRulesController from "./tag_rules_controller";
+application.register("tag-rules", TagRulesController);
