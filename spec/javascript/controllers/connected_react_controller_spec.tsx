@@ -4,7 +4,7 @@ import {expect, it, vi} from "vitest";
 
 import {bootStimulus, getController} from "support/stimulus";
 import {ensure} from "helpers/ensure";
-import ReactController from "controllers/react_controller";
+import ConnectedReactController from "controllers/connected_react_controller";
 
 function stubFetch(): void {
   function fakeJson(): unknown {
@@ -30,11 +30,11 @@ async function connectController(): Promise<HTMLElement> {
   stubFetch();
   window.history.pushState(null, "", "/tasks");
   document.body.innerHTML =
-    "<div data-controller='react' " +
-    "data-react-component-name-value='tasks'></div>";
-  const selector = "[data-controller='react']";
+    "<div data-controller='connected-react' " +
+    "data-connected-react-component-name-value='tasks'></div>";
+  const selector = "[data-controller='connected-react']";
 
-  await bootStimulus("react", ReactController);
+  await bootStimulus("connected-react", ConnectedReactController);
 
   return ensure(document.querySelector<HTMLElement>(selector));
 }
@@ -53,7 +53,7 @@ it("unmounts the component on disconnect", async () => {
     expect(el.querySelector("div")).not.toBeNull();
   });
 
-  getController(el, "react", ReactController).disconnect();
+  getController(el, "connected-react", ConnectedReactController).disconnect();
 
   expect(el.querySelector("div")).toBeNull();
 });

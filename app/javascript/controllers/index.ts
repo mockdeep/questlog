@@ -16,8 +16,8 @@ application.register("hotkeys", HotkeysController);
 import FlashController from "./flash_controller";
 application.register("flash", FlashController);
 
-import ReactController from "./react_controller";
-application.register("react", ReactController);
+import ConnectedReactController from "./connected_react_controller";
+application.register("connected-react", ConnectedReactController);
 
 import TagRulesController from "./tag_rules_controller";
 application.register("tag-rules", TagRulesController);

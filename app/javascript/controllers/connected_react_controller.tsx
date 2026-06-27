@@ -23,12 +23,12 @@ const COMPONENTS = {
   treeTasks: TaskTreeViewContainer,
 };
 
-class ReactController extends Controller {
+class ConnectedReactController extends Controller {
+  static override values = {componentName: String};
+
   componentNameValue!: string;
 
   root!: Root;
-
-  static override values = {componentName: String};
 
   override connect(): void {
     appStore.dispatch(fetchRoute());
@@ -49,4 +49,4 @@ class ReactController extends Controller {
   }
 }
 
-export default ReactController;
+export default ConnectedReactController;

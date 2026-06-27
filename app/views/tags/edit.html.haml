@@ -6,6 +6,5 @@ Tag will include all tasks that match one or more of the following rules:
 - submit_action = "submit->tag-rules#validateAndSave"
 - form_data = { controller: "tag-rules", action: submit_action }
 = form_with(url: tag_path(@tag.id), method: :patch, data: form_data) do |form|
-  - react_data = { controller: "react", react_component_name_value: "editTag" }
-  #app-base{ data: react_data }
+  #app-base{ data: connected_react_data("editTag") }
   = form.submit("Save Tag", class: "btn btn-success btn-block")

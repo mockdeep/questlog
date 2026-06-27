@@ -8,7 +8,10 @@ it("registers the stimulus controllers on the application", async () => {
   await import("controllers/index");
 
   expect(registerSpy).toHaveBeenCalledWith("layout", expect.anything());
-  expect(registerSpy).toHaveBeenCalledWith("react", expect.anything());
+  expect(registerSpy).toHaveBeenCalledWith(
+    "connected-react",
+    expect.anything(),
+  );
 
   application.stop();
 });
