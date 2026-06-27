@@ -3,7 +3,6 @@ import {Component} from "react";
 import type {ReactElement} from "react";
 import update from "immutability-helper";
 
-import AuthenticityToken from "../../_common/components/authenticity_token";
 import RuleRow from "./rule_row";
 
 export type Props = {
@@ -80,22 +79,8 @@ class TagEditView extends Component<Props, State> {
 
     if (!tag) { return null; }
 
-    const path = `/tags/${tag.id}`;
-
     return (
-      <form
-        action={path}
-        method='post'
-        data-controller='tag-rules'
-        data-action='submit->tag-rules#validateAndSave'
-      >
-        <input
-          type='hidden'
-          name='_method'
-          value='patch'
-          autoComplete='off'
-        />
-        <AuthenticityToken />
+      <>
         <ol>{this.ruleRows()}</ol>
         <input
           type='button'
@@ -103,12 +88,7 @@ class TagEditView extends Component<Props, State> {
           value='Add Rule'
           onClick={this.addRule}
         />
-        <input
-          type='submit'
-          className='btn btn-success btn-block'
-          value='Save Tag'
-        />
-      </form>
+      </>
     );
   }
 }
