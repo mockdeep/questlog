@@ -69,6 +69,17 @@ describe("getActiveTags", () => {
 
       expect(getActiveTags(state)).toEqual(expected);
     });
+
+    it("raises when the field is not an array", () => {
+      const tag =
+        makeTag({rules: [{check: "isEmpty", field: "estimateSeconds"}]});
+      const task = makeTask({estimateSeconds: 52});
+      const state = makeState({tag: [tag], task: [task]});
+
+      expect(() => {
+        getActiveTags(state);
+      }).toThrow(/must be array/u);
+    });
   });
 });
 

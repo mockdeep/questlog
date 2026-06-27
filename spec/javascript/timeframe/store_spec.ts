@@ -7,9 +7,31 @@ import FakeTimers from "@sinonjs/fake-timers";
 
 import {grab} from "helpers/grab";
 import {request} from "helpers/request";
+import TaskStore from "javascript/task/store";
 import TimeframeStore from "javascript/timeframe/store";
 
 import {makeTask} from "support/factories";
+
+describe("getAll", () => {
+  it("does not fetch tasks when the task store is already loaded", () => {
+    (request as Mock).mockClear();
+    TaskStore.loaded = true;
+
+    const result = TimeframeStore.getAll();
+
+    expect(result).toBeInstanceOf(Promise);
+    expect(request).toHaveBeenCalledTimes(1);
+    TaskStore.loaded = false;
+  });
+
+  it("unloads when the task store notifies a change", () => {
+    TimeframeStore.loaded = true;
+
+    TaskStore.notifyListeners();
+
+    expect(TimeframeStore.loaded).toBe(false);
+  });
+});
 
 describe("subscribe", () => {
   it("subscribes a listener", () => {
