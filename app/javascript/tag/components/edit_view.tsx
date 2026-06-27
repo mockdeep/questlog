@@ -1,7 +1,6 @@
 import autobind from "class-autobind";
 import {Component} from "react";
 import type {SyntheticEvent, ReactElement} from "react";
-import {flushSync} from "react-dom";
 import update from "immutability-helper";
 import {uniqWith, isEqual} from "lodash";
 
@@ -70,31 +69,18 @@ class TagEditView extends Component<Props, State> {
     return rules.map((rule, index) => this.ruleRow(rule, index));
   }
 
-  uniqRules() {
-    const {rules} = this.state;
-
-    return uniqWith(rules, isEqual);
-  }
-
   hasDuplicateRules(): boolean {
     const {rules} = this.state;
 
-    return this.uniqRules().length !== rules.length;
+    return uniqWith(rules, isEqual).length !== rules.length;
   }
 
   validateAndSave(event: SyntheticEvent): void {
-    if (this.hasDuplicateRules()) {
-      // eslint-disable-next-line no-alert
-      if (!confirm("There are duplicate rules. Remove extras?")) {
-        event.preventDefault();
-        return;
-      }
+    if (!this.hasDuplicateRules()) { return; }
 
-      const uniqRules = this.uniqRules();
-
-      flushSync(() => {
-        this.setState({rules: uniqRules});
-      });
+    // eslint-disable-next-line no-alert
+    if (!confirm("There are duplicate rules. Remove extras?")) {
+      event.preventDefault();
     }
   }
 

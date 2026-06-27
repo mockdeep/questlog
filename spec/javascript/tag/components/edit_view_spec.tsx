@@ -9,6 +9,7 @@ import {makeTag} from "support/factories";
 
 const tag = makeTag();
 const props: Props = {tag};
+const DUPLICATE_PROMPT = "There are duplicate rules. Remove extras?";
 
 function preventDefault(event: Event): void {
   event.preventDefault();
@@ -19,6 +20,14 @@ function submitForm(container: HTMLElement): void {
   form.addEventListener("submit", preventDefault);
 
   fireEvent.submit(form);
+}
+
+function submitPrevented(container: HTMLElement): boolean {
+  const form = ensure(container.querySelector("form"));
+  const event = new Event("submit", {bubbles: true, cancelable: true});
+  form.dispatchEvent(event);
+
+  return event.defaultPrevented;
 }
 
 it("renders nothing when tag is not present", () => {
@@ -103,28 +112,24 @@ it("deletes a rule when its remove icon is clicked", () => {
   expect(screen.queryByDisplayValue("Tags")).not.toBeInTheDocument();
 });
 
-it("removes duplicate rules on save when confirmed", () => {
+it("prompts to remove duplicates when saving duplicate rules", () => {
   const rule: TagRule = {field: "tagIds", check: "isEmpty"};
   const dupTag = {...tag, rules: [rule, {...rule}]};
+  const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
   const {container} = render(<TagEditView {...props} tag={dupTag} />);
-  vi.spyOn(window, "confirm").mockReturnValue(true);
-
-  expect(screen.getAllByDisplayValue("Tags")).toHaveLength(2);
 
   submitForm(container);
 
-  expect(screen.getAllByDisplayValue("Tags")).toHaveLength(1);
+  expect(confirmSpy).toHaveBeenCalledWith(DUPLICATE_PROMPT);
 });
 
-it("keeps duplicate rules on save when not confirmed", () => {
+it("blocks the save when the duplicate prompt is declined", () => {
   const rule: TagRule = {field: "tagIds", check: "isEmpty"};
   const dupTag = {...tag, rules: [rule, {...rule}]};
-  const {container} = render(<TagEditView {...props} tag={dupTag} />);
   vi.spyOn(window, "confirm").mockReturnValue(false);
+  const {container} = render(<TagEditView {...props} tag={dupTag} />);
 
-  submitForm(container);
-
-  expect(screen.getAllByDisplayValue("Tags")).toHaveLength(2);
+  expect(submitPrevented(container)).toBe(true);
 });
 
 it("does not prompt on save when there are no duplicate rules", () => {
