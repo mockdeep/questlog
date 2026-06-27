@@ -1,4 +1,5 @@
 import {
+  getCurrentSubTasks,
   getCurrentTask,
   getPartitionedLeafTasks,
   getPartitionedRootTasks,
@@ -21,6 +22,37 @@ describe("getCurrentTask", () => {
     const state = makeState({route: {params: {taskId: 0}}, task: [task]});
 
     expect(getCurrentTask(state)).toBeNull();
+  });
+
+  it("returns null when the route has no task id", () => {
+    const state = makeState({task: [makeTask()]});
+
+    expect(getCurrentTask(state)).toBeNull();
+  });
+});
+
+describe("getCurrentSubTasks", () => {
+  it("returns the sub tasks of the current task", () => {
+    const parent = makeTask();
+    const child = makeTask({parentTaskId: parent.id});
+    const params = {taskId: parent.id};
+    const state = makeState({route: {params}, task: [parent, child]});
+
+    expect(getCurrentSubTasks(state)).toEqual([child]);
+  });
+
+  it("returns an empty array when there is no current task", () => {
+    const state = makeState({route: {params: {taskId: 0}}, task: []});
+
+    expect(getCurrentSubTasks(state)).toEqual([]);
+  });
+
+  it("returns an empty array when the current task is filtered out", () => {
+    const task = makeTask({status: "done"});
+    const params = {taskId: task.id};
+    const state = makeState({route: {params}, task: [task]});
+
+    expect(getCurrentSubTasks(state)).toEqual([]);
   });
 });
 
@@ -98,5 +130,13 @@ describe("getPartitionedTasks", () => {
 
     const expected = {active: [task2, task3], pending: [task1]};
     expect(getPartitionedTasks(state)).toEqual(expected);
+  });
+
+  it("orders active tasks by their timeframe position", () => {
+    const week = makeTask({timeframe: "week"});
+    const today = makeTask({timeframe: "today"});
+    const state = makeState({task: [week, today]});
+
+    expect(getPartitionedTasks(state).active).toEqual([today, week]);
   });
 });

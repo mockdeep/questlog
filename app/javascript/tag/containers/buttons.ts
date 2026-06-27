@@ -9,7 +9,7 @@ type Props = {
 
 function mapStateToProps(state: State, ownProps: Props) {
   return {
-    currentTagIds: ownProps.currentTagIds || [],
+    currentTagIds: ownProps.currentTagIds,
     selectedTagSlug: state.route.params.slug,
     tags: getActiveTags(state),
   };

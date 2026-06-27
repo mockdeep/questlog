@@ -7,6 +7,5 @@ export function authenticityToken(): string {
     // throw new Error('Missing csrf-token meta tag');
   }
 
-  // return tokenTag && (<HTMLMetaElement>tokenTag).content;
-  return (tokenTag && tokenTag.content) || "";
+  return tokenTag.content || "";
 }

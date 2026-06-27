@@ -27,3 +27,5 @@ function displayError(
     stack: ${error && error.stack && error.stack.replaceAll("\n", "<br />")}
   `;
 }
+
+export {};
