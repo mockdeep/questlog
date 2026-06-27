@@ -6,7 +6,7 @@ import TagRulesController from "controllers/tag_rules_controller";
 
 function row(field: string, check: string): string {
   return `
-    <li>
+    <li data-tag-rules-target="rule">
       <select name="tag[rules][][field]"><option value="${field}" selected>
       </option></select>
       <select name="tag[rules][][check]"><option value="${check}" selected>
