@@ -1,8 +1,7 @@
 import autobind from "class-autobind";
 import {Component} from "react";
-import type {SyntheticEvent, ReactElement} from "react";
+import type {ReactElement} from "react";
 import update from "immutability-helper";
-import {uniqWith, isEqual} from "lodash";
 
 import AuthenticityToken from "../../_common/components/authenticity_token";
 import RuleRow from "./rule_row";
@@ -69,21 +68,6 @@ class TagEditView extends Component<Props, State> {
     return rules.map((rule, index) => this.ruleRow(rule, index));
   }
 
-  hasDuplicateRules(): boolean {
-    const {rules} = this.state;
-
-    return uniqWith(rules, isEqual).length !== rules.length;
-  }
-
-  validateAndSave(event: SyntheticEvent): void {
-    if (!this.hasDuplicateRules()) { return; }
-
-    // eslint-disable-next-line no-alert
-    if (!confirm("There are duplicate rules. Remove extras?")) {
-      event.preventDefault();
-    }
-  }
-
   addRule(): void {
     const {rules} = this.state;
     const newRule: TagRule = {field: "estimateSeconds", check: "isBlank"};
@@ -99,7 +83,12 @@ class TagEditView extends Component<Props, State> {
     const path = `/tags/${tag.id}`;
 
     return (
-      <form action={path} method='post' onSubmit={this.validateAndSave}>
+      <form
+        action={path}
+        method='post'
+        data-controller='tag-rules'
+        data-action='submit->tag-rules#validateAndSave'
+      >
         <input
           type='hidden'
           name='_method'
