@@ -113,37 +113,27 @@ class TagEditView extends Component<Props, State> {
     const path = `/tags/${tag.id}`;
 
     return (
-      <div>
-        {`Editing tag ${tag.name}`}
-        <br />
-        <a href='/tags'>{"Back to tags list"}</a>
-        <h2>{"Rules"}</h2>
-        {
-          `Tag will include all tasks that match one or more of the following
-            rules:`
-        }
-        <form action={path} method='post' onSubmit={this.validateAndSave}>
-          <input
-            type='hidden'
-            name='_method'
-            value='patch'
-            autoComplete='off'
-          />
-          <AuthenticityToken />
-          <ol>{this.ruleRows()}</ol>
-          <input
-            type='button'
-            className='btn btn-primary btn-small'
-            value='Add Rule'
-            onClick={this.addRule}
-          />
-          <input
-            type='submit'
-            className='btn btn-success btn-block'
-            value='Save Tag'
-          />
-        </form>
-      </div>
+      <form action={path} method='post' onSubmit={this.validateAndSave}>
+        <input
+          type='hidden'
+          name='_method'
+          value='patch'
+          autoComplete='off'
+        />
+        <AuthenticityToken />
+        <ol>{this.ruleRows()}</ol>
+        <input
+          type='button'
+          className='btn btn-primary btn-small'
+          value='Add Rule'
+          onClick={this.addRule}
+        />
+        <input
+          type='submit'
+          className='btn btn-success btn-block'
+          value='Save Tag'
+        />
+      </form>
     );
   }
 }

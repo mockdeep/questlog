@@ -1,2 +1,7 @@
-- data = { controller: 'react', react_component_name_value: 'editTag' }
+Editing tag #{@tag.name}
+%br
+= link_to("Back to tags list", tags_path)
+%h2 Rules
+Tag will include all tasks that match one or more of the following rules:
+- data = { controller: "react", react_component_name_value: "editTag" }
 #app-base{ data: data }

@@ -7,7 +7,9 @@ class TagsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @tag = current_user.tags.friendly.find(params.expect(:id))
+  end
 
   def update
     tag = current_user.tags.find(params.expect(:id))
