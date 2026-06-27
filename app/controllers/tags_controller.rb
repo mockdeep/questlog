@@ -9,6 +9,7 @@ class TagsController < ApplicationController
 
   def edit
     @tag = current_user.tags.friendly.find(params.expect(:id))
+    @serialized_tag = serialize(@tag)[:data]
   end
 
   def update

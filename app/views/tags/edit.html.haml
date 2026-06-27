@@ -7,5 +7,6 @@ Tag will include all tasks that match one or more of the following rules:
 - form_data = { controller: "tag-rules", action: submit_action }
 = form_with(url: tag_path(@tag.id), method: :patch, data: form_data) do |form|
   - react_data = { controller: "react", react_component_name_value: "editTag" }
+  - react_data[:react_props_value] = { tag: @serialized_tag }.to_json
   #app-base{ data: react_data }
   = form.submit("Save Tag", class: "btn btn-success btn-block")
