@@ -12,11 +12,12 @@ RSpec.describe ReleaseAtParser do
     end
 
     it "returns a time tomorrow if the string has just a time of day" do
-      time = 1.hour.ago.round
-      time -= time.sec
-      time_string = time.strftime("%I:%M%P")
-      result = parser.("do it @#{time_string}")
-      expect(result).to eq(title: "do it", release_at: time + 1.day)
+      travel_to(Time.zone.local(2026, 7, 15, 12)) do
+        time = 1.hour.ago
+        time_string = time.strftime("%I:%M%P")
+        result = parser.("do it @#{time_string}")
+        expect(result).to eq(title: "do it", release_at: time + 1.day)
+      end
     end
   end
 
@@ -27,11 +28,12 @@ RSpec.describe ReleaseAtParser do
   end
 
   it "returns a time in the future" do
-    time = 1.hour.from_now.round
-    time -= time.sec
-    time_string = time.strftime("%I:%M%P")
-    result = parser.("do it @#{time_string}")
-    expect(result).to eq(title: "do it", release_at: time)
+    travel_to(Time.zone.local(2026, 7, 15, 12)) do
+      time = 1.hour.from_now
+      time_string = time.strftime("%I:%M%P")
+      result = parser.("do it @#{time_string}")
+      expect(result).to eq(title: "do it", release_at: time)
+    end
   end
 
   it "returns a datetime in the future" do
