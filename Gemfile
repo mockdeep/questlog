@@ -62,7 +62,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "capybara-screenshot", require: false
   gem "guard-rspec"
   gem "rb-inotify"
   gem "rspec_junit_formatter", require: false

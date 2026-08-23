@@ -131,6 +131,16 @@ jobs:
           name: Run system tests
           command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/system
 
+      - store_artifacts:
+          name: Store failure screenshots
+          path: tmp/capybara
+          when: always
+
+      - store_artifacts:
+          name: Store Rails test log
+          path: log/test.log
+          when: always
+
 workflows:
   version: 2
   build_and_test:
