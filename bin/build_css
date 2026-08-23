@@ -14,6 +14,6 @@ pnpm esbuild app/assets/stylesheets/application.css \
   --loader:.eot=empty \
   --loader:.svg=empty \
   ${MINIFY:-} \
+  --asset-names='[name]' \
   --outdir=app/assets/builds \
-  --public-path=/assets \
   "$@"
