@@ -1,31 +1,41 @@
 # frozen_string_literal: true
 
 RSpec.describe TagsController, "#edit" do
-  it "renders the react layout" do
-    tag = create(:tag)
+  it "renders a row for each of the tag's rules" do
+    tag = create(:tag, rules: [{ field: "tagIds", check: "isEmpty" }])
     login_as(tag.user)
 
     get "/tags/#{tag.id}/edit"
 
-    expect(rendered).to have_css("#app-base")
+    expect(rendered).to have_css("li", count: 1)
   end
 
-  it "passes the selectable rule fields to the react component" do
-    tag = create(:tag)
+  it "selects the field the rule was saved with" do
+    tag = create(:tag, rules: [{ field: "tagIds", check: "isEmpty" }])
     login_as(tag.user)
 
     get "/tags/#{tag.id}/edit"
 
-    expect(rule_field_names).to eq(["estimateSeconds", "tagIds"])
+    expect(selected_options).to eq(["Tags", "is empty"])
   end
 
-  def mount_props
-    element = rendered.find("[data-react-props-value]")
+  it "disables the check dropdowns of the unselected fields" do
+    tag = create(:tag, rules: [{ field: "tagIds", check: "isEmpty" }])
+    login_as(tag.user)
 
-    JSON.parse(element["data-react-props-value"])
+    get "/tags/#{tag.id}/edit"
+
+    expect(enabled_check_fields).to eq(["tagIds"])
   end
 
-  def rule_field_names
-    mount_props["ruleFields"].map { |field| field["name"] }
+  def selected_options
+    rendered.find("li").all("option[selected]", visible: :all).map(&:text)
+  end
+
+  def enabled_check_fields
+    selector = "li select[data-check-field]:not([disabled])"
+    selects = rendered.all(selector, visible: :all)
+
+    selects.map { |select| select["data-check-field"] }
   end
 end

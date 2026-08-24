@@ -5,7 +5,6 @@ import {expect, it, vi} from "vitest";
 import {bootStimulus, getController} from "support/stimulus";
 import {ensure} from "helpers/ensure";
 import ReactController from "controllers/react_controller";
-import {makeRuleFields} from "support/factories";
 
 function stubFetch(): void {
   function fakeJson(): unknown {
@@ -26,16 +25,13 @@ function stubFetch(): void {
  * resulting console warnings, which support/shims.ts otherwise turns into
  * throws.
  */
-async function connectController(
-  name: string,
-  props = "{}",
-): Promise<HTMLElement> {
+async function connectController(name: string): Promise<HTMLElement> {
   vi.spyOn(console, "error").mockImplementation(noop);
   stubFetch();
   window.history.pushState(null, "", "/tasks");
   document.body.innerHTML =
-    `<div data-controller="react" data-react-component-name-value="${name}" ` +
-    `data-react-props-value='${props}'></div>`;
+    "<div data-controller=\"react\" " +
+    `data-react-component-name-value="${name}"></div>`;
   const selector = "[data-controller='react']";
 
   await bootStimulus("react", ReactController);
@@ -48,16 +44,6 @@ it("mounts the named react component on connect", async () => {
 
   await waitFor(() => {
     expect(el.querySelector("div")).not.toBeNull();
-  });
-});
-
-it("passes server-rendered props to the component", async () => {
-  const tag = {rules: [{check: "isEmpty", field: "tagIds"}]};
-  const props = JSON.stringify({ruleFields: makeRuleFields(), tag});
-  const el = await connectController("editTag", props);
-
-  await waitFor(() => {
-    expect(el.querySelector("select")).not.toBeNull();
   });
 });
 

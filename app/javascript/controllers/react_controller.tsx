@@ -5,9 +5,7 @@ import {Provider} from "react-redux";
 import type {ReactElement} from "react";
 
 import appStore from "../_common/app_store";
-import {ensure} from "helpers/ensure";
 import {grab} from "helpers/grab";
-import TagEditView from "../tag/components/edit_view";
 import TaskShowViewContainer from "../task/containers/show_view";
 import TaskFocusViewContainer from "../task/containers/focus_view";
 import TaskListViewContainer from "../task/containers/list_view";
@@ -15,11 +13,6 @@ import TaskTreeViewContainer from "../task/containers/tree_view";
 import TimeframeListViewContainer from "../timeframe/containers/list_view";
 import {fetchRoute} from "../route/action_creators";
 import {fetchTasks} from "../task/action_creators";
-
-interface MountProps {
-  tag?: Tag;
-  ruleFields?: TagRuleFieldOption[];
-}
 
 const COMPONENTS = {
   focus: TaskFocusViewContainer,
@@ -32,11 +25,9 @@ const COMPONENTS = {
 class ReactController extends Controller {
   componentNameValue!: string;
 
-  propsValue!: MountProps;
-
   root!: Root;
 
-  static override values = {componentName: String, props: Object};
+  static override values = {componentName: String};
 
   override connect(): void {
     appStore.dispatch(fetchRoute());
@@ -55,15 +46,6 @@ class ReactController extends Controller {
   }
 
   private component(): ReactElement {
-    if (this.componentNameValue === "editTag") {
-      const {ruleFields, tag} = this.propsValue;
-
-      return <TagEditView
-        tag={ensure(tag)}
-        ruleFields={ensure(ruleFields)}
-      />;
-    }
-
     const Component = grab(COMPONENTS, this.componentNameValue);
 
     return <Component />;

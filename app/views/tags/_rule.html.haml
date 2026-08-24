@@ -1,0 +1,15 @@
+- selected = TagRule.field_for(rule)
+- field_action = "change->tag-rule#fieldChanged"
+%li{ data: { controller: "tag-rule", tag_rules_target: "rule" } }
+  %select{ name: "tag[rules][][field]",
+           data: { tag_rule_target: "field", action: field_action } }
+    - TagRule::FIELDS.each do |field|
+      %option{ value: field[:name], selected: field == selected }= field[:label]
+  - TagRule::FIELDS.each do |field|
+    - inactive = field != selected
+    %select{ name: "tag[rules][][check]", disabled: inactive, hidden: inactive,
+             data: { tag_rule_target: "check", check_field: field[:name] } }
+      - field[:checks].each do |check|
+        - chosen = check[:name] == rule[:check]
+        %option{ value: check[:name], selected: chosen }= check[:label]
+  %i.fas.fa-times{ data: { action: "click->tag-rule#remove" } }
