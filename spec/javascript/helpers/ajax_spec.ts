@@ -1,7 +1,7 @@
 import type {Mock} from "vitest";
 import {expect, it, vi} from "vitest";
 
-import {ajaxDelete, ajaxGet, ajaxPost, ajaxPut} from "helpers/ajax";
+import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
 
 const PAYLOAD = {data: "ok"};
 
@@ -44,17 +44,6 @@ it("issues a PUT request with a serialized body", async () => {
   expect(fetchMock).toHaveBeenCalledWith("/tasks/1", expect.objectContaining({
     body: JSON.stringify({task: {}}),
     method: "PUT",
-  }));
-});
-
-it("issues a POST request with a serialized body", async () => {
-  const fetchMock = stubFetch();
-
-  await ajaxPost("/tags", {tag: {}});
-
-  expect(fetchMock).toHaveBeenCalledWith("/tags", expect.objectContaining({
-    body: JSON.stringify({tag: {}}),
-    method: "POST",
   }));
 });
 

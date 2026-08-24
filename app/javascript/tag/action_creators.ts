@@ -20,4 +20,4 @@ function upsertTags(tags: AjaxTag[]): ThunkAction<void, State, null, Action> {
 }
 
 export {INIT, SET, UPSERT};
-export {setTags, upsertTagPlain, upsertTags};
+export {setTags, upsertTags};

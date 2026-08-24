@@ -1,7 +1,4 @@
-import {
-  SET,
-  setRoute, fetchRoute,
-} from "javascript/route/action_creators";
+import {SET, fetchRoute} from "javascript/route/action_creators";
 
 afterEach(() => {
   window.history.replaceState(null, "", "/");
@@ -47,28 +44,3 @@ describe("fetchRoute", () => {
   });
 });
 
-describe("setRoute", () => {
-  it("returns a SET action corresponding to the given route", () => {
-    const payload = {name: "tasks", foo: "bar"};
-    const expectedPayload = {name: "tasks", params: {foo: "bar"}};
-    const expectedAction = {type: SET, payload: expectedPayload};
-
-    setRoute(payload);
-
-    expect(setRoute(payload)).toEqual(expectedAction);
-  });
-
-  it("updates the browser url", () => {
-    const payload = {name: "tasks", foo: "bar"};
-
-    setRoute(payload);
-
-    expect(window.location.pathname).toBe("/tasks");
-  });
-
-  it("raises an error when a route cannot be found", () => {
-    const payload = {name: "not-a-route"};
-
-    expect(() => { setRoute(payload); }).toThrow(/No route found/u);
-  });
-});
