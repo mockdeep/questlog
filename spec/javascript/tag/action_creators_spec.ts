@@ -3,7 +3,7 @@ vi.mock("helpers/ajax");
 import {makeState, makeTag} from "support/factories";
 import {
   SET, UPSERT,
-  setTags, upsertTagPlain, upsertTags,
+  setTags, upsertTags,
 } from "javascript/tag/action_creators";
 
 describe("setTags", () => {
@@ -11,14 +11,6 @@ describe("setTags", () => {
     const payload = [makeTag()];
 
     expect(setTags(payload)).toEqual({type: SET, payload});
-  });
-});
-
-describe("upsertTagPlain", () => {
-  it("returns an UPSERT action", () => {
-    const payload: {rules: TagRule[]} = {rules: []};
-
-    expect(upsertTagPlain(payload)).toEqual({type: UPSERT, payload});
   });
 });
 
@@ -35,6 +27,6 @@ describe("upsertTags", () => {
 
     thunk(dispatch, () => makeState(), null);
 
-    expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag));
+    expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag});
   });
 });

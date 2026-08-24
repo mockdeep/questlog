@@ -23,12 +23,8 @@ function ajaxPut(url: string, data: AjaxData) {
   return request(url, {method: "PUT", body: JSON.stringify(data)});
 }
 
-function ajaxPost(url: string, data: AjaxData) {
-  return request(url, {method: "POST", body: JSON.stringify(data)});
-}
-
 function ajaxDelete(url: string) {
   return request(url, {method: "DELETE"});
 }
 
-export {ajaxGet, ajaxPut, ajaxPost, ajaxDelete};
+export {ajaxGet, ajaxPut, ajaxDelete};

@@ -1,4 +1,4 @@
-import {pathToRegexp, compile} from "path-to-regexp";
+import {pathToRegexp} from "path-to-regexp";
 
 import {grab} from "helpers/grab";
 
@@ -27,8 +27,6 @@ function compileRoutes(routes: Route[]) {
 
         return params;
       },
-
-      toPath: compile(route.path),
     };
   });
 }

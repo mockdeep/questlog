@@ -25,7 +25,6 @@ function noop(): void {
 
 const props = {
   deleteTask: vi.fn(),
-  fetchTasks: vi.fn(),
   updateTask: vi.fn(),
 };
 

@@ -1,13 +1,5 @@
 import ROUTES from "./routes";
 
-function findRoute(name: string) {
-  const matchingRoute = ROUTES.find(route => route.name === name);
-
-  if (!matchingRoute) { throw new Error(`No route found for name: ${name}`); }
-
-  return matchingRoute;
-}
-
 function matchPath(path: string) {
   let params;
 
@@ -22,4 +14,4 @@ function matchPath(path: string) {
   return {name: matchingRoute.name, params};
 }
 
-export {findRoute, matchPath};
+export {matchPath};

@@ -17,7 +17,7 @@ import {
   DELETE, SET, UPDATE, UPDATE_META,
   deleteTask, fetchTasks, updateTask, updateTaskMeta,
 } from "javascript/task/action_creators";
-import {upsertTagPlain} from "javascript/tag/action_creators";
+import {UPSERT} from "javascript/tag/action_creators";
 
 let store: Store;
 let dispatch: Dispatch;
@@ -172,8 +172,8 @@ describe("updateTask", () => {
       const tag1: AjaxTag = {rules: [{check: "isBlank"}]};
       const tag2: AjaxTag = {rules: [{check: "isEmpty"}]};
 
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag1));
-      expect(dispatch).toHaveBeenCalledWith(upsertTagPlain(tag2));
+      expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag1});
+      expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag2});
     });
 
     it("marks TaskStore unloaded", () => {

@@ -80,4 +80,4 @@ const getNextActiveTask = createSelector(
   [getSelectedTag], (selectedTag: Tag | undefined) => selectedTag?.tasks[0],
 );
 
-export {getActiveTags, getNextActiveTask, getSelectedTag};
+export {getActiveTags, getNextActiveTask};
