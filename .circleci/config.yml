@@ -129,7 +129,7 @@ jobs:
           command: bundle exec rails assets:precompile
       - run:
           name: Run system tests
-          command: COVERAGE=false DISABLE_CAPYBARA_SELENIUM_OPTIMIZATIONS=true bundle exec rspec -b spec/system
+          command: COVERAGE=false bundle exec rspec -b spec/system
 
       - store_artifacts:
           name: Store failure screenshots
