@@ -5,7 +5,9 @@ class TagsController < ApplicationController
     render(locals: { tags: current_user.tags.order(:name) })
   end
 
-  def show; end
+  def show
+    @slug = params.expect(:id)
+  end
 
   def edit
     @tag = current_user.tags.friendly.find(params.expect(:id))

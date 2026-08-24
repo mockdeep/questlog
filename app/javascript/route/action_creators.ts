@@ -1,11 +1,15 @@
-import {matchPath} from "./helpers";
-
 const INIT = "route/INIT";
 const SET = "route/SET";
 
-function fetchRoute() {
-  return {type: SET, payload: matchPath(window.location.pathname)};
+function setRoute(route: Partial<RouteState>) {
+  const {name, params} = route;
+
+  if (name === undefined || name.length === 0) {
+    throw new Error("mount element is missing its route name");
+  }
+
+  return {type: SET, payload: {name, params: params ?? {}}};
 }
 
 export {INIT, SET};
-export {fetchRoute};
+export {setRoute};

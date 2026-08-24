@@ -11,7 +11,7 @@ import TaskFocusViewContainer from "../task/containers/focus_view";
 import TaskListViewContainer from "../task/containers/list_view";
 import TaskTreeViewContainer from "../task/containers/tree_view";
 import TimeframeListViewContainer from "../timeframe/containers/list_view";
-import {fetchRoute} from "../route/action_creators";
+import {setRoute} from "../route/action_creators";
 import {fetchTasks} from "../task/action_creators";
 
 const COMPONENTS = {
@@ -25,12 +25,14 @@ const COMPONENTS = {
 class ReactController extends Controller {
   componentNameValue!: string;
 
+  routeValue!: Partial<RouteState>;
+
   root!: Root;
 
-  static override values = {componentName: String};
+  static override values = {componentName: String, route: Object};
 
   override connect(): void {
-    appStore.dispatch(fetchRoute());
+    appStore.dispatch(setRoute(this.routeValue));
     appStore.dispatch(fetchTasks());
 
     this.root = createRoot(this.element);
