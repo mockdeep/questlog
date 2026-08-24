@@ -40,11 +40,47 @@ RSpec.describe "editing smart tags" do
     within(".tag-row", text: tag.name) { click_link("Edit") }
 
     expect(page).to have_css("li", count: 2)
+    expect(rule_values).to eq(
+      [["tagIds", "isEmpty"], ["estimateSeconds", "isBlank"]],
+    )
 
     # visit '/'
 
     # expect(page).to have_no_selector('a', text: tag.name)
     # add_task('some random task')
     # expect(page).to have_selector('a', text: tag.name)
+  end
+
+  it "allows deleting a rule" do
+    system_login_as(user)
+    tag = create(:tag, name: "my tag", rules: two_rules, user:)
+    visit "/tags"
+
+    within(".tag-row", text: tag.name) { click_link("Edit") }
+
+    expect(page).to have_css("li", count: 2)
+
+    first("li").find("i.fa-times").click
+
+    expect(page).to have_css("li", count: 1)
+    expect(rule_values).to eq([["estimateSeconds", "isBlank"]])
+
+    click_button("Save Tag")
+
+    within(".tag-row", text: tag.name) { click_link("Edit") }
+
+    expect(page).to have_css("li", count: 1)
+    expect(rule_values).to eq([["estimateSeconds", "isBlank"]])
+  end
+
+  def two_rules
+    [
+      { field: "tagIds", check: "isEmpty" },
+      { field: "estimateSeconds", check: "isBlank" },
+    ]
+  end
+
+  def rule_values
+    all("li").map { |rule| rule.all("select").map(&:value) }
   end
 end
