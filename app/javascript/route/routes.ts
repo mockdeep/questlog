@@ -42,7 +42,6 @@ const ROUTES = compileRoutes([
   {name: "tasks", path: "/tasks"},
   {name: "timeframes", path: "/timeframes"},
   {name: "tags", path: "/tags"},
-  {name: "editTag", path: "/tags/:slug/edit"},
   {name: "tag", path: "/tags/:slug"},
 ]);
 

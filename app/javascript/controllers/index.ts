@@ -21,3 +21,6 @@ application.register("react", ReactController);
 
 import TagRulesController from "./tag_rules_controller";
 application.register("tag-rules", TagRulesController);
+
+import TagRuleController from "./tag_rule_controller";
+application.register("tag-rule", TagRuleController);

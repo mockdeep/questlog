@@ -13,4 +13,16 @@ module TagRule
       checks: [{ name: "isEmpty", label: "is empty" }],
     },
   ].freeze
+
+  def self.field_for(rule)
+    name = rule[:field]
+
+    return FIELDS.first if name.blank?
+
+    field = FIELDS.detect { |candidate| candidate[:name] == name }
+
+    raise(ArgumentError, "unknown rule field: #{name}") if field.nil?
+
+    field
+  end
 end
