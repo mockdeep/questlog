@@ -7,6 +7,17 @@ type TagRule = {
   check: Check;
 };
 
+type TagRuleCheckOption = {
+  name: Check;
+  label: string;
+};
+
+type TagRuleFieldOption = {
+  name: TagRuleField;
+  label: string;
+  checks: TagRuleCheckOption[];
+};
+
 type Tag = {
   id: number;
   name: string;

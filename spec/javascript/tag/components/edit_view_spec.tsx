@@ -1,31 +1,36 @@
+import type {ReactElement} from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 
 import {ensure} from "helpers/ensure";
 
 import TagEditView from "javascript/tag/components/edit_view";
 
-import {makeTag} from "support/factories";
+import {makeRuleFields, makeTag} from "support/factories";
+
+function view(tag: Tag): ReactElement {
+  return <TagEditView tag={tag} ruleFields={makeRuleFields()} />;
+}
 
 it("does not reset rules when re-rendered", () => {
-  const {rerender} = render(<TagEditView tag={makeTag()} />);
+  const {rerender} = render(view(makeTag()));
   fireEvent.click(screen.getByDisplayValue("Add Rule"));
 
   expect(screen.getByDisplayValue("Estimate Seconds")).toBeInTheDocument();
 
-  rerender(<TagEditView tag={makeTag()} />);
+  rerender(view(makeTag()));
 
   expect(screen.getByDisplayValue("Estimate Seconds")).toBeInTheDocument();
 });
 
 it("renders rule rows", () => {
   const rules: TagRule[] = [{field: "tagIds", check: "isEmpty"}];
-  render(<TagEditView tag={makeTag({rules})} />);
+  render(view(makeTag({rules})));
 
   expect(screen.getByDisplayValue("Tags")).toBeInTheDocument();
 });
 
 it("adds rules when \"Add Rule\" button is clicked", () => {
-  render(<TagEditView tag={makeTag()} />);
+  render(view(makeTag()));
 
   const result = screen.queryByDisplayValue("Estimate Seconds");
   expect(result).not.toBeInTheDocument();
@@ -38,7 +43,7 @@ it("adds rules when \"Add Rule\" button is clicked", () => {
 
 it("updates a rule's field when its select changes", () => {
   const rules: TagRule[] = [{field: "estimateSeconds", check: "isBlank"}];
-  render(<TagEditView tag={makeTag({rules})} />);
+  render(view(makeTag({rules})));
 
   fireEvent.change(screen.getByDisplayValue("Estimate Seconds"), {
     target: {value: "tagIds"},
@@ -49,7 +54,7 @@ it("updates a rule's field when its select changes", () => {
 
 it("deletes a rule when its remove icon is clicked", () => {
   const rules: TagRule[] = [{field: "tagIds", check: "isEmpty"}];
-  const {container} = render(<TagEditView tag={makeTag({rules})} />);
+  const {container} = render(view(makeTag({rules})));
 
   expect(screen.getByDisplayValue("Tags")).toBeInTheDocument();
 

@@ -6,11 +6,14 @@ import {ensure} from "helpers/ensure";
 
 import RuleRow from "javascript/tag/components/rule_row";
 
+import {makeRuleFields} from "support/factories";
+
 const tagRule: TagRule = {check: "isBlank", field: "estimateSeconds"};
 const props = {
   deleteRule: vi.fn(),
   index: 1,
   rule: tagRule,
+  ruleFields: makeRuleFields(),
   updateFieldValue: vi.fn(),
 };
 

@@ -2,29 +2,14 @@ import autobind from "class-autobind";
 import {Component} from "react";
 import type {ChangeEvent, MouseEvent, ReactElement} from "react";
 
+import {ensure} from "helpers/ensure";
 import {grab} from "helpers/grab";
-
-const FIELD_NAMES = ["estimateSeconds", "tagIds"];
-
-const FIELD_DISPLAY_NAMES = {
-  estimateSeconds: "Estimate Seconds",
-  tagIds: "Tags",
-};
-
-const AVAILABLE_CHECKS: { [key: string]: string[] } = {
-  estimateSeconds: ["isBlank"],
-  tagIds: ["isEmpty"],
-};
-
-const CHECK_DISPLAY_NAMES = {
-  isBlank: "is blank",
-  isEmpty: "is empty",
-};
 
 type Props = {
   deleteRule: (index: number) => void,
   index: number,
   rule: TagRule,
+  ruleFields: TagRuleFieldOption[],
   updateFieldValue: (index: number, value: TagRuleField) => void,
 };
 
@@ -35,22 +20,30 @@ class RuleRow extends Component<Props, never> {
   }
 
   updateFieldValue(event: ChangeEvent<HTMLSelectElement>): void {
-    const {index, updateFieldValue} = this.props;
+    const {index, ruleFields, updateFieldValue} = this.props;
     const {value} = event.target;
+    const field = ruleFields.find(ruleField => ruleField.name === value);
 
-    if (value === "estimateSeconds" || value === "tagIds") {
-      updateFieldValue(index, value);
-    } else {
-      throw new Error(`unknown rule field: ${value}`);
-    }
+    if (!field) { throw new Error(`unknown rule field: ${value}`); }
+
+    updateFieldValue(index, field.name);
   }
 
   fieldOptions(): ReactElement[] {
-    return FIELD_NAMES.map(fieldName => (
-      <option value={fieldName} key={fieldName}>
-        {grab(FIELD_DISPLAY_NAMES, fieldName)}
+    const {ruleFields} = this.props;
+
+    return ruleFields.map(field => (
+      <option value={field.name} key={field.name}>
+        {field.label}
       </option>
     ));
+  }
+
+  availableChecks(): TagRuleCheckOption[] {
+    const {rule, ruleFields} = this.props;
+    const field = ruleFields.find(({name}) => name === rule.field);
+
+    return ensure(field).checks;
   }
 
   checksDropdown(): ReactElement | null {
@@ -58,16 +51,16 @@ class RuleRow extends Component<Props, never> {
 
     if (!rule.field) { return null; }
 
-    const checks = grab(AVAILABLE_CHECKS, rule.field);
-    const defaultValue =
-      checks.includes(rule.check) ? rule.check : grab(checks, 0);
+    const checks = this.availableChecks();
+    const selected = checks.some(({name}) => name === rule.check);
+    const defaultValue = selected ? rule.check : grab(checks, 0).name;
 
     return (
       <select name={"tag[rules][][check]"} defaultValue={defaultValue}>
         {
           checks.map(check => (
-            <option value={check} key={check}>
-              {grab(CHECK_DISPLAY_NAMES, check)}
+            <option value={check.name} key={check.name}>
+              {check.label}
             </option>
           ))
         }

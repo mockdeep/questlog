@@ -5,6 +5,7 @@ import {expect, it, vi} from "vitest";
 import {bootStimulus, getController} from "support/stimulus";
 import {ensure} from "helpers/ensure";
 import ReactController from "controllers/react_controller";
+import {makeRuleFields} from "support/factories";
 
 function stubFetch(): void {
   function fakeJson(): unknown {
@@ -52,7 +53,8 @@ it("mounts the named react component on connect", async () => {
 
 it("passes server-rendered props to the component", async () => {
   const tag = {rules: [{check: "isEmpty", field: "tagIds"}]};
-  const el = await connectController("editTag", JSON.stringify({tag}));
+  const props = JSON.stringify({ruleFields: makeRuleFields(), tag});
+  const el = await connectController("editTag", props);
 
   await waitFor(() => {
     expect(el.querySelector("select")).not.toBeNull();

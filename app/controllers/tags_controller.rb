@@ -9,7 +9,7 @@ class TagsController < ApplicationController
 
   def edit
     @tag = current_user.tags.friendly.find(params.expect(:id))
-    @serialized_tag = serialize(@tag)[:data]
+    @react_props = { tag: serialize(@tag)[:data], ruleFields: TagRule::FIELDS }
   end
 
   def update
