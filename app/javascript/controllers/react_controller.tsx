@@ -18,6 +18,7 @@ import {fetchTasks} from "../task/action_creators";
 
 interface MountProps {
   tag?: Tag;
+  ruleFields?: TagRuleFieldOption[];
 }
 
 const COMPONENTS = {
@@ -55,7 +56,12 @@ class ReactController extends Controller {
 
   private component(): ReactElement {
     if (this.componentNameValue === "editTag") {
-      return <TagEditView tag={ensure(this.propsValue.tag)} />;
+      const {ruleFields, tag} = this.propsValue;
+
+      return <TagEditView
+        tag={ensure(tag)}
+        ruleFields={ensure(ruleFields)}
+      />;
     }
 
     const Component = grab(COMPONENTS, this.componentNameValue);

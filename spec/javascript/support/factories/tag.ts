@@ -14,6 +14,22 @@ function makeTag(attrs: Partial<Tag> = {}): Tag {
   };
 }
 
+// Mirrors TagRule::FIELDS, which the server sends to the rule editor.
+function makeRuleFields(): TagRuleFieldOption[] {
+  return [
+    {
+      name: "estimateSeconds",
+      label: "Estimate Seconds",
+      checks: [{name: "isBlank", label: "is blank"}],
+    },
+    {
+      name: "tagIds",
+      label: "Tags",
+      checks: [{name: "isEmpty", label: "is empty"}],
+    },
+  ];
+}
+
 function makeTagState({tags = []}: {tags?: Tag[]} = {}): TagState {
   const byId: TagsById = tags.reduce((result: TagsById, tag) => {
     result[tag.id] = tag;
@@ -23,4 +39,4 @@ function makeTagState({tags = []}: {tags?: Tag[]} = {}): TagState {
   return {byId};
 }
 
-export {makeTag, makeTagState};
+export {makeRuleFields, makeTag, makeTagState};
