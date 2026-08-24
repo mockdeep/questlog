@@ -7,6 +7,25 @@ RSpec.describe "timeframes" do
     travel(1.day, &)
   end
 
+  def create_stats
+    create(:stat, user:, timestamp: 3.days.ago, value: 3600)
+    create(:stat, user:, timestamp: 4.days.ago, value: 4000)
+  end
+
+  def visit_timeframes(**task_attributes)
+    system_login_as(user)
+    travel_to(Time.zone.parse("2014/04/16"))
+    create_stats
+    task = create(:task, user:, **task_attributes)
+    sidebar.click("TIMEFRAMES")
+
+    task
+  end
+
+  def priority_select(task)
+    task_row(task.title).first("select")
+  end
+
   it "displays the median productivity of the user" do
     add_task("do laundry")
     add_task("feed dog ~5m")
@@ -121,5 +140,58 @@ RSpec.describe "timeframes" do
     visit "/"
 
     expect(page).to have_tag("Needs Estimate (1)")
+  end
+
+  it "renders a pending task as pending in its timeframe" do
+    task = visit_timeframes(
+      timeframe: "today",
+      release_at: Time.zone.parse("2014/04/17"),
+    )
+
+    within(".timeframe#today") do
+      expect(find("tbody > tr .task-input").value).to eq(task.title)
+      expect(page).to have_css(".tasks-table__row--pending")
+      expect(page).to have_button("UNDO")
+    end
+  end
+
+  it "releases a pending task when UNDO is clicked" do
+    visit_timeframes(
+      timeframe: "today",
+      release_at: Time.zone.parse("2014/04/17"),
+    )
+
+    within(".timeframe#today") { click_button("UNDO") }
+
+    expect(page).to have_no_css(".tasks-table__row--pending")
+    expect(page).to have_css(".timeframe#today")
+  end
+
+  it "marks a task done from its timeframe row" do
+    task = visit_timeframes(timeframe: "today")
+
+    task_row(task.title).click_button("DONE")
+
+    expect(page).to have_no_task(task.title)
+  end
+
+  it "deletes a task from its timeframe row" do
+    task = visit_timeframes(timeframe: "today")
+
+    accept_confirm { task_row(task.title).click_button("DELETE") }
+
+    expect(page).to have_no_task(task.title)
+  end
+
+  it "updates a task's priority from its timeframe row" do
+    task = visit_timeframes(timeframe: "today")
+
+    priority_select(task).find(:option, "1").select_option
+
+    expect(page).to have_css(".tasks-table__row--priority-1")
+
+    refresh
+
+    expect(priority_select(task).value).to eq("1")
   end
 end
