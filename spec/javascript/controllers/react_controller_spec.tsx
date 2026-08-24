@@ -25,13 +25,16 @@ function stubFetch(): void {
  * resulting console warnings, which support/shims.ts otherwise turns into
  * throws.
  */
-async function connectController(name: string): Promise<HTMLElement> {
+async function connectController(
+  name: string,
+  route = "{\"name\":\"tasks\",\"params\":{}}",
+): Promise<HTMLElement> {
   vi.spyOn(console, "error").mockImplementation(noop);
   stubFetch();
-  window.history.pushState(null, "", "/tasks");
   document.body.innerHTML =
     "<div data-controller=\"react\" " +
-    `data-react-component-name-value="${name}"></div>`;
+    `data-react-component-name-value="${name}" ` +
+    `data-react-route-value='${route}'></div>`;
   const selector = "[data-controller='react']";
 
   await bootStimulus("react", ReactController);
@@ -57,3 +60,4 @@ it("unmounts the component on disconnect", async () => {
 
   expect(el.querySelector("div")).toBeNull();
 });
+

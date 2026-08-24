@@ -1,4 +1,4 @@
-- data = { controller: 'react', react_component_name_value: 'showTask' }
-#app-base{ data: data }
+- route_params = { taskId: task.id.to_s }
+#app-base{ data: react_mount_data("showTask", "showTask", **route_params) }
 
 = render 'tasks/new', parent_task: task

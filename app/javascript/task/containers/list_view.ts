@@ -19,7 +19,7 @@ function mapStateToProps(state: State) {
   const selector = grab(ROUTE_SELECTORS, state.route.name);
   const {pending, active} = selector(state);
 
-  return {currentTasks: active, pendingTasks: pending, route: state.route};
+  return {currentTasks: active, pendingTasks: pending};
 }
 
 export default connect(mapStateToProps, {deleteTask, updateTask})(TaskListView);
