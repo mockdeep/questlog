@@ -6,34 +6,24 @@ import {bootStimulus, getController} from "support/stimulus";
 import {ensure} from "helpers/ensure";
 import ReactController from "controllers/react_controller";
 
-function stubFetch(): void {
-  function fakeJson(): unknown {
-    return {data: [], included: []};
-  }
-
-  async function fakeFetch(): Promise<{json: () => unknown}> {
-    await Promise.resolve();
-
-    return {json: fakeJson};
-  }
-
-  vi.stubGlobal("fetch", fakeFetch);
-}
-
 /*
- * The render and its async store updates fire outside act(); silence the
- * resulting console warnings, which support/shims.ts otherwise turns into
- * throws.
+ * The render fires outside act(); silence the resulting console warnings,
+ * which support/shims.ts otherwise turns into throws.
  */
 async function connectController(
   name: string,
-  route = "{\"name\":\"tasks\",\"params\":{}}",
+  {
+    route = "{\"name\":\"tasks\",\"params\":{}}",
+    tags = "[]",
+    tasks = "[]",
+  } = {},
 ): Promise<HTMLElement> {
   vi.spyOn(console, "error").mockImplementation(noop);
-  stubFetch();
   document.body.innerHTML =
     "<div data-controller=\"react\" " +
     `data-react-component-name-value="${name}" ` +
+    `data-react-tasks-value='${tasks}' ` +
+    `data-react-tags-value='${tags}' ` +
     `data-react-route-value='${route}'></div>`;
   const selector = "[data-controller='react']";
 
@@ -50,6 +40,34 @@ it("mounts the named react component on connect", async () => {
   });
 });
 
+it("renders the tasks given on the mount element", async () => {
+  const task = {
+    done: false,
+    estimateSeconds: null,
+    id: 1,
+    parentTaskId: null,
+    pending: false,
+    position: 1,
+    priority: null,
+    releaseAt: null,
+    repeatSeconds: null,
+    skipCount: 0,
+    status: "active",
+    tagIds: [],
+    tagNames: [],
+    timeframe: null,
+    title: "wash the dishes",
+  };
+  const el = await connectController(
+    "tasks",
+    {tasks: JSON.stringify([task])},
+  );
+
+  await waitFor(() => {
+    expect(el.textContent).toContain("wash the dishes");
+  });
+});
+
 it("unmounts the component on disconnect", async () => {
   const el = await connectController("tasks");
   await waitFor(() => {
@@ -60,4 +78,3 @@ it("unmounts the component on disconnect", async () => {
 
   expect(el.querySelector("div")).toBeNull();
 });
-

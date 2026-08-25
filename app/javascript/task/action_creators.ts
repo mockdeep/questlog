@@ -20,7 +20,7 @@ function deleteTaskPlain(payload: number) {
   return {type: DELETE, payload};
 }
 
-function setTasks(payload: Task[]) {
+function setTasks(payload: UnprocessedTask[]) {
   return {type: SET, payload};
 }
 

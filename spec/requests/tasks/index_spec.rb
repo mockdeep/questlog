@@ -34,4 +34,26 @@ RSpec.describe TasksController, "#index" do
 
     expect(response.parsed_body).to match serial_tasks
   end
+
+  it "renders the user's tasks onto the react mount element" do
+    create(:task, user:, title: "wash the dishes")
+
+    get "/tasks"
+    tasks = mount_value("data-react-tasks-value")
+
+    expect(tasks.pluck("title")).to eq(["wash the dishes"])
+  end
+
+  it "renders the user's tags onto the react mount element" do
+    get "/tasks"
+    tags = mount_value("data-react-tags-value")
+
+    expect(tags.pluck("name")).to eq(["All", "Untagged", "Needs Estimate"])
+  end
+
+  def mount_value(attribute)
+    element = rendered.find("[data-controller='react']")
+
+    JSON.parse(element[attribute])
+  end
 end

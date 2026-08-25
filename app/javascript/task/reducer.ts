@@ -37,7 +37,7 @@ const operations = {
     return update(previousState, {byId: {$unset: [taskId]}});
   },
 
-  [SET](previousState: TaskState | null, taskData: Task[]) {
+  [SET](previousState: TaskState | null, taskData: UnprocessedTask[]) {
     const tasks = taskData.map(processTask);
 
     return {...previousState, byId: keyBy(tasks, "id")};
