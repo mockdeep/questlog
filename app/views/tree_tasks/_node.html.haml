@@ -1,0 +1,19 @@
+- task = node.task
+- checkbox_id = "complete-task-#{task.id}"
+%li.task-item
+  -# ">" nukes the whitespace between the checkbox and the title, which
+     would otherwise render as a gap the react version did not have
+  .task-item__checkbox>
+    - if node.children.any?
+      %input.task-item__checkbox-actual{ type: 'checkbox',
+        id: checkbox_id, disabled: true }
+      %label.task-item__checkbox-display{ for: checkbox_id }
+    - else
+      = form_with(**complete_task_form_options(task)) do
+        = check_box_tag('task[done]', 'true', false,
+          id: checkbox_id, class: 'task-item__checkbox-actual')
+        - enabled = 'task-item__checkbox-display--enabled'
+        %label.task-item__checkbox-display{ for: checkbox_id, class: enabled }
+  %span{ class: task_title_class(task) }= task.title
+  - if node.children.any?
+    = render 'tree_tasks/tree', nodes: node.children

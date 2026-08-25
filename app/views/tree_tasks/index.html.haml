@@ -4,4 +4,5 @@
 
 = render 'tasks/list_filters'
 
-#app-base{ data: react_mount_data("treeTasks", "treeTasks") }
+= turbo_frame_tag 'task-tree' do
+  = render 'tree_tasks/tree', nodes: nodes

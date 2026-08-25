@@ -79,3 +79,7 @@
 .task-item__checkbox-actual {
   visibility: hidden;
 }
+
+.task-item__checkbox-form {
+  display: contents;
+}

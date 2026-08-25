@@ -24,3 +24,6 @@ application.register("tag-rules", TagRulesController);
 
 import TagRuleController from "./tag_rule_controller";
 application.register("tag-rule", TagRuleController);
+
+import AutoSubmitController from "./auto_submit_controller";
+application.register("auto-submit", AutoSubmitController);
