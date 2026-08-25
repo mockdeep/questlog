@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :leaf_tasks, only: [:index]
     resources :tree_tasks, only: [:index]
     resources :tags, only: [:index, :show, :edit, :update]
-    resources :tasks, only: [:index, :create, :show, :update]
+    resources :tasks, only: [:index, :create, :show, :update, :destroy]
     resources :timeframes, only: [:index]
     resources :alpha, only: [:index]
     resources :help, only: [:index]

@@ -103,10 +103,10 @@ RSpec.describe "timeframes" do
     expect(page).to have_no_css(".timeframe")
     within(".inbox#inbox") do
       expect(find("h2", text: /\AInbox 36\/∞\z/)).to be_truthy
-      task_row(task_1.title).select("This Week", from: "timeframe-select")
+      task_row(task_1.title).select("This Week", from: "task[timeframe]")
 
       expect(find("h2", text: /\AInbox 6\/∞\z/)).to be_truthy
-      task_row(task_2.title).select("Today", from: "timeframe-select")
+      task_row(task_2.title).select("Today", from: "task[timeframe]")
     end
 
     expect(page).to have_no_css("#inbox")
@@ -118,17 +118,17 @@ RSpec.describe "timeframes" do
 
     within(".timeframe#week") do
       expect(find("h2", text: /\AThis Week 30\/95\z/)).to be_truthy
-      task_row(task_1.title).select("Today", from: "timeframe-select")
+      task_row(task_1.title).select("Today", from: "task[timeframe]")
     end
 
     expect(page).to have_no_css(".timeframe#week")
 
     within(".timeframe#today") do
       expect(find("h2", text: /\AToday 36\/63\z/)).to be_truthy
-      task_row(task_1.title).select("-", from: "timeframe-select")
+      task_row(task_1.title).select("-", from: "task[timeframe]")
 
       expect(find("h2", text: /\AToday 6\/63\z/)).to be_truthy
-      task_row(task_2.title).select("-", from: "timeframe-select")
+      task_row(task_2.title).select("-", from: "task[timeframe]")
     end
 
     expect(page).to have_no_css(".timeframe")

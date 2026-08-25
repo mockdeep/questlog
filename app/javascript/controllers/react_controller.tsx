@@ -9,7 +9,6 @@ import {grab} from "helpers/grab";
 import TaskShowViewContainer from "../task/containers/show_view";
 import TaskFocusViewContainer from "../task/containers/focus_view";
 import TaskListViewContainer from "../task/containers/list_view";
-import TimeframeListViewContainer from "../timeframe/containers/list_view";
 import {setRoute} from "../route/action_creators";
 import {setTags} from "../tag/action_creators";
 import {setTasks, updateTaskMeta} from "../task/action_creators";
@@ -18,7 +17,6 @@ const COMPONENTS = {
   focus: TaskFocusViewContainer,
   showTask: TaskShowViewContainer,
   tasks: TaskListViewContainer,
-  timeframes: TimeframeListViewContainer,
 };
 
 class ReactController extends Controller {

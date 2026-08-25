@@ -38,6 +38,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    task = current_user.tasks.find(params.expect(:id))
+    Task::Destroy.(task)
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def task_params

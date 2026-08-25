@@ -86,6 +86,11 @@ h3 {
   display: none;
 }
 
+/* a form that only wraps a control, and should not take part in the layout */
+.contents-form {
+  display: contents;
+}
+
 .hidden-border {
   background-color: inherit;
   border: 2px solid transparent;

@@ -1,0 +1,13 @@
+%div{ id: timeframe.name, class: timeframe_section_class(timeframe) }
+  %hr
+  %h2
+    = timeframe_label(timeframe.name)
+    - danger = 'danger' if timeframe_over_limit?(timeframe)
+    %span{ class: danger }= timeframe_ratio(timeframe)
+  %table.tasks-table
+    = render 'timeframes/table_headers'
+    %tbody
+      - timeframe.current_tasks.each do |task|
+        = render 'timeframes/task_row', task:, spaces:, status: nil
+      - timeframe.pending_tasks.each do |task|
+        = render 'timeframes/task_row', task:, spaces:, status: 'pending'

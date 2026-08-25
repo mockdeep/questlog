@@ -2,7 +2,6 @@ vi.mock("helpers/ajax", async (importOriginal: () => Promise<object>) => {
   const original = await importOriginal();
   return {...original, ajaxDelete: vi.fn(), ajaxGet: vi.fn(), ajaxPut: vi.fn()};
 });
-vi.mock("javascript/task/change_notifier");
 
 import type {Mock} from "vitest";
 import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
@@ -12,7 +11,6 @@ import type {Dispatch, Store} from "redux";
 import {makeState} from "support/factories";
 
 import createAppStore from "javascript/_common/create_app_store";
-import TaskChangeNotifier from "javascript/task/change_notifier";
 import {
   DELETE, SET, UPDATE, UPDATE_META,
   deleteTask, fetchTasks, updateTask, updateTaskMeta,
@@ -76,17 +74,6 @@ describe("deleteTask", () => {
 
     expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenLastCalledWith({type: DELETE, payload: 5});
-  });
-
-  it("unloads the task store", async () => {
-    const thunk = deleteTask(5);
-    const state = makeState();
-
-    (ajaxDelete as Mock).mockReturnValue(Promise.resolve());
-
-    await thunk(dispatch, () => state, null);
-
-    expect(TaskChangeNotifier.notifyListeners).toHaveBeenCalled();
   });
 });
 
@@ -174,10 +161,6 @@ describe("updateTask", () => {
 
       expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag1});
       expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag2});
-    });
-
-    it("notifies listeners that a task changed", () => {
-      expect(TaskChangeNotifier.notifyListeners).toHaveBeenCalled();
     });
   });
 });

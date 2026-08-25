@@ -48,13 +48,6 @@ type BulkTask = {
   titles?: string;
 };
 
-type TaskChangeNotifierType = {
-  listeners: Callback[];
-  subscribe(listener: Callback): Callback;
-  unsubscribe(listener: Callback): void;
-  notifyListeners(): void;
-};
-
 type BulkTaskStoreType = {
   listeners: Callback[];
   loaded: boolean;
