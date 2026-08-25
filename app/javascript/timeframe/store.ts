@@ -1,13 +1,15 @@
-import {grab} from "helpers/grab";
 import {request} from "helpers/request";
-import TaskStore from "../task/store";
-import {
-  calculateMaxMinutes,
-  timeframeList,
-  timeframeNameForTask,
-} from "./utils";
+import TaskChangeNotifier from "../task/change_notifier";
 
 let medianProductivity: number;
+
+/*
+ * The server lays the timeframes out; a timeframe with no maximum comes back
+ * with a null minuteMax, which reads more naturally here as Infinity.
+ */
+function processTimeframe(timeframe: TimeframeData): Timeframe {
+  return {...timeframe, minuteMax: timeframe.minuteMax ?? Infinity};
+}
 
 const TimeframeStore: TimeframeStoreType = {
   listeners: [],
@@ -29,40 +31,12 @@ const TimeframeStore: TimeframeStoreType = {
   },
 
   notifyListeners(): void {
-    this.listeners.forEach(listener => listener());
+    this.listeners.forEach((listener) => { listener(); });
   },
 
   unload(): void {
     this.loaded = false;
     this.notifyListeners();
-  },
-
-  updateModels(data): void {
-    const {tasks} = data;
-    const timeframes: {[timeframeName in TimeframeName]?: Timeframe} = {};
-
-    timeframeList.forEach(timeframeName => {
-      timeframes[timeframeName] = {
-        name: timeframeName,
-        currentTasks: [],
-        pendingTasks: [],
-        medianProductivity,
-        minuteMax: calculateMaxMinutes(timeframeName, medianProductivity),
-      };
-    });
-
-    tasks.forEach(task => {
-      const timeframeName = timeframeNameForTask(task);
-
-      if (task.pending) {
-        grab(timeframes, timeframeName).pendingTasks.push(task);
-      } else {
-        grab(timeframes, timeframeName).currentTasks.push(task);
-      }
-    });
-
-    this.models =
-      timeframeList.map(timeframeName => grab(timeframes, timeframeName));
   },
 
   getState() {
@@ -74,16 +48,12 @@ const TimeframeStore: TimeframeStoreType = {
 
   getAll() {
     return new Promise(resolve => {
-      if (!TaskStore.getState().loaded) {
-        TaskStore.dispatch({type: "tasks/FETCH"});
-      }
-
       request(this.url, {
         method: "GET",
-        success: (timeframeData: TimeframeData) => {
-          ({medianProductivity} = timeframeData.meta);
-
-          this.updateModels(TaskStore.getState());
+        success: (payload: TimeframePayload) => {
+          ({medianProductivity} = payload.meta);
+          this.models = payload.data.map(processTimeframe);
+          this.loaded = true;
           resolve(this.getState());
         },
       });
@@ -91,6 +61,6 @@ const TimeframeStore: TimeframeStoreType = {
   },
 };
 
-TaskStore.subscribe(() => { TimeframeStore.unload(); });
+TaskChangeNotifier.subscribe(() => { TimeframeStore.unload(); });
 
 export default TimeframeStore;

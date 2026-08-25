@@ -11,15 +11,25 @@ type Timeframe = {
   currentTasks: Task[];
   pendingTasks: Task[];
   name: TimeframeName;
-  medianProductivity: number;
   minuteMax: number;
+  minuteTotal: number;
+};
+
+// A timeframe as the server sends it: a null minuteMax means no limit
+type TimeframeData = Omit<Timeframe, "minuteMax"> & {
+  minuteMax: number | null;
+};
+
+type TimeframePayload = {
+  data: TimeframeData[];
+  meta: {medianProductivity: number};
 };
 
 type TimeframeSpace = {
   [timeframeName: string]: number;
 };
 
-type TimeframeData = {
+type TimeframeState = {
   timeframes: Timeframe[];
   meta: {medianProductivity: number};
 };
@@ -27,7 +37,7 @@ type TimeframeData = {
 type TimeframeStoreType = {
   listeners: Callback[];
   models: Timeframe[];
-  getAll(): Promise<TimeframeData>;
+  getAll(): Promise<TimeframeState>;
   subscribe(listener: Callback): Callback;
   loaded: boolean;
   name: "timeframe";
@@ -35,6 +45,5 @@ type TimeframeStoreType = {
   unsubscribe(listener: Callback): void;
   notifyListeners(): void;
   unload(): void;
-  updateModels(data: {tasks: Task[]}): void;
-  getState(): TimeframeData;
+  getState(): TimeframeState;
 };

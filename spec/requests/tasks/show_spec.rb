@@ -15,6 +15,7 @@ RSpec.describe TasksController, "#show" do
       get "/", as: :json
       serial_task = {
         "doneAt" => nil,
+        "estimateMinutes" => 30,
         "estimateSeconds" => nil,
         "id" => task.id,
         "parentTaskId" => nil,

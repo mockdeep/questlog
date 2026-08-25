@@ -37,7 +37,7 @@ it("renders a loading message before content has been loaded", () => {
 });
 
 it("renders the current median productivity when loaded", async () => {
-  const input: TimeframeData =
+  const input: TimeframeState =
     {timeframes: [], meta: {medianProductivity: 4456}};
 
   (TimeframeStore.getAll as Mock).mockResolvedValue(input);

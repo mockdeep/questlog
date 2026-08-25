@@ -3,7 +3,7 @@ import type {ThunkAction} from "redux-thunk";
 import type {InferThunkActionCreatorType} from "react-redux";
 
 import {ajaxGet, ajaxPut, ajaxDelete} from "helpers/ajax";
-import TaskStore from "./store";
+import TaskChangeNotifier from "./change_notifier";
 import {setTags, upsertTags} from "../tag/action_creators";
 
 type AsyncAction = ThunkAction<void, State, null, Action>;
@@ -44,7 +44,7 @@ function deleteTask(taskId: number): AsyncAction {
     await ajaxDelete(`${BASE_PATH}/${taskId}`);
 
     dispatch(deleteTaskPlain(taskId));
-    TaskStore.unload();
+    TaskChangeNotifier.notifyListeners();
   };
 }
 
@@ -73,7 +73,7 @@ function updateTask(id: number, payload: Partial<AjaxTask>): AsyncAction {
 
     dispatch(updateTaskPlain(id, data));
     dispatch(upsertTags(included));
-    TaskStore.unload();
+    TaskChangeNotifier.notifyListeners();
   };
 }
 

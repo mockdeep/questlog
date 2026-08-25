@@ -3,31 +3,74 @@ vi.mock("helpers/request", async (importOriginal: () => Promise<object>) => {
   return {...original, request: vi.fn()};
 });
 import type {Mock} from "vitest";
-import FakeTimers from "@sinonjs/fake-timers";
+
+import {noop} from "lodash";
 
 import {grab} from "helpers/grab";
 import {request} from "helpers/request";
-import TaskStore from "javascript/task/store";
+import TaskChangeNotifier from "javascript/task/change_notifier";
 import TimeframeStore from "javascript/timeframe/store";
 
-import {makeTask} from "support/factories";
+function respondWith(timeframes: unknown[]): void {
+  const call = grab((request as Mock).mock.calls, 0);
+
+  grab(call, 1).success({data: timeframes, meta: {medianProductivity: 15}});
+}
+
+function serverTimeframe(attrs: object = {}): object {
+  return {
+    name: "inbox",
+    currentTasks: [],
+    pendingTasks: [],
+    minuteMax: null,
+    minuteTotal: 0,
+    ...attrs,
+  };
+}
 
 describe("getAll", () => {
-  it("does not fetch tasks when the task store is already loaded", () => {
+  it("resolves with the timeframes the server laid out", async () => {
     (request as Mock).mockClear();
-    TaskStore.loaded = true;
+    const promise = TimeframeStore.getAll();
 
-    const result = TimeframeStore.getAll();
+    respondWith([serverTimeframe({name: "today", minuteMax: 90})]);
 
-    expect(result).toBeInstanceOf(Promise);
-    expect(request).toHaveBeenCalledTimes(1);
-    TaskStore.loaded = false;
+    const {timeframes} = await promise;
+    expect(grab(timeframes, 0)).toMatchObject({name: "today", minuteMax: 90});
   });
 
-  it("unloads when the task store notifies a change", () => {
+  it("reads a timeframe with no maximum as holding any amount", async () => {
+    (request as Mock).mockClear();
+    const promise = TimeframeStore.getAll();
+
+    respondWith([serverTimeframe()]);
+
+    const {timeframes} = await promise;
+    expect(grab(timeframes, 0).minuteMax).toBe(Infinity);
+  });
+
+  it("resolves with the median productivity the server reported", async () => {
+    (request as Mock).mockClear();
+    const promise = TimeframeStore.getAll();
+
+    respondWith([]);
+
+    const {meta} = await promise;
+    expect(meta.medianProductivity).toBe(15);
+  });
+
+  it("does not fetch the tasks separately", () => {
+    (request as Mock).mockClear();
+
+    TimeframeStore.getAll().catch(noop);
+
+    expect(request).toHaveBeenCalledTimes(1);
+  });
+
+  it("unloads when a task changes", () => {
     TimeframeStore.loaded = true;
 
-    TaskStore.notifyListeners();
+    TaskChangeNotifier.notifyListeners();
 
     expect(TimeframeStore.loaded).toBe(false);
   });
@@ -97,90 +140,5 @@ describe("unload", () => {
     TimeframeStore.unload();
 
     expect(listener).toHaveBeenCalled();
-  });
-});
-
-describe("updateModels", () => {
-  it("groups tasks by timeframe", () => {
-    const task1 = makeTask({timeframe: "today"});
-    const task2 = makeTask({timeframe: "lustrum", pending: true});
-
-    TimeframeStore.updateModels({tasks: [task1, task2]});
-
-    const {timeframes} = TimeframeStore.getState();
-    expect(timeframes).toHaveLength(8);
-
-    const inboxTimeframe = grab(timeframes, 0);
-    expect(inboxTimeframe.name).toBe("inbox");
-    expect(inboxTimeframe.currentTasks).toEqual([]);
-    expect(inboxTimeframe.pendingTasks).toEqual([]);
-
-    const todayTimeframe = grab(timeframes, 1);
-    expect(todayTimeframe.name).toBe("today");
-    expect(todayTimeframe.currentTasks).toEqual([task1]);
-    expect(todayTimeframe.pendingTasks).toEqual([]);
-
-    const lustrumTimeframe = grab(timeframes, 6);
-    expect(lustrumTimeframe.name).toBe("lustrum");
-    expect(lustrumTimeframe.currentTasks).toEqual([]);
-    expect(lustrumTimeframe.pendingTasks).toEqual([task2]);
-  });
-
-  it("sets median productivity on each timeframe", async () => {
-    (request as Mock).mockClear();
-    const promise = TimeframeStore.getAll();
-
-    expect(request).toHaveBeenCalledTimes(2);
-
-    const secondCall = grab((request as Mock).mock.calls, 1);
-    grab(secondCall, 1).success({meta: {medianProductivity: 15}});
-
-    await promise;
-
-    TimeframeStore.updateModels({tasks: []});
-
-    const {timeframes} = TimeframeStore.getState();
-    expect(timeframes).toHaveLength(8);
-    timeframes.forEach(
-      timeframe => expect(timeframe.medianProductivity).toBe(15),
-    );
-  });
-
-  it("sets the max number of minutes for each timeframe", async () => {
-    const clock = FakeTimers.install({now: new Date("July 20, 1969 00:20:18")});
-
-    try {
-      (request as Mock).mockClear();
-      const promise = TimeframeStore.getAll();
-
-      expect(request).toHaveBeenCalledTimes(2);
-
-      const secondCall = grab((request as Mock).mock.calls, 1);
-      grab(secondCall, 1).success({meta: {medianProductivity: 10800}});
-
-      await promise;
-
-      TimeframeStore.updateModels({tasks: []});
-
-      const {timeframes} = TimeframeStore.getState();
-      expect(timeframes).toHaveLength(8);
-      expect(grab(timeframes, 0))
-        .toMatchObject({name: "inbox", minuteMax: Infinity});
-      expect(grab(timeframes, 1))
-        .toMatchObject({name: "today", minuteMax: 180});
-      expect(grab(timeframes, 2)).toMatchObject({name: "week", minuteMax: 540});
-      expect(grab(timeframes, 3))
-        .toMatchObject({name: "month", minuteMax: 450});
-      expect(grab(timeframes, 4))
-        .toMatchObject({name: "quarter", minuteMax: 5490});
-      expect(grab(timeframes, 5))
-        .toMatchObject({name: "year", minuteMax: 8280});
-      expect(grab(timeframes, 6))
-        .toMatchObject({name: "lustrum", minuteMax: Infinity});
-      expect(grab(timeframes, 7))
-        .toMatchObject({name: "decade", minuteMax: Infinity});
-    } finally {
-      clock.uninstall();
-    }
   });
 });

@@ -145,7 +145,7 @@ RSpec.describe "timeframes" do
   it "renders a pending task as pending in its timeframe" do
     task = visit_timeframes(
       timeframe: "today",
-      release_at: Time.zone.parse("2014/04/17"),
+      release_at: Time.zone.parse("2014/04/16 18:00"),
     )
 
     within(".timeframe#today") do
@@ -158,7 +158,7 @@ RSpec.describe "timeframes" do
   it "releases a pending task when UNDO is clicked" do
     visit_timeframes(
       timeframe: "today",
-      release_at: Time.zone.parse("2014/04/17"),
+      release_at: Time.zone.parse("2014/04/16 18:00"),
     )
 
     within(".timeframe#today") { click_button("UNDO") }
