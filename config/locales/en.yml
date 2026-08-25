@@ -43,3 +43,5 @@ en:
   tasks:
     create:
       success: "Task added"
+    destroy:
+      confirm: "Delete this task?"

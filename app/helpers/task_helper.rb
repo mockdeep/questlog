@@ -7,6 +7,77 @@ module TaskHelper
     ["task-item__title", modifier].compact
   end
 
+  def task_row_class(task, status)
+    [
+      "tasks-table__row",
+      ("tasks-table__row--priority-#{task.priority}" if task.priority),
+      ("tasks-table__row--#{status}" if status),
+    ].compact
+  end
+
+  def task_action_button(label, task, attributes)
+    button_to(
+      label,
+      task_path(task),
+      method: :patch,
+      params: { task: attributes },
+      class: "btn btn-link tasks-table__action",
+      form: { class: "contents-form", data: { turbo: true } },
+    )
+  end
+
+  # joined so that no whitespace creeps in between the buttons
+  def task_row_buttons(task)
+    buttons = []
+    buttons << task_action_button("UNDO", task, done: false) if task.release_at
+    buttons << task_delete_button(task)
+
+    safe_join(buttons)
+  end
+
+  def task_delete_button(task)
+    button_to(
+      "DELETE",
+      task_path(task),
+      method: :delete,
+      class: "btn btn-link tasks-table__action",
+      form: {
+        class: "contents-form",
+        data: { turbo: true, turbo_confirm: delete_confirmation },
+      },
+    )
+  end
+
+  def delete_confirmation
+    t("tasks.destroy.confirm")
+  end
+
+  def task_field_form_options(task)
+    {
+      url: task_path(task),
+      method: :patch,
+      class: "contents-form",
+      data: {
+        turbo: true,
+        controller: "auto-submit",
+        action: "change->auto-submit#submit",
+      },
+    }
+  end
+
+  def task_title_field_options
+    {
+      id: nil,
+      rows: 1,
+      class: "task-input hidden-border",
+      data: {
+        controller: "task-title",
+        action: "focus->task-title#reveal input->task-title#resize " \
+                "keydown->task-title#saveOnEnter change->task-title#save",
+      },
+    }
+  end
+
   def complete_task_form_options(task)
     {
       url: task_path(task),

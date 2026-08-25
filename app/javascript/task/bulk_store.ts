@@ -1,7 +1,6 @@
 import {request} from "helpers/request";
 
 import appStore from "../_common/app_store";
-import TaskChangeNotifier from "./change_notifier";
 import {fetchTasks} from "./action_creators";
 
 const BulkTaskStore: BulkTaskStoreType = {
@@ -39,8 +38,5 @@ const BulkTaskStore: BulkTaskStoreType = {
   },
 };
 
-BulkTaskStore.subscribe(() => {
-  TaskChangeNotifier.notifyListeners();
-  appStore.dispatch(fetchTasks());
-});
+BulkTaskStore.subscribe(() => { appStore.dispatch(fetchTasks()); });
 export default BulkTaskStore;

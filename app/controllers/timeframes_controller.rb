@@ -4,7 +4,7 @@ class TimeframesController < ApplicationController
   def index
     respond_to do |format|
       format.json { render(json: serialize(timeframes, meta:)) }
-      format.html
+      format.html { render(locals: { timeframes:, median_productivity: }) }
     end
   end
 

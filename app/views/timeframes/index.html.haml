@@ -1,3 +1,4 @@
 = render 'tasks/new'
 
-#app-base{ data: react_mount_data("timeframes", "timeframes") }
+= turbo_frame_tag 'timeframes' do
+  = render 'timeframes/board', timeframes:, median_productivity:
