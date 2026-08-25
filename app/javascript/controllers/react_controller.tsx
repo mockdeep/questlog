@@ -12,7 +12,8 @@ import TaskListViewContainer from "../task/containers/list_view";
 import TaskTreeViewContainer from "../task/containers/tree_view";
 import TimeframeListViewContainer from "../timeframe/containers/list_view";
 import {setRoute} from "../route/action_creators";
-import {fetchTasks} from "../task/action_creators";
+import {setTags} from "../tag/action_creators";
+import {setTasks, updateTaskMeta} from "../task/action_creators";
 
 const COMPONENTS = {
   focus: TaskFocusViewContainer,
@@ -27,13 +28,24 @@ class ReactController extends Controller {
 
   routeValue!: Partial<RouteState>;
 
+  tagsValue!: Tag[];
+
+  tasksValue!: UnprocessedTask[];
+
   root!: Root;
 
-  static override values = {componentName: String, route: Object};
+  static override values = {
+    componentName: String,
+    route: Object,
+    tags: Array,
+    tasks: Array,
+  };
 
   override connect(): void {
     appStore.dispatch(setRoute(this.routeValue));
-    appStore.dispatch(fetchTasks());
+    appStore.dispatch(setTasks(this.tasksValue));
+    appStore.dispatch(setTags(this.tagsValue));
+    appStore.dispatch(updateTaskMeta({ajaxState: "ready"}));
 
     this.root = createRoot(this.element);
     this.root.render(<Provider store={appStore}>
