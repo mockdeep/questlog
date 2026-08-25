@@ -21,28 +21,61 @@ RSpec.describe TimeframesController, "#index" do
   it "returns the inbox timeframe for the current user" do
     task = create(:task, user:)
     serial_task = hash_including("id" => task.id, "timeframe" => nil)
+
     get "/timeframes", as: :json
-    timeframes = response.parsed_body["data"]
-    expect(timeframes).to include("name" => "inbox", "tasks" => [serial_task])
+
+    expect(timeframe("inbox")).to include("currentTasks" => [serial_task])
   end
 
-  it "returns various other timeframes" do
-    task_1 = create(:task, user:)
-    task_2 = create(:task, user:, timeframe: "week")
-    task_3 = create(:task, user:, timeframe: "year")
+  it "returns every timeframe the page lays out" do
+    get "/timeframes", as: :json
 
-    serial_task_1 = hash_including("id" => task_1.id, "timeframe" => nil)
-    serial_task_2 = hash_including("id" => task_2.id, "timeframe" => "week")
-    serial_task_3 = hash_including("id" => task_3.id, "timeframe" => "year")
+    names = response.parsed_body["data"].pluck("name")
+
+    expect(names).to eq(Timeframe::DISPLAY_NAMES)
+  end
+
+  it "files a task under the timeframe it belongs to" do
+    task = create(:task, user:, timeframe: "week")
+    serial_task = hash_including("id" => task.id, "timeframe" => "week")
 
     get "/timeframes", as: :json
 
-    timeframes = response.parsed_body["data"]
-    expect(timeframes).to include("name" => "inbox", "tasks" => [serial_task_1])
-    expect(timeframes).to include("name" => "week", "tasks" => [serial_task_2])
-    expect(timeframes).to include("name" => "month", "tasks" => [])
-    expect(timeframes).to include("name" => "quarter", "tasks" => [])
-    expect(timeframes).to include("name" => "year", "tasks" => [serial_task_3])
-    expect(timeframes).to include("name" => "lustrum", "tasks" => [])
+    expect(timeframe("week")).to include("currentTasks" => [serial_task])
+  end
+
+  it "keeps a pending task apart from the current ones" do
+    task = create(:task, user:, timeframe: "today", release_at: 1.hour.from_now)
+    serial_task = hash_including("id" => task.id)
+
+    get "/timeframes", as: :json
+
+    expect(timeframe("today")).to include("pendingTasks" => [serial_task])
+  end
+
+  it "totals the estimated minutes of a timeframe's tasks" do
+    create(:task, user:, timeframe: "week", estimate_seconds: 365)
+
+    get "/timeframes", as: :json
+
+    expect(timeframe("week")).to include("minuteTotal" => 6)
+  end
+
+  it "leaves an open ended timeframe without a maximum" do
+    get "/timeframes", as: :json
+
+    expect(timeframe("inbox")).to include("minuteMax" => nil)
+  end
+
+  it "caps a bounded timeframe by the user's productivity" do
+    Stat.create!(stat_params.merge(value: 1.hour, timestamp: 1.week.ago))
+
+    get "/timeframes", as: :json
+
+    expect(timeframe("today")).to include("minuteMax" => 60)
+  end
+
+  def timeframe(name)
+    response.parsed_body["data"].detect { |frame| frame["name"] == name }
   end
 end

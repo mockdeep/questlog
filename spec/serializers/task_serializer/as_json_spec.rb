@@ -18,6 +18,7 @@ RSpec.describe TaskSerializer, "#as_json" do
     serializer = described_class.new
 
     expected_attrs = camelize_keys(task_attrs).merge(
+      estimateMinutes: 0,
       id: task.id,
       parentTaskId: nil,
       pending: true,

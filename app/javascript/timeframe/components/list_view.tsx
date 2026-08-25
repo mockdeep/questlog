@@ -7,7 +7,6 @@ import {ToEnglish} from "helpers/to_english";
 
 import TimeframeStore from "../store";
 import TimeframeSection from "./section";
-import {calculateTotalMinutes} from "../utils";
 import type {UpdateTask} from "../../task/action_creators";
 
 function timeframeHasTasks(timeframe: Timeframe): boolean {
@@ -33,7 +32,7 @@ class TimeframeListView extends Component<Props, State> {
   }
 
   override componentDidMount(): void {
-    TimeframeStore.getAll().then((data: TimeframeData) => {
+    TimeframeStore.getAll().then((data: TimeframeState) => {
       this.updateTimeframes(data);
       TimeframeStore.subscribe(this.loadTasks);
     });
@@ -43,7 +42,7 @@ class TimeframeListView extends Component<Props, State> {
     TimeframeStore.getAll().then(this.updateTimeframes);
   }
 
-  updateTimeframes(data: TimeframeData): void {
+  updateTimeframes(data: TimeframeState): void {
     this.setState({
       timeframes: data.timeframes,
       medianProductivity: data.meta.medianProductivity,
@@ -62,9 +61,7 @@ class TimeframeListView extends Component<Props, State> {
     const counts: TimeframeSpace = {};
 
     timeframes.forEach((timeframe: Timeframe) => {
-      const minuteTotal = calculateTotalMinutes(timeframe);
-
-      counts[timeframe.name] = timeframe.minuteMax - minuteTotal;
+      counts[timeframe.name] = timeframe.minuteMax - timeframe.minuteTotal;
     });
 
     return counts;

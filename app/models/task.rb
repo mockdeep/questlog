@@ -122,6 +122,14 @@ class Task < ApplicationRecord
     @decrement_counters = true if changed_to_done?
   end
 
+  # a task with no estimate is assumed to take half an hour
+  def estimate_minutes
+    seconds = estimate_seconds.to_i
+    seconds = 30.minutes.to_i if seconds.zero?
+
+    seconds / 60
+  end
+
   def status
     if release_at
       "pending"

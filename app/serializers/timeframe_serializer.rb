@@ -3,5 +3,5 @@
 class TimeframeSerializer
   include Serializable
 
-  serialize(:name, :tasks)
+  serialize(:name, :current_tasks, :minute_max, :minute_total, :pending_tasks)
 end

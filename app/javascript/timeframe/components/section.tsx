@@ -5,7 +5,6 @@ import type {ReactElement} from "react";
 import TableHeaders from "./table_headers";
 import TaskRow from "./task_row";
 import timeframeNameMap from "../name_map";
-import {calculateTotalMinutes} from "../utils";
 import type {UpdateTask} from "../../task/action_creators";
 
 type Props = {
@@ -53,7 +52,7 @@ class TimeframeSection extends Component<Props, never> {
   minuteTotal(): number {
     const {timeframe} = this.props;
 
-    return calculateTotalMinutes(timeframe);
+    return timeframe.minuteTotal;
   }
 
   maxTime(): number | "∞" {

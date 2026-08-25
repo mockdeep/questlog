@@ -48,20 +48,11 @@ type BulkTask = {
   titles?: string;
 };
 
-type TaskStoreType = {
+type TaskChangeNotifierType = {
   listeners: Callback[];
-  loaded: boolean;
-  models: Task[];
-  name: "task";
-  url: "/tasks";
   subscribe(listener: Callback): Callback;
-  notifyListeners(): void;
-  unload(): void;
   unsubscribe(listener: Callback): void;
-  updateModels({data}: {data: Task[]}): void;
-  getState(): {loaded: boolean; tasks: Task[]};
-  dispatch(action: BasicAction): void;
-  fetchTasks(): void;
+  notifyListeners(): void;
 };
 
 type BulkTaskStoreType = {

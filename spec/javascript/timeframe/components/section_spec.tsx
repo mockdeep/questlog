@@ -47,7 +47,11 @@ it("renders an infinite max when the timeframe is unbounded", () => {
 });
 
 it("flags the section as over the limit when the total exceeds the max", () => {
-  const timeframe = makeTimeframe({currentTasks: [makeTask()], minuteMax: 10});
+  const timeframe = makeTimeframe({
+    currentTasks: [makeTask()],
+    minuteMax: 10,
+    minuteTotal: 30,
+  });
   const {container} = render(<TimeframeSection {...makeProps({timeframe})} />);
 
   expect(screen.getByRole("heading")).toHaveTextContent("30/10");

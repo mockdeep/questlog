@@ -5,6 +5,7 @@ class TaskSerializer
 
   serialize(
     :done_at,
+    :estimate_minutes,
     :estimate_seconds,
     :id,
     :parent_task_id,
