@@ -30,3 +30,6 @@ application.register("auto-submit", AutoSubmitController);
 
 import TaskTitleController from "./task_title_controller";
 application.register("task-title", TaskTitleController);
+
+import TaskDragController from "./task_drag_controller";
+application.register("task-drag", TaskDragController);

@@ -4,4 +4,15 @@
 
 = render 'tasks/list_filters'
 
-#app-base{ data: react_mount_data("tasks", "leafTasks") }
+= turbo_frame_tag 'task-list', data: task_drag_options do
+  = render 'tasks/table', tasks: tasks.current, table_id: 'current-tasks',
+    heading: 'Current tasks', status: nil, draggable: true
+  = render 'tasks/table', tasks: tasks.pending, table_id: 'pending-tasks',
+    heading: 'Pending tasks', status: 'pending', draggable: false
+  -# filled in and submitted by the drag controller once a task is dropped
+  = form_with(url: tasks_path, method: :patch, class: 'contents-form',
+    data: { turbo: true, task_drag_target: 'form' }) do
+    = hidden_field_tag('task[position]', nil,
+      id: nil, data: { task_drag_target: 'position' })
+    = hidden_field_tag('task[priority]', nil,
+      id: nil, data: { task_drag_target: 'priority' })

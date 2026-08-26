@@ -7,6 +7,32 @@ module TaskHelper
     ["task-item__title", modifier].compact
   end
 
+  # A draggable row carries what the drag needs to work out where the task
+  # landed: which task it is, and the position and priority it started with.
+  def task_row_options(task, status:, draggable:)
+    options = { class: task_row_class(task, status) }
+    return options unless draggable
+
+    options.merge(draggable: true, data: task_drag_data(task))
+  end
+
+  def task_drag_options
+    {
+      controller: "task-drag",
+      action: "dragstart->task-drag#start dragover->task-drag#move " \
+              "dragend->task-drag#drop",
+    }
+  end
+
+  def task_drag_data(task)
+    {
+      task_drag_target: "row",
+      task_id: task.id,
+      position: task.position,
+      priority: task.priority,
+    }
+  end
+
   def task_row_class(task, status)
     [
       "tasks-table__row",
