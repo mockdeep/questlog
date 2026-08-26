@@ -52,13 +52,6 @@ class Task < ApplicationRecord
 
   after_save :associate_tags, :update_counters
 
-  def self.reposition(ids)
-    return if ids.none?
-    raise ActiveRecord::RecordNotFound unless (ids - pluck(:id)) == []
-
-    where(id: ids).update_all(["position = idx(array[?], id::int)", ids])
-  end
-
   def self.next
     undone.ordered.find_by(timeframe: next_timeframe)
   end

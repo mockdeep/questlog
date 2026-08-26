@@ -74,13 +74,34 @@ function updateTask(id: number, payload: Partial<AjaxTask>): AsyncAction {
   };
 }
 
+interface MoveTaskPayload {
+  position: number;
+  priority: number | null;
+}
+
+function moveTask(id: number, payload: MoveTaskPayload): AsyncAction {
+  return async function moveTaskThunk(dispatch) {
+    dispatch(updateTaskPlain(id, {loadingState: "updating"}));
+
+    await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
+
+    /*
+     * The server shifts the tasks the moved task displaced, so the whole list
+     * has to come back: the response only carries the task that moved.
+     */
+    dispatch(fetchTasks());
+  };
+}
+
 export {INIT, DELETE, SET, UPDATE, UPDATE_META};
 export {
   deleteTask,
   fetchTasks,
+  moveTask,
   setTasks,
   updateTask,
   updateTaskMeta,
 };
 
 export type UpdateTask = InferThunkActionCreatorType<typeof updateTask>;
+export type MoveTask = InferThunkActionCreatorType<typeof moveTask>;

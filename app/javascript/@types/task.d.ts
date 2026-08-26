@@ -43,29 +43,12 @@ type CurrentTask = UnprocessedCurrentTask & ProcessedTaskAttributes;
 
 type Task = PendingTask | CurrentTask;
 
-type BulkTask = {
-  positions?: number[];
-  titles?: string;
-};
-
-type BulkTaskStoreType = {
-  listeners: Callback[];
-  loaded: boolean;
-  models: Task[];
-  name: "bulk_task";
-  url: "/bulk_task";
-  subscribe(listener: Callback): Callback;
-  unsubscribe(listener: Callback): void;
-  notifyListeners(): void;
-  unload(): void;
-  update(attrs: BulkTask): void;
-};
-
 type TaskMeta = {
   ajaxState: "taskSaving" | "fetching" | "ready";
 };
 
 type AjaxTask = {
+  position: number;
   postpone: number;
   done: boolean;
   priority: number | null;

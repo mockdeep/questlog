@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 
 import {grab} from "helpers/grab";
 import TaskListView from "../components/list_view";
-import {deleteTask, updateTask} from "../action_creators";
+import {deleteTask, moveTask, updateTask} from "../action_creators";
 import {
   getPartitionedTasks,
   getPartitionedLeafTasks,
@@ -22,4 +22,6 @@ function mapStateToProps(state: State) {
   return {currentTasks: active, pendingTasks: pending};
 }
 
-export default connect(mapStateToProps, {deleteTask, updateTask})(TaskListView);
+const actionCreators = {deleteTask, moveTask, updateTask};
+
+export default connect(mapStateToProps, actionCreators)(TaskListView);

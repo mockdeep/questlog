@@ -37,6 +37,20 @@ RSpec.describe API::V1::TasksController, "#update" do
     expect(task.estimate_seconds).to eq 300
   end
 
+  it "moves the task to a new position" do
+    task.update!(position: 1)
+    task_2.update!(position: 2)
+
+    patch(
+      "/api/v1/tasks/#{task_2.id}",
+      params: { task: { position: 1 } },
+      as: :json,
+    )
+
+    expect(task_2.reload.position).to eq 1
+    expect(task.reload.position).to eq 2
+  end
+
   it "responds with the task as json" do
     patch "/api/v1/tasks/#{task.id}", params: valid_params, as: :json
     task = response.parsed_body["data"]

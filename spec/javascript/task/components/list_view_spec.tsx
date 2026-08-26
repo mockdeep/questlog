@@ -1,10 +1,7 @@
-vi.mock("javascript/task/bulk_store");
-
 import {createRef} from "react";
 import type {RefObject} from "react";
 import {act, render, screen} from "@testing-library/react";
 
-import BulkTaskStore from "javascript/task/bulk_store";
 import type {Props} from "javascript/task/components/list_view";
 import TaskListView from "javascript/task/components/list_view";
 
@@ -17,13 +14,14 @@ function deref(ref: RefObject<TaskListView | null>): TaskListView {
   return ref.current;
 }
 
-const updateTask = vi.fn();
+const moveTask = vi.fn();
 
 const props: Props = {
   currentTasks: [],
   deleteTask: vi.fn(),
+  moveTask,
   pendingTasks: [],
-  updateTask,
+  updateTask: vi.fn(),
 };
 
 it("renders current tasks", () => {
@@ -81,6 +79,7 @@ it("updates task rows based on updated props", () => {
     currentTasks={[]}
     pendingTasks={[makeTask()]}
     deleteTask={vi.fn()}
+    moveTask={vi.fn()}
     updateTask={vi.fn()}
   />;
   rerender(updated);
@@ -102,7 +101,7 @@ describe("moving a task when dragging", () => {
     expect(rows).toHaveLength(3);
 
     act(() => {
-      deref(ref).moveTask(task1.id, task2.id);
+      deref(ref).reorderTasks(task1.id, task2.id);
     });
 
     const updatedRows = screen.getAllByRole("row");
@@ -120,7 +119,7 @@ describe("moving a task when dragging", () => {
     const ref = createRef<TaskListView>();
     render(<TaskListView {...overrides} ref={ref} />);
 
-    deref(ref).moveTask(task1.id, task1.id);
+    deref(ref).reorderTasks(task1.id, task1.id);
 
     const cells = screen.getAllByDisplayValue(/Task/u);
     expect(cells[0]).toHaveValue("Task One");
@@ -129,121 +128,141 @@ describe("moving a task when dragging", () => {
 });
 
 describe("saving task after drop", () => {
+  function dropTask(currentTasks: Task[], taskId: number): void {
+    const ref = createRef<TaskListView>();
+
+    render(<TaskListView {...props} currentTasks={currentTasks} ref={ref} />);
+    deref(ref).saveTaskPositions(taskId);
+  }
+
   it("sets null task priority to match below task when moved to top", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
-    const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task3, task1, task2], task3.id);
 
-    deref(ref).saveTaskPositions(task3.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 2});
+    expect(moveTask).toHaveBeenCalledWith(
+      task3.id,
+      expect.objectContaining({priority: 2}),
+    );
   });
 
   it("sets task priority to match below task when moved to top", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task3, task1, task2]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task3, task1, task2], task3.id);
 
-    deref(ref).saveTaskPositions(task3.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 2});
+    expect(moveTask).toHaveBeenCalledWith(
+      task3.id,
+      expect.objectContaining({priority: 2}),
+    );
   });
 
   it("sets task priority to match above task when moved to bottom", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task2, task3, task1], task1.id);
 
-    deref(ref).saveTaskPositions(task1.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 3});
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({priority: 3}),
+    );
   });
 
   it("sets task priority to null when above task has null priority", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask();
-    const overrides: Props = {...props, currentTasks: [task2, task3, task1]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task2, task3, task1], task1.id);
 
-    deref(ref).saveTaskPositions(task1.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: null});
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({priority: null}),
+    );
   });
 
   it("keeps task priority at null when moved to bottom", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask();
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task1, task3, task2], task2.id);
 
-    deref(ref).saveTaskPositions(task2.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task2.id, {priority: null});
+    expect(moveTask).toHaveBeenCalledWith(
+      task2.id,
+      expect.objectContaining({priority: null}),
+    );
   });
 
   it("keeps task priority when below task matches but not above", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 3});
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task1, task3, task2]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task1, task3, task2], task3.id);
 
-    deref(ref).saveTaskPositions(task3.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task3.id, {priority: 3});
+    expect(moveTask).toHaveBeenCalledWith(
+      task3.id,
+      expect.objectContaining({priority: 3}),
+    );
   });
 
   it("keeps task priority when above task matches but not below", () => {
     const task1 = makeTask({priority: 2});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task2, task1, task3], task1.id);
 
-    deref(ref).saveTaskPositions(task1.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 2});
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({priority: 2}),
+    );
   });
 
   it("sets task priority to below task priority when neither match", () => {
     const task1 = makeTask({priority: 1});
     const task2 = makeTask({priority: 2});
     const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+    dropTask([task2, task1, task3], task1.id);
 
-    deref(ref).saveTaskPositions(task1.id);
-
-    expect(updateTask).toHaveBeenCalledWith(task1.id, {priority: 3});
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({priority: 3}),
+    );
   });
 
-  it("updates the tasks on the server", () => {
-    const task1 = makeTask({priority: 1});
-    const task2 = makeTask({priority: 2});
-    const task3 = makeTask({priority: 3});
-    const overrides: Props = {...props, currentTasks: [task2, task1, task3]};
-    const ref = createRef<TaskListView>();
-    render(<TaskListView {...overrides} ref={ref} />);
+  it("takes the position of the task it displaced when moved down", () => {
+    const task1 = makeTask();
+    const task2 = makeTask();
+    const task3 = makeTask();
+    dropTask([task2, task3, task1], task1.id);
 
-    deref(ref).saveTaskPositions(task1.id);
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({position: task3.position}),
+    );
+  });
 
-    const expected = {positions: [task2.id, task1.id, task3.id]};
-    expect(BulkTaskStore.update).toHaveBeenCalledWith(expected);
+  it("takes the position of the task it displaced when moved up", () => {
+    const task1 = makeTask();
+    const task2 = makeTask();
+    const task3 = makeTask();
+    dropTask([task3, task1, task2], task3.id);
+
+    expect(moveTask).toHaveBeenCalledWith(
+      task3.id,
+      expect.objectContaining({position: task1.position}),
+    );
+  });
+
+  it("keeps its position when it has not moved", () => {
+    const task1 = makeTask();
+    const task2 = makeTask();
+    dropTask([task1, task2], task1.id);
+
+    expect(moveTask).toHaveBeenCalledWith(
+      task1.id,
+      expect.objectContaining({position: task1.position}),
+    );
   });
 });
