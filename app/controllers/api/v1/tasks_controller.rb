@@ -5,6 +5,18 @@ module API
   module V1
 
     class TasksController < ApplicationController
+      PERMITTED_PARAMS = [
+        :done,
+        :parent_task_id,
+        :position,
+        :postpone,
+        :priority,
+        :release_at,
+        :repeat_seconds,
+        :timeframe,
+        :title,
+      ].freeze
+
       def index
         tasks = current_user.undone_and_pending_tasks
         render json: serialize(tasks, included: TagList.for(user: current_user))
@@ -26,23 +38,10 @@ module API
 
       def task_params
         params
-          .expect(task: [*permitted_params, { tag_names: [] }])
+          .expect(task: [*PERMITTED_PARAMS, { tag_names: [] }])
           .to_h
           .symbolize_keys
           .merge(parsed_title)
-      end
-
-      def permitted_params
-        [
-          :done,
-          :parent_task_id,
-          :postpone,
-          :priority,
-          :release_at,
-          :repeat_seconds,
-          :timeframe,
-          :title,
-        ]
       end
 
       def parsed_title

@@ -5,13 +5,11 @@ import update from "immutability-helper";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {DndProvider} from "react-dnd";
 
-import BulkTaskStore from "../bulk_store";
-
 import TableHeaders from "./table_headers";
 import DraggableTaskRow from "./draggable_task_row";
 import PendingTasksTable from "./pending_tasks_table";
 import {ensure} from "helpers/ensure";
-import type {UpdateTask} from "../action_creators";
+import type {MoveTask, UpdateTask} from "../action_creators";
 
 function findTask(tasks: Task[], taskId: number): Task {
   return ensure(tasks.find(task => task.id === taskId));
@@ -27,9 +25,31 @@ function beforeTaskHasLowerPriority(task: Task, beforeTask: Task): boolean {
   return Boolean(task.priority && beforeTask.priority > task.priority);
 }
 
+/*
+ * The task takes the position of whichever neighbour it displaced, and the
+ * server shifts the rest of the sequence to make room. Positions are still
+ * the ones the task had before the drag, so comparing against them tells us
+ * which way it travelled.
+ */
+function newPosition(
+  task: Task,
+  beforeTask: Task | undefined,
+  afterTask: Task | undefined,
+): number {
+  if (afterTask && task.position > afterTask.position) {
+    return afterTask.position;
+  }
+  if (beforeTask && task.position < beforeTask.position) {
+    return beforeTask.position;
+  }
+
+  return task.position;
+}
+
 export type Props = {
   currentTasks: Task[],
   deleteTask: (taskId: number) => void,
+  moveTask: MoveTask,
   pendingTasks: Task[],
   updateTask: UpdateTask,
 };
@@ -55,7 +75,7 @@ class TaskListView extends Component<Props, State> {
     }
   }
 
-  moveTask(id: number, afterId: number): void {
+  reorderTasks(id: number, afterId: number): void {
     if (id === afterId) { return; }
     const {currentTasks} = this.state;
 
@@ -76,7 +96,7 @@ class TaskListView extends Component<Props, State> {
   }
 
   saveTaskPositions(taskId: number): void {
-    const {updateTask} = this.props;
+    const {moveTask} = this.props;
     const {currentTasks} = this.state;
 
     const task = findTask(currentTasks, taskId);
@@ -96,14 +116,10 @@ class TaskListView extends Component<Props, State> {
       newPriority = beforeTask.priority;
     }
 
-    BulkTaskStore.update({positions: this.currentTaskPositions()});
-    updateTask(taskId, {priority: newPriority});
-  }
-
-  currentTaskPositions() {
-    const {currentTasks} = this.state;
-
-    return currentTasks.map((task: Task) => task.id);
+    moveTask(taskId, {
+      position: newPosition(task, beforeTask, afterTask),
+      priority: newPriority,
+    });
   }
 
   currentTasksTable(): ReactElement | null {
@@ -134,7 +150,7 @@ class TaskListView extends Component<Props, State> {
       <DraggableTaskRow
         key={task.id}
         task={task}
-        moveTask={this.moveTask}
+        reorderTasks={this.reorderTasks}
         saveTaskPositions={this.saveTaskPositions}
         updateTask={updateTask}
         deleteTask={deleteTask}

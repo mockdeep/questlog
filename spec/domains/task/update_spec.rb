@@ -45,6 +45,63 @@ RSpec.describe Task::Update do
     expect(task.reload.timeframe).to eq "week"
   end
 
+  describe "moving a task to a new position" do
+    let!(:first) { create(:task, position: 1, user:) }
+    let!(:second) { create(:task, position: 2, user:) }
+    let!(:third) { create(:task, position: 3, user:) }
+
+    def positions
+      [first, second, third].map { |task| task.reload.position }
+    end
+
+    it "pushes the displaced tasks down when moved up" do
+      task_update.(third, { position: 1 })
+
+      expect(third.reload.position).to eq 1
+      expect(positions).to eq [2, 3, 1]
+    end
+
+    it "pulls the displaced tasks up when moved down" do
+      task_update.(first, { position: 3 })
+
+      expect(first.reload.position).to eq 3
+      expect(positions).to eq [3, 1, 2]
+    end
+
+    it "accepts a position submitted as a string" do
+      task_update.(third, { position: "1" })
+
+      expect(positions).to eq [2, 3, 1]
+    end
+
+    it "leaves the other tasks alone when the position is unchanged" do
+      expect { task_update.(second, { position: 2 }) }
+        .not_to(change { positions })
+    end
+
+    it "leaves the other tasks alone when given no position" do
+      expect { task_update.(second, { title: "foo" }) }
+        .not_to(change { positions })
+    end
+
+    it "does not move another user's tasks" do
+      stranger = create(:task, position: 1)
+
+      task_update.(third, { position: 1 })
+
+      expect(stranger.reload.position).to eq 1
+    end
+
+    it "moves every task sharing a displaced position" do
+      duplicate = create(:task, position: 1, user:)
+
+      task_update.(third, { position: 1 })
+
+      expect(duplicate.reload.position).to eq 2
+      expect(positions).to eq [2, 3, 1]
+    end
+  end
+
   it "updates the stats for the day when the task has been marked complete" do
     allow(task).to receive(:persisted?).and_return(false)
     expect do

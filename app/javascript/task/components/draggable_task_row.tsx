@@ -8,7 +8,7 @@ import type {UpdateTask} from "../action_creators";
 
 type Props = {
   deleteTask: (taskId: number) => void,
-  moveTask: (id: number, afterId: number) => void;
+  reorderTasks: (id: number, afterId: number) => void;
   saveTaskPositions: (taskId: number) => void,
   task: Task,
   updateTask: UpdateTask,
@@ -18,7 +18,7 @@ type DragItem = {id: number};
 
 function DraggableTaskRow({
   deleteTask,
-  moveTask,
+  reorderTasks,
   saveTaskPositions,
   task,
   updateTask,
@@ -36,7 +36,7 @@ function DraggableTaskRow({
 
   const [, drop] = useDrop({
     accept: "task",
-    hover: (item: DragItem) => { moveTask(item.id, task.id); },
+    hover: (item: DragItem) => { reorderTasks(item.id, task.id); },
   });
 
   const bindRef = useCallback((component: TaskRow | null) => {

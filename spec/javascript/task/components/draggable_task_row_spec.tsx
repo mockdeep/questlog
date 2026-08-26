@@ -10,11 +10,11 @@ import DraggableTaskRow from "javascript/task/components/draggable_task_row";
 
 import {makeTask} from "support/factories";
 
-const moveTask = vi.fn<(id: number, afterId: number) => void>();
+const reorderTasks = vi.fn<(id: number, afterId: number) => void>();
 const saveTaskPositions = vi.fn<(taskId: number) => void>();
 const base = {
   deleteTask: vi.fn<(taskId: number) => void>(),
-  moveTask,
+  reorderTasks,
   saveTaskPositions,
   updateTask: vi.fn<UpdateTask>(),
 };
@@ -32,6 +32,6 @@ it("moves and saves task positions on drag and drop", async () => {
 
   await fireDragDrop(ensure(rows[0]), ensure(rows[1]));
 
-  expect(moveTask).toHaveBeenCalledWith(1, 2);
+  expect(reorderTasks).toHaveBeenCalledWith(1, 2);
   expect(saveTaskPositions).toHaveBeenCalledWith(1);
 });

@@ -36,7 +36,6 @@ Rails.application.routes.draw do
 
     resources :tasks, only: [:index, :update]
     resources :timeframes, only: [:index]
-    resource :bulk_task, only: [:update]
 
     get "/", to: "tasks#show"
     get "/tags/:slug", to: "tasks#show"
