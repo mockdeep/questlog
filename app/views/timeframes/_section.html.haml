@@ -5,9 +5,11 @@
     - danger = 'danger' if timeframe_over_limit?(timeframe)
     %span{ class: danger }= timeframe_ratio(timeframe)
   %table.tasks-table
-    = render 'timeframes/table_headers'
+    = render 'tasks/table_headers', heading: 'Title', spaces:
     %tbody
       - timeframe.current_tasks.each do |task|
-        = render 'timeframes/task_row', task:, spaces:, status: nil
+        = render 'tasks/row', task:, spaces:, status: nil,
+          draggable: false
       - timeframe.pending_tasks.each do |task|
-        = render 'timeframes/task_row', task:, spaces:, status: 'pending'
+        = render 'tasks/row', task:, spaces:, status: 'pending',
+          draggable: false

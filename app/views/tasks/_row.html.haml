@@ -1,4 +1,4 @@
-%tr{ class: task_row_class(task, status) }
+%tr{ **task_row_options(task, status:, draggable:) }
   %td.tasks-table__cell= task_action_button('DONE', task, done: true)
   %td
     = form_with(url: task_path(task), method: :patch, data: { turbo: true }) do
@@ -14,7 +14,8 @@
       = select_tag('task[priority]',
         options_for_select(priorities, task.priority), id: nil)
   %td
-    = form_with(**task_field_form_options(task)) do
-      = select_tag('task[timeframe]', timeframe_options(task, spaces),
-        id: nil, class: 'timeframe-select')
+    - if spaces
+      = form_with(**task_field_form_options(task)) do
+        = select_tag('task[timeframe]', timeframe_options(task, spaces),
+          id: nil, class: 'timeframe-select')
   %td= task_row_buttons(task)

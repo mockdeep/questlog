@@ -44,6 +44,64 @@ RSpec.describe "dragging tasks" do
     expect(task_row("casual task")["class"]).to include("priority-1")
   end
 
+  it "allows the user to reorder leaf tasks" do
+    user = create(:user)
+    create(:task, user:, title: "task one")
+    create(:task, user:, title: "task two")
+    create(:task, user:, title: "task three")
+    system_login_as(user)
+    visit "/leaf_tasks"
+    expect(current_tasks).to have_task("task one")
+
+    drag_task("task three", "task one")
+
+    # The dragged row only takes the position it displaced once the update has
+    # round-tripped, so this waits out the frame swap that reading the titles
+    # would otherwise race.
+    expect(current_tasks)
+      .to have_css("tr[data-position='1'] .task-input", text: "task three")
+    expect(current_task_titles).to eq(["task three", "task one", "task two"])
+
+    visit "/leaf_tasks"
+    expect(current_tasks).to have_task("task one")
+    expect(current_task_titles).to eq(["task three", "task one", "task two"])
+  end
+
+  it "assigns a priority to leaf tasks dragged next to prioritized tasks" do
+    user = create(:user)
+    create(:task, user:, title: "urgent task", priority: 1)
+    create(:task, user:, title: "casual task")
+    system_login_as(user)
+    visit "/leaf_tasks"
+    expect(current_tasks).to have_task("urgent task")
+
+    drag_task("casual task", "urgent task")
+
+    expect(current_tasks).to have_css(
+      ".tasks-table__row--priority-1 .task-input",
+      text: "casual task",
+    )
+    expect(current_task_titles).to eq(["casual task", "urgent task"])
+  end
+
+  it "does not allow dragging pending leaf tasks" do
+    user = create(:user)
+    create(:task, user:, title: "current task")
+    create(
+      :task,
+      user:,
+      title: "pending task",
+      done_at: Time.zone.now,
+      release_at: 1.week.from_now,
+    )
+    system_login_as(user)
+    visit "/leaf_tasks"
+
+    expect(pending_tasks).to have_task("pending task")
+    expect(task_row("current task")["draggable"]).to eq("true")
+    expect(task_row("pending task")["draggable"]).not_to(eq("true"))
+  end
+
   it "does not allow dragging pending tasks" do
     user = create(:user)
     create(:task, user:, title: "current task")

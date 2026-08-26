@@ -3,9 +3,6 @@
 class TaskTree
   Node = Data.define(:task, :children)
 
-  INBOX_POSITION = Timeframe::NAMES.length
-  NO_PRIORITY = 4
-
   def self.for(user:)
     new(user).()
   end
@@ -31,7 +28,7 @@ class TaskTree
   end
 
   def root_tasks
-    ordered(tasks.select { |task| root?(task) })
+    TaskOrder.sort(tasks.select { |task| root?(task) })
   end
 
   def root?(task)
@@ -44,18 +41,5 @@ class TaskTree
 
   def children_of(task)
     children.fetch(task.id, [])
-  end
-
-  def ordered(tasks)
-    tasks.sort_by { |task| sort_key(task) }
-  end
-
-  def sort_key(task)
-    [
-      Timeframe::NAMES.index(task.timeframe) || INBOX_POSITION,
-      task.priority || NO_PRIORITY,
-      task.position,
-      task.id,
-    ]
   end
 end

@@ -55,7 +55,15 @@ class TasksController < ApplicationController
   end
 
   def permitted_params
-    [:done, :parent_task_id, :postpone, :title, :priority, :timeframe]
+    [
+      :done,
+      :parent_task_id,
+      :position,
+      :postpone,
+      :priority,
+      :timeframe,
+      :title,
+    ]
   end
 
   def parsed_title
