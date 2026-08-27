@@ -2,7 +2,6 @@ import {groupBy, pickBy, sortBy} from "lodash";
 import {createSelector} from "reselect";
 
 import {grab} from "helpers/grab";
-import {getRouteParams} from "../route/selectors";
 
 const timeframePositions = {
   today: 1,
@@ -57,15 +56,6 @@ function grabLeafTasks(
   });
 }
 
-function grabCurrentTask(
-  tasksById: TasksById,
-  routeParams: RouteParams,
-): Task | null {
-  const {taskId} = routeParams;
-  if (taskId === undefined) { return null; }
-  return tasksById[taskId] ?? null;
-}
-
 const getTasksById = createSelector(
   (state: State) => state.task.byId,
   processTasks,
@@ -90,27 +80,4 @@ const getActiveTasks = createSelector(
   partitionedTasks => partitionedTasks.active,
 );
 
-function getAllTasksById(state: State): TasksById {
-  return state.task.byId;
-}
-
-const getCurrentTask = createSelector(
-  getAllTasksById,
-  getRouteParams,
-  grabCurrentTask,
-);
-
-const getCurrentSubTasks = createSelector(
-  [getCurrentTask, getTasksByParentId],
-  (currentTask: Task | null, tasksByParentId) => {
-    if (!currentTask) { return []; }
-    return tasksByParentId[currentTask.id] ?? [];
-  },
-);
-
-export {
-  getCurrentSubTasks,
-  getCurrentTask,
-  getTasksByParentId,
-  getActiveTasks,
-};
+export {getActiveTasks};
