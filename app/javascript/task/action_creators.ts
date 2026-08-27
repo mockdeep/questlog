@@ -2,8 +2,8 @@ import type {Action} from "redux";
 import type {ThunkAction} from "redux-thunk";
 import type {InferThunkActionCreatorType} from "react-redux";
 
-import {ajaxGet, ajaxPut, ajaxDelete} from "helpers/ajax";
-import {setTags, upsertTags} from "../tag/action_creators";
+import {ajaxPut, ajaxDelete} from "helpers/ajax";
+import {upsertTags} from "../tag/action_creators";
 
 type AsyncAction = ThunkAction<void, State, null, Action>;
 
@@ -25,17 +25,6 @@ function setTasks(payload: UnprocessedTask[]) {
 
 function updateTaskMeta(payload: Partial<TaskMeta>) {
   return {type: UPDATE_META, payload};
-}
-
-function fetchTasks(): AsyncAction {
-  return async function fetchTasksThunk(dispatch) {
-    dispatch(updateTaskMeta({ajaxState: "fetching"}));
-    const {data, included} = await ajaxGet(BASE_PATH);
-
-    dispatch(setTasks(data));
-    dispatch(setTags(included));
-    dispatch(updateTaskMeta({ajaxState: "ready"}));
-  };
 }
 
 function deleteTask(taskId: number): AsyncAction {
@@ -74,34 +63,7 @@ function updateTask(id: number, payload: Partial<AjaxTask>): AsyncAction {
   };
 }
 
-interface MoveTaskPayload {
-  position: number;
-  priority: number | null;
-}
-
-function moveTask(id: number, payload: MoveTaskPayload): AsyncAction {
-  return async function moveTaskThunk(dispatch) {
-    dispatch(updateTaskPlain(id, {loadingState: "updating"}));
-
-    await ajaxPut(`${BASE_PATH}/${id}`, {task: payload});
-
-    /*
-     * The server shifts the tasks the moved task displaced, so the whole list
-     * has to come back: the response only carries the task that moved.
-     */
-    dispatch(fetchTasks());
-  };
-}
-
 export {INIT, DELETE, SET, UPDATE, UPDATE_META};
-export {
-  deleteTask,
-  fetchTasks,
-  moveTask,
-  setTasks,
-  updateTask,
-  updateTaskMeta,
-};
+export {deleteTask, setTasks, updateTask, updateTaskMeta};
 
 export type UpdateTask = InferThunkActionCreatorType<typeof updateTask>;
-export type MoveTask = InferThunkActionCreatorType<typeof moveTask>;

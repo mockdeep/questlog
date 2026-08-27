@@ -15,10 +15,6 @@ function request(url: string, params: RequestInit) {
   return fetchResponse.then(response => response.json());
 }
 
-function ajaxGet(url: string) {
-  return request(url, {method: "GET"});
-}
-
 function ajaxPut(url: string, data: AjaxData) {
   return request(url, {method: "PUT", body: JSON.stringify(data)});
 }
@@ -27,4 +23,4 @@ function ajaxDelete(url: string) {
   return request(url, {method: "DELETE"});
 }
 
-export {ajaxGet, ajaxPut, ajaxDelete};
+export {ajaxPut, ajaxDelete};
