@@ -6,7 +6,9 @@ class TasksController < ApplicationController
       format.json do
         render json: serialize(current_user.undone_and_pending_tasks)
       end
-      format.html
+      format.html do
+        render(locals: { tasks: TaskList.all(user: current_user) })
+      end
     end
   end
 

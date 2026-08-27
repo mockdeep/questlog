@@ -12,8 +12,11 @@ RSpec.describe "dragging tasks" do
 
     drag_task("task three", "task one")
 
+    # The dragged row only takes the position it displaced once the update has
+    # round-tripped, so this waits out the frame swap that reading the titles
+    # would otherwise race.
     expect(current_tasks)
-      .to have_css("tbody tr:first-child .task-input", text: "task three")
+      .to have_css("tr[data-position='1'] .task-input", text: "task three")
     expect(current_task_titles).to eq(["task three", "task one", "task two"])
 
     visit "/tasks"

@@ -5,7 +5,7 @@ RSpec.describe TasksController, "#index" do
 
   before { login_as(user) }
 
-  it "renders all incomplete tasks for the user" do
+  it "renders all incomplete tasks for the user as json" do
     create(:task, user:, done_at: 1.week.ago)
     task_2 = create(
       :task,
@@ -35,25 +35,52 @@ RSpec.describe TasksController, "#index" do
     expect(response.parsed_body).to match serial_tasks
   end
 
-  it "renders the user's tasks onto the react mount element" do
+  it "lists the user's tasks" do
     create(:task, user:, title: "wash the dishes")
 
     get "/tasks"
-    tasks = mount_value("data-react-tasks-value")
 
-    expect(tasks.pluck("title")).to eq(["wash the dishes"])
+    expect(rendered).to have_css("#current-tasks", text: "wash the dishes")
   end
 
-  it "renders the user's tags onto the react mount element" do
+  it "lists sub tasks alongside the tasks they belong to" do
+    parent = create(:task, user:, title: "parent")
+    create(:task, user:, title: "child", parent_task: parent)
+
     get "/tasks"
-    tags = mount_value("data-react-tags-value")
 
-    expect(tags.pluck("name")).to eq(["All", "Untagged", "Needs Estimate"])
+    expect(rendered).to have_css("#current-tasks", text: "child")
   end
 
-  def mount_value(attribute)
-    element = rendered.find("[data-controller='react']")
+  it "lists the tasks waiting to be released separately" do
+    create(:task, user:, done_at: 1.week.ago, release_at: 1.day.from_now)
 
-    JSON.parse(element[attribute])
+    get "/tasks"
+
+    expect(rendered).to have_css("#pending-tasks .tasks-table__row--pending")
+  end
+
+  it "makes the current tasks draggable" do
+    create(:task, user:)
+
+    get "/tasks"
+
+    expect(rendered).to have_css("#current-tasks tr[draggable=true]")
+  end
+
+  it "does not make the pending tasks draggable" do
+    create(:task, user:, done_at: 1.week.ago, release_at: 1.day.from_now)
+
+    get "/tasks"
+
+    expect(rendered).to have_no_css("#pending-tasks tr[draggable]")
+  end
+
+  it "leaves the timeframe column out of the task rows" do
+    create(:task, user:)
+
+    get "/tasks"
+
+    expect(rendered).to have_no_css(".timeframe-select")
   end
 end
