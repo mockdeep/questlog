@@ -1,7 +1,7 @@
 import type {Mock} from "vitest";
 import {expect, it, vi} from "vitest";
 
-import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
+import {ajaxDelete, ajaxPut} from "helpers/ajax";
 
 const PAYLOAD = {data: "ok"};
 
@@ -24,18 +24,6 @@ function stubFetch(): Mock<FetchMock> {
   return fetchMock;
 }
 
-it("issues a GET request and resolves the parsed body", async () => {
-  const fetchMock = stubFetch();
-
-  const result: unknown = await ajaxGet("/tasks");
-
-  expect(result).toStrictEqual(PAYLOAD);
-  expect(fetchMock).toHaveBeenCalledWith(
-    "/tasks",
-    expect.objectContaining({method: "GET"}),
-  );
-});
-
 it("issues a PUT request with a serialized body", async () => {
   const fetchMock = stubFetch();
 
@@ -45,6 +33,14 @@ it("issues a PUT request with a serialized body", async () => {
     body: JSON.stringify({task: {}}),
     method: "PUT",
   }));
+});
+
+it("resolves the parsed response body", async () => {
+  stubFetch();
+
+  const result: unknown = await ajaxPut("/tasks/1", {task: {}});
+
+  expect(result).toStrictEqual(PAYLOAD);
 });
 
 it("issues a DELETE request", async () => {

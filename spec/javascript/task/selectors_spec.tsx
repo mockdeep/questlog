@@ -1,9 +1,6 @@
 import {
   getCurrentSubTasks,
   getCurrentTask,
-  getPartitionedLeafTasks,
-  getPartitionedRootTasks,
-  getPartitionedTasks,
   getActiveTasks,
 } from "javascript/task/selectors";
 
@@ -89,54 +86,12 @@ describe("getActiveTasks", () => {
 
     expect(getActiveTasks(state)).toEqual([task1, task3]);
   });
-});
 
-describe("getPartitionedLeafTasks", () => {
-  it("returns leaf tasks partitioned on pending status", () => {
-    const task1 = makeTask({status: "pending"});
-    const task2 = makeTask();
-    const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: "done"});
-
-    const state = makeState({task: [task1, task2, task3, task4]});
-
-    const expected = {active: [task3], pending: [task1]};
-    expect(getPartitionedLeafTasks(state)).toEqual(expected);
-  });
-});
-
-describe("getPartitionedRootTasks", () => {
-  it("returns root tasks partitioned on pending status", () => {
-    const task1 = makeTask({status: "pending"});
-    const task2 = makeTask();
-    const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: "done"});
-
-    const state = makeState({task: [task1, task2, task3, task4]});
-
-    const expected = {active: [task2], pending: [task1]};
-    expect(getPartitionedRootTasks(state)).toEqual(expected);
-  });
-});
-
-describe("getPartitionedTasks", () => {
-  it("returns tasks partitioned on pending status", () => {
-    const task1 = makeTask({status: "pending"});
-    const task2 = makeTask();
-    const task3 = makeTask({parentTaskId: task2.id});
-    const task4 = makeTask({status: "done"});
-
-    const state = makeState({task: [task1, task2, task3, task4]});
-
-    const expected = {active: [task2, task3], pending: [task1]};
-    expect(getPartitionedTasks(state)).toEqual(expected);
-  });
-
-  it("orders active tasks by their timeframe position", () => {
+  it("orders tasks by their timeframe position", () => {
     const week = makeTask({timeframe: "week"});
     const today = makeTask({timeframe: "today"});
     const state = makeState({task: [week, today]});
 
-    expect(getPartitionedTasks(state).active).toEqual([today, week]);
+    expect(getActiveTasks(state)).toEqual([today, week]);
   });
 });

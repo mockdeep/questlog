@@ -49,12 +49,6 @@ it("adds a priority class for a prioritized task", () => {
     .toHaveClass("tasks-table__row--priority-2");
 });
 
-it("adds a status class when a status is given", () => {
-  const {container} = render(row({status: "done"}));
-
-  expect(container.querySelector("tr")).toHaveClass("tasks-table__row--done");
-});
-
 it("renders the task estimate", () => {
   render(row({task: makeTask({estimateMinutes: 45})}));
 

@@ -17,8 +17,6 @@ export type Props = {
   deleteTask: (taskId: number) => void,
   task: Task,
   updateTask: UpdateTask,
-  isDragging?: boolean,
-  status?: string,
   timeframesEnabled?: boolean,
   timeframeSpace?: TimeframeSpace,
 };
@@ -74,13 +72,9 @@ class TaskRow extends PureComponent<Props, State> {
   }
 
   className(): string {
-    const {isDragging, status} = this.props;
-
     return classnames({
       "tasks-table__row": true,
       [`tasks-table__row--priority-${this.priority()}`]: this.priority(),
-      [`tasks-table__row--${status}`]: status,
-      "tasks-table__row--dragging": isDragging,
     });
   }
 

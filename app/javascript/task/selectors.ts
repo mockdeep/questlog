@@ -78,21 +78,12 @@ const getOrderedTasks = createSelector(
   tasksById => sortBy(tasksById, [timeframePosition, "priority", "position"]),
 );
 
-const getPartitionedTasks = createSelector(getOrderedTasks, partitionTasks);
-
 const getLeafTasks = createSelector(
   [getOrderedTasks, getTasksByParentId],
   grabLeafTasks,
 );
 
-const getRootTasks = createSelector(
-  getOrderedTasks,
-  orderedTasks => orderedTasks.filter(task => !task.parentTaskId),
-);
-
 const getPartitionedLeafTasks = createSelector(getLeafTasks, partitionTasks);
-
-const getPartitionedRootTasks = createSelector(getRootTasks, partitionTasks);
 
 const getActiveTasks = createSelector(
   getPartitionedLeafTasks,
@@ -120,9 +111,6 @@ const getCurrentSubTasks = createSelector(
 export {
   getCurrentSubTasks,
   getCurrentTask,
-  getPartitionedLeafTasks,
-  getPartitionedRootTasks,
-  getPartitionedTasks,
   getTasksByParentId,
   getActiveTasks,
 };

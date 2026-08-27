@@ -1,10 +1,10 @@
 vi.mock("helpers/ajax", async (importOriginal: () => Promise<object>) => {
   const original = await importOriginal();
-  return {...original, ajaxDelete: vi.fn(), ajaxGet: vi.fn(), ajaxPut: vi.fn()};
+  return {...original, ajaxDelete: vi.fn(), ajaxPut: vi.fn()};
 });
 
 import type {Mock} from "vitest";
-import {ajaxDelete, ajaxGet, ajaxPut} from "helpers/ajax";
+import {ajaxDelete, ajaxPut} from "helpers/ajax";
 import {grab} from "helpers/grab";
 import type {Dispatch, Store} from "redux";
 
@@ -13,7 +13,7 @@ import {makeState} from "support/factories";
 import createAppStore from "javascript/_common/create_app_store";
 import {
   DELETE, SET, UPDATE, UPDATE_META,
-  deleteTask, fetchTasks, moveTask, updateTask, updateTaskMeta,
+  deleteTask, updateTask, updateTaskMeta,
 } from "javascript/task/action_creators";
 import {UPSERT} from "javascript/tag/action_creators";
 
@@ -24,32 +24,6 @@ beforeEach(() => {
   store = createAppStore();
   vi.spyOn(store, "dispatch");
   dispatch = store.dispatch;
-});
-
-describe("fetchTasks", () => {
-  it("sets ajax state to \"fetching\"", () => {
-    const promise = Promise.resolve({data: [], included: []});
-    (ajaxGet as Mock).mockReturnValue(promise);
-    const thunk = fetchTasks();
-    const expectedAction = updateTaskMeta({ajaxState: "fetching"});
-
-    thunk(dispatch, () => makeState(), null);
-
-    expect(dispatch).toHaveBeenCalledWith(expectedAction);
-  });
-
-  it("sets ajax state to \"ready\" on success", async () => {
-    const promise = Promise.resolve({data: [], included: []});
-    (ajaxGet as Mock).mockReturnValue(promise);
-
-    const thunk = fetchTasks();
-
-    await thunk(store.dispatch, () => makeState(), null);
-
-    const expectedAction = updateTaskMeta({ajaxState: "ready"});
-
-    expect(dispatch).toHaveBeenCalledWith(expectedAction);
-  });
 });
 
 describe("deleteTask", () => {
@@ -162,44 +136,6 @@ describe("updateTask", () => {
       expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag1});
       expect(dispatch).toHaveBeenCalledWith({type: UPSERT, payload: tag2});
     });
-  });
-});
-
-describe("moveTask", () => {
-  const taskAttrs = {id: 5, title: "foo"};
-  const payload = {position: 2, priority: 1};
-
-  beforeEach(() => {
-    store.dispatch({type: SET, payload: [taskAttrs]});
-    (ajaxPut as Mock).mockReturnValue(Promise.resolve({}));
-    const fetched = {data: [], included: []};
-    (ajaxGet as Mock).mockReturnValue(Promise.resolve(fetched));
-  });
-
-  it("marks the task as updating", () => {
-    const thunk = moveTask(taskAttrs.id, payload);
-
-    thunk(dispatch, () => makeState(), null);
-
-    const updating = {id: 5, loadingState: "updating"};
-
-    expect(dispatch).toHaveBeenCalledWith({type: UPDATE, payload: updating});
-  });
-
-  it("sends the new position and priority to the server", () => {
-    const thunk = moveTask(taskAttrs.id, payload);
-
-    thunk(dispatch, () => makeState(), null);
-
-    expect(ajaxPut).toHaveBeenCalledWith("/api/v1/tasks/5", {task: payload});
-  });
-
-  it("re-fetches the tasks the server shifted out of the way", async () => {
-    const thunk = moveTask(taskAttrs.id, payload);
-
-    await thunk(dispatch, () => makeState(), null);
-
-    expect(ajaxGet).toHaveBeenCalledWith("/api/v1/tasks");
   });
 });
 

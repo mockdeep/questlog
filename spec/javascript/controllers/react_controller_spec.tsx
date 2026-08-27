@@ -13,7 +13,7 @@ import ReactController from "controllers/react_controller";
 async function connectController(
   name: string,
   {
-    route = "{\"name\":\"tasks\",\"params\":{}}",
+    route = "{\"name\":\"showTask\",\"params\":{\"taskId\":\"1\"}}",
     tags = "[]",
     tasks = "[]",
   } = {},
@@ -33,7 +33,7 @@ async function connectController(
 }
 
 it("mounts the named react component on connect", async () => {
-  const el = await connectController("tasks");
+  const el = await connectController("showTask");
 
   await waitFor(() => {
     expect(el.querySelector("div")).not.toBeNull();
@@ -59,7 +59,7 @@ it("renders the tasks given on the mount element", async () => {
     title: "wash the dishes",
   };
   const el = await connectController(
-    "tasks",
+    "showTask",
     {tasks: JSON.stringify([task])},
   );
 
@@ -69,7 +69,7 @@ it("renders the tasks given on the mount element", async () => {
 });
 
 it("unmounts the component on disconnect", async () => {
-  const el = await connectController("tasks");
+  const el = await connectController("showTask");
   await waitFor(() => {
     expect(el.querySelector("div")).not.toBeNull();
   });
