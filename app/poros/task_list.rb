@@ -9,14 +9,20 @@ class TaskList
     new(user).leaf
   end
 
+  def self.root(user:)
+    new(user).root
+  end
+
   def initialize(user)
     @user = user
   end
 
-  # Leaf tasks are the ones nothing else is waiting on: no sub-tasks of their
-  # own, so they can be finished as they stand.
   def leaf
     partition(ordered_tasks.reject { |task| parent_ids.include?(task.id) })
+  end
+
+  def root
+    partition(ordered_tasks.reject(&:parent_task_id))
   end
 
   private
