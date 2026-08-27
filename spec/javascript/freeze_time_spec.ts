@@ -1,35 +1,36 @@
 import {expect, it, vi} from "vitest";
 
-import FakeTimers from "@sinonjs/fake-timers";
-
-vi.mock(import("@sinonjs/fake-timers"), async (importActual) => {
-  const actual = await importActual();
-  const install = vi.fn<typeof actual.default.install>();
-
-  return {
-    ...actual,
-    "default": {...actual.default, install},
-  };
-});
-
 function addFreezeElement(timestamp: string): void {
+  document.body.innerHTML = "";
+
   const element = document.createElement("div");
   element.className = "time-freeze";
   element.dataset.timestamp = timestamp;
   document.body.appendChild(element);
 }
 
-it("installs fake timers from the freeze element timestamp", async () => {
-  document.body.innerHTML = "";
-  addFreezeElement("123");
+async function loadFreezeTime(timestamp: string): Promise<void> {
+  addFreezeElement(timestamp);
   vi.resetModules();
 
   await import("javascript/freeze_time");
+}
 
-  expect(vi.mocked(FakeTimers.install)).toHaveBeenCalledWith({
-    now: 123,
-    toFake: ["Date"],
-  });
+it("freezes the clock at the freeze element's timestamp", async () => {
+  await loadFreezeTime("123");
+
+  expect(Date.now()).toBe(123);
+
+  window.clock?.uninstall();
+});
+
+it("re-freezes the clock when a later visit runs it again", async () => {
+  await loadFreezeTime("123");
+  await loadFreezeTime("456");
+
+  expect(Date.now()).toBe(456);
+
+  window.clock?.uninstall();
 });
 
 it("throws when the freeze element is missing", async () => {

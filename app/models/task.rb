@@ -33,6 +33,7 @@ class Task < ApplicationRecord
   )
 
   scope :undone, -> { where(done_at: nil) }
+  scope :undone_and_pending, -> { undone.or(with_release) }
   scope :done, -> { where.not(done_at: nil) }
   scope :ordered, -> { order(:priority, :position) }
   scope :ready_to_release, -> { done.where("release_at < ?", Time.zone.now) }
@@ -135,6 +136,13 @@ class Task < ApplicationRecord
 
   def tag_names
     @tag_names ||= tags.map(&:name)
+  end
+
+  # The chain of tasks this one sits under, outermost first.
+  def parent_tasks
+    return [] unless parent_task
+
+    parent_task.parent_tasks + [parent_task]
   end
 
   private

@@ -5,6 +5,7 @@ type Gon = {
 };
 
 interface Window {
+  clock: { uninstall: () => void } | undefined;
   debug: () => void;
   gon: Gon;
 }

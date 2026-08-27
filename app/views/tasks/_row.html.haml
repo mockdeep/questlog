@@ -1,9 +1,7 @@
 %tr{ **task_row_options(task, status:, draggable:) }
   %td.tasks-table__cell= task_action_button('DONE', task, done: true)
-  %td
-    = form_with(url: task_path(task), method: :patch, data: { turbo: true }) do
-      = text_area_tag('task[title]', task.title, task_title_field_options)
-  %td= link_to(edit_icon, task_path(task), class: 'task-link')
+  %td= render 'tasks/title_form', task:
+  %td= task_link_to(edit_icon, task)
   %td #{task.estimate_minutes} min
   %td
     - if task.repeat_seconds

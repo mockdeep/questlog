@@ -30,6 +30,24 @@ RSpec.describe "adding sub tasks" do
     expect(page).to have_no_task
   end
 
+  it "allows managing sub tasks from the page of the task they sit under" do
+    add_task("the parent task")
+    find(".task-link").click
+    add_task("the sub task")
+    add_task("another sub task")
+    task_row("the sub task").click_button("DONE")
+    expect(page).to have_no_task("the sub task")
+    accept_confirm { task_row("another sub task").click_button("DELETE") }
+    expect(page).to have_no_selector("td")
+  end
+
+  it "allows renaming a task from its own page" do
+    add_task("the parent task")
+    find(".task-link").click
+    find("h2 .task-input").set("a renamed task").native.send_key(:enter)
+    expect(page).to have_task("a renamed task")
+  end
+
   it "allows filtering for root and leaf tasks on index page" do
     add_task("the parent task")
     find(".task-link").click
