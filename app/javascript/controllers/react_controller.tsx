@@ -6,7 +6,6 @@ import type {ReactElement} from "react";
 
 import appStore from "../_common/app_store";
 import {grab} from "helpers/grab";
-import TaskShowViewContainer from "../task/containers/show_view";
 import TaskFocusViewContainer from "../task/containers/focus_view";
 import {setRoute} from "../route/action_creators";
 import {setTags} from "../tag/action_creators";
@@ -14,7 +13,6 @@ import {setTasks, updateTaskMeta} from "../task/action_creators";
 
 const COMPONENTS = {
   focus: TaskFocusViewContainer,
-  showTask: TaskShowViewContainer,
 };
 
 class ReactController extends Controller {

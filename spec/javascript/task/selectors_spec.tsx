@@ -1,57 +1,6 @@
-import {
-  getCurrentSubTasks,
-  getCurrentTask,
-  getActiveTasks,
-} from "javascript/task/selectors";
+import {getActiveTasks} from "javascript/task/selectors";
 
 import {makeState, makeTask} from "support/factories";
-
-describe("getCurrentTask", () => {
-  it("returns the current task represented in the route", () => {
-    const task = makeTask({title: "foo task"});
-    const state = makeState({route: {params: {taskId: task.id}}, task: [task]});
-
-    expect(getCurrentTask(state)).toEqual(task);
-  });
-
-  it("returns null when task in route is not present", () => {
-    const task = makeTask({title: "foo task"});
-    const state = makeState({route: {params: {taskId: 0}}, task: [task]});
-
-    expect(getCurrentTask(state)).toBeNull();
-  });
-
-  it("returns null when the route has no task id", () => {
-    const state = makeState({task: [makeTask()]});
-
-    expect(getCurrentTask(state)).toBeNull();
-  });
-});
-
-describe("getCurrentSubTasks", () => {
-  it("returns the sub tasks of the current task", () => {
-    const parent = makeTask();
-    const child = makeTask({parentTaskId: parent.id});
-    const params = {taskId: parent.id};
-    const state = makeState({route: {params}, task: [parent, child]});
-
-    expect(getCurrentSubTasks(state)).toEqual([child]);
-  });
-
-  it("returns an empty array when there is no current task", () => {
-    const state = makeState({route: {params: {taskId: 0}}, task: []});
-
-    expect(getCurrentSubTasks(state)).toEqual([]);
-  });
-
-  it("returns an empty array when the current task is filtered out", () => {
-    const task = makeTask({status: "done"});
-    const params = {taskId: task.id};
-    const state = makeState({route: {params}, task: [task]});
-
-    expect(getCurrentSubTasks(state)).toEqual([]);
-  });
-});
 
 describe("getActiveTasks", () => {
   it("returns tasks", () => {
