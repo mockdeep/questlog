@@ -24,6 +24,14 @@ RSpec.describe "tasks index page" do
     expect(current_tasks).to have_task("feed dog")
   end
 
+  it "links each task to its own page" do
+    add_task("do laundry")
+    sidebar.click("ALL TASKS")
+    task_row("do laundry").find(".task-link").click
+
+    expect(page).to have_current_path("/tasks/#{Task.last.id}")
+  end
+
   it "highlights priority tasks as red" do
     add_task("do laundry")
     expect(page.find("#task")["class"]).not_to include("priority-1")

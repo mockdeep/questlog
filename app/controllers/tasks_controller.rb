@@ -13,12 +13,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    task = current_user.next_task(params[:slug])
     respond_to do |format|
-      format.json { render json: serialize(task) }
-      format.html do
-        render(locals: { task: current_user.tasks.find(params.expect(:id)) })
+      format.json do
+        render json: serialize(current_user.next_task(params[:slug]))
       end
+      format.html { render(locals: show_locals) }
     end
   end
 
@@ -47,6 +46,16 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def show_locals
+    task = current_user.tasks.find(params.expect(:id))
+
+    {
+      task:,
+      details: TaskDetails.for(task),
+      sub_tasks: task.sub_tasks.undone_and_pending.order(:id),
+    }
+  end
 
   def task_params
     params
