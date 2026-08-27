@@ -5,6 +5,10 @@
 class TaskList
   Result = Data.define(:current, :pending)
 
+  def self.all(user:)
+    new(user).all
+  end
+
   def self.leaf(user:)
     new(user).leaf
   end
@@ -15,6 +19,10 @@ class TaskList
 
   def initialize(user)
     @user = user
+  end
+
+  def all
+    partition(ordered_tasks)
   end
 
   def leaf
