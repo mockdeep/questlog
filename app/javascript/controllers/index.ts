@@ -33,3 +33,6 @@ application.register("task-title", TaskTitleController);
 
 import TaskDragController from "./task_drag_controller";
 application.register("task-drag", TaskDragController);
+
+import PostponeController from "./postpone_controller";
+application.register("postpone", PostponeController);

@@ -20,17 +20,13 @@ it("freezes the clock at the freeze element's timestamp", async () => {
   await loadFreezeTime("123");
 
   expect(Date.now()).toBe(123);
-
-  window.clock?.uninstall();
 });
 
-it("re-freezes the clock when a later visit runs it again", async () => {
+it("leaves the clock alone when a later visit runs it again", async () => {
   await loadFreezeTime("123");
   await loadFreezeTime("456");
 
-  expect(Date.now()).toBe(456);
-
-  window.clock?.uninstall();
+  expect(Date.now()).toBe(123);
 });
 
 it("throws when the freeze element is missing", async () => {

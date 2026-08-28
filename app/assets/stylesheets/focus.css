@@ -47,6 +47,14 @@
   }
 }
 
+/* the icon is the whole control; the button around it should not show */
+.delete-button {
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
 .main-button {
   & > div {
     padding: 3px;
