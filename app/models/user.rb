@@ -17,10 +17,6 @@ class User < ApplicationRecord
     tasks.undone.ordered.includes(:tags) + tasks.pending.includes(:tags)
   end
 
-  def untagged_tasks
-    unfinished_tasks.untagged
-  end
-
   def admin?
     account.present? && !guest? && email == "lobatifricha@gmail.com"
   end

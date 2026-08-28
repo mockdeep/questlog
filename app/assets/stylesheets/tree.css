@@ -68,14 +68,6 @@
   }
 }
 
-.task-item__checkbox-display--checked {
-  background: var(--brand-primary);
-
-  &:after {
-    opacity: 1;
-  }
-}
-
 .task-item__checkbox-actual {
   visibility: hidden;
 }

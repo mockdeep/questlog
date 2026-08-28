@@ -1,4 +1,3 @@
-import {noop} from "lodash";
 import type {MockInstance} from "vitest";
 import {expect, it, vi} from "vitest";
 
@@ -29,10 +28,12 @@ function row({id, position, priority}: RowAttributes): string {
 
 let requestSubmit: MockInstance<() => void>;
 
+function doNothing(): void { /* Stands in for a real submit */ }
+
 async function setup(rows: RowAttributes[]): Promise<void> {
   requestSubmit = vi
     .spyOn(HTMLFormElement.prototype, "requestSubmit")
-    .mockImplementation(noop);
+    .mockImplementation(doNothing);
 
   document.body.innerHTML =
     `<div data-controller="task-drag" data-action="${ACTIONS}">` +
