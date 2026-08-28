@@ -18,14 +18,7 @@ class TagList
   attr_reader :user
 
   def all_tag
-    Tag.new(
-      id: 0,
-      name: "All",
-      rules: [{ check: "isActive" }],
-      unfinished_tasks_count: user.unfinished_tasks_count,
-      slug: "",
-      tasks: user.unfinished_tasks,
-    )
+    Tag.new(id: 0, name: "All", rules: [{ check: "isActive" }], slug: "")
   end
 
   def untagged_tag
@@ -33,9 +26,7 @@ class TagList
       id: -1,
       name: "Untagged",
       rules: [{ check: "isEmpty", field: "tagIds" }],
-      unfinished_tasks_count: user.untagged_tasks.count,
       slug: "untagged",
-      tasks: user.untagged_tasks,
     )
   end
 
@@ -44,9 +35,7 @@ class TagList
       id: -2,
       name: "Needs Estimate",
       rules: [{ check: "isBlank", field: "estimateSeconds" }],
-      unfinished_tasks_count: user.tasks.without_estimate.count,
       slug: "needs-estimate",
-      tasks: user.tasks.without_estimate,
     )
   end
 end

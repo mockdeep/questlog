@@ -1,9 +1,10 @@
-import {noop} from "lodash";
 import {expect, it, vi} from "vitest";
 
 import {bootStimulus} from "support/stimulus";
 import {ensure} from "helpers/ensure";
 import PostponeController from "controllers/postpone_controller";
+
+function doNothing(): void { /* Stands in for a real submit */ }
 
 async function setup(): Promise<HTMLFormElement> {
   document.body.innerHTML =
@@ -21,7 +22,7 @@ async function setup(): Promise<HTMLFormElement> {
 it("postpones the task when the button is clicked", async () => {
   const requestSubmit = vi
     .spyOn(HTMLFormElement.prototype, "requestSubmit")
-    .mockImplementation(noop);
+    .mockImplementation(doNothing);
   const form = await setup();
 
   ensure(form.querySelector<HTMLLabelElement>("label")).click();
@@ -32,7 +33,7 @@ it("postpones the task when the button is clicked", async () => {
 it("leaves the task alone while a length is being chosen", async () => {
   const requestSubmit = vi
     .spyOn(HTMLFormElement.prototype, "requestSubmit")
-    .mockImplementation(noop);
+    .mockImplementation(doNothing);
   const form = await setup();
 
   ensure(form.querySelector<HTMLSelectElement>("select")).click();

@@ -1,9 +1,10 @@
-import {noop} from "lodash";
 import {expect, it, vi} from "vitest";
 
 import {bootStimulus} from "support/stimulus";
 import {ensure} from "helpers/ensure";
 import AutoSubmitController from "controllers/auto_submit_controller";
+
+function doNothing(): void { /* Stands in for a real submit */ }
 
 async function setup(): Promise<HTMLInputElement> {
   document.body.innerHTML =
@@ -20,7 +21,7 @@ async function setup(): Promise<HTMLInputElement> {
 it("submits the form when one of its inputs changes", async () => {
   const requestSubmit = vi
     .spyOn(HTMLFormElement.prototype, "requestSubmit")
-    .mockImplementation(noop);
+    .mockImplementation(doNothing);
   const checkbox = await setup();
 
   checkbox.click();

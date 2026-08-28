@@ -1,4 +1,3 @@
-import {noop} from "lodash";
 import type {Mock} from "vitest";
 import {expect, it, vi} from "vitest";
 
@@ -8,6 +7,8 @@ import TaskTitleController from "controllers/task_title_controller";
 
 const ACTIONS = "focus->task-title#reveal input->task-title#resize " +
   "keydown->task-title#saveOnEnter change->task-title#save";
+
+function doNothing(): void { /* Stands in for a real submit */ }
 
 async function setup(): Promise<HTMLTextAreaElement> {
   document.body.innerHTML =
@@ -30,7 +31,7 @@ function withContentHeight(field: HTMLTextAreaElement, height: number): void {
 
 function stubSubmit(): Mock<() => void> {
   return vi.spyOn(HTMLFormElement.prototype, "requestSubmit")
-    .mockImplementation(noop);
+    .mockImplementation(doNothing);
 }
 
 it("sizes itself to its content when it connects", async () => {
