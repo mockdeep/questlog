@@ -16,8 +16,6 @@ declare global {
 
 window.Notification = FakeNotification;
 
-document.body.innerHTML = "<div id=\"app-base\"></div>";
-
 beforeEach(() => {
   expect.hasAssertions();
 });

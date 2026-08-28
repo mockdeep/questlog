@@ -13,14 +13,6 @@ class User < ApplicationRecord
 
   delegate :guest?, :email, to: :account
 
-  def next_task(tag_id = nil)
-    if tag_id
-      tags.friendly.find(tag_id).next_task
-    else
-      tasks.next
-    end
-  end
-
   def undone_and_pending_tasks
     tasks.undone.ordered.includes(:tags) + tasks.pending.includes(:tags)
   end

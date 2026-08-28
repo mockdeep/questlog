@@ -53,14 +53,6 @@ class Task < ApplicationRecord
 
   after_save :associate_tags, :update_counters
 
-  def self.next
-    undone.ordered.find_by(timeframe: next_timeframe)
-  end
-
-  def self.next_timeframe
-    (undone.distinct(:timeframe).pluck(:timeframe) & Timeframe::NAMES).first
-  end
-
   def done=(done)
     persisted? ? with_lock { mark_done(done) } : mark_done(done)
   end

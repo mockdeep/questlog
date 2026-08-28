@@ -2,10 +2,9 @@
 
 set -euo pipefail
 
-pnpm esbuild app/javascript/*.{ts,tsx} \
+pnpm esbuild app/javascript/*.ts \
   --bundle \
   --format=iife \
-  --jsx=automatic \
   --loader:.png=dataurl \
   --outdir=app/assets/builds \
   --sourcemap \

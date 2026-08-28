@@ -2,23 +2,11 @@
 
 class TasksController < ApplicationController
   def index
-    respond_to do |format|
-      format.json do
-        render json: serialize(current_user.undone_and_pending_tasks)
-      end
-      format.html do
-        render(locals: { tasks: TaskList.all(user: current_user) })
-      end
-    end
+    render(locals: { tasks: TaskList.all(user: current_user) })
   end
 
   def show
-    respond_to do |format|
-      format.json do
-        render json: serialize(current_user.next_task(params[:slug]))
-      end
-      format.html { render(locals: show_locals) }
-    end
+    render(locals: show_locals)
   end
 
   def create
@@ -33,10 +21,7 @@ class TasksController < ApplicationController
   def update
     task = current_user.tasks.find(params.expect(:id))
     Task::Update.(task, task_params)
-    respond_to do |format|
-      format.json { render json: serialize(task), status: :ok }
-      format.html { redirect_back(fallback_location: root_path) }
-    end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

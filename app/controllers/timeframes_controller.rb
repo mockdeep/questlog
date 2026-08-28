@@ -2,10 +2,7 @@
 
 class TimeframesController < ApplicationController
   def index
-    respond_to do |format|
-      format.json { render(json: serialize(timeframes, meta:)) }
-      format.html { render(locals: { timeframes:, median_productivity: }) }
-    end
+    render(locals: { timeframes:, median_productivity: })
   end
 
   private
@@ -16,9 +13,5 @@ class TimeframesController < ApplicationController
 
   def median_productivity
     @median_productivity ||= current_user.stats.median_productivity
-  end
-
-  def meta
-    { medianProductivity: median_productivity }
   end
 end
