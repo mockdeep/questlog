@@ -1,4 +1,16 @@
-#app-base{ data: react_mount_data("focus", route_name, **route_params) }
+- content_for(:title, board.task ? board.task.title : '(no tasks!)')
+
+= turbo_frame_tag 'focus' do
+  - if board.task
+    = render 'tasks/tag_buttons', tags: board.tags, task: board.task,
+      slug: board.slug
+    .row
+      = render 'tasks/bread_crumbs', task: board.task
+    = render 'tasks/task_title', task: board.task
+    = render 'tasks/main_buttons', task: board.task
+  - else
+    %div
+      %h2 No tasks! Try adding one below:
 
 %hr
 

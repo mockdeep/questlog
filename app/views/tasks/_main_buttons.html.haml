@@ -1,0 +1,10 @@
+.row.main-button#buttons
+  .col-md-6
+    = button_to('Done! Give me another!', task_path(task), method: :patch,
+      params: { task: { done: true } },
+      class: 'btn btn-primary btn-lg btn-block',
+      form: { class: 'contents-form', data: { turbo: true } })
+  .col-md-6
+    = form_with(**postpone_form_options(task)) do
+      %label> Postpone for:
+      = select_tag('task[postpone]', postpone_options, id: nil)

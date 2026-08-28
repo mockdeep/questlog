@@ -6,7 +6,9 @@ class TagsController < ApplicationController
   end
 
   def show
-    @slug = params.expect(:id)
+    board = TagBoard.for(user: current_user, slug: params.expect(:id))
+
+    render(locals: { board: })
   end
 
   def edit
