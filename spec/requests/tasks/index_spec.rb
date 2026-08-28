@@ -5,36 +5,6 @@ RSpec.describe TasksController, "#index" do
 
   before { login_as(user) }
 
-  it "renders all incomplete tasks for the user as json" do
-    create(:task, user:, done_at: 1.week.ago)
-    task_2 = create(
-      :task,
-      user:,
-      done_at: 1.week.ago,
-      release_at: 1.week.from_now,
-    )
-    task_3 = create(:task, user:)
-
-    get "/tasks", as: :json
-
-    serial_tasks = {
-      "data" => [
-        hash_including(
-          "id" => task_3.id,
-          "releaseAt" => nil,
-          "pending" => false,
-        ),
-        hash_including(
-          "id" => task_2.id,
-          "releaseAt" => task_2.release_at.as_json,
-          "pending" => true,
-        ),
-      ],
-    }
-
-    expect(response.parsed_body).to match serial_tasks
-  end
-
   it "lists the user's tasks" do
     create(:task, user:, title: "wash the dishes")
 

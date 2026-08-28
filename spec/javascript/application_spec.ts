@@ -1,4 +1,3 @@
-vi.mock("react-dom");
 vi.mock("controllers/index", () => { return {}; });
 vi.mock("@hotwired/turbo-rails");
 import "javascript/application";

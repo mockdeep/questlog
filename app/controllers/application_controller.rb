@@ -3,18 +3,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :configure_headers
   before_action :check_repeats
   before_action :set_gon_variables
   before_action :set_honeybadger_context
 
   private
-
-  include Serializable::Helpers
-
-  def configure_headers
-    response.headers["Vary"] = "Accept"
-  end
 
   def current_user
     @current_user ||= find_user

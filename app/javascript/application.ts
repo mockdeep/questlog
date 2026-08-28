@@ -8,7 +8,7 @@ session.drive = false;
 
 
 Honeybadger.configure({
-  apiKey: window.gon.honeybadgerApiKey,  
+  apiKey: window.gon.honeybadgerApiKey,
   environment: window.gon.railsEnv,
   onerror: true,
 });

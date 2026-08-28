@@ -1,81 +1,64 @@
 # frozen_string_literal: true
 
 RSpec.describe TimeframesController, "#index" do
-  let(:user) { create(:user) }
-  let(:stat_params) { { name: "seconds-completed", user: } }
-
-  before(:each) { login_as(user) }
-
-  it "returns the median productivity for the current user" do
-    Stat.create!(stat_params.merge(value: 35.minutes, timestamp: 1.month.ago))
-    Stat.create!(stat_params.merge(value: 1.hour, timestamp: 1.week.ago))
-    get "/timeframes", as: :json
-    meta = response.parsed_body["meta"]
-    expect(meta).to include("medianProductivity" => 1.hour)
-    Stat.create!(stat_params.merge(value: 35.minutes, timestamp: 5.days.ago))
-    get "/timeframes", as: :json
-    meta = response.parsed_body["meta"]
-    expect(meta).to include("medianProductivity" => 2850)
+  def stat_for(user, value, timestamp)
+    Stat.create!(name: "seconds-completed", user:, value:, timestamp:)
   end
 
-  it "returns the inbox timeframe for the current user" do
-    task = create(:task, user:)
-    serial_task = hash_including("id" => task.id, "timeframe" => nil)
+  it "tells the user how much they get through in a day" do
+    user = create(:user)
+    stat_for(user, 1.hour, 1.week.ago)
+    login_as(user)
 
-    get "/timeframes", as: :json
+    get "/timeframes"
 
-    expect(timeframe("inbox")).to include("currentTasks" => [serial_task])
-  end
-
-  it "returns every timeframe the page lays out" do
-    get "/timeframes", as: :json
-
-    names = response.parsed_body["data"].pluck("name")
-
-    expect(names).to eq(Timeframe::DISPLAY_NAMES)
+    expect(rendered).to have_text("Median Productivity: 1 hour per day")
   end
 
   it "files a task under the timeframe it belongs to" do
-    task = create(:task, user:, timeframe: "week")
-    serial_task = hash_including("id" => task.id, "timeframe" => "week")
+    task = create(:task, timeframe: "week", title: "wash the dishes")
+    login_as(task.user)
 
-    get "/timeframes", as: :json
+    get "/timeframes"
 
-    expect(timeframe("week")).to include("currentTasks" => [serial_task])
+    expect(rendered).to have_css("#week", text: "wash the dishes")
   end
 
-  it "keeps a pending task apart from the current ones" do
-    task = create(:task, user:, timeframe: "today", release_at: 1.hour.from_now)
-    serial_task = hash_including("id" => task.id)
+  it "puts a task with no timeframe in the inbox" do
+    task = create(:task, title: "wash the dishes")
+    login_as(task.user)
 
-    get "/timeframes", as: :json
+    get "/timeframes"
 
-    expect(timeframe("today")).to include("pendingTasks" => [serial_task])
+    expect(rendered).to have_css("#inbox", text: "wash the dishes")
   end
 
-  it "totals the estimated minutes of a timeframe's tasks" do
-    create(:task, user:, timeframe: "week", estimate_seconds: 365)
+  it "marks a pending task as waiting" do
+    task = create(:task, timeframe: "today", release_at: 1.hour.from_now)
+    login_as(task.user)
 
-    get "/timeframes", as: :json
+    get "/timeframes"
 
-    expect(timeframe("week")).to include("minuteTotal" => 6)
+    expect(rendered).to have_css("#today .tasks-table__row--pending")
   end
 
-  it "leaves an open ended timeframe without a maximum" do
-    get "/timeframes", as: :json
+  it "shows how full a timeframe is against what it can hold" do
+    user = create(:user)
+    stat_for(user, 1.hour, 1.week.ago)
+    create(:task, user:, timeframe: "today", estimate_seconds: 6.minutes)
+    login_as(user)
 
-    expect(timeframe("inbox")).to include("minuteMax" => nil)
+    get "/timeframes"
+
+    expect(rendered)
+      .to have_css("#today h2", text: "Today 6/60", normalize_ws: true)
   end
 
-  it "caps a bounded timeframe by the user's productivity" do
-    Stat.create!(stat_params.merge(value: 1.hour, timestamp: 1.week.ago))
+  it "leaves out a timeframe with nothing in it" do
+    login_as(create(:user))
 
-    get "/timeframes", as: :json
+    get "/timeframes"
 
-    expect(timeframe("today")).to include("minuteMax" => 60)
-  end
-
-  def timeframe(name)
-    response.parsed_body["data"].detect { |frame| frame["name"] == name }
+    expect(rendered).to have_no_css("#today")
   end
 end

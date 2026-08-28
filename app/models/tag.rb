@@ -38,10 +38,6 @@ class Tag < ApplicationRecord
     value.to_s.parameterize(preserve_case: true)
   end
 
-  def next_task
-    tasks.next
-  end
-
   def increment_tasks_count!
     self.class.increment_counter(:unfinished_tasks_count, id)
   end
