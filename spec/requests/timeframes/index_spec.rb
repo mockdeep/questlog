@@ -34,6 +34,7 @@ RSpec.describe TimeframesController, "#index" do
   end
 
   it "marks a pending task as waiting" do
+    travel_to(mid_morning)
     task = create(:task, timeframe: "today", release_at: 1.hour.from_now)
     login_as(task.user)
 
@@ -60,5 +61,9 @@ RSpec.describe TimeframesController, "#index" do
     get "/timeframes"
 
     expect(rendered).to have_no_css("#today")
+  end
+
+  def mid_morning
+    Time.zone.parse("June 1, 2020 09:00:00")
   end
 end
