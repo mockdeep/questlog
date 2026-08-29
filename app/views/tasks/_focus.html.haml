@@ -5,7 +5,7 @@
     = render 'tasks/tag_buttons', tags: board.tags, task: board.task,
       slug: board.slug
     .row
-      = render 'tasks/bread_crumbs', task: board.task
+      = render Views::Tasks::BreadCrumbs.new(task: board.task)
     = render 'tasks/task_title', task: board.task
     = render 'tasks/main_buttons', task: board.task
   - else

@@ -7,9 +7,10 @@ Tag will include all tasks that match one or more of the following rules:
 - form_data = { controller: "tag-rules", action: submit_action }
 = form_with(url: tag_path(@tag.id), method: :patch, data: form_data) do |form|
   %ol{ data: { tag_rules_target: "list" } }
-    = render(partial: "rule", collection: @rules, as: :rule)
+    - @rules.each do |rule|
+      = render Views::Tags::Rule.new(rule:)
   %template{ data: { tag_rules_target: "template" } }
-    = render("rule", rule: {})
+    = render Views::Tags::Rule.new(rule: {})
   %input.btn.btn-primary.btn-small{ type: "button", value: "Add Rule",
                                     data: { action: "click->tag-rules#add" } }
   = form.submit("Save Tag", class: "btn btn-success btn-block")
