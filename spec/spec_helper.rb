@@ -6,7 +6,7 @@ if ENV["COVERAGE"] != "false"
   SimpleCov.start("rails") do
     enable_coverage :branch
     # exclude Phlex views for the time being until we've finished the migration
-    add_filter "/app/views/"
+    skip "/app/views/"
     minimum_coverage line: 100, branch: 100
   end
 end
