@@ -4,4 +4,4 @@
 
 - spaces = timeframe_spaces(timeframes)
 - timeframes.reject { |frame| frame.tasks.empty? }.each do |timeframe|
-  = render 'timeframes/section', timeframe:, spaces:
+  = render Views::Timeframes::Section.new(timeframe:, spaces:)

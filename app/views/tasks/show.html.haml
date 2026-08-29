@@ -4,7 +4,8 @@
     %h2= render Views::Tasks::TitleForm.new(task:)
     - details.each do |detail|
       %div= detail
-    = render 'tasks/table', tasks: sub_tasks, table_id: 'sub-tasks',
-      heading: 'Sub-tasks', status: nil, draggable: false
+    = render Views::Tasks::Table.new(tasks: sub_tasks,
+      table_id: 'sub-tasks', heading: 'Sub-tasks', status: nil,
+      draggable: false)
 
 = render 'tasks/new', parent_task: task
