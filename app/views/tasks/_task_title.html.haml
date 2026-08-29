@@ -12,7 +12,7 @@
             stops the cell centring its content, so the whitespace is nuked.
           %td.col-xs-10.title
             .col-xs-10.col-xs-offset-1>
-              = render 'tasks/title_form', task:
+              = render Views::Tasks::TitleForm.new(task:)
             .col-xs-1>
               %span.emblems><= task_repeat_emblem(task)
           %td.col-xs-1= task_link_to(edit_icon, task)

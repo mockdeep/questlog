@@ -5,7 +5,7 @@
     - danger = 'danger' if timeframe_over_limit?(timeframe)
     %span{ class: danger }= timeframe_ratio(timeframe)
   %table.tasks-table
-    = render 'tasks/table_headers', heading: 'Title', spaces:
+    = render Views::Tasks::TableHeaders.new(heading: 'Title', spaces:)
     %tbody
       - timeframe.current_tasks.each do |task|
         = render 'tasks/row', task:, spaces:, status: nil,

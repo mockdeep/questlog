@@ -1,7 +1,7 @@
 = turbo_frame_tag 'task-details' do
   %section
     = render 'tasks/bread_crumbs', task:
-    %h2= render 'tasks/title_form', task:
+    %h2= render Views::Tasks::TitleForm.new(task:)
     - details.each do |detail|
       %div= detail
     = render 'tasks/table', tasks: sub_tasks, table_id: 'sub-tasks',

@@ -1,6 +1,6 @@
 %tr{ **task_row_options(task, status:, draggable:) }
   %td.tasks-table__cell= task_action_button('DONE', task, done: true)
-  %td= render 'tasks/title_form', task:
+  %td= render Views::Tasks::TitleForm.new(task:)
   %td= task_link_to(edit_icon, task)
   %td #{task.estimate_minutes} min
   %td

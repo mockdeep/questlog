@@ -1,7 +1,7 @@
 - if tasks.any?
   %div{ id: table_id }
     %table.tasks-table
-      = render 'tasks/table_headers', heading:, spaces: nil
+      = render Views::Tasks::TableHeaders.new(heading:, spaces: nil)
       %tbody
         - tasks.each do |task|
           = render 'tasks/row', task:, status:, spaces: nil, draggable:
