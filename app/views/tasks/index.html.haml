@@ -5,10 +5,12 @@
 = render Views::Tasks::ListFilters.new
 
 = turbo_frame_tag 'task-list', data: task_drag_options do
-  = render 'tasks/table', tasks: tasks.current, table_id: 'current-tasks',
-    heading: 'Current tasks', status: nil, draggable: true
-  = render 'tasks/table', tasks: tasks.pending, table_id: 'pending-tasks',
-    heading: 'Pending tasks', status: 'pending', draggable: false
+  = render Views::Tasks::Table.new(tasks: tasks.current,
+    table_id: 'current-tasks', heading: 'Current tasks', status: nil,
+    draggable: true)
+  = render Views::Tasks::Table.new(tasks: tasks.pending,
+    table_id: 'pending-tasks', heading: 'Pending tasks', status: 'pending',
+    draggable: false)
   -# filled in and submitted by the drag controller once a task is dropped
   = form_with(url: tasks_path, method: :patch, class: 'contents-form',
     data: { turbo: true, task_drag_target: 'form' }) do
