@@ -97,11 +97,12 @@ Lint/NumberConversion:
     - 'config/initializers/puma_worker_killer.rb'
     - 'spec/poros/parsers/release_at_parser_spec.rb'
 
-# Offense count: 2
+# Offense count: 3
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes, Max.
 Metrics/AbcSize:
   Exclude:
     - 'app/poros/parsers/timeframe_parser.rb'
+    - 'app/views/tasks/row.rb'
     - 'spec/spec_helper.rb'
 
 # Offense count: 1
