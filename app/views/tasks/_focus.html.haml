@@ -2,12 +2,12 @@
 
 = turbo_frame_tag 'focus' do
   - if board.task
-    = render 'tasks/tag_buttons', tags: board.tags, task: board.task,
-      slug: board.slug
+    = render Views::Tasks::TagButtons.new(tags: board.tags,
+      task: board.task, slug: board.slug)
     .row
       = render Views::Tasks::BreadCrumbs.new(task: board.task)
     = render 'tasks/task_title', task: board.task
-    = render 'tasks/main_buttons', task: board.task
+    = render Views::Tasks::MainButtons.new(task: board.task)
   - else
     %div
       %h2 No tasks! Try adding one below:

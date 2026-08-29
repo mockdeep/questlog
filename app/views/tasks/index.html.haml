@@ -2,7 +2,7 @@
 
 %br
 
-= render 'tasks/list_filters'
+= render Views::Tasks::ListFilters.new
 
 = turbo_frame_tag 'task-list', data: task_drag_options do
   = render 'tasks/table', tasks: tasks.current, table_id: 'current-tasks',

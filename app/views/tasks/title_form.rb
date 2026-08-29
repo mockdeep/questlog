@@ -3,9 +3,6 @@
 module Views
   module Tasks
     class TitleForm < Views::Base
-      include Phlex::Rails::Helpers::FormWith
-      include Phlex::Rails::Helpers::TextAreaTag
-
       register_value_helper :task_title_field_options
 
       def initialize(task:)
