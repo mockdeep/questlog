@@ -8,8 +8,8 @@
     = render Views::Tasks::TableHeaders.new(heading: 'Title', spaces:)
     %tbody
       - timeframe.current_tasks.each do |task|
-        = render 'tasks/row', task:, spaces:, status: nil,
-          draggable: false
+        = render Views::Tasks::Row.new(task:, spaces:, status: nil,
+          draggable: false)
       - timeframe.pending_tasks.each do |task|
-        = render 'tasks/row', task:, spaces:, status: 'pending',
-          draggable: false
+        = render Views::Tasks::Row.new(task:, spaces:, status: 'pending',
+          draggable: false)

@@ -13,7 +13,7 @@ module TaskHelper
     options = { class: task_row_class(task, status) }
     return options unless draggable
 
-    options.merge(draggable: true, data: task_drag_data(task))
+    options.merge(draggable: "true", data: task_drag_data(task))
   end
 
   def task_drag_options

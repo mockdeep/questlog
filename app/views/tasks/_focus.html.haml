@@ -6,7 +6,7 @@
       task: board.task, slug: board.slug)
     .row
       = render Views::Tasks::BreadCrumbs.new(task: board.task)
-    = render 'tasks/task_title', task: board.task
+    = render Views::Tasks::TaskTitle.new(task: board.task)
     = render Views::Tasks::MainButtons.new(task: board.task)
   - else
     %div
