@@ -1,5 +1,0 @@
-.row
-  .col-md-12.tag-buttons
-    -# the buttons are inline-block, so a newline between them is a real gap
-    - tags.each do |tag|
-      %div><= tag_button(tag, task:, slug:)
