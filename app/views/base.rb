@@ -5,6 +5,7 @@ module Views
     extend Phlex::Rails::HelperMacros
 
     include Phlex::Rails::Helpers::ButtonTo
+    include Phlex::Rails::Helpers::CheckboxTag
     include Phlex::Rails::Helpers::FormWith
     include Phlex::Rails::Helpers::LinkTo
     include Phlex::Rails::Helpers::OptionsForSelect

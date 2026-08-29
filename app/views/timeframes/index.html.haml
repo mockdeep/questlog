@@ -1,4 +1,4 @@
-= render 'tasks/new'
+= render Views::Tasks::New.new
 
 = turbo_frame_tag 'timeframes' do
   = render 'timeframes/board', timeframes:, median_productivity:
