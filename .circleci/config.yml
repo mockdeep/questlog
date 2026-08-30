@@ -34,6 +34,9 @@ commands:
           install-pnpm: true
           pnpm-version: 11.24.0
 
+      - node/install-packages:
+          pkg-manager: pnpm
+
       - run:
           name: Which versions?
           command: |
