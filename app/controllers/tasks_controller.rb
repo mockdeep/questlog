@@ -2,7 +2,7 @@
 
 class TasksController < ApplicationController
   def index
-    render(locals: { tasks: TaskList.all(user: current_user) })
+    render(Views::Tasks::Index.new(tasks: TaskList.all(user: current_user)))
   end
 
   def show

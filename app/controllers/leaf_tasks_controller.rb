@@ -2,6 +2,6 @@
 
 class LeafTasksController < ApplicationController
   def index
-    render(locals: { tasks: TaskList.leaf(user: current_user) })
+    render(Views::Tasks::Index.new(tasks: TaskList.leaf(user: current_user)))
   end
 end
