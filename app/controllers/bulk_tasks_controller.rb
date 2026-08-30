@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class BulkTasksController < ApplicationController
-  def new; end
+  def new
+    render(Views::BulkTasks::New.new)
+  end
 
   def create
     Task::BulkCreate.(**create_params.symbolize_keys)

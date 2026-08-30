@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def new; end
+  def new
+    render(Views::Sessions::New.new)
+  end
 
   def create
     result = Session::Create.(**session_params, current_user:)
