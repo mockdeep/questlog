@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChargesController < ApplicationController
+  layout -> { Views::Layouts::Charges }
+
   def new
     render(Views::Charges::New.new(stripe_data:))
   end

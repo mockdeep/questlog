@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  layout -> { Views::Layouts::Application }
+
   before_action :check_repeats
   before_action :set_gon_variables
   before_action :set_honeybadger_context
