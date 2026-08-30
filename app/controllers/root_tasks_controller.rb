@@ -2,6 +2,6 @@
 
 class RootTasksController < ApplicationController
   def index
-    render(locals: { tasks: TaskList.root(user: current_user) })
+    render(Views::Tasks::Index.new(tasks: TaskList.root(user: current_user)))
   end
 end
