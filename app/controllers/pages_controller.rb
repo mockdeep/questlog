@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   end
 
   def what; end
+
+  def privacy
+    render(Views::Pages::Privacy.new)
+  end
 end

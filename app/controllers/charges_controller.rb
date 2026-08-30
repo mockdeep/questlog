@@ -2,23 +2,27 @@
 
 class ChargesController < ApplicationController
   def new
-    @stripe_data = {
-      key: Rails.configuration.stripe[:publishable_key],
-      description: "Subscription",
-      amount: 500,
-    }
+    render(Views::Charges::New.new(stripe_data:))
   end
 
   def create
     result = Charge::Create.(**charge_params)
 
-    return if result.success?
+    return render(Views::Charges::Create.new) if result.success?
 
     flash[:error] = result.error_message
     redirect_to charges_path
   end
 
   private
+
+  def stripe_data
+    {
+      key: Rails.configuration.stripe[:publishable_key],
+      description: "Subscription",
+      amount: 500,
+    }
+  end
 
   def charge_params
     {
