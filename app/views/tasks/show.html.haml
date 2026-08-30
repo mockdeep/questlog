@@ -8,4 +8,4 @@
       table_id: 'sub-tasks', heading: 'Sub-tasks', status: nil,
       draggable: false)
 
-= render 'tasks/new', parent_task: task
+= render Views::Tasks::New.new(parent_task: task)
