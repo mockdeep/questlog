@@ -476,11 +476,19 @@ Rails/CompactBlank:
   Exclude:
     - 'app/poros/parsers/title_parser.rb'
 
-# Offense count: 2
+# Offense count: 5
 Rails/Env:
   Exclude:
     - 'Rakefile'
+    - 'app/views/layouts/application.rb'
     - 'lib/tasks/populate.rake'
+
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb, app/helpers/**/*.rb, app/views/**/*.rb
+Rails/OutputSafety:
+  Exclude:
+    - 'app/views/layouts/application.rb'
 
 # Offense count: 7
 # Configuration parameters: AllowReads, AllowWrites.
