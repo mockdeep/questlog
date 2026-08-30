@@ -112,11 +112,12 @@ Metrics/AbcSize:
     - 'app/views/tasks/row.rb'
     - 'spec/spec_helper.rb'
 
-# Offense count: 1
+# Offense count: 2
 # Configuration parameters: CountComments, Max, CountAsOne.
 Metrics/ClassLength:
   Exclude:
     - 'app/models/task.rb'
+    - 'app/views/help/index.rb'
 
 # Offense count: 5
 # Configuration parameters: CountComments, Max, CountAsOne, AllowedMethods, AllowedPatterns.
@@ -420,7 +421,7 @@ RSpec/Pending:
   Exclude:
     - 'spec/spec_helper.rb'
 
-# Offense count: 37
+# Offense count: 38
 # Configuration parameters: CustomTransform, IgnoreMethods, IgnoreMetadata, InflectorPath, EnforcedInflector.
 # SupportedInflectors: default, active_support
 RSpec/SpecFilePathFormat:
@@ -448,6 +449,7 @@ RSpec/SpecFilePathFormat:
     - 'spec/requests/leaf_tasks/index_spec.rb'
     - 'spec/requests/pages/index_spec.rb'
     - 'spec/requests/pages/privacy_spec.rb'
+    - 'spec/requests/pages/what_spec.rb'
     - 'spec/requests/root_tasks/index_spec.rb'
     - 'spec/requests/sessions/create_spec.rb'
     - 'spec/requests/sessions/destroy_spec.rb'
