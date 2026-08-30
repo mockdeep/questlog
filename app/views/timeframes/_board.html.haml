@@ -1,7 +1,0 @@
-%header.timeframes-header
-  %h2
-    Median Productivity: #{ToEnglish.seconds(median_productivity)} per day
-
-- spaces = timeframe_spaces(timeframes)
-- timeframes.reject { |frame| frame.tasks.empty? }.each do |timeframe|
-  = render Views::Timeframes::Section.new(timeframe:, spaces:)

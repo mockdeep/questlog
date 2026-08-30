@@ -2,6 +2,6 @@
 
 class TreeTasksController < ApplicationController
   def index
-    render(locals: { nodes: TaskTree.for(user: current_user) })
+    render(Views::TreeTasks::Index.new(nodes: TaskTree.for(user: current_user)))
   end
 end
