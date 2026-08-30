@@ -1,7 +1,0 @@
-= form_tag charges_path do
-  %article
-    %label.amount
-      %span Amount: $5.00
-
-  - checkout_source = 'https://checkout.stripe.com/checkout.js'
-  %script.stripe-button{ src: checkout_source, data: @stripe_data }

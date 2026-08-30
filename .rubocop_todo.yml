@@ -13,10 +13,12 @@ Capybara/SpecificFinders:
     - 'spec/spec_helper.rb'
     - 'spec/system/tasks_index_spec.rb'
 
-# Offense count: 1
+# Offense count: 5
 I18n/RailsI18n/DecorateString:
   Exclude:
+    - 'app/views/alpha/index.rb'
     - 'app/views/free_accounts/new.rb'
+    - 'app/views/pages/privacy.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -418,7 +420,7 @@ RSpec/Pending:
   Exclude:
     - 'spec/spec_helper.rb'
 
-# Offense count: 36
+# Offense count: 37
 # Configuration parameters: CustomTransform, IgnoreMethods, IgnoreMetadata, InflectorPath, EnforcedInflector.
 # SupportedInflectors: default, active_support
 RSpec/SpecFilePathFormat:
@@ -445,6 +447,7 @@ RSpec/SpecFilePathFormat:
     - 'spec/requests/help/index_spec.rb'
     - 'spec/requests/leaf_tasks/index_spec.rb'
     - 'spec/requests/pages/index_spec.rb'
+    - 'spec/requests/pages/privacy_spec.rb'
     - 'spec/requests/root_tasks/index_spec.rb'
     - 'spec/requests/sessions/create_spec.rb'
     - 'spec/requests/sessions/destroy_spec.rb'

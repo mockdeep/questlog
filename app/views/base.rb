@@ -8,6 +8,7 @@ module Views
     include Phlex::Rails::Helpers::CheckboxTag
     include Phlex::Rails::Helpers::ContentFor
     include Phlex::Rails::Helpers::FormFor
+    include Phlex::Rails::Helpers::FormTag
     include Phlex::Rails::Helpers::FormWith
     include Phlex::Rails::Helpers::HiddenFieldTag
     include Phlex::Rails::Helpers::LinkTo
