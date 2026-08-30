@@ -2,7 +2,7 @@
 
 class TagsController < ApplicationController
   def index
-    render(locals: { tags: current_user.tags.order(:name) })
+    render(Views::Tags::Index.new(tags: current_user.tags.order(:name)))
   end
 
   def show
@@ -12,8 +12,9 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = current_user.tags.friendly.find(params.expect(:id))
-    @rules = @tag.rules.map(&:symbolize_keys)
+    tag = current_user.tags.friendly.find(params.expect(:id))
+
+    render(Views::Tags::Edit.new(tag:, rules: tag.rules.map(&:symbolize_keys)))
   end
 
   def update

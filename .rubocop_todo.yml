@@ -14,6 +14,11 @@ Capybara/SpecificFinders:
     - 'spec/system/tasks_index_spec.rb'
 
 # Offense count: 1
+I18n/RailsI18n/DecorateString:
+  Exclude:
+    - 'app/views/free_accounts/new.rb'
+
+# Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, no_empty_lines

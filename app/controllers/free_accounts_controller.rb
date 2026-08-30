@@ -2,7 +2,7 @@
 
 class FreeAccountsController < ApplicationController
   def new
-    @account = FreeAccount.new
+    render(Views::FreeAccounts::New.new(account: FreeAccount.new))
   end
 
   def create
@@ -18,9 +18,8 @@ class FreeAccountsController < ApplicationController
   private
 
   def render_failure(result)
-    @account = result.object
     flash.now[:error] = t(".error")
-    render :new
+    render(Views::FreeAccounts::New.new(account: result.object))
   end
 
   def account_params
