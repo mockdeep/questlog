@@ -2,7 +2,7 @@
 
 class TimeframesController < ApplicationController
   def index
-    render(locals: { timeframes:, median_productivity: })
+    render(Views::Timeframes::Index.new(timeframes:, median_productivity:))
   end
 
   private

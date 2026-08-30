@@ -1,8 +1,0 @@
-= render Views::Tasks::New.new
-
-%br
-
-= render Views::Tasks::ListFilters.new
-
-= turbo_frame_tag 'task-tree' do
-  = render Views::TreeTasks::Tree.new(nodes:)
