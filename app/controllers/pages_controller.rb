@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def index
-    render(locals: { board: TagBoard.for(user: current_user) })
+    render(Views::Tasks::Focus.new(board: TagBoard.for(user: current_user)))
   end
 
   def what; end
