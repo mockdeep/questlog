@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    render(locals: show_locals)
+    render(Views::Tasks::Show.new(**show_locals))
   end
 
   def create

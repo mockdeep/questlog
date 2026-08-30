@@ -8,7 +8,7 @@ class TagsController < ApplicationController
   def show
     board = TagBoard.for(user: current_user, slug: params.expect(:id))
 
-    render(locals: { board: })
+    render(Views::Tasks::Focus.new(board:))
   end
 
   def edit
