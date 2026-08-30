@@ -90,7 +90,7 @@ jobs:
       - setup_environment
       - run:
           name: Lints
-          command: pnpm stylelint && pnpm eslint && pnpm tscheck && bundle exec rubocop && bundle exec rake haml_lint
+          command: pnpm stylelint && pnpm eslint && pnpm tscheck && bundle exec rubocop
 
   javascript_tests:
     executor: ruby_image

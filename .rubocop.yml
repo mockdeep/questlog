@@ -55,7 +55,6 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
-Style/HashSyntax: { Exclude: [app/views/**/*.haml*] } # https://github.com/sds/haml-lint/issues/372
 Style/MethodCallWithArgsParentheses:
   AllowedMethods:
     - and

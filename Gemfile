@@ -16,7 +16,6 @@ gem "dalli"
 gem "friendly_id"
 gem "goldiloader"
 gem "gon"
-gem "haml-rails"
 gem "honeybadger"
 # gem 'image_processing'
 gem "cssbundling-rails"
@@ -49,7 +48,6 @@ group :development, :test do
   gem "faker"
   gem "guard"
   gem "guard-rubocop"
-  gem "haml_lint", require: false
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
