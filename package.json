@@ -3,7 +3,7 @@
   "private": true,
   "repository": "https://github.com/mockdeep/questlog",
   "engines": {
-    "node": "26.7.0"
+    "node": "26.8.1"
   },
   "packageManager": "pnpm@11.24.0",
   "dependencies": {
