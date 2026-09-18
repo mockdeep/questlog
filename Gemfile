@@ -16,6 +16,7 @@ gem "dalli"
 gem "friendly_id"
 gem "goldiloader"
 gem "gon"
+gem "good_job"
 gem "honeybadger"
 # gem 'image_processing'
 gem "cssbundling-rails"
