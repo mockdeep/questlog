@@ -5,10 +5,8 @@ set -euo pipefail
 pnpm esbuild app/javascript/*.ts \
   --bundle \
   --format=iife \
-  --loader:.png=dataurl \
   --outdir=app/assets/builds \
   --sourcemap \
   --target=es2015 \
   --tree-shaking=true \
-  --public-path=/assets \
   "$@"
