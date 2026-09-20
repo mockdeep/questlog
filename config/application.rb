@@ -23,6 +23,7 @@ module Questlog
 
     config.active_job.queue_adapter     = :sidekiq
     config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
+    config.active_record.belongs_to_required_by_default = false
 
     extra_paths = [Rails.root.join("lib"), Rails.root.join("app/poros/parsers")]
 

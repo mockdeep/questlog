@@ -33,7 +33,7 @@ Rails: { Enabled: true }
 # ............................................................................ #
 
 Layout/LineLength: { Max: 80, AutoCorrect: true }
-Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
+Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw], Exclude: [Guardfile] }
 Metrics/MethodLength: { Exclude: [db/migrate/**/*.rb] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 Rails/FilePath: { Exclude: [spec/matchers/**/*], EnforcedStyle: slashes }
