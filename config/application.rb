@@ -21,10 +21,19 @@ module Questlog
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.active_job.queue_adapter     = :sidekiq
+    config.active_job.queue_adapter     = :solid_queue
     config.active_job.queue_name_prefix = "questlog_#{Rails.env}"
+    config.solid_queue.clear_finished_jobs_after = 14.days
 
-    extra_paths = [Rails.root.join("lib"), Rails.root.join("app/poros/parsers")]
+    # The dashboard is mounted behind AdminConstraint in config/routes.rb, so
+    # it doesn't need HTTP basic auth.
+    config.mission_control.jobs.http_basic_auth_enabled = false
+
+    extra_paths = [
+      Rails.root.join("lib"),
+      Rails.root.join("app/poros/parsers"),
+      Rails.root.join("lib/route_constraints"),
+    ]
 
     config.autoload_paths += extra_paths
     config.eager_load_paths += extra_paths
