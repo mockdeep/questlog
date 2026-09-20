@@ -63,7 +63,7 @@ RSpec.describe TimeframeList, ".for" do
 
   def names_with_tasks(user)
     timeframes_for(user).reject { |timeframe| timeframe.tasks.empty? }
-                        .map(&:name)
+      .map(&:name)
   end
 
   def minute_maxes(user)

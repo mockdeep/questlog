@@ -22,4 +22,8 @@ Rails.application.routes.draw do
     get "/what", to: "pages#what"
     get "/privacy", to: "pages#privacy"
   end
+
+  constraints AdminConstraint.new do
+    mount MissionControl::Jobs::Engine, at: "jobs"
+  end
 end

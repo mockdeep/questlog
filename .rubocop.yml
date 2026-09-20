@@ -33,12 +33,15 @@ Rails: { Enabled: true }
 # ............................................................................ #
 
 Layout/LineLength: { Max: 80, AutoCorrect: true }
+Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
+Layout/MultilineOperationIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
 Metrics/MethodLength: { Exclude: [db/migrate/**/*.rb] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 Rails/FilePath: { Exclude: [spec/matchers/**/*], EnforcedStyle: slashes }
 RSpec/ContextWording: { Prefixes: [when] }
 RSpec/MessageExpectation: { EnforcedStyle: expect }
+Style/ModuleFunction: { EnforcedStyle: extend_self }
 RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**/*.rb
