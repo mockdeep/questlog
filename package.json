@@ -5,7 +5,7 @@
   "engines": {
     "node": "26.8.2"
   },
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.5.1",
   "dependencies": {
     "@fontsource/roboto": "^5.3.0",
     "@fontsource/roboto-condensed": "^5.3.0",
