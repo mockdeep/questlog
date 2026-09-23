@@ -5,7 +5,8 @@ orbs:
   node: circleci/node@7.1.0
 
 executors:
-  ruby_image:
+  default:
+    resource_class: large
     docker:
       - image: cimg/ruby:4.0.7-browsers
         environment:
@@ -22,12 +23,10 @@ executors:
           POSTGRES_PASSWORD:
 
 commands:
-  setup_environment:
+  setup:
+    description: Check out code and install Node, Ruby, and database dependencies
     steps:
       - checkout
-      - browser-tools/install-browser-tools:
-          install-chrome: false
-          install-chromedriver: false
 
       - node/install:
           node-version: 26.8.2
@@ -87,68 +86,106 @@ commands:
             bin/rails db:schema:load
 
 jobs:
-  lints:
-    executor: ruby_image
+  checks:
+    executor: default
     steps:
-      - setup_environment
-      - run:
-          name: Lints
-          command: pnpm stylelint && pnpm eslint && pnpm tscheck && bundle exec rubocop
+      - setup
 
-  javascript_tests:
-    executor: ruby_image
-    steps:
-      - setup_environment
       - run:
-          name: JavaScript tests
-          command: pnpm vitest
+          name: Typescript
+          command: pnpm tscheck
 
-  unit_tests:
-    executor: ruby_image
-    steps:
-      - setup_environment
       - run:
-          name: Precompile assets
-          command: bundle exec rails assets:precompile
+          name: Find Unused ESLint Rules
+          command: pnpm eslint_find_unused_rules
+
       - run:
-          name: Run unit tests
+          name: ESLint
+          command: pnpm eslint
+
+      - run:
+          name: Verify ESLint Autogen
+          command: bundle exec exe/eslint_autogen
+
+      - run:
+          name: Vitest
+          command: pnpm vitest run --coverage
+
+      - run:
+          name: Stylelint
+          command: pnpm stylelint
+
+      - run:
+          name: Verify Stylelint Autogen
+          command: bundle exec exe/stylelint_autogen
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
+          name: ✨ 🌈 ✨ Run Unit Tests ✨ 🌈 ✨
           command: |
-            bundle exec rspec --exclude-pattern "**/system/*_spec.rb"
-            # bundle exec rspec --profile 10 \
-            #                   --format RspecJunitFormatter \
-            #                   --out test_results/rspec.xml \
-            #                   --format progress \
-            #                   $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              grep -v "spec/system" | \
+              circleci tests split --split-by=timings)"
 
-      - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
-          path: test_results
+            echo "******************** TEST_FILES ************************"
+            echo "bundle exec rspec -s <seed-from-failed-build> $TEST_FILES"
+            echo "********************************************************"
+
+            COVERAGE=true bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/unit/rspec.xml \
+              $TEST_FILES
+
+      - store_test_results:
+          path: /tmp/test-results
+
+      - store_artifacts:
+          path: log
+          destination: log
 
   system_tests:
-    executor: ruby_image
+    executor: default
+    parallelism: 4
     steps:
-      - setup_environment
+      - setup
+
+      - browser-tools/install-firefox
+      - browser-tools/install-geckodriver
+
       - run:
-          name: Precompile assets
-          command: bundle exec rails assets:precompile
-      - run:
-          name: Run system tests
-          command: COVERAGE=false bundle exec rspec -b spec/system
+          name: ✨ 🌈 ✨ Run System Tests ✨ 🌈 ✨
+          command: |
+            TEST_FILES="$(circleci tests glob "spec/system/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+            echo "******************** TEST_FILES ************************"
+            echo "bundle exec rspec -s <seed-from-failed-build> $TEST_FILES"
+            echo "********************************************************"
+
+            COVERAGE=false xvfb-run -a bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/system/rspec.xml \
+              $TEST_FILES
+
+      - store_test_results:
+          path: /tmp/test-results
+
+      - store_artifacts:
+          path: log
+          destination: log
 
       - store_artifacts:
           name: Store failure screenshots
           path: tmp/capybara
           when: always
 
-      - store_artifacts:
-          name: Store Rails test log
-          path: log/test.log
-          when: always
-
 workflows:
-  version: 2
-  build_and_test:
+  test:
     jobs:
-      - lints
-      - javascript_tests
-      - unit_tests
+      - checks
       - system_tests
