@@ -8,12 +8,6 @@ function requestAnimationFrame(callback: Callback): void {
 
 (global as any).requestAnimationFrame = requestAnimationFrame;
 
-window.gon = {
-  honeybadgerApiKey: "hb-api-key",
-  railsEnv: "test",
-  userId: 1,
-};
-
 // eslint-disable-next-line no-console
 console.error = function error(message: string): void {
   throw new Error(message);

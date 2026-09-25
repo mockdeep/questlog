@@ -95,12 +95,13 @@ Metrics/AbcSize:
     - 'db/migrate/20260920002006_create_solid_queue_tables.rb'
     - 'spec/spec_helper.rb'
 
-# Offense count: 3
+# Offense count: 4
 # Configuration parameters: CountComments, Max, CountAsOne.
 Metrics/ClassLength:
   Exclude:
     - 'app/models/task.rb'
     - 'app/views/help/index.rb'
+    - 'app/views/layouts/application.rb'
     - 'db/migrate/20260920002006_create_solid_queue_tables.rb'
 
 # Offense count: 3

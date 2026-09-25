@@ -15,7 +15,6 @@ gem "bootsnap", require: false
 gem "dalli"
 gem "friendly_id"
 gem "goldiloader"
-gem "gon"
 gem "honeybadger"
 # gem 'image_processing'
 gem "cssbundling-rails"
