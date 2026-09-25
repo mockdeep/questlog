@@ -10,7 +10,6 @@ module Views
       register_value_helper :current_user
       register_value_helper :page_title
 
-      HONEYBADGER = "//js.honeybadger.io/v0.3/honeybadger.min.js"
       VIEWPORT = "width=device-width, initial-scale=1.0"
       SIGN_UP_PROMPT =
         "You're not logged in! In order to save your tasks you'll need to"
@@ -19,7 +18,7 @@ module Views
         doctype
         html do
           head { head_content }
-          body { body_content(&) }
+          body(**body_options) { body_content(&) }
         end
       end
 
@@ -29,12 +28,21 @@ module Views
         title { page_title }
         favicon_link_tag("favicon.ico")
         javascript_include_tag("crash_site_onerror") if Rails.env.test?
-        raw(Gon::Base.render_data(camel_case: true))
-        javascript_include_tag(HONEYBADGER) if Rails.env.production?
         stylesheet_link_tag("application", media: "all")
         csrf_meta_tags
         javascript_include_tag("application")
         meta(name: "viewport", content: VIEWPORT)
+      end
+
+      def body_options
+        {
+          data: {
+            controller: "honeybadger",
+            honeybadger_api_key_value: Honeybadger.config[:api_key],
+            honeybadger_environment_value: Honeybadger.config[:env],
+            honeybadger_user_id_value: current_user.id,
+          },
+        }
       end
 
       def body_content(&)

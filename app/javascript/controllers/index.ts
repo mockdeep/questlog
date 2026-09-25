@@ -33,3 +33,6 @@ application.register("task-drag", TaskDragController);
 
 import PostponeController from "./postpone_controller";
 application.register("postpone", PostponeController);
+
+import HoneybadgerController from "./honeybadger_controller";
+application.register("honeybadger", HoneybadgerController);

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   layout -> { Views::Layouts::Application }
 
   before_action :check_repeats
-  before_action :set_gon_variables
   before_action :set_honeybadger_context
 
   private
@@ -35,14 +34,6 @@ class ApplicationController < ActionController::Base
     return unless current_user.persisted?
 
     current_user.tasks.ready_to_release.order(:release_at).each(&:release!)
-  end
-
-  def set_gon_variables
-    gon.push(
-      honeybadger_api_key: ENV["HONEYBADGER_API_KEY"],
-      rails_env: Rails.env,
-      user_id: current_user.id,
-    )
   end
 
   def set_honeybadger_context
