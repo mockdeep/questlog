@@ -35,7 +35,13 @@ Rails: { Enabled: true }
 Layout/LineLength: { Max: 80, AutoCorrect: true }
 Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 Layout/MultilineOperationIndentation: { EnforcedStyle: indented }
-Metrics/BlockLength: { AllowedMethods: [configure, context, describe, draw] }
+Metrics/BlockLength:
+  AllowedMethods: [configure, context, describe, draw]
+  Exclude:
+    - Guardfile
+    - db/schema.rb
+    - config/environments/development.rb
+Rails/SkipsModelValidations: { AllowedMethods: [decrement!, increment!] }
 Metrics/MethodLength: { Exclude: [db/migrate/**/*.rb] }
 Naming/VariableNumber: { EnforcedStyle: snake_case }
 Rails/FilePath: { Exclude: [spec/matchers/**/*], EnforcedStyle: slashes }
