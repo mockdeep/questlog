@@ -53,6 +53,7 @@ it("leaves room for the borders of a border-box field", async () => {
   const field = await setup();
   withContentHeight(field, 40);
   field.style.boxSizing = "border-box";
+  field.style.borderStyle = "solid";
   field.style.borderTopWidth = "2px";
   field.style.borderBottomWidth = "3px";
 
@@ -65,6 +66,7 @@ it("leaves no extra room when the borders sit outside the field", async () => {
   const field = await setup();
   withContentHeight(field, 40);
   field.style.boxSizing = "content-box";
+  field.style.borderStyle = "solid";
   field.style.borderTopWidth = "2px";
   field.style.borderBottomWidth = "3px";
 
