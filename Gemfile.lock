@@ -107,7 +107,7 @@ GEM
     crass (1.0.7)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
-    dalli (5.1.1)
+    dalli (5.2.0)
       logger
     date (3.5.1)
     diff-lcs (1.6.2)
@@ -162,7 +162,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashdiff (1.2.1)
-    honeybadger (6.9.2)
+    honeybadger (6.9.3)
       logger
       ostruct
     i18n (1.15.2)
@@ -183,7 +183,7 @@ GEM
     junk_drawer (2.1.2)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
-    listen (3.10.0)
+    listen (3.10.1)
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -225,9 +225,9 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-smtp (0.5.1)
+    net-smtp (0.5.2)
       net-protocol
-    newrelic_rpm (10.8.0)
+    newrelic_rpm (10.9.0)
       logger
     nio4r (2.7.5)
     nokogiri (1.19.4)
@@ -317,7 +317,7 @@ GEM
       logger
       prism (>= 1.6.0)
       tsort
-    rdoc (8.0.0)
+    rdoc (8.1.0)
       erb
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
@@ -325,7 +325,7 @@ GEM
     refract (1.1.0)
       prism
       zeitwerk
-    regexp_parser (2.13.0)
+    regexp_parser (2.13.1)
     reline (0.7.0)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -393,19 +393,18 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     rubyzip (3.7.0)
-    scout_apm (6.3.0)
+    scout_apm (6.3.1)
       parser
     securerandom (0.4.1)
-    selenium-webdriver (4.49.0)
+    selenium-webdriver (4.50.0)
       base64 (~> 0.2)
       logger (~> 1.4)
-      rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     shellany (0.0.1)
     shoulda-matchers (8.0.1)
       activesupport (>= 7.2)
-    simplecov (1.3.1)
+    simplecov (1.3.2)
     skylight (7.1.1)
       activesupport (>= 7.2.0)
     solid_cable (4.1.0)
@@ -428,7 +427,7 @@ GEM
       spring (>= 4)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stripe (19.6.2)
+    stripe (20.0.0)
       bigdecimal
       logger
     strscan (3.1.8)
