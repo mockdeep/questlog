@@ -76,7 +76,7 @@ RSpec.describe "tasks index page" do
     visit("/tasks")
     expect(pending_tasks).to have_task(task.title)
     task_row(task.title).click_button("UNDO")
-    expect(page).to have_no_selector("#pending-tasks")
+    expect(page).to have_no_css("#pending-tasks")
     expect(current_tasks).to have_task(task.title)
   end
 end

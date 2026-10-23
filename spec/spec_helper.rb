@@ -152,7 +152,7 @@ def pending_tasks
 end
 
 def postpone_button
-  find("#postpone", text: "Postpone for:").find("label")
+  find("#postpone label", text: "Postpone for:")
 end
 
 def browser

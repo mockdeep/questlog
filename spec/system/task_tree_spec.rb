@@ -22,7 +22,7 @@ RSpec.describe "task tree" do
       within child_item do
         grandchild_item = first(".task-item")
         expect(grandchild_item).to have_css("span", text: "grandchild")
-        expect(grandchild_item).to have_no_selector(".task-item")
+        expect(grandchild_item).to have_no_css(".task-item")
       end
     end
   end
@@ -31,16 +31,16 @@ RSpec.describe "task tree" do
     expect(page).to have_css(".task-item", count: 3)
     expect(page).to have_css(".task-item > span", text: "grandchild")
     all(".task-item").last.find("label").click
-    expect(page).to have_no_selector(".task-item > span", text: "grandchild")
+    expect(page).to have_no_css(".task-item > span", text: "grandchild")
 
     expect(page).to have_css(".task-item > span", text: "child")
     all(".task-item").last.find("label").click
-    expect(page).to have_no_selector(".task-item > span", text: "child")
+    expect(page).to have_no_css(".task-item > span", text: "child")
 
     expect(page).to have_css(".task-item > span", text: "parent")
     all(".task-item").last.find("label").click
-    expect(page).to have_no_selector(".task-item > span", text: "parent")
-    expect(page).to have_no_selector(".task-item")
+    expect(page).to have_no_css(".task-item > span", text: "parent")
+    expect(page).to have_no_css(".task-item")
     sidebar.click("FOCUS")
     expect(page).to have_no_task
   end
