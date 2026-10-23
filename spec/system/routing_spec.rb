@@ -5,7 +5,7 @@ RSpec.describe "front end routing" do
     add_task("do laundry")
     sidebar.click("ALL TASKS")
     expect(current_tasks).to have_task("do laundry")
-    expect(page).to have_no_selector(".task-display")
+    expect(page).to have_no_css(".task-display")
 
     page.go_back
 

@@ -10,12 +10,12 @@ RSpec.describe "adding sub tasks" do
     find(".task-link").click
     expect(page).to have_current_path(task_path(Task.last))
     expect(page).to have_task("the parent task")
-    expect(page).to have_no_selector("td")
+    expect(page).to have_no_css("td")
     add_task("the sub task")
     task_row("the sub task").find(".task-link").click
     expect(page).to have_task("the sub task")
     expect(page).to have_link("the parent task")
-    expect(page).to have_no_selector("td")
+    expect(page).to have_no_css("td")
     add_task("the sub sub task")
     expect(task_row("the sub sub task")).to be_truthy
     click_link("the parent task")
@@ -38,7 +38,7 @@ RSpec.describe "adding sub tasks" do
     task_row("the sub task").click_button("DONE")
     expect(page).to have_no_task("the sub task")
     accept_confirm { task_row("another sub task").click_button("DELETE") }
-    expect(page).to have_no_selector("td")
+    expect(page).to have_no_css("td")
   end
 
   it "allows renaming a task from its own page" do

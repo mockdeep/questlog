@@ -11,7 +11,7 @@ RSpec.describe "editing smart tags" do
     within(".tag-row", text: tag.name) { click_link("Edit") }
 
     expect(page).to have_text("Editing tag #{tag.name}")
-    expect(page).to have_no_selector("li")
+    expect(page).to have_no_css("li")
     click_button("Add Rule")
     expect(page).to have_css("li", count: 1)
     click_button("Save Tag")
