@@ -86,7 +86,7 @@ GEM
       rouge (>= 1.0.0)
     bigdecimal (4.1.3)
     bindex (0.8.1)
-    bootsnap (1.26.0)
+    bootsnap (1.26.1)
       msgpack (~> 1.5)
     builder (3.3.0)
     capybara (3.40.0)
@@ -107,7 +107,7 @@ GEM
     crass (1.0.8)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
-    dalli (5.2.2)
+    dalli (5.2.5)
       logger
     date (3.6.0)
     diff-lcs (1.6.2)
@@ -140,7 +140,7 @@ GEM
       ffi (~> 1.0)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    goldiloader (6.0.0)
+    goldiloader (6.0.1)
       activerecord (>= 7.2, < 8.3)
       activesupport (>= 7.2, < 8.3)
     guard (2.20.2)
@@ -171,7 +171,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.9.4)
+    io-console (0.9.5)
     irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
@@ -216,7 +216,7 @@ GEM
       railties (>= 7.1)
       stimulus-rails
       turbo-rails
-    msgpack (1.8.5)
+    msgpack (1.8.6)
     nenv (0.3.0)
     net-imap (0.6.8)
       date
@@ -238,7 +238,7 @@ GEM
       shellany (~> 0.0)
     ostruct (0.6.3)
     parallel (2.3.0)
-    parser (3.3.12.0)
+    parser (3.3.13.0)
       ast (~> 2.4.1)
       racc
     pg (1.7.0)
@@ -270,7 +270,7 @@ GEM
       puma (>= 2.7)
     raabro (1.5.0)
     racc (1.8.1)
-    rack (3.2.7)
+    rack (3.2.8)
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -354,7 +354,7 @@ GEM
     rspec-support (3.13.7)
     rspec_junit_formatter (0.8.0)
       rspec-core (>= 3.13, < 4)
-    rubocop (1.92.1)
+    rubocop (1.92.2)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -393,10 +393,10 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     rubyzip (3.7.0)
-    scout_apm (6.3.1)
+    scout_apm (6.3.2)
       parser
     securerandom (0.4.1)
-    selenium-webdriver (4.51.0)
+    selenium-webdriver (4.52.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rubyzip (>= 1.2.2, < 4.0)
@@ -427,7 +427,7 @@ GEM
       spring (>= 4)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stripe (20.0.0)
+    stripe (20.1.0)
       bigdecimal
       logger
     strscan (3.1.8)
