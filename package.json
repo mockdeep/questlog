@@ -16,7 +16,7 @@
     "@hotwired/turbo-rails": "^8.0.23",
     "@rails/actioncable": "^8.1.401",
     "a11y-dialog": "^8.1.5",
-    "bootstrap": "3.4.1",
+    "bootstrap": "5.3.9",
     "esbuild": "^0.28.2",
     "normalize.css": "^8.0.1",
     "typescript": "^6.0.3"

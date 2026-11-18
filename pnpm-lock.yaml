@@ -203,8 +203,8 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5
       bootstrap:
-        specifier: 3.4.1
-        version: 3.4.1
+        specifier: 5.3.9
+        version: 5.3.9(@popperjs/core@2.11.8)
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -921,6 +921,9 @@ packages:
     resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
 
+  '@popperjs/core@2.11.8':
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
   '@rails/actioncable@8.1.401':
     resolution: {integrity: sha512-eZdEy9UmnsaeDHr5G5nFhdgsaMo9EZVq2JMAjqtNmVDqnKWHwvTMt0Ah1CWBf7g7BDLR3WCDgHS2aOhbpjqkWw==}
 
@@ -1456,10 +1459,10 @@ packages:
   bcp-47@2.1.2:
     resolution: {integrity: sha512-wsv86UuNFuPnVieKLyECTT+CP1WSAHeoIg5P3xu2kA9Z+7fVPoKt7dxzSeEhtJel0AI+NW3fIW3KtTKQKUCngg==}
 
-  bootstrap@3.4.1:
-    resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
-    engines: {node: '>=6'}
-    deprecated: This version of Bootstrap is no longer supported. Please upgrade to the latest version.
+  bootstrap@5.3.9:
+    resolution: {integrity: sha512-20cU0rcfw8WdxtVbmfU+xT2EjvVTw9Ror/h1Qvd7DXCujRg8OO9mdBCsmTHdJFf3BuadmBNJtgIuUXsBqSkk/w==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.8
 
   brace-expansion@1.1.14:
     resolution: {integrity: sha512-MWPGfDxnyzKU7rNOW9SP/c50vi3xrmrua/+6hfPbCS2ABNWfx24vPidzvC7krjU/RTo235sV776ymlsMtGKj8g==}
@@ -3203,6 +3206,8 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.6
     optional: true
 
+  '@popperjs/core@2.11.8': {}
+
   '@rails/actioncable@8.1.401': {}
 
   '@rollup/rollup-android-arm-eabi@4.62.0':
@@ -3694,7 +3699,9 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  bootstrap@3.4.1: {}
+  bootstrap@5.3.9(@popperjs/core@2.11.8):
+    dependencies:
+      '@popperjs/core': 2.11.8
 
   brace-expansion@1.1.14:
     dependencies:
