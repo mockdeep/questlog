@@ -28,7 +28,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@sinonjs/fake-timers": "^15.4.0",
-    "@stylistic/eslint-plugin": "^5.10.0",
+    "@stylistic/eslint-plugin": "^6.0.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@types/hotwired__turbo": "^8.0.16",
     "@types/node": "^26.6.6",
