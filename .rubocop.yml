@@ -69,6 +69,7 @@ Style/MethodCallWithArgsParentheses:
     - and
     - describe
     - to
+    - not_to
 Style/StringLiterals: { EnforcedStyle: double_quotes }
 Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
 Style/SymbolArray: { EnforcedStyle: brackets }

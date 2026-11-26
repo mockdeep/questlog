@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root "pages#index"
 
     resource :session, only: [:new, :create, :destroy]
+    resource :account, only: [:show, :remove, :destroy]
 
     resource :bulk_task, only: [:new, :create]
     resources :free_accounts, only: [:new, :create]

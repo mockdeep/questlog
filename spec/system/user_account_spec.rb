@@ -22,4 +22,14 @@ RSpec.describe "user accounts" do
     expect(page).to have_text("Logged in as #{user.email}")
     expect(page).to have_text("Logged in!")
   end
+
+  it "allows a user to delete their account" do
+    system_login_as(user)
+    click_link(user.email)
+    click_link("Delete account")
+    click_button("Permanently Delete Account")
+    expect(page).to have_text("Your account has been deleted.")
+    expect(page).to have_text("You're not logged in!")
+    expect(User.exists?(user.id)).to be(false)
+  end
 end
