@@ -31,15 +31,15 @@ function target(el: HTMLElement, name: string): HTMLElement {
 it("opens the sidebar on a wide screen", async () => {
   const el = await setupController(1024);
 
-  expect(el).toHaveClass("sidebar-open");
-  expect(target(el, "collapsedSidebar")).toHaveClass("hide-me");
+  expect(el.classList).toContain("sidebar-open");
+  expect(target(el, "collapsedSidebar").classList).toContain("hide-me");
 });
 
 it("collapses the sidebar on a narrow screen", async () => {
   const el = await setupController(500);
 
-  expect(el).not.toHaveClass("sidebar-open");
-  expect(target(el, "expandedSidebar")).toHaveClass("hide-me");
+  expect(el.classList).not.toContain("sidebar-open");
+  expect(target(el, "expandedSidebar").classList).toContain("hide-me");
 });
 
 it("hides the sidebar when hideSidebar is called", async () => {
@@ -47,7 +47,7 @@ it("hides the sidebar when hideSidebar is called", async () => {
 
   getController(el, "layout", LayoutController).hideSidebar();
 
-  expect(el).not.toHaveClass("sidebar-open");
+  expect(el.classList).not.toContain("sidebar-open");
 });
 
 it("shows the sidebar when showSidebar is called", async () => {
@@ -55,5 +55,5 @@ it("shows the sidebar when showSidebar is called", async () => {
 
   getController(el, "layout", LayoutController).showSidebar();
 
-  expect(el).toHaveClass("sidebar-open");
+  expect(el.classList).toContain("sidebar-open");
 });
