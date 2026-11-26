@@ -47,8 +47,6 @@ end
 group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
-  gem "guard"
-  gem "guard-rubocop"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
@@ -62,7 +60,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "guard-rspec"
   gem "rb-inotify"
   gem "rspec_junit_formatter", require: false
   gem "selenium-webdriver"
