@@ -33,8 +33,6 @@
     "@types/node": "^26.6.6",
     "@types/rails__actioncable": "^8.0.3",
     "@types/sinonjs__fake-timers": "^15.0.1",
-    "@typescript-eslint/eslint-plugin": "^8.72.1",
-    "@typescript-eslint/parser": "^8.72.1",
     "@vitest/coverage-v8": "^5.1.0",
     "@vitest/eslint-plugin": "^1.6.28",
     "eslint": "^10.14.0",
