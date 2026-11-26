@@ -38,7 +38,6 @@ Layout/MultilineOperationIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength:
   AllowedMethods: [configure, context, describe, draw]
   Exclude:
-    - Guardfile
     - db/schema.rb
     - config/environments/development.rb
 Rails/SkipsModelValidations: { AllowedMethods: [decrement!, increment!] }
@@ -56,7 +55,6 @@ RSpec/MultipleMemoizedHelpers:
   AllowSubject: false
   Exclude:
     - spec/linters/rubocop/**/*.rb
-Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/CollectionMethods:
   PreferredMethods:
     collect: map
