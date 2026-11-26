@@ -89,7 +89,8 @@ module Views
       end
 
       def account_nav
-        plain("Logged in as #{current_user.email}")
+        plain("Logged in as ")
+        link_to(current_user.email, account_path)
         br
         button_to("Log out", session_path, method: :delete)
       end
