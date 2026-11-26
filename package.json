@@ -27,12 +27,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@sinonjs/fake-timers": "^15.5.0",
     "@stylistic/eslint-plugin": "^6.0.1",
     "@types/hotwired__turbo": "^8.0.16",
     "@types/node": "^26.6.6",
     "@types/rails__actioncable": "^8.0.3",
-    "@types/sinonjs__fake-timers": "^15.0.1",
     "@vitest/coverage-v8": "^5.1.0",
     "@vitest/eslint-plugin": "^1.6.28",
     "eslint": "^10.14.0",
@@ -48,7 +46,6 @@
     "stylelint-config-standard": "^41.0.0",
     "stylelint-selector-bem-pattern": "^5.0.0",
     "typescript-eslint": "^8.72.1",
-    "util": "^0.12.5",
     "vitest": "^5.1.0"
   },
   "license": "UNLICENSED",

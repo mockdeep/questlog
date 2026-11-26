@@ -46,7 +46,6 @@ module Views
       end
 
       def body_content(&)
-        clock if Rails.env.test?
         div(**container_options) do
           navbar
           flashes
@@ -54,11 +53,6 @@ module Views
           footer_links
         end
         turbo_frame_tag("dialog")
-      end
-
-      def clock
-        div(class: "time-freeze", data: { timestamp: Time.now.to_i * 1000 })
-        javascript_include_tag("freeze_time")
       end
 
       def container_options
