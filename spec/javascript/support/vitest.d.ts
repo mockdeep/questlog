@@ -3,8 +3,6 @@ import type {
   vi as Vi,
 } from "vitest";
 
-import "@testing-library/jest-dom/vitest";
-
 declare global {
   const vi: typeof Vi;
   const expect: ExpectStatic;
