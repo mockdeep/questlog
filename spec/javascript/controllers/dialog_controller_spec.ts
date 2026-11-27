@@ -1,7 +1,7 @@
 import A11yDialog from "a11y-dialog";
 import {expect, it, vi} from "vitest";
 
-import {bootStimulus} from "support/stimulus";
+import { bootStimulus } from "support/stimulus";
 import DialogController from "controllers/dialog_controller";
 
 async function setupController(): Promise<void> {
