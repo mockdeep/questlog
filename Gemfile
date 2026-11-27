@@ -38,9 +38,6 @@ gem "turbo-rails"
 group :development do
   gem "better_errors"
   gem "listen"
-  gem "spring"
-  gem "spring-commands-rspec"
-  gem "spring-watcher-listen"
   gem "web-console"
 end
 
