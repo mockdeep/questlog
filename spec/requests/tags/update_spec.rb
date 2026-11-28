@@ -6,7 +6,7 @@ RSpec.describe TagsController, "#update" do
     login_as(tag.user)
 
     params = { tag: { rules: [{ check: "bar" }] } }
-    patch "/tags/#{tag.id}", params: params
+    patch("/tags/#{tag.id}", params:)
 
     expect(tag.reload.rules).to eq([{ check: "bar" }.stringify_keys])
   end
@@ -25,7 +25,7 @@ RSpec.describe TagsController, "#update" do
     login_as(tag.user)
 
     params = { tag: { rules: [{ check: "bar" }] } }
-    patch "/tags/#{tag.id}", params: params
+    patch("/tags/#{tag.id}", params:)
 
     expect(response).to redirect_to("/tags")
   end

@@ -62,6 +62,7 @@ Style/CollectionMethods:
     inject: reduce
     find: detect
     find_all: select
+Style/HashSyntax: { EnforcedShorthandSyntax: always }
 Style/MethodCallWithArgsParentheses:
   AllowedMethods:
     - and
